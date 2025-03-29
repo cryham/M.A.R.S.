@@ -49,7 +49,9 @@ void inline writeScoreAtCol(int value, int col, Vector2f topLeft, int mirror, Co
 TabStats::TabStats():
     visible_(false),
     refresh_(false),
-    sumPoints_(0) {}
+    sumPoints_(0)
+{
+}
 
 void TabStats::update() {
     if (visible_ || refresh_) {
@@ -208,9 +210,9 @@ void TabStats::draw() const {
         glLineWidth(2.f);
 
         glBegin(GL_LINES);
-            glColor4f(1.f, 0.5f, 0.8f, 1.0f);
+            glColor4f(0.5f, 0.8f, 1.0f, 1.0f);
             glVertex2f(topLeft.x_+10*mirror, topLeft.y_+35);
-            glColor4f(1.f, 0.5f, 0.8f, 0.0f);
+            glColor4f(0.5f, 0.8f, 1.0f, 0.0f);
             glVertex2f(topLeft.x_+width-10*mirror, topLeft.y_+35);
         glEnd();
 

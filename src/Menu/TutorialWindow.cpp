@@ -36,15 +36,15 @@ UiWindow* TutorialWindow::get(sf::String* title, sf::String* text, int index, bo
     if (instance_ == NULL) {
         instance_ = new TutorialWindow(400, 200);
         instance_->addWidget(new Button(locales::getLocale(next ? locales::Next : locales::Ok), NULL, &kOk_, Vector2f(300,170), 90, 20));
-        instance_->addWidget(new Label(title, TEXT_ALIGN_LEFT, Vector2f(10,10), 20.f, Color3f(1.f, 0.5f, 0.9f), false));
+        instance_->addWidget(new Label(title, TEXT_ALIGN_LEFT, Vector2f(10,10), 20.f, getColor3f(0.5f, 0.9f, 1.f), false));
         if (info) {
-            instance_->addWidget(new Label(locales::getLocale(locales::Info), TEXT_ALIGN_RIGHT, Vector2f(380,18), 12.f, Color3f(1.f, 0.5f, 0.9f), false));
+            instance_->addWidget(new Label(locales::getLocale(locales::Info), TEXT_ALIGN_RIGHT, Vector2f(380,18), 12.f, getColor3f(0.5f, 0.9f, 1.f), false));
         }
         else {
             std::stringstream sstr;
             sstr << index << "/22";
             index_ = sf::String(sstr.str());
-            instance_->addWidget(new Label(&index_, TEXT_ALIGN_RIGHT, Vector2f(380,18), 12.f, Color3f(1.f, 0.5f, 0.9f), false));
+            instance_->addWidget(new Label(&index_, TEXT_ALIGN_RIGHT, Vector2f(380,18), 12.f, getColor3f(0.5f, 0.9f, 1.f), false));
         }
         instance_->addWidget(new Line(Vector2f(10, 35), Vector2f(340, 35)));
         instance_->addWidget(new TextBox(text, Vector2f(10, 50), 380, 110));

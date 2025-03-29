@@ -148,7 +148,7 @@ void TextBox::draw () const {
     /*glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
     glBegin(GL_QUADS);
-        glColor3f(0.3,0.1,0.2);
+        setColor3f(0.1,0.2,0.3);
         glVertex2f(origin.x_, origin.y_);
         glVertex2f(origin.x_, height_ + origin.y_);
         glVertex2f(width() + origin.x_, height_ + origin.y_);

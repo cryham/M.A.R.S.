@@ -128,18 +128,18 @@ void TabList::draw () const {
 
     glLineWidth(2.f);
     glBegin(GL_LINES);
-        if (isTopMost())  glColor4f(1.f, 0.5f, 0.8f, 1.0f);
-        else              glColor4f(0.4f, 0.4f, 0.4f, 1.0f);
+        if (isTopMost())  setColor4f(0.5f, 0.8f, 1.0f, 1.0f);
+        else              setColor4f(0.4f, 0.4f, 0.4f, 1.0f);
         glVertex2f(origin.x_,origin.y_+20);
-        if (isTopMost())  glColor4f(1.f, 0.5f, 0.8f, 0.0f);
-        else              glColor4f(0.4f, 0.4f, 0.4f, 0.0f);
+        if (isTopMost())  setColor4f(0.5f, 0.8f, 1.0f, 0.0f);
+        else              setColor4f(0.4f, 0.4f, 0.4f, 0.0f);
         glVertex2f(origin.x_,origin.y_+height_);
 
-        if (isTopMost())  glColor4f(1.f, 0.5f, 0.8f, 1.0f);
-        else              glColor4f(0.4f, 0.4f, 0.4f, 1.0f);
+        if (isTopMost())  setColor4f(0.5f, 0.8f, 1.0f, 1.0f);
+        else              setColor4f(0.4f, 0.4f, 0.4f, 1.0f);
         glVertex2f(origin.x_+lastTabEnd_*mirror,origin.y_+20);
-        if (isTopMost())  glColor4f(1.f, 0.5f, 0.8f, 0.0f);
-        else              glColor4f(0.4f, 0.4f, 0.4f, 0.0f);
+        if (isTopMost())  setColor4f(0.5f, 0.8f, 1.0f, 0.0f);
+        else              setColor4f(0.4f, 0.4f, 0.4f, 0.0f);
         glVertex2f(origin.x_+width(),origin.y_+20);
     glEnd();
 
@@ -170,7 +170,8 @@ void TabList::addTab(Tab* toBeAdded) {
 
     toBeAdded->topLeft_ = Vector2f(lastTabEnd_, 0.f);
 
-    toBeAdded->label_ = new Label(toBeAdded->name_, TEXT_ALIGN_CENTER, Vector2f(lastTabEnd_+toBeAdded->width_/2, -6), 12.f, Color3f(0.65f, 0.65f, 0.65f), false);
+    toBeAdded->label_ = new Label(toBeAdded->name_, TEXT_ALIGN_CENTER,
+        Vector2f(lastTabEnd_+toBeAdded->width_/2, -6), 12.f, getColor3f(0.65f, 0.65f, 0.65f), false);
     toBeAdded->label_->setParent(toBeAdded);
 
     tabs_.push_back(toBeAdded);

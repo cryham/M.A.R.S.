@@ -71,10 +71,10 @@ void ColorPickerWindow::draw() const {
 
     // draw b&w background grade
     glBegin(GL_QUADS);
-        glColor3f(0.f, 0.f, 0.f);
+        setColor3f(0.f, 0.f, 0.f);
         glVertex2f(origin.x_+10.f, origin.y_+10.f);
         glVertex2f(origin.x_+10.f, origin.y_+130.f);
-        glColor3f(1.f, 1.f, 1.f);
+        setColor3f(1.f, 1.f, 1.f);
         glVertex2f(origin.x_+130.f, origin.y_+130.f);
         glVertex2f(origin.x_+130.f, origin.y_+10.f);
     glEnd();
@@ -83,7 +83,7 @@ void ColorPickerWindow::draw() const {
     glBindTexture(GL_TEXTURE_2D, texture::getTexture(texture::Interface));
 
     // draw multicolored stripe
-    glColor3f(1.f, 1.f, 1.f);
+    setColor3f(1.f, 1.f, 1.f);
     glBegin(GL_QUADS);
         glTexCoord2f(0.234375f, 0.390625f);   glVertex2f(origin.x_+150.f, origin.y_+10.f);
         glTexCoord2f(0.234375f, 0.625f);      glVertex2f(origin.x_+150.f, origin.y_+130.f);
@@ -123,7 +123,7 @@ void ColorPickerWindow::draw() const {
     glDisable(GL_TEXTURE_2D);
     glBindTexture(GL_TEXTURE_2D, 0);
 
-    glColor3f(1.f, 1.f, 1.f);
+    setColor3f(1.f, 1.f, 1.f);
     glLineWidth(2.f);
     glBegin(GL_LINES);
         glVertex2f(origin.x_+148.f, origin.y_+hue/3+10);

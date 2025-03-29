@@ -40,11 +40,11 @@ void Line::draw() const {
     glLineWidth(2.f);
 
     glBegin(GL_LINES);
-        if (isTopMost())  glColor4f(1.f, 0.5f, 0.8f, 1.0f);
-        else              glColor4f(0.4f, 0.4f, 0.4f, 1.0f);
+        if (isTopMost())  setColor4f(0.5f, 0.8f, 1.0f, 1.0f);
+        else              setColor4f(0.4f, 0.4f, 0.4f, 1.0f);
         glVertex2f(begin.x_,begin.y_);
-        if (isTopMost())  glColor4f(1.f, 0.5f, 0.8f, 0.0f);
-        else              glColor4f(0.4f, 0.4f, 0.4f, 0.0f);
+        if (isTopMost())  setColor4f(0.5f, 0.8f, 1.0f, 0.0f);
+        else              setColor4f(0.4f, 0.4f, 0.4f, 0.0f);
         glVertex2f(end.x_,end.y_);
     glEnd();
 

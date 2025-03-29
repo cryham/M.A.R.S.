@@ -31,9 +31,9 @@ Button::Button (sf::String* text, sf::String* toolTip, bool* key, Vector2f const
     toolTip_(toolTip) {
 
     switch (align) {
-        case TEXT_ALIGN_LEFT:  label_ = new Label(text, align, Vector2f(4, 2), 12.f, Color3f(0.75f,0.75f,0.75f), true, font);          break;
-        case TEXT_ALIGN_RIGHT: label_ = new Label(text, align, Vector2f(width-4, 2), 12.f, Color3f(0.75f,0.75f,0.75f), true, font);    break;
-        default:               label_ = new Label(text, align, Vector2f(width*0.5f, 2), 12.f, Color3f(0.75f,0.75f,0.75f), true, font);
+        case TEXT_ALIGN_LEFT:  label_ = new Label(text, align, Vector2f(4, 2),          12.f, getColor3f(0.75f,0.75f,0.75f), true, font);  break;
+        case TEXT_ALIGN_RIGHT: label_ = new Label(text, align, Vector2f(width-4, 2),    12.f, getColor3f(0.75f,0.75f,0.75f), true, font);  break;
+        default:               label_ = new Label(text, align, Vector2f(width*0.5f, 2), 12.f, getColor3f(0.75f,0.75f,0.75f), true, font);
     }
 
     label_->setParent(this);
@@ -82,59 +82,59 @@ void Button::draw () const {
 
     glBegin(GL_QUADS);
         // dark background
-        if (isTopMost())   glColor4f(0.3*focusedFadeTime_,0.1*focusedFadeTime_,0.2*focusedFadeTime_,0.8);
-        else               glColor4f(0.0,0.0,0.0,0.8);
+        if (isTopMost())   setColor4f(0.1*focusedFadeTime_,0.2*focusedFadeTime_,0.3*focusedFadeTime_,0.8);
+        else               setColor4f(0.0,0.0,0.0,0.8);
         glVertex2f(origin.x_, origin.y_);
         glVertex2f(origin.x_, height_ + origin.y_);
-        glColor4f(0.0,0.0,0.0,0.8);
+        setColor4f(0.0,0.0,0.0,0.8);
         glVertex2f(width()*0.5f + origin.x_, height_ + origin.y_);
         glVertex2f(width()*0.5f + origin.x_, origin.y_);
         glVertex2f(width()*0.5f + origin.x_, height_ + origin.y_);
         glVertex2f(width()*0.5f + origin.x_, origin.y_);
-        if (isTopMost())   glColor4f(0.3*focusedFadeTime_,0.1*focusedFadeTime_,0.2*focusedFadeTime_,0.8);
-        else               glColor4f(0.0,0.0,0.0,0.8);
+        if (isTopMost())   setColor4f(0.1*focusedFadeTime_,0.2*focusedFadeTime_,0.3*focusedFadeTime_,0.8);
+        else               setColor4f(0.0,0.0,0.0,0.8);
         glVertex2f(width() + origin.x_, origin.y_);
         glVertex2f(width() + origin.x_, height_ + origin.y_);
 
         // glossy bottom
-        glColor4f(1.0,1.0,1.0,0.0);
+        setColor4f(1.0,1.0,1.0,0.0);
         glVertex2f(origin.x_, height_*0.7f + origin.y_);
         glVertex2f(width() + origin.x_, height_*0.7f + origin.y_);
-        glColor4f(1.0,1.0,1.0,0.06);
+        setColor4f(1.0,1.0,1.0,0.06);
         glVertex2f(width() + origin.x_, height_ + origin.y_);
         glVertex2f(origin.x_, height_ + origin.y_);
 
     if (pressed_ && (hovered_ || focused_)) {
         // bottom glow
-        glColor4f(0.5,0.25,0.4,0.0);
+        setColor4f(0.25,0.4,0.5,0.0);
         glVertex2f(origin.x_,origin.y_);
         glVertex2f(origin.x_+width(),origin.y_);
-        glColor4f(0.5,0.25,0.4,0.4);
+        setColor4f(0.25,0.4,0.5,0.4);
         glVertex2f(origin.x_+width(),origin.y_+height_);
         glVertex2f(origin.x_,origin.y_+height_);
     }
     else if (hovered_) {
-        glColor4f(0.5,0.25,0.4,0.0);
+        setColor4f(0.25,0.4,0.5,0.0);
         glVertex2f(origin.x_,height_*0.5f + origin.y_);
         glVertex2f(origin.x_+width(),height_*0.5f + origin.y_);
-        glColor4f(0.5,0.25,0.4,0.4);
+        setColor4f(0.25,0.4,0.5,0.4);
         glVertex2f(origin.x_+width(),origin.y_+height_);
         glVertex2f(origin.x_,origin.y_+height_);
 
         // glossy top
-        glColor4f(1.0,1.0,1.0,0.2);
+        setColor4f(1.0,1.0,1.0,0.2);
         glVertex2f(origin.x_, origin.y_);
         glVertex2f(width() + origin.x_, origin.y_);
-        glColor4f(1.0,1.0,1.0,0.05);
+        setColor4f(1.0,1.0,1.0,0.05);
         glVertex2f(width() + origin.x_, height_*0.5f + origin.y_);
         glVertex2f(origin.x_, height_*0.5f + origin.y_);
     }
     else {
         // glossy top
-        glColor4f(1.0,1.0,1.0,0.2);
+        setColor4f(1.0,1.0,1.0,0.2);
         glVertex2f(origin.x_, origin.y_);
         glVertex2f(width() + origin.x_, origin.y_);
-        glColor4f(1.0,1.0,1.0,0.05);
+        setColor4f(1.0,1.0,1.0,0.05);
         glVertex2f(width() + origin.x_, height_*0.5f + origin.y_);
         glVertex2f(origin.x_, height_*0.5f + origin.y_);
     }
@@ -144,7 +144,7 @@ void Button::draw () const {
     glBlendFunc(GL_SRC_ALPHA, GL_ONE);
     glLineWidth(1.f);
 
-    glColor4f(1.0,0.4,0.8,0.3f+hoveredFadeTime_*0.7f);
+    setColor4f(0.4,0.8,1.0,0.3f+hoveredFadeTime_*0.7f);
     glBegin(GL_LINE_LOOP);
         glVertex2f(origin.x_,origin.y_+height_);
         glVertex2f(origin.x_,origin.y_);

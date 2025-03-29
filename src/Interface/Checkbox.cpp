@@ -108,7 +108,7 @@ void Checkbox::draw() const {
 
     int mirror(locales::getCurrentLocale().LTR_ ? 1 : -1);
 
-    glColor3f(1.f, 1.f, 1.f);
+    setColor3f(1.f, 1.f, 1.f);
     glBegin(GL_QUADS);
         glTexCoord2f(x*0.25f, y*0.25f+0.25f);       glVertex2f(origin.x_-4.f*mirror, origin.y_+16.f);
         glTexCoord2f(x*0.25f+0.25f, y*0.25f+0.25f); glVertex2f(origin.x_+12.f*mirror, origin.y_+16.f);

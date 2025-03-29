@@ -16,6 +16,7 @@ You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 # include "Interface/toolTip.hpp"
+# include "Interface/UiElement.hpp"
 
 # include "Media/text.hpp"
 # include "System/timer.hpp"
@@ -191,7 +192,7 @@ namespace toolTip {
             glBlendFunc(GL_SRC_ALPHA, GL_ONE);
             glLineWidth(1.f);
 
-            glColor4f(1.0,0.4,0.8,alpha);
+            UiElement::setColor4f(0.4,0.8,1.0,alpha);
             glBegin(GL_LINE_LOOP);
 
                 for (int i=0; i<360; i+=30) {

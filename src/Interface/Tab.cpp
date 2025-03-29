@@ -160,10 +160,10 @@ void Tab::draw () const {
 
     if (!focusedWidget_ && parent_->isFocused() && isTopMost() && active_) {
         glBegin(GL_QUADS);
-            glColor4f(1,0.5,0.8,0.7);
+            setColor4f(0.5, 0.8, 1.0, 0.7);
             glVertex2f(origin.x_+width(),origin.y_);
             glVertex2f(origin.x_,origin.y_);
-            glColor4f(0.5,0.25,0.4,0.0);
+            setColor4f(0.25, 0.4, 0.5, 0.0);
             glVertex2f(origin.x_,origin.y_+height_);
             glVertex2f(origin.x_+width(),origin.y_+height_);
         glEnd();
@@ -172,10 +172,10 @@ void Tab::draw () const {
     if (active_) {
         if (isTopMost()) {
             glBegin(GL_QUADS);
-                glColor4f(1,0.5,0.8,0.7);
+                setColor4f(0.5, 0.8, 1.0, 0.7);
                 glVertex2f(origin.x_+width(),origin.y_);
                 glVertex2f(origin.x_,origin.y_);
-                glColor4f(0.5,0.25,0.4,0.0);
+                setColor4f(0.25, 0.4, 0.5, 0.0);
                 glVertex2f(origin.x_,origin.y_+height_*0.5);
                 glVertex2f(origin.x_+width(),origin.y_+height_*0.5);
             glEnd();
@@ -183,8 +183,8 @@ void Tab::draw () const {
 
         glLineWidth(2.f);
         glBegin(GL_LINE_STRIP);
-            if (isTopMost())  glColor4f(1.f, 0.5f, 0.8f, 1.0f);
-            else              glColor4f(0.4f, 0.4f, 0.4f, 1.0f);
+            if (isTopMost())  setColor4f(0.5f, 0.8f, 1.0f, 1.0f);
+            else              setColor4f(0.4f, 0.4f, 0.4f, 1.0f);
             glVertex2f(origin.x_,origin.y_+height_);
             glVertex2f(origin.x_,origin.y_);
             glVertex2f(origin.x_+width(),origin.y_);
@@ -194,8 +194,8 @@ void Tab::draw () const {
     else {
         glLineWidth(2.f);
         glBegin(GL_LINES);
-            if (isTopMost())  glColor4f(1.f, 0.5f, 0.8f, 1.0f);
-            else              glColor4f(0.4f, 0.4f, 0.4f, 1.0f);
+            if (isTopMost())  setColor4f(0.5f, 0.8f, 1.0f, 1.0f);
+            else              setColor4f(0.4f, 0.4f, 0.4f, 1.0f);
             glVertex2f(origin.x_,origin.y_+height_);
             glVertex2f(origin.x_+width(),origin.y_+height_);
         glEnd();

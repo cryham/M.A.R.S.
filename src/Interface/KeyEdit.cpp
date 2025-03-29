@@ -87,28 +87,28 @@ void KeyEdit::draw() const {
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
     glBegin(GL_QUADS);
-        if (isTopMost())   glColor4f(0.3*focusedFadeTime_,0.1*focusedFadeTime_,0.2*focusedFadeTime_,0.8);
-        else               glColor4f(0.0,0.0,0.0,0.8);
+        if (isTopMost())   setColor4f(0.1*focusedFadeTime_,0.2*focusedFadeTime_,0.3*focusedFadeTime_,0.8);
+        else               setColor4f(0.0,0.0,0.0,0.8);
         glVertex2f(origin.x_+labelWidth_*mirror, origin.y_+2);
         glVertex2f(width() + origin.x_, origin.y_+2);
         glVertex2f(width() + origin.x_, height_ + origin.y_-2);
         glVertex2f(origin.x_+labelWidth_*mirror, height_ + origin.y_-2);
 
         // glossy bottom
-        glColor4f(1.0,1.0,1.0,0.0);
+        setColor4f(1.0,1.0,1.0,0.0);
         glVertex2f(origin.x_+labelWidth_*mirror, origin.y_+2);
         glVertex2f(width() + origin.x_, origin.y_+2);
-        if (pressed_)   glColor4f(1.0,1.0,1.0,0.1);
-        else            glColor4f(1.0,1.0,1.0,0.06);
+        if (pressed_)   setColor4f(1.0,1.0,1.0,0.1);
+        else            setColor4f(1.0,1.0,1.0,0.06);
         glVertex2f(width() + origin.x_, height_ + origin.y_-2);
         glVertex2f(origin.x_+labelWidth_*mirror, height_ + origin.y_-2);
 
         if (!pressed_) {
             // glossy top
-            glColor4f(1.0,1.0,1.0,0.2);
+            setColor4f(1.0,1.0,1.0,0.2);
             glVertex2f(origin.x_+labelWidth_*mirror, origin.y_+2);
             glVertex2f(width() + origin.x_, origin.y_+2);
-            glColor4f(1.0,1.0,1.0,0.05);
+            setColor4f(1.0,1.0,1.0,0.05);
             glVertex2f(width() + origin.x_, height_*0.5f + origin.y_);
             glVertex2f(origin.x_+labelWidth_*mirror, height_*0.5f + origin.y_);
         }
@@ -117,7 +117,7 @@ void KeyEdit::draw() const {
     glBlendFunc(GL_SRC_ALPHA, GL_ONE);
     glLineWidth(1.f);
 
-    glColor4f(1.0,0.4,0.8,0.3f+hoveredFadeTime_*0.7f);
+    setColor4f(0.4,0.8,1,0.3f+hoveredFadeTime_*0.7f);
     glBegin(GL_LINE_LOOP);
         glVertex2f(origin.x_+labelWidth_*mirror, origin.y_+2);
         glVertex2f(width() + origin.x_, origin.y_+2);
@@ -126,7 +126,7 @@ void KeyEdit::draw() const {
     glEnd();
 
     float highlight(std::max(hoveredFadeTime_, focusedFadeTime_));
-    Color3f color(Color3f(0.7f, 0.7f, 0.7f)*(1-highlight) + highlight*(Color3f(1.f, 0.6f, 0.8f)*(1-hoveredFadeTime_) + Color3f(1, 1, 1)*hoveredFadeTime_));
+    Color3f color(Color3f(0.7f, 0.7f, 0.7f)*(1-highlight) + highlight*(Color3f(0.6f, 0.8f, 1.f)*(1-hoveredFadeTime_) + Color3f(1, 1, 1)*hoveredFadeTime_));
 
     if (pressed_)
         text::drawScreenText("...", origin + Vector2f((width()+labelWidth_*mirror)/2,1)+Vector2f(1, 1), 12.f, TEXT_ALIGN_CENTER, color);

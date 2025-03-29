@@ -27,7 +27,7 @@ LabeledBox::LabeledBox (sf::String* text, Vector2f const& topLeft, int width, in
     label_(NULL) {
 
     if (text) {
-        label_ = new Label(text, TEXT_ALIGN_LEFT, Vector2f(5, 5), 12.f, Color3f(1.f, 0.5f, 0.9f), false);
+        label_ = new Label(text, TEXT_ALIGN_LEFT, Vector2f(5, 5), 12.f, getColor3f(0.5f, 0.9f, 1.f), false);
         label_->setParent(this);
     }
 }
@@ -46,11 +46,11 @@ void LabeledBox::draw() const {
 
     glBegin(GL_QUADS);
         // dark background
-        if (isTopMost())   glColor4f(1.f,0.5,0.8, hoveredFadeTime_*0.05f);
-        else               glColor4f(1.0f,1.0f,1.0f,0.f);
+        if (isTopMost())   setColor4f(0.5,0.8,1.f, hoveredFadeTime_*0.05f);
+        else               setColor4f(1.0f,1.0f,1.0f,0.f);
         glVertex2f(origin.x_, origin.y_);
-        if (isTopMost())   glColor4f(1.f,0.5,0.8, 0.f);
-        else               glColor4f(1.0f,1.0f,1.0f,0.f);
+        if (isTopMost())   setColor4f(0.5,0.8,1.f, 0.f);
+        else               setColor4f(1.0f,1.0f,1.0f,0.f);
         glVertex2f(origin.x_, height_*0.7f + origin.y_);
         glVertex2f(width()*0.7f + origin.x_, height_*0.7f + origin.y_);
         glVertex2f(width()*0.7f + origin.x_, origin.y_);
@@ -59,11 +59,11 @@ void LabeledBox::draw() const {
     glLineWidth(2.f);
     glBegin(GL_LINE_LOOP);
         // dark background
-        if (isTopMost())   glColor4f(1.f,0.5,0.8, hoveredFadeTime_*0.15f+0.45f);
-        else               glColor4f(1.0f,1.0f,1.0f,0.1f);
+        if (isTopMost())   setColor4f(0.5,0.8,1.f, hoveredFadeTime_*0.15f+0.45f);
+        else               setColor4f(1.0f,1.0f,1.0f,0.1f);
         glVertex2f(origin.x_, origin.y_);
-        if (isTopMost())   glColor4f(1.f,0.5,0.8, 0.f);
-        else               glColor4f(1.0f,1.0f,1.0f,0.f);
+        if (isTopMost())   setColor4f(0.5,0.8,1.f, 0.f);
+        else               setColor4f(1.0f,1.0f,1.0f,0.f);
         glVertex2f(origin.x_, height_*0.7f + origin.y_);
         glVertex2f(width()*0.7f + origin.x_, height_*0.7f + origin.y_);
         glVertex2f(width()*0.7f + origin.x_, origin.y_);

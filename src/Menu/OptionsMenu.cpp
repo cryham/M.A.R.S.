@@ -75,7 +75,7 @@ UiWindow* OptionsMenu::get() {
         instance_ = new OptionsMenu(600, 390);
 
         instance_->addWidget(new Button(locales::getLocale(locales::Ok), NULL, &kOk_, Vector2f(500,360), 90, 20));
-        instance_->addWidget(new Label(locales::getLocale(locales::Options), TEXT_ALIGN_LEFT, Vector2f(10,10), 20.f, Color3f(1.f, 0.5f, 0.9f), false));
+        instance_->addWidget(new Label(locales::getLocale(locales::Options), TEXT_ALIGN_LEFT, Vector2f(10,10), 20.f, getColor3f(0.5f, 0.9f, 1.f), false));
 
         TabList* tabList  = new TabList(Vector2f(10,55), 580, 270);
         Tab* tabInterface = new Tab(locales::getLocale(locales::Interface), 90);
@@ -105,6 +105,7 @@ UiWindow* OptionsMenu::get() {
         tabGraphics->addWidget(new LabeledBox(locales::getLocale(locales::WindowSettings), Vector2f(10, 30), 560, 110));
         tabGraphics->addWidget(new Checkbox(locales::getLocale(locales::VerticalSynchronisation), locales::getLocale(locales::ttVerticalSynchronisation), &vsync_, Vector2f(20,80), 150));
         tabGraphics->addWidget(new Checkbox(locales::getLocale(locales::Shaders), locales::getLocale(locales::ttShaders), &shaders_, Vector2f(20,100), 150));
+        
         std::vector<sf::VideoMode> modes = sf::VideoMode::getFullscreenModes();
         std::vector<sf::String> resolutions;
         std::vector<sf::String> colorDepths;
@@ -128,6 +129,7 @@ UiWindow* OptionsMenu::get() {
         }
         std::vector<sf::String> off;
         off.push_back(*locales::getLocale(locales::SlowMoOff));
+
         tabGraphics->addWidget(new ComboBox(locales::getLocale(locales::Resolution), locales::getLocale(locales::ttResolution), &resolution_, resolutions, Vector2f(20,120), 540, 240));
         tabGraphics->addWidget(new LabeledBox(locales::getLocale(locales::GameSettings), Vector2f(10, 170), 560, 90));
         tabGraphics->addWidget(new Checkbox(locales::getLocale(locales::StarsHigh), locales::getLocale(locales::ttStarsHigh), &settings::C_StarsHigh, Vector2f(20,200), 150));

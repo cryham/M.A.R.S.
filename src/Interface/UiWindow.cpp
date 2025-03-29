@@ -101,34 +101,35 @@ void UiWindow::draw () const {
 
     glBegin(GL_QUADS);
         // bg
-        glColor4f(0.0,0.0,0.0,0.9);
+        setColor4f(0.0,0.05,0.1, 0.9);
         glVertex2f(origin.x_-10,origin.y_-10);
         glVertex2f(origin.x_+width_+10,origin.y_-10);
         glVertex2f(origin.x_+width_+10,origin.y_+height_+10);
         glVertex2f(origin.x_-10,origin.y_+height_+10);
 
-        glColor4f(1.0,1.0,1.0,0.2);
+        setColor4f(1.0,1.0,1.0,0.2);
         glVertex2f(origin.x_-10,origin.y_-10);
         glVertex2f(origin.x_+width_+10,origin.y_-10);
-        glColor4f(1.0,1.0,1.0,0.02);
+        setColor4f(1.0,1.0,1.0,0.02);
         glVertex2f(origin.x_+width_+10,origin.y_+height_/4);
         glVertex2f(origin.x_-10,origin.y_+height_/3);
     glEnd();
 
     glLineWidth(2.f);
     glBegin(GL_LINE_LOOP);
-        glColor4f(0.5f, 0.5f, 0.5f, 0.8f);
+        setColor4f(0.5f, 0.5f, 0.5f, 0.8f);
         glVertex2f(origin.x_-10,origin.y_+height_+10);
         glVertex2f(origin.x_-10,origin.y_-10);
         glVertex2f(origin.x_+width_+10,origin.y_-10);
         glVertex2f(origin.x_+width_+10,origin.y_+height_+10);
     glEnd();
 
-    glColor3f(1.f, 1.f, 1.f);
+    setColor3f(1.f, 1.f, 1.f);
     glEnable(GL_TEXTURE_2D);
 
     float offset(0.f);
-    if (!topMost_) offset = 200.f/512.f;
+    if (!topMost_)
+        offset = 200.f/512.f;
 
     glBindTexture(GL_TEXTURE_2D, texture::getTexture(texture::Interface));
 

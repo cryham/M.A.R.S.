@@ -104,7 +104,8 @@ void Slider::draw() const {
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     // draw line
     // Hover effect
-    Color3f((Color3f(1, 1, 1)*(1-hoveredFadeTime_) + hoveredFadeTime_*Color3f(1.f, 0.8f, 0.9f))*(0.7f+focusedFadeTime_*0.3f)).gl4f(0.7f);
+    Color3f((getColor3f(1, 1, 1)*(1-hoveredFadeTime_) +
+        hoveredFadeTime_ * getColor3f(0.8f, 0.9f, 1.f)) * (0.7f+focusedFadeTime_*0.3f)).gl4f(0.7f);
 
     glLineWidth(2);
     glBegin(GL_LINES);
@@ -135,7 +136,7 @@ void Slider::draw() const {
         y = 0;
     }
 
-    glColor3f(1.f, 1.f, 1.f);
+    setColor3f(1.f, 1.f, 1.f);
     glBegin(GL_QUADS);
         glTexCoord2f(x*0.25f, y*0.25f+0.25f);       glVertex2f(sliderPosition.x_-8.f,  sliderPosition.y_-8.f);
         glTexCoord2f(x*0.25f+0.25f, y*0.25f+0.25f); glVertex2f(sliderPosition.x_-8.f,  sliderPosition.y_+8.f);

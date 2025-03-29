@@ -23,6 +23,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # include "System/window.hpp"
 # include "Locales/locales.hpp"
 
+#include <GL/gl.h>
 # include <SFML/OpenGL.hpp>
 # include <iostream>
 
@@ -98,4 +99,20 @@ Vector2f UiElement::getTopLeft() const {
 int UiElement::width() const {
     if (locales::getCurrentLocale().LTR_) return width_;
     else return -width_;
+}
+
+
+void UiElement::setColor4f(float r, float g, float b, float a) {
+    glColor4f(r, g, b, a);  // cyan
+    // glColor4f(b, g, r, a);  // pink
+}
+
+void UiElement::setColor3f(float r, float g, float b) {
+    glColor3f(r, g, b);  // cyan
+    // glColor3f(b, g, r);  // pink
+}
+
+Color3f UiElement::getColor3f(float r, float g, float b) {
+    return Color3f(r, g, b);  // cyan
+    // return Color3f(b, g, r);  // pink
 }

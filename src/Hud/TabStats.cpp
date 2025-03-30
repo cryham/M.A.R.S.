@@ -177,11 +177,11 @@ void TabStats::draw() const {
         glDisable(GL_TEXTURE_2D);
 
         text::drawFooText();
-        text::drawScreenText(*locales::getLocale(locales::Statistics), topLeft + Vector2f(10*mirror, 10), 20.f, TEXT_ALIGN_LEFT, Color3f(1.f, 0.5f, 0.8f));
+        text::drawScreenText(*locales::getLocale(locales::Statistics), topLeft + Vector2f(10*mirror, 10), 20.f, TEXT_ALIGN_LEFT, Color3f(0.5f, 0.8f, 1.f));
         std::stringstream sstr;
         int seconds = games::elapsedTime();
         sstr << std::setfill('0') << std::setw(2) << (seconds-seconds%60)/60 << " : " << std::setw(2) << seconds%60;
-        text::drawScreenText(sf::String(sstr.str()), topLeft + Vector2f(width-10*mirror, 18), 12.f, TEXT_ALIGN_RIGHT, Color3f(1.f, 0.5f, 0.8f));
+        text::drawScreenText(sf::String(sstr.str()), topLeft + Vector2f(width-10*mirror, 18), 12.f, TEXT_ALIGN_RIGHT, Color3f(0.5f, 0.8f, 1.f));
 
         int pointlimit;
         sf::String name = *locales::getLocale(locales::Fraglimit);
@@ -204,7 +204,7 @@ void TabStats::draw() const {
 
         sstr.str("");
         sstr << ": " << pointlimit;
-        text::drawScreenText(name + sf::String(sstr.str()), topLeft + Vector2f(width*0.5f, 18), 12.f, TEXT_ALIGN_CENTER, Color3f(1.f, 0.5f, 0.8f));
+        text::drawScreenText(name + sf::String(sstr.str()), topLeft + Vector2f(width*0.5f, 18), 12.f, TEXT_ALIGN_CENTER, Color3f(0.5f, 0.8f, 1.f));
 
         glBlendFunc(GL_SRC_ALPHA, GL_ONE);
         glLineWidth(2.f);

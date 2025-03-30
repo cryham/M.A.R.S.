@@ -19,8 +19,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # define UIELEMENT_HPP_INCLUDED
 
 # include "System/Vector2f.hpp"
-
 # include "System/Key.hpp"
+# include "System/Color3f.hpp"
 
 # include <SFML/Window.hpp>
 
@@ -29,12 +29,12 @@ class UiElement {
         UiElement(Vector2f const& topLeft, int width, int height);
 
         virtual void mouseMoved(Vector2f const& position);
-        virtual void mouseWheelMoved(Vector2f const& position, int delta) {}
+        virtual void mouseWheelMoved(Vector2f const& position, int delta) {  }
         virtual void mouseLeft(bool down);
-        virtual void keyEvent(bool down, Key const& key) {}
-        virtual void textEntered(sf::Uint32 keyCode) {}
-        virtual bool tabNext() {return true;}
-        virtual bool tabPrevious() {return true;}
+        virtual void keyEvent(bool down, Key const& key) {  }
+        virtual void textEntered(sf::Uint32 keyCode) {  }
+        virtual bool tabNext()     {  return true;  }
+        virtual bool tabPrevious() {  return true;  }
 
         virtual void draw() const;
 
@@ -42,12 +42,16 @@ class UiElement {
         virtual void setFocus  (UiElement* toBeFocused, bool isPrevious);
         virtual void clearFocus();
 
-        bool         isHovered() const {return hovered_;}
-        bool         isPressed() const {return pressed_;}
-        bool         isFocused() const {return focused_;}
-        virtual bool isTopMost() const {return parent_->isTopMost();}
-        virtual bool isTabable() const {return true;}
+        bool         isHovered() const {  return hovered_;  }
+        bool         isPressed() const {  return pressed_;  }
+        bool         isFocused() const {  return focused_;  }
+        virtual bool isTopMost() const {  return parent_->isTopMost();  }
+        virtual bool isTabable() const {  return true;  }
         virtual Vector2f getTopLeft() const;
+
+        static void setColor4f(float r, float g, float b, float a);
+        static void setColor3f(float r, float g, float b);
+        static Color3f getColor3f(float r, float g, float b);
 
     protected:
         int width() const;

@@ -32,7 +32,7 @@ namespace hud {
     void displayStats(bool show = true);
     bool statsVisible();
 
-    void displayMessage(sf::String const& message, Color3f const& color = Color3f(1.0f, 1.0f, 0.55f));
+    void displayMessage(sf::String const& message, Color3f const& color = Color3f(0.55f, 1.0f, 1.0f));
 }
 
 # endif // HUD_HPP_INCLUDED

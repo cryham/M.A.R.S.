@@ -24,17 +24,20 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 Color3f::Color3f ():
     r_(1),
     g_(1),
-    b_(1) {}
+    b_(1)
+{   }
 
 Color3f::Color3f (Color3f const& color):
     r_(color.r_),
     g_(color.g_),
-    b_(color.b_){}
+    b_(color.b_)
+{   }
 
 Color3f::Color3f (float red, float green, float blue):
     r_(red),
     g_(green),
-    b_(blue) {}
+    b_(blue)
+{   }
 
 float Color3f::r() const {
     return r_;
@@ -44,7 +47,7 @@ float Color3f::g() const {
     return g_;
 }
 
- float Color3f::b() const {
+float Color3f::b() const {
     return b_;
 }
 

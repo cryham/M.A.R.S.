@@ -95,7 +95,7 @@ void Team::addStars() const {
 void Team::evaluate() {
     jobMap_.clear();
 
-    if (botControllers_.size() > 0 && games::elapsedTime() > 4.f) {
+    if (botControllers_.size() > 0 && games::elapsedTime() > 1.f) {
         createJobs();
 
         for (std::vector<BotController*>::iterator it=botControllers_.begin(); it!=botControllers_.end(); ++it)

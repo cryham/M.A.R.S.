@@ -48,14 +48,14 @@ namespace games {
 
         void fade() {
             if (fadeIn_) {
-                fadeFactor_ -= timer::frameTime()*2.f;
+                fadeFactor_ -= timer::frameTime()*9.f;
                 if (fadeFactor_ <= 0.f) {
                     fadeFactor_ = 0.f;
                     fadeIn_ = false;
                 }
             }
             else if (fadeOut_) {
-                fadeFactor_ += timer::frameTime()*3.f;
+                fadeFactor_ += timer::frameTime()*9.f;
                 if (fadeFactor_ >= 1.f) {
                     fadeFactor_ = 1.f;
                     fadeOut_ = false;

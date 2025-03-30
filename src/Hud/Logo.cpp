@@ -32,7 +32,6 @@ Logo::Logo():
 void Logo::update() {
     if (games::elapsedTime() < 5.f) {
         on_ =  randomizer::random(15, 25)*games::elapsedTime() > 50 && randomizer::random(0, 1000) < 990;
-
     }
     else {
         if (timer_ < 0.f) {

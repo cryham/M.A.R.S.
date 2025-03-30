@@ -76,10 +76,10 @@ namespace hud {
     void draw() {
         particles::drawNumbers();
 
-        if (games::type() == games::gMenu)
+        /*if (games::type() == games::gMenu)
             logo_->draw();
         else if (games::elapsedTime() < 6.f && games::type() != games::gTutorial)
-            countDown_->draw();
+            countDown_->draw();*/
 
         gameStats_->draw();
 

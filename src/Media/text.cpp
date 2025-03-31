@@ -19,6 +19,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 # include "System/window.hpp"
 # include "Locales/locales.hpp"
+# include "Interface/UiElement.hpp"
 
 # include <SFML/Graphics.hpp>
 # include <SFML/OpenGL.hpp>
@@ -57,20 +58,23 @@ namespace text {
     void drawSpaceText(sf::String const& text, Vector2f const& location,
                        float size, int align, Color3f const& color, float alpha, sf::Font* font) {
 
-        drawScreenText(text, window::coordToPixel(location), size, align, color, alpha, font);
+        drawScreenText(text, window::coordToPixel(location),
+            size, align, color, alpha, font);
     }
 
     void drawMobileSpaceText(sf::String const& text, Vector2f const& location,
                              float size, int align, Color3f const& color, float alpha, sf::Font* font) {
 
-        drawText(text, window::coordToPixel(location), size, align, color, alpha, font);
+        drawText(text, window::coordToPixel(location),
+            size /* 4/3*/, align, color, alpha, font);
 
     }
 
     void drawScreenText(sf::String const& text, Vector2f const& location,
                        float size, int align, Color3f const& color, float alpha, sf::Font* font) {
 
-        drawText(text, Vector2f(static_cast<int>(location.x_), static_cast<int>(location.y_)), size, align, color, alpha, font);
+        drawText(text, Vector2f(static_cast<int>(location.x_), static_cast<int>(location.y_)),
+            size * UiElement::scale_, align, color, alpha, font);
     }
 
     void drawFooText() {

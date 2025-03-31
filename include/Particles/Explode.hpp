@@ -18,9 +18,9 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef EXPLODE_HPP_INCLUDED
 # define EXPLODE_HPP_INCLUDED
 
-# include "Particles/Particle.hpp"
+#include "Particles/Particle.hpp"
 
-# include "System/Color3f.hpp"
+#include "System/Color3f.hpp"
 
 class Explode: public Particle<Explode> {
     public:
@@ -36,6 +36,6 @@ class Explode: public Particle<Explode> {
         static std::list<Explode*> activeParticles_;
 };
 
-# endif // EXPLODE_HPP_INCLUDED
+#endif // EXPLODE_HPP_INCLUDED
 
 

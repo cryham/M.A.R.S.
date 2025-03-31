@@ -18,7 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef CONNECT_HPP_INCLUDED
 # define CONNECT_HPP_INCLUDED
 
-# include "Interface/UiWindow.hpp"
+#include "Interface/UiWindow.hpp"
 
 class Connect: public UiWindow
 {
@@ -40,4 +40,4 @@ class Connect: public UiWindow
         static bool kClose_;
 };
 
-# endif // CONNECT_HPP_INCLUDED
+#endif // CONNECT_HPP_INCLUDED

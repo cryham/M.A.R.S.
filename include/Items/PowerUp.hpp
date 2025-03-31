@@ -18,11 +18,11 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef ITEM_HPP_INCLUDED
 # define ITEM_HPP_INCLUDED
 
-# include "System/Vector2f.hpp"
-# include "System/Color3f.hpp"
-# include "Items/items.hpp"
+#include "System/Vector2f.hpp"
+#include "System/Color3f.hpp"
+#include "Items/items.hpp"
 
-# include <list>
+#include <list>
 
 class Ship;
 
@@ -58,7 +58,7 @@ class PowerUp {
         Color3f bgColor_;
 };
 
-# endif // ITEM_HPP_INCLUDED
+#endif // ITEM_HPP_INCLUDED
 
 
 

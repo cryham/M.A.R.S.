@@ -18,7 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef AMMOAFK47_HPP_INCLUDED
 # define AMMOAFK47_HPP_INCLUDED
 
-# include "Particles/Particle.hpp"
+#include "Particles/Particle.hpp"
 
 class AmmoAFK47: public Particle<AmmoAFK47> {
     public:
@@ -36,5 +36,5 @@ class AmmoAFK47: public Particle<AmmoAFK47> {
         static std::list<AmmoAFK47*> activeParticles_;
 };
 
-# endif // AMMOAFK47_HPP_INCLUDED
+#endif // AMMOAFK47_HPP_INCLUDED
 

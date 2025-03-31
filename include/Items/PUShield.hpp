@@ -18,11 +18,11 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef PUSHIELD_HPP_INCLUDED
 # define PUSHIELD_HPP_INCLUDED
 
-# include "System/Vector2f.hpp"
-# include "Items/PowerUp.hpp"
-# include "System/randomizer.hpp"
+#include "System/Vector2f.hpp"
+#include "Items/PowerUp.hpp"
+#include "System/randomizer.hpp"
 
-# include <SFML/System.hpp>
+#include <SFML/System.hpp>
 
 class PUShield: public PowerUp{
     public:
@@ -35,7 +35,7 @@ class PUShield: public PowerUp{
         void refreshLifeTime();
 };
 
-# endif // PUSHIELD_HPP_INCLUDED
+#endif // PUSHIELD_HPP_INCLUDED
 
 
 

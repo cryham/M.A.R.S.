@@ -18,12 +18,12 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef ICE_HPP_INCLUDED
 # define ICE_HPP_INCLUDED
 
-# include "DecoObjects/DecoObject.hpp"
+#include "DecoObjects/DecoObject.hpp"
 
-# include "DecoObjects/decoObjects.hpp"
-# include "SpaceObjects/Ball.hpp"
-# include "SpaceObjects/Ship.hpp"
-# include "Particles/AmmoRocket.hpp"
+#include "DecoObjects/decoObjects.hpp"
+#include "SpaceObjects/Ball.hpp"
+#include "SpaceObjects/Ship.hpp"
+#include "Particles/AmmoRocket.hpp"
 
 
 /// An ice block drawn over frozen SpaceObjects.
@@ -98,4 +98,4 @@ class Ice: public DecoObject
         Object* object_;
 };
 
-# endif // ICE_HPP_INCLUDED
+#endif // ICE_HPP_INCLUDED

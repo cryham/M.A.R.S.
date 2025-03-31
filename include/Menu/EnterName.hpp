@@ -18,7 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef ENTERNAME_HPP_INCLUDED
 # define ENTERNAME_HPP_INCLUDED
 
-# include "Interface/UiWindow.hpp"
+#include "Interface/UiWindow.hpp"
 
 class EnterName: public UiWindow
 {
@@ -39,4 +39,4 @@ class EnterName: public UiWindow
         static bool kOk_;
 };
 
-# endif // ENTERNAME_HPP_INCLUDED
+#endif // ENTERNAME_HPP_INCLUDED

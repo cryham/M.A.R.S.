@@ -18,10 +18,10 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef TRACK_HPP_INCLUDED
 # define TRACK_HPP_INCLUDED
 
-# include "System/Vector2f.hpp"
-# include "System/Color3f.hpp"
+#include "System/Vector2f.hpp"
+#include "System/Color3f.hpp"
 
-# include <vector>
+#include <vector>
 
 class Home;
 
@@ -45,6 +45,6 @@ class Track {
         std::vector<Vector2f> anchors_;
 };
 
-# endif // TRACK_HPP_INCLUDED
+#endif // TRACK_HPP_INCLUDED
 
 

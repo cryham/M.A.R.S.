@@ -18,7 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef BOLT_HPP_INCLUDED
 # define BOLT_HPP_INCLUDED
 
-# include "DecoObjects/DecoObject.hpp"
+#include "DecoObjects/DecoObject.hpp"
 
 class SpaceObject;
 
@@ -47,4 +47,4 @@ class Bolt: public DecoObject
         mutable float flickerTimer_;
 };
 
-# endif // BOLT_HPP_INCLUDED
+#endif // BOLT_HPP_INCLUDED

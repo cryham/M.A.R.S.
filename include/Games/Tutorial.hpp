@@ -18,7 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef TUTORIAL_HPP_INCLUDED
 # define TUTORIAL_HPP_INCLUDED
 
-# include "Games/Game.hpp"
+#include "Games/Game.hpp"
 
 class Home;
 class Player;
@@ -67,4 +67,4 @@ class Tutorial: public Game {
         ///@}
 };
 
-# endif // TUTORIAL_HPP_INCLUDED
+#endif // TUTORIAL_HPP_INCLUDED

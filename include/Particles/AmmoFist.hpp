@@ -18,9 +18,9 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef AMMOFIST_HPP_INCLUDED
 # define AMMOFIST_HPP_INCLUDED
 
-# include "Particles/Particle.hpp"
+#include "Particles/Particle.hpp"
 
-# include "System/Color3f.hpp"
+#include "System/Color3f.hpp"
 
 class AmmoFist: public Particle<AmmoFist> {
     public:
@@ -38,7 +38,7 @@ class AmmoFist: public Particle<AmmoFist> {
         static std::list<AmmoFist*> activeParticles_;
 };
 
-# endif // AMMOFIST_HPP_INCLUDED
+#endif // AMMOFIST_HPP_INCLUDED
 
 
 

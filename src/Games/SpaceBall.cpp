@@ -15,15 +15,15 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Games/SpaceBall.hpp"
+#include "Games/SpaceBall.hpp"
 
-# include "Teams/DMTeam.hpp"
-# include "Teams/SBTeam.hpp"
-# include "System/settings.hpp"
-# include "Media/music.hpp"
-# include "SpaceObjects/balls.hpp"
-# include "Players/players.hpp"
-# include "Teams/teams.hpp"
+#include "Teams/DMTeam.hpp"
+#include "Teams/SBTeam.hpp"
+#include "System/settings.hpp"
+#include "Media/music.hpp"
+#include "SpaceObjects/balls.hpp"
+#include "Players/players.hpp"
+#include "Teams/teams.hpp"
 
 SpaceBall::SpaceBall():
     Game(games::gSpaceBall)

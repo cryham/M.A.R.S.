@@ -18,7 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef FIREWALL_HPP_INCLUDED
 # define FIREWALL_HPP_INCLUDED
 
-# include "Specials/Special.hpp"
+#include "Specials/Special.hpp"
 
 /// Special: FireWall.
 /// A fire wave.
@@ -44,4 +44,4 @@ class FireWall: public Special
         mutable float burnTimer_;
 };
 
-# endif // FIREWALL_HPP_INCLUDED
+#endif // FIREWALL_HPP_INCLUDED

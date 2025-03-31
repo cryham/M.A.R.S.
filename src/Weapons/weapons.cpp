@@ -15,21 +15,21 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Weapons/weapons.hpp"
+#include "Weapons/weapons.hpp"
 
-# include "Weapons/AFK47.hpp"
-# include "Weapons/Burner.hpp"
-# include "Weapons/Fist.hpp"
-# include "Weapons/Insta.hpp"
-# include "Weapons/Flubba.hpp"
-# include "Weapons/H2OMG.hpp"
-# include "Weapons/ROFLE.hpp"
-# include "Weapons/RocketLauncher.hpp"
-# include "Weapons/Shotgun.hpp"
-# include "Weapons/NoWeapon.hpp"
-# include "SpaceObjects/Ship.hpp"
-# include "Players/Player.hpp"
-# include "System/settings.hpp"
+#include "Weapons/AFK47.hpp"
+#include "Weapons/Burner.hpp"
+#include "Weapons/Fist.hpp"
+#include "Weapons/Insta.hpp"
+#include "Weapons/Flubba.hpp"
+#include "Weapons/H2OMG.hpp"
+#include "Weapons/ROFLE.hpp"
+#include "Weapons/RocketLauncher.hpp"
+#include "Weapons/Shotgun.hpp"
+#include "Weapons/NoWeapon.hpp"
+#include "SpaceObjects/Ship.hpp"
+#include "Players/Player.hpp"
+#include "System/settings.hpp"
 
 namespace weapons {
 

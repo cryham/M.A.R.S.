@@ -15,12 +15,12 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Particles/Number.hpp"
+#include "Particles/Number.hpp"
 
-# include "System/timer.hpp"
-# include "Media/text.hpp"
+#include "System/timer.hpp"
+#include "Media/text.hpp"
 
-# include <sstream>
+#include <sstream>
 
 std::list<Number*> Number::activeParticles_;
 

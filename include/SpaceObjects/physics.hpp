@@ -18,10 +18,10 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef PHYSICS_HPP_INCLUDED
 # define PHYSICS_HPP_INCLUDED
 
-# include "System/Vector2f.hpp"
+#include "System/Vector2f.hpp"
 
-# include <vector>
-# include <list>
+#include <vector>
+#include <list>
 
 # define MOBILES   1
 # define STATICS   2
@@ -47,4 +47,4 @@ namespace physics {
     void clear              ();
 }
 
-# endif // PHYSICS_HPP_INCLUDED
+#endif // PHYSICS_HPP_INCLUDED

@@ -15,20 +15,20 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Specials/Shocker.hpp"
+#include "Specials/Shocker.hpp"
 
-# include "SpaceObjects/Ship.hpp"
-# include "SpaceObjects/ships.hpp"
-# include "SpaceObjects/balls.hpp"
-# include "Teams/Team.hpp"
-# include "Players/Player.hpp"
-# include "Games/games.hpp"
-# include "System/timer.hpp"
-# include "System/randomizer.hpp"
-# include "Menu/menus.hpp"
-# include "Particles/particles.hpp"
+#include "SpaceObjects/Ship.hpp"
+#include "SpaceObjects/ships.hpp"
+#include "SpaceObjects/balls.hpp"
+#include "Teams/Team.hpp"
+#include "Players/Player.hpp"
+#include "Games/games.hpp"
+#include "System/timer.hpp"
+#include "System/randomizer.hpp"
+#include "Menu/menus.hpp"
+#include "Particles/particles.hpp"
 
-# include <SFML/Graphics.hpp>
+#include <SFML/Graphics.hpp>
 
 void Shocker::draw(float alpha) const
 {

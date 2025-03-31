@@ -15,15 +15,15 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Media/announcer.hpp"
+#include "Media/announcer.hpp"
 
-# include "System/settings.hpp"
-# include "System/timer.hpp"
-# include "defines.hpp"
-# include "System/randomizer.hpp"
+#include "System/settings.hpp"
+#include "System/timer.hpp"
+#include "defines.hpp"
+#include "System/randomizer.hpp"
 
-# include <iostream>
-# include <SFML/Audio.hpp>
+#include <iostream>
+#include <SFML/Audio.hpp>
 
 namespace announcer {
 

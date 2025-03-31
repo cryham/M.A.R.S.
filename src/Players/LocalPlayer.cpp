@@ -15,10 +15,10 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Players/LocalPlayer.hpp"
+#include "Players/LocalPlayer.hpp"
 
-# include "Controllers/controllers.hpp"
-# include "System/settings.hpp"
+#include "Controllers/controllers.hpp"
+#include "System/settings.hpp"
 
 LocalPlayer::LocalPlayer(controllers::ControlType controlType):
     Player(controlType),

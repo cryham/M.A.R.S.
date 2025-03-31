@@ -22,10 +22,10 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # define TEXT_ALIGN_CENTER 1
 # define TEXT_ALIGN_RIGHT  2
 
-# include "Media/font.hpp"
-# include "System/Vector2f.hpp"
-# include "System/Color3f.hpp"
-# include "System/settings.hpp"
+#include "Media/font.hpp"
+#include "System/Vector2f.hpp"
+#include "System/Color3f.hpp"
+#include "System/settings.hpp"
 
 /// A namespace for drawing text on the screen.
 
@@ -63,7 +63,7 @@ namespace text {
     float getCharacterPos   (sf::String const&, int pos, float size, int align, sf::Font* font = NULL);
 }
 
-# endif // TEXT_HPP_INCLUDED
+#endif // TEXT_HPP_INCLUDED
 
 
 

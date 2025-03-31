@@ -15,15 +15,15 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Locales/locales.hpp"
+#include "Locales/locales.hpp"
 
-# include "System/settings.hpp"
-# include "System/generateName.hpp"
-# include "Media/file.hpp"
-# include "Locales/Locale.hpp"
+#include "System/settings.hpp"
+#include "System/generateName.hpp"
+#include "Media/file.hpp"
+#include "Locales/Locale.hpp"
 
-# include <sstream>
-# include <iostream>
+#include <sstream>
+#include <iostream>
 
 namespace locales
 {

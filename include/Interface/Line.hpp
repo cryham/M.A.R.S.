@@ -18,7 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef LINE_HPP_INCLUDED
 # define LINE_HPP_INCLUDED
 
-# include "Interface/UiElement.hpp"
+#include "Interface/UiElement.hpp"
 
 class Line: public UiElement {
     public:
@@ -33,6 +33,6 @@ class Line: public UiElement {
         Vector2f end_;
 };
 
-# endif
+#endif
 
 

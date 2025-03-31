@@ -15,18 +15,18 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Specials/Blast.hpp"
+#include "Specials/Blast.hpp"
 
-# include "SpaceObjects/Ship.hpp"
-# include "SpaceObjects/ships.hpp"
-# include "Players/Player.hpp"
-# include "System/timer.hpp"
-# include "SpaceObjects/physics.hpp"
-# include "Menu/menus.hpp"
-# include "Games/games.hpp"
-# include "Teams/Team.hpp"
+#include "SpaceObjects/Ship.hpp"
+#include "SpaceObjects/ships.hpp"
+#include "Players/Player.hpp"
+#include "System/timer.hpp"
+#include "SpaceObjects/physics.hpp"
+#include "Menu/menus.hpp"
+#include "Games/games.hpp"
+#include "Teams/Team.hpp"
 
-# include <SFML/Graphics.hpp>
+#include <SFML/Graphics.hpp>
 
 void Blast::draw(float alpha) const
 {

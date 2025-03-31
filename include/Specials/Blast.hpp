@@ -18,7 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef BLAST_HPP_INCLUDED
 # define BLAST_HPP_INCLUDED
 
-# include "Specials/Special.hpp"
+#include "Specials/Special.hpp"
 
 /// Special: Blast.
 /// A blast wave.
@@ -44,4 +44,4 @@ class Blast: public Special
         mutable float radius_;
 };
 
-# endif // BLAST_HPP_INCLUDED
+#endif // BLAST_HPP_INCLUDED

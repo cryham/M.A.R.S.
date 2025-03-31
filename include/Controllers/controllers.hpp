@@ -18,9 +18,9 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef CONTROLLERS_HPP_INCLUDED
 # define CONTROLLERS_HPP_INCLUDED
 
-# include "System/Key.hpp"
+#include "System/Key.hpp"
 
-# include <SFML/Window.hpp>
+#include <SFML/Window.hpp>
 
 class Player;
 class BotController;
@@ -63,5 +63,5 @@ namespace controllers {
     void clear();
 }
 
-# endif // CONTROLLERS_HPP_INCLUDED
+#endif // CONTROLLERS_HPP_INCLUDED
 

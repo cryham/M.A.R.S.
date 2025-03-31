@@ -18,8 +18,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef CHECKBOX_HPP_INCLUDED
 # define CHECKBOX_HPP_INCLUDED
 
-# include "Interface/UiElement.hpp"
-# include "Interface/Label.hpp"
+#include "Interface/UiElement.hpp"
+#include "Interface/Label.hpp"
 
 class Checkbox: public UiElement {
     public:
@@ -41,5 +41,5 @@ class Checkbox: public UiElement {
         sf::String* toolTip_;
 };
 
-# endif
+#endif
 

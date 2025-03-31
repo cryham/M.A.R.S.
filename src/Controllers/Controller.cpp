@@ -15,12 +15,12 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Controllers/Controller.hpp"
+#include "Controllers/Controller.hpp"
 
-# include "Controllers/KeyController.hpp"
-# include "Controllers/BotController.hpp"
-# include "Players/Player.hpp"
-# include "Items/items.hpp"
+#include "Controllers/KeyController.hpp"
+#include "Controllers/BotController.hpp"
+#include "Players/Player.hpp"
+#include "Items/items.hpp"
 
 Controller::Controller(Player* slave):
     type_(slave->type()),

@@ -18,7 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef INSTA_HPP_INCLUDED
 # define INSTA_HPP_INCLUDED
 
-# include "Weapons/Weapon.hpp"
+#include "Weapons/Weapon.hpp"
 
 /// Weapon: Insta.
 /// A long distance gun, killing instantly.
@@ -47,4 +47,4 @@ class Insta: public Weapon
         float maxAngle()   const;
 };
 
-# endif // INSTA_HPP_INCLUDED
+#endif // INSTA_HPP_INCLUDED

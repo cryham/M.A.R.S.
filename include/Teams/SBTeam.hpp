@@ -18,7 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef SBTEAM_HPP_INCLUDED
 # define SBTEAM_HPP_INCLUDED
 
-# include "Teams/Team.hpp"
+#include "Teams/Team.hpp"
 
 class SBTeam: public Team
 {
@@ -36,4 +36,4 @@ class SBTeam: public Team
         std::vector<Vector2f> powerUpLocations_;
 };
 
-# endif // SBTEAM_HPP_INCLUDED
+#endif // SBTEAM_HPP_INCLUDED

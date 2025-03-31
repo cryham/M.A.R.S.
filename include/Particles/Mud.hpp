@@ -18,9 +18,9 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef MUD_HPP_INCLUDED
 # define MUD_HPP_INCLUDED
 
-# include "Particles/Particle.hpp"
+#include "Particles/Particle.hpp"
 
-# include "System/Color3f.hpp"
+#include "System/Color3f.hpp"
 
 class Mud: public Particle<Mud> {
     public:
@@ -36,6 +36,6 @@ class Mud: public Particle<Mud> {
         static std::list<Mud*> activeParticles_;
 };
 
-# endif // MUD_HPP_INCLUDED
+#endif // MUD_HPP_INCLUDED
 
 

@@ -18,9 +18,9 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef FONT_HPP_INCLUDED
 # define FONT_HPP_INCLUDED
 
-# include "System/settings.hpp"
+#include "System/settings.hpp"
 
-# include <SFML/Graphics.hpp>
+#include <SFML/Graphics.hpp>
 
 /// A namespace for loading font files.
 
@@ -30,5 +30,5 @@ namespace font {
     sf::Font* getFont(int languageID = settings::C_languageID);
 }
 
-# endif // FONT_HPP_INCLUDED
+#endif // FONT_HPP_INCLUDED
 

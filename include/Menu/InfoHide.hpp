@@ -18,7 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef INFOHIDE_HPP_INCLUDED
 # define INFOHIDE_HPP_INCLUDED
 
-# include "Interface/UiWindow.hpp"
+#include "Interface/UiWindow.hpp"
 
 class TextBox;
 
@@ -42,4 +42,4 @@ class InfoHide: public UiWindow
         static bool kOk_;
 };
 
-# endif // INFOHIDE_HPP_INCLUDED
+#endif // INFOHIDE_HPP_INCLUDED

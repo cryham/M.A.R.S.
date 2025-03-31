@@ -18,7 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef PLANET_HPP_INCLUDED
 # define PLANET_HPP_INCLUDED
 
-# include "SpaceObjects/SpaceObject.hpp"
+#include "SpaceObjects/SpaceObject.hpp"
 
 class Planet: public SpaceObject
 {
@@ -38,4 +38,4 @@ class Planet: public SpaceObject
         Color3f color_;
 };
 
-# endif // PLANET_HPP_INCLUDED
+#endif // PLANET_HPP_INCLUDED

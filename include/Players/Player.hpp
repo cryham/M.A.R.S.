@@ -18,9 +18,9 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef PLAYER_HPP_INCLUDED
 # define PLAYER_HPP_INCLUDED
 
-# include "SpaceObjects/Ship.hpp"
-# include "Players/players.hpp"
-# include "Controllers/Controller.hpp"
+#include "SpaceObjects/Ship.hpp"
+#include "Players/players.hpp"
+#include "Controllers/Controller.hpp"
 
 class Team;
 
@@ -56,4 +56,4 @@ class Player {
 };
 
 
-# endif // PLAYER_HPP_INCLUDED
+#endif // PLAYER_HPP_INCLUDED

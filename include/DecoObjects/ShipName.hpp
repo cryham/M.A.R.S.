@@ -18,7 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef SHIPNAME_HPP_INCLUDED
 # define SHIPNAME_HPP_INCLUDED
 
-# include "DecoObjects/DecoObject.hpp"
+#include "DecoObjects/DecoObject.hpp"
 
 class Ship;
 
@@ -36,4 +36,4 @@ class ShipName: public DecoObject
         Ship* ship_;
 };
 
-# endif // SHIPNAME_HPP_INCLUDED
+#endif // SHIPNAME_HPP_INCLUDED

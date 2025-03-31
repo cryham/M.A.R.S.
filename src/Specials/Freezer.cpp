@@ -15,21 +15,21 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Specials/Freezer.hpp"
+#include "Specials/Freezer.hpp"
 
-# include "SpaceObjects/Ship.hpp"
-# include "SpaceObjects/ships.hpp"
-# include "SpaceObjects/balls.hpp"
-# include "Players/Player.hpp"
-# include "System/timer.hpp"
-# include "DecoObjects/decoObjects.hpp"
-# include "Menu/menus.hpp"
-# include "Games/games.hpp"
-# include "Teams/Team.hpp"
-# include "Items/items.hpp"
+#include "SpaceObjects/Ship.hpp"
+#include "SpaceObjects/ships.hpp"
+#include "SpaceObjects/balls.hpp"
+#include "Players/Player.hpp"
+#include "System/timer.hpp"
+#include "DecoObjects/decoObjects.hpp"
+#include "Menu/menus.hpp"
+#include "Games/games.hpp"
+#include "Teams/Team.hpp"
+#include "Items/items.hpp"
 
-# include <SFML/Graphics.hpp>
-# include <vector>
+#include <SFML/Graphics.hpp>
+#include <vector>
 
 void Freezer::draw(float alpha) const
 {

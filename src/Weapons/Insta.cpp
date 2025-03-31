@@ -15,16 +15,16 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Weapons/Insta.hpp"
+#include "Weapons/Insta.hpp"
 
-# include "SpaceObjects/Ship.hpp"
-# include "Particles/particles.hpp"
-# include "Media/sound.hpp"
-# include "Players/Player.hpp"
-# include "Teams/Team.hpp"
+#include "SpaceObjects/Ship.hpp"
+#include "Particles/particles.hpp"
+#include "Media/sound.hpp"
+#include "Players/Player.hpp"
+#include "Teams/Team.hpp"
 
-# include <SFML/Graphics.hpp>
-# include <cfloat>
+#include <SFML/Graphics.hpp>
+#include <cfloat>
 
 void Insta::draw(float alpha) const
 {

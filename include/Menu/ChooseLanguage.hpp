@@ -18,9 +18,9 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef CHOOSELANGUAGE_HPP_INCLUDED
 # define CHOOSELANGUAGE_HPP_INCLUDED
 
-# include "Interface/UiWindow.hpp"
+#include "Interface/UiWindow.hpp"
 
-# include <map>
+#include <map>
 
 class ChooseLanguage: public UiWindow
 {
@@ -47,4 +47,4 @@ class ChooseLanguage: public UiWindow
         static std::map<sf::String, int> sortedLocales_;
 };
 
-# endif // CHOOSELANGUAGE_HPP_INCLUDED
+#endif // CHOOSELANGUAGE_HPP_INCLUDED

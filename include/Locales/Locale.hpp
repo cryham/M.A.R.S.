@@ -18,7 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef LOCALE_HPP_INCLUDED
 # define LOCALE_HPP_INCLUDED
 
-# include <SFML/System.hpp>
+#include <SFML/System.hpp>
 
 struct Locale
 {
@@ -38,4 +38,4 @@ struct Locale
     bool       LTR_;
 };
 
-# endif // LOCALE_HPP_INCLUDED
+#endif // LOCALE_HPP_INCLUDED

@@ -18,7 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef AFK47_HPP_INCLUDED
 # define AFK47_HPP_INCLUDED
 
-# include "Weapons/Weapon.hpp"
+#include "Weapons/Weapon.hpp"
 
 /// Weapon: AFK47.
 /// A long distance gun, classic star wars laser flair.
@@ -47,4 +47,4 @@ class AFK47: public Weapon
         float maxAngle()   const;
 };
 
-# endif // AFK47_HPP_INCLUDED
+#endif // AFK47_HPP_INCLUDED

@@ -15,17 +15,17 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Interface/VerticalSlider.hpp"
+#include "Interface/VerticalSlider.hpp"
 
-# include "System/settings.hpp"
-# include "System/window.hpp"
-# include "Media/text.hpp"
-# include "Media/texture.hpp"
-# include "Locales/locales.hpp"
-# include "Interface/toolTip.hpp"
+#include "System/settings.hpp"
+#include "System/window.hpp"
+#include "Media/text.hpp"
+#include "Media/texture.hpp"
+#include "Locales/locales.hpp"
+#include "Interface/toolTip.hpp"
 
-# include <SFML/OpenGL.hpp>
-# include <sstream>
+#include <SFML/OpenGL.hpp>
+#include <sstream>
 
 VerticalSlider::VerticalSlider (float* value, float minValue, float maxValue, Vector2f const& topLeft, int height):
     UiElement(topLeft, 20, height),

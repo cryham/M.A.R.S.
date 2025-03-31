@@ -18,10 +18,10 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef TABLIST_HPP_INCLUDED
 # define TABLIST_HPP_INCLUDED
 
-# include "Interface/UiElement.hpp"
-# include "Interface/Tab.hpp"
+#include "Interface/UiElement.hpp"
+#include "Interface/Tab.hpp"
 
-# include <vector>
+#include <vector>
 
 class TabList: public UiElement {
     public:
@@ -51,6 +51,6 @@ class TabList: public UiElement {
         int lastTabEnd_;
 };
 
-# endif
+#endif
 
 

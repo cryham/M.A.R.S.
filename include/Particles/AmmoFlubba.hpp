@@ -18,7 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef AMMOFLUBBA_HPP_INCLUDED
 # define AMMOFLUBBA_HPP_INCLUDED
 
-# include "Particles/Particle.hpp"
+#include "Particles/Particle.hpp"
 
 class AmmoFlubba: public Particle<AmmoFlubba> {
     public:
@@ -39,7 +39,7 @@ class AmmoFlubba: public Particle<AmmoFlubba> {
         static std::list<AmmoFlubba*> activeParticles_;
 };
 
-# endif // AMMOFLUBBA_HPP_INCLUDED
+#endif // AMMOFLUBBA_HPP_INCLUDED
 
 
 

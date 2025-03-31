@@ -18,12 +18,12 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef BOTCONTROLLER_HPP_INCLUDED
 # define BOTCONTROLLER_HPP_INCLUDED
 
-# include "Controllers/Controller.hpp"
+#include "Controllers/Controller.hpp"
 
-# include "System/Vector2f.hpp"
-# include "Teams/Job.hpp"
+#include "System/Vector2f.hpp"
+#include "Teams/Job.hpp"
 
-# include <map>
+#include <map>
 
 class TacticalZone;
 
@@ -108,6 +108,6 @@ class BotController: public Controller {
         Vector2f nextPathPoint_;
 };
 
-# endif // BOTCONTROLLER_HPP_INCLUDED
+#endif // BOTCONTROLLER_HPP_INCLUDED
 
 

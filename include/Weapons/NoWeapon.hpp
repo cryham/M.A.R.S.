@@ -18,7 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef NOWEAPON_HPP_INCLUDED
 # define NOWEAPON_HPP_INCLUDED
 
-# include "Weapons/Weapon.hpp"
+#include "Weapons/Weapon.hpp"
 
 /// Weapon: NoWeapon.
 
@@ -49,4 +49,4 @@ class NoWeapon: public Weapon
         {  return 0.f;  }
 };
 
-# endif // NOWEAPON_HPP_INCLUDED
+#endif // NOWEAPON_HPP_INCLUDED

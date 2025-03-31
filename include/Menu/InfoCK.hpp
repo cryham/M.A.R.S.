@@ -18,7 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef INFOCK_HPP_INCLUDED
 # define INFOCK_HPP_INCLUDED
 
-# include "Interface/UiWindow.hpp"
+#include "Interface/UiWindow.hpp"
 
 class TextBox;
 
@@ -41,7 +41,7 @@ class InfoCK: public UiWindow {
         static bool kClose_;
 };
 
-# endif // INFOCK_HPP_INCLUDED
+#endif // INFOCK_HPP_INCLUDED
 
 
 

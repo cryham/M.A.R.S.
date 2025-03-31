@@ -18,8 +18,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef KEYEDIT_HPP_INCLUDED
 # define KEYEDIT_HPP_INCLUDED
 
-# include "Interface/UiElement.hpp"
-# include "Interface/Label.hpp"
+#include "Interface/UiElement.hpp"
+#include "Interface/Label.hpp"
 
 class KeyEdit: public UiElement {
     public:
@@ -42,5 +42,5 @@ class KeyEdit: public UiElement {
         int labelWidth_;
 };
 
-# endif
+#endif
 

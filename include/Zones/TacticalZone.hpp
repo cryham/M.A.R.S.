@@ -19,7 +19,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef TACTICALZONE_HPP_INCLUDED
 # define TACTICALZONE_HPP_INCLUDED
 
-# include "Zones/Zone.hpp"
+#include "Zones/Zone.hpp"
 
 /// Zone: TacticalZone.
 /// A round Zone.
@@ -61,5 +61,5 @@ class TacticalZone: public Zone {
         float  shipCount_;
 };
 
-# endif // TACTICALZONE_HPP_INCLUDED
+#endif // TACTICALZONE_HPP_INCLUDED
 

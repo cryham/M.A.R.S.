@@ -18,7 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef TOMAINCONFIRM_HPP_INCLUDED
 # define TOMAINCONFIRM_HPP_INCLUDED
 
-# include "Interface/UiWindow.hpp"
+#include "Interface/UiWindow.hpp"
 
 class ToMainConfirm: public UiWindow
 {
@@ -40,4 +40,4 @@ class ToMainConfirm: public UiWindow
         static bool kOk_, kCancel_;
 };
 
-# endif // TOMAINCONFIRM_HPP_INCLUDED
+#endif // TOMAINCONFIRM_HPP_INCLUDED

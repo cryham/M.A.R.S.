@@ -18,9 +18,9 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef RADIOBUTTON_HPP_INCLUDED
 # define RADIOBUTTON_HPP_INCLUDED
 
-# include "Interface/UiElement.hpp"
-# include "Interface/Label.hpp"
-# include "Interface/RadioGroup.hpp"
+#include "Interface/UiElement.hpp"
+#include "Interface/Label.hpp"
+#include "Interface/RadioGroup.hpp"
 
 class RadioGroup;
 
@@ -47,6 +47,6 @@ class RadioButton: public UiElement {
         sf::String* toolTip_;
 };
 
-# endif
+#endif
 
 

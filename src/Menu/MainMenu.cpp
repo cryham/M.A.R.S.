@@ -15,20 +15,20 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Menu/MainMenu.hpp"
+#include "Menu/MainMenu.hpp"
 
-# include "Interface/UiWindow.hpp"
-# include "Interface/Button.hpp"
-# include "Menu/menus.hpp"
-# include "Menu/ExitConfirm.hpp"
-# include "Menu/OptionsMenu.hpp"
-# include "Menu/NewGameMenu.hpp"
-# include "Menu/About.hpp"
-# include "Menu/Connect.hpp"
-# include "Menu/InfoSB.hpp"
-# include "System/settings.hpp"
-# include "Locales/locales.hpp"
-# include "Games/games.hpp"
+#include "Interface/UiWindow.hpp"
+#include "Interface/Button.hpp"
+#include "Menu/menus.hpp"
+#include "Menu/ExitConfirm.hpp"
+#include "Menu/OptionsMenu.hpp"
+#include "Menu/NewGameMenu.hpp"
+#include "Menu/About.hpp"
+#include "Menu/Connect.hpp"
+#include "Menu/InfoSB.hpp"
+#include "System/settings.hpp"
+#include "Locales/locales.hpp"
+#include "Games/games.hpp"
 
 UiWindow* MainMenu::instance_(NULL);
 bool MainMenu::kStartLocal_(false);

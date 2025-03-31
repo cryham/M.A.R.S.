@@ -18,7 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef HEATJET_HPP_INCLUDED
 # define HEATJET_HPP_INCLUDED
 
-# include "Particles/Particle.hpp"
+#include "Particles/Particle.hpp"
 
 class HeatJet: public Particle<HeatJet> {
     public:
@@ -33,5 +33,5 @@ class HeatJet: public Particle<HeatJet> {
         static std::list<HeatJet*> activeParticles_;
 };
 
-# endif // HEATJET_HPP_INCLUDED
+#endif // HEATJET_HPP_INCLUDED
 

@@ -18,8 +18,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef COLORPREVIEW_HPP_INCLUDED
 # define COLORPREVIEW_HPP_INCLUDED
 
-# include "Interface/UiElement.hpp"
-# include "System/Color3f.hpp"
+#include "Interface/UiElement.hpp"
+#include "System/Color3f.hpp"
 
 class ShipPreview: public UiElement {
     public:
@@ -35,5 +35,5 @@ class ShipPreview: public UiElement {
         int*     graphic_;
 };
 
-# endif
+#endif
 

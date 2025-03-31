@@ -15,17 +15,17 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Interface/TextEdit.hpp"
+#include "Interface/TextEdit.hpp"
 
-# include "System/settings.hpp"
-# include "System/window.hpp"
-# include "Media/text.hpp"
-# include "Locales/locales.hpp"
-# include "Menu/menus.hpp"
-# include "Media/sound.hpp"
+#include "System/settings.hpp"
+#include "System/window.hpp"
+#include "Media/text.hpp"
+#include "Locales/locales.hpp"
+#include "Menu/menus.hpp"
+#include "Media/sound.hpp"
 
-# include <SFML/OpenGL.hpp>
-# include <iostream>
+#include <SFML/OpenGL.hpp>
+#include <iostream>
 
 TextEdit::TextEdit (sf::String* text, sf::String* value, sf::String fallBack,
         Vector2f const& topLeft, int width, int labelWidth, int type, int maxLength)

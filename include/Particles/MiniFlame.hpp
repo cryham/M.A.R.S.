@@ -18,9 +18,9 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef MINIFLAME_HPP_INCLUDED
 # define MINIFLAME_HPP_INCLUDED
 
-# include "Particles/Particle.hpp"
+#include "Particles/Particle.hpp"
 
-# include "System/Color3f.hpp"
+#include "System/Color3f.hpp"
 
 class MiniFlame: public Particle<MiniFlame> {
     public:
@@ -37,6 +37,6 @@ class MiniFlame: public Particle<MiniFlame> {
         static std::list<MiniFlame*> activeParticles_;
 };
 
-# endif // MINIFLAME_HPP_INCLUDED
+#endif // MINIFLAME_HPP_INCLUDED
 
 

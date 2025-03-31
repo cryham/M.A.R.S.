@@ -15,15 +15,15 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Interface/Button.hpp"
+#include "Interface/Button.hpp"
 
-# include "System/settings.hpp"
-# include "Media/sound.hpp"
-# include "Media/text.hpp"
-# include "Menu/menus.hpp"
-# include "Interface/toolTip.hpp"
+#include "System/settings.hpp"
+#include "Media/sound.hpp"
+#include "Media/text.hpp"
+#include "Menu/menus.hpp"
+#include "Interface/toolTip.hpp"
 
-# include <SFML/OpenGL.hpp>
+#include <SFML/OpenGL.hpp>
 
 Button::Button (sf::String* text, sf::String* toolTip, bool* key, Vector2f const& topLeft, int width, int height, int align, sf::Font* font):
     UiElement(topLeft, width, height),

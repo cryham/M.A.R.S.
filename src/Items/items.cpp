@@ -15,22 +15,22 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Items/items.hpp"
+#include "Items/items.hpp"
 
-# include "Items/CannonControl.hpp"
-# include "SpaceObjects/spaceObjects.hpp"
-# include "SpaceObjects/Home.hpp"
-# include "Items/PowerUp.hpp"
-# include "System/settings.hpp"
-# include "System/timer.hpp"
-# include "Items/PUShield.hpp"
-# include "Items/PUHealth.hpp"
-# include "Items/PUFuel.hpp"
-# include "Items/PUSleep.hpp"
-# include "Items/PUReverse.hpp"
-# include "defines.hpp"
+#include "Items/CannonControl.hpp"
+#include "SpaceObjects/spaceObjects.hpp"
+#include "SpaceObjects/Home.hpp"
+#include "Items/PowerUp.hpp"
+#include "System/settings.hpp"
+#include "System/timer.hpp"
+#include "Items/PUShield.hpp"
+#include "Items/PUHealth.hpp"
+#include "Items/PUFuel.hpp"
+#include "Items/PUSleep.hpp"
+#include "Items/PUReverse.hpp"
+#include "defines.hpp"
 
-# include <list>
+#include <list>
 
 namespace items
 {

@@ -15,17 +15,17 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Teams/SBTeam.hpp"
+#include "Teams/SBTeam.hpp"
 
-# include "Items/PowerUp.hpp"
-# include "Items/items.hpp"
-# include "SpaceObjects/balls.hpp"
-# include "SpaceObjects/ships.hpp"
-# include "SpaceObjects/Ship.hpp"
-# include "Players/Player.hpp"
-# include "System/settings.hpp"
+#include "Items/PowerUp.hpp"
+#include "Items/items.hpp"
+#include "SpaceObjects/balls.hpp"
+#include "SpaceObjects/ships.hpp"
+#include "SpaceObjects/Ship.hpp"
+#include "Players/Player.hpp"
+#include "System/settings.hpp"
 
-# include <list>
+#include <list>
 
 void SBTeam::createJobs()
 {

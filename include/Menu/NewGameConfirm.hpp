@@ -18,7 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef NEWGAMECONFIRM_HPP_INCLUDED
 # define NEWGAMECONFIRM_HPP_INCLUDED
 
-# include "Interface/UiWindow.hpp"
+#include "Interface/UiWindow.hpp"
 
 class NewGameConfirm: public UiWindow
 {
@@ -40,4 +40,4 @@ class NewGameConfirm: public UiWindow
         static bool kOk_, kCancel_;
 };
 
-# endif // NEWGAMECONFIRM_HPP_INCLUDED
+#endif // NEWGAMECONFIRM_HPP_INCLUDED

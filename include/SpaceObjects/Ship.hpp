@@ -18,10 +18,10 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef SHIP_HPP_INCLUDED
 # define SHIP_HPP_INCLUDED
 
-# include "SpaceObjects/MobileSpaceObject.hpp"
-# include "Weapons/Weapon.hpp"
-# include "Specials/Special.hpp"
-# include "DecoObjects/Ice.hpp"
+#include "SpaceObjects/MobileSpaceObject.hpp"
+#include "Weapons/Weapon.hpp"
+#include "Specials/Special.hpp"
+#include "DecoObjects/Ice.hpp"
 
 # define ITEM_CANNON_CONTROL 0
 
@@ -116,4 +116,4 @@ class Ship: public MobileSpaceObject {
         int collisionCount_;
 };
 
-# endif // SHIP_HPP_INCLUDED
+#endif // SHIP_HPP_INCLUDED

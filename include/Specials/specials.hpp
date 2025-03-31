@@ -29,5 +29,5 @@ namespace specials {
     Special* createPrev(SpecialType type, Ship* parent);
 }
 
-# endif // SPECIALS_HPP_INCLUDED
+#endif // SPECIALS_HPP_INCLUDED
 

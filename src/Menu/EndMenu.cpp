@@ -15,17 +15,17 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Menu/EndMenu.hpp"
+#include "Menu/EndMenu.hpp"
 
-# include "Interface/UiWindow.hpp"
-# include "Interface/Button.hpp"
-# include "Menu/menus.hpp"
-# include "Menu/ToMainConfirm.hpp"
-# include "Games/games.hpp"
-# include "Menu/OptionsMenu.hpp"
-# include "Menu/InfoHide.hpp"
-# include "System/settings.hpp"
-# include "Locales/locales.hpp"
+#include "Interface/UiWindow.hpp"
+#include "Interface/Button.hpp"
+#include "Menu/menus.hpp"
+#include "Menu/ToMainConfirm.hpp"
+#include "Games/games.hpp"
+#include "Menu/OptionsMenu.hpp"
+#include "Menu/InfoHide.hpp"
+#include "System/settings.hpp"
+#include "Locales/locales.hpp"
 
 UiWindow* EndMenu::instance_(NULL);
 bool EndMenu::kNew_(false);

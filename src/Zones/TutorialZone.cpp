@@ -16,17 +16,17 @@ You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 
-# include "Zones/TutorialZone.hpp"
+#include "Zones/TutorialZone.hpp"
 
-# include "SpaceObjects/SpaceObject.hpp"
-# include "SpaceObjects/spaceObjects.hpp"
-# include "SpaceObjects/Ship.hpp"
-# include "Players/players.hpp"
-# include "Players/Player.hpp"
-# include "Teams/Team.hpp"
-# include <SFML/System.hpp>
+#include "SpaceObjects/SpaceObject.hpp"
+#include "SpaceObjects/spaceObjects.hpp"
+#include "SpaceObjects/Ship.hpp"
+#include "Players/players.hpp"
+#include "Players/Player.hpp"
+#include "Teams/Team.hpp"
+#include <SFML/System.hpp>
 
-# include <cmath>
+#include <cmath>
 
 TutorialZone::TutorialZone(Vector2f const& location, float radius) :
     radius_(radius),

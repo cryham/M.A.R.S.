@@ -18,7 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef LOCALPLAYER_HPP_INCLUDED
 # define LOCALPLAYER_HPP_INCLUDED
 
-# include "Players/Player.hpp"
+#include "Players/Player.hpp"
 
 class Team;
 class KeyController;
@@ -40,6 +40,6 @@ class LocalPlayer: public Player {
         KeyController* controller_;
 };
 
-# endif // LOCALPLAYER_HPP_INCLUDED
+#endif // LOCALPLAYER_HPP_INCLUDED
 
 

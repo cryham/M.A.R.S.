@@ -18,8 +18,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef TEAMS_HPP_INCLUDED
 # define TEAMS_HPP_INCLUDED
 
-# include "System/Color3f.hpp"
-# include "Controllers/controllers.hpp"
+#include "System/Color3f.hpp"
+#include "Controllers/controllers.hpp"
 
 class Team;
 class Home;
@@ -49,5 +49,5 @@ namespace teams {
     int getSecondPoints();
 }
 
-# endif // TEAMS_HPP_INCLUDED
+#endif // TEAMS_HPP_INCLUDED
 

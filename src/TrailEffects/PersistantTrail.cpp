@@ -16,13 +16,13 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "TrailEffects/PersistantTrail.hpp"
+#include "TrailEffects/PersistantTrail.hpp"
 
-# include "System/timer.hpp"
-# include "Media/texture.hpp"
-# include "SpaceObjects/SpaceObject.hpp"
+#include "System/timer.hpp"
+#include "Media/texture.hpp"
+#include "SpaceObjects/SpaceObject.hpp"
 
-# include <SFML/OpenGL.hpp>
+#include <SFML/OpenGL.hpp>
 
 PersistantTrail::PersistantTrail(SpaceObject* target, float timeStep, float duration, float width, Color3f const& color):
     Trail(target),

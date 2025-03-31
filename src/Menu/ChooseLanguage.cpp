@@ -15,16 +15,16 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Menu/ChooseLanguage.hpp"
+#include "Menu/ChooseLanguage.hpp"
 
-# include "Interface/UiWindow.hpp"
-# include "Interface/Button.hpp"
-# include "Menu/menus.hpp"
-# include "Interface/TextBox.hpp"
-# include "Interface/Line.hpp"
-# include "Media/text.hpp"
-# include "Locales/locales.hpp"
-# include "System/settings.hpp"
+#include "Interface/UiWindow.hpp"
+#include "Interface/Button.hpp"
+#include "Menu/menus.hpp"
+#include "Interface/TextBox.hpp"
+#include "Interface/Line.hpp"
+#include "Media/text.hpp"
+#include "Locales/locales.hpp"
+#include "System/settings.hpp"
 
 UiWindow* ChooseLanguage::instance_(NULL);
 bool ChooseLanguage::kCancel_(false);

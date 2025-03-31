@@ -18,7 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef HEAT_HPP_INCLUDED
 # define HEAT_HPP_INCLUDED
 
-# include "Particles/Particle.hpp"
+#include "Particles/Particle.hpp"
 
 class Heat: public Particle<Heat> {
     public:
@@ -33,5 +33,5 @@ class Heat: public Particle<Heat> {
         static std::list<Heat*> activeParticles_;
 };
 
-# endif // HEAT_HPP_INCLUDED
+#endif // HEAT_HPP_INCLUDED
 

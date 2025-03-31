@@ -15,17 +15,17 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Menu/InfoHide.hpp"
+#include "Menu/InfoHide.hpp"
 
-# include "Interface/UiWindow.hpp"
-# include "Interface/Button.hpp"
-# include "Interface/Checkbox.hpp"
-# include "Menu/menus.hpp"
-# include "Interface/TextBox.hpp"
-# include "Interface/Line.hpp"
-# include "System/settings.hpp"
-# include "Media/text.hpp"
-# include "Locales/locales.hpp"
+#include "Interface/UiWindow.hpp"
+#include "Interface/Button.hpp"
+#include "Interface/Checkbox.hpp"
+#include "Menu/menus.hpp"
+#include "Interface/TextBox.hpp"
+#include "Interface/Line.hpp"
+#include "System/settings.hpp"
+#include "Media/text.hpp"
+#include "Locales/locales.hpp"
 
 UiWindow* InfoHide::instance_(NULL);
 bool InfoHide::kOk_(false);

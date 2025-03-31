@@ -15,12 +15,12 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Media/font.hpp"
+#include "Media/font.hpp"
 
-# include "System/settings.hpp"
-# include "Locales/locales.hpp"
+#include "System/settings.hpp"
+#include "Locales/locales.hpp"
 
-# include <iostream>
+#include <iostream>
 
 namespace font {
     namespace {

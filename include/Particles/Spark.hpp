@@ -18,9 +18,9 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef SPARK_HPP_INCLUDED
 # define SPARK_HPP_INCLUDED
 
-# include "Particles/Particle.hpp"
+#include "Particles/Particle.hpp"
 
-# include "System/Color3f.hpp"
+#include "System/Color3f.hpp"
 
 class Spark: public Particle<Spark> {
     public:
@@ -36,6 +36,6 @@ class Spark: public Particle<Spark> {
         static std::list<Spark*> activeParticles_;
 };
 
-# endif // SPARK_HPP_INCLUDED
+#endif // SPARK_HPP_INCLUDED
 
 

@@ -15,11 +15,11 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Items/PowerUp.hpp"
+#include "Items/PowerUp.hpp"
 
-# include "SpaceObjects/ships.hpp"
-# include "SpaceObjects/Ship.hpp"
-# include "Players/Player.hpp"
+#include "SpaceObjects/ships.hpp"
+#include "SpaceObjects/Ship.hpp"
+#include "Players/Player.hpp"
 
 PowerUp::PowerUp(items::PowerUpType type, Vector2f const& location, float radius,
         float totalLifeTime, int texX, int texY, Color3f const& bgColor):

@@ -15,23 +15,23 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Zones/zones.hpp"
+#include "Zones/zones.hpp"
 
-# include "Zones/HomeZone.hpp"
-# include "Zones/TeamZone.hpp"
-# include "Zones/TacticalZone.hpp"
-# include "Zones/TutorialZone.hpp"
-# include "Zones/RasterZone.hpp"
-# include "Teams/Team.hpp"
-# include "SpaceObjects/spaceObjects.hpp"
-# include "SpaceObjects/SpaceObject.hpp"
-# include "Games/games.hpp"
-# include "SpaceObjects/Home.hpp"
-# include "SpaceObjects/balls.hpp"
-# include "defines.hpp"
-# include "System/randomizer.hpp"
+#include "Zones/HomeZone.hpp"
+#include "Zones/TeamZone.hpp"
+#include "Zones/TacticalZone.hpp"
+#include "Zones/TutorialZone.hpp"
+#include "Zones/RasterZone.hpp"
+#include "Teams/Team.hpp"
+#include "SpaceObjects/spaceObjects.hpp"
+#include "SpaceObjects/SpaceObject.hpp"
+#include "Games/games.hpp"
+#include "SpaceObjects/Home.hpp"
+#include "SpaceObjects/balls.hpp"
+#include "defines.hpp"
+#include "System/randomizer.hpp"
 
-# include <iostream>
+#include <iostream>
 
 namespace zones
 {

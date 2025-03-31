@@ -18,7 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef MENUGAME_HPP_INCLUDED
 # define MENUGAME_HPP_INCLUDED
 
-# include "Games/Game.hpp"
+#include "Games/Game.hpp"
 
 /// Game: MenuGame.
 /// This is the game which plays in the background of the main menu.
@@ -33,7 +33,7 @@ class MenuGame: public Game {
         void restart();
 };
 
-# endif // MENUGAME_HPP_INCLUDED
+#endif // MENUGAME_HPP_INCLUDED
 
 
 

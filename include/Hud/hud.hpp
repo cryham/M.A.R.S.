@@ -18,8 +18,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef HUD_HPP_INCLUDED
 # define HUD_HPP_INCLUDED
 
-# include "System/Vector2f.hpp"
-# include "System/Color3f.hpp"
+#include "System/Vector2f.hpp"
+#include "System/Color3f.hpp"
 
 namespace hud {
     void init();
@@ -35,6 +35,6 @@ namespace hud {
     void displayMessage(sf::String const& message, Color3f const& color = Color3f(0.55f, 1.0f, 1.0f));
 }
 
-# endif // HUD_HPP_INCLUDED
+#endif // HUD_HPP_INCLUDED
 
 

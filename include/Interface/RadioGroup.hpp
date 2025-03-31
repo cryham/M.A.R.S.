@@ -18,10 +18,10 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef RADIOGROUP_HPP_INCLUDED
 # define RADIOGROUP_HPP_INCLUDED
 
-# include "Interface/UiElement.hpp"
-# include "Interface/RadioButton.hpp"
+#include "Interface/UiElement.hpp"
+#include "Interface/RadioButton.hpp"
 
-# include <vector>
+#include <vector>
 
 class RadioButton;
 
@@ -51,5 +51,5 @@ class RadioGroup: public UiElement {
             RadioButton* focusedButton_;
 };
 
-# endif
+#endif
 

@@ -15,14 +15,14 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Media/text.hpp"
+#include "Media/text.hpp"
 
-# include "System/window.hpp"
-# include "Locales/locales.hpp"
-# include "Interface/UiElement.hpp"
+#include "System/window.hpp"
+#include "Locales/locales.hpp"
+#include "Interface/UiElement.hpp"
 
-# include <SFML/Graphics.hpp>
-# include <SFML/OpenGL.hpp>
+#include <SFML/Graphics.hpp>
+#include <SFML/OpenGL.hpp>
 
 namespace text {
 

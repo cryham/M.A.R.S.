@@ -18,7 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef INFOGIP_HPP_INCLUDED
 # define INFOGIP_HPP_INCLUDED
 
-# include "Interface/UiWindow.hpp"
+#include "Interface/UiWindow.hpp"
 
 class TextBox;
 
@@ -39,7 +39,7 @@ class InfoGIP: public UiWindow {
         static bool kClose_;
 };
 
-# endif // INFOGIP_HPP_INCLUDED
+#endif // INFOGIP_HPP_INCLUDED
 
 
 

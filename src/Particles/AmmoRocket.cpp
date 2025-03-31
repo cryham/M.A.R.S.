@@ -15,21 +15,21 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Particles/AmmoRocket.hpp"
+#include "Particles/AmmoRocket.hpp"
 
-# include "System/timer.hpp"
-# include "Media/sound.hpp"
-# include "TrailEffects/trailEffects.hpp"
-# include "Particles/particles.hpp"
-# include "System/settings.hpp"
-# include "SpaceObjects/Ship.hpp"
-# include "SpaceObjects/ships.hpp"
-# include "SpaceObjects/Ball.hpp"
-# include "SpaceObjects/balls.hpp"
-# include "Shaders/postFX.hpp"
-# include "Players/Player.hpp"
+#include "System/timer.hpp"
+#include "Media/sound.hpp"
+#include "TrailEffects/trailEffects.hpp"
+#include "Particles/particles.hpp"
+#include "System/settings.hpp"
+#include "SpaceObjects/Ship.hpp"
+#include "SpaceObjects/ships.hpp"
+#include "SpaceObjects/Ball.hpp"
+#include "SpaceObjects/balls.hpp"
+#include "Shaders/postFX.hpp"
+#include "Players/Player.hpp"
 
-# include <cfloat>
+#include <cfloat>
 
 std::list<AmmoRocket*> AmmoRocket::activeParticles_;
 

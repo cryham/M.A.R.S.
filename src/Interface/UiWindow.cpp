@@ -15,16 +15,16 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Interface/UiWindow.hpp"
+#include "Interface/UiWindow.hpp"
 
-# include "System/settings.hpp"
-# include "System/window.hpp"
-# include "Media/texture.hpp"
-# include "Media/text.hpp"
-# include "Menu/menus.hpp"
-# include "Locales/locales.hpp"
+#include "System/settings.hpp"
+#include "System/window.hpp"
+#include "Media/texture.hpp"
+#include "Media/text.hpp"
+#include "Menu/menus.hpp"
+#include "Locales/locales.hpp"
 
-# include <SFML/OpenGL.hpp>
+#include <SFML/OpenGL.hpp>
 
 UiWindow::UiWindow (int width, int height, Vector2f const& position):
     UiElement(position, width, height),

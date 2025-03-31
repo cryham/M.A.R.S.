@@ -19,7 +19,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef TUTORIALZONE_HPP_INCLUDED
 # define TUTORIALZONE_HPP_INCLUDED
 
-# include "Zones/Zone.hpp"
+#include "Zones/Zone.hpp"
 
 /// Zone: TutorialZone.
 /// A beautiful pinkish Zone, employed in the Tutorial.
@@ -40,6 +40,6 @@ class TutorialZone: public Zone {
         Vector2f location_;
 };
 
-# endif // TUTORIALZONE_HPP_INCLUDED
+#endif // TUTORIALZONE_HPP_INCLUDED
 
 

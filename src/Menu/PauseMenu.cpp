@@ -15,17 +15,17 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Menu/PauseMenu.hpp"
+#include "Menu/PauseMenu.hpp"
 
-# include "Interface/UiWindow.hpp"
-# include "Interface/Button.hpp"
-# include "Menu/menus.hpp"
-# include "Menu/ToMainConfirm.hpp"
-# include "Menu/NewGameConfirm.hpp"
-# include "Menu/OptionsMenu.hpp"
-# include "Menu/InfoHide.hpp"
-# include "System/settings.hpp"
-# include "Locales/locales.hpp"
+#include "Interface/UiWindow.hpp"
+#include "Interface/Button.hpp"
+#include "Menu/menus.hpp"
+#include "Menu/ToMainConfirm.hpp"
+#include "Menu/NewGameConfirm.hpp"
+#include "Menu/OptionsMenu.hpp"
+#include "Menu/InfoHide.hpp"
+#include "System/settings.hpp"
+#include "Locales/locales.hpp"
 
 UiWindow* PauseMenu::instance_(NULL);
 bool PauseMenu::kResume_(false);

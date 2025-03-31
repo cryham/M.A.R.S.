@@ -15,18 +15,18 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Hud/musicNotify.hpp"
+#include "Hud/musicNotify.hpp"
 
-# include "System/window.hpp"
-# include "System/timer.hpp"
-# include "Media/text.hpp"
-# include "Locales/locales.hpp"
+#include "System/window.hpp"
+#include "System/timer.hpp"
+#include "Media/text.hpp"
+#include "Locales/locales.hpp"
 
-# include <SFML/OpenGL.hpp>
+#include <SFML/OpenGL.hpp>
 
-# include <taglib/taglib.h>
-# include <taglib/fileref.h>
-# include <taglib/tag.h>
+#include <taglib/taglib.h>
+#include <taglib/fileref.h>
+#include <taglib/tag.h>
 
 namespace musicNotify {
     namespace {

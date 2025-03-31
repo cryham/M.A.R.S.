@@ -18,7 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef SHOTGUN_HPP_INCLUDED
 # define SHOTGUN_HPP_INCLUDED
 
-# include "Weapons/Weapon.hpp"
+#include "Weapons/Weapon.hpp"
 
 /// Weapon: Shotgun.
 /// A short distance gun, which fires some particles in multiple direction.
@@ -47,4 +47,4 @@ class Shotgun: public Weapon
         float maxAngle()   const;
 };
 
-# endif // SHOTGUN_HPP_INCLUDED
+#endif // SHOTGUN_HPP_INCLUDED

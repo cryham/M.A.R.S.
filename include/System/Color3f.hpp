@@ -18,9 +18,9 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef COLOR4F_HPP_INCLUDED
 # define COLOR4F_HPP_INCLUDED
 
-# include <cmath>
-# include <algorithm>
-# include <SFML/Graphics.hpp>
+#include <cmath>
+#include <algorithm>
+#include <SFML/Graphics.hpp>
 
 /// A struct for color handling.
 /// It stores the color in RGB values, but provides an HSV
@@ -112,4 +112,4 @@ Color3f      operator-  (Color3f const& lhs, Color3f const& rhs);
 /// Division of a color by a float.
 Color3f      operator/  (Color3f const& lhs, float rhs);
 
-# endif //COLOR4F_HPP_INCLUDED
+#endif //COLOR4F_HPP_INCLUDED

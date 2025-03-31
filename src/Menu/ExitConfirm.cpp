@@ -15,15 +15,15 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Menu/ExitConfirm.hpp"
+#include "Menu/ExitConfirm.hpp"
 
-# include "Interface/UiWindow.hpp"
-# include "Interface/Button.hpp"
-# include "System/window.hpp"
-# include "Menu/menus.hpp"
-# include "Media/text.hpp"
-# include "Locales/locales.hpp"
-# include "System/settings.hpp"
+#include "Interface/UiWindow.hpp"
+#include "Interface/Button.hpp"
+#include "System/window.hpp"
+#include "Menu/menus.hpp"
+#include "Media/text.hpp"
+#include "Locales/locales.hpp"
+#include "System/settings.hpp"
 
 UiWindow* ExitConfirm::instance_(NULL);
 bool ExitConfirm::kOk_(false);

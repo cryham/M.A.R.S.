@@ -16,30 +16,31 @@ You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 
-# include "Zones/TacticalZone.hpp"
+#include "Zones/TacticalZone.hpp"
 
-# include "SpaceObjects/SpaceObject.hpp"
-# include "SpaceObjects/spaceObjects.hpp"
-# include "SpaceObjects/Ship.hpp"
-# include "Players/players.hpp"
-# include "Players/Player.hpp"
-# include "Teams/Team.hpp"
-# include "Teams/teams.hpp"
-# include "defines.hpp"
+#include "SpaceObjects/SpaceObject.hpp"
+#include "SpaceObjects/spaceObjects.hpp"
+#include "SpaceObjects/Ship.hpp"
+#include "Players/players.hpp"
+#include "Players/Player.hpp"
+#include "Teams/Team.hpp"
+#include "Teams/teams.hpp"
+#include "defines.hpp"
 
-# include <SFML/System.hpp>
-# include <cmath>
+#include <SFML/System.hpp>
+#include <cmath>
 
 TacticalZone::TacticalZone(Vector2f const& location, float radius) :
     radius_(radius),
     location_(location),
     covered_(false),
-    shipCount_(0) {
-        if (location_.x_ < SPACE_X_RESOLUTION*0.5f)
-            homeSide_ = 0;
-        else
-            homeSide_ = 1;
-    }
+    shipCount_(0)
+{
+    if (location_.x_ < SPACE_X_RESOLUTION*0.5f)
+        homeSide_ = 0;
+    else
+        homeSide_ = 1;
+}
 
 bool TacticalZone::isInside(SpaceObject const& toBeChecked) const
 {
@@ -91,7 +92,8 @@ void TacticalZone::draw() const
 Vector2f TacticalZone::getRandomPoint() const
 {
     Vector2f randomPoint;
-    for (int i=0; i<100; ++i) {
+    for (int i=0; i < 100; ++i)
+    {
         randomPoint = Vector2f(location_ + Vector2f::randDir()*(radius_ - 20.f));
         if (   randomPoint.x_ > 0.f
             && randomPoint.x_ < SPACE_X_RESOLUTION

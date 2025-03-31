@@ -18,7 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef TEAMDEATHMATCH_HPP_INCLUDED
 # define TEAMDEATHMATCH_HPP_INCLUDED
 
-# include "Games/Game.hpp"
+#include "Games/Game.hpp"
 
 /// Game: TeamDeathMatch (TDM).
 /// Classic DeathMatch, but in teams: Smash as many opponents as possible.
@@ -36,7 +36,7 @@ class TeamDeathMatch: public Game {
         void restart();
 };
 
-# endif // TEAMDEATHMATCH_HPP_INCLUDED
+#endif // TEAMDEATHMATCH_HPP_INCLUDED
 
 
 

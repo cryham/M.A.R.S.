@@ -18,7 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef NEWGAMEMENU_HPP_INCLUDED
 # define NEWGAMEMENU_HPP_INCLUDED
 
-# include "Interface/UiWindow.hpp"
+#include "Interface/UiWindow.hpp"
 
 class Tab;
 
@@ -46,4 +46,4 @@ class NewGameMenu: public UiWindow
                    *tabCannonKeep_, *tabGraveItation_, *tabRally_;
 };
 
-# endif // NEWGAMEMENU_HPP_INCLUDED
+#endif // NEWGAMEMENU_HPP_INCLUDED

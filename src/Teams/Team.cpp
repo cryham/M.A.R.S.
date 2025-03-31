@@ -15,18 +15,18 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Teams/Team.hpp"
+#include "Teams/Team.hpp"
 
-# include "Zones/zones.hpp"
-# include "Players/Player.hpp"
-# include "Players/BotPlayer.hpp"
-# include "Players/LocalPlayer.hpp"
-# include "SpaceObjects/Home.hpp"
-# include "Controllers/KeyController.hpp"
-# include "Games/games.hpp"
-# include "Controllers/BotController.hpp"
+#include "Zones/zones.hpp"
+#include "Players/Player.hpp"
+#include "Players/BotPlayer.hpp"
+#include "Players/LocalPlayer.hpp"
+#include "SpaceObjects/Home.hpp"
+#include "Controllers/KeyController.hpp"
+#include "Games/games.hpp"
+#include "Controllers/BotController.hpp"
 
-# include <set>
+#include <set>
 
 Team::Team(Color3f const& color):
     evaluationTimer_(0.f),

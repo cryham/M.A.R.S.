@@ -18,7 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef MINIAMMOFLUBBA_HPP_INCLUDED
 # define MINIAMMOFLUBBA_HPP_INCLUDED
 
-# include "Particles/Particle.hpp"
+#include "Particles/Particle.hpp"
 
 class MiniAmmoFlubba: public Particle<MiniAmmoFlubba> {
     public:
@@ -39,7 +39,7 @@ class MiniAmmoFlubba: public Particle<MiniAmmoFlubba> {
         static std::list<MiniAmmoFlubba*> activeParticles_;
 };
 
-# endif // MINIAMMOFLUBBA_HPP_INCLUDED
+#endif // MINIAMMOFLUBBA_HPP_INCLUDED
 
 
 

@@ -15,20 +15,20 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Media/music.hpp"
+#include "Media/music.hpp"
 
-# include "System/settings.hpp"
-# include "System/timer.hpp"
-# include "Hud/hud.hpp"
-# include "Locales/locales.hpp"
-# include "defines.hpp"
-# include "Games/games.hpp"
-# include "Hud/musicNotify.hpp"
-# include "System/window.hpp"
-# include "System/randomizer.hpp"
+#include "System/settings.hpp"
+#include "System/timer.hpp"
+#include "Hud/hud.hpp"
+#include "Locales/locales.hpp"
+#include "defines.hpp"
+#include "Games/games.hpp"
+#include "Hud/musicNotify.hpp"
+#include "System/window.hpp"
+#include "System/randomizer.hpp"
 
-# include <sys/types.h>
-# include <dirent.h>
+#include <sys/types.h>
+#include <dirent.h>
 
 namespace music
 {

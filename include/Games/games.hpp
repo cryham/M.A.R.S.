@@ -71,5 +71,5 @@ namespace games {
     float elapsedTime();
 }
 
-# endif // GAMES_HPP_INCLUDED
+#endif // GAMES_HPP_INCLUDED
 

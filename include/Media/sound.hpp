@@ -18,10 +18,10 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef SOUND_HPP_INCLUDED
 # define SOUND_HPP_INCLUDED
 
-# include "System/Vector2f.hpp"
-# include "defines.hpp"
+#include "System/Vector2f.hpp"
+#include "defines.hpp"
 
-# include <SFML/Audio.hpp>
+#include <SFML/Audio.hpp>
 
 /// A namespace for playing sound effects.
 /// It is possible to choose which sound to play,
@@ -45,4 +45,4 @@ namespace sound {
     void playSound (SoundType type, Vector2f const& position = Vector2f(SPACE_X_RESOLUTION*0.5f, 0), float volume = 100.f);
 }
 
-# endif // SOUND_HPP_INCLUDED
+#endif // SOUND_HPP_INCLUDED

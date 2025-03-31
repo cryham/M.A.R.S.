@@ -18,7 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef EXITCONFIRM_HPP_INCLUDED
 # define EXITCONFIRM_HPP_INCLUDED
 
-# include "Interface/UiWindow.hpp"
+#include "Interface/UiWindow.hpp"
 
 class ExitConfirm: public UiWindow
 {
@@ -40,4 +40,4 @@ class ExitConfirm: public UiWindow
         static bool kOk_, kCancel_;
 };
 
-# endif // EXITCONFIRM_HPP_INCLUDED
+#endif // EXITCONFIRM_HPP_INCLUDED

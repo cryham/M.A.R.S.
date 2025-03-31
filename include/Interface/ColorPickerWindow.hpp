@@ -18,7 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef COLORPICKERWINDOW_HPP_INCLUDED
 # define COLORPICKERWINDOW_HPP_INCLUDED
 
-# include "Interface/UiWindow.hpp"
+#include "Interface/UiWindow.hpp"
 
 class Color3f;
 class ColorPicker;
@@ -44,4 +44,4 @@ class ColorPickerWindow: public UiWindow
         Color3f*  color_;
 };
 
-# endif // COLORPICKERWINDOW_HPP_INCLUDED
+#endif // COLORPICKERWINDOW_HPP_INCLUDED

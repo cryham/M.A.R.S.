@@ -18,7 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef CONTROLLER_HPP_INCLUDED
 # define CONTROLLER_HPP_INCLUDED
 
-# include "Controllers/controllers.hpp"
+#include "Controllers/controllers.hpp"
 
 class Ship;
 
@@ -100,4 +100,4 @@ class Controller {
         Player* slave_;
 };
 
-# endif // CONTROLLER_HPP_INCLUDED
+#endif // CONTROLLER_HPP_INCLUDED

@@ -19,7 +19,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef TEAMZONE_HPP_INCLUDED
 # define TEAMZONE_HPP_INCLUDED
 
-# include "Zone.hpp"
+#include "Zone.hpp"
 
 /// Zone: TutorialZone.
 /// A very large Zone, covering half the screen.
@@ -45,4 +45,4 @@ class TeamZone: public Zone
 };
 
 
-# endif // TEAMZONE_HPP_INCLUDED
+#endif // TEAMZONE_HPP_INCLUDED

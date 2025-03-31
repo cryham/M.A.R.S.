@@ -15,14 +15,14 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Particles/AmmoBurner.hpp"
+#include "Particles/AmmoBurner.hpp"
 
-# include "System/timer.hpp"
-# include "SpaceObjects/ships.hpp"
-# include "SpaceObjects/balls.hpp"
-# include "SpaceObjects/Ship.hpp"
-# include "Media/sound.hpp"
-# include "System/randomizer.hpp"
+#include "System/timer.hpp"
+#include "SpaceObjects/ships.hpp"
+#include "SpaceObjects/balls.hpp"
+#include "SpaceObjects/Ship.hpp"
+#include "Media/sound.hpp"
+#include "System/randomizer.hpp"
 
 std::list<AmmoBurner*> AmmoBurner::activeParticles_;
 

@@ -18,10 +18,10 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef PARTICLE_HPP_INCLUDED
 # define PARTICLE_HPP_INCLUDED
 
-# include "SpaceObjects/MobileSpaceObject.hpp"
-# include "System/timer.hpp"
+#include "SpaceObjects/MobileSpaceObject.hpp"
+#include "System/timer.hpp"
 
-# include <list>
+#include <list>
 
 /// Base class for all particles.
 
@@ -172,4 +172,4 @@ class Particle: public MobileSpaceObject
         float lifeTime_;
 };
 
-# endif // PARTICLE_HPP_INCLUDED
+#endif // PARTICLE_HPP_INCLUDED

@@ -15,16 +15,16 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Zones/HomeZone.hpp"
+#include "Zones/HomeZone.hpp"
 
-# include "SpaceObjects/SpaceObject.hpp"
-# include "SpaceObjects/Ship.hpp"
-# include "Players/players.hpp"
-# include "Players/Player.hpp"
-# include "Teams/Team.hpp"
-# include "defines.hpp"
+#include "SpaceObjects/SpaceObject.hpp"
+#include "SpaceObjects/Ship.hpp"
+#include "Players/players.hpp"
+#include "Players/Player.hpp"
+#include "Teams/Team.hpp"
+#include "defines.hpp"
 
-# include <cmath>
+#include <cmath>
 
 HomeZone::HomeZone(Vector2f const& location) :
     radius_(450.f),

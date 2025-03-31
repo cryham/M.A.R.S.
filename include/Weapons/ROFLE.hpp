@@ -18,7 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef ROFLE_HPP_INCLUDED
 # define ROFLE_HPP_INCLUDED
 
-# include "Weapons/Weapon.hpp"
+#include "Weapons/Weapon.hpp"
 
 /// Weapon: ROFLE.
 /// A long distance gun, a sniper.
@@ -47,5 +47,5 @@ class ROFLE: public Weapon
         float maxAngle()   const;
 };
 
-# endif // ROFLE_HPP_INCLUDED
+#endif // ROFLE_HPP_INCLUDED
 

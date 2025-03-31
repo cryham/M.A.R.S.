@@ -18,7 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef INFOSB_HPP_INCLUDED
 # define INFOSB_HPP_INCLUDED
 
-# include "Interface/UiWindow.hpp"
+#include "Interface/UiWindow.hpp"
 
 class TextBox;
 
@@ -41,4 +41,4 @@ class InfoSB: public UiWindow
         static bool kClose_;
 };
 
-# endif // INFOSB_HPP_INCLUDED
+#endif // INFOSB_HPP_INCLUDED

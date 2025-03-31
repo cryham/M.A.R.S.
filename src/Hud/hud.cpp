@@ -15,27 +15,27 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Hud/hud.hpp"
+#include "Hud/hud.hpp"
 
-# include "System/window.hpp"
-# include "SpaceObjects/ships.hpp"
-# include "SpaceObjects/Home.hpp"
-# include "Games/games.hpp"
-# include "Menu/menus.hpp"
-# include "Hud/Logo.hpp"
-# include "Hud/LeftLife.hpp"
-# include "Hud/RightLife.hpp"
-# include "Hud/GameStats.hpp"
-# include "Hud/GamePoints.hpp"
-# include "Hud/TabStats.hpp"
-# include "Hud/Message.hpp"
-# include "DecoObjects/decoObjects.hpp"
-# include "Hud/CountDown.hpp"
-# include "Particles/particles.hpp"
-# include "Media/text.hpp"
-# include "Hud/musicNotify.hpp"
+#include "System/window.hpp"
+#include "SpaceObjects/ships.hpp"
+#include "SpaceObjects/Home.hpp"
+#include "Games/games.hpp"
+#include "Menu/menus.hpp"
+#include "Hud/Logo.hpp"
+#include "Hud/LeftLife.hpp"
+#include "Hud/RightLife.hpp"
+#include "Hud/GameStats.hpp"
+#include "Hud/GamePoints.hpp"
+#include "Hud/TabStats.hpp"
+#include "Hud/Message.hpp"
+#include "DecoObjects/decoObjects.hpp"
+#include "Hud/CountDown.hpp"
+#include "Particles/particles.hpp"
+#include "Media/text.hpp"
+#include "Hud/musicNotify.hpp"
 
-# include <sstream>
+#include <sstream>
 
 namespace hud
 {

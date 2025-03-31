@@ -15,17 +15,17 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "SpaceObjects/Ball.hpp"
+#include "SpaceObjects/Ball.hpp"
 
-# include "System/timer.hpp"
-# include "System/settings.hpp"
-# include "Media/sound.hpp"
-# include "Particles/particles.hpp"
-# include "Shaders/postFX.hpp"
-# include "Players/Player.hpp"
-# include "defines.hpp"
+#include "System/timer.hpp"
+#include "System/settings.hpp"
+#include "Media/sound.hpp"
+#include "Particles/particles.hpp"
+#include "Shaders/postFX.hpp"
+#include "Players/Player.hpp"
+#include "defines.hpp"
 
-# include <cmath>
+#include <cmath>
 
 Ball::Ball(Vector2f const& location):
            MobileSpaceObject(spaceObjects::oBall, location, 15.f, 7.f),

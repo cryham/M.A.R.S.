@@ -15,16 +15,16 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Games/DeathMatch.hpp"
+#include "Games/DeathMatch.hpp"
 
-# include "Teams/DMTeam.hpp"
-# include "Players/players.hpp"
-# include "System/settings.hpp"
-# include "Media/music.hpp"
-# include "Players/players.hpp"
-# include "SpaceObjects/spaceObjects.hpp"
-# include "Teams/teams.hpp"
-# include "System/randomizer.hpp"
+#include "Teams/DMTeam.hpp"
+#include "Players/players.hpp"
+#include "System/settings.hpp"
+#include "Media/music.hpp"
+#include "Players/players.hpp"
+#include "SpaceObjects/spaceObjects.hpp"
+#include "Teams/teams.hpp"
+#include "System/randomizer.hpp"
 
 DeathMatch::DeathMatch():
     Game(games::gDeathMatch)

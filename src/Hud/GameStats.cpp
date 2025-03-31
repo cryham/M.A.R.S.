@@ -15,16 +15,16 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Hud/GameStats.hpp"
+#include "Hud/GameStats.hpp"
 
-# include "System/settings.hpp"
-# include "Media/text.hpp"
-# include "System/timer.hpp"
-# include "Particles/particles.hpp"
-# include "Media/texture.hpp"
+#include "System/settings.hpp"
+#include "Media/text.hpp"
+#include "System/timer.hpp"
+#include "Particles/particles.hpp"
+#include "Media/texture.hpp"
 
-# include <SFML/OpenGL.hpp>
-# include <sstream>
+#include <SFML/OpenGL.hpp>
+#include <sstream>
 
 void GameStats::draw() const
 {

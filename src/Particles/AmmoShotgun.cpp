@@ -15,12 +15,12 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Particles/AmmoShotgun.hpp"
+#include "Particles/AmmoShotgun.hpp"
 
-# include "System/timer.hpp"
-# include "Media/sound.hpp"
-# include "TrailEffects/trailEffects.hpp"
-# include "System/randomizer.hpp"
+#include "System/timer.hpp"
+#include "Media/sound.hpp"
+#include "TrailEffects/trailEffects.hpp"
+#include "System/randomizer.hpp"
 
 std::list<AmmoShotgun*> AmmoShotgun::activeParticles_;
 

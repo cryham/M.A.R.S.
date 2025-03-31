@@ -18,8 +18,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef WEAPON_HPP_INCLUDED
 # define WEAPON_HPP_INCLUDED
 
-# include "System/timer.hpp"
-# include "Weapons/weapons.hpp"
+#include "System/timer.hpp"
+#include "Weapons/weapons.hpp"
 
 class Ship;
 
@@ -69,4 +69,4 @@ class Weapon {
         weapons::WeaponType type_;
 };
 
-# endif // WEAPON_HPP_INCLUDED
+#endif // WEAPON_HPP_INCLUDED

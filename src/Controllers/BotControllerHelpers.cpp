@@ -15,20 +15,20 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Controllers/BotController.hpp"
+#include "Controllers/BotController.hpp"
 
-# include "SpaceObjects/Ship.hpp"
-# include "SpaceObjects/ships.hpp"
-# include "Games/games.hpp"
-# include "System/settings.hpp"
-# include "SpaceObjects/balls.hpp"
-# include "Players/Player.hpp"
-# include "Teams/Team.hpp"
-# include "Teams/teams.hpp"
-# include "Particles/AmmoInsta.hpp"
-# include "defines.hpp"
+#include "SpaceObjects/Ship.hpp"
+#include "SpaceObjects/ships.hpp"
+#include "Games/games.hpp"
+#include "System/settings.hpp"
+#include "SpaceObjects/balls.hpp"
+#include "Players/Player.hpp"
+#include "Teams/Team.hpp"
+#include "Teams/teams.hpp"
+#include "Particles/AmmoInsta.hpp"
+#include "defines.hpp"
 
-# include <cfloat>
+#include <cfloat>
 
 int pathDepth = 0;
 

@@ -18,7 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef SPACEBALL_HPP_INCLUDED
 # define SPACEBALL_HPP_INCLUDED
 
-# include "Games/Game.hpp"
+#include "Games/Game.hpp"
 
 /// Game: SpaceBall (SB).
 /// The original M.A.R.S. GameType. A little bit like soccer: Each team tries to destroy
@@ -36,7 +36,7 @@ class SpaceBall: public Game {
         void restart();
 };
 
-# endif // SPACEBALL_HPP_INCLUDED
+#endif // SPACEBALL_HPP_INCLUDED
 
 
 

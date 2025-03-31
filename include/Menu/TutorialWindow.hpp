@@ -18,7 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef TUTORIALWINDOW_HPP_INCLUDED
 # define TUTORIALWINDOW_HPP_INCLUDED
 
-# include "Interface/UiWindow.hpp"
+#include "Interface/UiWindow.hpp"
 
 class TutorialWindow: public UiWindow
 {
@@ -41,4 +41,4 @@ class TutorialWindow: public UiWindow
         static sf::String index_;
 };
 
-# endif // TUTORIALWINDOW_HPP_INCLUDED
+#endif // TUTORIALWINDOW_HPP_INCLUDED

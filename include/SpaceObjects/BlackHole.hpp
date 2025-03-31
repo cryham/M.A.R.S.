@@ -18,7 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef BLACKHOLE_HPP_INCLUDED
 # define BLACKHOLE_HPP_INCLUDED
 
-# include "SpaceObjects/SpaceObject.hpp"
+#include "SpaceObjects/SpaceObject.hpp"
 
 class BlackHole: public SpaceObject {
     public:
@@ -31,4 +31,4 @@ class BlackHole: public SpaceObject {
         float rotation_;
 };
 
-# endif // BLACKHOLE_HPP_INCLUDED
+#endif // BLACKHOLE_HPP_INCLUDED

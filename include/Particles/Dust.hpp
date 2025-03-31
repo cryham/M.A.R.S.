@@ -18,9 +18,9 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef DUST_HPP_INCLUDED
 # define DUST_HPP_INCLUDED
 
-# include "Particles/Particle.hpp"
+#include "Particles/Particle.hpp"
 
-# include "System/Color3f.hpp"
+#include "System/Color3f.hpp"
 
 class Dust: public Particle<Dust> {
     public:
@@ -38,6 +38,6 @@ class Dust: public Particle<Dust> {
         static std::list<Dust*> activeParticles_;
 };
 
-# endif // DUST_HPP_INCLUDED
+#endif // DUST_HPP_INCLUDED
 
 

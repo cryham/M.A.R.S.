@@ -18,7 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef ROCKETLAUNCHER_HPP_INCLUDED
 # define ROCKETLAUNCHER_HPP_INCLUDED
 
-# include "Weapons/Weapon.hpp"
+#include "Weapons/Weapon.hpp"
 
 /// Weapon: ROCK'n'LOL.
 /// A rocket launcher which aims at nearby enemies.
@@ -47,4 +47,4 @@ class RocketLauncher: public Weapon
         float maxAngle()   const;
 };
 
-# endif // ROCKETLAUNCHER_HPP_INCLUDED
+#endif // ROCKETLAUNCHER_HPP_INCLUDED

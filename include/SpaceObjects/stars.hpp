@@ -23,4 +23,4 @@ namespace stars {
     void draw();
 }
 
-# endif // STARS_HPP_INCLUDED
+#endif // STARS_HPP_INCLUDED

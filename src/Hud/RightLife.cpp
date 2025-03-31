@@ -15,17 +15,17 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Hud/RightLife.hpp"
+#include "Hud/RightLife.hpp"
 
-# include "Players/players.hpp"
-# include "Players/Player.hpp"
-# include "System/settings.hpp"
-# include "Media/text.hpp"
-# include "System/window.hpp"
-# include "Teams/Team.hpp"
-# include "Teams/teams.hpp"
+#include "Players/players.hpp"
+#include "Players/Player.hpp"
+#include "System/settings.hpp"
+#include "Media/text.hpp"
+#include "System/window.hpp"
+#include "Teams/Team.hpp"
+#include "Teams/teams.hpp"
 
-# include <sstream>
+#include <sstream>
 
 void RightLife::draw() const
 {

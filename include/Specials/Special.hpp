@@ -18,8 +18,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef SPECIAL_HPP_INCLUDED
 # define SPECIAL_HPP_INCLUDED
 
-# include "System/timer.hpp"
-# include "Specials/specials.hpp"
+#include "System/timer.hpp"
+#include "Specials/specials.hpp"
 
 class Ship;
 
@@ -66,5 +66,5 @@ class Special {
         sf::String name_;
 };
 
-# endif // SPECIAL_HPP_INCLUDED
+#endif // SPECIAL_HPP_INCLUDED
 

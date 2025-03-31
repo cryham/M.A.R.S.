@@ -1,4 +1,4 @@
-# if defined(__WIN32__) || defined(_WIN32)
+#if defined(__WIN32__) || defined(_WIN32)
 
     IDR_ICO_MAIN ICON "icon.ico"
 
@@ -26,4 +26,4 @@
 	  END
 	END
 	
-# endif
+#endif

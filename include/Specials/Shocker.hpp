@@ -18,10 +18,10 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef SHOCKER_HPP_INCLUDED
 # define SHOCKER_HPP_INCLUDED
 
-# include "Specials/Special.hpp"
-# include "SpaceObjects/Ball.hpp"
+#include "Specials/Special.hpp"
+#include "SpaceObjects/Ball.hpp"
 
-# include <list>
+#include <list>
 
 /// Special: Shocker.
 /// Fires shocking bolts.
@@ -47,4 +47,4 @@ class Shocker: public Special
         mutable Ball* ballTarget_;
 };
 
-# endif // SHOCKER_HPP_INCLUDED
+#endif // SHOCKER_HPP_INCLUDED

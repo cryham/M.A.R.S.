@@ -18,9 +18,9 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef PLANETSIGN_HPP_INCLUDED
 # define PLANETSIGN_HPP_INCLUDED
 
-# include "DecoObjects/DecoObject.hpp"
+#include "DecoObjects/DecoObject.hpp"
 
-# include "Media/texture.hpp"
+#include "Media/texture.hpp"
 
 class Planet;
 
@@ -42,4 +42,4 @@ class PlanetSign: public DecoObject {
         float scale_;
 };
 
-# endif // PLANETSIGN_HPP_INCLUDED
+#endif // PLANETSIGN_HPP_INCLUDED

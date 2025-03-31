@@ -18,7 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef SHOCKWAVE_HPP_INCLUDED
 # define SHOCKWAVE_HPP_INCLUDED
 
-# include "Particles/Particle.hpp"
+#include "Particles/Particle.hpp"
 
 class ShockWave: public Particle<ShockWave> {
     public:
@@ -33,5 +33,5 @@ class ShockWave: public Particle<ShockWave> {
         static std::list<ShockWave*> activeParticles_;
 };
 
-# endif // SHOCKWAVE_HPP_INCLUDED
+#endif // SHOCKWAVE_HPP_INCLUDED
 

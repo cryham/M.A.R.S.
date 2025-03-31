@@ -15,29 +15,29 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "System/window.hpp"
+#include "System/window.hpp"
 
-# include "System/generateName.hpp"
-# include "System/settings.hpp"
-# include "Media/texture.hpp"
-# include "Controllers/controllers.hpp"
-# include "Menu/menus.hpp"
-# include "Locales/locales.hpp"
-# include "System/timer.hpp"
-# include "Shaders/postFX.hpp"
-# include "Games/games.hpp"
-# include "SpaceObjects/stars.hpp"
-# include "Hud/hud.hpp"
-# include "defines.hpp"
+#include "System/generateName.hpp"
+#include "System/settings.hpp"
+#include "Media/texture.hpp"
+#include "Controllers/controllers.hpp"
+#include "Menu/menus.hpp"
+#include "Locales/locales.hpp"
+#include "System/timer.hpp"
+#include "Shaders/postFX.hpp"
+#include "Games/games.hpp"
+#include "SpaceObjects/stars.hpp"
+#include "Hud/hud.hpp"
+#include "defines.hpp"
 
-# include <SFML/OpenGL.hpp>
-# include <sstream>
-# include <time.h>
-# include <sys/stat.h>
+#include <SFML/OpenGL.hpp>
+#include <sstream>
+#include <time.h>
+#include <sys/stat.h>
 
-# if defined(__WIN32__) || defined(_WIN32)
-    # include <windows.h>
-# endif
+#if defined(__WIN32__) || defined(_WIN32)
+    #include <windows.h>
+#endif
 
 
 namespace window
@@ -241,7 +241,7 @@ namespace window
             sf::Image icon;
             icon.loadFromFile(settings::C_dataPath + "tex/icon.png");
             window_.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
-        # endif
+        #endif
 
         resized();
 
@@ -412,7 +412,7 @@ namespace window
             } else {
                 std::cout << "Failed saving screenshot to " << settings::C_configPath << "screenshots/" << filename.str() << "." << std::endl;
             }
-        # endif
+        #endif
 
         # ifdef __APPLE__
             mkdir((settings::C_configPath + "screenshots/").c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
@@ -422,9 +422,9 @@ namespace window
             } else {
                 std::cout << "Failed saving screenshot to " << settings::C_configPath << "screenshots/" << filename.str() << "." << std::endl;
             }
-        # endif
+        #endif
 
-        # if defined(__WIN32__) || defined(_WIN32)
+        #if defined(__WIN32__) || defined(_WIN32)
             CreateDirectory((settings::C_configPath + "screenshots/").c_str(), NULL);
             if (shot.saveToFile(settings::C_configPath + "screenshots/" + filename.str())) {
                 std::cout << "Saved screenshot to " << settings::C_configPath << "screenshots/" << filename.str() << "." << std::endl;
@@ -432,7 +432,7 @@ namespace window
             } else {
                 std::cout << "Failed saving screenshot to " << settings::C_configPath << "screenshots/" << filename.str() << "." << std::endl;
             }
-        # endif
+        #endif
     }
 
     void showCursor(bool show)

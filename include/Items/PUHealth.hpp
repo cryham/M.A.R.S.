@@ -18,11 +18,11 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef PUHEALTH_HPP_INCLUDED
 # define PUHEALTH_HPP_INCLUDED
 
-# include "System/Vector2f.hpp"
-# include "Items/PowerUp.hpp"
-# include "System/randomizer.hpp"
+#include "System/Vector2f.hpp"
+#include "Items/PowerUp.hpp"
+#include "System/randomizer.hpp"
 
-# include <SFML/System.hpp>
+#include <SFML/System.hpp>
 
 class PUHealth: public PowerUp{
     public:
@@ -35,7 +35,7 @@ class PUHealth: public PowerUp{
         void refreshLifeTime();
 };
 
-# endif // PUHEALTH_HPP_INCLUDED
+#endif // PUHEALTH_HPP_INCLUDED
 
 
 

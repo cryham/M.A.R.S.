@@ -15,12 +15,12 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Particles/Star.hpp"
+#include "Particles/Star.hpp"
 
-# include "System/timer.hpp"
-# include "System/settings.hpp"
-# include "defines.hpp"
-# include "System/randomizer.hpp"
+#include "System/timer.hpp"
+#include "System/settings.hpp"
+#include "defines.hpp"
+#include "System/randomizer.hpp"
 
 std::list<Star*> Star::activeParticles_;
 

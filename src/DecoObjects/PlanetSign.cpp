@@ -15,10 +15,10 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "DecoObjects/PlanetSign.hpp"
+#include "DecoObjects/PlanetSign.hpp"
 
-# include "SpaceObjects/Planet.hpp"
-# include "System/randomizer.hpp"
+#include "SpaceObjects/Planet.hpp"
+#include "System/randomizer.hpp"
 
 PlanetSign::PlanetSign(Planet* planet):
     texture_(texture::Sign1),

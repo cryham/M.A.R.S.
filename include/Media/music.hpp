@@ -18,7 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef MUSIC_HPP_INCLUDED
 # define MUSIC_HPP_INCLUDED
 
-# include <SFML/Audio.hpp>
+#include <SFML/Audio.hpp>
 
 /// A namespace for playing music.
 /// Music is streamed from OGG files.
@@ -49,4 +49,4 @@ namespace music {
     void setGlobalVolume();
 }
 
-# endif // MUSIC_HPP_INCLUDED
+#endif // MUSIC_HPP_INCLUDED

@@ -15,9 +15,9 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>.*/
 
-# include "System/Key.hpp"
+#include "System/Key.hpp"
 
-# include "System/window.hpp"
+#include "System/window.hpp"
 
 Key::Key(sf::Keyboard::Key code):
     type_(kKeyBoard),
@@ -55,19 +55,19 @@ Key::Key(unsigned int joyID, sf::Joystick::Axis joyAxis, int strength):
     strength_ = tmp.second;
 
     if ((joyAxis == 7 && strength == -100) || (joyAxis == 1 && strength == -100) ||
-        # if defined __WIN32__
+        #if defined __WIN32__
             (joyAxis == 3 && strength == -100)
         # else
             (joyAxis == 5 && strength == -100)
-        # endif
+        #endif
         )
         navi_ = nUp;
     else if ((joyAxis == 7 && strength == 100) || (joyAxis == 1 && strength == 100) ||
-        # if defined __WIN32__
+        #if defined __WIN32__
             (joyAxis == 3 && strength == 100)
         # else
             (joyAxis == 5 && strength == 100)
-        # endif
+        #endif
         )
         navi_ = nDown;
     else if ((joyAxis == 6 && strength == -100) || (joyAxis == 0 && strength == -100) || (joyAxis == 4 && strength == -100))
@@ -87,11 +87,11 @@ Key::Key(unsigned int joyID, unsigned int joyButton):
     if (joyButton == 0 || joyButton == 8 || joyButton == 9  || joyButton == 2)
         navi_ = nConfirm;
     else if (joyButton == 6 ||
-        # if defined __WIN32__
+        #if defined __WIN32__
              joyButton == 7
         # else
              joyButton == 10
-        # endif
+        #endif
         )
         navi_ = nAbort;
     else if (joyButton == 4)
@@ -115,7 +115,7 @@ std::pair<Key::AxisType, int> Key::convertFromSFML(sf::Joystick::Axis joyAxis, i
             break;
 
         case sf::Joystick::Z:
-            # if defined __WIN32__
+            #if defined __WIN32__
                 if (strength > 0) {
                     result.first = aLT;
                     result.second = strength;
@@ -127,17 +127,17 @@ std::pair<Key::AxisType, int> Key::convertFromSFML(sf::Joystick::Axis joyAxis, i
             # else
                 result.first = aLT;
                 result.second = strength*0.5 + 50;
-            # endif
+            #endif
                 break;
 
         case sf::Joystick::R:
-            # if defined __WIN32__
+            #if defined __WIN32__
                 if (strength < 0) result.first = aARup;
                 else              result.first = aARdown;
             # else
                 result.first = aRT;
                 result.second = strength*0.5 + 50;
-            # endif
+            #endif
                 break;
 
         case sf::Joystick::U:
@@ -145,10 +145,10 @@ std::pair<Key::AxisType, int> Key::convertFromSFML(sf::Joystick::Axis joyAxis, i
             else              result.first = aARright;
             break;
         case sf::Joystick::V:
-            # if !defined __WIN32__
+            #if !defined __WIN32__
                 if (strength < 0) result.first = aARup;
                 else              result.first = aARdown;
-            # endif
+            #endif
             break;
         case sf::Joystick::PovX:
             if (strength < 0) result.first = aPOVleft;
@@ -172,20 +172,20 @@ sf::Joystick::Axis Key::convertToSFML(AxisType joyAxis)
         return sf::Joystick::Z;
     else if (joyAxis == aRT)
     {
-        # if defined __WIN32__
+        #if defined __WIN32__
             return sf::Joystick::Z;
         # else
             return sf::Joystick::R;
-        # endif
+        #endif
     }
     else if (joyAxis == aARleft || joyAxis == aARright)
         return sf::Joystick::U;
     else if (joyAxis == aARup || joyAxis == aARdown)
-        # if defined __WIN32__
+        #if defined __WIN32__
             return sf::Joystick::R;
         # else
             return sf::Joystick::V;
-        # endif
+        #endif
     else
         return sf::Joystick::PovX;
 }

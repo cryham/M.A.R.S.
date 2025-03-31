@@ -15,15 +15,15 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Menu/NewGameConfirm.hpp"
+#include "Menu/NewGameConfirm.hpp"
 
-# include "Interface/UiWindow.hpp"
-# include "Interface/Button.hpp"
-# include "System/window.hpp"
-# include "Menu/menus.hpp"
-# include "Games/games.hpp"
-# include "Media/text.hpp"
-# include "Locales/locales.hpp"
+#include "Interface/UiWindow.hpp"
+#include "Interface/Button.hpp"
+#include "System/window.hpp"
+#include "Menu/menus.hpp"
+#include "Games/games.hpp"
+#include "Media/text.hpp"
+#include "Locales/locales.hpp"
 
 UiWindow* NewGameConfirm::instance_(NULL);
 bool NewGameConfirm::kOk_(false);

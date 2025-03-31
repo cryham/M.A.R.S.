@@ -18,9 +18,9 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef NUMBER_HPP_INCLUDED
 # define NUMBER_HPP_INCLUDED
 
-# include "Particles/Particle.hpp"
+#include "Particles/Particle.hpp"
 
-# include "System/Color3f.hpp"
+#include "System/Color3f.hpp"
 
 class Number: public Particle<Number> {
     public:
@@ -38,7 +38,7 @@ class Number: public Particle<Number> {
         static std::list<Number*> activeParticles_;
 };
 
-# endif // NUMBER_HPP_INCLUDED
+#endif // NUMBER_HPP_INCLUDED
 
 
 

@@ -15,22 +15,22 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "System/settings.hpp"
+#include "System/settings.hpp"
 
-# include "Media/file.hpp"
-# include "Shaders/postFX.hpp"
-# include "defines.hpp"
+#include "Media/file.hpp"
+#include "Shaders/postFX.hpp"
+#include "defines.hpp"
 
-# include <sys/stat.h>
+#include <sys/stat.h>
 
-# include <fstream>
-# include <sstream>
-# include <iostream>
+#include <fstream>
+#include <sstream>
+#include <iostream>
 
-# if defined(__WIN32__) || defined(_WIN32)
-    # include <shlobj.h>
-    # include <windows.h>
-# endif
+#if defined(__WIN32__) || defined(_WIN32)
+    #include <shlobj.h>
+    #include <windows.h>
+#endif
 
 inline int clamp(int x, int min, int max) {
     return x < min ? min : (x > max ? max : x);
@@ -270,20 +270,20 @@ namespace settings
             std::string home(getenv("HOME"));
             if (*home.rbegin() != '/') home += '/';
             mkdir((home + ".marsshooter/").c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
-        # endif
+        #endif
 
-        # if defined(__WIN32__) || defined(_WIN32)
+        #if defined(__WIN32__) || defined(_WIN32)
             TCHAR szAppData[MAX_PATH];
             SHGetFolderPath(NULL, CSIDL_APPDATA, NULL, 0, szAppData);
             std::string home(szAppData);
             CreateDirectory((home + "/.marsshooter/").c_str(), NULL);
-        # endif
+        #endif
 
         # ifdef __APPLE__
             std::string home(getenv("HOME"));
             if (*home.rbegin() != '/') home += '/';
             mkdir((home + "Library/Preferences/mars/").c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
-        # endif
+        #endif
 
         // search for config file
         if (C_configPath == "") {
@@ -303,9 +303,9 @@ namespace settings
                 }
                 else
                     C_configPath =      home + ".marsshooter/";
-            # endif
+            #endif
 
-            # if defined(__WIN32__) || defined(_WIN32)
+            #if defined(__WIN32__) || defined(_WIN32)
                 TCHAR szAppData[MAX_PATH];
                 SHGetFolderPath(NULL, CSIDL_APPDATA, NULL, 0, szAppData);
                 std::string home(szAppData);
@@ -318,7 +318,7 @@ namespace settings
                 }
                 else
                     C_configPath =      home + "/.marsshooter/";
-            # endif
+            #endif
 
             # ifdef __APPLE__
                 std::string home(getenv("HOME"));
@@ -331,7 +331,7 @@ namespace settings
                 else {
                     C_configPath =      home + "Library/Preferences/mars/";
                 }
-            # endif
+            #endif
 
 
             if (success) std::cout << "Found " << C_configPath << "mars.cfg"  << std::endl;
@@ -363,19 +363,19 @@ namespace settings
                     C_dataPath = "/usr/local/games/marsshooter/";
                     success = true;
                 }
-            # endif
+            #endif
 
-            # if defined(__WIN32__) || defined(_WIN32)
+            #if defined(__WIN32__) || defined(_WIN32)
                 if (std::ifstream((C_dataPath + "locales/English.txt").c_str()))
                     success = true;
-            # endif
+            #endif
 
             # ifdef __APPLE__
                 if (std::ifstream("../Resources/data/locales/English.txt")) {
                     C_dataPath = "../Resources/data/";
                     success = true;
                 }
-            # endif
+            #endif
 
             if (success) std::cout << "Found " << C_dataPath << std::endl;
             else {

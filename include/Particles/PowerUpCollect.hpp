@@ -18,9 +18,9 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef POWERUPCOLLECT_HPP_INCLUDED
 # define POWERUPCOLLECT_HPP_INCLUDED
 
-# include "Particles/Particle.hpp"
+#include "Particles/Particle.hpp"
 
-# include "System/Color3f.hpp"
+#include "System/Color3f.hpp"
 
 class PowerUpCollect: public Particle<PowerUpCollect> {
     public:
@@ -38,7 +38,7 @@ class PowerUpCollect: public Particle<PowerUpCollect> {
         static std::list<PowerUpCollect*> activeParticles_;
 };
 
-# endif // POWERUPCOLLECT_HPP_INCLUDED
+#endif // POWERUPCOLLECT_HPP_INCLUDED
 
 
 

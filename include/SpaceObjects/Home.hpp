@@ -18,10 +18,10 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef HOME_HPP_INCLUDED
 # define HOME_HPP_INCLUDED
 
-# include "SpaceObjects/SpaceObject.hpp"
-# include "Players/Player.hpp"
+#include "SpaceObjects/SpaceObject.hpp"
+#include "Players/Player.hpp"
 
-# include <float.h>
+#include <float.h>
 
 class Home: public SpaceObject {
     public:
@@ -46,5 +46,5 @@ class Home: public SpaceObject {
         bool visible_;
 };
 
-# endif // HOME_HPP_INCLUDED
+#endif // HOME_HPP_INCLUDED
 

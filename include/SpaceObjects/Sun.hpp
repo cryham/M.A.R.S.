@@ -18,7 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef SUN_HPP_INCLUDED
 # define SUN_HPP_INCLUDED
 
-# include "SpaceObjects/SpaceObject.hpp"
+#include "SpaceObjects/SpaceObject.hpp"
 
 class Sun: public SpaceObject {
     public:
@@ -34,4 +34,4 @@ class Sun: public SpaceObject {
         float eruptionTimer_;
 };
 
-# endif // SUN_HPP_INCLUDED
+#endif // SUN_HPP_INCLUDED

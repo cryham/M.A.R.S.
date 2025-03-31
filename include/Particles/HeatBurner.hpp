@@ -18,7 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef HEATBURNER_HPP_INCLUDED
 # define HEATBURNER_HPP_INCLUDED
 
-# include "Particles/Particle.hpp"
+#include "Particles/Particle.hpp"
 
 class HeatBurner: public Particle<HeatBurner> {
     public:
@@ -33,5 +33,5 @@ class HeatBurner: public Particle<HeatBurner> {
         static std::list<HeatBurner*> activeParticles_;
 };
 
-# endif // HEATBURNER_HPP_INCLUDED
+#endif // HEATBURNER_HPP_INCLUDED
 

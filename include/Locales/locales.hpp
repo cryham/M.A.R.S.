@@ -18,9 +18,9 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef LOCALES_HPP_INCLUDED
 # define LOCALES_HPP_INCLUDED
 
-# include "Locales/Locale.hpp"
+#include "Locales/Locale.hpp"
 
-# include <vector>
+#include <vector>
 
 /// A namespace which handles translations for MARS.
 
@@ -112,5 +112,5 @@ namespace locales {
     void                       setCurrentLocale();
 }
 
-# endif // LOCALES_HPP_INCLUDED
+#endif // LOCALES_HPP_INCLUDED
 

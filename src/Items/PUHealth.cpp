@@ -15,10 +15,10 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Items/PUHealth.hpp"
+#include "Items/PUHealth.hpp"
 
-# include "SpaceObjects/Ship.hpp"
-# include "Particles/particles.hpp"
+#include "SpaceObjects/Ship.hpp"
+#include "Particles/particles.hpp"
 
 void PUHealth::draw() const
 {

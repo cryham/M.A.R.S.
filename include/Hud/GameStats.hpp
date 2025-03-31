@@ -18,7 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef GAMESTATS_HPP_INCLUDED
 # define GAMESTATS_HPP_INCLUDED
 
-# include "Hud/HudElement.hpp"
+#include "Hud/HudElement.hpp"
 
 class GameStats: public HudElement
 {
@@ -35,4 +35,4 @@ class GameStats: public HudElement
         mutable int   particleCount_;
 };
 
-# endif // GAMESTATS_HPP_INCLUDED
+#endif // GAMESTATS_HPP_INCLUDED

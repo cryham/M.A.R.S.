@@ -18,9 +18,9 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef BUTTON_HPP_INCLUDED
 # define BUTTON_HPP_INCLUDED
 
-# include "Interface/UiElement.hpp"
-# include "Interface/Label.hpp"
-# include "Media/text.hpp"
+#include "Interface/UiElement.hpp"
+#include "Interface/Label.hpp"
+#include "Media/text.hpp"
 
 class Button: public UiElement {
     public:
@@ -42,4 +42,4 @@ class Button: public UiElement {
         sf::String* toolTip_;
 };
 
-# endif
+#endif

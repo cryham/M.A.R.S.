@@ -18,10 +18,11 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef BALL_HPP_INCLUDED
 # define BALL_HPP_INCLUDED
 
-# include "SpaceObjects/MobileSpaceObject.hpp"
-# include "Players/Player.hpp"
+#include "SpaceObjects/MobileSpaceObject.hpp"
+#include "Players/Player.hpp"
 
-class Ball: public MobileSpaceObject {
+class Ball: public MobileSpaceObject
+{
     public:
         Ball(Vector2f const& location);
 
@@ -33,12 +34,12 @@ class Ball: public MobileSpaceObject {
 
         void onShockWave(Player* source, float intensity);
 
-        bool atStart() const     {return sticky_;}
-        bool isVisible() const      {return visible_;}
-        float heatAmount() const {return heatTimer_*5.f;}
+        bool atStart() const      {   return sticky_;  }
+        bool isVisible() const    {   return visible_;  }
+        float heatAmount() const  {   return heatTimer_*5.f;  }
 
-        Player* lastShooter() const {return lastShooter_;}
-        void resetShooter() {lastShooter_ = NULL;}
+        Player* lastShooter() const {   return lastShooter_;  }
+        void resetShooter()         {   lastShooter_ = NULL;  }
 
         friend class BotController;
         friend class Freezer;
@@ -61,5 +62,4 @@ class Ball: public MobileSpaceObject {
         Player* lastShooter_;
 };
 
-# endif // BALL_HPP_INCLUDED
-
+#endif // BALL_HPP_INCLUDED

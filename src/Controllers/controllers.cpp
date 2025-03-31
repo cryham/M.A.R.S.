@@ -15,12 +15,12 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Controllers/KeyController.hpp"
-# include "Controllers/BotController.hpp"
-# include "System/settings.hpp"
-# include "Players/Player.hpp"
+#include "Controllers/KeyController.hpp"
+#include "Controllers/BotController.hpp"
+#include "System/settings.hpp"
+#include "Players/Player.hpp"
 
-# include <SFML/Window.hpp>
+#include <SFML/Window.hpp>
 
 namespace controllers {
     namespace {

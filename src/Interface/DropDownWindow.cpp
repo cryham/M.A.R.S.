@@ -15,15 +15,15 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Interface/DropDownWindow.hpp"
+#include "Interface/DropDownWindow.hpp"
 
-# include "Interface/ComboBox.hpp"
-# include "Interface/Button.hpp"
-# include "Media/text.hpp"
-# include "Media/texture.hpp"
-# include "Menu/menus.hpp"
+#include "Interface/ComboBox.hpp"
+#include "Interface/Button.hpp"
+#include "Media/text.hpp"
+#include "Media/texture.hpp"
+#include "Menu/menus.hpp"
 
-# include <SFML/OpenGL.hpp>
+#include <SFML/OpenGL.hpp>
 
 DropDownWindow::DropDownWindow (int width, ComboBox* parent, std::vector<sf::String> elements):
     UiWindow(200, elements.size()*24 + 20),

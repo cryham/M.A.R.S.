@@ -18,7 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef DECOOBJECT_HPP_INCLUDED
 # define DECOOBJECT_HPP_INCLUDED
 
-# include "System/Vector2f.hpp"
+#include "System/Vector2f.hpp"
 
 /// A simple interface providing just a virtual draw function.
 
@@ -28,7 +28,7 @@ class DecoObject {
         virtual void draw() const = 0;
 };
 
-# endif // DECOOBJECT_HPP_INCLUDED
+#endif // DECOOBJECT_HPP_INCLUDED
 
 
 

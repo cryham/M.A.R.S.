@@ -18,7 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef GRAVEITATION_HPP_INCLUDED
 # define GRAVEITATION_HPP_INCLUDED
 
-# include "Games/Game.hpp"
+#include "Games/Game.hpp"
 
 /// Game: GraveItation (GI).
 /// InstaGib with one instantly killing weapon.
@@ -35,7 +35,7 @@ class GraveItation: public Game {
         void restart();
 };
 
-# endif // GRAVEITATION_HPP_INCLUDED
+#endif // GRAVEITATION_HPP_INCLUDED
 
 
 

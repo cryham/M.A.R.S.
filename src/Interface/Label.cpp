@@ -15,11 +15,11 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Interface/Label.hpp"
+#include "Interface/Label.hpp"
 
-# include "Media/text.hpp"
+#include "Media/text.hpp"
 
-# include <SFML/OpenGL.hpp>
+#include <SFML/OpenGL.hpp>
 
 Label::Label (sf::String* text, int textAlign, Vector2f const& topLeft, float fontSize, Color3f color, bool interactive, sf::Font* font):
     UiElement(topLeft, 10, 10),

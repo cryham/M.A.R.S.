@@ -15,17 +15,17 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Players/players.hpp"
+#include "Players/players.hpp"
 
-# include "Players/LocalPlayer.hpp"
-# include "Players/BotPlayer.hpp"
-# include "System/settings.hpp"
-# include "System/generateName.hpp"
-# include "Teams/Team.hpp"
-# include "SpaceObjects/Home.hpp"
-# include "defines.hpp"
+#include "Players/LocalPlayer.hpp"
+#include "Players/BotPlayer.hpp"
+#include "System/settings.hpp"
+#include "System/generateName.hpp"
+#include "Teams/Team.hpp"
+#include "SpaceObjects/Home.hpp"
+#include "defines.hpp"
 
-# include <climits>
+#include <climits>
 
 namespace players {
     namespace {

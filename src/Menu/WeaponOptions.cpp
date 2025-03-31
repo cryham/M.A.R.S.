@@ -15,16 +15,16 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Menu/WeaponOptions.hpp"
+#include "Menu/WeaponOptions.hpp"
 
-# include "Interface/Line.hpp"
-# include "Interface/UiWindow.hpp"
-# include "Interface/Button.hpp"
-# include "Interface/LabeledBox.hpp"
-# include "Interface/Checkbox.hpp"
-# include "System/window.hpp"
-# include "Menu/menus.hpp"
-# include "Locales/locales.hpp"
+#include "Interface/Line.hpp"
+#include "Interface/UiWindow.hpp"
+#include "Interface/Button.hpp"
+#include "Interface/LabeledBox.hpp"
+#include "Interface/Checkbox.hpp"
+#include "System/window.hpp"
+#include "Menu/menus.hpp"
+#include "Locales/locales.hpp"
 
 UiWindow* WeaponOptions::instance_(NULL);
 bool WeaponOptions::kOk_(false);

@@ -15,14 +15,14 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Media/file.hpp"
+#include "Media/file.hpp"
 
-# include <iostream>
-# include <fstream>
-# include <sstream>
-# include <vector>
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <vector>
 
-# include <fribidi/fribidi.h>
+#include <fribidi/fribidi.h>
 
 namespace file {
     bool load(std::string fileName, std::vector<sf::String>& strings) {

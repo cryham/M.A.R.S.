@@ -15,16 +15,16 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Games/CannonKeep.hpp"
+#include "Games/CannonKeep.hpp"
 
-# include "Teams/CKTeam.hpp"
-# include "System/settings.hpp"
-# include "Media/music.hpp"
-# include "Items/items.hpp"
-# include "DecoObjects/decoObjects.hpp"
-# include "Players/players.hpp"
-# include "Teams/teams.hpp"
-# include "SpaceObjects/spaceObjects.hpp"
+#include "Teams/CKTeam.hpp"
+#include "System/settings.hpp"
+#include "Media/music.hpp"
+#include "Items/items.hpp"
+#include "DecoObjects/decoObjects.hpp"
+#include "Players/players.hpp"
+#include "Teams/teams.hpp"
+#include "SpaceObjects/spaceObjects.hpp"
 
 CannonKeep::CannonKeep():
     Game(games::gCannonKeep)

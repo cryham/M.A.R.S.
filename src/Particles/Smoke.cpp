@@ -15,11 +15,11 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Particles/Smoke.hpp"
+#include "Particles/Smoke.hpp"
 
-# include "System/timer.hpp"
-# include "System/settings.hpp"
-# include "System/randomizer.hpp"
+#include "System/timer.hpp"
+#include "System/settings.hpp"
+#include "System/randomizer.hpp"
 
 std::list<Smoke*> Smoke::activeParticles_;
 
@@ -57,10 +57,12 @@ void Smoke::draw() const
 
 void Smoke::shockWave(Vector2f const& location, float strength, float radius)
 {
-    for (std::list<Smoke*>::iterator it = activeParticles_.begin(); it != activeParticles_.end(); ++it) {
+    for (std::list<Smoke*>::iterator it = activeParticles_.begin(); it != activeParticles_.end(); ++it)
+    {
         Vector2f direction((*it)->location_ - location);
         float distance = direction.length();
-        if (distance < radius && direction != Vector2f()) {
+        if (distance < radius && direction != Vector2f())
+        {
             float intensity = radius-distance;
             direction = direction.normalize();
             direction *= intensity;

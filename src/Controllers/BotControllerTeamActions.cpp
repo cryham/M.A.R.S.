@@ -15,22 +15,22 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Controllers/BotController.hpp"
+#include "Controllers/BotController.hpp"
 
-# include "SpaceObjects/Ship.hpp"
-# include "Games/games.hpp"
-# include "System/settings.hpp"
-# include "SpaceObjects/balls.hpp"
-# include "SpaceObjects/ships.hpp"
-# include "Players/Player.hpp"
-# include "Teams/Team.hpp"
-# include "System/window.hpp"
-# include "Zones/TacticalZone.hpp"
-# include "Zones/RasterZone.hpp"
-# include "SpaceObjects/Home.hpp"
-# include "Teams/teams.hpp"
-# include "Items/items.hpp"
-# include "Items/CannonControl.hpp"
+#include "SpaceObjects/Ship.hpp"
+#include "Games/games.hpp"
+#include "System/settings.hpp"
+#include "SpaceObjects/balls.hpp"
+#include "SpaceObjects/ships.hpp"
+#include "Players/Player.hpp"
+#include "Teams/Team.hpp"
+#include "System/window.hpp"
+#include "Zones/TacticalZone.hpp"
+#include "Zones/RasterZone.hpp"
+#include "SpaceObjects/Home.hpp"
+#include "Teams/teams.hpp"
+#include "Items/items.hpp"
+#include "Items/CannonControl.hpp"
 
 void BotController::kickBallToEnemy()
 {

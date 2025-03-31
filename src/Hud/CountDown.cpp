@@ -15,15 +15,15 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Hud/CountDown.hpp"
+#include "Hud/CountDown.hpp"
 
-# include "Media/texture.hpp"
-# include "System/window.hpp"
-# include "Games/games.hpp"
-# include "System/timer.hpp"
-# include "Media/sound.hpp"
+#include "Media/texture.hpp"
+#include "System/window.hpp"
+#include "Games/games.hpp"
+#include "System/timer.hpp"
+#include "Media/sound.hpp"
 
-# include <SFML/OpenGL.hpp>
+#include <SFML/OpenGL.hpp>
 
 void CountDown::draw() const
 {

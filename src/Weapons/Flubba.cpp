@@ -15,15 +15,15 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Weapons/Flubba.hpp"
+#include "Weapons/Flubba.hpp"
 
-# include "SpaceObjects/Ship.hpp"
-# include "Particles/particles.hpp"
-# include "Media/sound.hpp"
-# include "Players/Player.hpp"
-# include "Teams/Team.hpp"
+#include "SpaceObjects/Ship.hpp"
+#include "Particles/particles.hpp"
+#include "Media/sound.hpp"
+#include "Players/Player.hpp"
+#include "Teams/Team.hpp"
 
-# include <SFML/Graphics.hpp>
+#include <SFML/Graphics.hpp>
 
 void Flubba::draw(float alpha) const
 {

@@ -18,8 +18,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef COLORPICKER_HPP_INCLUDED
 # define COLORPICKER_HPP_INCLUDED
 
-# include "Interface/UiElement.hpp"
-# include "Interface/Label.hpp"
+#include "Interface/UiElement.hpp"
+#include "Interface/Label.hpp"
 
 class UiWindow;
 
@@ -48,5 +48,5 @@ class ColorPicker: public UiElement {
         bool opened_;
 };
 
-# endif // COLORPICKER_HPP_INCLUDED
+#endif // COLORPICKER_HPP_INCLUDED
 

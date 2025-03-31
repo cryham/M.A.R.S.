@@ -18,7 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef ZONE_HPP
 # define ZONE_HPP
 
-# include "System/Vector2f.hpp"
+#include "System/Vector2f.hpp"
 
 class SpaceObject;
 
@@ -34,4 +34,4 @@ class Zone {
         virtual void draw() const = 0;
 };
 
-# endif
+#endif

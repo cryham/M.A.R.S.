@@ -15,19 +15,19 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Controllers/BotController.hpp"
+#include "Controllers/BotController.hpp"
 
-# include "SpaceObjects/Ship.hpp"
-# include "SpaceObjects/ships.hpp"
-# include "Zones/zones.hpp"
-# include "Players/Player.hpp"
-# include "Teams/Team.hpp"
-# include "System/settings.hpp"
-# include "Items/items.hpp"
-# include "Items/CannonControl.hpp"
-# include "System/randomizer.hpp"
+#include "SpaceObjects/Ship.hpp"
+#include "SpaceObjects/ships.hpp"
+#include "Zones/zones.hpp"
+#include "Players/Player.hpp"
+#include "Teams/Team.hpp"
+#include "System/settings.hpp"
+#include "Items/items.hpp"
+#include "Items/CannonControl.hpp"
+#include "System/randomizer.hpp"
 
-# include <cmath>
+#include <cmath>
 
 void BotController::checkAggro()
 {

@@ -18,7 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef KEY_HPP_INCLUDED
 # define KEY_HPP_INCLUDED
 
-# include <SFML/Window.hpp>
+#include <SFML/Window.hpp>
 
 struct Key {
     Key(sf::Keyboard::Key code);
@@ -47,4 +47,4 @@ bool operator== (Key const& lhs, Key const& rhs);
 std::ostream& operator<< (std::ostream& stream, Key const& input);
 std::istream& operator>> (std::istream& stream, Key& output);
 
-# endif // KEY_HPP_INCLUDED
+#endif // KEY_HPP_INCLUDED

@@ -18,10 +18,10 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef VERTICALSLIDER_HPP_INCLUDED
 # define VERTICALSLIDER_HPP_INCLUDED
 
-# include "Interface/UiElement.hpp"
-# include "Interface/Label.hpp"
+#include "Interface/UiElement.hpp"
+#include "Interface/Label.hpp"
 
-# include <vector>
+#include <vector>
 
 class VerticalSlider: public UiElement {
     public:
@@ -38,6 +38,6 @@ class VerticalSlider: public UiElement {
         float minValue_, maxValue_;
 };
 
-# endif //VERTICALSLIDER_HPP_INCLUDED
+#endif //VERTICALSLIDER_HPP_INCLUDED
 
 

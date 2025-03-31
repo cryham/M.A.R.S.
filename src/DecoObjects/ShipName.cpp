@@ -15,15 +15,15 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "DecoObjects/ShipName.hpp"
+#include "DecoObjects/ShipName.hpp"
 
-# include "SpaceObjects/Ship.hpp"
-# include "Players/Player.hpp"
-# include "Media/text.hpp"
-# include "System/settings.hpp"
-# include "System/window.hpp"
+#include "SpaceObjects/Ship.hpp"
+#include "Players/Player.hpp"
+#include "Media/text.hpp"
+#include "System/settings.hpp"
+#include "System/window.hpp"
 
-# include <sstream>
+#include <sstream>
 
 void ShipName::draw() const
 {

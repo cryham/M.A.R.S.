@@ -15,13 +15,13 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "SpaceObjects/Track.hpp"
+#include "SpaceObjects/Track.hpp"
 
-# include "SpaceObjects/Home.hpp"
-# include "Zones/zones.hpp"
-# include "Zones/RasterZone.hpp"
-# include "defines.hpp"
-# include "System/randomizer.hpp"
+#include "SpaceObjects/Home.hpp"
+#include "Zones/zones.hpp"
+#include "Zones/RasterZone.hpp"
+#include "defines.hpp"
+#include "System/randomizer.hpp"
 
 Track::Track(Home* home)
 {

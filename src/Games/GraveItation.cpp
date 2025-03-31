@@ -15,14 +15,14 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Games/GraveItation.hpp"
+#include "Games/GraveItation.hpp"
 
-# include "Teams/GITeam.hpp"
-# include "System/settings.hpp"
-# include "Media/music.hpp"
-# include "Players/players.hpp"
-# include "SpaceObjects/spaceObjects.hpp"
-# include "Teams/teams.hpp"
+#include "Teams/GITeam.hpp"
+#include "System/settings.hpp"
+#include "Media/music.hpp"
+#include "Players/players.hpp"
+#include "SpaceObjects/spaceObjects.hpp"
+#include "Teams/teams.hpp"
 
 GraveItation::GraveItation():
     Game(games::gGraveItation)

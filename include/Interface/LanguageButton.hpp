@@ -18,8 +18,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef LANGUAGEBUTTON_HPP_INCLUDED
 # define LANGUAGEBUTTON_HPP_INCLUDED
 
-# include "Interface/UiElement.hpp"
-# include "Interface/Label.hpp"
+#include "Interface/UiElement.hpp"
+#include "Interface/Label.hpp"
 
 class UiWindow;
 
@@ -45,6 +45,6 @@ class LanguageButton: public UiElement {
         bool opened_;
 };
 
-# endif // LANGUAGEBUTTON_HPP_INCLUDED
+#endif // LANGUAGEBUTTON_HPP_INCLUDED
 
 

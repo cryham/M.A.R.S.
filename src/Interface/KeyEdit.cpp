@@ -15,17 +15,17 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Interface/KeyEdit.hpp"
+#include "Interface/KeyEdit.hpp"
 
-# include "System/settings.hpp"
-# include "Media/text.hpp"
-# include "Locales/locales.hpp"
-# include "System/generateName.hpp"
-# include "Media/sound.hpp"
-# include "Menu/menus.hpp"
-# include "Interface/toolTip.hpp"
+#include "System/settings.hpp"
+#include "Media/text.hpp"
+#include "Locales/locales.hpp"
+#include "System/generateName.hpp"
+#include "Media/sound.hpp"
+#include "Menu/menus.hpp"
+#include "Interface/toolTip.hpp"
 
-# include <SFML/OpenGL.hpp>
+#include <SFML/OpenGL.hpp>
 
 KeyEdit::KeyEdit (sf::String* text, sf::String* toolTip, Key* value, Vector2f const& topLeft, int width, int labelWidth):
     UiElement(topLeft, width, 20),

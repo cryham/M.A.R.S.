@@ -18,7 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef MUSICNOTIFY_HPP_INCLUDED
 # define MUSICNOTIFY_HPP_INCLUDED
 
-# include <string>
+#include <string>
 
 namespace musicNotify {
 
@@ -29,5 +29,5 @@ namespace musicNotify {
     void show(std::string const& fileName);
 }
 
-# endif // MUSICNOTIFY_HPP_INCLUDED
+#endif // MUSICNOTIFY_HPP_INCLUDED
 

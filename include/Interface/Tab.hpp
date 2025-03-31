@@ -18,10 +18,10 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef TAB_HPP_INCLUDED
 # define TAB_HPP_INCLUDED
 
-# include "Interface/UiElement.hpp"
-# include "Interface/Label.hpp"
+#include "Interface/UiElement.hpp"
+#include "Interface/Label.hpp"
 
-# include <vector>
+#include <vector>
 
 class Tab: public UiElement {
     public:
@@ -59,7 +59,7 @@ class Tab: public UiElement {
         bool active_;
 };
 
-# endif
+#endif
 
 
 

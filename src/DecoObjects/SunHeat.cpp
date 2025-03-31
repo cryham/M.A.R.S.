@@ -15,10 +15,10 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "DecoObjects/SunHeat.hpp"
+#include "DecoObjects/SunHeat.hpp"
 
-# include "SpaceObjects/Sun.hpp"
-# include "System/timer.hpp"
+#include "SpaceObjects/Sun.hpp"
+#include "System/timer.hpp"
 
 SunHeat::SunHeat(Sun* sun):
     location_(sun->location()),

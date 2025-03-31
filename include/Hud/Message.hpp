@@ -18,9 +18,9 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef MESSAGE_HPP_INCLUDED
 # define MESSAGE_HPP_INCLUDED
 
-# include "Hud/HudElement.hpp"
-# include "System/Color3f.hpp"
-# include "System/window.hpp"
+#include "Hud/HudElement.hpp"
+#include "System/Color3f.hpp"
+#include "System/window.hpp"
 
 class Message: public HudElement {
     public:
@@ -40,7 +40,7 @@ class Message: public HudElement {
         float      speed_;
 };
 
-# endif // MESSAGE_HPP_INCLUDED
+#endif // MESSAGE_HPP_INCLUDED
 
 
 

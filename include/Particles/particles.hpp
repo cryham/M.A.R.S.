@@ -18,8 +18,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef PARTICLES_HPP_INCLUDED
 # define PARTICLES_HPP_INCLUDED
 
-# include "System/Vector2f.hpp"
-# include "System/Color3f.hpp"
+#include "System/Vector2f.hpp"
+#include "System/Color3f.hpp"
 
 class Player;
 class SpaceObject;
@@ -135,4 +135,4 @@ namespace particles {
     void clear();
 }
 
-# endif // PARTICLES_HPP_INCLUDED
+#endif // PARTICLES_HPP_INCLUDED

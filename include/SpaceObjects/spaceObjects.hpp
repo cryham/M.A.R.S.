@@ -23,8 +23,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # define HOME_MIDDLE 2
 # define HOME_RALLY  3
 
-# include "System/Color3f.hpp"
-# include "System/Vector2f.hpp"
+#include "System/Color3f.hpp"
+#include "System/Vector2f.hpp"
 
 class Home;
 class SpaceObject;
@@ -58,5 +58,5 @@ namespace spaceObjects {
     void clear();
 }
 
-# endif // SPACEOBJECTS_HPP_INCLUDED
+#endif // SPACEOBJECTS_HPP_INCLUDED
 

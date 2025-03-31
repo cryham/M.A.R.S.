@@ -15,9 +15,9 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Interface/RadioGroup.hpp"
+#include "Interface/RadioGroup.hpp"
 
-# include "Menu/menus.hpp"
+#include "Menu/menus.hpp"
 
 RadioGroup::RadioGroup ():
     UiElement(Vector2f(), 0, 0)

@@ -15,12 +15,12 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "DecoObjects/Bolt.hpp"
+#include "DecoObjects/Bolt.hpp"
 
-# include "DecoObjects/decoObjects.hpp"
-# include "SpaceObjects/Ship.hpp"
-# include "Menu/menus.hpp"
-# include "System/randomizer.hpp"
+#include "DecoObjects/decoObjects.hpp"
+#include "SpaceObjects/Ship.hpp"
+#include "Menu/menus.hpp"
+#include "System/randomizer.hpp"
 
 void Bolt::draw() const
 {

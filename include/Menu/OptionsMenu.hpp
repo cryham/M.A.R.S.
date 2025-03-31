@@ -18,7 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef OPTIONSMENU_HPP_INCLUDED
 # define OPTIONSMENU_HPP_INCLUDED
 
-# include "Interface/UiWindow.hpp"
+#include "Interface/UiWindow.hpp"
 
 class OptionsMenu: public UiWindow
 {
@@ -43,4 +43,4 @@ class OptionsMenu: public UiWindow
         static int        soundVolume_, musicVolume_, announcerVolume_, starfield_;
 };
 
-# endif // OPTIONSMENU_HPP_INCLUDED
+#endif // OPTIONSMENU_HPP_INCLUDED

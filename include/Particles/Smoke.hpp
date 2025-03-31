@@ -18,7 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef SMOKE_HPP_INCLUDED
 # define SMOKE_HPP_INCLUDED
 
-# include "Particles/Particle.hpp"
+#include "Particles/Particle.hpp"
 
 class Smoke: public Particle<Smoke> {
     public:
@@ -36,7 +36,7 @@ class Smoke: public Particle<Smoke> {
         static std::list<Smoke*> activeParticles_;
 };
 
-# endif // SMOKE_HPP_INCLUDED
+#endif // SMOKE_HPP_INCLUDED
 
 
 

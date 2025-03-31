@@ -18,7 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef WEAPONOPTIONS_HPP_INCLUDED
 # define WEAPONOPTIONS_HPP_INCLUDED
 
-# include "Interface/UiWindow.hpp"
+#include "Interface/UiWindow.hpp"
 
 class WeaponOptions: public UiWindow
 {
@@ -42,4 +42,4 @@ class WeaponOptions: public UiWindow
         static bool kFreeze_, kHeal_, kBlast_, kFireWall_, kShocker_;
 };
 
-# endif // WEAPONOPTIONS_HPP_INCLUDED
+#endif // WEAPONOPTIONS_HPP_INCLUDED

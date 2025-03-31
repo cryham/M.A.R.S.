@@ -15,20 +15,20 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "DecoObjects/decoObjects.hpp"
+#include "DecoObjects/decoObjects.hpp"
 
-# include "DecoObjects/Cannon.hpp"
-# include "DecoObjects/PlanetSign.hpp"
-# include "DecoObjects/SunHeat.hpp"
-# include "DecoObjects/ShipName.hpp"
-# include "DecoObjects/ShipHighlight.hpp"
-# include "DecoObjects/Evil.hpp"
-# include "DecoObjects/Ice.hpp"
-# include "DecoObjects/Bolt.hpp"
+#include "DecoObjects/Cannon.hpp"
+#include "DecoObjects/PlanetSign.hpp"
+#include "DecoObjects/SunHeat.hpp"
+#include "DecoObjects/ShipName.hpp"
+#include "DecoObjects/ShipHighlight.hpp"
+#include "DecoObjects/Evil.hpp"
+#include "DecoObjects/Ice.hpp"
+#include "DecoObjects/Bolt.hpp"
 
-# include <SFML/System.hpp>
-# include <vector>
-# include <list>
+#include <SFML/System.hpp>
+#include <vector>
+#include <list>
 
 namespace decoObjects
 {

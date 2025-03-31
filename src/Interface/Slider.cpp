@@ -15,17 +15,17 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Interface/Slider.hpp"
+#include "Interface/Slider.hpp"
 
-# include "System/settings.hpp"
-# include "System/window.hpp"
-# include "Media/text.hpp"
-# include "Media/texture.hpp"
-# include "Locales/locales.hpp"
-# include "Interface/toolTip.hpp"
+#include "System/settings.hpp"
+#include "System/window.hpp"
+#include "Media/text.hpp"
+#include "Media/texture.hpp"
+#include "Locales/locales.hpp"
+#include "Interface/toolTip.hpp"
 
-# include <SFML/OpenGL.hpp>
-# include <sstream>
+#include <SFML/OpenGL.hpp>
+#include <sstream>
 
 Slider::Slider (sf::String* text, sf::String* toolTip, int* value, int minValue, int maxValue, int step, Vector2f const& topLeft, int width, int labelWidth, bool showValue, std::vector<sf::String> const& sliderNames):
     UiElement(topLeft, width, 20),

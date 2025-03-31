@@ -18,9 +18,9 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef CRUSHEDICE_HPP_INCLUDED
 # define CRUSHEDICE_HPP_INCLUDED
 
-# include "Particles/Particle.hpp"
+#include "Particles/Particle.hpp"
 
-# include "System/Color3f.hpp"
+#include "System/Color3f.hpp"
 
 class CrushedIce: public Particle<CrushedIce> {
     public:
@@ -38,7 +38,7 @@ class CrushedIce: public Particle<CrushedIce> {
         static std::list<CrushedIce*> activeParticles_;
 };
 
-# endif // CRUSHEDICE_HPP_INCLUDED
+#endif // CRUSHEDICE_HPP_INCLUDED
 
 
 

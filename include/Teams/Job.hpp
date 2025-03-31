@@ -50,4 +50,4 @@ struct Job
     }
 };
 
-# endif // JOB_HPP_INCLUDED
+#endif // JOB_HPP_INCLUDED

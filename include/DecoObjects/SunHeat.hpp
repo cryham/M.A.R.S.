@@ -18,9 +18,9 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef SUNHEAT_HPP_INCLUDED
 # define SUNHEAT_HPP_INCLUDED
 
-# include "DecoObjects/DecoObject.hpp"
+#include "DecoObjects/DecoObject.hpp"
 
-# include "Media/texture.hpp"
+#include "Media/texture.hpp"
 
 class Sun;
 
@@ -40,5 +40,5 @@ class SunHeat: public DecoObject {
         float radius_;
 };
 
-# endif // SUNHEAT_HPP_INCLUDED
+#endif // SUNHEAT_HPP_INCLUDED
 

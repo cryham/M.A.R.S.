@@ -35,5 +35,5 @@ class Trail {
         SpaceObject* target_;
 };
 
-# endif //TRAIL_HPP_INCLUDED
+#endif //TRAIL_HPP_INCLUDED
 

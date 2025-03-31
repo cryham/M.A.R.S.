@@ -15,36 +15,38 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Hud/GamePoints.hpp"
+#include "Hud/GamePoints.hpp"
 
-# include "Media/text.hpp"
-# include "Media/texture.hpp"
-# include "System/window.hpp"
-# include "Players/players.hpp"
-# include "Teams/Team.hpp"
-# include "Particles/particles.hpp"
-# include "Media/sound.hpp"
-# include "System/timer.hpp"
-# include "Teams/teams.hpp"
+#include "Media/text.hpp"
+#include "Media/texture.hpp"
+#include "System/window.hpp"
+#include "Players/players.hpp"
+#include "Teams/Team.hpp"
+#include "Particles/particles.hpp"
+#include "Media/sound.hpp"
+#include "System/timer.hpp"
+#include "Teams/teams.hpp"
 
-# include <SFML/OpenGL.hpp>
-# include <sstream>
+#include <SFML/OpenGL.hpp>
+#include <sstream>
 
 void GamePoints::draw() const
 {
-
-    if (timer_ > 0.f) {
+    if (timer_ > 0.f)
+    {
         Vector2f viewPort = window::getViewPort();
         float midPoint = viewPort.x_/2;
         float top;
-        if (timer_ < 1.1578f) {
-            if (timer_+timer::realFrameTime() >= 0.7f && timer_ < 0.7f) sound::playSound(sound::Swish);
-            top = -75.f/0.64*std::pow((timer_-0.8f), 2) +15.f;
+        if (timer_ < 1.1578f)
+        {
+            if (timer_+timer::realFrameTime() >= 0.7f && timer_ < 0.7f)
+                sound::playSound(sound::Swish);
+            top = -75.f / 0.64*std::pow((timer_-0.8f), 2) +15.f;
         }
         else if (timer_ < 8.06f)
             top = 0.f;
-        else {
-            top = -6.12f*std::pow((timer_-6.5f), 2) +15.f;
+        else
+        {   top = -6.12f * std::pow((timer_-6.5f), 2) +15.f;
             particles::spawnTimed(20, particles::pDust, Vector2f(SPACE_X_RESOLUTION*0.5f, 820));
         }
 
@@ -112,14 +114,15 @@ void GamePoints::update()
 
 void GamePoints::display(bool show)
 {
-    if (show) {
-        if (timer_ <= 0.f) {
+    if (show)
+    {
+        if (timer_ <= 0.f)
+        {
             sound::playSound(sound::Score);
             timer_ = 10.f;
-        }
-        else if (timer_ > 1.1578f && timer_ < 8.06f)
+        }else
+        if (timer_ > 1.1578f && timer_ < 8.06f)
             timer_ = 8.f;
-    }
-    else
+    }else
         timer_ = 0.f;
 }

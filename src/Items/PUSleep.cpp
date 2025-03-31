@@ -15,11 +15,11 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Items/PUSleep.hpp"
+#include "Items/PUSleep.hpp"
 
-# include "SpaceObjects/Ship.hpp"
-# include "Players/Player.hpp"
-# include "Particles/particles.hpp"
+#include "SpaceObjects/Ship.hpp"
+#include "Players/Player.hpp"
+#include "Particles/particles.hpp"
 
 void PUSleep::draw() const
 {

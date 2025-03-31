@@ -18,7 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef AMMOINSTA_HPP_INCLUDED
 # define AMMOINSTA_HPP_INCLUDED
 
-# include "Particles/Particle.hpp"
+#include "Particles/Particle.hpp"
 
 class Trail;
 class Team;
@@ -44,6 +44,6 @@ class AmmoInsta: public Particle<AmmoInsta> {
         Color3f color_;
 };
 
-# endif // AMMOINSTA_HPP_INCLUDED
+#endif // AMMOINSTA_HPP_INCLUDED
 
 

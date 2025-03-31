@@ -15,17 +15,17 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include <Shaders/postFX.hpp>
+#include <Shaders/postFX.hpp>
 
-# include "System/timer.hpp"
-# include "System/settings.hpp"
-# include "Particles/particles.hpp"
-# include "DecoObjects/decoObjects.hpp"
-# include "Media/texture.hpp"
-# include "defines.hpp"
+#include "System/timer.hpp"
+#include "System/settings.hpp"
+#include "Particles/particles.hpp"
+#include "DecoObjects/decoObjects.hpp"
+#include "Media/texture.hpp"
+#include "defines.hpp"
 
-# include <SFML/OpenGL.hpp>
-# include <iostream>
+#include <SFML/OpenGL.hpp>
+#include <iostream>
 
 namespace postFX
 {

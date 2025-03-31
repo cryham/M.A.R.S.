@@ -18,8 +18,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef PLAYERS_HPP_INCLUDED
 # define PLAYERS_HPP_INCLUDED
 
-# include "System/Color3f.hpp"
-# include "Controllers/controllers.hpp"
+#include "System/Color3f.hpp"
+#include "Controllers/controllers.hpp"
 
 class Team;
 class Home;
@@ -37,4 +37,4 @@ namespace players {
     Player const* getPlayerII();
 }
 
-# endif // PLAYERS_HPP_INCLUDED
+#endif // PLAYERS_HPP_INCLUDED

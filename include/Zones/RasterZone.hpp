@@ -19,7 +19,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef RASTERZONE_HPP_INCLUDED
 # define RASTERZONE_HPP_INCLUDED
 
-# include "Zones/Zone.hpp"
+#include "Zones/Zone.hpp"
 
 /// Zone: RasterZone.
 /// A square shaped zone.
@@ -53,4 +53,4 @@ class RasterZone: public Zone {
         bool covered_;
 };
 
-# endif // RASTERZONE_HPP_INCLUDED
+#endif // RASTERZONE_HPP_INCLUDED

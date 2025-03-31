@@ -18,9 +18,9 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef ERUPTION_HPP_INCLUDED
 # define ERUPTION_HPP_INCLUDED
 
-# include "Particles/Particle.hpp"
+#include "Particles/Particle.hpp"
 
-# include "System/Color3f.hpp"
+#include "System/Color3f.hpp"
 
 class Eruption: public Particle<Eruption> {
     public:
@@ -36,6 +36,6 @@ class Eruption: public Particle<Eruption> {
         static std::list<Eruption*> activeParticles_;
 };
 
-# endif // ERUPTION_HPP_INCLUDED
+#endif // ERUPTION_HPP_INCLUDED
 
 

@@ -18,8 +18,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef TEXTEDIT_HPP_INCLUDED
 # define TEXTEDIT_HPP_INCLUDED
 
-# include "Interface/UiElement.hpp"
-# include "Interface/Label.hpp"
+#include "Interface/UiElement.hpp"
+#include "Interface/Label.hpp"
 
 # define TEXT_EDIT  0
 # define PORT_EDIT  1
@@ -50,4 +50,4 @@ class TextEdit: public UiElement {
         int labelWidth_;
 };
 
-# endif
+#endif

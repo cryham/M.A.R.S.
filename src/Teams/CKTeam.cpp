@@ -15,15 +15,15 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Teams/CKTeam.hpp"
+#include "Teams/CKTeam.hpp"
 
-# include "Teams/teams.hpp"
-# include "Players/Player.hpp"
-# include "Items/items.hpp"
-# include "Items/PowerUp.hpp"
-# include "SpaceObjects/ships.hpp"
-# include "Games/games.hpp"
-# include "Items/CannonControl.hpp"
+#include "Teams/teams.hpp"
+#include "Players/Player.hpp"
+#include "Items/items.hpp"
+#include "Items/PowerUp.hpp"
+#include "SpaceObjects/ships.hpp"
+#include "Games/games.hpp"
+#include "Items/CannonControl.hpp"
 
 void CKTeam::createJobs()
 {

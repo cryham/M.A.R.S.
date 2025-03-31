@@ -18,7 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef LOGO_HPP_INCLUDED
 # define LOGO_HPP_INCLUDED
 
-# include "Hud/HudElement.hpp"
+#include "Hud/HudElement.hpp"
 
 class Logo: public HudElement {
     public:
@@ -33,7 +33,7 @@ class Logo: public HudElement {
         int flicCount_;
 };
 
-# endif // LOGO_HPP_INCLUDED
+#endif // LOGO_HPP_INCLUDED
 
 
 

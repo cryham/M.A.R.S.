@@ -18,7 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef DEATHMATCH_HPP_INCLUDED
 # define DEATHMATCH_HPP_INCLUDED
 
-# include "Games/Game.hpp"
+#include "Games/Game.hpp"
 
 /// Game: DeathMatch (DM).
 /// Classic Deathmatch. Smash as many opponents as possible.
@@ -36,7 +36,7 @@ class DeathMatch: public Game {
         void restart();
 };
 
-# endif // DEATHMATCH_HPP_INCLUDED
+#endif // DEATHMATCH_HPP_INCLUDED
 
 
 

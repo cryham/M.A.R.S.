@@ -15,10 +15,10 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Hud/Message.hpp"
+#include "Hud/Message.hpp"
 
-# include "Media/text.hpp"
-# include "defines.hpp"
+#include "Media/text.hpp"
+#include "defines.hpp"
 
 Message::Message(sf::String const& message, Color3f const& color):
     text_(message),

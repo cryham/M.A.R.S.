@@ -18,7 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef VECTOR2F_HPP_INCLUDED
 # define VECTOR2F_HPP_INCLUDED
 
-# include <iostream>
+#include <iostream>
 
 /// A struct representing a 2D-Vector.
 /// It provides more math functions then the SFML Vector
@@ -107,4 +107,4 @@ bool clockWise(Vector2f const& first, Vector2f const& second);
 /// Creates an output like [x, y].
 std::ostream& operator<< (std::ostream& os, Vector2f const& rhs);
 
-# endif //VECTOR2F_HPP_INCLUDED
+#endif //VECTOR2F_HPP_INCLUDED

@@ -15,11 +15,11 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Interface/TextBox.hpp"
+#include "Interface/TextBox.hpp"
 
-# include "Media/text.hpp"
+#include "Media/text.hpp"
 
-# include <SFML/OpenGL.hpp>
+#include <SFML/OpenGL.hpp>
 
 TextBox::TextBox(sf::String* text, Vector2f const& topLeft, int width, int height, Color3f const& color):
     UiElement(topLeft, width, height),

@@ -18,7 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef TDMTEAM_HPP_INCLUDED
 # define TDMTEAM_HPP_INCLUDED
 
-# include "Teams/Team.hpp"
+#include "Teams/Team.hpp"
 
 class TDMTeam: public Team
 {
@@ -36,4 +36,4 @@ class TDMTeam: public Team
         std::vector<Vector2f> powerUpLocations_;
 };
 
-# endif // TDMTEAM_HPP_INCLUDED
+#endif // TDMTEAM_HPP_INCLUDED

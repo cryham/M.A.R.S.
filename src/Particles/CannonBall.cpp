@@ -15,14 +15,14 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Particles/CannonBall.hpp"
+#include "Particles/CannonBall.hpp"
 
-# include "System/timer.hpp"
-# include "Media/sound.hpp"
-# include "System/settings.hpp"
-# include "Particles/particles.hpp"
-# include "SpaceObjects/Home.hpp"
-# include "SpaceObjects/ships.hpp"
+#include "System/timer.hpp"
+#include "Media/sound.hpp"
+#include "System/settings.hpp"
+#include "Particles/particles.hpp"
+#include "SpaceObjects/Home.hpp"
+#include "SpaceObjects/ships.hpp"
 
 std::list<CannonBall*> CannonBall::activeParticles_;
 

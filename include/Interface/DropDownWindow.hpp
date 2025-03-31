@@ -18,10 +18,10 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef DROPDOWNWINDOW_HPP_INCLUDED
 # define DROPDOWNWINDOW_HPP_INCLUDED
 
-# include "Interface/UiWindow.hpp"
+#include "Interface/UiWindow.hpp"
 
-# include <vector>
-# include <SFML/System.hpp>
+#include <vector>
+#include <SFML/System.hpp>
 
 class ComboBox;
 
@@ -41,4 +41,4 @@ class DropDownWindow: public UiWindow
         std::vector<std::pair<sf::String, bool> >  elements_;
 };
 
-# endif // DROPDOWNWINDOW_HPP_INCLUDED
+#endif // DROPDOWNWINDOW_HPP_INCLUDED

@@ -18,10 +18,10 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef TEAM_HPP_INCLUDED
 # define TEAM_HPP_INCLUDED
 
-# include "System/Color3f.hpp"
-# include "Controllers/controllers.hpp"
-# include "Zones/zones.hpp"
-# include "Teams/Job.hpp"
+#include "System/Color3f.hpp"
+#include "Controllers/controllers.hpp"
+#include "Zones/zones.hpp"
+#include "Teams/Job.hpp"
 
 class Player;
 class Home;
@@ -73,5 +73,5 @@ class Team {
         mutable int points_;
 };
 
-# endif // TEAM_HPP_INCLUDED
+#endif // TEAM_HPP_INCLUDED
 

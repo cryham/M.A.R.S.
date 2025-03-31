@@ -18,9 +18,9 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef ITEMS_HPP_INCLUDED
 # define ITEMS_HPP_INCLUDED
 
-# include "System/Vector2f.hpp"
+#include "System/Vector2f.hpp"
 
-# include <list>
+#include <list>
 
 class CannonControl;
 class PowerUp;
@@ -39,7 +39,7 @@ namespace items {
     void clear();
 }
 
-# endif // ITEMS_HPP_INCLUDED
+#endif // ITEMS_HPP_INCLUDED
 
 
 

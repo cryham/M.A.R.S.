@@ -15,19 +15,19 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Games/Rally.hpp"
+#include "Games/Rally.hpp"
 
-# include "Teams/DMTeam.hpp"
-# include "Players/players.hpp"
-# include "System/settings.hpp"
-# include "Media/music.hpp"
-# include "Players/players.hpp"
-# include "SpaceObjects/spaceObjects.hpp"
-# include "SpaceObjects/Track.hpp"
-# include "Teams/teams.hpp"
-# include "TrailEffects/trailEffects.hpp"
-# include "TrailEffects/Trail.hpp"
-# include "System/randomizer.hpp"
+#include "Teams/DMTeam.hpp"
+#include "Players/players.hpp"
+#include "System/settings.hpp"
+#include "Media/music.hpp"
+#include "Players/players.hpp"
+#include "SpaceObjects/spaceObjects.hpp"
+#include "SpaceObjects/Track.hpp"
+#include "Teams/teams.hpp"
+#include "TrailEffects/trailEffects.hpp"
+#include "TrailEffects/Trail.hpp"
+#include "System/randomizer.hpp"
 
 Rally::Rally():
     Game(games::gRally)

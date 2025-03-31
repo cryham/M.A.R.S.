@@ -15,9 +15,9 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Weapons/Weapon.hpp"
+#include "Weapons/Weapon.hpp"
 
-# include "SpaceObjects/Ship.hpp"
+#include "SpaceObjects/Ship.hpp"
 
 Weapon::Weapon(weapons::WeaponType type, Ship* parent, sf::String name):
     parent_(parent),

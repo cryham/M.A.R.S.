@@ -15,17 +15,17 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "SpaceObjects/stars.hpp"
+#include "SpaceObjects/stars.hpp"
 
-# include "Media/texture.hpp"
-# include "System/settings.hpp"
-# include "System/window.hpp"
-# include "Particles/particles.hpp"
-# include "Particles/Star.hpp"
-# include "defines.hpp"
-# include "System/randomizer.hpp"
+#include "Media/texture.hpp"
+#include "System/settings.hpp"
+#include "System/window.hpp"
+#include "Particles/particles.hpp"
+#include "Particles/Star.hpp"
+#include "defines.hpp"
+#include "System/randomizer.hpp"
 
-# include <SFML/System.hpp>
+#include <SFML/System.hpp>
 
 namespace stars {
 

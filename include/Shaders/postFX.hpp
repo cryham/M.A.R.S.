@@ -18,9 +18,9 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef POSTFX_HPP_INCLUDED
 # define POSTFX_HPP_INCLUDED
 
-# include "System/Vector2f.hpp"
+#include "System/Vector2f.hpp"
 
-# include <SFML/Graphics.hpp>
+#include <SFML/Graphics.hpp>
 
 /// A namespace for post processing shaders.
 
@@ -45,6 +45,6 @@ namespace postFX {
     void load();
 }
 
-# endif // POSTFX_HPP_INCLUDED
+#endif // POSTFX_HPP_INCLUDED
 
 

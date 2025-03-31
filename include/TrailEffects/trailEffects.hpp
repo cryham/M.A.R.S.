@@ -18,7 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef TRAILEFFECTS_HPP_INCLUDED
 # define TRAILEFFECTS_HPP_INCLUDED
 
-# include "System/Color3f.hpp"
+#include "System/Color3f.hpp"
 
 class SpaceObject;
 class Trail;
@@ -37,5 +37,5 @@ namespace trailEffects {
     void clear();
 }
 
-# endif // TRAILEFFECTS_HPP_INCLUDED
+#endif // TRAILEFFECTS_HPP_INCLUDED
 

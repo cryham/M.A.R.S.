@@ -15,14 +15,14 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Hud/Logo.hpp"
+#include "Hud/Logo.hpp"
 
-# include "Media/texture.hpp"
-# include "System/window.hpp"
-# include "Games/games.hpp"
-# include "System/timer.hpp"
-# include "defines.hpp"
-# include "System/randomizer.hpp"
+#include "Media/texture.hpp"
+#include "System/window.hpp"
+#include "Games/games.hpp"
+#include "System/timer.hpp"
+#include "defines.hpp"
+#include "System/randomizer.hpp"
 
 Logo::Logo():
     timer_(1.f),

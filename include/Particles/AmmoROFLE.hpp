@@ -18,7 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef AMMOROFLE_HPP_INCLUDED
 # define AMMOROFLE_HPP_INCLUDED
 
-# include "Particles/Particle.hpp"
+#include "Particles/Particle.hpp"
 
 class AmmoROFLE: public Particle<AmmoROFLE> {
     public:
@@ -37,5 +37,5 @@ class AmmoROFLE: public Particle<AmmoROFLE> {
         static std::list<AmmoROFLE*> activeParticles_;
 };
 
-# endif // AMMOROFLE_HPP_INCLUDED
+#endif // AMMOROFLE_HPP_INCLUDED
 

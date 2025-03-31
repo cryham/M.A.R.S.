@@ -15,13 +15,13 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Interface/ShipPreview.hpp"
+#include "Interface/ShipPreview.hpp"
 
-# include "System/settings.hpp"
-# include "System/timer.hpp"
-# include "Media/texture.hpp"
+#include "System/settings.hpp"
+#include "System/timer.hpp"
+#include "Media/texture.hpp"
 
-# include <SFML/OpenGL.hpp>
+#include <SFML/OpenGL.hpp>
 
 ShipPreview::ShipPreview (Color3f* color, Color3f* teamColor, int* graphic, Vector2f const& topLeft):
     UiElement(topLeft, 20, 20),

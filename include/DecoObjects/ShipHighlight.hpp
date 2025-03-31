@@ -18,7 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef SHIPHIGHLIGHT_HPP_INCLUDED
 # define SHIPHIGHLIGHT_HPP_INCLUDED
 
-# include "DecoObjects/DecoObject.hpp"
+#include "DecoObjects/DecoObject.hpp"
 
 class Ship;
 
@@ -40,4 +40,4 @@ class ShipHighlight: public DecoObject
         Ship* ship_;
 };
 
-# endif // SHIPHIGHLIGHT_HPP_INCLUDED
+#endif // SHIPHIGHLIGHT_HPP_INCLUDED

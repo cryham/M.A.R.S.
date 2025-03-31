@@ -18,9 +18,9 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef TEXTURE_HPP_INCLUDED
 # define TEXTURE_HPP_INCLUDED
 
-# include "System/Color3f.hpp"
+#include "System/Color3f.hpp"
 
-# include <SFML/OpenGL.hpp>
+#include <SFML/OpenGL.hpp>
 
 /// A namespace for texture handling.
 /// When asked for a reference to a texture, this namespace will load the
@@ -48,4 +48,4 @@ namespace texture {
     Color3f const getMudColor(TextureType planetTexture);
 }
 
-# endif // TEXTURE_HPP_INCLUDED
+#endif // TEXTURE_HPP_INCLUDED

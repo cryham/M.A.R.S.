@@ -18,8 +18,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef COMBOBOX_HPP_INCLUDED
 # define COMBOBOX_HPP_INCLUDED
 
-# include "Interface/UiElement.hpp"
-# include "Interface/Label.hpp"
+#include "Interface/UiElement.hpp"
+#include "Interface/Label.hpp"
 
 class UiWindow;
 
@@ -51,5 +51,5 @@ class ComboBox: public UiElement {
         sf::String* toolTip_;
 };
 
-# endif // COMBOBOX_HPP_INCLUDED
+#endif // COMBOBOX_HPP_INCLUDED
 

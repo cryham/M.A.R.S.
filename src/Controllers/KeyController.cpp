@@ -15,13 +15,13 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Controllers/KeyController.hpp"
+#include "Controllers/KeyController.hpp"
 
-# include "System/window.hpp"
-# include "System/settings.hpp"
-# include "SpaceObjects/Ship.hpp"
-# include "Players/Player.hpp"
-# include "Teams/Team.hpp"
+#include "System/window.hpp"
+#include "System/settings.hpp"
+#include "SpaceObjects/Ship.hpp"
+#include "Players/Player.hpp"
+#include "Teams/Team.hpp"
 
 KeyController::KeyController(Player* slave):
     Controller(slave)

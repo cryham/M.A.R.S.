@@ -18,7 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef CANNONKEEP_HPP_INCLUDED
 # define CANNONKEEP_HPP_INCLUDED
 
-# include "Games/Game.hpp"
+#include "Games/Game.hpp"
 
 /// Game: CannonKeep (CK).
 /// A funny game, where both teams aim on keeping the control of
@@ -38,4 +38,4 @@ class CannonKeep: public Game {
         void restart();
 };
 
-# endif // CANNONKEEP_HPP_INCLUDED
+#endif // CANNONKEEP_HPP_INCLUDED

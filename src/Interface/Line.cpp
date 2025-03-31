@@ -15,11 +15,11 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Interface/Line.hpp"
+#include "Interface/Line.hpp"
 
-# include "Locales/locales.hpp"
+#include "Locales/locales.hpp"
 
-# include <SFML/OpenGL.hpp>
+#include <SFML/OpenGL.hpp>
 
 Line::Line (Vector2f const& begin, Vector2f const& end):
     UiElement(Vector2f(std::min(begin.x_, end.x_), std::min(begin.y_, end.y_)), std::abs(static_cast<int>(begin.x_ - end.x_)), std::abs(static_cast<int>(begin.y_ - end.y_))),

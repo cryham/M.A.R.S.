@@ -31,4 +31,4 @@ namespace weapons {
     Weapon* createPrev(WeaponType type, Ship* parent);
 }
 
-# endif // WEAPONS_HPP_INCLUDED
+#endif // WEAPONS_HPP_INCLUDED

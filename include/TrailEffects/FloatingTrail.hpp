@@ -18,11 +18,11 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef FLOATINGTRAIL_HPP_INCLUDED
 # define FLOATINGTRAIL_HPP_INCLUDED
 
-# include "TrailEffects/Trail.hpp"
-# include "System/Vector2f.hpp"
-# include "System/Color3f.hpp"
+#include "TrailEffects/Trail.hpp"
+#include "System/Vector2f.hpp"
+#include "System/Color3f.hpp"
 
-# include <vector>
+#include <vector>
 
 class SpaceObject;
 
@@ -44,6 +44,6 @@ class FloatingTrail: public Trail {
         Color3f color_;
 };
 
-# endif //FLOATINGTRAIL_HPP_INCLUDED
+#endif //FLOATINGTRAIL_HPP_INCLUDED
 
 

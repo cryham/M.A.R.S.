@@ -15,17 +15,17 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Interface/UiElement.hpp"
+#include "Interface/UiElement.hpp"
 
-# include "Media/sound.hpp"
-# include "Menu/menus.hpp"
-# include "System/timer.hpp"
-# include "System/window.hpp"
-# include "Locales/locales.hpp"
+#include "Media/sound.hpp"
+#include "Menu/menus.hpp"
+#include "System/timer.hpp"
+#include "System/window.hpp"
+#include "Locales/locales.hpp"
 
 #include <GL/gl.h>
-# include <SFML/OpenGL.hpp>
-# include <iostream>
+#include <SFML/OpenGL.hpp>
+#include <iostream>
 
 float UiElement::scale_ = 3.f/2.f;  // global UI scale
 

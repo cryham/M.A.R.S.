@@ -15,19 +15,19 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Interface/LanguageButton.hpp"
+#include "Interface/LanguageButton.hpp"
 
-# include "System/settings.hpp"
-# include "System/window.hpp"
-# include "Media/text.hpp"
-# include "Menu/ChooseLanguage.hpp"
-# include "Media/texture.hpp"
-# include "Locales/locales.hpp"
-# include "Media/sound.hpp"
-# include "Menu/menus.hpp"
+#include "System/settings.hpp"
+#include "System/window.hpp"
+#include "Media/text.hpp"
+#include "Menu/ChooseLanguage.hpp"
+#include "Media/texture.hpp"
+#include "Locales/locales.hpp"
+#include "Media/sound.hpp"
+#include "Menu/menus.hpp"
 
-# include <SFML/OpenGL.hpp>
-# include <iostream>
+#include <SFML/OpenGL.hpp>
+#include <iostream>
 
 LanguageButton::LanguageButton (sf::String* text, Vector2f const& topLeft, int width, int labelWidth):
     UiElement(topLeft, width, 16),

@@ -15,21 +15,21 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Controllers/BotController.hpp"
+#include "Controllers/BotController.hpp"
 
-# include "System/timer.hpp"
-# include "Items/items.hpp"
-# include "Items/CannonControl.hpp"
-# include "Teams/Team.hpp"
-# include "System/settings.hpp"
-# include "Players/BotPlayer.hpp"
-# include "Teams/teams.hpp"
-# include "SpaceObjects/Ball.hpp"
-# include "SpaceObjects/Home.hpp"
-# include "Zones/TacticalZone.hpp"
-# include "System/randomizer.hpp"
+#include "System/timer.hpp"
+#include "Items/items.hpp"
+#include "Items/CannonControl.hpp"
+#include "Teams/Team.hpp"
+#include "System/settings.hpp"
+#include "Players/BotPlayer.hpp"
+#include "Teams/teams.hpp"
+#include "SpaceObjects/Ball.hpp"
+#include "SpaceObjects/Home.hpp"
+#include "Zones/TacticalZone.hpp"
+#include "System/randomizer.hpp"
 
-# include <cfloat>
+#include <cfloat>
 
 BotController::BotController(Player* slave, float strength):
     Controller(slave),

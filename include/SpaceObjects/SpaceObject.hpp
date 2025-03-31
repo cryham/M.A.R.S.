@@ -18,10 +18,10 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef SPACEOBJECT_HPP_INCLUDED
 # define SPACEOBJECT_HPP_INCLUDED
 
-# include "System/Vector2f.hpp"
-# include "Media/texture.hpp"
-# include "physics.hpp"
-# include "SpaceObjects/spaceObjects.hpp"
+#include "System/Vector2f.hpp"
+#include "Media/texture.hpp"
+#include "physics.hpp"
+#include "SpaceObjects/spaceObjects.hpp"
 
 class Player;
 
@@ -68,4 +68,4 @@ class SpaceObject
         spaceObjects::ObjectType type_;
 };
 
-# endif // SPACEOBJECT_HPP_INCLUDED
+#endif // SPACEOBJECT_HPP_INCLUDED

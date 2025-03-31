@@ -16,15 +16,15 @@ You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 # ifdef __APPLE__
-# include "CoreFoundation/CoreFoundation.h"
-# endif
+#include "CoreFoundation/CoreFoundation.h"
+#endif
 
-# include "System/window.hpp"
-# include "Games/games.hpp"
-# include "System/settings.hpp"
-# include "defines.hpp"
+#include "System/window.hpp"
+#include "Games/games.hpp"
+#include "System/settings.hpp"
+#include "defines.hpp"
 
-# include <sstream>
+#include <sstream>
 
 int main(int argc, char* argv[])
 {

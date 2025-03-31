@@ -18,7 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef TIMER_HPP_INCLUDED
 # define TIMER_HPP_INCLUDED
 
-# include <SFML/Graphics.hpp>
+#include <SFML/Graphics.hpp>
 
 /// A namespace handling time.
 /// The entire game is timed by this namespace.
@@ -53,4 +53,4 @@ namespace timer {
     float fps();
 }
 
-# endif // TIMER_HPP_INCLUDED
+#endif // TIMER_HPP_INCLUDED

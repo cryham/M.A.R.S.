@@ -18,11 +18,11 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef GENERATENAME_HPP_INCLUDED
 # define GENERATENAME_HPP_INCLUDED
 
-# include "System/Key.hpp"
+#include "System/Key.hpp"
 
-# include <vector>
-# include <SFML/System.hpp>
-# include <SFML/Window.hpp>
+#include <vector>
+#include <SFML/System.hpp>
+#include <SFML/Window.hpp>
 
 /// A namespace for genearing names.
 /// It generates names for bots, the game itself and
@@ -48,4 +48,4 @@ namespace generateName {
     sf::String const key(Key const& keyCode);
 }
 
-# endif //GENERATENAME_HPP_INCLUDED
+#endif //GENERATENAME_HPP_INCLUDED

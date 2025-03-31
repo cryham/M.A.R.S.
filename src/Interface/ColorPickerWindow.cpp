@@ -15,16 +15,16 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Interface/ColorPickerWindow.hpp"
+#include "Interface/ColorPickerWindow.hpp"
 
-# include "Interface/ColorPicker.hpp"
-# include "Interface/Button.hpp"
-# include "Locales/locales.hpp"
-# include "Menu/menus.hpp"
-# include "Media/texture.hpp"
-# include "System/window.hpp"
+#include "Interface/ColorPicker.hpp"
+#include "Interface/Button.hpp"
+#include "Locales/locales.hpp"
+#include "Menu/menus.hpp"
+#include "Media/texture.hpp"
+#include "System/window.hpp"
 
-# include <SFML/OpenGL.hpp>
+#include <SFML/OpenGL.hpp>
 
 ColorPickerWindow::ColorPickerWindow (ColorPicker* parent, Color3f* color):
     UiWindow(190, 185),

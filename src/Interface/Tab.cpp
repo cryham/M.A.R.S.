@@ -15,15 +15,15 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Interface/Tab.hpp"
+#include "Interface/Tab.hpp"
 
-# include "System/settings.hpp"
-# include "System/window.hpp"
-# include "Interface/TabList.hpp"
-# include "Menu/menus.hpp"
-# include "Locales/locales.hpp"
+#include "System/settings.hpp"
+#include "System/window.hpp"
+#include "Interface/TabList.hpp"
+#include "Menu/menus.hpp"
+#include "Locales/locales.hpp"
 
-# include <SFML/OpenGL.hpp>
+#include <SFML/OpenGL.hpp>
 
 Tab::Tab (sf::String* name, int width, bool* activated):
     UiElement(Vector2f() * 1.f/scale_, width * 1.f/scale_, 20),

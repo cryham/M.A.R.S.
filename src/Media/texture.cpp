@@ -15,14 +15,14 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Media/texture.hpp"
+#include "Media/texture.hpp"
 
-# include "System/settings.hpp"
-# include "System/randomizer.hpp"
+#include "System/settings.hpp"
+#include "System/randomizer.hpp"
 
-# include <SFML/System.hpp>
-# include <vector>
-# include <iostream>
+#include <SFML/System.hpp>
+#include <vector>
+#include <iostream>
 
 namespace texture {
 

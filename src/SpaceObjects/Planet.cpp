@@ -15,11 +15,11 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "SpaceObjects/Planet.hpp"
+#include "SpaceObjects/Planet.hpp"
 
-# include "Particles/particles.hpp"
-# include "System/randomizer.hpp"
-# include "DecoObjects/decoObjects.hpp"
+#include "Particles/particles.hpp"
+#include "System/randomizer.hpp"
+#include "DecoObjects/decoObjects.hpp"
 
 Planet::Planet(Vector2f const& location, float radius):
                SpaceObject(spaceObjects::oPlanet, location, radius, radius*100),

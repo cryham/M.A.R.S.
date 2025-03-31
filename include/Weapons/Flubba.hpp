@@ -18,7 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef FLUBBA_HPP_INCLUDED
 # define FLUBBA_HPP_INCLUDED
 
-# include "Weapons/Weapon.hpp"
+#include "Weapons/Weapon.hpp"
 
 /// Weapon: Flubba.
 /// A short distance gun, populates the screen with ugly green bubbles.
@@ -47,4 +47,4 @@ class Flubba: public Weapon
         float maxAngle()   const;
 };
 
-# endif // FLUBBA_HPP_INCLUDED
+#endif // FLUBBA_HPP_INCLUDED

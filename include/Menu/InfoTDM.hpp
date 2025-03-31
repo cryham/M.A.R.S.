@@ -18,7 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef INFOTDM_HPP_INCLUDED
 # define INFOTDM_HPP_INCLUDED
 
-# include "Interface/UiWindow.hpp"
+#include "Interface/UiWindow.hpp"
 
 class TextBox;
 
@@ -41,4 +41,4 @@ class InfoTDM: public UiWindow
         static bool kClose_;
 };
 
-# endif // INFOTDM_HPP_INCLUDED
+#endif // INFOTDM_HPP_INCLUDED

@@ -15,21 +15,21 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Interface/ComboBox.hpp"
+#include "Interface/ComboBox.hpp"
 
-# include "System/settings.hpp"
-# include "System/window.hpp"
-# include "Media/text.hpp"
-# include "Media/texture.hpp"
-# include "Locales/locales.hpp"
-# include "Media/sound.hpp"
-# include "Menu/menus.hpp"
-# include "Interface/DropDownWindow.hpp"
-# include "Interface/Button.hpp"
-# include "Interface/toolTip.hpp"
+#include "System/settings.hpp"
+#include "System/window.hpp"
+#include "Media/text.hpp"
+#include "Media/texture.hpp"
+#include "Locales/locales.hpp"
+#include "Media/sound.hpp"
+#include "Menu/menus.hpp"
+#include "Interface/DropDownWindow.hpp"
+#include "Interface/Button.hpp"
+#include "Interface/toolTip.hpp"
 
-# include <SFML/OpenGL.hpp>
-# include <iostream>
+#include <SFML/OpenGL.hpp>
+#include <iostream>
 
 ComboBox::ComboBox (sf::String* text, sf::String* toolTip, sf::String* value, std::vector<sf::String> const& values, Vector2f const& topLeft, int width, int labelWidth):
     UiElement(topLeft, width, 16),

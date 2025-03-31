@@ -15,24 +15,24 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Hud/TabStats.hpp"
+#include "Hud/TabStats.hpp"
 
 #include "Interface/UiElement.hpp"
-# include "System/settings.hpp"
-# include "Media/text.hpp"
-# include "System/timer.hpp"
-# include "Media/texture.hpp"
-# include "Menu/menus.hpp"
-# include "Players/Player.hpp"
-# include "System/window.hpp"
-# include "Games/games.hpp"
-# include "SpaceObjects/ships.hpp"
-# include "Locales/locales.hpp"
-# include "Teams/teams.hpp"
+#include "System/settings.hpp"
+#include "Media/text.hpp"
+#include "System/timer.hpp"
+#include "Media/texture.hpp"
+#include "Menu/menus.hpp"
+#include "Players/Player.hpp"
+#include "System/window.hpp"
+#include "Games/games.hpp"
+#include "SpaceObjects/ships.hpp"
+#include "Locales/locales.hpp"
+#include "Teams/teams.hpp"
 
-# include <SFML/OpenGL.hpp>
-# include <sstream>
-# include <iomanip>
+#include <SFML/OpenGL.hpp>
+#include <sstream>
+#include <iomanip>
 
 // helper function
 void inline writeScoreAtCol(sf::String value, int col, Vector2f topLeft, int mirror, Color3f drawColor)

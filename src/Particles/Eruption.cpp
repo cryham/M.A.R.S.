@@ -15,10 +15,10 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Particles/Eruption.hpp"
+#include "Particles/Eruption.hpp"
 
-# include "System/timer.hpp"
-# include "System/randomizer.hpp"
+#include "System/timer.hpp"
+#include "System/randomizer.hpp"
 
 std::list<Eruption*> Eruption::activeParticles_;
 

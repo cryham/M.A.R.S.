@@ -15,32 +15,32 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "SpaceObjects/Ship.hpp"
+#include "SpaceObjects/Ship.hpp"
 
-# include "System/timer.hpp"
-# include "System/settings.hpp"
-# include "Particles/particles.hpp"
-# include "Weapons/weapons.hpp"
-# include "Specials/specials.hpp"
-# include "Media/sound.hpp"
-# include "Hud/hud.hpp"
-# include "Media/text.hpp"
-# include "Players/Player.hpp"
-# include "Players/LocalPlayer.hpp"
-# include "Teams/Team.hpp"
-# include "Games/games.hpp"
-# include "Controllers/Controller.hpp"
-# include "SpaceObjects/Ball.hpp"
-# include "Media/announcer.hpp"
-# include "DecoObjects/decoObjects.hpp"
-# include "Shaders/postFX.hpp"
-# include "Items/items.hpp"
-# include "SpaceObjects/Home.hpp"
-# include "defines.hpp"
-# include "System/randomizer.hpp"
+#include "System/timer.hpp"
+#include "System/settings.hpp"
+#include "Particles/particles.hpp"
+#include "Weapons/weapons.hpp"
+#include "Specials/specials.hpp"
+#include "Media/sound.hpp"
+#include "Hud/hud.hpp"
+#include "Media/text.hpp"
+#include "Players/Player.hpp"
+#include "Players/LocalPlayer.hpp"
+#include "Teams/Team.hpp"
+#include "Games/games.hpp"
+#include "Controllers/Controller.hpp"
+#include "SpaceObjects/Ball.hpp"
+#include "Media/announcer.hpp"
+#include "DecoObjects/decoObjects.hpp"
+#include "Shaders/postFX.hpp"
+#include "Items/items.hpp"
+#include "SpaceObjects/Home.hpp"
+#include "defines.hpp"
+#include "System/randomizer.hpp"
 
-# include <cmath>
-# include <sstream>
+#include <cmath>
+#include <sstream>
 
 Ship::Ship(Vector2f const& location, float rotation, Player* owner)
     : MobileSpaceObject(spaceObjects::oShip, location, SHIP_RADIUS, 10.f)

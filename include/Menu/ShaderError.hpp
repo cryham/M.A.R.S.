@@ -18,7 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef SHADERERROR_HPP_INCLUDED
 # define SHADERERROR_HPP_INCLUDED
 
-# include "Interface/UiWindow.hpp"
+#include "Interface/UiWindow.hpp"
 
 class ShaderError: public UiWindow
 {
@@ -40,4 +40,4 @@ class ShaderError: public UiWindow
         static bool kOk_;
 };
 
-# endif // SHADERERROR_HPP_INCLUDED
+#endif // SHADERERROR_HPP_INCLUDED

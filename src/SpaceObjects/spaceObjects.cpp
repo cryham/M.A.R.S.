@@ -15,20 +15,20 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "SpaceObjects/spaceObjects.hpp"
+#include "SpaceObjects/spaceObjects.hpp"
 
-# include "SpaceObjects/Planet.hpp"
-# include "SpaceObjects/Sun.hpp"
-# include "SpaceObjects/BlackHole.hpp"
-# include "SpaceObjects/Home.hpp"
-# include "SpaceObjects/balls.hpp"
-# include "Items/CannonControl.hpp"
-# include "Items/items.hpp"
-# include "DecoObjects/decoObjects.hpp"
-# include "defines.hpp"
-# include "System/randomizer.hpp"
+#include "SpaceObjects/Planet.hpp"
+#include "SpaceObjects/Sun.hpp"
+#include "SpaceObjects/BlackHole.hpp"
+#include "SpaceObjects/Home.hpp"
+#include "SpaceObjects/balls.hpp"
+#include "Items/CannonControl.hpp"
+#include "Items/items.hpp"
+#include "DecoObjects/decoObjects.hpp"
+#include "defines.hpp"
+#include "System/randomizer.hpp"
 
-# include <vector>
+#include <vector>
 
 namespace spaceObjects
 {

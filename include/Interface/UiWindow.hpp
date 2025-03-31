@@ -18,9 +18,9 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef UIWINDOW_HPP_INCLUDED
 # define UIWINDOW_HPP_INCLUDED
 
-# include "Interface/UiElement.hpp"
+#include "Interface/UiElement.hpp"
 
-# include <vector>
+#include <vector>
 
 class UiWindow: public UiElement {
     public:
@@ -60,4 +60,4 @@ class UiWindow: public UiElement {
         bool topMost_;
 };
 
-# endif
+#endif

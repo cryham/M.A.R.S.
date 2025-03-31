@@ -18,13 +18,13 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef TABSTATS_HPP_INCLUDED
 # define TABSTATS_HPP_INCLUDED
 
-# include "Hud/HudElement.hpp"
+#include "Hud/HudElement.hpp"
 
-# include "Teams/Team.hpp"
-# include "Players/Player.hpp"
+#include "Teams/Team.hpp"
+#include "Players/Player.hpp"
 
-# include <map>
-# include <set>
+#include <map>
+#include <set>
 
 class TabStats: public HudElement {
     public:
@@ -56,7 +56,7 @@ class TabStats: public HudElement {
         std::multimap<Team*, std::multiset<Player*, playerPtrCmp>, teamPtrCmp > teamMap_;
 };
 
-# endif // TABSTATS_HPP_INCLUDED
+#endif // TABSTATS_HPP_INCLUDED
 
 
 

@@ -18,7 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef FIST_HPP_INCLUDED
 # define FIST_HPP_INCLUDED
 
-# include "Weapons/Weapon.hpp"
+#include "Weapons/Weapon.hpp"
 
 /// Weapon: Fist.
 /// A short distance gun, which pwnes nearby enemies
@@ -51,4 +51,4 @@ class Fist: public Weapon
         mutable float position_;
 };
 
-# endif // FIST_HPP_INCLUDED
+#endif // FIST_HPP_INCLUDED

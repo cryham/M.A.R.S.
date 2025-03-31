@@ -18,7 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef CANNONCONTROL_HPP_INCLUDED
 # define CANNONCONTROL_HPP_INCLUDED
 
-# include "System/Vector2f.hpp"
+#include "System/Vector2f.hpp"
 
 class Player;
 class Ship;
@@ -40,7 +40,7 @@ class CannonControl{
         bool collected_;
 };
 
-# endif // CANNONCONTROL_HPP_INCLUDED
+#endif // CANNONCONTROL_HPP_INCLUDED
 
 
 

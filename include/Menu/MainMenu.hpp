@@ -18,7 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef MAINMENU_HPP_INCLUDED
 # define MAINMENU_HPP_INCLUDED
 
-# include "Interface/UiWindow.hpp"
+#include "Interface/UiWindow.hpp"
 
 class MainMenu: public UiWindow
 {
@@ -40,4 +40,4 @@ class MainMenu: public UiWindow
         static bool kStartLocal_, kStartTut_, kStartMulti_, kJoinMulti_, kOptions_, kAbout_, kExit_;
 };
 
-# endif // MAINMENU_HPP_INCLUDED
+#endif // MAINMENU_HPP_INCLUDED

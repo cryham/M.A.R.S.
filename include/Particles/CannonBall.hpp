@@ -18,7 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef CANNONBALL_HPP_INCLUDED
 # define CANNONBALL_HPP_INCLUDED
 
-# include "Particles/Particle.hpp"
+#include "Particles/Particle.hpp"
 
 class CannonBall: public Particle<CannonBall> {
     public:
@@ -34,5 +34,5 @@ class CannonBall: public Particle<CannonBall> {
         static std::list<CannonBall*> activeParticles_;
 };
 
-# endif // CANNONBALL_HPP_INCLUDED
+#endif // CANNONBALL_HPP_INCLUDED
 

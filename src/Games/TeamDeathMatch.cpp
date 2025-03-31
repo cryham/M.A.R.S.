@@ -15,14 +15,14 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Games/TeamDeathMatch.hpp"
+#include "Games/TeamDeathMatch.hpp"
 
-# include "Teams/TDMTeam.hpp"
-# include "System/settings.hpp"
-# include "Media/music.hpp"
-# include "Players/players.hpp"
-# include "SpaceObjects/spaceObjects.hpp"
-# include "Teams/teams.hpp"
+#include "Teams/TDMTeam.hpp"
+#include "System/settings.hpp"
+#include "Media/music.hpp"
+#include "Players/players.hpp"
+#include "SpaceObjects/spaceObjects.hpp"
+#include "Teams/teams.hpp"
 
 TeamDeathMatch::TeamDeathMatch():
     Game(games::gTeamDeathMatch)

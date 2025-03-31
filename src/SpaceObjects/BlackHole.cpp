@@ -15,11 +15,11 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "SpaceObjects/BlackHole.hpp"
+#include "SpaceObjects/BlackHole.hpp"
 
-# include "System/timer.hpp"
+#include "System/timer.hpp"
 
-# include <cmath>
+#include <cmath>
 
 BlackHole::BlackHole(Vector2f const& location, float radius):
                      SpaceObject(spaceObjects::oBlackHole, location, radius, radius*130),

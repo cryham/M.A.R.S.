@@ -18,7 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef HEAL_HPP_INCLUDED
 # define HEAL_HPP_INCLUDED
 
-# include "Specials/Special.hpp"
+#include "Specials/Special.hpp"
 
 /// Special: Heal.
 /// A healing wave.
@@ -44,4 +44,4 @@ class Heal: public Special
         mutable float radius_;
 };
 
-# endif // HEAL_HPP_INCLUDED
+#endif // HEAL_HPP_INCLUDED

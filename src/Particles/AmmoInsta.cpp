@@ -15,19 +15,19 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Particles/AmmoInsta.hpp"
+#include "Particles/AmmoInsta.hpp"
 
-# include "System/timer.hpp"
-# include "Media/sound.hpp"
-# include "TrailEffects/trailEffects.hpp"
-# include "TrailEffects/Trail.hpp"
-# include "System/Vector2f.hpp"
-# include "Teams/Team.hpp"
-# include "SpaceObjects/ships.hpp"
-# include "SpaceObjects/Ship.hpp"
-# include "Players/Player.hpp"
-# include "System/settings.hpp"
-# include "defines.hpp"
+#include "System/timer.hpp"
+#include "Media/sound.hpp"
+#include "TrailEffects/trailEffects.hpp"
+#include "TrailEffects/Trail.hpp"
+#include "System/Vector2f.hpp"
+#include "Teams/Team.hpp"
+#include "SpaceObjects/ships.hpp"
+#include "SpaceObjects/Ship.hpp"
+#include "Players/Player.hpp"
+#include "System/settings.hpp"
+#include "defines.hpp"
 
 std::list<AmmoInsta*> AmmoInsta::activeParticles_;
 

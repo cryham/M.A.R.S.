@@ -15,11 +15,11 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "System/Color3f.hpp"
+#include "System/Color3f.hpp"
 
-# include "System/randomizer.hpp"
+#include "System/randomizer.hpp"
 
-# include <SFML/OpenGL.hpp>
+#include <SFML/OpenGL.hpp>
 
 Color3f::Color3f ():
     r_(1),

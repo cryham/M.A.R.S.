@@ -15,13 +15,13 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Particles/AmmoFlubba.hpp"
+#include "Particles/AmmoFlubba.hpp"
 
-# include "System/timer.hpp"
-# include "System/settings.hpp"
-# include "Particles/particles.hpp"
-# include "Media/sound.hpp"
-# include "System/randomizer.hpp"
+#include "System/timer.hpp"
+#include "System/settings.hpp"
+#include "Particles/particles.hpp"
+#include "Media/sound.hpp"
+#include "System/randomizer.hpp"
 
 std::list<AmmoFlubba*> AmmoFlubba::activeParticles_;
 

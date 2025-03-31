@@ -24,10 +24,10 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # define ENEMY_HOME 3
 # define ENEMY_TEAM 4
 
-# include "System/Vector2f.hpp"
-# include "Zones/Zone.hpp"
+#include "System/Vector2f.hpp"
+#include "Zones/Zone.hpp"
 
-# include <map>
+#include <map>
 
 class Team;
 class TacticalZone;
@@ -90,5 +90,5 @@ namespace zones {
     void clear();
 }
 
-# endif // ZONES_HPP_INCLUDED
+#endif // ZONES_HPP_INCLUDED
 

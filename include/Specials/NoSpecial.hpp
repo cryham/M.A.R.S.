@@ -18,7 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef NOSPECIAL_HPP_INCLUDED
 # define NOSPECIAL_HPP_INCLUDED
 
-# include "Specials/Special.hpp"
+#include "Specials/Special.hpp"
 
 /// Special: NoSpecial.
 /// Nothing at all...
@@ -42,4 +42,4 @@ class NoSpecial: public Special
         void draw(float alpha) const;
 };
 
-# endif // NOSPECIAL_HPP_INCLUDED
+#endif // NOSPECIAL_HPP_INCLUDED

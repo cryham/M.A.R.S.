@@ -18,7 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef CKTEAM_HPP_INCLUDED
 # define CKTEAM_HPP_INCLUDED
 
-# include "Teams/Team.hpp"
+#include "Teams/Team.hpp"
 
 class CKTeam: public Team
 {
@@ -37,4 +37,4 @@ class CKTeam: public Team
         std::vector<Vector2f> powerUpLocations_;
 };
 
-# endif // CKTEAM_HPP_INCLUDED
+#endif // CKTEAM_HPP_INCLUDED

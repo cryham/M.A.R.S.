@@ -15,12 +15,12 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "SpaceObjects/Sun.hpp"
+#include "SpaceObjects/Sun.hpp"
 
-# include "Media/sound.hpp"
-# include "System/timer.hpp"
-# include "Particles/particles.hpp"
-# include "System/randomizer.hpp"
+#include "Media/sound.hpp"
+#include "System/timer.hpp"
+#include "Particles/particles.hpp"
+#include "System/randomizer.hpp"
 
 Sun::Sun(Vector2f const& location, float radius):
          SpaceObject(spaceObjects::oSun,location, radius, radius*50),

@@ -40,4 +40,4 @@ namespace announcer {
     void announce (SoundMood mood);
 }
 
-# endif // ANNOUNCER_HPP_INCLUDED
+#endif // ANNOUNCER_HPP_INCLUDED

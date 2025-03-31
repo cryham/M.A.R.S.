@@ -15,12 +15,12 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Interface/LabeledBox.hpp"
+#include "Interface/LabeledBox.hpp"
 
-# include "Media/text.hpp"
-# include "Interface/Label.hpp"
+#include "Media/text.hpp"
+#include "Interface/Label.hpp"
 
-# include <SFML/OpenGL.hpp>
+#include <SFML/OpenGL.hpp>
 
 LabeledBox::LabeledBox (sf::String* text, Vector2f const& topLeft, int width, int height):
     UiElement(topLeft, width, height),

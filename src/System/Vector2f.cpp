@@ -15,12 +15,12 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "System/Vector2f.hpp"
+#include "System/Vector2f.hpp"
 
-# include "System/randomizer.hpp"
+#include "System/randomizer.hpp"
 
-# include <SFML/System.hpp>
-# include <cmath>
+#include <SFML/System.hpp>
+#include <cmath>
 
 Vector2f::Vector2f ():
     x_(0.0),

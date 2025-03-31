@@ -18,9 +18,9 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef FUEL_HPP_INCLUDED
 # define FUEL_HPP_INCLUDED
 
-# include "Particles/Particle.hpp"
+#include "Particles/Particle.hpp"
 
-# include "System/Color3f.hpp"
+#include "System/Color3f.hpp"
 
 class Fuel: public Particle<Fuel> {
     public:
@@ -36,6 +36,6 @@ class Fuel: public Particle<Fuel> {
         static std::list<Fuel*> activeParticles_;
 };
 
-# endif // FUEL_HPP_INCLUDED
+#endif // FUEL_HPP_INCLUDED
 
 

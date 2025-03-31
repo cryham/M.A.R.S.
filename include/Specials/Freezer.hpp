@@ -18,7 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef FREEZER_HPP_INCLUDED
 # define FREEZER_HPP_INCLUDED
 
-# include "Specials/Special.hpp"
+#include "Specials/Special.hpp"
 
 /// Special: Freezer.
 /// A Freezing wave.
@@ -44,4 +44,4 @@ class Freezer: public Special
         mutable float radius_;
 };
 
-# endif // FREEZER_HPP_INCLUDED
+#endif // FREEZER_HPP_INCLUDED

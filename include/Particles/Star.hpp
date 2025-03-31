@@ -18,9 +18,9 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef STAR_HPP_INCLUDED
 # define STAR_HPP_INCLUDED
 
-# include "Particles/Particle.hpp"
+#include "Particles/Particle.hpp"
 
-# include "System/Color3f.hpp"
+#include "System/Color3f.hpp"
 
 class Star: public Particle<Star> {
     public:
@@ -43,7 +43,7 @@ class Star: public Particle<Star> {
         static std::list<Star*> activeParticles_;
 };
 
-# endif // STAR_HPP_INCLUDED
+#endif // STAR_HPP_INCLUDED
 
 
 

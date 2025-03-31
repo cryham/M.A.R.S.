@@ -15,17 +15,17 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Games/MenuGame.hpp"
+#include "Games/MenuGame.hpp"
 
-# include "Teams/GITeam.hpp"
-# include "System/settings.hpp"
-# include "Media/music.hpp"
-# include "Hud/hud.hpp"
-# include "Menu/menus.hpp"
-# include "Menu/ChooseLanguage.hpp"
-# include "Players/players.hpp"
-# include "SpaceObjects/Home.hpp"
-# include "Teams/teams.hpp"
+#include "Teams/GITeam.hpp"
+#include "System/settings.hpp"
+#include "Media/music.hpp"
+#include "Hud/hud.hpp"
+#include "Menu/menus.hpp"
+#include "Menu/ChooseLanguage.hpp"
+#include "Players/players.hpp"
+#include "SpaceObjects/Home.hpp"
+#include "Teams/teams.hpp"
 
 MenuGame::MenuGame():
     Game(games::gMenu)

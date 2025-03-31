@@ -15,11 +15,11 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "DecoObjects/ShipHighlight.hpp"
+#include "DecoObjects/ShipHighlight.hpp"
 
-# include "SpaceObjects/Ship.hpp"
-# include "Players/Player.hpp"
-# include "Particles/AmmoInsta.hpp"
+#include "SpaceObjects/Ship.hpp"
+#include "Players/Player.hpp"
+#include "Particles/AmmoInsta.hpp"
 
 void ShipHighlight::draw() const
 {

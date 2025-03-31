@@ -18,11 +18,11 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef MENUS_HPP_INCLUDED
 # define MENUS_HPP_INCLUDED
 
-# include "System/Vector2f.hpp"
+#include "System/Vector2f.hpp"
 
-# include "System/Key.hpp"
+#include "System/Key.hpp"
 
-# include <SFML/Window.hpp>
+#include <SFML/Window.hpp>
 
 class UiWindow;
 class UiElement;
@@ -55,4 +55,4 @@ namespace menus {
     bool visible();
 }
 
-# endif // MENUS_HPP_INCLUDED
+#endif // MENUS_HPP_INCLUDED

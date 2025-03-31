@@ -15,23 +15,23 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "SpaceObjects/Home.hpp"
+#include "SpaceObjects/Home.hpp"
 
-# include "Particles/particles.hpp"
-# include "Players/players.hpp"
-# include "SpaceObjects/ships.hpp"
-# include "Media/sound.hpp"
-# include "Media/announcer.hpp"
-# include "Media/text.hpp"
-# include "System/window.hpp"
-# include "Games/games.hpp"
-# include "Teams/Team.hpp"
-# include "SpaceObjects/Ball.hpp"
-# include "Shaders/postFX.hpp"
-# include "Teams/teams.hpp"
-# include "defines.hpp"
+#include "Particles/particles.hpp"
+#include "Players/players.hpp"
+#include "SpaceObjects/ships.hpp"
+#include "Media/sound.hpp"
+#include "Media/announcer.hpp"
+#include "Media/text.hpp"
+#include "System/window.hpp"
+#include "Games/games.hpp"
+#include "Teams/Team.hpp"
+#include "SpaceObjects/Ball.hpp"
+#include "Shaders/postFX.hpp"
+#include "Teams/teams.hpp"
+#include "defines.hpp"
 
-# include <sstream>
+#include <sstream>
 
 Home::Home(Vector2f const& location, int life, float radius, float mass, Color3f const& color):
                SpaceObject(spaceObjects::oHome, location, radius, mass),

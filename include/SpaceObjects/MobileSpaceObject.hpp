@@ -18,7 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef MOBLIESPACEOBJECT_HPP_INCLUDED
 # define MOBLIESPACEOBJECT_HPP_INCLUDED
 
-# include "SpaceObjects/SpaceObject.hpp"
+#include "SpaceObjects/SpaceObject.hpp"
 
 class MobileSpaceObject: public SpaceObject
 {
@@ -35,4 +35,4 @@ class MobileSpaceObject: public SpaceObject
         Vector2f velocity_;
 };
 
-# endif // MOBLIESPACEOBJECT_HPP_INCLUDED
+#endif // MOBLIESPACEOBJECT_HPP_INCLUDED

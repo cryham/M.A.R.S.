@@ -15,16 +15,16 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Interface/toolTip.hpp"
-# include "Interface/UiElement.hpp"
+#include "Interface/toolTip.hpp"
+#include "Interface/UiElement.hpp"
 
-# include "Media/text.hpp"
-# include "System/timer.hpp"
-# include "System/window.hpp"
-# include "Locales/locales.hpp"
+#include "Media/text.hpp"
+#include "System/timer.hpp"
+#include "System/window.hpp"
+#include "Locales/locales.hpp"
 
-# include <vector>
-# include <SFML/OpenGL.hpp>
+#include <vector>
+#include <SFML/OpenGL.hpp>
 
 # define WAITING   0
 # define FADE_IN   1

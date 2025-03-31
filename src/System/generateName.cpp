@@ -15,18 +15,18 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "System/generateName.hpp"
+#include "System/generateName.hpp"
 
-# include "Media/file.hpp"
-# include "Locales/locales.hpp"
-# include "System/settings.hpp"
+#include "Media/file.hpp"
+#include "Locales/locales.hpp"
+#include "System/settings.hpp"
 
-# include <cstdlib>
-# include <algorithm>
-# include <list>
-# include <iostream>
-# include <ctime>
-# include <sstream>
+#include <cstdlib>
+#include <algorithm>
+#include <list>
+#include <iostream>
+#include <ctime>
+#include <sstream>
 
 namespace generateName
 {

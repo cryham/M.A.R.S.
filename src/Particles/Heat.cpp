@@ -15,11 +15,11 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Particles/Heat.hpp"
+#include "Particles/Heat.hpp"
 
-# include "System/timer.hpp"
-# include "System/settings.hpp"
-# include "System/randomizer.hpp"
+#include "System/timer.hpp"
+#include "System/settings.hpp"
+#include "System/randomizer.hpp"
 
 std::list<Heat*> Heat::activeParticles_;
 

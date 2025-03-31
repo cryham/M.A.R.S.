@@ -18,8 +18,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef LABELEDBOX_HPP_INCLUDED
 # define LABELEDBOX_HPP_INCLUDED
 
-# include "Interface/UiElement.hpp"
-# include "System/Color3f.hpp"
+#include "Interface/UiElement.hpp"
+#include "System/Color3f.hpp"
 
 class Label;
 
@@ -37,5 +37,5 @@ class LabeledBox: public UiElement {
         Label* label_;
 };
 
-# endif //LABELEDBOX_HPP_INCLUDED
+#endif //LABELEDBOX_HPP_INCLUDED
 

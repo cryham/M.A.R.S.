@@ -18,11 +18,11 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef WINDOW_HPP_INCLUDED
 # define WINDOW_HPP_INCLUDED
 
-# include "System/Vector2f.hpp"
-# include "System/Key.hpp"
-# include "Media/music.hpp"
+#include "System/Vector2f.hpp"
+#include "System/Key.hpp"
+#include "Media/music.hpp"
 
-# include <SFML/Graphics.hpp>
+#include <SFML/Graphics.hpp>
 
 /// A namespace handling the main window of the game.
 
@@ -76,4 +76,4 @@ namespace window {
     Vector2f const& getViewPort();
 }
 
-# endif // WINDOW_HPP_INCLUDED
+#endif // WINDOW_HPP_INCLUDED

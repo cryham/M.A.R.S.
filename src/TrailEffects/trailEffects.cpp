@@ -15,13 +15,13 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "TrailEffects/trailEffects.hpp"
+#include "TrailEffects/trailEffects.hpp"
 
-# include "TrailEffects/FloatingTrail.hpp"
-# include "TrailEffects/PersistantTrail.hpp"
+#include "TrailEffects/FloatingTrail.hpp"
+#include "TrailEffects/PersistantTrail.hpp"
 
-# include <vector>
-# include <set>
+#include <vector>
+#include <set>
 
 namespace trailEffects {
     namespace {

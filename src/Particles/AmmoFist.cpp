@@ -15,11 +15,11 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Particles/AmmoFist.hpp"
+#include "Particles/AmmoFist.hpp"
 
-# include "System/timer.hpp"
-# include "Media/sound.hpp"
-# include "Players/Player.hpp"
+#include "System/timer.hpp"
+#include "Media/sound.hpp"
+#include "Players/Player.hpp"
 
 std::list<AmmoFist*> AmmoFist::activeParticles_;
 

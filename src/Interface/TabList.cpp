@@ -15,16 +15,16 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Interface/TabList.hpp"
+#include "Interface/TabList.hpp"
 
-# include "System/settings.hpp"
-# include "System/window.hpp"
-# include "Media/text.hpp"
-# include "Media/sound.hpp"
-# include "Menu/menus.hpp"
-# include "Locales/locales.hpp"
+#include "System/settings.hpp"
+#include "System/window.hpp"
+#include "Media/text.hpp"
+#include "Media/sound.hpp"
+#include "Menu/menus.hpp"
+#include "Locales/locales.hpp"
 
-# include <SFML/OpenGL.hpp>
+#include <SFML/OpenGL.hpp>
 
 TabList::TabList (Vector2f const& topLeft, int width, int height):
     UiElement(topLeft * 1.f/scale_,  width * 1.f/scale_, height),

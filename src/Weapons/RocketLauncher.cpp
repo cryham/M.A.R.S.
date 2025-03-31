@@ -15,14 +15,14 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Weapons/RocketLauncher.hpp"
+#include "Weapons/RocketLauncher.hpp"
 
-# include "SpaceObjects/Ship.hpp"
-# include "Particles/particles.hpp"
-# include "Media/sound.hpp"
-# include "Players/Player.hpp"
+#include "SpaceObjects/Ship.hpp"
+#include "Particles/particles.hpp"
+#include "Media/sound.hpp"
+#include "Players/Player.hpp"
 
-# include <SFML/Graphics.hpp>
+#include <SFML/Graphics.hpp>
 
 void RocketLauncher::draw(float alpha) const
 {

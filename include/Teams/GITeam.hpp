@@ -18,7 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef GITEAM_HPP_INCLUDED
 # define GITEAM_HPP_INCLUDED
 
-# include "Teams/Team.hpp"
+#include "Teams/Team.hpp"
 
 class GITeam: public Team
 {
@@ -33,4 +33,4 @@ class GITeam: public Team
         void checkEnemies();
 };
 
-# endif // GITEAM_HPP_INCLUDED
+#endif // GITEAM_HPP_INCLUDED

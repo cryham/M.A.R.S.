@@ -18,7 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef PAUSEMENU_HPP_INCLUDED
 # define PAUSEMENU_HPP_INCLUDED
 
-# include "Interface/UiWindow.hpp"
+#include "Interface/UiWindow.hpp"
 
 class PauseMenu: public UiWindow
 {
@@ -40,4 +40,4 @@ class PauseMenu: public UiWindow
         static bool kResume_, kNew_, kOptions_, kToMainMenu_, kHide_;
 };
 
-# endif // PAUSEMENU_HPP_INCLUDED
+#endif // PAUSEMENU_HPP_INCLUDED

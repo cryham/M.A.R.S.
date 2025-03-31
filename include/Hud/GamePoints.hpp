@@ -18,7 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef GAMEPOINTS_HPP_INCLUDED
 # define GAMEPOINTS_HPP_INCLUDED
 
-# include "Hud/HudElement.hpp"
+#include "Hud/HudElement.hpp"
 
 class GamePoints: public HudElement
 {
@@ -35,4 +35,4 @@ class GamePoints: public HudElement
         float timer_;
 };
 
-# endif // GAMEPOINTS_HPP_INCLUDED
+#endif // GAMEPOINTS_HPP_INCLUDED

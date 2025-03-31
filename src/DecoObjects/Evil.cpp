@@ -15,13 +15,13 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "DecoObjects/Evil.hpp"
+#include "DecoObjects/Evil.hpp"
 
-# include "Media/texture.hpp"
-# include "System/timer.hpp"
-# include "defines.hpp"
+#include "Media/texture.hpp"
+#include "System/timer.hpp"
+#include "defines.hpp"
 
-# include <SFML/OpenGL.hpp>
+#include <SFML/OpenGL.hpp>
 
 void Evil::draw() const
 {

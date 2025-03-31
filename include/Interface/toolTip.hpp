@@ -18,9 +18,9 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef TOOLTIP_HPP_INCLUDED
 # define TOOLTIP_HPP_INCLUDED
 
-# include "System/Vector2f.hpp"
+#include "System/Vector2f.hpp"
 
-# include <SFML/System.hpp>
+#include <SFML/System.hpp>
 
 namespace toolTip {
 
@@ -31,5 +31,5 @@ namespace toolTip {
     void show(sf::String* text);
 }
 
-# endif // TOOLTIP_HPP_INCLUDED
+#endif // TOOLTIP_HPP_INCLUDED
 

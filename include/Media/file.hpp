@@ -18,9 +18,9 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef FILE_HPP_INCLUDED
 # define FILE_HPP_INCLUDED
 
-# include <SFML/System.hpp>
-# include <string>
-# include <vector>
+#include <SFML/System.hpp>
+#include <string>
+#include <vector>
 
 /// A namespace for UTF-8 encoded text file handling.
 /// It contains function which work with
@@ -33,6 +33,6 @@ namespace file {
     bool load(std::string fileName, std::vector<sf::String>& strings);
 }
 
-# endif // FILE_HPP_INCLUDED
+#endif // FILE_HPP_INCLUDED
 
 

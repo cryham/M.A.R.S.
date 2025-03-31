@@ -18,9 +18,9 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef FRAGMENTFLAME_HPP_INCLUDED
 # define FRAGMENTFLAME_HPP_INCLUDED
 
-# include "Particles/Particle.hpp"
+#include "Particles/Particle.hpp"
 
-# include "System/Color3f.hpp"
+#include "System/Color3f.hpp"
 
 class FragmentFlame: public Particle<FragmentFlame> {
     public:
@@ -36,6 +36,6 @@ class FragmentFlame: public Particle<FragmentFlame> {
         static std::list<FragmentFlame*> activeParticles_;
 };
 
-# endif // FRAGMENTFLAME_HPP_INCLUDED
+#endif // FRAGMENTFLAME_HPP_INCLUDED
 
 

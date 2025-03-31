@@ -15,19 +15,19 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "DecoObjects/Cannon.hpp"
+#include "DecoObjects/Cannon.hpp"
 
-# include "Media/texture.hpp"
-# include "System/timer.hpp"
-# include "Players/Player.hpp"
-# include "Items/items.hpp"
-# include "Items/CannonControl.hpp"
-# include "Teams/Team.hpp"
-# include "Particles/particles.hpp"
-# include "SpaceObjects/Home.hpp"
-# include "SpaceObjects/ships.hpp"
-# include "Teams/teams.hpp"
-# include "defines.hpp"
+#include "Media/texture.hpp"
+#include "System/timer.hpp"
+#include "Players/Player.hpp"
+#include "Items/items.hpp"
+#include "Items/CannonControl.hpp"
+#include "Teams/Team.hpp"
+#include "Particles/particles.hpp"
+#include "SpaceObjects/Home.hpp"
+#include "SpaceObjects/ships.hpp"
+#include "Teams/teams.hpp"
+#include "defines.hpp"
 
 Cannon::Cannon():
     timer_(0.f),

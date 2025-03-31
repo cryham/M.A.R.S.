@@ -18,8 +18,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef DECOOBJECTS_HPP_INCLUDED
 # define DECOOBJECTS_HPP_INCLUDED
 
-# include "System/Vector2f.hpp"
-# include "System/Color3f.hpp"
+#include "System/Vector2f.hpp"
+#include "System/Color3f.hpp"
 
 class Planet;
 class Ship;
@@ -97,5 +97,5 @@ namespace decoObjects {
     void clear();
 };
 
-# endif //DECOOBJECTS_HPP_INCLUDED
+#endif //DECOOBJECTS_HPP_INCLUDED
 

@@ -18,7 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef H2OMG_HPP_INCLUDED
 # define H2OMG_HPP_INCLUDED
 
-# include "Weapons/Weapon.hpp"
+#include "Weapons/Weapon.hpp"
 
 /// Weapon: H2OMG.
 /// A long distance gun, which fires some icy cubes.
@@ -47,5 +47,5 @@ class H2OMG: public Weapon
         float maxAngle()   const;
 };
 
-# endif // H2OMG_HPP_INCLUDED
+#endif // H2OMG_HPP_INCLUDED
 

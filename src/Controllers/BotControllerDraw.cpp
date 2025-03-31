@@ -15,18 +15,18 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Controllers/BotController.hpp"
+#include "Controllers/BotController.hpp"
 
-# include "System/settings.hpp"
-# include "SpaceObjects/Ship.hpp"
-# include "Players/Player.hpp"
-# include "Teams/Team.hpp"
-# include "SpaceObjects/Home.hpp"
-# include "Items/items.hpp"
-# include "Items/CannonControl.hpp"
-# include "Particles/AmmoInsta.hpp"
+#include "System/settings.hpp"
+#include "SpaceObjects/Ship.hpp"
+#include "Players/Player.hpp"
+#include "Teams/Team.hpp"
+#include "SpaceObjects/Home.hpp"
+#include "Items/items.hpp"
+#include "Items/CannonControl.hpp"
+#include "Particles/AmmoInsta.hpp"
 
-# include <SFML/OpenGL.hpp>
+#include <SFML/OpenGL.hpp>
 
 void BotController::draw()
 {

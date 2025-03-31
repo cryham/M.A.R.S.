@@ -18,10 +18,10 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef SLIDER_HPP_INCLUDED
 # define SLIDER_HPP_INCLUDED
 
-# include "Interface/UiElement.hpp"
-# include "Interface/Label.hpp"
+#include "Interface/UiElement.hpp"
+#include "Interface/Label.hpp"
 
-# include <vector>
+#include <vector>
 
 class Slider: public UiElement {
     public:
@@ -48,5 +48,5 @@ class Slider: public UiElement {
         sf::String* toolTip_;
 };
 
-# endif
+#endif
 

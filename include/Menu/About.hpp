@@ -18,7 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef ABOUT_HPP_INCLUDED
 # define ABOUT_HPP_INCLUDED
 
-# include "Interface/UiWindow.hpp"
+#include "Interface/UiWindow.hpp"
 
 class TextBox;
 
@@ -42,4 +42,4 @@ class About: public UiWindow
         static sf::String marsName_;
 };
 
-# endif // ABOUT_HPP_INCLUDED
+#endif // ABOUT_HPP_INCLUDED

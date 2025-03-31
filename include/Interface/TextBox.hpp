@@ -18,11 +18,11 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef TEXTBOX_HPP_INCLUDED
 # define TEXTBOX_HPP_INCLUDED
 
-# include "Interface/UiElement.hpp"
-# include "Interface/Label.hpp"
-# include "Interface/VerticalSlider.hpp"
+#include "Interface/UiElement.hpp"
+#include "Interface/Label.hpp"
+#include "Interface/VerticalSlider.hpp"
 
-# include <vector>
+#include <vector>
 
 class TextBox: public UiElement {
     public:
@@ -45,7 +45,7 @@ class TextBox: public UiElement {
         mutable float scrollSpeed_;
 };
 
-# endif
+#endif
 
 
 

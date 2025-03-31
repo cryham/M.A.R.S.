@@ -15,10 +15,10 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Particles/AmmoAFK47.hpp"
+#include "Particles/AmmoAFK47.hpp"
 
-# include "System/timer.hpp"
-# include "Media/sound.hpp"
+#include "System/timer.hpp"
+#include "Media/sound.hpp"
 
 std::list<AmmoAFK47*> AmmoAFK47::activeParticles_;
 

@@ -18,7 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef BURNER_HPP_INCLUDED
 # define BURNER_HPP_INCLUDED
 
-# include "Weapons/Weapon.hpp"
+#include "Weapons/Weapon.hpp"
 
 /// Weapon: Burner.
 /// A short distance weapon, which burns nearby enemies.
@@ -47,4 +47,4 @@ class Burner: public Weapon
         float maxAngle()   const;
 };
 
-# endif // BURNER_HPP_INCLUDED
+#endif // BURNER_HPP_INCLUDED

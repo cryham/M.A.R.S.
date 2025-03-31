@@ -18,7 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef GAME_HPP_INCLUDED
 # define GAME_HPP_INCLUDED
 
-# include "Games/games.hpp"
+#include "Games/games.hpp"
 
 /// Base class for all games.
 /// Provides some basic methods.
@@ -66,7 +66,7 @@ class Game {
         bool            ended_;
 };
 
-# endif // GAME_HPP_INCLUDED
+#endif // GAME_HPP_INCLUDED
 
 
 

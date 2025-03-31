@@ -18,7 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef BOTPLAYER_HPP_INCLUDED
 # define BOTPLAYER_HPP_INCLUDED
 
-# include "Players/Player.hpp"
+#include "Players/Player.hpp"
 
 class BotController;
 class Team;
@@ -41,5 +41,5 @@ class BotPlayer: public Player {
         BotController* controller_;
 };
 
-# endif // BOTPLAYER_HPP_INCLUDED
+#endif // BOTPLAYER_HPP_INCLUDED
 

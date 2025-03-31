@@ -20,7 +20,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef HOMEZONE_HPP_INCLUDED
 # define HOMEZONE_HPP_INCLUDED
 
-# include "Zones/Zone.hpp"
+#include "Zones/Zone.hpp"
 
 /// Zone: HomeZone.
 /// A large round Zone around the HomePlanet.
@@ -43,4 +43,4 @@ class HomeZone: public Zone {
         int homeSide_;
 };
 
-# endif // HOMEZONE_HPP_INCLUDED
+#endif // HOMEZONE_HPP_INCLUDED

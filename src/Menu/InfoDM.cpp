@@ -15,17 +15,17 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# include "Menu/InfoDM.hpp"
+#include "Menu/InfoDM.hpp"
 
-# include "Interface/UiWindow.hpp"
-# include "Interface/Button.hpp"
-# include "Menu/menus.hpp"
-# include "Interface/TextBox.hpp"
-# include "Interface/Checkbox.hpp"
-# include "Interface/Line.hpp"
-# include "Media/text.hpp"
-# include "System/settings.hpp"
-# include "Locales/locales.hpp"
+#include "Interface/UiWindow.hpp"
+#include "Interface/Button.hpp"
+#include "Menu/menus.hpp"
+#include "Interface/TextBox.hpp"
+#include "Interface/Checkbox.hpp"
+#include "Interface/Line.hpp"
+#include "Media/text.hpp"
+#include "System/settings.hpp"
+#include "Locales/locales.hpp"
 
 UiWindow* InfoDM::instance_(NULL);
 bool InfoDM::kClose_(false);

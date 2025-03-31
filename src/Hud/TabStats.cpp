@@ -17,6 +17,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 # include "Hud/TabStats.hpp"
 
+#include "Interface/UiElement.hpp"
 # include "System/settings.hpp"
 # include "Media/text.hpp"
 # include "System/timer.hpp"
@@ -72,15 +73,17 @@ void TabStats::update() {
     }
 }
 
-void TabStats::draw() const {
+void TabStats::draw() const
+{
+    float scale = UiElement::scale_;
     if (visible_ && !menus::visible()) {
         int mirror(locales::getCurrentLocale().LTR_ ? 1 : -1);
-        //get height of list
+        // get height of list
         int height;
         if (games::type() == games::gDeathMatch || games::type() == games::gRally)
-            height = ships::getShips().size()*12 + teamMap_.size()*2 + 85;
+            height = ships::getShips().size()*12*scale + teamMap_.size()*2 + 95;
         else
-            height = ships::getShips().size()*12 + teamMap_.size()*20 + 85;
+            height = ships::getShips().size()*12*scale + teamMap_.size()*20 + 95;
 
         // Compute the width:
         // Points, Frags, TeamKills, Suicides
@@ -219,7 +222,7 @@ void TabStats::draw() const {
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
         width -= 20*mirror;
-        height = 12;
+        height = 12 * scale;
         topLeft += Vector2f(10.f*mirror, 60.f);
 
         // Index of the column we are writing
@@ -236,7 +239,7 @@ void TabStats::draw() const {
         text::drawScreenText(*locales::getLocale(locales::Suicides), topLeft + Vector2f((140+80*col++)*mirror, 0), 12.f, TEXT_ALIGN_CENTER, Color3f(0.7f, 0.7f, 0.7f));
         text::drawScreenText(*locales::getLocale(locales::Deaths), topLeft + Vector2f((140+80*col++)*mirror, 0), 12.f, TEXT_ALIGN_CENTER, Color3f(0.7f, 0.7f, 0.7f));
 
-        topLeft.y_ += 15;
+        topLeft.y_ += 15 * scale;
 
         for (std::multimap<Team*, std::multiset<Player*, playerPtrCmp>, teamPtrCmp >::const_iterator it = teamMap_.begin(); it != teamMap_.end(); ++it) {
             int totalPoints(0), totalFrags(0), totalCannonShots(0), totalGoals(0), totalSelfGoals(0), totalSuicides(0), totalTeamKills(0), totalDeaths(0);
@@ -264,10 +267,10 @@ void TabStats::draw() const {
                 text::drawScreenText((*currentPlayer)->name(), topLeft + Vector2f(3*mirror, 1), 12.f, TEXT_ALIGN_LEFT, Color3f(0.f, 0.f, 0.f));
                 text::drawScreenText((*currentPlayer)->name(), topLeft + Vector2f(2*mirror, 0), 12.f, TEXT_ALIGN_LEFT, drawColor);
                 // draw [BOT]
-                if ((*currentPlayer)->controlType_ != controllers::cPlayer1 && (*currentPlayer)->controlType_ != controllers::cPlayer2) {
+                /*if ((*currentPlayer)->controlType_ != controllers::cPlayer1 && (*currentPlayer)->controlType_ != controllers::cPlayer2) {
                     text::drawScreenText(sf::String("[BOT]"), topLeft+Vector2f(81*mirror,1), 12.f, TEXT_ALIGN_LEFT, Color3f(0.f, 0.f, 0.f));
                     text::drawScreenText(sf::String("[BOT]"), topLeft+Vector2f(80*mirror,0), 12.f, TEXT_ALIGN_LEFT, drawColor);
-                }
+                }*/
                 col = 0;
                 // draw points
                 int value = (*currentPlayer)->points_;
@@ -323,10 +326,10 @@ void TabStats::draw() const {
                 writeScoreAtCol(value, col++, topLeft, mirror, drawColor);
                 totalDeaths += value;
 
-                topLeft.y_ += 12;
+                topLeft.y_ += 12 * scale;
             }
             if (games::type() != games::gDeathMatch && games::type() != games::gRally) {
-                topLeft.y_ += 2;
+                topLeft.y_ += 2 * scale;
                 col = 0;
 
                 teamColor.gl4f(0.2f);
@@ -375,10 +378,10 @@ void TabStats::draw() const {
                 else                    drawColor = Color3f(0.3,1,0.3);
                 writeScoreAtCol(totalDeaths, col++, topLeft, mirror, drawColor);
 
-                topLeft.y_ += 18;
+                topLeft.y_ += 18 * scale;
             }
             else
-                topLeft.y_ += 2;
+                topLeft.y_ += 2 * scale;
         }
         text::drawFooText();
     }

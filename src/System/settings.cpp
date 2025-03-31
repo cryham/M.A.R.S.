@@ -74,6 +74,8 @@ namespace settings
     bool        C_showSelectLanguage =      true;
     bool        C_showToolTips =            true;
 
+    bool        C_noConfirmations =         true;
+
     int         C_languageID =              0;
     int         C_resX =                    INITIAL_WINDOW_X;
     int         C_resY =                    INITIAL_WINDOW_Y;

@@ -108,14 +108,14 @@ namespace generateName {
             loadShipNames();
 
             // init game names
-            gameNames_.push_back("Retarded Shooter");
-            gameNames_.push_back("Random Shooter");
+            // gameNames_.push_back("Retarded Shooter");
+            // gameNames_.push_back("Random Shooter");
             gameNames_.push_back("Ridiculous Shooter");
-            gameNames_.push_back("Rapid Shooter");
-            gameNames_.push_back("Rough Shooter");
-            gameNames_.push_back("Rigged Shooter");
-            gameNames_.push_back("Rude Shooter");
-            gameNames_.push_back("Retro-Shooter");
+            // gameNames_.push_back("Rapid Shooter");
+            // gameNames_.push_back("Rough Shooter");
+            // gameNames_.push_back("Rigged Shooter");
+            // gameNames_.push_back("Rude Shooter");
+            // gameNames_.push_back("Retro-Shooter");
 
             // shuffle both lists
             std::vector<std::pair<sf::String, int> > temp;

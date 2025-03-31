@@ -127,7 +127,7 @@ void TabList::draw () const {
 
     glBlendFunc(GL_SRC_ALPHA, GL_ONE);
 
-    glLineWidth(2.f);
+    /*glLineWidth(2.f);
     glBegin(GL_LINES);
         if (isTopMost())  setColor4f(0.5f, 0.8f, 1.0f, 1.0f);
         else              setColor4f(0.4f, 0.4f, 0.4f, 1.0f);
@@ -142,7 +142,7 @@ void TabList::draw () const {
         if (isTopMost())  setColor4f(0.5f, 0.8f, 1.0f, 0.0f);
         else              setColor4f(0.4f, 0.4f, 0.4f, 0.0f);
         glVertex2f(origin.x_+width(),origin.y_+20);
-    glEnd();
+    glEnd();*/
 
     for (std::vector<Tab*>::const_iterator i=tabs_.begin(); i != tabs_.end(); ++i)
         (*i)->draw();

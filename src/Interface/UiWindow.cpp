@@ -183,7 +183,7 @@ void UiWindow::draw () const {
     glBindTexture(GL_TEXTURE_2D, 0);
     glDisable(GL_TEXTURE_2D);
 
-    text::drawFooText();
+    // text::drawFooText();
 
     for (std::vector<UiElement*>::const_iterator i=widgets_.begin(); i != widgets_.end(); ++i)
         (*i)->draw();

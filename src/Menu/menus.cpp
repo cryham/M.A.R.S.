@@ -87,7 +87,8 @@ namespace menus {
     void mouseLeft(bool down) {
         if (visible()) {
             windowStack_.back()->mouseLeft(down);
-            if (!down) windowStack_.back()->checkWidgets();
+            if (!down)
+                windowStack_.back()->checkWidgets();
         }
     }
 
@@ -137,14 +138,17 @@ namespace menus {
         window::showCursor(true);
         toBeShown->onShow();
         toBeShown->setTopMost(true);
-        if (visible()) windowStack_.back()->setTopMost(false);
+        if (visible())
+            windowStack_.back()->setTopMost(false);
         windowStack_.push_back(toBeShown);
     }
 
     void hideWindow() {
         windowStack_.pop_back();
-        if (!visible()) window::showCursor(false);
-        else windowStack_.back()->setTopMost(true);
+        if (!visible())
+            window::showCursor(false);
+        else
+            windowStack_.back()->setTopMost(true);
     }
 
     void hideMenu() {
@@ -153,7 +157,8 @@ namespace menus {
     }
 
     void clearFocus() {
-        if (visible()) windowStack_.back()->clearFocus();
+        if (visible())
+            windowStack_.back()->clearFocus();
     }
 
     void fixKeyboardOn(UiElement* target) {

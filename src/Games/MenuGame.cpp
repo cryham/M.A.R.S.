@@ -40,8 +40,8 @@ MenuGame::MenuGame():
     Team* myTeamL = teams::addTeam(new GITeam(rand));
     Team* myTeamR = teams::addTeam(new GITeam(rand.inverted()));
 
-    for (int i=0; i<4;  ++i)    players::addPlayer(myTeamL, controllers::cBot);
-    for (int i=0; i<4; ++i)     players::addPlayer(myTeamR, controllers::cBot);
+    for (int i=0; i<4; ++i)  players::addPlayer(myTeamL, controllers::cBot);
+    for (int i=0; i<4; ++i)  players::addPlayer(myTeamR, controllers::cBot);
 
     Home* homeL = spaceObjects::addHome(HOME_LEFT, 100, myTeamL->color());
     Home* homeR = spaceObjects::addHome(HOME_RIGHT, 100, myTeamR->color());
@@ -89,8 +89,8 @@ MenuGame::MenuGame():
     Team* myTeamL = teams::addTeam(new TDMTeam(rand));
     Team* myTeamR = teams::addTeam(new TDMTeam(rand.inverted()));
 
-    for (int i=0; i<5;  ++i)    players::addPlayer(myTeamL, controllers::cBot);
-    for (int i=0; i<5; ++i)     players::addPlayer(myTeamR, controllers::cBot);
+    for (int i=0; i<5; ++i)  players::addPlayer(myTeamL, controllers::cBot);
+    for (int i=0; i<5; ++i)  players::addPlayer(myTeamR, controllers::cBot);
 
     Home* homeL = spaceObjects::addHome(HOME_LEFT,  myTeamL->color());
     Home* homeR = spaceObjects::addHome(HOME_RIGHT, myTeamR->color());

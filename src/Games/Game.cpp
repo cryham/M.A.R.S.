@@ -40,18 +40,18 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 Game::Game(games::GameType const& type):
     type_(type),
     startTime_(timer::totalTime()),
-    ended_(false) {
-        switch (type_) {
-            case games::gSpaceBall:  pointLimit_ = settings::C_pointLimitSB;    break;
-            case games::gCannonKeep: pointLimit_ = settings::C_pointLimitCK;    break;
-            case games::gDeathMatch: pointLimit_ = settings::C_pointLimitDM;  break;
-            case games::gMenu:       pointLimit_ = 9999999;                   break;
-            default:                 pointLimit_ = settings::C_pointLimitTDM;
-        }
-
+    ended_(false)
+{
+    switch (type_) {
+        case games::gSpaceBall:  pointLimit_ = settings::C_pointLimitSB;    break;
+        case games::gCannonKeep: pointLimit_ = settings::C_pointLimitCK;    break;
+        case games::gDeathMatch: pointLimit_ = settings::C_pointLimitDM;  break;
+        case games::gMenu:       pointLimit_ = 9999999;                   break;
+        default:                 pointLimit_ = settings::C_pointLimitTDM;
+    }
     hud::init();
     stars::init();
-    }
+}
 
 Game::~Game() {
     items::clear();

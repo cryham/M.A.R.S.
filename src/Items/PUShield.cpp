@@ -21,7 +21,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # include "Players/Player.hpp"
 # include "Particles/particles.hpp"
 
-void PUShield::draw() const {
+void PUShield::draw() const
+{
     if (!collected_) {
         PowerUp::draw();
     }
@@ -49,7 +50,8 @@ void PUShield::draw() const {
     }
 }
 
-void PUShield::refreshLifeTime() {
+void PUShield::refreshLifeTime()
+{
     lifeTime_ = 0.f;
     totalLifeTime_ = 10.f;
     // direction is abused for texture coords

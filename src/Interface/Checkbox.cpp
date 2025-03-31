@@ -29,17 +29,19 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 Checkbox::Checkbox (sf::String* text, sf::String* toolTip, bool* value, Vector2f const& topLeft, int width):
     UiElement(topLeft, width, 20),
     value_(value),
-    toolTip_(toolTip) {
-
+    toolTip_(toolTip)
+{
     label_ = new Label(text, TEXT_ALIGN_LEFT, Vector2f(15,0));
     label_->setParent(this);
 }
 
-Checkbox::~Checkbox () {
+Checkbox::~Checkbox ()
+{
     delete label_;
 }
 
-void Checkbox::mouseMoved(Vector2f const& position) {
+void Checkbox::mouseMoved(Vector2f const& position)
+{
     UiElement::mouseMoved(position);
     label_->mouseMoved(position);
 
@@ -47,7 +49,8 @@ void Checkbox::mouseMoved(Vector2f const& position) {
         toolTip::show(toolTip_);
 }
 
-void Checkbox::mouseLeft(bool down) {
+void Checkbox::mouseLeft(bool down)
+{
     UiElement::mouseLeft(down);
     if (!pressed_ && hovered_ && focused_) {
         *value_ = !*value_;
@@ -55,7 +58,8 @@ void Checkbox::mouseLeft(bool down) {
     }
 }
 
-void Checkbox::keyEvent(bool down, Key const& key) {
+void Checkbox::keyEvent(bool down, Key const& key)
+{
     if (key.navi_ == Key::nConfirm) {
         pressed_ = down;
         if (!pressed_) {
@@ -65,7 +69,8 @@ void Checkbox::keyEvent(bool down, Key const& key) {
     }
 }
 
-void Checkbox::draw() const {
+void Checkbox::draw() const
+{
     Vector2f origin = getTopLeft();
 
     glEnable(GL_TEXTURE_2D);
@@ -124,12 +129,14 @@ void Checkbox::draw() const {
     label_->draw();
 }
 
-void Checkbox::setFocus (UiElement* toBeFocused, bool isPrevious) {
+void Checkbox::setFocus (UiElement* toBeFocused, bool isPrevious)
+{
     UiElement::setFocus(this, isPrevious);
     label_->setFocus(this, isPrevious);
 }
 
-void Checkbox::clearFocus() {
+void Checkbox::clearFocus()
+{
     UiElement::clearFocus();
     label_->clearFocus();
 }

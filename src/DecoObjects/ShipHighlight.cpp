@@ -21,7 +21,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # include "Players/Player.hpp"
 # include "Particles/AmmoInsta.hpp"
 
-void ShipHighlight::draw() const {
+void ShipHighlight::draw() const
+{
     if (ship_->visible_) {
         // wobble when charging
         if ((ship_->docked_ && (ship_->getLife() < 100.f) | (ship_->getFuel() < 100.f)))
@@ -34,7 +35,8 @@ void ShipHighlight::draw() const {
     }
 }
 
-void ShipHighlight::draw(Vector2f const& location, float scale, float alpha) const {
+void ShipHighlight::draw(Vector2f const& location, float scale, float alpha) const
+{
     const float    maxAngle     (ship_->currentWeapon_->maxAngle());
     const float    shipRotation (ship_->rotation_*M_PI/180.f);
     const Vector2f shipDirection(Vector2f(std::cos(shipRotation), std::sin(shipRotation)));
@@ -64,4 +66,3 @@ void ShipHighlight::draw(Vector2f const& location, float scale, float alpha) con
     glDisable(GL_TEXTURE_2D);
     glBindTexture(GL_TEXTURE_2D, 0);
 }
-

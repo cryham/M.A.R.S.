@@ -20,11 +20,14 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 # include "SpaceObjects/SpaceObject.hpp"
 
-class Planet: public SpaceObject {
+class Planet: public SpaceObject
+{
     public:
         Planet(Vector2f const& location, float radius);
 
-        void update() {};
+        void update()
+        {   }
+
         void draw() const;
 
         void onCollision(SpaceObject* with, Vector2f const& location,

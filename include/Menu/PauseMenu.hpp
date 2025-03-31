@@ -20,16 +20,19 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 # include "Interface/UiWindow.hpp"
 
-class PauseMenu: public UiWindow {
+class PauseMenu: public UiWindow
+{
     public:
         static UiWindow* get();
         void checkWidgets();
-        void onShow() {}
+        void onShow()
+        {   }
 
         static void reset();
 
     private:
-        PauseMenu(int width, int height): UiWindow(width, height) {}
+        PauseMenu(int width, int height): UiWindow(width, height)
+        {   }
         PauseMenu(PauseMenu const& copy);
 
         static UiWindow* instance_;
@@ -38,4 +41,3 @@ class PauseMenu: public UiWindow {
 };
 
 # endif // PAUSEMENU_HPP_INCLUDED
-

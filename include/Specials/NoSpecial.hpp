@@ -23,23 +23,23 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 /// Special: NoSpecial.
 /// Nothing at all...
 
-class NoSpecial: public Special {
+class NoSpecial: public Special
+{
     public:
         /// Ctor which constructs the special.
         NoSpecial(Ship* parent):
-              Special(specials::sNoSpecial, parent, sf::String("Nothing")) {};
+              Special(specials::sNoSpecial, parent, sf::String("Nothing"))
+        {   }
 
         /// Does nothing.
-        void activate() const {}
+        void activate() const
+        {   }
 
-        float radius() const { return .0F; }
+        float radius() const
+        {  return 0.f;  }
 
         /// Draws the special.
         void draw(float alpha) const;
 };
 
 # endif // NOSPECIAL_HPP_INCLUDED
-
-
-
-

@@ -46,12 +46,14 @@ ComboBox::ComboBox (sf::String* text, sf::String* toolTip, sf::String* value, st
     dropBox_ = new DropDownWindow(width-labelWidth, this, values);
 }
 
-ComboBox::~ComboBox () {
+ComboBox::~ComboBox ()
+{
     delete label_;
     delete dropBox_;
 }
 
-void ComboBox::mouseMoved(Vector2f const& position) {
+void ComboBox::mouseMoved(Vector2f const& position)
+{
     UiElement::mouseMoved(position);
     label_->mouseMoved(position);
 
@@ -59,7 +61,8 @@ void ComboBox::mouseMoved(Vector2f const& position) {
         toolTip::show(toolTip_);
 }
 
-void ComboBox::mouseWheelMoved(Vector2f const& position, int delta) {
+void ComboBox::mouseWheelMoved(Vector2f const& position, int delta)
+{
     if (hovered_ && values_.size() > 1) {
         int i(0);
         for (i=0; i<values_.size(); ++i) {
@@ -73,7 +76,8 @@ void ComboBox::mouseWheelMoved(Vector2f const& position, int delta) {
     }
 }
 
-void ComboBox::mouseLeft(bool down) {
+void ComboBox::mouseLeft(bool down)
+{
     UiElement::mouseLeft(hovered_ && down);
     if (!pressed_ && hovered_ && focused_) {
         hovered_ = false;
@@ -82,7 +86,8 @@ void ComboBox::mouseLeft(bool down) {
     }
 }
 
-void ComboBox::keyEvent(bool down, Key const& key) {
+void ComboBox::keyEvent(bool down, Key const& key)
+{
     if (key.navi_ == Key::nConfirm) {
         pressed_ = down;
         if (!pressed_) {
@@ -93,7 +98,8 @@ void ComboBox::keyEvent(bool down, Key const& key) {
     }
 }
 
-void ComboBox::draw() const {
+void ComboBox::draw() const
+{
     UiElement::draw();
 
     Vector2f origin = getTopLeft();
@@ -204,12 +210,14 @@ void ComboBox::draw() const {
     label_->draw();
 }
 
-void ComboBox::setFocus (UiElement* toBeFocused, bool isPrevious) {
+void ComboBox::setFocus (UiElement* toBeFocused, bool isPrevious)
+{
     UiElement::setFocus(this, isPrevious);
     label_->setFocus(this, isPrevious);
 }
 
-void ComboBox::clearFocus() {
+void ComboBox::clearFocus()
+{
     UiElement::clearFocus();
     label_->clearFocus();
 }

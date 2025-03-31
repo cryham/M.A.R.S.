@@ -27,7 +27,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 # include <sstream>
 
-void RightLife::draw() const {
+void RightLife::draw() const
+{
 
     Player const* player(NULL);
 

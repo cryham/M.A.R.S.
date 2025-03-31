@@ -23,8 +23,8 @@ Key::Key(sf::Keyboard::Key code):
     type_(kKeyBoard),
     navi_(nNone),
     strength_(100),
-    joyID_(0) {
-
+    joyID_(0)
+{
     code_.keyBoard_ = code;
 
     if (code == sf::Keyboard::Return || code == sf::Keyboard::Space)
@@ -47,8 +47,8 @@ Key::Key(unsigned int joyID, sf::Joystick::Axis joyAxis, int strength):
     type_(kJoyAxis),
     navi_(nNone),
     strength_(0),
-    joyID_(joyID) {
-
+    joyID_(joyID)
+{
     std::pair<AxisType, int> tmp(convertFromSFML(joyAxis, strength));
 
     code_.joyButton_ = tmp.first;
@@ -80,8 +80,8 @@ Key::Key(unsigned int joyID, unsigned int joyButton):
     type_(kJoyButton),
     navi_(nNone),
     strength_(100),
-    joyID_(joyID) {
-
+    joyID_(joyID)
+{
     code_.joyButton_ = joyButton;
 
     if (joyButton == 0 || joyButton == 8 || joyButton == 9  || joyButton == 2)
@@ -100,7 +100,8 @@ Key::Key(unsigned int joyID, unsigned int joyButton):
         navi_ = nDown;
 }
 
-std::pair<Key::AxisType, int> Key::convertFromSFML(sf::Joystick::Axis joyAxis, int strength) {
+std::pair<Key::AxisType, int> Key::convertFromSFML(sf::Joystick::Axis joyAxis, int strength)
+{
     std::pair<AxisType, int> result;
     result.second = std::abs(strength);
     switch (joyAxis) {
@@ -158,40 +159,43 @@ std::pair<Key::AxisType, int> Key::convertFromSFML(sf::Joystick::Axis joyAxis, i
             else              result.first = aPOVdown;
             break;
     }
-
     return result;
-
 }
 
-
-sf::Joystick::Axis Key::convertToSFML(AxisType joyAxis) {
-    if(joyAxis == aALleft || joyAxis == aALright)
+sf::Joystick::Axis Key::convertToSFML(AxisType joyAxis)
+{
+    if (joyAxis == aALleft || joyAxis == aALright)
         return sf::Joystick::X;
-    else if(joyAxis == aALup || joyAxis == aALdown)
+    else if (joyAxis == aALup || joyAxis == aALdown)
         return sf::Joystick::Y;
-    else if(joyAxis == aLT)
+    else if (joyAxis == aLT)
         return sf::Joystick::Z;
-    else if(joyAxis == aRT) {
+    else if (joyAxis == aRT)
+    {
         # if defined __WIN32__
             return sf::Joystick::Z;
         # else
             return sf::Joystick::R;
         # endif
     }
-    else if(joyAxis == aARleft || joyAxis == aARright)
+    else if (joyAxis == aARleft || joyAxis == aARright)
         return sf::Joystick::U;
-    else if(joyAxis == aARup || joyAxis == aARdown)
+    else if (joyAxis == aARup || joyAxis == aARdown)
         # if defined __WIN32__
             return sf::Joystick::R;
         # else
             return sf::Joystick::V;
         # endif
-    else return sf::Joystick::PovX;
+    else
+        return sf::Joystick::PovX;
 }
 
-bool operator== (Key const& lhs, Key const& rhs) {
-    if (lhs.type_ == rhs.type_) {
-        switch (lhs.type_) {
+bool operator== (Key const& lhs, Key const& rhs)
+{
+    if (lhs.type_ == rhs.type_)
+    {
+        switch (lhs.type_)
+        {
             case Key::kKeyBoard:
                 return lhs.code_.keyBoard_ == rhs.code_.keyBoard_;
             case Key::kJoyButton:
@@ -203,13 +207,15 @@ bool operator== (Key const& lhs, Key const& rhs) {
     return false;
 }
 
-std::ostream& operator<< (std::ostream& stream, Key const& input) {
+std::ostream& operator<< (std::ostream& stream, Key const& input)
+{
     stream << input.type_ << " " <<input.code_.joyButton_;
     if (input.type_ != Key::kKeyBoard) stream << " " << input.joyID_;
     return stream;
 }
 
-std::istream& operator>> (std::istream& stream, Key& output) {
+std::istream& operator>> (std::istream& stream, Key& output)
+{
     int type(0), joyButton(0);
     stream >> type >> joyButton;
     output.code_.joyButton_ = joyButton;

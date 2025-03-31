@@ -24,7 +24,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 Planet::Planet(Vector2f const& location, float radius):
                SpaceObject(spaceObjects::oPlanet, location, radius, radius*100),
                texture_(texture::randomPlanet()),
-               color_(texture::getMudColor(texture_)) {
+               color_(texture::getMudColor(texture_))
+{
     physics::addStaticObject(this);
     physics::addGravitySource(this);
 
@@ -32,7 +33,8 @@ Planet::Planet(Vector2f const& location, float radius):
         decoObjects::addPlanetSign(this);
 }
 
-void Planet::draw() const {
+void Planet::draw() const
+{
     glEnable(GL_TEXTURE_2D);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glBindTexture(GL_TEXTURE_2D, texture::getTexture(texture_));
@@ -51,10 +53,12 @@ void Planet::draw() const {
 }
 
 void Planet::onCollision(SpaceObject* with, Vector2f const& location,
-                         Vector2f const& direction, Vector2f const& velocity) {
+                         Vector2f const& direction, Vector2f const& velocity)
+{
     float strength = velocity.length();
 
-    switch (with->type()) {
+    switch (with->type())
+    {
         case spaceObjects::oAmmoROFLE: case spaceObjects::oAmmoInsta:
             particles::spawnMultiple(20, particles::pMud, location, location-location_, velocity, color_);
             break;

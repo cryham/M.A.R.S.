@@ -23,12 +23,14 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 /// Special: Freezer.
 /// A Freezing wave.
 
-class Freezer: public Special {
+class Freezer: public Special
+{
     public:
         /// Ctor which constructs the special.
         Freezer(Ship* parent):
               Special(specials::sFreeze, parent, sf::String("FREEZER")),
-              radius_(0.f) {};
+              radius_(0.f)
+        {   }
 
         /// Freezes nearby ships.
         void activate() const;
@@ -43,7 +45,3 @@ class Freezer: public Special {
 };
 
 # endif // FREEZER_HPP_INCLUDED
-
-
-
-

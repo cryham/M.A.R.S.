@@ -24,9 +24,11 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # include "Teams/Team.hpp"
 
 KeyController::KeyController(Player* slave):
-    Controller(slave) {}
+    Controller(slave)
+{   }
 
-void KeyController::update() const {
+void KeyController::update() const
+{
     if (type_ == controllers::cPlayer1) {
         slaveUp   (window::isKeyDown(settings::C_playerIup));
         slaveDown (window::isKeyDown(settings::C_playerIdown));
@@ -52,7 +54,8 @@ void KeyController::update() const {
     }
 }
 
-void KeyController::update(Key const& key) const {
+void KeyController::update(Key const& key) const
+{
     if (type_ == controllers::cPlayer1 && key.strength_ == 100) {
         if      (key == settings::C_playerIup)    slaveUp();
         else if (key == settings::C_playerIdown)  slaveDown();
@@ -85,7 +88,8 @@ void KeyController::update(Key const& key) const {
 }
 
 
-void KeyController::evaluate() {
+void KeyController::evaluate()
+{
     if (std::max(100 - ship()->getLife(), 100 - ship()->getFuel()) > 30) {
         slave_->team()->addJob(Job(Job::jHeal, std::max(100 - ship()->getLife(), 100 - ship()->getFuel()), ship()));
         slave_->team()->addJob(Job(Job::jHeal, std::max(100 - ship()->getLife(), 100 - ship()->getFuel()), ship()));

@@ -27,7 +27,8 @@ namespace font {
         std::map<int, sf::Font*> fonts_;
     }
 
-    sf::Font* getFont(int languageID) {
+    sf::Font* getFont(int languageID)
+    {
         std::map<int, sf::Font*>::iterator it = fonts_.find(languageID);
         if (it == fonts_.end()) {
             // load it from file and...

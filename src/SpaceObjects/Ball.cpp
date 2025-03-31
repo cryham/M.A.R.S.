@@ -39,22 +39,25 @@ Ball::Ball(Vector2f const& location):
            heatTimer_(0.f),
            smokeTimer_(0.f),
            respawnTimer_(0.f),
-           lastShooter_(NULL) {
+           lastShooter_(NULL)
+{
     physics::addMobileObject(this);
 }
 
-void Ball::update() {
+void Ball::update()
+{
     float time = timer::frameTime();
 
-    if (visible_) {
-
+    if (visible_)
+    {
         physics::collide(this, STATICS | MOBILES);
 
-        if(frozen_ <= 0.f) {
-
+        if (frozen_ <= 0.f)
+        {
             if (sticky_)
                 velocity_ = Vector2f();
-            else {
+            else
+            {
                 Vector2f acceleration(physics::attract(this));
                 // s = s0 + v0*t + 0.5*a*t*t
                 location_ += velocity_*time + acceleration*0.5*time*time;
@@ -83,15 +86,14 @@ void Ball::update() {
             }
 
             // heating of ball
-            if (heatTimer_ > 0.f) {
-                heatTimer_ -= time;
+            if (heatTimer_ > 0.f)
+            {   heatTimer_ -= time;
                 if (smokeTimer_ > 0)
                     smokeTimer_ -= time;
-                else {
-                    smokeTimer_ = 0.3f/(settings::C_globalParticleCount*heatTimer_);
-                    for (int i=0; i<5; ++i) {
+                else
+                {   smokeTimer_ = 0.3f/(settings::C_globalParticleCount*heatTimer_);
+                    for (int i=0; i<5; ++i)
                         particles::spawn(particles::pSmoke, location_+Vector2f::randDirLen()*radius_, velocity_);
-                    }
                 }
             }
         }
@@ -99,14 +101,14 @@ void Ball::update() {
             velocity_ = Vector2f();
             frozen_ -= timer::frameTime()*3.f;
 
-            if (frozen_ <= 0.f) {
-                frozen_ = 0.f;
+            if (frozen_ <= 0.f)
+            {   frozen_ = 0.f;
                 mass_ = 7.f;
                 particles::spawnMultiple(2, particles::pCrushedIce, location_);
             }
         }
-    }
-    else {
+    }else
+    {
         respawnTimer_ -= time;
         if (respawnTimer_ < 0.2f && (respawnTimer_ + time) >= 0.2f)
             sound::playSound(sound::BallRespawn);
@@ -115,8 +117,10 @@ void Ball::update() {
     }
 }
 
-void Ball::draw() const {
-    if (visible_) {
+void Ball::draw() const
+{
+    if (visible_)
+    {
         glPushMatrix();
         glLoadIdentity();
         glTranslatef(location_.x_, location_.y_, 0);
@@ -168,7 +172,8 @@ void Ball::draw() const {
 }
 
 void Ball::onCollision(SpaceObject* with, Vector2f const& location,
-                       Vector2f const& direction, Vector2f const& velocity) {
+                       Vector2f const& direction, Vector2f const& velocity)
+{
     sticky_ = false;
     float strength = velocity.length();
 
@@ -179,7 +184,8 @@ void Ball::onCollision(SpaceObject* with, Vector2f const& location,
 
     float unfreeze(0);
 
-    switch (with->type()) {
+    switch (with->type())
+    {
         case spaceObjects::oSun:
             rotateSpeed_ = rotateSpeed_*0.5 + ((velocity_.x_*direction.y_ - direction.x_*velocity_.y_)*0.1)*0.5;
             heatTimer_ = 20;
@@ -208,17 +214,23 @@ void Ball::onCollision(SpaceObject* with, Vector2f const& location,
             break;
 
         case spaceObjects::oAmmoAFK47:
-            particles::spawnMultiple(1, particles::pSpark, location, dynamic_cast<MobileSpaceObject*>(with)->velocity()*0.3f, velocity_, Color3f(0.3f, 0.3f, 0.3f));
+            particles::spawnMultiple(1, particles::pSpark, location,
+                dynamic_cast<MobileSpaceObject*>(with)->velocity()*0.3f,
+                velocity_, Color3f(0.3f, 0.3f, 0.3f));
             unfreeze = 1.f;
             break;
 
         case spaceObjects::oAmmoROFLE:
-            particles::spawnMultiple(10, particles::pSpark, location, dynamic_cast<MobileSpaceObject*>(with)->velocity()*0.5f, velocity_, Color3f(0.3f, 0.3f, 0.3f));
+            particles::spawnMultiple(10, particles::pSpark, location,
+                dynamic_cast<MobileSpaceObject*>(with)->velocity()*0.5f,
+                velocity_, Color3f(0.3f, 0.3f, 0.3f));
             unfreeze = 10.f;
             break;
 
         case spaceObjects::oAmmoShotgun:
-            particles::spawnMultiple(1, particles::pSpark, location, dynamic_cast<MobileSpaceObject*>(with)->velocity()*0.7f, velocity_, Color3f(0.3f, 0.3f, 0.3f));
+            particles::spawnMultiple(1, particles::pSpark, location,
+                dynamic_cast<MobileSpaceObject*>(with)->velocity()*0.7f,
+                velocity_, Color3f(0.3f, 0.3f, 0.3f));
             unfreeze = 1.f;
             break;
 
@@ -240,22 +252,24 @@ void Ball::onCollision(SpaceObject* with, Vector2f const& location,
         default:;
     }
 
-    if (frozen_ > 0) {
-        frozen_ -= unfreeze;
-        if (frozen_ <= 0.f) {
-            frozen_ = 0.f;
+    if (frozen_ > 0)
+    {   frozen_ -= unfreeze;
+        if (frozen_ <= 0.f)
+        {   frozen_ = 0.f;
             mass_ = 7.f;
             particles::spawnMultiple(2, particles::pCrushedIce, location_);
         }
     }
 }
 
-void Ball::onShockWave(Player* source, float intensity) {
+void Ball::onShockWave(Player* source, float intensity)
+{
     sticky_ = false;
     setDamageSource(source->ship()->damageSource());
 }
 
-void Ball::explode() {
+void Ball::explode()
+{
     sound::playSound(sound::BallExplode, location_, 100.f);
     physics::causeShockWave(damageSource(), location_, 50.f, 300.f, 3.f);
     particles::spawnMultiple(5 , particles::pFragment, location_, location_, location_, Color3f(0.3f, 0.3f, 0.3f));
@@ -274,7 +288,8 @@ void Ball::explode() {
     respawnTimer_ = 5.f;
 }
 
-void Ball::respawn() {
+void Ball::respawn()
+{
     physics::addMobileObject(this);
     visible_ = true;
     sticky_  = true;

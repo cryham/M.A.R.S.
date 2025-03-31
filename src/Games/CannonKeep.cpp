@@ -27,8 +27,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # include "SpaceObjects/spaceObjects.hpp"
 
 CannonKeep::CannonKeep():
-    Game(games::gCannonKeep) {
-
+    Game(games::gCannonKeep)
+{
     settings::C_EnabledWeapons  = settings::C_EnabledWeaponsByUser;
     settings::C_EnabledSpecials = settings::C_EnabledSpecialsByUser;
 
@@ -86,12 +86,15 @@ CannonKeep::CannonKeep():
     zones::createRaster(4,3);
 }
 
-void CannonKeep::draw() const {
-    if (settings::C_drawZones) zones::draw();
+void CannonKeep::draw() const
+{
+    if (settings::C_drawZones)
+        zones::draw();
     Game::draw();
 }
 
-void CannonKeep::restart() {
+void CannonKeep::restart()
+{
     Game::restart();
 
     Home* homeL = spaceObjects::addHome(HOME_LEFT, settings::C_pointLimitCK, teams::getTeamL()->color());

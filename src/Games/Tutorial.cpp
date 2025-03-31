@@ -72,7 +72,8 @@ Tutorial::Tutorial():
     spaceObjects::addPlanet(Vector2f(280.f, 650.f), 80.f);
 }
 
-void Tutorial::update() {
+void Tutorial::update()
+{
     Game::update();
 
     if (!dead_ && players::getPlayerI()->ship()->getLife() == 0.f) {
@@ -383,12 +384,14 @@ void Tutorial::update() {
     }
 }
 
-void Tutorial::draw() const {
+void Tutorial::draw() const
+{
     zones::draw();
     Game::draw();
 }
 
-void Tutorial::restart() {
+void Tutorial::restart()
+{
     Game::restart();
 
     state_ = -1;

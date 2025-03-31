@@ -27,18 +27,20 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # include <SFML/OpenGL.hpp>
 # include <iostream>
 
-namespace postFX {
-
-    namespace {
+namespace postFX
+{
+    namespace
+    {
         sf::Shader        postFX_;
         sf::RenderTexture bumpMap_;
         float             exposure_(1.f);
         float             flashTimer_(0.f);
     }
 
-    void update() {
-        if (settings::C_shaders) {
-
+    void update()
+    {
+        if (settings::C_shaders)
+        {
             bumpMap_.setActive(true);
             bumpMap_.clear(sf::Color(127, 0, 127));
 
@@ -47,8 +49,9 @@ namespace postFX {
 
             bumpMap_.display();
 
-            if (flashTimer_ > 0) {
-                flashTimer_ -= timer::frameTime();
+            if (flashTimer_ > 0)
+            {   flashTimer_ -= timer::frameTime();
+
                 if (flashTimer_ > 0.4f)
                     exposure_ = (0.5f-flashTimer_)*5.f + 1.f;
                 else if (flashTimer_ > 0)
@@ -56,25 +59,29 @@ namespace postFX {
                 else
                     exposure_ = 1.f;
             }
-
             postFX_.setParameter("Exposure", exposure_);
         }
     }
 
-    void onExplosion() {
+    void onExplosion()
+    {
         flashTimer_ = 0.5f;
     }
 
-    sf::Shader* get() {
+    sf::Shader* get()
+    {
         return &postFX_;
     }
 
-    bool supported() {
+    bool supported()
+    {
         return (sf::Shader::isAvailable());
     }
 
-    void load() {
-        if (supported()) {
+    void load()
+    {
+        if (supported())
+        {
             postFX_.loadFromFile(settings::C_dataPath + "shaders/bump.frag", sf::Shader::Fragment);
             bumpMap_.create(SPACE_X_RESOLUTION*0.5f, SPACE_Y_RESOLUTION*0.5f);
             glViewport(0,0,SPACE_X_RESOLUTION*0.5f,SPACE_Y_RESOLUTION*0.5f);
@@ -88,7 +95,3 @@ namespace postFX {
             std::cout << "Shaders are not supported on your hardware! There will be no fancy graphics..." << std::endl;
     }
 }
-
-
-
-

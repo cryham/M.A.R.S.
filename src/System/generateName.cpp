@@ -28,26 +28,32 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # include <ctime>
 # include <sstream>
 
-namespace generateName {
-
-    namespace {
+namespace generateName
+{
+    namespace
+    {
         std::vector<std::list<std::pair<sf::String, int> > > botNames_;
         std::list<sf::String> gameNames_;
         std::vector<sf::String> shipNames_;
         bool initialized_(false);
 
-        void loadBotNames () {
+        void loadBotNames ()
+        {
             std::vector<sf::String> lines;
-            if (file::load(settings::C_dataPath + "botnames.txt", lines)) {
+            if (file::load(settings::C_dataPath + "botnames.txt", lines))
+            {
                 std::list<std::pair<sf::String, int> > newList;
-                for (std::vector<sf::String>::iterator it = lines.begin(); it != lines.end(); ++it) {
-                    if ((*it).toAnsiString()[0] == '[') {
-                        if (newList.size() > 0) {
+                for (std::vector<sf::String>::iterator it = lines.begin(); it != lines.end(); ++it)
+                {
+                    if ((*it).toAnsiString()[0] == '[')
+                    {
+                        if (newList.size() > 0)
+                        {
                             botNames_.push_back(newList);
                             newList.clear();
                         }
-                    }
-                    else {
+                    }else
+                    {
                         std::stringstream strengthStream(std::string((*it).toAnsiString(), (*it).getSize()-3));
                         int strength;
                         strengthStream >> strength;
@@ -58,7 +64,8 @@ namespace generateName {
                     }
                 }
             }
-            if (botNames_.size() == 0) {
+            if (botNames_.size() == 0)
+            {
                 std::cout << "Failed to open botnames.txt! Reverting to some boring default names...\n";
                 std::list<std::pair<sf::String, int> > defaultnames;
                 defaultnames.push_back(std::make_pair("Ernst", 90));
@@ -91,13 +98,15 @@ namespace generateName {
             }
         }
 
-        void loadShipNames () {
+        void loadShipNames ()
+        {
             if (!file::load(settings::C_dataPath + "shipnames.txt", shipNames_))
                 std::cout << "No Botnames found! Using boring numbers instead...\n";
         }
 
 
-        void init_() {
+        void init_()
+        {
             // init rand()
             srand(time(NULL));
 
@@ -108,36 +117,44 @@ namespace generateName {
             loadShipNames();
 
             // init game names
-            // gameNames_.push_back("Retarded Shooter");
-            // gameNames_.push_back("Random Shooter");
+            gameNames_.push_back("Retarded Shooter");
+            gameNames_.push_back("Random Shooter");
             gameNames_.push_back("Ridiculous Shooter");
-            // gameNames_.push_back("Rapid Shooter");
-            // gameNames_.push_back("Rough Shooter");
-            // gameNames_.push_back("Rigged Shooter");
-            // gameNames_.push_back("Rude Shooter");
-            // gameNames_.push_back("Retro-Shooter");
+            gameNames_.push_back("Rapid Shooter");
+            gameNames_.push_back("Rough Shooter");
+            gameNames_.push_back("Rigged Shooter");
+            gameNames_.push_back("Rude Shooter");
+            gameNames_.push_back("Retro-Shooter");
 
             // shuffle both lists
             std::vector<std::pair<sf::String, int> > temp;
-            for (unsigned int i=0; i<botNames_.size(); ++i) {
-                for (std::list<std::pair<sf::String, int> >::iterator it = botNames_[i].begin(); it != botNames_[i].end(); ++it) temp.push_back(*it);
+            for (unsigned int i=0; i<botNames_.size(); ++i)
+            {
+                for (std::list<std::pair<sf::String, int> >::iterator it = botNames_[i].begin(); it != botNames_[i].end(); ++it)
+                    temp.push_back(*it);
                 std::random_shuffle(temp.begin(), temp.end());
+                
                 botNames_[i].clear();
-                for (std::vector<std::pair<sf::String, int> >::iterator it = temp.begin(); it != temp.end(); ++it) botNames_[i].push_back(*it);
+                for (std::vector<std::pair<sf::String, int> >::iterator it = temp.begin(); it != temp.end(); ++it)
+                    botNames_[i].push_back(*it);
                 temp.clear();
             }
 
             std::vector<sf::String> temp2;
-            for (std::list<sf::String>::iterator it = gameNames_.begin(); it != gameNames_.end(); ++it) temp2.push_back(*it);
+            for (std::list<sf::String>::iterator it = gameNames_.begin(); it != gameNames_.end(); ++it)
+                temp2.push_back(*it);
             std::random_shuffle(temp2.begin(), temp2.end());
+            
             gameNames_.clear();
-            for (std::vector<sf::String>::iterator it = temp2.begin(); it != temp2.end(); ++it) gameNames_.push_back(*it);
+            for (std::vector<sf::String>::iterator it = temp2.begin(); it != temp2.end(); ++it)
+                gameNames_.push_back(*it);
 
             initialized_ = true;
         }
     }
 
-    std::pair<sf::String, int> const& bot(int randomNumber) {
+    std::pair<sf::String, int> const& bot(int randomNumber)
+    {
         if (!initialized_) init_();
         int group = randomNumber%botNames_.size();
         botNames_[group].push_front(botNames_[group].back());
@@ -145,21 +162,26 @@ namespace generateName {
         return *botNames_[group].begin();
     }
 
-    sf::String const& game() {
+    sf::String const& game()
+    {
         if (!initialized_) init_();
         gameNames_.push_front(gameNames_.back());
         gameNames_.pop_back();
         return *gameNames_.begin();
     }
 
-    std::vector<sf::String> const& shipNames() {
+    std::vector<sf::String> const& shipNames()
+    {
         return shipNames_;
     }
 
-    sf::String const key(Key const& key) {
+    sf::String const key(Key const& key)
+    {
         sf::String result("Unknown Key");
-        switch (key.type_) {
-            case Key::kKeyBoard: {
+        switch (key.type_)
+        {
+            case Key::kKeyBoard:
+            {
                 sf::Keyboard::Key keyCode(key.code_.keyBoard_);
                 // "normal" character
                 if (static_cast<int>(keyCode) >= 0 && static_cast<int>(keyCode) <= 25) result = static_cast<char>(keyCode+65);
@@ -231,7 +253,8 @@ namespace generateName {
                 break;
             }
 
-            case Key::kJoyButton: {
+            case Key::kJoyButton:
+            {
                 unsigned int keyCode(key.code_.joyButton_);
                 std::stringstream tmp;
                 tmp << key.joyID_;
@@ -244,7 +267,8 @@ namespace generateName {
                 else if (keyCode == 5) result +=        *locales::getLocale(locales::JoyButtonRB);
                 else if (keyCode == 6) result +=        *locales::getLocale(locales::JoyButtonStart);
                 else if (keyCode == 10) result +=       *locales::getLocale(locales::JoyButtonBack);
-                else {
+                else
+                {
                     std::stringstream tmptmp;
                     tmptmp <<keyCode;
                     result += *locales::getLocale(locales::JoyButton) +" " + tmptmp.str();
@@ -252,11 +276,13 @@ namespace generateName {
                 break;
             }
 
-            case Key::kJoyAxis: {
+            case Key::kJoyAxis:
+            {
                 Key::AxisType keyCode(key.code_.joyAxis_);
                 std::stringstream tmp;
                 tmp << key.joyID_;
                 result = *locales::getLocale(locales::JoyStick) + tmp.str() + " - ";
+                
                 if (keyCode == Key::aLT) result +=             *locales::getLocale(locales::JoyAxisLT);
                 else if (keyCode == Key::aRT) result +=        *locales::getLocale(locales::JoyAxisRT);
                 else if (keyCode == Key::aARup) result +=      *locales::getLocale(locales::JoyA2up);

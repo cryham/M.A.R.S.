@@ -23,11 +23,13 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 /// Weapon: Flubba.
 /// A short distance gun, populates the screen with ugly green bubbles.
 
-class Flubba: public Weapon {
+class Flubba: public Weapon
+{
     public:
         /// Ctor which constructs the weapon.
         Flubba(Ship* parent):
-              Weapon(weapons::wFlubba, parent, sf::String("FLUBBA")) {};
+              Weapon(weapons::wFlubba, parent, sf::String("FLUBBA"))
+        {   }
 
         /// Spawns some particles.
         void fire() const;
@@ -46,5 +48,3 @@ class Flubba: public Weapon {
 };
 
 # endif // FLUBBA_HPP_INCLUDED
-
-

@@ -20,13 +20,15 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # include "SpaceObjects/SpaceObject.hpp"
 
 Trail::Trail(SpaceObject* target):
-    target_(target) {}
+    target_(target)
+{   }
 
-void Trail::detach() {
+void Trail::detach()
+{
     target_ = NULL;
 }
 
-SpaceObject* Trail::target() const {
+SpaceObject* Trail::target() const
+{
     return target_;
 }
-

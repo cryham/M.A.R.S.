@@ -18,36 +18,36 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef JOB_HPP_INCLUDED
 # define JOB_HPP_INCLUDED
 
-struct Job {
-    enum JobType{jLand, jCharge, jHeal, jUnfreeze, jAttackAny,
-                 jAttackTarget, jGetPUFuel, jGetPUHealth, jGetPUReverse,
-                 jGetPUShield, jGetPUSleep, jKickOutHome, jKickToEnemy,
-                 jWaitForBall, jProtectZone, jEscape, jGetControl};
+struct Job
+{
+    enum JobType
+    {
+        jLand, jCharge, jHeal, jUnfreeze, jAttackAny,
+        jAttackTarget, jGetPUFuel, jGetPUHealth, jGetPUReverse,
+        jGetPUShield, jGetPUSleep, jKickOutHome, jKickToEnemy,
+        jWaitForBall, jProtectZone, jEscape, jGetControl
+    };
 
     Job(JobType type, short priority, void* object = NULL):
          type_(type),
          priority_(priority),
-         object_(object) {}
+         object_(object)
+    {   }
 
     JobType type_;
     short priority_;
     void* object_;
 
 
-    bool operator< (Job const& rhs) const {
+    bool operator< (Job const& rhs) const
+    {
         return priority_ < rhs.priority_;
     }
 
-    bool operator> (Job const& rhs) const {
+    bool operator> (Job const& rhs) const
+    {
         return priority_ > rhs.priority_;
     }
 };
 
-
-
 # endif // JOB_HPP_INCLUDED
-
-
-
-
-

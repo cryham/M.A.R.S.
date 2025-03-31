@@ -26,7 +26,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # include <SFML/OpenGL.hpp>
 # include <sstream>
 
-void GameStats::draw() const {
+void GameStats::draw() const
+{
     float top(20.f);
 
     if (settings::C_showFPS)            top += 20.f;

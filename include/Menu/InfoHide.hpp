@@ -22,16 +22,19 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 class TextBox;
 
-class InfoHide: public UiWindow {
+class InfoHide: public UiWindow
+{
     public:
         static UiWindow* get();
         void checkWidgets();
-        void onShow() {}
+        void onShow()
+        {   }
 
         static void reset();
 
     private:
-        InfoHide(int width, int height): UiWindow(width, height) {}
+        InfoHide(int width, int height): UiWindow(width, height)
+        {   }
         InfoHide(InfoHide const& copy);
 
         static UiWindow* instance_;
@@ -40,8 +43,3 @@ class InfoHide: public UiWindow {
 };
 
 # endif // INFOHIDE_HPP_INCLUDED
-
-
-
-
-

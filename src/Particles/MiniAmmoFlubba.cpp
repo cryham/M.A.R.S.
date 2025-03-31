@@ -26,8 +26,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 std::list<MiniAmmoFlubba*> MiniAmmoFlubba::activeParticles_;
 
 MiniAmmoFlubba::MiniAmmoFlubba(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity, Color3f const& color, Player* damageSource):
-           Particle<MiniAmmoFlubba>(spaceObjects::oMiniAmmoFlubba, location, 8.f, 0.2f, randomizer::random(10.f, 17.f)) {
-
+           Particle<MiniAmmoFlubba>(spaceObjects::oMiniAmmoFlubba, location, 8.f, 0.2f, randomizer::random(10.f, 17.f))
+{
     setDamageSource(damageSource);
 
     velocity_ = Vector2f::randDirLen()*400;
@@ -39,7 +39,8 @@ MiniAmmoFlubba::MiniAmmoFlubba(Vector2f const& location, Vector2f const& directi
     color_ = Color3f(randomizer::random(0.0f, 0.4f), randomizer::random(0.8f, 1.f), randomizer::random(0.0f, 0.4f));
 }
 
-void MiniAmmoFlubba::update() {
+void MiniAmmoFlubba::update()
+{
     float time = timer::frameTime();
 
     physics::collide(this, STATICS | MOBILES | PARTICLES);
@@ -60,7 +61,8 @@ void MiniAmmoFlubba::update() {
     }
 }
 
-void MiniAmmoFlubba::draw() const {
+void MiniAmmoFlubba::draw() const
+{
     color_.gl4f(0.8f);
     const int posX = 4;
     const int posY = 0;
@@ -71,13 +73,14 @@ void MiniAmmoFlubba::draw() const {
 }
 
 void MiniAmmoFlubba::onCollision(SpaceObject* with, Vector2f const& location,
-                         Vector2f const& direction, Vector2f const& velocity) {
-    if (!isDead() && with->type() != spaceObjects::oAmmoFlubba && with->type() != spaceObjects::oMiniAmmoFlubba) {
+                         Vector2f const& direction, Vector2f const& velocity)
+{
+    if (!isDead() && with->type() != spaceObjects::oAmmoFlubba && with->type() != spaceObjects::oMiniAmmoFlubba)
         killMe();
-    }
 }
 
-void MiniAmmoFlubba::shockWave(Vector2f const& location, float strength, float radius) {
+void MiniAmmoFlubba::shockWave(Vector2f const& location, float strength, float radius)
+{
     for (std::list<MiniAmmoFlubba*>::iterator it = activeParticles_.begin(); it != activeParticles_.end(); ++it) {
         Vector2f direction((*it)->location_ - location);
         float distance = direction.length();
@@ -89,8 +92,3 @@ void MiniAmmoFlubba::shockWave(Vector2f const& location, float strength, float r
         }
     }
 }
-
-
-
-
-

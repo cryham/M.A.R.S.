@@ -23,12 +23,14 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 /// Special: Blast.
 /// A blast wave.
 
-class Blast: public Special {
+class Blast: public Special
+{
     public:
         /// Ctor which constructs the special.
         Blast(Ship* parent):
               Special(specials::sBlast, parent, sf::String("BLAST")),
-              radius_(0.f) {};
+              radius_(0.f)
+        {   }
 
         /// Blasts away nearby ships.
         void activate() const;
@@ -43,7 +45,3 @@ class Blast: public Special {
 };
 
 # endif // BLAST_HPP_INCLUDED
-
-
-
-

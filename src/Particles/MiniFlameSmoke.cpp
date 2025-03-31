@@ -24,12 +24,13 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 std::list<MiniFlameSmoke*> MiniFlameSmoke::activeParticles_;
 
 MiniFlameSmoke::MiniFlameSmoke(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity, Color3f const& color, Player* damageSource):
-           Particle<MiniFlameSmoke>(spaceObjects::oMiniFlameSmoke, location+Vector2f::randDirLen()*2.f, 4, 0, randomizer::random(0.8f, 2.0f)) {
-
+           Particle<MiniFlameSmoke>(spaceObjects::oMiniFlameSmoke, location+Vector2f::randDirLen()*2.f, 4, 0, randomizer::random(0.8f, 2.0f))
+{
     color_ = Color3f(0.9, 0.8, 0.7);
 }
 
-void MiniFlameSmoke::update() {
+void MiniFlameSmoke::update()
+{
     float time = timer::frameTime();
     Vector2f acceleration = physics::attract(this);
 
@@ -43,7 +44,8 @@ void MiniFlameSmoke::update() {
     lifeTime_ += time;
 }
 
-void MiniFlameSmoke::draw() const {
+void MiniFlameSmoke::draw() const
+{
     color_.gl4f(-0.4f/totalLifeTime_*lifeTime_+0.4f);
     const int posX = 1;
     const int posY = 0;
@@ -53,11 +55,14 @@ void MiniFlameSmoke::draw() const {
     glTexCoord2f((posX+1)*0.125f, posY*0.125f);     glVertex2f(location_.x_+radius_, location_.y_-radius_);
 }
 
-void MiniFlameSmoke::shockWave(Vector2f const& location, float strength, float radius) {
-    for (std::list<MiniFlameSmoke*>::iterator it = activeParticles_.begin(); it != activeParticles_.end(); ++it) {
+void MiniFlameSmoke::shockWave(Vector2f const& location, float strength, float radius)
+{
+    for (std::list<MiniFlameSmoke*>::iterator it = activeParticles_.begin(); it != activeParticles_.end(); ++it)
+    {
         Vector2f direction((*it)->location_ - location);
         float distance = direction.length();
-        if (distance < radius && direction != Vector2f()) {
+        if (distance < radius && direction != Vector2f())
+        {
             float intensity = radius-distance;
             direction = direction.normalize();
             direction *= intensity;
@@ -65,6 +70,3 @@ void MiniFlameSmoke::shockWave(Vector2f const& location, float strength, float r
         }
     }
 }
-
-
-

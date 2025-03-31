@@ -31,7 +31,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 UiWindow* EnterName::instance_(NULL);
 bool EnterName::kOk_(false);
 
-UiWindow* EnterName::get() {
+UiWindow* EnterName::get()
+{
     if (instance_ == NULL) {
         instance_ = new EnterName(320, 160);
         instance_->addWidget(new TextEdit(NULL, &settings::C_playerIName, "PlayerI", Vector2f(10,85), 300, 0, TEXT_EDIT, 12));
@@ -44,7 +45,8 @@ UiWindow* EnterName::get() {
     return instance_;
 }
 
-void EnterName::checkWidgets() {
+void EnterName::checkWidgets()
+{
     if (kOk_) {
         kOk_ = false;
         menus::hideWindow();
@@ -54,11 +56,13 @@ void EnterName::checkWidgets() {
     }
 }
 
-void EnterName::onShow() {
+void EnterName::onShow()
+{
     settings::C_showInfoHide = false;
 }
 
-void EnterName::reset() {
+void EnterName::reset()
+{
     if (instance_)
         delete instance_;
     instance_ = NULL;

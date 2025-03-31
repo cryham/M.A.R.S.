@@ -29,13 +29,16 @@ UiWindow* ToMainConfirm::instance_(NULL);
 bool ToMainConfirm::kOk_(false);
 bool ToMainConfirm::kCancel_(false);
 
-UiWindow* ToMainConfirm::get() {
-    if (settings::C_noConfirmations) {
+UiWindow* ToMainConfirm::get()
+{
+    if (settings::C_noConfirmations)
+    {
         games::start(games::gMenu);
         music::fadeOut();
         return 0;
     }
-    if (instance_ == NULL) {
+    if (instance_ == NULL)
+    {
         instance_ = new ToMainConfirm(280, 80);
         instance_->addWidget(new Button(locales::getLocale(locales::Ok),     NULL, &kOk_, Vector2f(180,50), 90, 20));
         instance_->addWidget(new Button(locales::getLocale(locales::Cancel), NULL, &kCancel_, Vector2f(80,50), 90, 20));
@@ -44,25 +47,25 @@ UiWindow* ToMainConfirm::get() {
     return instance_;
 }
 
-void ToMainConfirm::checkWidgets() {
-    if (kOk_) {
-        kOk_ = false;
+void ToMainConfirm::checkWidgets()
+{
+    if (kOk_)
+    {   kOk_ = false;
+
         menus::hideWindow();
         menus::hideWindow();
         games::start(games::gMenu);
         music::fadeOut();
     }
-    else if (kCancel_) {
-        kCancel_ = false;
+    else if (kCancel_)
+    {   kCancel_ = false;
         menus::hideWindow();
     }
 }
 
-void ToMainConfirm::reset() {
+void ToMainConfirm::reset()
+{
     if (instance_)
         delete instance_;
     instance_ = NULL;
 }
-
-
-

@@ -28,8 +28,10 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 # include <SFML/Graphics.hpp>
 
-void Fist::draw(float alpha) const {
-    if (!menus::visible() || games::type() == games::gMenu) {
+void Fist::draw(float alpha) const
+{
+    if (!menus::visible() || games::type() == games::gMenu)
+    {
         float time = timer::totalTime();
         if (time - timer_ < 0.1f)
             position_ = (time - timer_)*20.f;
@@ -60,10 +62,12 @@ void Fist::draw(float alpha) const {
     glEnd();
 }
 
-void Fist::fire() const {
+void Fist::fire() const
+{
     float time = timer::totalTime();
-    if (time - timer_ > 0.5f) {
-        timer_ = time;
+    if (time - timer_ > 0.5f)
+    {   timer_ = time;
+
         float angleRad = parent_->rotation()*M_PI / 180.f;
         Vector2f faceDirection(std::cos(angleRad), std::sin(angleRad));
 
@@ -74,14 +78,17 @@ void Fist::fire() const {
     }
 }
 
-float Fist::maxDistance() const {
+float Fist::maxDistance() const
+{
     return 75.f;
 }
 
-float Fist::minDistance() const {
+float Fist::minDistance() const
+{
     return 0.f;
 }
 
-float Fist::maxAngle() const {
+float Fist::maxAngle() const
+{
     return 10.f;
 }

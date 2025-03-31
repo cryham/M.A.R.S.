@@ -31,9 +31,11 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 Cannon::Cannon():
     timer_(0.f),
-    rotation_(0.f) {}
+    rotation_(0.f)
+{   }
 
-void Cannon::update() {
+void Cannon::update()
+{
     Player* carrier = items::getCannonControl()->getCarrier();
 
     Vector2f toTarget;
@@ -76,7 +78,8 @@ void Cannon::update() {
     }
 }
 
-void Cannon::draw() const {
+void Cannon::draw() const
+{
     glPushMatrix();
     glLoadIdentity();
 

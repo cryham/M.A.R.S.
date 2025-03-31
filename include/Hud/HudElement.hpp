@@ -18,14 +18,12 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # ifndef HUDELEMENT_HPP_INCLUDED
 # define HUDELEMENT_HPP_INCLUDED
 
-class HudElement {
+class HudElement
+{
     public:
         virtual void draw() const = 0;
-        virtual void update() {};
+        virtual void update()
+        {   }
 };
 
 # endif // HUDELEMENT_HPP_INCLUDED
-
-
-
-

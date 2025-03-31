@@ -25,8 +25,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 std::list<MiniFlame*> MiniFlame::activeParticles_;
 
 MiniFlame::MiniFlame(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity, Color3f const& color, Player* damageSource):
-           Particle<MiniFlame>(spaceObjects::oMiniFlame, location+Vector2f::randDir(), 1.f, 0.f, randomizer::random(0.8f, 2.0f)) {
-
+           Particle<MiniFlame>(spaceObjects::oMiniFlame, location+Vector2f::randDir(), 1.f, 0.f, randomizer::random(0.8f, 2.0f))
+{
     flickerSpeed_ = randomizer::random(0.01f, 1.f);
     timer_        = randomizer::random(0.f, 1.f);
     radius_       = randomizer::random(2.0f, 5.0f);
@@ -36,7 +36,8 @@ MiniFlame::MiniFlame(Vector2f const& location, Vector2f const& direction, Vector
     color_.s(1);
 }
 
-void MiniFlame::update() {
+void MiniFlame::update()
+{
     float time = timer::frameTime();
     // update Color
     color_.h((-1.0/totalLifeTime_*lifeTime_+1)*60+0);
@@ -52,16 +53,18 @@ void MiniFlame::update() {
 
     if (timer_ > 0.f)
         timer_ -= time;
-    else {
+    else
+    {
         timer_ = 1.f;
-         particles::spawn(particles::pMiniFlameSmoke, location_, velocity_);
-         particles::spawn(particles::pHeat, location_, velocity_);
+        particles::spawn(particles::pMiniFlameSmoke, location_, velocity_);
+        particles::spawn(particles::pHeat, location_, velocity_);
     }
 
     lifeTime_ += time;
 }
 
-void MiniFlame::draw() const {
+void MiniFlame::draw() const
+{
     color_.gl3f();
     const int posX = 5;
     const int posY = 0;

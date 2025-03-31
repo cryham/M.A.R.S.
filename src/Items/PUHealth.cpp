@@ -20,13 +20,15 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # include "SpaceObjects/Ship.hpp"
 # include "Particles/particles.hpp"
 
-void PUHealth::draw() const {
+void PUHealth::draw() const
+{
     if (!collected_) {
         PowerUp::draw();
     }
 }
 
-void PUHealth::refreshLifeTime() {
+void PUHealth::refreshLifeTime()
+{
     lifeTime_ = totalLifeTime_;
     for (std::list<Ship*>::iterator it = ships_.begin(); it != ships_.end(); ++it)
         (*it)->heal((*it)->owner_, 100);

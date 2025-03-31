@@ -23,11 +23,13 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 /// Weapon: Shotgun.
 /// A short distance gun, which fires some particles in multiple direction.
 
-class Shotgun: public Weapon {
+class Shotgun: public Weapon
+{
     public:
         /// Ctor which constructs the weapon.
         Shotgun(Ship* parent):
-              Weapon(weapons::wShotgun, parent, sf::String("SHOTGUN")) {};
+              Weapon(weapons::wShotgun, parent, sf::String("SHOTGUN"))
+        {   }
 
         /// Spawns some particles.
         void fire() const;
@@ -46,5 +48,3 @@ class Shotgun: public Weapon {
 };
 
 # endif // SHOTGUN_HPP_INCLUDED
-
-

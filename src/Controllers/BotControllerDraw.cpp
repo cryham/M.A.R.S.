@@ -28,23 +28,27 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 # include <SFML/OpenGL.hpp>
 
-void BotController::draw() {
-    if (ship()->getLife() > 0) {
+void BotController::draw()
+{
+    if (ship()->getLife() > 0)
+    {
         const Vector2f shipLocation = ship()->location_;
 
          // draw AI-Paths
-        if (settings::C_drawAIPath) {
-
+        if (settings::C_drawAIPath)
+        {
             glBlendFunc(GL_SRC_ALPHA, GL_ONE);
             glLineWidth(1);
 
             glBegin(GL_LINES);
-            if (nextPathPoint_ == moveToPoint_) {
+            if (nextPathPoint_ == moveToPoint_)
+            {
                 glColor4f(0,1,0, 0.8f);
                 glVertex2f(shipLocation.x_, shipLocation.y_);
                 glVertex2f(nextPathPoint_.x_, nextPathPoint_.y_);
             }
-            else {
+            else
+            {
                 glColor4f(0,1,0, 0.8f);
                 glVertex2f(shipLocation.x_, shipLocation.y_);
                 glColor4f(1,0,0, 0.8f);
@@ -71,29 +75,36 @@ void BotController::draw() {
         }*/
 
         // draw Jobs
-        if (settings::C_drawBotJobs) {
-            switch (currentJob_.type_) {
-                case Job::jLand: case Job::jCharge: {
+        if (settings::C_drawBotJobs)
+        {
+            switch (currentJob_.type_)
+            {
+                case Job::jLand: case Job::jCharge:
+                {
                     Vector2f direction(slave_->team()->home()->location() - shipLocation);
                     decoObjects::drawArrow(shipLocation + direction*0.05f, shipLocation + direction*0.6f, Color3f(0.5f, 0.4f, 0.3f));
                     break;
                 }
-                case Job::jHeal: {
+                case Job::jHeal:
+                {
                     Vector2f direction(static_cast<Ship*>(currentJob_.object_)->location() - shipLocation);
                     decoObjects::drawArrow(shipLocation + direction*0.1f, shipLocation + direction*0.9f, Color3f(0.f, 0.6f, 0.f));
                     break;
                 }
-                case Job::jUnfreeze: {
+                case Job::jUnfreeze:
+                {
                     Vector2f direction(static_cast<Ship*>(currentJob_.object_)->location() - shipLocation);
                     decoObjects::drawArrow(shipLocation + direction*0.1f, shipLocation + direction*0.9f, Color3f(0.2f, 0.2f, 0.6f));
                     break;
                 }
-                case Job::jAttackTarget: {
+                case Job::jAttackTarget:
+                {
                     Vector2f direction(static_cast<Ship*>(currentJob_.object_)->location() - shipLocation);
                     decoObjects::drawArrow(shipLocation + direction*0.1f, shipLocation + direction*0.9f, Color3f(0.4f, 0.f, 0.6f));
                     break;
                 }
-                case Job::jAttackAny: {
+                case Job::jAttackAny:
+                {
                     for (std::map<Ship*, float>::iterator it = aggroTable_.begin(); it != aggroTable_.end(); ++it) {
                         if (it->first == target_) {
                             Vector2f direction(it->first->location() - shipLocation);
@@ -107,33 +118,39 @@ void BotController::draw() {
                     break;
                 }
                 case Job::jGetPUFuel: case Job::jGetPUHealth: case Job::jGetPUReverse:
-                case Job::jGetPUShield: case Job::jGetPUSleep: {
+                case Job::jGetPUShield: case Job::jGetPUSleep:
+                {
                     Vector2f direction(*static_cast<Vector2f*>(currentJob_.object_) - shipLocation);
                     decoObjects::drawArrow(shipLocation + direction*0.1f, shipLocation + direction*0.9f, Color3f(0.6f, 0.f, 0.6f));
                     break;
                 }
-                case Job::jKickToEnemy: {
+                case Job::jKickToEnemy:
+                {
                     Vector2f direction(static_cast<Ball*>(currentJob_.object_)->location() - shipLocation);
                     decoObjects::drawArrow(shipLocation + direction*0.1f, shipLocation + direction*0.9f, Color3f(0.8f, 0.4f, 0.6f));
                     break;
                 }
-                case Job::jWaitForBall: {
+                case Job::jWaitForBall:
+                {
                     Vector2f direction(static_cast<Ball*>(currentJob_.object_)->location() - shipLocation);
                     decoObjects::drawArrow(shipLocation + direction*0.1f, shipLocation + direction*0.9f, Color3f(0.4f, 0.3f, 0.35f));
                     break;
                 }
-                case Job::jKickOutHome: {
+                case Job::jKickOutHome:
+                {
                     Vector2f direction(static_cast<Ball*>(currentJob_.object_)->location() - shipLocation);
                     decoObjects::drawArrow(shipLocation + direction*0.1f, shipLocation + direction*0.9f, Color3f(0.8f, 0.2f, 0.1f));
                     break;
                 }
                 case Job::jEscape:
-                case Job::jProtectZone: {
+                case Job::jProtectZone:
+                {
                     Vector2f direction(nextRoutePoint_ - shipLocation);
                     decoObjects::drawArrow(shipLocation + direction*0.1f, shipLocation + direction*0.9f, Color3f(0.6f, 0.4f, 0.f));
                     break;
                 }
-                case Job::jGetControl: {
+                case Job::jGetControl:
+                {
                     CannonControl* control(items::getCannonControl());
                     if (control) {
                         Vector2f direction(control->location() - shipLocation);

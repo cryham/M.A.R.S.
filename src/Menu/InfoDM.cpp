@@ -30,7 +30,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 UiWindow* InfoDM::instance_(NULL);
 bool InfoDM::kClose_(false);
 
-UiWindow* InfoDM::get() {
+UiWindow* InfoDM::get()
+{
     if (instance_ == NULL) {
         instance_ = new InfoDM(320*scale_, 300);
         instance_->addWidget(new Button(locales::getLocale(locales::Close), NULL, &kClose_, Vector2f(220,270), 90, 20));
@@ -44,7 +45,8 @@ UiWindow* InfoDM::get() {
     return instance_;
 }
 
-void InfoDM::checkWidgets() {
+void InfoDM::checkWidgets()
+{
     if (kClose_) {
         kClose_ = false;
         menus::hideWindow();
@@ -52,11 +54,13 @@ void InfoDM::checkWidgets() {
     }
 }
 
-void InfoDM::onShow() {
+void InfoDM::onShow()
+{
     settings::C_showInfoDM = false;
 }
 
-void InfoDM::reset() {
+void InfoDM::reset()
+{
     if (instance_)
         delete instance_;
     instance_ = NULL;

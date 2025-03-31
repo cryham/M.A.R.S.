@@ -30,7 +30,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 # include <SFML/Graphics.hpp>
 
-void Shocker::draw(float alpha) const {
+void Shocker::draw(float alpha) const
+{
     glBlendFunc(GL_SRC_ALPHA, GL_ONE);
 
     // draw glow
@@ -48,22 +49,23 @@ void Shocker::draw(float alpha) const {
         glTexCoord2f((posX+1)*0.25f, posY*0.25f);    glVertex2f( parent_->radius()*scale,-parent_->radius()*scale);
     glEnd();
 
-    if (timer_ > 0.f) {
+    if (timer_ > 0.f)
+    {
         if (parent_->getLife() <= 0.f)
             timer_ = 0.f;
 
         Vector2f direction = Vector2f::randDir()*5.f;
         particles::spawnMultiple(1, particles::pSpark, parent_->location_ , direction*60.f, parent_->velocity_, Color3f(0.9f,0.9f,1.f));
 
-        if (!menus::visible() || games::type() == games::gMenu) {
+        if (!menus::visible() || games::type() == games::gMenu)
             timer_ -= timer::frameTime();
-        }
-
     }
 }
 
-void Shocker::activate() const {
-    if (parent_->fragStars_ > 0 && timer_ <= 0.f) {
+void Shocker::activate() const
+{
+    if (parent_->fragStars_ > 0 && timer_ <= 0.f)
+    {
         targets_.clear();
         ballTarget_ = NULL;
 
@@ -71,31 +73,32 @@ void Shocker::activate() const {
 
         if (ships.size() >= 2) {
 
-            for (std::vector<Ship*>::iterator it = ships.begin(); it!=ships.end(); ++it) {
-                if(*it != parent_) {
+            for (std::vector<Ship*>::iterator it = ships.begin(); it!=ships.end(); ++it)
+            {
+                if (*it != parent_)
+                {
                     Vector2f direction((*it)->location()-parent_->location());
                     float distance (direction.lengthSquare());
-                    if (distance <= radius()*radius() && (*it)->attackable()) {
+                    if (distance <= radius()*radius() && (*it)->attackable())
                         targets_.push_back(*it);
-                    }
                 }
             }
         }
 
         Ball* ball(balls::getBall());
-
-        if (ball) {
-            Vector2f direction(ball->location()-parent_->location());
+        if (ball)
+        {
+            Vector2f direction(ball->location() - parent_->location());
             float distance (direction.lengthSquare());
-            if (distance <= radius()*radius()) {
+            if (distance <= radius()*radius())
                 ballTarget_ = ball;
-            }
         }
 
         int targetCount = targets_.size() + (ballTarget_ == NULL ? 0 : 1);
         float damage = parent_->fragStars_/3.f * 200.f/targetCount;
 
-        for (std::list<Ship*>::iterator it=targets_.begin(); it!=targets_.end(); ++it) {
+        for (std::list<Ship*>::iterator it=targets_.begin(); it!=targets_.end(); ++it)
+        {
             Vector2f direction((*it)->location()-parent_->location());
 
             decoObjects::addBolt(parent_, *it, 100.f/targetCount);
@@ -105,7 +108,8 @@ void Shocker::activate() const {
             (*it)->velocity_+=direction.normalize()*damage*5.f;
         }
 
-        if (ballTarget_) {
+        if (ballTarget_)
+        {
             if (ball->sticky_)
                 ball->sticky_=false;
 
@@ -115,15 +119,12 @@ void Shocker::activate() const {
             ball->velocity_+=direction.normalize()*damage*5.f;
         }
 
-
         parent_->fragStars_ = 0;
         timer_ = 0.5f;
     }
 }
 
-float Shocker::radius() const {
+float Shocker::radius() const
+{
     return 300.f;
 }
-
-
-

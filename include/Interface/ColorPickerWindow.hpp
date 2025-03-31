@@ -24,16 +24,18 @@ class Color3f;
 class ColorPicker;
 class Button;
 
-class ColorPickerWindow: public UiWindow {
+class ColorPickerWindow: public UiWindow
+{
     public:
         ColorPickerWindow (ColorPicker* parent, Color3f* color);
 
         void draw() const;
 
         void checkWidgets();
-        void onShow() {};
-
-        void reset() {};
+        void onShow()
+        {   }
+        void reset()
+        {   }
 
     private:
         Button* Ok_;

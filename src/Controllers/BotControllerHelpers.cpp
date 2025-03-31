@@ -32,7 +32,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 int pathDepth = 0;
 
-bool BotController::moveTo(Vector2f const& location, float stopFactor, bool avoidBall, float minDistance, bool goingToLand) {
+bool BotController::moveTo(Vector2f const& location, float stopFactor, bool avoidBall, float minDistance, bool goingToLand)
+{
     moveToPoint_ = location;
     nextPathPoint_ = calcPath(location, avoidBall);
 
@@ -62,7 +63,8 @@ bool BotController::moveTo(Vector2f const& location, float stopFactor, bool avoi
     return ((location - shipLocation).lengthSquare() < minDistance * minDistance);
 }
 
-bool BotController::turnTo(Vector2f const& location) {
+bool BotController::turnTo(Vector2f const& location)
+{
     float    shipRotation = ship()->rotation_*M_PI/180.f;
     Vector2f aimDirection_ = location - ship()->location();
     float angle = aimDirection_.y_*std::cos(shipRotation)-aimDirection_.x_*std::sin(shipRotation);
@@ -71,31 +73,39 @@ bool BotController::turnTo(Vector2f const& location) {
     return std::abs(angle) < 1.f;
 }
 
-Vector2f BotController::calcPath(Vector2f const& endPoint, bool avoidBall) {
+Vector2f BotController::calcPath(Vector2f const& endPoint, bool avoidBall)
+{
     // get some useful data...
     Vector2f toEndPoint  = (endPoint - ship()->location()).normalize();
     Vector2f targetPoint =  endPoint;
 
-    if (++pathDepth < 5) {
+    if (++pathDepth < 5)
+    {
         // check for collision with planet
         SpaceObject const* obstacle = spaceObjects::getObstacle(ship()->location(), endPoint, avoidBall, 40.f);
 
-        if (obstacle != NULL) {
+        if (obstacle != NULL)
+        {
             // special case: obstacle center is target point
-            if (obstacle->location() == endPoint) {
+            if (obstacle->location() == endPoint)
+            {
                 pathDepth = 0;
                 Vector2f surfacePoint(obstacle->location() - toEndPoint*(obstacle->radius() + 20.f));
                 int count(0);
                 bool fits(false);
                 std::vector<Ship*> const& allShips = ships::getShips();
-                while(!fits && ++count < 6) {
+                
+                while(!fits && ++count < 6)
+                {
                     fits = true;
-                    for(std::vector<Ship*>::const_iterator it = allShips.begin(); it != allShips.end(); ++it) {
-                        if((*it) != ship() && ((*it)->location() - surfacePoint).lengthSquare() < 225.f) {
+                    for(std::vector<Ship*>::const_iterator it = allShips.begin(); it != allShips.end(); ++it)
+                    {
+                        if ((*it) != ship() && ((*it)->location() - surfacePoint).lengthSquare() < 225.f)
+                        {
                             fits = false;
                             Vector2f rotated;
                             float phi = std::pow(-1.f, count) * ((count+1)/2) * M_PI/6.f;
-                            if(toEndPoint.x_ != 0.f)
+                            if (toEndPoint.x_ != 0.f)
                                 rotated = Vector2f (std::cos(std::atan2(toEndPoint.y_, toEndPoint.x_)+phi), std::sin(std::atan2(toEndPoint.y_, toEndPoint.x_)+phi));
                             else
                                 rotated = Vector2f (-std::sin(phi), std::cos(phi));
@@ -103,10 +113,10 @@ Vector2f BotController::calcPath(Vector2f const& endPoint, bool avoidBall) {
                             break;
                         }
                     }
-                    if(surfacePoint.x_<0.f || surfacePoint.x_>SPACE_X_RESOLUTION)
+                    if (surfacePoint.x_<0.f || surfacePoint.x_>SPACE_X_RESOLUTION)
                         fits = false;
                 }
-                if(surfacePoint.x_>0.f && surfacePoint.x_<SPACE_X_RESOLUTION)
+                if (surfacePoint.x_>0.f && surfacePoint.x_<SPACE_X_RESOLUTION)
                     return surfacePoint;
                 else
                     return obstacle->location() - toEndPoint*(obstacle->radius() + 20.f);
@@ -127,7 +137,8 @@ Vector2f BotController::calcPath(Vector2f const& endPoint, bool avoidBall) {
             SpaceObject const* newObstacle = spaceObjects::getObstacle(ship()->location(), newEndPoint, avoidBall, 40.f);
 
             // if a new obstacle was found, calculate the midpoint of both
-            if (newObstacle != NULL && obstacle != newObstacle) {
+            if (newObstacle != NULL && obstacle != newObstacle)
+            {
                 Vector2f obst1obst2 = (newObstacle->location() - obstacle->location()).normalize();
                 // get points on surface of obstacles
                 Vector2f obst1 = obstacle->   location() + obst1obst2*obstacle->   radius();
@@ -143,15 +154,18 @@ Vector2f BotController::calcPath(Vector2f const& endPoint, bool avoidBall) {
     return targetPoint;
 }
 
-void BotController::shootEnemy(Ship* enemyShip) {
+void BotController::shootEnemy(Ship* enemyShip)
+{
     Vector2f pathToEnemy = calcPath(enemyShip->location(), true);
     if (pathToEnemy == enemyShip->location())
         shootPoint(pathToEnemy);
 }
 
-void BotController::shootEnemies() {
+void BotController::shootEnemies()
+{
     std::vector<Player*>const& enemies = teams::getEnemy(slave_->team())->members();
-    for (std::vector<Player*>::const_iterator it = enemies.begin(); it != enemies.end(); ++it) {
+    for (std::vector<Player*>::const_iterator it = enemies.begin(); it != enemies.end(); ++it)
+    {
         Vector2f pathToEnemy = calcPath((*it)->ship()->location(), false);
         if (pathToEnemy == (*it)->ship()->location()) {
             shootPoint(pathToEnemy);
@@ -160,28 +174,36 @@ void BotController::shootEnemies() {
     }
 }
 
-void BotController::shootPoint(Vector2f const& location, bool avoidTeamMembers) {
+void BotController::shootPoint(Vector2f const& location, bool avoidTeamMembers)
+{
     const float    maxDistance  (ship()->currentWeapon_->maxDistance());
     const float    minDistance  (ship()->currentWeapon_->minDistance());
     const float    maxAngle     (ship()->currentWeapon_->maxAngle());
     const float    shipRotation (ship()->rotation_*M_PI/180.f);
     const Vector2f shipDirection(Vector2f(std::cos(shipRotation), std::sin(shipRotation)));
 
-    if (ship()->currentWeapon_->getType() == weapons::wInsta) {
+    if (ship()->currentWeapon_->getType() == weapons::wInsta)
+    {
         slaveFire(AmmoInsta::hitsAny(ship()->location() + shipDirection*ship()->radius(), shipDirection, slave_->team()));
     }
-    else {
+    else
+    {
         const float    distance     ((location - ship()->location()).length());
 
-        if(distance < maxDistance && distance > minDistance) {
-            if (spaceObjects::isOnLine(ship()->location(), shipDirection, location, maxAngle)) {
+        if (distance < maxDistance && distance > minDistance)
+        {
+            if (spaceObjects::isOnLine(ship()->location(), shipDirection, location, maxAngle))
+            {
                 int doShoot(100);
-                if(avoidTeamMembers) {
+                if (avoidTeamMembers)
+                {
                     std::vector<Player*>const& teamMates = slave_->team()->members();
-                    for (std::vector<Player*>::const_iterator it = teamMates.begin(); it != teamMates.end(); ++it) {
+                    for (std::vector<Player*>::const_iterator it = teamMates.begin(); it != teamMates.end(); ++it)
+                    {
                         if (*it != slave_)
-                            if(spaceObjects::isOnLine(ship()->location(), location - ship()->location(), (*it)->ship()->location(), 20.f)
-                               && ((location - ship()->location()) > ((*it)->ship()->location() - ship()->location()))) {
+                            if (spaceObjects::isOnLine(ship()->location(), location - ship()->location(), (*it)->ship()->location(), 20.f)
+                               && ((location - ship()->location()) > ((*it)->ship()->location() - ship()->location())))
+                            {
                                 doShoot = 0;
                                 break;
                             }

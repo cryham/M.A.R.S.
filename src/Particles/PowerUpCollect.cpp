@@ -32,7 +32,8 @@ PowerUpCollect::PowerUpCollect(Vector2f const& location, Vector2f const& directi
     velocity_ = distortion*150;
 }
 
-void PowerUpCollect::update() {
+void PowerUpCollect::update()
+{
     // update Color
     color_.v(-1.0/totalLifeTime_*lifeTime_+1);
 
@@ -45,11 +46,11 @@ void PowerUpCollect::update() {
     lifeTime_ += time;
 }
 
-void PowerUpCollect::draw() const {
+void PowerUpCollect::draw() const
+{
     color_.gl3f();
     glTexCoord2f(texX_*0.15625f,     texY_*0.15625f);     glVertex2f(location_.x_-radius_, location_.y_-radius_);
     glTexCoord2f(texX_*0.15625f,     (texY_+1)*0.15625f); glVertex2f(location_.x_-radius_, location_.y_+radius_);
     glTexCoord2f((texX_+1)*0.15625f, (texY_+1)*0.15625f); glVertex2f(location_.x_+radius_, location_.y_+radius_);
     glTexCoord2f((texX_+1)*0.15625f, texY_*0.15625f);     glVertex2f(location_.x_+radius_, location_.y_-radius_);
 }
-

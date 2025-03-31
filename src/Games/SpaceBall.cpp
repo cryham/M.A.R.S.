@@ -26,7 +26,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # include "Teams/teams.hpp"
 
 SpaceBall::SpaceBall():
-    Game(games::gSpaceBall) {
+    Game(games::gSpaceBall)
+{
 
     settings::C_EnabledWeapons  = settings::C_EnabledWeaponsByUser;
     settings::C_EnabledSpecials = settings::C_EnabledSpecialsByUser;
@@ -87,12 +88,14 @@ SpaceBall::SpaceBall():
     zones::createRaster(4, 3);
 }
 
-void SpaceBall::draw() const {
+void SpaceBall::draw() const
+{
     if (settings::C_drawZones) zones::draw();
     Game::draw();
 }
 
-void SpaceBall::restart() {
+void SpaceBall::restart()
+{
     Game::restart();
 
     Home* homeL = spaceObjects::addHome(HOME_LEFT, settings::C_pointLimitSB, teams::getTeamL()->color());

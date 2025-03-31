@@ -25,7 +25,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 # include <SFML/Graphics.hpp>
 
-void Flubba::draw(float alpha) const {
+void Flubba::draw(float alpha) const
+{
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glColor3f(0.2f, 1.f, 0.f);
     const int posX = 0;
@@ -38,25 +39,30 @@ void Flubba::draw(float alpha) const {
     glEnd();
 }
 
-void Flubba::fire() const {
+void Flubba::fire() const
+{
     float time = timer::totalTime();
     if (time - timer_ <= 0.2f) return;
     timer_ = time;
     float angleRad = parent_->rotation()*M_PI / 180.f;
     Vector2f faceDirection(std::cos(angleRad), std::sin(angleRad));
+    
     particles::spawn(particles::pAmmoFlubba, parent_->location() + faceDirection*parent_->radius(), faceDirection, parent_->velocity(), Color3f(), parent_->getOwner());
     parent_->velocity() -= faceDirection*10.f;
     sound::playSound(sound::Blub, parent_->location());
 }
 
-float Flubba::maxDistance() const {
+float Flubba::maxDistance() const
+{
     return 200.f;
 }
 
-float Flubba::minDistance() const {
+float Flubba::minDistance() const
+{
     return 20.f;
 }
 
-float Flubba::maxAngle() const {
+float Flubba::maxAngle() const
+{
     return 70.f;
 }

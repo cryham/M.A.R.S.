@@ -20,16 +20,19 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 # include "Interface/UiWindow.hpp"
 
-class NewGameConfirm: public UiWindow {
+class NewGameConfirm: public UiWindow
+{
     public:
         static UiWindow* get();
         void checkWidgets();
-        void onShow() {  }
+        void onShow()
+        {   }
 
         static void reset();
 
     private:
-        NewGameConfirm(int width, int height): UiWindow(width, height) {}
+        NewGameConfirm(int width, int height): UiWindow(width, height)
+        {   }
         NewGameConfirm(NewGameConfirm const& copy);
 
         static UiWindow* instance_;
@@ -38,7 +41,3 @@ class NewGameConfirm: public UiWindow {
 };
 
 # endif // NEWGAMECONFIRM_HPP_INCLUDED
-
-
-
-

@@ -28,8 +28,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # include "Teams/teams.hpp"
 
 MenuGame::MenuGame():
-    Game(games::gMenu) {
-
+    Game(games::gMenu)
+{
     settings::C_EnabledWeapons  = weapons::wInsta;
     settings::C_EnabledSpecials = specials::sNoSpecial;
 
@@ -60,7 +60,8 @@ MenuGame::MenuGame():
     zones::createRaster(4,3);
 }
 
-void MenuGame::restart() {
+void MenuGame::restart()
+{
     Game::restart();
 
     Home* homeL = spaceObjects::addHome(HOME_LEFT, 100, teams::getTeamL()->color());
@@ -77,8 +78,8 @@ void MenuGame::restart() {
 
 /*
 MenuGame::MenuGame():
-    Game(games::gMenu) {
-
+    Game(games::gMenu)
+{
     settings::C_EnabledWeapons  = settings::C_EnabledWeaponsByUser;
     settings::C_EnabledSpecials = settings::C_EnabledSpecialsByUser;
 
@@ -109,7 +110,8 @@ MenuGame::MenuGame():
     zones::createRaster(4,3);
 }
 
-void MenuGame::restart() {
+void MenuGame::restart()
+{
     Game::restart();
 
     Home* homeL = spaceObjects::addHome(HOME_LEFT,  teams::getTeamL()->color());

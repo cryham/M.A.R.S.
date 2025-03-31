@@ -25,8 +25,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 std::list<AmmoROFLE*> AmmoROFLE::activeParticles_;
 
 AmmoROFLE::AmmoROFLE(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity, Color3f const& color, Player* damageSource):
-         Particle<AmmoROFLE>(spaceObjects::oAmmoROFLE, location, 1.f, 3.0f, 3.0f) {
-
+         Particle<AmmoROFLE>(spaceObjects::oAmmoROFLE, location, 1.f, 3.0f, 3.0f)
+{
     setDamageSource(damageSource);
     velocity_ = direction*1300.f;
     location_ += velocity_*timer::frameTime()*1.2f;
@@ -34,26 +34,29 @@ AmmoROFLE::AmmoROFLE(Vector2f const& location, Vector2f const& direction, Vector
     trailEffects::attach(this, 0.05, 1.f, 4.f, Color3f(1.f, 0.2f, 0.f), false);
 }
 
-AmmoROFLE::~AmmoROFLE() {
+AmmoROFLE::~AmmoROFLE()
+{
     trailEffects::detach(this);
 }
 
 
-void AmmoROFLE::update() {
+void AmmoROFLE::update()
+{
     float time = timer::frameTime()*0.5f;
 
-    for (int i=0; i<2; ++i) {
+    for (int i=0; i<2; ++i)
+    {
         physics::collide(this, STATICS | MOBILES);
         location_ += velocity_*time;
         lifeTime_ += time;
     }
 
-    if (location_.x_ < -100 || location_.x_ > SPACE_X_RESOLUTION + 100 || location_.y_ < -100 || location_.y_ > SPACE_Y_RESOLUTION + 100) {
+    if (location_.x_ < -100 || location_.x_ > SPACE_X_RESOLUTION + 100 || location_.y_ < -100 || location_.y_ > SPACE_Y_RESOLUTION + 100)
         killMe();
-    }
 }
 
-void AmmoROFLE::draw() const {
+void AmmoROFLE::draw() const
+{
     glColor3f(1.f, 1.f, 1.f);
 
     Vector2f direction(velocity_*0.025f);
@@ -71,12 +74,14 @@ void AmmoROFLE::draw() const {
 }
 
 void AmmoROFLE::onCollision(SpaceObject* with, Vector2f const& location,
-                        Vector2f const& direction, Vector2f const& velocity) {
+                        Vector2f const& direction, Vector2f const& velocity)
+{
     float strength = (velocity-velocity_).length();
 
-    if (strength > 50.f) {
-
-        switch (with->type()) {
+    if (strength > 50.f)
+    {
+        switch (with->type())
+        {
             case spaceObjects::oShip:
                 sound::playSound(sound::SniperShipCollide, location, (strength-50)/3);
                 break;
@@ -100,5 +105,3 @@ void AmmoROFLE::onCollision(SpaceObject* with, Vector2f const& location,
     if (with->type() != spaceObjects::oAmmoFlubba && with->type() != spaceObjects::oAmmoH2OMG && with->type() != spaceObjects::oMiniAmmoFlubba)
         killMe();
 }
-
-

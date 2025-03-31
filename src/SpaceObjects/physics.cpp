@@ -25,26 +25,32 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # include <vector>
 # include <cmath>
 
-namespace physics {
-
-    namespace {
+namespace physics
+{
+    namespace
+    {
         std::vector<SpaceObject*>       staticObjects_;
         std::vector<MobileSpaceObject*> mobileObjects_;
         std::vector<SpaceObject*>       gravitySources_;
     }
 
-    void collide (MobileSpaceObject* object, int with) {
+    void collide (MobileSpaceObject* object, int with)
+    {
         // collision with planets
-        if (with & STATICS) {
+        if (with & STATICS)
+        {
             // check for collision with each static object
-            for (std::vector<SpaceObject*>::iterator it = staticObjects_.begin(); it != staticObjects_.end(); ++it) {
+            for (std::vector<SpaceObject*>::iterator it = staticObjects_.begin(); it != staticObjects_.end(); ++it)
+            {
                 // if object touches obstacle
-                if (((*it)->location_ - object->location_).lengthSquare() < std::pow((*it)->radius_ + object->radius_, 2)) {
+                if (((*it)->location_ - object->location_).lengthSquare() < std::pow((*it)->radius_ + object->radius_, 2))
+                {
                     const Vector2f impactDirection = ((*it)->location_ - object->location_).normalize();
                     object->location_ = (*it)->location_ - impactDirection*((*it)->radius_ + object->radius_);
 
                     // if object is moving towards obstacle... avoiding double interactions
-                    if ((object->velocity()*impactDirection) > 0) {
+                    if ((object->velocity()*impactDirection) > 0)
+                    {
                         const Vector2f velocityBefore = (object->velocity() * impactDirection) * impactDirection;
                         object->velocity() = object->velocity() - velocityBefore*0.6 - velocityBefore;
 
@@ -57,41 +63,47 @@ namespace physics {
             }
         }
         // collision with ships and balls
-        if (with & MOBILES) {
+        if (with & MOBILES)
+        {
             // check for collision with each mobile object
-            for (std::vector<MobileSpaceObject*>::iterator it = mobileObjects_.begin(); it != mobileObjects_.end(); ++it) {
+            for (std::vector<MobileSpaceObject*>::iterator it = mobileObjects_.begin(); it != mobileObjects_.end(); ++it)
+            {
                 // don't check for self collision
-                if (*it != object) {
+                if (*it != object)
+                {
                     // get faster object
                     MobileSpaceObject *source, *target;
-                    if (object->velocity() > (*it)->velocity()) {
+                    if (object->velocity() > (*it)->velocity())
+                    {
                         source = object;
                         target = *it;
-                    }
-                    else {
+                    }else
+                    {
                         source = *it;
                         target = object;
                     }
 
                     const float minDistSquared = std::pow(object->radius_ + (*it)->radius_, 2);
                     // if objects are moving
-                    if (source->velocity().lengthSquare() > 0) {
+                    if (source->velocity().lengthSquare() > 0)
+                    {
                         const Vector2f velocitySourceNorm  ( source->velocity().normalize());
                         const Vector2f velocitySourceOrtho (-velocitySourceNorm.y_, velocitySourceNorm.x_);
                         const Vector2f centerDist          ( velocitySourceOrtho * ((source->location_ - target->location_)*velocitySourceOrtho));
 
                         // if path of object crosses target object
-                        if (centerDist.lengthSquare() < minDistSquared) {
+                        if (centerDist.lengthSquare() < minDistSquared)
+                        {
                             const Vector2f lastFrameLocation = source->location_ - source->velocity()*timer::frameTime()*0.6f;
                             const Vector2f chordMidPoint     = target->location_ + centerDist;
 
                             // if path of object has intersected with target within the last frame
                             if ( ((source->location_ - target->location_             ).lengthSquare() < minDistSquared)
                               || ((lastFrameLocation - target->location_             ).lengthSquare() < minDistSquared)
-                              || ((chordMidPoint - source->location_)*(chordMidPoint - lastFrameLocation) < 0.f)) {
-
-                                if (source->velocity()*(target->location_ - lastFrameLocation) > 0) {
-
+                              || ((chordMidPoint - source->location_)*(chordMidPoint - lastFrameLocation) < 0.f))
+                            {
+                                if (source->velocity()*(target->location_ - lastFrameLocation) > 0)
+                                {
                                     const Vector2f moveOutDist (velocitySourceNorm * std::sqrt(minDistSquared - centerDist.lengthSquare()));
                                     source->location_ = chordMidPoint - moveOutDist;
 
@@ -102,7 +114,8 @@ namespace physics {
                                     const Vector2f velocitySourceBefore = impactDirection * (source->velocity() * impactDirection);
                                     const Vector2f velocityTargetBefore = impactDirection * (target->velocity() * impactDirection);
 
-                                    if ((velocitySourceBefore - velocityTargetBefore).lengthSquare() > 1000) {
+                                    if ((velocitySourceBefore - velocityTargetBefore).lengthSquare() > 1000)
+                                    {
                                         // calculate velocity of objects in direction of impact after collision
                                         const Vector2f velocitySourceAfter = (velocitySourceBefore*source->mass_ + velocityTargetBefore*target->mass_ - (velocitySourceBefore - velocityTargetBefore)*target->mass_) / (source->mass_ + target->mass_);
                                         const Vector2f velocityTargetAfter = (velocitySourceBefore*source->mass_ + velocityTargetBefore*target->mass_ - (velocityTargetBefore - velocitySourceBefore)*source->mass_) / (source->mass_ + target->mass_);
@@ -115,12 +128,12 @@ namespace physics {
                                         // special case: Collision with rofle bullets is not physically correct, for improved gameplay
                                         if ((source->type() == spaceObjects::oAmmoROFLE) | (target->type() == spaceObjects::oAmmoROFLE))
                                             target-> velocity() += (0.05f*source->velocity()*source->mass_ + (velocityTargetAfter - velocityTargetBefore) * 0.6);
-                                        else {
-                                            source->velocity() += (velocitySourceAfter - velocitySourceBefore) * 0.8;
+                                        else
+                                        {   source->velocity() += (velocitySourceAfter - velocitySourceBefore) * 0.8;
                                             target->velocity() += (velocityTargetAfter - velocityTargetBefore) * 0.8;
                                         }
-                                    }
-                                    else {
+                                    }else
+                                    {
                                         const Vector2f velocityAfter = (velocitySourceBefore*source->mass_ + velocityTargetBefore*target->mass_) / (source->mass_ + target->mass_);
                                         target->onCollision(source, impactLocation, impactDirection, Vector2f());
                                         source->onCollision(target, impactLocation, impactDirection, Vector2f());
@@ -131,7 +144,8 @@ namespace physics {
                             }
                         }
                     }
-                    else if ((source->location_ - target->location_).lengthSquare() < minDistSquared) {
+                    else if ((source->location_ - target->location_).lengthSquare() < minDistSquared)
+                    {
                         // if objects intersect, but aren't moving
                         const Vector2f normDistance = (target->location_ - source->location_).normalize();
                         const float    moveOutDist  = ((target->radius_ + source->radius_) - (source->location_ - target->location_).length())*0.5;
@@ -147,9 +161,11 @@ namespace physics {
         }
     }
 
-    Vector2f attract (MobileSpaceObject* attracted) {
+    Vector2f attract (MobileSpaceObject* attracted)
+    {
         Vector2f totalAcceleration;
-        for (std::vector<SpaceObject*>::iterator it = gravitySources_.begin(); it != gravitySources_.end(); ++it) {
+        for (std::vector<SpaceObject*>::iterator it = gravitySources_.begin(); it != gravitySources_.end(); ++it)
+        {
             float distanceSquared = (attracted->location_ - (*it)->location_).lengthSquare();
             if (distanceSquared > 100.f)
                 totalAcceleration += ((*it)->location_ - attracted->location_) * (*it)->mass_ / distanceSquared;
@@ -157,11 +173,14 @@ namespace physics {
         return totalAcceleration;
     }
 
-    void causeShockWave(Player* damageSource, Vector2f const& location, float strength, float radius, float damage) {
-        for (std::vector<MobileSpaceObject*>::iterator it = mobileObjects_.begin(); it != mobileObjects_.end(); ++it) {
+    void causeShockWave(Player* damageSource, Vector2f const& location, float strength, float radius, float damage)
+    {
+        for (std::vector<MobileSpaceObject*>::iterator it = mobileObjects_.begin(); it != mobileObjects_.end(); ++it)
+        {
             Vector2f direction((*it)->location_ - location);
             float distance = direction.length();
-            if (distance < radius && direction != Vector2f()) {
+            if (distance < radius && direction != Vector2f())
+            {
                 float intensity = ((radius-distance)/radius);
                 direction /= distance;
                 direction *= (intensity*strength);
@@ -172,39 +191,48 @@ namespace physics {
         particles::shockWave(location, strength, radius);
     }
 
-    void addMobileObject (MobileSpaceObject* object) {
+    void addMobileObject (MobileSpaceObject* object)
+    {
         mobileObjects_.push_back(object);
     }
 
-    void removeMobileObject (MobileSpaceObject* object) {
+    void removeMobileObject (MobileSpaceObject* object)
+    {
         for (std::vector<MobileSpaceObject*>::iterator it = mobileObjects_.begin(); it != mobileObjects_.end(); ++it)
-            if(*it == object) {
+            if (*it == object)
+            {
                 mobileObjects_.erase(it);
                 break;
             }
     }
 
-    void addStaticObject (SpaceObject* object) {
+    void addStaticObject (SpaceObject* object)
+    {
         staticObjects_.push_back(object);
     }
 
-    void removeStaticObject (SpaceObject* object) {
+    void removeStaticObject (SpaceObject* object)
+    {
         for (std::vector<SpaceObject*>::iterator it = staticObjects_.begin(); it != staticObjects_.end(); ++it)
-            if(*it == object) {
+            if (*it == object)
+            {
                 staticObjects_.erase(it);
                 break;
             }
     }
 
-    void addGravitySource (SpaceObject* object) {
+    void addGravitySource (SpaceObject* object)
+    {
         gravitySources_.push_back(object);
     }
 
-    std::vector<SpaceObject*> const& getGravitySources() {
+    std::vector<SpaceObject*> const& getGravitySources()
+    {
         return gravitySources_;
     }
 
-    void clear() {
+    void clear()
+    {
         staticObjects_.clear();
         mobileObjects_.clear();
         gravitySources_.clear();

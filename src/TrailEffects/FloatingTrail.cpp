@@ -31,29 +31,33 @@ FloatingTrail::FloatingTrail(SpaceObject* target, float timeStep, float duration
     timer_(0.f),
     timeStep_(timeStep),
     width_(width),
-    color_(color) {
-        points_[frontIndex_++] = target_->location();
-        ++length_;
+    color_(color)
+{
+    points_[frontIndex_++] = target_->location();
+    ++length_;
 }
 
-void FloatingTrail::update() {
+void FloatingTrail::update()
+{
     timer_ -= timer::frameTime();
-    if (timer_ < 0.f) {
-        timer_ = timeStep_;
-        if (target_) {
+    if (timer_ < 0.f)
+    {   timer_ = timeStep_;
+        if (target_)
+        {
             points_[frontIndex_++] = target_->location();
             frontIndex_ %= points_.size();
             if (length_ < points_.size())
                 ++length_;
         }
-        else {
+        else
             --length_;
-        }
     }
 }
 
-void FloatingTrail::draw() const {
-    if (length_ > 1) {
+void FloatingTrail::draw() const
+{
+    if (length_ > 1)
+    {
         const int posX = 1;
         const int posY = 1;
 
@@ -64,32 +68,35 @@ void FloatingTrail::draw() const {
         glBlendFunc(GL_SRC_ALPHA, GL_ONE);
         glBegin(GL_QUAD_STRIP);
 
-            for (int i=length_; i>0; --i) {
-                if (!target_ && i==1)
-                    color_.gl4f(0.f);
-                else
-                    color_.gl4f(static_cast<float>(length_ - i)/length_);
+        for (int i=length_; i>0; --i)
+        {
+            if (!target_ && i==1)
+                color_.gl4f(0.f);
+            else
+                color_.gl4f(static_cast<float>(length_ - i)/length_);
 
-                int index((frontIndex_-i + points_.size())%points_.size());
+            int index((frontIndex_-i + points_.size())%points_.size());
 
-                if (i > 1) {
-                    int nextIndex((frontIndex_-i+1 + points_.size())%points_.size());
-                    toNext = (points_[nextIndex] - points_[index]).normalize()*width_;
-                }
-
-                glTexCoord2f((posX + 0.5)*0.125f,     posY*0.125f);
-                    glVertex2f(points_[index].x_ + toNext.y_, points_[index].y_ - toNext.x_);
-                glTexCoord2f((posX + 0.5)*0.125f, (posY+1)*0.125f);
-                    glVertex2f(points_[index].x_ - toNext.y_, points_[index].y_ + toNext.x_);
+            if (i > 1)
+            {
+                int nextIndex((frontIndex_-i+1 + points_.size())%points_.size());
+                toNext = (points_[nextIndex] - points_[index]).normalize()*width_;
             }
 
-            if (target_) {
-                color_.gl4f(0);
-                glTexCoord2f((posX + frontIndex_%2)*0.125f,     posY*0.125f);
-                    glVertex2f(target_->location().x_ + toNext.y_, target_->location().y_ - toNext.x_);
-                glTexCoord2f((posX + frontIndex_%2)*0.125f, (posY+1)*0.125f);
-                    glVertex2f(target_->location().x_ - toNext.y_, target_->location().y_ + toNext.x_);
-            }
+            glTexCoord2f((posX + 0.5)*0.125f,     posY*0.125f);
+                glVertex2f(points_[index].x_ + toNext.y_, points_[index].y_ - toNext.x_);
+            glTexCoord2f((posX + 0.5)*0.125f, (posY+1)*0.125f);
+                glVertex2f(points_[index].x_ - toNext.y_, points_[index].y_ + toNext.x_);
+        }
+
+        if (target_)
+        {
+            color_.gl4f(0);
+            glTexCoord2f((posX + frontIndex_%2)*0.125f,     posY*0.125f);
+                glVertex2f(target_->location().x_ + toNext.y_, target_->location().y_ - toNext.x_);
+            glTexCoord2f((posX + frontIndex_%2)*0.125f, (posY+1)*0.125f);
+                glVertex2f(target_->location().x_ - toNext.y_, target_->location().y_ + toNext.x_);
+        }
 
         glEnd();
         glDisable(GL_TEXTURE_2D);
@@ -97,6 +104,7 @@ void FloatingTrail::draw() const {
     }
 }
 
-bool FloatingTrail::isDead() const {
+bool FloatingTrail::isDead() const
+{
     return length_ <= 0;
 }

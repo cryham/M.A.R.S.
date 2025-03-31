@@ -31,17 +31,19 @@ KeyEdit::KeyEdit (sf::String* text, sf::String* toolTip, Key* value, Vector2f co
     UiElement(topLeft, width, 20),
     value_(value),
     toolTip_(toolTip),
-    labelWidth_(labelWidth) {
-
+    labelWidth_(labelWidth)
+{
     label_ = new Label(text, TEXT_ALIGN_LEFT, Vector2f(0,0));
     label_->setParent(this);
 }
 
-KeyEdit::~KeyEdit () {
+KeyEdit::~KeyEdit ()
+{
     delete label_;
 }
 
-void KeyEdit::mouseMoved(Vector2f const& position) {
+void KeyEdit::mouseMoved(Vector2f const& position)
+{
     UiElement::mouseMoved(position);
     label_->mouseMoved(position);
 
@@ -49,7 +51,8 @@ void KeyEdit::mouseMoved(Vector2f const& position) {
         toolTip::show(toolTip_);
 }
 
-void KeyEdit::mouseLeft(bool down) {
+void KeyEdit::mouseLeft(bool down)
+{
     if (down && hovered_) {
         menus::clearFocus();
         setFocus(this, false);
@@ -59,7 +62,8 @@ void KeyEdit::mouseLeft(bool down) {
     }
 }
 
-void KeyEdit::keyEvent(bool down, Key const& key) {
+void KeyEdit::keyEvent(bool down, Key const& key)
+{
     if (pressed_) {
         if (down && (key.navi_ != Key::nAbort) && key.strength_ >= 95) {
             *value_ = key;
@@ -77,7 +81,8 @@ void KeyEdit::keyEvent(bool down, Key const& key) {
     }
 }
 
-void KeyEdit::draw() const {
+void KeyEdit::draw() const
+{
     UiElement::draw();
     Vector2f origin = getTopLeft();
 
@@ -137,12 +142,14 @@ void KeyEdit::draw() const {
     label_->draw();
 }
 
-void KeyEdit::setFocus (UiElement* toBeFocused, bool isPrevious) {
+void KeyEdit::setFocus (UiElement* toBeFocused, bool isPrevious)
+{
     UiElement::setFocus(this, isPrevious);
     label_->setFocus(this, isPrevious);
 }
 
-void KeyEdit::clearFocus() {
+void KeyEdit::clearFocus()
+{
     UiElement::clearFocus();
     pressed_ = false;
     menus::unFixKeyboard();

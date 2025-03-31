@@ -24,15 +24,16 @@ std::list<Spark*> Spark::activeParticles_;
 
 Spark::Spark(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity, Color3f const& color, Player* damageSource):
          Particle<Spark>(spaceObjects::oSpark, location, 1, 0, randomizer::random(0.3f, 0.4f)),
-         color_(color) {
-
+         color_(color)
+{
     Vector2f distortion(Vector2f::randDirLen());
     velocity_ = direction + velocity_*0.5f + distortion*150.f;
 
     if (randomizer::random(0, 1) == 0) color_ = Color3f(1.0f, 0.8f, 0.0f);
 }
 
-void Spark::update() {
+void Spark::update()
+{
     // update Color
     color_.v(-1.0/totalLifeTime_*lifeTime_+1);
 
@@ -44,7 +45,8 @@ void Spark::update() {
     lifeTime_ += time;
 }
 
-void Spark::draw() const {
+void Spark::draw() const
+{
     color_.gl3f();
     const int posX = 0;
     const int posY = 1;
@@ -53,4 +55,3 @@ void Spark::draw() const {
     glTexCoord2f((posX+1)*0.125f, (posY+1)*0.125f); glVertex2f(location_.x_+radius_, location_.y_+radius_);
     glTexCoord2f((posX+1)*0.125f, posY*0.125f);     glVertex2f(location_.x_+radius_, location_.y_-radius_);
 }
-

@@ -24,13 +24,14 @@ std::list<Mud*> Mud::activeParticles_;
 
 Mud::Mud(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity, Color3f const& color, Player* damageSource):
          Particle<Mud>(spaceObjects::oMud, location, 1.f, 0.f, randomizer::random(0.6f, 0.8f)),
-         color_(color) {
-
+         color_(color)
+{
     Vector2f distortion(Vector2f::randDirLen());
     velocity_ = direction + distortion*150;
 }
 
-void Mud::update() {
+void Mud::update()
+{
     // update Color
     color_.v(-1.0/totalLifeTime_*lifeTime_+1);
 
@@ -43,7 +44,8 @@ void Mud::update() {
     lifeTime_ += time;
 }
 
-void Mud::draw() const {
+void Mud::draw() const
+{
     color_.gl3f();
     const int posX = 0;
     const int posY = 1;

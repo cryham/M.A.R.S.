@@ -25,14 +25,16 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 class ComboBox;
 
-class DropDownWindow: public UiWindow {
+class DropDownWindow: public UiWindow
+{
     public:
         DropDownWindow (int width, ComboBox* parent, std::vector<sf::String> elements);
 
         void checkWidgets();
         void onShow();
 
-        void reset() {};
+        void reset()
+        {   }
 
     private:
         ComboBox*                                  parent_;
@@ -40,4 +42,3 @@ class DropDownWindow: public UiWindow {
 };
 
 # endif // DROPDOWNWINDOW_HPP_INCLUDED
-

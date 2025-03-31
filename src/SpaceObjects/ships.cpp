@@ -21,21 +21,26 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 # include <vector>
 
-namespace ships {
-    namespace {
+namespace ships
+{
+    namespace
+    {
         std::vector<Ship*> shipList_;
     }
 
-    void addShip(Vector2f const& location, float rotation, Player* owner) {
+    void addShip(Vector2f const& location, float rotation, Player* owner)
+    {
         shipList_.push_back(new Ship(location, rotation, owner));
     }
 
-    void update() {
+    void update()
+    {
         for (std::vector<Ship*>::iterator it = shipList_.begin(); it != shipList_.end(); ++it)
             (*it)->update();
     }
 
-    void draw() {
+    void draw()
+    {
         glEnable(GL_TEXTURE_2D);
         glBindTexture(GL_TEXTURE_2D, texture::getTexture(texture::Weapons));
 
@@ -51,11 +56,13 @@ namespace ships {
         glBindTexture(GL_TEXTURE_2D, 0);
     }
 
-    std::vector<Ship*> const& getShips() {
+    std::vector<Ship*> const& getShips()
+    {
         return shipList_;
     }
 
-    void clear() {
+    void clear()
+    {
         for (std::vector<Ship*>::iterator it = shipList_.begin(); it != shipList_.end(); ++it)
             delete *it;
         shipList_.clear();

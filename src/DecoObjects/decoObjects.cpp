@@ -30,9 +30,10 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # include <vector>
 # include <list>
 
-namespace decoObjects {
-
-    namespace {
+namespace decoObjects
+{
+    namespace
+    {
         Cannon* cannon_(NULL);
         std::vector<DecoObject*> decos_;
         std::vector<DecoObject*> heats_;
@@ -41,27 +42,32 @@ namespace decoObjects {
         std::list<DecoObject*> bolts_ ;
     }
 
-    void update() {
+    void update()
+    {
         if (cannon_)
             cannon_->update();
     }
 
-    void draw() {
+    void draw()
+    {
         if (cannon_)
             cannon_->draw();
+        
         for (std::vector<DecoObject*>::iterator it = decos_.begin(); it != decos_.end(); ++it)
             (*it)->draw();
 
-        for(std::list<DecoObject*>::iterator it=ices_.begin(); it!=ices_.end(); ++it) {
-            if((*it)!=NULL)
+        for (std::list<DecoObject*>::iterator it=ices_.begin(); it!=ices_.end(); ++it)
+        {
+            if ((*it)!=NULL)
                 (*it)->draw();
             else {
                 it = ices_.erase(it);
             }
         }
 
-        for(std::list<DecoObject*>::iterator it=bolts_.begin(); it!=bolts_.end(); ++it) {
-            if((*it)!=NULL)
+        for (std::list<DecoObject*>::iterator it=bolts_.begin(); it!=bolts_.end(); ++it)
+        {
+            if ((*it)!=NULL)
                 (*it)->draw();
             else {
                 it = bolts_.erase(it);
@@ -69,19 +75,21 @@ namespace decoObjects {
         }
     }
 
-    void drawHeat() {
+    void drawHeat()
+    {
         for (std::vector<DecoObject*>::iterator it = heats_.begin(); it != heats_.end(); ++it)
             (*it)->draw();
     }
 
-    void drawNames() {
+    void drawNames()
+    {
         glBlendFunc(GL_SRC_ALPHA, GL_ONE);
         for (std::vector<DecoObject*>::iterator it = names_.begin(); it != names_.end(); ++it)
             (*it)->draw();
     }
 
-    void drawArrow(Vector2f const& from,  Vector2f const& to, Color3f const& color, float width) {
-
+    void drawArrow(Vector2f const& from,  Vector2f const& to, Color3f const& color, float width)
+    {
         Vector2f direction((to-from).normalize()*width*0.5f);
         Vector2f normal(direction.y_, -direction.x_);
 
@@ -102,62 +110,75 @@ namespace decoObjects {
         glEnd();
     }
 
-    void addCannon() {
+    void addCannon()
+    {
         cannon_ = new Cannon();
         decos_.push_back(new Evil());
     }
 
-    void addPlanetSign(Planet* planet) {
+    void addPlanetSign(Planet* planet)
+    {
         decos_.push_back(new PlanetSign(planet));
     }
 
-    void addSunHeat(Sun* sun) {
+    void addSunHeat(Sun* sun)
+    {
         heats_.push_back(new SunHeat(sun));
     }
 
-    void addIce(Ship* ship) {
+    void addIce(Ship* ship)
+    {
         ices_.push_back(new Ice<Ship>(ship));
     }
 
-    void addIce(Ball* ball) {
+    void addIce(Ball* ball)
+    {
         ices_.push_back(new Ice<Ball>(ball));
     }
 
-    void addIce(AmmoRocket* rocket) {
+    void addIce(AmmoRocket* rocket)
+    {
         ices_.push_back(new Ice<AmmoRocket>(rocket));
     }
 
-    void removeIce(DecoObject const* toBeRemoved) {
+    void removeIce(DecoObject const* toBeRemoved)
+    {
         for(std::list<DecoObject*>::iterator it=ices_.begin(); it!=ices_.end(); ++it)
-            if(*it==toBeRemoved) {
+            if (*it==toBeRemoved) {
                 delete *it;
                 *it=NULL;
                 break;
             }
     }
 
-    void addBolt (SpaceObject* from, SpaceObject* to, float intensity) {
+    void addBolt (SpaceObject* from, SpaceObject* to, float intensity)
+    {
         bolts_.push_back(new Bolt(from, to, intensity));
     }
 
-    void removeBolt (DecoObject const* toBeRemoved) {
+    void removeBolt (DecoObject const* toBeRemoved)
+    {
         for(std::list<DecoObject*>::iterator it=bolts_.begin(); it!=bolts_.end(); ++it)
-            if(*it==toBeRemoved) {
+            if (*it==toBeRemoved)
+            {
                 delete *it;
                 *it=NULL;
                 break;
             }
     }
 
-    void addName(Ship* ship) {
+    void addName(Ship* ship)
+    {
         names_.push_back(new ShipName(ship));
     }
 
-    void addHighlight(Ship* ship) {
+    void addHighlight(Ship* ship)
+    {
         decos_.push_back(new ShipHighlight(ship));
     }
 
-    void clear() {
+    void clear()
+    {
         if (cannon_) {
             delete cannon_;
             cannon_ = NULL;

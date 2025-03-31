@@ -31,7 +31,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # include <SFML/Graphics.hpp>
 # include <vector>
 
-void Freezer::draw(float alpha) const {
+void Freezer::draw(float alpha) const
+{
     glBlendFunc(GL_SRC_ALPHA, GL_ONE);
 
     // draw glow
@@ -47,9 +48,10 @@ void Freezer::draw(float alpha) const {
         glTexCoord2f((posX+1)*0.25f, posY*0.25f);    glVertex2f( parent_->radius()*4,-parent_->radius()*4);
     glEnd();
 
-    if (timer_ > 0.f) {
+    if (timer_ > 0.f)
+    {
         float alpha(0.f);
-        if(timer_ > 0.4f)
+        if (timer_ > 0.4f)
             alpha = std::pow(0.5f-timer_,2)*100.f;
         else
             alpha = -2.5f*(0.5f-timer_)+1.25f;
@@ -74,17 +76,21 @@ void Freezer::draw(float alpha) const {
     }
 }
 
-void Freezer::activate() const {
-    if (parent_->fragStars_ > 0 && timer_ <= 0.f) {
-
-        radius_              = radius();
+void Freezer::activate() const
+{
+    if (parent_->fragStars_ > 0 && timer_ <= 0.f)
+    {
+        radius_ = radius();
         const float strength = parent_->fragStars_*14.f;
 
         std::vector<Ship*> const& ships = ships::getShips();
-        for (std::vector<Ship*>::const_iterator it=ships.begin(); it!=ships.end(); ++it) {
-            if ((*it)!=parent_ && (*it)->collidable() && !(*it)->collectedPowerUps_[items::puShield]) {
+        for (std::vector<Ship*>::const_iterator it=ships.begin(); it!=ships.end(); ++it)
+        {
+            if ((*it)!=parent_ && (*it)->collidable() && !(*it)->collectedPowerUps_[items::puShield])
+            {
                 float distance(((*it)->location()-parent_->location()).length());
-                if (distance <= radius_) {
+                if (distance <= radius_)
+                {
                     (*it)->setDamageSource(parent_->getOwner());
                     (*it)->velocity_=Vector2f();
                     (*it)->mass_=9999999999.f;
@@ -96,9 +102,11 @@ void Freezer::activate() const {
         }
         Ball* ball = balls::getBall();
 
-        if(ball && ball->visible_) {
+        if (ball && ball->visible_)
+        {
             float distance((ball->location()-parent_->location()).length());
-                if (distance <= radius_) {
+                if (distance <= radius_)
+                {
                     ball->velocity_=Vector2f();
                     ball->mass_=9999999999.f;
                     if (ball->frozen_ <= 0)
@@ -107,9 +115,11 @@ void Freezer::activate() const {
             }
         }
 
-        for (std::list<AmmoRocket*>::iterator it=AmmoRocket::activeParticles_.begin(); it!=AmmoRocket::activeParticles_.end(); ++it) {
+        for (std::list<AmmoRocket*>::iterator it=AmmoRocket::activeParticles_.begin(); it!=AmmoRocket::activeParticles_.end(); ++it)
+        {
             float distance(((*it)->location()-parent_->location()).length());
-            if (distance <= radius_) {
+            if (distance <= radius_)
+            {
                 (*it)->velocity_ = (*it)->velocity_*0.00001f;
                 (*it)->mass_=9999999999.f;
                 if ((*it)->frozen_ <= 0)
@@ -123,6 +133,7 @@ void Freezer::activate() const {
     }
 }
 
-float Freezer::radius() const {
+float Freezer::radius() const
+{
     return (parent_->fragStars_ > 0 ? parent_->fragStars_*50.f+150.f : 0.f);
 }

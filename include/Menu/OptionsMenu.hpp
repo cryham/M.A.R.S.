@@ -20,7 +20,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 # include "Interface/UiWindow.hpp"
 
-class OptionsMenu: public UiWindow {
+class OptionsMenu: public UiWindow
+{
     public:
         static UiWindow* get();
         void checkWidgets();
@@ -29,7 +30,8 @@ class OptionsMenu: public UiWindow {
         static void reset();
 
     private:
-        OptionsMenu(int width, int height): UiWindow(width, height) {}
+        OptionsMenu(int width, int height): UiWindow(width, height)
+        {   }
         OptionsMenu(OptionsMenu const& copy);
 
         static UiWindow* instance_;
@@ -42,6 +44,3 @@ class OptionsMenu: public UiWindow {
 };
 
 # endif // OPTIONSMENU_HPP_INCLUDED
-
-
-

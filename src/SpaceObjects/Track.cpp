@@ -23,12 +23,15 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # include "defines.hpp"
 # include "System/randomizer.hpp"
 
-Track::Track(Home* home){
+Track::Track(Home* home)
+{
     calcTrack();
 }
 
-void Track::draw() const {
-    if (points_.size() > 2) {
+void Track::draw() const
+{
+    if (points_.size() > 2)
+    {
         const int posX = 1;
         const int posY = 1;
 
@@ -49,11 +52,19 @@ void Track::draw() const {
             Vector2f left(p1.x_ + toNext.y_, p1.y_ - toNext.x_);
             Vector2f right(p1.x_ - toNext.y_, p1.y_ + toNext.x_);
 
-            if (i>0) {
-                if (clockWise(lastRight-p0, right-lastRight) && !clockWise(lastRight-p0, p1-lastRight) && clockWise(right-p1, p0-right) && !clockWise(right-p1, lastRight-right))
-                    right=lastRight;
-                else if (!clockWise(lastLeft-p0, left-lastLeft) && clockWise(lastLeft-p0, p1-lastLeft) && !clockWise(left-p1, p0-left) && clockWise(left-p1, lastLeft-left))
-                    left=lastLeft;
+            if (i>0)
+            {
+                if (clockWise(lastRight-p0, right-lastRight) &&
+                    !clockWise(lastRight-p0, p1-lastRight) &&
+                    clockWise(right-p1, p0-right) &&
+                    !clockWise(right-p1, lastRight-right))
+                    right = lastRight;
+                else
+                if (!clockWise(lastLeft-p0, left-lastLeft) &&
+                    clockWise(lastLeft-p0, p1-lastLeft) &&
+                    !clockWise(left-p1, p0-left) &&
+                    clockWise(left-p1, lastLeft-left))
+                    left = lastLeft;
 
             }
 
@@ -72,17 +83,19 @@ void Track::draw() const {
     }
 }
 
-void Track::calcTrack() {
+void Track::calcTrack()
+{
     findAnchors();
 
     sortAnchors();
 
-  //  removeSharpCorners();
+    // removeSharpCorners();
 
     createBezier();
 }
 
-void Track::findAnchors() {
+void Track::findAnchors()
+{
     if (randomizer::random(0,1)==1)
         addAnchor(Vector2f(40.f,40.f));
     if (randomizer::random(0,1)==1)
@@ -97,25 +110,28 @@ void Track::findAnchors() {
         addAnchor(Vector2f(randomizer::random(0, SPACE_X_RESOLUTION), randomizer::random(0, SPACE_Y_RESOLUTION)));
 }
 
-void Track::addAnchor(Vector2f const& point) {
+void Track::addAnchor(Vector2f const& point)
+{
     for (std::vector<Vector2f>::iterator it = anchors_.begin(); it != anchors_.end(); ++it)
-        if((*it-point).lengthSquare() < 90000.f)
+        if ((*it-point).lengthSquare() < 90000.f)
             return;
 
     for (std::vector<SpaceObject*>::const_iterator it = spaceObjects::getObjects().begin(); it != spaceObjects::getObjects().end(); ++it)
-        if(((*it)->location()-point).lengthSquare() < std::pow((*it)->radius()+200.f, 2))
+        if (((*it)->location()-point).lengthSquare() < std::pow((*it)->radius()+200.f, 2))
             return;
 
     anchors_.push_back(point);
     zones::addTutorialZone(point, 20.f);
 }
 
-void Track::sortAnchors() {
+void Track::sortAnchors()
+{
     sortLTR();
     // find middle
     Vector2f middle;
-    for (std::vector<Vector2f>::iterator it = anchors_.begin(); it != anchors_.end(); ++it) {
-        middle+=*it;
+    for (std::vector<Vector2f>::iterator it = anchors_.begin(); it != anchors_.end(); ++it)
+    {
+        middle += *it;
     }
     middle/=anchors_.size();
     zones::addTutorialZone(middle, 50.f);
@@ -128,16 +144,20 @@ void Track::sortAnchors() {
 }
 
 
-void Track::sortLTR() {
+void Track::sortLTR()
+{
     bool sorted(false);
-    while (!sorted) {
+    while (!sorted)
+    {
         sorted = true;
 
-        for (std::vector<Vector2f>::iterator it = anchors_.begin(); it != --anchors_.end(); ++it) {
+        for (std::vector<Vector2f>::iterator it = anchors_.begin(); it != --anchors_.end(); ++it)
+        {
             std::vector<Vector2f>::iterator next(it);
             ++next;
 
-            if (it->x_ > next->x_) {
+            if (it->x_ > next->x_)
+            {
                 sorted = false;
                 std::swap(*it, *next);
             }
@@ -145,19 +165,22 @@ void Track::sortLTR() {
     }
 }
 
-void Track::sortHalf (Vector2f const& origin, int startIndex, int endIndex, bool rightHalf, bool CW) {
+void Track::sortHalf (Vector2f const& origin, int startIndex, int endIndex, bool rightHalf, bool CW)
+{
     bool sorted(false);
     while (!sorted) {
         sorted = true;
 
-        for (int i(startIndex); i<endIndex; ++i) {
-            if (rightHalf == CW) {
+        for (int i(startIndex); i < endIndex; ++i)
+        {
+            if (rightHalf == CW)
+            {
                 if ((anchors_[i] - origin).normalize().y_ > (anchors_[i+1] - origin).normalize().y_) {
                     sorted = false;
                     std::swap(anchors_[i], anchors_[i+1]);
                 }
-            }
-            else {
+            }else
+            {
                 if ((anchors_[i] - origin).normalize().y_ < (anchors_[i+1] - origin).normalize().y_) {
                     sorted = false;
                     std::swap(anchors_[i], anchors_[i+1]);
@@ -167,20 +190,23 @@ void Track::sortHalf (Vector2f const& origin, int startIndex, int endIndex, bool
     }
 }
 
-void Track::removeSharpCorners() {
-    for (int i(0); i<anchors_.size(); ++i) {
+void Track::removeSharpCorners()
+{
+    for (int i(0); i < anchors_.size(); ++i)
+    {
         Vector2f current(anchors_[i]);
         Vector2f next(anchors_[(i+1)%anchors_.size()]);
         Vector2f uberNext(anchors_[(i+2)%anchors_.size()]);
 
-        if ((next-current).normalize()*(uberNext-next).normalize() < std::cos(35.f*M_PI/180.f))
+        if ((next-current).normalize() * (uberNext-next).normalize() < std::cos(35.f * M_PI/180.f))
             anchors_[i] = Vector2f(0.f, 0.f);
     }
 }
 
-void Track::createBezier() {
-    for (int i(0); i<anchors_.size(); ++i) {
-
+void Track::createBezier()
+{
+    for (int i(0); i<anchors_.size(); ++i)
+    {
         Vector2f p0(anchors_[i]);
         Vector2f p1(anchors_[(i+1)%anchors_.size()]);
         Vector2f p2(anchors_[(i+2)%anchors_.size()]);
@@ -189,13 +215,9 @@ void Track::createBezier() {
         Vector2f s1((p2+p1)*0.5f);
 
         const float step(20.f);
-        for (float t=0.f; t<1.f; t+=1.f/step) {
+        for (float t=0.f; t < 1.f; t += 1.f/step)
+        {
             points_.push_back(std::pow(1.f-t, 2)*s0 + 2*t*(1.f-t)*p1 + t*t*s1);
         }
     }
 }
-
-
-
-
-

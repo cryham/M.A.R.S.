@@ -70,8 +70,10 @@ int  OptionsMenu::soundVolume_(0);
 int  OptionsMenu::musicVolume_(0);
 int  OptionsMenu::announcerVolume_(0);
 
-UiWindow* OptionsMenu::get() {
-    if (instance_ == NULL) {
+UiWindow* OptionsMenu::get()
+{
+    if (instance_ == NULL)
+    {
         instance_ = new OptionsMenu(700, 430);
 
         instance_->addWidget(new Button(locales::getLocale(locales::Ok), NULL, &kOk_, Vector2f(500,360), 90, 20));
@@ -118,7 +120,8 @@ UiWindow* OptionsMenu::get() {
         std::vector<sf::String> resolutions;
         std::vector<sf::String> colorDepths;
         for (std::vector<sf::VideoMode>::iterator it = modes.begin(); it != modes.end(); ++it) {
-            if (it->width >= 800 && it->bitsPerPixel >= 8) {
+            if (it->width >= 800 && it->bitsPerPixel >= 8)
+            {
                 std::stringstream res, depth;
                 res << it->width << " x " << it->height;
                 depth << it->bitsPerPixel;
@@ -224,9 +227,10 @@ UiWindow* OptionsMenu::get() {
     return instance_;
 }
 
-void OptionsMenu::checkWidgets() {
-    if (kOk_) {
-        kOk_ = false;
+void OptionsMenu::checkWidgets()
+{
+    if (kOk_)
+    {   kOk_ = false;
 
         int resX, resY, depth;
         std::stringstream sstr1(resolution_);
@@ -238,8 +242,8 @@ void OptionsMenu::checkWidgets() {
         sstr2 >> depth;
 
         if (fullscreen_ != settings::C_fullScreen || vsync_ != settings::C_vsync || shaders_ != settings::C_shaders
-            || resX != settings::C_resX || resY != settings::C_resY || depth != settings::C_colorDepth) {
-
+            || resX != settings::C_resX || resY != settings::C_resY || depth != settings::C_colorDepth)
+        {
             settings::C_resX = resX;
             settings::C_resY = resY;
             settings::C_colorDepth = depth;
@@ -269,26 +273,29 @@ void OptionsMenu::checkWidgets() {
         settings::save();
         menus::hideWindow();
     }
-    if (shaders_ != settings::C_shaders) {
-        if (shaders_ && !postFX::supported()) {
+    if (shaders_ != settings::C_shaders)
+    {
+        if (shaders_ && !postFX::supported())
+        {
             shaders_ = false;
             settings::C_shaders = false;
             menus::showWindow(ShaderError::get());
         }
     }
-    if (soundVolume_ != settings::C_soundVolume) {
+    if (soundVolume_ != settings::C_soundVolume)
         settings::C_soundVolume = soundVolume_;
-    }
-    if (musicVolume_ != settings::C_musicVolume) {
+
+    if (musicVolume_ != settings::C_musicVolume)
+    {
         settings::C_musicVolume = musicVolume_;
         music::setGlobalVolume();
     }
-    if (announcerVolume_ != settings::C_announcerVolume) {
+    if (announcerVolume_ != settings::C_announcerVolume)
         settings::C_announcerVolume = announcerVolume_;
-    }
 }
 
-void OptionsMenu::onShow() {
+void OptionsMenu::onShow()
+{
     fullscreen_      = settings::C_fullScreen;
     vsync_           = settings::C_vsync;
     shaders_         = settings::C_shaders;
@@ -320,7 +327,8 @@ void OptionsMenu::onShow() {
     colorDepth_ = sstr2.str();
 }
 
-void OptionsMenu::reset() {
+void OptionsMenu::reset()
+{
     if (instance_)
         delete instance_;
     instance_ = NULL;

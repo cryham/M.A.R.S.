@@ -30,8 +30,10 @@ UiWindow* About::instance_(NULL);
 bool About::kClose_(false);
 sf::String About::marsName_("");
 
-UiWindow* About::get() {
-    if (instance_ == NULL) {
+UiWindow* About::get()
+{
+    if (instance_ == NULL) 
+    {
         instance_ = new About(620, 310);
         instance_->addWidget(new Button(locales::getLocale(locales::Close), NULL, &kClose_, Vector2f(320,280), 90, 20));
         instance_->addWidget(new Label(new sf::String("M.A.R.S."), TEXT_ALIGN_LEFT, Vector2f(10,10), 20.f, getColor3f(0.5f, 0.9f, 1.f), false));
@@ -57,18 +59,21 @@ UiWindow* About::get() {
     return instance_;
 }
 
-void About::checkWidgets() {
+void About::checkWidgets()
+{
     if (kClose_) {
         kClose_ = false;
         menus::hideWindow();
     }
 }
 
-void About::onShow() {
+void About::onShow()
+{
     marsName_ = "A " + generateName::game();
 }
 
-void About::reset() {
+void About::reset()
+{
     if (instance_)
         delete instance_;
     instance_ = NULL;

@@ -28,7 +28,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 # include <sstream>
 
-void LeftLife::draw() const {
+void LeftLife::draw() const
+{
     text::drawFooText();
 
     Player const* player(NULL);

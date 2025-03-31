@@ -20,7 +20,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 # include "Interface/UiWindow.hpp"
 
-class EnterName: public UiWindow {
+class EnterName: public UiWindow
+{
     public:
         static UiWindow* get();
         void checkWidgets();
@@ -29,7 +30,8 @@ class EnterName: public UiWindow {
         static void reset();
 
     private:
-        EnterName(int width, int height): UiWindow(width, height) {}
+        EnterName(int width, int height): UiWindow(width, height)
+        {   }
         EnterName(EnterName const& copy);
 
         static UiWindow* instance_;
@@ -38,9 +40,3 @@ class EnterName: public UiWindow {
 };
 
 # endif // ENTERNAME_HPP_INCLUDED
-
-
-
-
-
-

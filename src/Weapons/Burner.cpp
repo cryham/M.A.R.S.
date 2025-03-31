@@ -24,7 +24,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 # include <SFML/Graphics.hpp>
 
-void Burner::draw(float alpha) const {
+void Burner::draw(float alpha) const
+{
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glColor4f(1.0f, 1.0f, 1.0f, alpha);
     const int posX = 0;
@@ -37,13 +38,16 @@ void Burner::draw(float alpha) const {
     glEnd();
 }
 
-void Burner::fire() const {
+void Burner::fire() const
+{
     float time = timer::totalTime();
-    if (time - timer_ > 0.05f) {
+    if (time - timer_ > 0.05f)
+    {
         timer_ = time;
         float angleRad = parent_->rotation()*M_PI / 180.f;
         Vector2f faceDirection(std::cos(angleRad), std::sin(angleRad));
-        for (int i=0; i<20; ++i) {
+        for (int i=0; i < 20; ++i)
+        {
             particles::spawn(particles::pAmmoBurner, parent_->location() + faceDirection*parent_->radius()*1.5f, faceDirection, parent_->velocity(), Color3f(), parent_->getOwner());
             particles::spawn(particles::pHeatBurner, parent_->location() + faceDirection*parent_->radius()*1.5f, faceDirection, parent_->velocity());
         }
@@ -51,14 +55,17 @@ void Burner::fire() const {
     }
 }
 
-float Burner::maxDistance() const {
+float Burner::maxDistance() const
+{
     return 200.f;
 }
 
-float Burner::minDistance() const {
+float Burner::minDistance() const
+{
     return 0.f;
 }
 
-float Burner::maxAngle() const {
+float Burner::maxAngle() const
+{
     return 10.f;
 }

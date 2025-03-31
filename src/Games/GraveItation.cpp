@@ -25,8 +25,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # include "Teams/teams.hpp"
 
 GraveItation::GraveItation():
-    Game(games::gGraveItation) {
-
+    Game(games::gGraveItation)
+{
     settings::C_EnabledWeapons  = weapons::wInsta;
     settings::C_EnabledSpecials = specials::sNoSpecial;
 
@@ -82,12 +82,14 @@ GraveItation::GraveItation():
     zones::createRaster(4,3);
 }
 
-void GraveItation::draw() const {
+void GraveItation::draw() const
+{
     if (settings::C_drawZones) zones::draw();
     Game::draw();
 }
 
-void GraveItation::restart() {
+void GraveItation::restart()
+{
     Game::restart();
 
     Home* homeL = spaceObjects::addHome(HOME_LEFT, 100, teams::getTeamL()->color());

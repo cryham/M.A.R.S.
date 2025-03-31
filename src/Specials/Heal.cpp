@@ -28,7 +28,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # include <SFML/Graphics.hpp>
 # include <vector>
 
-void Heal::draw(float alpha) const {
+void Heal::draw(float alpha) const
+{
     glBlendFunc(GL_SRC_ALPHA, GL_ONE);
 
     // draw glow
@@ -46,9 +47,10 @@ void Heal::draw(float alpha) const {
         glTexCoord2f((posX+1)*0.25f, posY*0.25f);    glVertex2f( parent_->radius()*4,-parent_->radius()*4);
     glEnd();
 
-    if (timer_ > 0.f) {
+    if (timer_ > 0.f)
+    {
         float alpha(0.f);
-        if(timer_ > 0.4f)
+        if (timer_ > 0.4f)
             alpha = std::pow(0.5f-timer_,2)*100.f;
         else
             alpha = -2.5f*(0.5f-timer_)+1.25f;
@@ -71,19 +73,24 @@ void Heal::draw(float alpha) const {
     }
 }
 
-void Heal::activate() const {
-    if (parent_->fragStars_ > 0  && timer_ <= 0.f) {
-        radius_                         = radius();
+void Heal::activate() const
+{
+    if (parent_->fragStars_ > 0  && timer_ <= 0.f)
+    {
+        radius_ = radius();
         std::vector<Ship*> const& ships = ships::getShips();
-        for (std::vector<Ship*>::const_iterator it=ships.begin(); it!=ships.end(); ++it) {
-            if ((*it)!=parent_) {
+        for (std::vector<Ship*>::const_iterator it=ships.begin(); it!=ships.end(); ++it)
+        {
+            if ((*it)!=parent_)
+            {
                 float distance(((*it)->location()-parent_->location()).length());
-                if ((*it)->collidable() && parent_->getOwner()->team() == (*it)->getOwner()->team() && distance <= radius_) {
+                if ((*it)->collidable() && parent_->getOwner()->team() == (*it)->getOwner()->team() && distance <= radius_)
+                {
                     (*it)->heal(parent_->getOwner(), ((radius_/distance)-0.8f)*parent_->fragStars_*30);
                     (*it)->refuel(parent_->getOwner(), ((radius_/distance)-0.8f)*parent_->fragStars_*30);
                 }
-            }
-            else {
+            }else
+            {
                 parent_->heal(parent_->getOwner(), parent_->fragStars_*30);
                 parent_->refuel(parent_->getOwner(), parent_->fragStars_*30);
             }
@@ -93,7 +100,7 @@ void Heal::activate() const {
     }
 }
 
-float Heal::radius() const {
+float Heal::radius() const
+{
     return (parent_->fragStars_ > 0 ? parent_->fragStars_*50.f+50.f : 0.f);
 }
-

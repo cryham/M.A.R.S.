@@ -23,11 +23,13 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 /// Weapon: AFK47.
 /// A long distance gun, classic star wars laser flair.
 
-class AFK47: public Weapon {
+class AFK47: public Weapon
+{
     public:
         /// Ctor which constructs the weapon.
         AFK47(Ship* parent):
-              Weapon(weapons::wAFK47, parent, sf::String("AFK-47")) {};
+              Weapon(weapons::wAFK47, parent, sf::String("AFK-47"))
+        {   }
 
         /// Spawns some particles.
         void fire() const;

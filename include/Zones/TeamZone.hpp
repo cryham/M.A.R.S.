@@ -24,12 +24,14 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 /// Zone: TutorialZone.
 /// A very large Zone, covering half the screen.
 
-class TeamZone: public Zone {
+class TeamZone: public Zone
+{
     public:
         /// Ctor, which creates the Zone.
         TeamZone(int homeSide) :
             Zone(),
-            homeSide_(homeSide) {}
+            homeSide_(homeSide)
+        {   }
 
         /// Returns true, if the given SpaceObject is inside this Zone.
         bool isInside(SpaceObject const& toBeChecked) const;

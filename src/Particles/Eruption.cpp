@@ -24,13 +24,14 @@ std::list<Eruption*> Eruption::activeParticles_;
 
 Eruption::Eruption(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity, Color3f const& color, Player* damageSource):
          Particle<Eruption>(spaceObjects::oEruption, location, 1.f, 0.f, randomizer::random(1.0f, 2.5f)),
-         color_(Color3f(1.0f, 0.9f, 0.2f)) {
-
+         color_(Color3f(1.0f, 0.9f, 0.2f))
+{
     Vector2f distortion(Vector2f::randDir()*randomizer::random(0.9f, 1.1f));
     velocity_ = velocity*50.f + distortion*70.f;
 }
 
-void Eruption::update() {
+void Eruption::update()
+{
     // update Color
     color_.v(-1.0f/totalLifeTime_*lifeTime_+1.f);
 
@@ -43,7 +44,8 @@ void Eruption::update() {
     lifeTime_ += time;
 }
 
-void Eruption::draw() const {
+void Eruption::draw() const
+{
     color_.gl3f();
     const int posX = 0;
     const int posY = 1;

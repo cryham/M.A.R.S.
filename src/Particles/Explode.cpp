@@ -33,7 +33,8 @@ Explode::Explode(Vector2f const& location, Vector2f const& direction, Vector2f c
     color_.s(0.3f);
 }
 
-void Explode::update() {
+void Explode::update()
+{
     float time = timer::frameTime();
 
     // update Color
@@ -50,7 +51,8 @@ void Explode::update() {
     lifeTime_ += time;
 }
 
-void Explode::draw() const {
+void Explode::draw() const
+{
     color_.gl4f(0.5);
     const int posX = 6;
     const int posY = 0;

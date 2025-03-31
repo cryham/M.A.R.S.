@@ -24,7 +24,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 # include <SFML/Graphics.hpp>
 
-void Shotgun::draw(float alpha) const {
+void Shotgun::draw(float alpha) const
+{
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glColor4f(1.0f, 1.0f, 1.0f, alpha);
     const int posX = 1;
@@ -37,27 +38,34 @@ void Shotgun::draw(float alpha) const {
     glEnd();
 }
 
-void Shotgun::fire() const {
+void Shotgun::fire() const
+{
     float time = timer::totalTime();
-    if (time - timer_ > 1.0) {
+    if (time - timer_ > 1.0)
+    {
         timer_ = time;
         float angleRad = parent_->rotation()*M_PI / 180.f;
         Vector2f faceDirection(std::cos(angleRad), std::sin(angleRad));
-        for (int i=0; i<25; ++i)
+        
+        for (int i=0; i < 25; ++i)
             particles::spawn(particles::pAmmoShotgun, parent_->location() + faceDirection*parent_->radius(), faceDirection, parent_->velocity(), Color3f(), parent_->getOwner());
+        
         parent_->velocity() -= faceDirection*200.f;
         sound::playSound(sound::Pump, parent_->location());
     }
 }
 
-float Shotgun::maxDistance() const {
+float Shotgun::maxDistance() const
+{
     return 300.f;
 }
 
-float Shotgun::minDistance() const {
+float Shotgun::minDistance() const
+{
     return 0.f;
 }
 
-float Shotgun::maxAngle() const {
+float Shotgun::maxAngle() const
+{
     return 20.f;
 }

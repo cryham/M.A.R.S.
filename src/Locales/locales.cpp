@@ -25,31 +25,40 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # include <sstream>
 # include <iostream>
 
-namespace locales {
-
-    namespace {
+namespace locales
+{
+    namespace
+    {
         std::vector<Locale>     locales_;
         std::vector<sf::String> localeStrings_(COUNT, "Error");
 
-        bool load(std::string const& fileName) {
+        bool load(std::string const& fileName)
+        {
             std::vector<sf::String> lines;
-            if (file::load(fileName, lines)) {
-                for (std::vector<sf::String>::iterator it = lines.begin(); it != lines.end(); ++it) {
+            if (file::load(fileName, lines))
+            {
+                for (std::vector<sf::String>::iterator it = lines.begin(); it != lines.end(); ++it)
+                {
                     std::stringstream sstr(it->toAnsiString());
                     int id;
                     sstr >> id;
-                    if (id < COUNT && it->getSize() > 4) {
+                    if (id < COUNT && it->getSize() > 4)
+                    {
                         sf::String tmp(*it);
                         tmp.erase(0, 4);
 
-                        for (int i=0; i<tmp.getSize(); ++i) {
-                            if (tmp[i] == '{') {
+                        for (int i=0; i<tmp.getSize(); ++i)
+                        {
+                            if (tmp[i] == '{')
+                            {
                                 int j(i+1);
                                 sf::String macro;
-                                while (tmp[j] != '}') {
+                                while (tmp[j] != '}')
+                                {
                                     macro.insert(macro.getSize(), tmp[j]);
                                     ++j;
-                                    if (j == tmp.getSize()) {
+                                    if (j == tmp.getSize())
+                                    {
                                         std::cout << "Error parsing " << fileName << ": At ID " << id << " the macro " << macro.toAnsiString() << " misses a trailing '}' !" << std::endl;
                                         break;
                                     }
@@ -105,14 +114,18 @@ namespace locales {
         }
     }
 
-    bool load() {
+    bool load()
+    {
         std::vector<sf::String> lines;
-        if (file::load(settings::C_dataPath + "locales/locales.conf", lines)) {
+        if (file::load(settings::C_dataPath + "locales/locales.conf", lines))
+        {
             locales_.clear();
             Locale newLocale;
             bool first(true);
-            for (std::vector<sf::String>::iterator it = lines.begin(); it != lines.end(); ++it) {
-                if ((*it).toAnsiString()[0] == '[') {
+            for (std::vector<sf::String>::iterator it = lines.begin(); it != lines.end(); ++it)
+            {
+                if ((*it).toAnsiString()[0] == '[')
+                {
                     if (!first) {
                         locales_.push_back(newLocale);
                         newLocale = Locale();
@@ -123,7 +136,8 @@ namespace locales {
 
                     first = false;
                 }
-                else {
+                else
+                {
                     std::stringstream sstr(std::string((*it).toAnsiString()));
                     std::string flag;
                     sstr >> flag;
@@ -172,19 +186,23 @@ namespace locales {
         }
     }
 
-    std::vector<Locale>const& getLocales() {
+    std::vector<Locale>const& getLocales()
+    {
         return locales_;
     }
 
-    sf::String* getLocale(LocaleType type) {
+    sf::String* getLocale(LocaleType type)
+    {
         return &localeStrings_[type];
     }
 
-    Locale const& getCurrentLocale() {
+    Locale const& getCurrentLocale()
+    {
         return locales_[settings::C_languageID];
     }
 
-    void setCurrentLocale() {
+    void setCurrentLocale()
+    {
         load(settings::C_dataPath + "locales/"+locales_[settings::C_languageID].fileName_);
     }
 }

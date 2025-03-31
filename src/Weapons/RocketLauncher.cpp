@@ -24,7 +24,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 # include <SFML/Graphics.hpp>
 
-void RocketLauncher::draw(float alpha) const {
+void RocketLauncher::draw(float alpha) const
+{
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glColor4f(1.0f, 1.0f, 1.0f, alpha);
     const int posX = 0;
@@ -37,12 +38,15 @@ void RocketLauncher::draw(float alpha) const {
     glEnd();
 }
 
-void RocketLauncher::fire() const {
+void RocketLauncher::fire() const
+{
     float time = timer::totalTime();
-    if (time - timer_ > 4.0f) {
-        timer_ = time;
+    if (time - timer_ > 4.0f)
+    {   timer_ = time;
+
         float angleRad = parent_->rotation()*M_PI / 180.f;
         Vector2f faceDirection(std::cos(angleRad), std::sin(angleRad));
+
         particles::spawn(particles::pAmmoRocket, parent_->location() + faceDirection*parent_->radius(), faceDirection, parent_->velocity(), Color3f(), parent_->getOwner());
         particles::spawnMultiple(10.f, particles::pDust,  parent_->location() + faceDirection*parent_->radius(), parent_->velocity());
         parent_->velocity() -= faceDirection*400.f;
@@ -50,14 +54,17 @@ void RocketLauncher::fire() const {
     }
 }
 
-float RocketLauncher::maxDistance() const {
+float RocketLauncher::maxDistance() const
+{
     return 500.f;
 }
 
-float RocketLauncher::minDistance() const {
+float RocketLauncher::minDistance() const
+{
     return 50.f;
 }
 
-float RocketLauncher::maxAngle() const {
+float RocketLauncher::maxAngle() const
+{
     return 30.f;
 }

@@ -30,7 +30,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 UiWindow* InfoHide::instance_(NULL);
 bool InfoHide::kOk_(false);
 
-UiWindow* InfoHide::get() {
+UiWindow* InfoHide::get()
+{
     if (instance_ == NULL) {
         instance_ = new InfoHide(320*scale_, 200);
         instance_->addWidget(new Button(locales::getLocale(locales::Close), NULL, &kOk_, Vector2f(220,170), 90, 20));
@@ -43,7 +44,8 @@ UiWindow* InfoHide::get() {
     return instance_;
 }
 
-void InfoHide::checkWidgets() {
+void InfoHide::checkWidgets()
+{
     if (kOk_) {
         kOk_ = false;
         menus::hideWindow();
@@ -52,7 +54,8 @@ void InfoHide::checkWidgets() {
     }
 }
 
-void InfoHide::reset() {
+void InfoHide::reset()
+{
     if (instance_)
         delete instance_;
     instance_ = NULL;

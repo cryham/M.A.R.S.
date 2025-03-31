@@ -42,8 +42,8 @@ AmmoRocket::AmmoRocket(Vector2f const& location, Vector2f const& direction, Vect
          rotation_(0.f),
          life_(50.f),
          frozen_(0.f),
-         visible_(true) {
-
+         visible_(true)
+{
     setDamageSource(damageSource);
     velocity_ = direction*300.f;
     location_ += velocity_*timer::frameTime()*1.2f;
@@ -51,12 +51,14 @@ AmmoRocket::AmmoRocket(Vector2f const& location, Vector2f const& direction, Vect
     trailEffects::attach(this, 0.05, 2.5f, 20.f, Color3f(0.6f, 0.2f, 0.f), false);
 }
 
-AmmoRocket::~AmmoRocket() {
+AmmoRocket::~AmmoRocket()
+{
     trailEffects::detach(this);
 }
 
 
-void AmmoRocket::update() {
+void AmmoRocket::update()
+{
     float const time = timer::frameTime();
 
     if (frozen_ <= 0) {
@@ -97,7 +99,8 @@ void AmmoRocket::update() {
         lifeTime_ += time;
         timer_ -= time;
 
-        if (timer_ < 0.f) {
+        if (timer_ < 0.f)
+        {
             timer_ = 0.5f;
 
             ballTarget_ = NULL;
@@ -129,19 +132,21 @@ void AmmoRocket::update() {
         frozen_  -= time*3.f;
         life_    -= time*5.f;
 
-        if (frozen_ < 0.f) {
-            frozen_ = 0.f;
+        if (frozen_ < 0.f)
+        {   frozen_ = 0.f;
             mass_ = 3.f;
             particles::spawnMultiple(2, particles::pCrushedIce, location_);
         }
     }
 
-    if (life_<=0.f) {
+    if (life_<=0.f)
+    {
         visible_ = false;
         particles::spawnMultiple(50, particles::pDust, location_);
         particles::spawnMultiple(20, particles::pExplode, location_);
         particles::spawnMultiple(5, particles::pBurningFragment, location_);
         particles::spawnMultiple(1, particles::pMiniFlame, location_);
+
         postFX::onExplosion();
         setDamageSource(parent_);
         physics::  causeShockWave(damageSource(), location_, 150.f, 300.f, 3.f);
@@ -150,7 +155,8 @@ void AmmoRocket::update() {
     }
 }
 
-void AmmoRocket::draw() const {
+void AmmoRocket::draw() const
+{
     glColor3f(1.f, 1.f, 1.f);
 
     Vector2f direction(velocity_.normalize()*10.f);
@@ -165,15 +171,19 @@ void AmmoRocket::draw() const {
     glTexCoord2f(posX*0.125f,     posY*0.125f);    glVertex2f(topRight.x_, topRight.y_);
 
     MobileSpaceObject* target(NULL);
-    if (ballTarget_) target = ballTarget_;
-    else if (shipTarget_) target = shipTarget_;
+    if (ballTarget_)
+        target = ballTarget_;
+    else if (shipTarget_)
+        target = shipTarget_;
 
-    if (target && frozen_ <= 0) {
+    if (target && frozen_ <= 0)
+    {
         glColor3f(1.f, 0.7f, 0.9f);
         const int posX = 5;
         const int posY = 5;
         float const size = std::sin(lifeTime_*5.f)*4.f + 26.f;
         Vector2f const loc(target->location());
+
         glTexCoord2f(posX*0.125f,    (posY+3)*0.125f); glVertex2f(loc.x_ - size, loc.y_ - size);
         glTexCoord2f((posX+3)*0.125f,(posY+3)*0.125f); glVertex2f(loc.x_ + size, loc.y_ - size);
         glTexCoord2f((posX+3)*0.125f, posY*0.125f);    glVertex2f(loc.x_ + size, loc.y_ + size);
@@ -182,12 +192,13 @@ void AmmoRocket::draw() const {
 }
 
 void AmmoRocket::onCollision(SpaceObject* with, Vector2f const& location,
-                        Vector2f const& direction, Vector2f const& velocity) {
+                        Vector2f const& direction, Vector2f const& velocity)
+{
     float strength(velocity.length());
     float amount(0.f), unfreeze(0.f);
 
-    switch (with->type()) {
-
+    switch (with->type())
+    {
         case spaceObjects::oAmmoAFK47:
             amount = strength*0.01f;
             unfreeze = 1.f;
@@ -220,12 +231,13 @@ void AmmoRocket::onCollision(SpaceObject* with, Vector2f const& location,
             amount = life_;
             break;
 
-        case spaceObjects::oShip: {
-            if (totalLifeTime_ <= 0.5) {
+        case spaceObjects::oShip:
+        {
+            if (totalLifeTime_ <= 0.5)
+            {
                 if (dynamic_cast<Ship*>(with) != parent_->ship())
                     amount = life_;
-            }
-            else
+            }else
                 amount = life_;
             break;
         }
@@ -238,13 +250,13 @@ void AmmoRocket::onCollision(SpaceObject* with, Vector2f const& location,
 
     if (frozen_ <= 0)
         life_ -= amount;
-    else {
+    else
+    {
         frozen_ -= unfreeze;
-        if (frozen_ < 0.f) {
-            frozen_ = 0.f;
+        if (frozen_ < 0.f)
+        {   frozen_ = 0.f;
             mass_ = 3.f;
             particles::spawnMultiple(2, particles::pCrushedIce, location_);
         }
     }
 }
-

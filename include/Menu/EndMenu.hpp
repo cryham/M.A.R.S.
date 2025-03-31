@@ -20,16 +20,18 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 # include "Interface/UiWindow.hpp"
 
-class EndMenu: public UiWindow {
+class EndMenu: public UiWindow
+{
     public:
         static UiWindow* get();
         void checkWidgets();
-        void onShow() {}
-
+        void onShow()
+        {   }
         static void reset();
 
     private:
-        EndMenu(int width, int height): UiWindow(width, height) {}
+        EndMenu(int width, int height): UiWindow(width, height)
+        {   }
         EndMenu(EndMenu const& copy);
 
         static UiWindow* instance_;
@@ -38,5 +40,3 @@ class EndMenu: public UiWindow {
 };
 
 # endif // ENDMENU_HPP_INCLUDED
-
-

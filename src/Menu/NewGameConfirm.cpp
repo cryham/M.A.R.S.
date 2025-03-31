@@ -29,7 +29,8 @@ UiWindow* NewGameConfirm::instance_(NULL);
 bool NewGameConfirm::kOk_(false);
 bool NewGameConfirm::kCancel_(false);
 
-UiWindow* NewGameConfirm::get() {
+UiWindow* NewGameConfirm::get()
+{
     if (settings::C_noConfirmations) {
         games::restart();
         return 0;
@@ -43,7 +44,8 @@ UiWindow* NewGameConfirm::get() {
     return instance_;
 }
 
-void NewGameConfirm::checkWidgets() {
+void NewGameConfirm::checkWidgets()
+{
     if (kOk_) {
         kOk_ = false;
         menus::hideWindow();
@@ -56,7 +58,8 @@ void NewGameConfirm::checkWidgets() {
     }
 }
 
-void NewGameConfirm::reset() {
+void NewGameConfirm::reset()
+{
     if (instance_)
         delete instance_;
     instance_ = NULL;

@@ -22,7 +22,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 class Tab;
 
-class NewGameMenu: public UiWindow {
+class NewGameMenu: public UiWindow
+{
     public:
         static UiWindow* get();
         void checkWidgets();
@@ -31,7 +32,8 @@ class NewGameMenu: public UiWindow {
         static void reset();
 
     private:
-        NewGameMenu(int width, int height): UiWindow(width, height) {}
+        NewGameMenu(int width, int height): UiWindow(width, height)
+        {   }
         NewGameMenu(NewGameMenu const& copy);
 
         static UiWindow* instance_;
@@ -45,5 +47,3 @@ class NewGameMenu: public UiWindow {
 };
 
 # endif // NEWGAMEMENU_HPP_INCLUDED
-
-

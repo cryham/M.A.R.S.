@@ -27,23 +27,27 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 # include <list>
 
-void SBTeam::createJobs() {
+void SBTeam::createJobs()
+{
     checkBall();
     checkEnemies();
     checkPowerUps();
 
-     for (int i=0; i<botControllers_.size(); ++i) {
+     for (int i=0; i<botControllers_.size(); ++i)
+     {
         addJob(Job(Job::jLand, 20));
         addJob(Job(Job::jCharge, 20));
     }
 }
 
-void SBTeam::checkEnemies() {
+void SBTeam::checkEnemies()
+{
     std::vector<Ship*> ships = ships::getShips();
     bool existAny(false);
 
     for (std::vector<Ship*>::const_iterator it = ships.begin(); it != ships.end(); ++it)
-        if ((*it)->getOwner()->team() != this && (*it)->attackable()) {
+        if ((*it)->getOwner()->team() != this && (*it)->attackable())
+        {
             existAny = true;
             break;
         }
@@ -53,12 +57,14 @@ void SBTeam::checkEnemies() {
             addJob(Job(Job::jAttackAny, 5));
 }
 
-void SBTeam::checkPowerUps() {
+void SBTeam::checkPowerUps()
+{
     std::vector<Ship*> ships = ships::getShips();
     bool existAny(false);
 
     for (std::vector<Ship*>::const_iterator it = ships.begin(); it != ships.end(); ++it)
-        if ((*it)->getOwner()->team() != this && (*it)->attackable()) {
+        if ((*it)->getOwner()->team() != this && (*it)->attackable())
+        {
             existAny = true;
             break;
         }
@@ -66,9 +72,11 @@ void SBTeam::checkPowerUps() {
     powerUpLocations_.clear();
     std::list<PowerUp*> const& powerUps = items::getPowerUps();
     for (std::list<PowerUp*>::const_iterator it=powerUps.begin(); it!=powerUps.end(); ++it) {
-        if (!(*it)->isCollected()) {
+        if (!(*it)->isCollected())
+        {
             powerUpLocations_.push_back((*it)->location());
-            switch ((*it)->type()) {
+            switch ((*it)->type())
+            {
                 case items::puFuel:                   addJob(Job(Job::jGetPUFuel,    30, &powerUpLocations_.back())); break;
                 case items::puHealth:                 addJob(Job(Job::jGetPUHealth,  30, &powerUpLocations_.back())); break;
                 case items::puReverse:  if (existAny) addJob(Job(Job::jGetPUReverse, 40, &powerUpLocations_.back())); break;
@@ -79,29 +87,37 @@ void SBTeam::checkPowerUps() {
     }
 }
 
-void SBTeam::checkBall() {
+void SBTeam::checkBall()
+{
     Ball* ball = balls::getBall();
-    if (ball) {
-        if (!ball->isVisible()) {
+    if (ball)
+    {
+        if (!ball->isVisible())
+        {
             int waitCount(settings::C_iDumb*(botControllers_.size()+1)/200);
             for (int i=0; i<waitCount; ++i)
                 addJob(Job(Job::jWaitForBall, 5, ball));
-        }
-        else {
+        }else
+        {
             int ballZone(zones::isInside(this, *ball));
-            switch (ballZone) {
+            switch (ballZone)
+            {
                 case OWN_HOME:
                     for (int i=0; i<botControllers_.size(); ++i)
                         addJob(Job(Job::jKickOutHome, 90, ball));
                     break;
 
-                case OWN_TEAM: {
+                case OWN_TEAM:
+                {
                     std::map<float, TacticalZone*> zones(zones::toProtect(this));
                     std::map<float, TacticalZone*>::iterator currentZone = zones.begin();
                     int protectJobs(botControllers_.size()*0.5);
-                    while(protectJobs > 0) {
+
+                    while(protectJobs > 0)
+                    {
                         for (int i=0; i<(protectJobs+1)*0.5; ++i)
                             addJob(Job(Job::jProtectZone, 30,  currentZone->second));
+
                         protectJobs /= 2;
                         if (++currentZone == zones.end())
                             currentZone = zones.begin();
@@ -113,13 +129,17 @@ void SBTeam::checkBall() {
 
                     break;
                 }
-                default: {
+                default:
+                {
                     std::map<float, TacticalZone*> zones(zones::toProtect(this));
                     std::map<float, TacticalZone*>::iterator currentZone = zones.begin();
                     int protectJobs(botControllers_.size()*0.4);
-                    while(protectJobs > 0) {
+
+                    while(protectJobs > 0)
+                    {
                         for (int i=0; i<(protectJobs+1)*0.5; ++i)
                             addJob(Job(Job::jProtectZone, 20,  currentZone->second));
+
                         protectJobs /= 2;
                         if (++currentZone == zones.end())
                             currentZone = zones.begin();

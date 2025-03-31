@@ -20,16 +20,19 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 # include "Interface/UiWindow.hpp"
 
-class Connect: public UiWindow {
+class Connect: public UiWindow
+{
     public:
         static UiWindow* get();
         void checkWidgets();
-        void onShow() {}
+        void onShow()
+        {   }
 
         static void reset();
 
     private:
-        Connect(int width, int height): UiWindow(width, height) {}
+        Connect(int width, int height): UiWindow(width, height)
+        {   }
         Connect(Connect const& copy);
 
         static UiWindow* instance_;
@@ -38,8 +41,3 @@ class Connect: public UiWindow {
 };
 
 # endif // CONNECT_HPP_INCLUDED
-
-
-
-
-

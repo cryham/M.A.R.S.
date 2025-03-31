@@ -24,52 +24,59 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # include "SpaceObjects/ships.hpp"
 # include "Games/games.hpp"
 
-void TDMTeam::createJobs() {
+void TDMTeam::createJobs()
+{
     checkEnemies();
     checkPowerUps();
 
-    for (int i=0; i<botControllers_.size(); ++i) {
+    for (int i=0; i<botControllers_.size(); ++i)
+    {
         addJob(Job(Job::jLand, 4));
         addJob(Job(Job::jCharge, 4));
     }
 }
 
-void TDMTeam::checkEnemies() {
+void TDMTeam::checkEnemies()
+{
     std::vector<Ship*> ships = ships::getShips();
     bool existAny(false);
 
     for (std::vector<Ship*>::const_iterator it = ships.begin(); it != ships.end(); ++it)
-        if ((*it)->getOwner()->team() != this && (*it)->attackable()) {
+        if ((*it)->getOwner()->team() != this && (*it)->attackable())
+        {
             existAny = true;
             break;
         }
 
-    if (existAny) {
+    if (existAny)
         for (int i=0; i<botControllers_.size(); ++i)
             addJob(Job(Job::jAttackAny, 60));
-    }
-    else {
+    else
         for (int i=0; i<botControllers_.size(); ++i)
             addJob(Job(Job::jEscape, 6));
-    }
 }
 
-void TDMTeam::checkPowerUps() {
+void TDMTeam::checkPowerUps()
+{
     std::vector<Ship*> ships = ships::getShips();
     bool existAny(false);
 
     for (std::vector<Ship*>::const_iterator it = ships.begin(); it != ships.end(); ++it)
-        if ((*it)->getOwner()->team() != this && (*it)->attackable()) {
+        if ((*it)->getOwner()->team() != this && (*it)->attackable())
+        {
             existAny = true;
             break;
         }
 
     powerUpLocations_.clear();
     std::list<PowerUp*> const& powerUps = items::getPowerUps();
-    for (std::list<PowerUp*>::const_iterator it=powerUps.begin(); it!=powerUps.end(); ++it) {
-        if (!(*it)->isCollected()) {
+    for (std::list<PowerUp*>::const_iterator it=powerUps.begin(); it!=powerUps.end(); ++it)
+    {
+        if (!(*it)->isCollected())
+        {
             powerUpLocations_.push_back((*it)->location());
-            switch ((*it)->type()) {
+            switch ((*it)->type())
+            {
                 case items::puFuel:     addJob(Job(Job::jGetPUFuel,    70, &powerUpLocations_.back())); break;
                 case items::puHealth:   addJob(Job(Job::jGetPUHealth,  70, &powerUpLocations_.back())); break;
                 case items::puReverse:  if (existAny) addJob(Job(Job::jGetPUReverse, 70, &powerUpLocations_.back())); break;
@@ -79,5 +86,3 @@ void TDMTeam::checkPowerUps() {
         }
     }
 }
-
-

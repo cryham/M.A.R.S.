@@ -22,7 +22,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 class TextBox;
 
-class About: public UiWindow {
+class About: public UiWindow
+{
     public:
         static UiWindow* get();
         void checkWidgets();
@@ -31,7 +32,8 @@ class About: public UiWindow {
         static void reset();
 
     private:
-        About(int width, int height): UiWindow(width, height) {}
+        About(int width, int height): UiWindow(width, height)
+        {   }
         About(About const& copy);
 
         static UiWindow* instance_;
@@ -41,8 +43,3 @@ class About: public UiWindow {
 };
 
 # endif // ABOUT_HPP_INCLUDED
-
-
-
-
-

@@ -24,9 +24,11 @@ class Ship;
 
 /// An object displaying the players name at his Ship.
 
-class ShipName: public DecoObject {
+class ShipName: public DecoObject
+{
     public:
-        ShipName(Ship* ship): ship_(ship) {}
+        ShipName(Ship* ship): ship_(ship)
+        {   }
 
         void draw() const;
 
@@ -35,4 +37,3 @@ class ShipName: public DecoObject {
 };
 
 # endif // SHIPNAME_HPP_INCLUDED
-

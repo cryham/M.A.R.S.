@@ -35,25 +35,28 @@ ColorPicker::ColorPicker (sf::String* text, Color3f* value, Vector2f const& topL
     colorWindow_(NULL),
     labelWidth_(labelWidth),
     currentValue_(value),
-    opened_(false) {
-
+    opened_(false)
+{
     label_ = new Label(text, TEXT_ALIGN_LEFT, Vector2f(0,0));
     label_->setParent(this);
 
     colorWindow_ = new ColorPickerWindow(this, currentValue_);
 }
 
-ColorPicker::~ColorPicker () {
+ColorPicker::~ColorPicker ()
+{
     delete label_;
     delete colorWindow_;
 }
 
-void ColorPicker::mouseMoved(Vector2f const& position) {
+void ColorPicker::mouseMoved(Vector2f const& position)
+{
     UiElement::mouseMoved(position);
     label_->mouseMoved(position);
 }
 
-void ColorPicker::mouseLeft(bool down) {
+void ColorPicker::mouseLeft(bool down)
+{
     UiElement::mouseLeft(hovered_ && down);
     if (!pressed_ && hovered_ && focused_) {
         hovered_ = false;
@@ -62,7 +65,8 @@ void ColorPicker::mouseLeft(bool down) {
     }
 }
 
-void ColorPicker::keyEvent(bool down, Key const& key) {
+void ColorPicker::keyEvent(bool down, Key const& key)
+{
     if (key.navi_ == Key::nConfirm) {
         pressed_ = down;
         if (!pressed_) {
@@ -73,7 +77,8 @@ void ColorPicker::keyEvent(bool down, Key const& key) {
     }
 }
 
-void ColorPicker::draw() const {
+void ColorPicker::draw() const
+{
     UiElement::draw();
 
     int mirror(locales::getCurrentLocale().LTR_ ? 1 : -1);
@@ -150,12 +155,14 @@ void ColorPicker::draw() const {
     label_->draw();
 }
 
-void ColorPicker::setFocus (UiElement* toBeFocused, bool isPrevious) {
+void ColorPicker::setFocus (UiElement* toBeFocused, bool isPrevious)
+{
     UiElement::setFocus(this, isPrevious);
     label_->setFocus(this, isPrevious);
 }
 
-void ColorPicker::clearFocus() {
+void ColorPicker::clearFocus()
+{
     UiElement::clearFocus();
     label_->clearFocus();
 }

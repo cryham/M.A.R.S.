@@ -23,12 +23,14 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 /// Special: FireWall.
 /// A fire wave.
 
-class FireWall: public Special {
+class FireWall: public Special
+{
     public:
         /// Ctor which constructs the special.
         FireWall(Ship* parent):
               Special(specials::sFireWall, parent, sf::String("FIRE WALL")),
-              burnTimer_(0.f) {};
+              burnTimer_(0.f)
+        {   }
 
         /// Blasts away nearby ships.
         void activate() const;
@@ -43,8 +45,3 @@ class FireWall: public Special {
 };
 
 # endif // FIREWALL_HPP_INCLUDED
-
-
-
-
-

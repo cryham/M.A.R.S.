@@ -20,13 +20,16 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 # include "SpaceObjects/SpaceObject.hpp"
 
-class MobileSpaceObject: public SpaceObject {
+class MobileSpaceObject: public SpaceObject
+{
     public:
         MobileSpaceObject(spaceObjects::ObjectType type, Vector2f location, float radius, float mass):
                           SpaceObject(type, location, radius, mass),
-                          velocity_(0.f, 0.f) {}
+                          velocity_(0.f, 0.f)
+        {   }
 
-        Vector2f& velocity() {return velocity_;}
+        Vector2f& velocity()
+        {  return velocity_;  }
 
     protected:
         Vector2f velocity_;

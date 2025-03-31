@@ -30,7 +30,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 UiWindow* InfoSB::instance_(NULL);
 bool InfoSB::kClose_(false);
 
-UiWindow* InfoSB::get() {
+UiWindow* InfoSB::get()
+{
     if (instance_ == NULL) {
         instance_ = new InfoSB(320*scale_, 300);
         instance_->addWidget(new Button(locales::getLocale(locales::Close), NULL, &kClose_, Vector2f(220,270), 90, 20));
@@ -44,7 +45,8 @@ UiWindow* InfoSB::get() {
     return instance_;
 }
 
-void InfoSB::checkWidgets() {
+void InfoSB::checkWidgets()
+{
     if (kClose_) {
         kClose_ = false;
         menus::hideWindow();
@@ -52,11 +54,13 @@ void InfoSB::checkWidgets() {
     }
 }
 
-void InfoSB::onShow() {
+void InfoSB::onShow()
+{
     settings::C_showInfoSB = false;
 }
 
-void InfoSB::reset() {
+void InfoSB::reset()
+{
     if (instance_)
         delete instance_;
     instance_ = NULL;

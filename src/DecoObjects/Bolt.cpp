@@ -22,8 +22,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # include "Menu/menus.hpp"
 # include "System/randomizer.hpp"
 
-void Bolt::draw() const {
-
+void Bolt::draw() const
+{
     if (lifeTime_ <= maxLifeTime_) {
         bool ballVisible(false);
         if (to_->type()==spaceObjects::oBall) {
@@ -31,8 +31,8 @@ void Bolt::draw() const {
             ballVisible = ball->isVisible();
         }
 
-        if (to_->type()!=spaceObjects::oBall || ballVisible) {
-
+        if (to_->type()!=spaceObjects::oBall || ballVisible)
+        {
             glPushMatrix();
             glLoadIdentity();
 
@@ -95,6 +95,6 @@ void Bolt::draw() const {
         if (!menus::visible())
             lifeTime_ += timer::frameTime();
     }
-    else decoObjects::removeBolt(this);
+    else
+        decoObjects::removeBolt(this);
 }
-

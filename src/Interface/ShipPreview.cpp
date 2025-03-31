@@ -27,9 +27,11 @@ ShipPreview::ShipPreview (Color3f* color, Color3f* teamColor, int* graphic, Vect
     UiElement(topLeft, 20, 20),
     color_(color),
     teamColor_(teamColor),
-    graphic_(graphic) {}
+    graphic_(graphic)
+{   }
 
-void ShipPreview::draw() const {
+void ShipPreview::draw() const
+{
     Vector2f origin = getTopLeft() + Vector2f(10.f, 10.f);
 
     glPushAttrib(GL_ALL_ATTRIB_BITS);

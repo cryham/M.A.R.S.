@@ -20,10 +20,12 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 # include "Teams/Team.hpp"
 
-class SBTeam: public Team {
+class SBTeam: public Team
+{
     public:
         SBTeam(Color3f const& color = Color3f::random()):
-            Team(color) {}
+            Team(color)
+        {   }
 
     private:
         void createJobs();
@@ -35,5 +37,3 @@ class SBTeam: public Team {
 };
 
 # endif // SBTEAM_HPP_INCLUDED
-
-

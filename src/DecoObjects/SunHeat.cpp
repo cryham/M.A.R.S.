@@ -22,9 +22,11 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 SunHeat::SunHeat(Sun* sun):
     location_(sun->location()),
-    radius_(sun->radius()) {}
+    radius_(sun->radius())
+{   }
 
-void SunHeat::draw() const {
+void SunHeat::draw() const
+{
     glPushMatrix();
     glLoadIdentity();
     glTranslatef(location_.x_, location_.y_, 0);

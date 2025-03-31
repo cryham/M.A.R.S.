@@ -26,8 +26,8 @@ std::list<AmmoShotgun*> AmmoShotgun::activeParticles_;
 
 AmmoShotgun::AmmoShotgun(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity, Color3f const& color, Player* damageSource):
          Particle<AmmoShotgun>(spaceObjects::oAmmoShotgun, location, 2.5f, 0.5f, randomizer::random(0.3f, 0.7f)),
-         color_(1.f, 0.7f, 0.2f) {
-
+         color_(1.f, 0.7f, 0.2f)
+{
     setDamageSource(damageSource);
     velocity_ = direction*1000.f + Vector2f::randDirLen()*400.f;
     location_ += velocity_*timer::frameTime()*1.2f;
@@ -35,11 +35,13 @@ AmmoShotgun::AmmoShotgun(Vector2f const& location, Vector2f const& direction, Ve
     trailEffects::attach(this, 0.02f, 0.1f, 4.f, Color3f(0.3f, 0.2f, 0.05f), false);
 }
 
-AmmoShotgun::~AmmoShotgun() {
+AmmoShotgun::~AmmoShotgun()
+{
     trailEffects::detach(this);
 }
 
-void AmmoShotgun::update() {
+void AmmoShotgun::update()
+{
     float time = timer::frameTime();
 
     physics::collide(this, STATICS | MOBILES);
@@ -53,7 +55,8 @@ void AmmoShotgun::update() {
     lifeTime_ += time;
 }
 
-void AmmoShotgun::draw() const {
+void AmmoShotgun::draw() const
+{
     color_.gl3f();
     const int posX = 0;
     const int posY = 1;
@@ -64,12 +67,14 @@ void AmmoShotgun::draw() const {
 }
 
 void AmmoShotgun::onCollision(SpaceObject* with, Vector2f const& location,
-                        Vector2f const& direction, Vector2f const& velocity) {
+                        Vector2f const& direction, Vector2f const& velocity)
+{
     float strength = (velocity-velocity_).length();
 
-    if (strength > 50.f) {
-
-        switch (with->type()) {
+    if (strength > 50.f)
+    {
+        switch (with->type())
+        {
             case spaceObjects::oShip:
                 sound::playSound(sound::Particle, location, (strength-50)/3);
                 break;

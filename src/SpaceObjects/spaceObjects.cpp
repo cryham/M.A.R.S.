@@ -30,19 +30,22 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 # include <vector>
 
-namespace spaceObjects {
-
-    namespace {
+namespace spaceObjects
+{
+    namespace
+    {
         // objectList contains all homes as well, but for easy accessing
         // they are saved twice
         std::vector<SpaceObject*> objectList_;
         std::vector<Home*>        homeList_;
 
-        Vector2f possiblePlanetLocation(int radius, float minDistance) {
+        Vector2f possiblePlanetLocation(int radius, float minDistance)
+        {
             int tries(0);
             bool newPlanetFits(false);
 
-            while (!newPlanetFits && ++tries < 500) {
+            while (!newPlanetFits && ++tries < 500)
+            {
                 // 100 is min distance between edge and planet
                 int randx = rand() % (SPACE_X_RESOLUTION - 2*(100 + radius)) + 100 + radius;
                 int randy = rand() % (SPACE_Y_RESOLUTION  - 2*(100 + radius)) + 100 + radius;
@@ -72,50 +75,59 @@ namespace spaceObjects {
         }
     }
 
-    void update() {
-        for (std::vector<SpaceObject*>::iterator it = objectList_.begin(); it != objectList_.end(); ++it) {
+    void update()
+    {
+        for (std::vector<SpaceObject*>::iterator it = objectList_.begin(); it != objectList_.end(); ++it)
             (*it)->update();
-        }
     }
 
-    void draw() {
-        for (std::vector<SpaceObject*>::iterator it = objectList_.begin(); it != objectList_.end(); ++it) {
+    void draw()
+    {
+        for (std::vector<SpaceObject*>::iterator it = objectList_.begin(); it != objectList_.end(); ++it)
             (*it)->draw();
-        }
     }
 
-    void addPlanet() {
+    void addPlanet()
+    {
         int radius = (rand() % (SPACEOBJECT_MAX_RADIUS - SPACEOBJECT_MIN_RADIUS) + SPACEOBJECT_MIN_RADIUS);
         Vector2f position = possiblePlanetLocation(radius, 100);
-        if (position != Vector2f(0,0)) addPlanet(position, radius);
+        if (position != Vector2f(0,0))
+            addPlanet(position, radius);
     }
 
-    void addPlanet(Vector2f const& location, float radius) {
+    void addPlanet(Vector2f const& location, float radius)
+    {
         objectList_.push_back(new Planet(location, radius));
     }
 
-    void addSun() {
+    void addSun()
+    {
         int radius = (rand() % (SPACEOBJECT_MAX_RADIUS - SPACEOBJECT_MIN_RADIUS) + SPACEOBJECT_MIN_RADIUS);
         Vector2f position = possiblePlanetLocation(radius, 200);
-        if (position != Vector2f(0,0)) {
+        if (position != Vector2f(0,0))
+        {
             Sun* newSun = new Sun(position, radius);
             objectList_.push_back(newSun);
             decoObjects::addSunHeat(newSun);
         }
     }
 
-    void addBlackHole() {
+    void addBlackHole()
+    {
         int radius = (rand() % (SPACEOBJECT_MAX_RADIUS - SPACEOBJECT_MIN_RADIUS) + SPACEOBJECT_MIN_RADIUS);
         Vector2f position = possiblePlanetLocation(radius, 200);
-        if (position != Vector2f(0,0)) objectList_.push_back(new BlackHole(position, radius));
+        if (position != Vector2f(0,0))
+            objectList_.push_back(new BlackHole(position, radius));
     }
 
-    Home* addHome(int where, int life, Color3f const& color) {
+    Home* addHome(int where, int life, Color3f const& color)
+    {
         Vector2f position;
         float    radius(100.f);
         float    mass(radius*150.f);
 
-        switch (where) {
+        switch (where)
+        {
             case HOME_LEFT:  position = Vector2f(-50,     (rand()%(SPACE_Y_RESOLUTION-300)) + 150); break;
             case HOME_RIGHT: position = Vector2f(SPACE_X_RESOLUTION+50, (rand()%(SPACE_Y_RESOLUTION-300)) + 150); break;
             case HOME_RALLY: position = Vector2f(-150, (rand()%(SPACE_Y_RESOLUTION-300)) + 150);
@@ -127,40 +139,52 @@ namespace spaceObjects {
         return addHome(position, life, color, radius, mass);
     }
 
-    Home* addHome(Vector2f const& location, int life, Color3f const& color, float radius, float mass) {
+    Home* addHome(Vector2f const& location, int life, Color3f const& color, float radius, float mass)
+    {
         Home* home = new Home(location, life, radius, mass, color);
         objectList_.push_back(home);
         homeList_.push_back(home);
         return home;
     }
 
-    std::vector<Home*>const& getHomes() {
+    std::vector<Home*>const& getHomes()
+    {
         return homeList_;
     }
 
-    std::vector<SpaceObject*> const& getObjects() {
+    std::vector<SpaceObject*> const& getObjects()
+    {
         return objectList_;
     }
 
-    SpaceObject const* getObstacle(Vector2f const& start, Vector2f const& end, bool avoidBall, float minDistance) {
+    SpaceObject const* getObstacle(Vector2f const& start, Vector2f const& end, bool avoidBall, float minDistance)
+    {
         SpaceObject const* closest(NULL);
         float closestDistance = FLT_MAX;
 
-        for (std::vector<SpaceObject*>::const_iterator it = objectList_.begin(); it != objectList_.end(); ++it) {
-            if ((*it)->type()!=oBlackHole) {
+        for (std::vector<SpaceObject*>::const_iterator it = objectList_.begin(); it != objectList_.end(); ++it)
+        {
+            if ((*it)->type()!=oBlackHole)
+            {
                 float checkRadius = (*it)->radius();
                 // increase radius, when start and end aren't close to object
-                if ((start - (*it)->location()).lengthSquare() > std::pow((*it)->radius() + minDistance, 2)
-                 && (end   - (*it)->location()).lengthSquare() > std::pow((*it)->radius() + minDistance, 2))
+                if ((start - (*it)->location()).lengthSquare() > std::pow((*it)->radius() + minDistance, 2) &&
+                    (end   - (*it)->location()).lengthSquare() > std::pow((*it)->radius() + minDistance, 2))
                     checkRadius += minDistance;
 
-                if (((end-start)*((*it)->location() - start) > 0 && (std::pow(((end-start)*((*it)->location() - start))/(end-start).lengthSquare(), 2) - (((*it)->location() -start).lengthSquare() - std::pow(checkRadius, 2))/(end-start).lengthSquare()) > 0)) {
+                if (((end-start) * ((*it)->location() - start) > 0 &&
+                    (std::pow(((end-start) * ((*it)->location() - start)) / (end-start).lengthSquare(), 2) -
+                        (((*it)->location() - start).lengthSquare() -
+                        std::pow(checkRadius, 2)) / (end-start).lengthSquare()) > 0))
+                {
                     // check if object is in between or endpoint inside of obstacle
-                    if ((end - start)*(end - (*it)->location()) >= 0.f || (end - (*it)->location()).lengthSquare() < std::pow((*it)->radius(), 2)) {
-                        // hacky... should check for distańce to impactlocation, but does not...
+                    if ((end - start)*(end - (*it)->location()) >= 0.f ||
+                        (end - (*it)->location()).lengthSquare() < std::pow((*it)->radius(), 2))
+                    {
+                        // hacky, should check for distance to impact location, but does not..
                         float distance = (start - (*it)->location()).lengthSquare();
-                        if (distance < closestDistance) {
-                            closestDistance = distance;
+                        if (distance < closestDistance)
+                        {   closestDistance = distance;
                             closest = *it;
                         }
                     }
@@ -169,20 +193,25 @@ namespace spaceObjects {
         }
 
         Ball* ball = balls::getBall();
-        if (avoidBall && ball) {
+        if (avoidBall && ball)
+        {
             float checkRadius = ball->radius();
             // increase radius, when start and end aren't close to object
-            if ((start - ball->location()).lengthSquare() > std::pow(ball->radius() + minDistance, 2)
-             && (end   - ball->location()).lengthSquare() > std::pow(ball->radius() + minDistance, 2))
+            if ((start - ball->location()).lengthSquare() > std::pow(ball->radius() + minDistance, 2) &&
+                (end   - ball->location()).lengthSquare() > std::pow(ball->radius() + minDistance, 2))
                 checkRadius += minDistance;
 
-            if (((end-start)*(ball->location() - start) > 0 && (std::pow(((end-start)*(ball->location() - start))/(end-start).lengthSquare(), 2) - ((ball->location() -start).lengthSquare() - std::pow(checkRadius, 2))/(end-start).lengthSquare()) > 0)) {
+            if (((end-start)*(ball->location() - start) > 0 &&
+                (std::pow(((end-start)*(ball->location() - start))/(end-start).lengthSquare(), 2) -
+                ((ball->location() -start).lengthSquare() - std::pow(checkRadius, 2)) / (end-start).lengthSquare()) > 0))
+            {
                 // check if object is in between
-                if ((end - start)*(end - ball->location()) >= 0.f) {
-                    // hacky... should check for distańce to impactlocation, but does not...
+                if ((end - start)*(end - ball->location()) >= 0.f)
+                {
+                    // hacky, should check for distance to impact location, but does not..
                     float distance = (start - ball->location()).lengthSquare();
-                    if (distance < closestDistance) {
-                        closestDistance = distance;
+                    if (distance < closestDistance)
+                    {   closestDistance = distance;
                         closest = ball;
                     }
                 }

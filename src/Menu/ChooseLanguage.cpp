@@ -31,7 +31,8 @@ bool ChooseLanguage::kCancel_(false);
 std::map<int, bool*> ChooseLanguage::languageKeyMap_;
 std::map<sf::String, int> ChooseLanguage::sortedLocales_;
 
-UiWindow* ChooseLanguage::get() {
+UiWindow* ChooseLanguage::get()
+{
     if (instance_ == NULL) {
         std::vector<Locale>const& localeList = locales::getLocales();
 
@@ -61,7 +62,8 @@ UiWindow* ChooseLanguage::get() {
     return instance_;
 }
 
-void ChooseLanguage::checkWidgets() {
+void ChooseLanguage::checkWidgets()
+{
     if (kCancel_) {
         kCancel_ = false;
         menus::hideWindow();
@@ -78,7 +80,8 @@ void ChooseLanguage::checkWidgets() {
         }
 }
 
-void ChooseLanguage::reset() {
+void ChooseLanguage::reset()
+{
     if (instance_)
         delete instance_;
     instance_ = NULL;
@@ -89,7 +92,8 @@ void ChooseLanguage::reset() {
     sortedLocales_.clear();
 }
 
-void ChooseLanguage::next() {
+void ChooseLanguage::next()
+{
     get();
     for (std::map<sf::String, int>::iterator it = sortedLocales_.begin(); it != sortedLocales_.end(); ++it) {
         if (it->second == settings::C_languageID) {
@@ -104,7 +108,8 @@ void ChooseLanguage::next() {
     }
 }
 
-void ChooseLanguage::previous() {
+void ChooseLanguage::previous()
+{
     get();
     for (std::map<sf::String, int>::iterator it = sortedLocales_.begin(); it != sortedLocales_.end(); ++it) {
         if (it->second == settings::C_languageID) {

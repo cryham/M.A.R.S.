@@ -31,12 +31,13 @@ ColorPickerWindow::ColorPickerWindow (ColorPicker* parent, Color3f* color):
     parent_(parent),
     color_(color),
     Ok_(new Button(locales::getLocale(locales::Ok), NULL, &kOk_, Vector2f(110, 155), 70, 20)),
-    kOk_(false) {
-
+    kOk_(false)
+{
     addWidget(Ok_);
 }
 
-void ColorPickerWindow::draw() const {
+void ColorPickerWindow::draw() const
+{
     UiWindow::draw();
 
     Vector2f viewPort = window::getViewPort();
@@ -131,7 +132,8 @@ void ColorPickerWindow::draw() const {
     glEnd();
 }
 
-void ColorPickerWindow::checkWidgets() {
+void ColorPickerWindow::checkWidgets()
+{
     if (kOk_) {
         kOk_ = false;
         menus::hideWindow();

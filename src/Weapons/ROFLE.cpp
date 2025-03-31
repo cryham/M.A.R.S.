@@ -25,7 +25,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # include <SFML/Graphics.hpp>
 # include <cfloat>
 
-void ROFLE::draw(float alpha) const {
+void ROFLE::draw(float alpha) const
+{
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glColor4f(1.0, 0.4, 0.4, alpha);
     const int posX = 0;
@@ -38,24 +39,30 @@ void ROFLE::draw(float alpha) const {
     glEnd();
 }
 
-void ROFLE::fire() const {
+void ROFLE::fire() const
+{
     float time = timer::totalTime();
-    if (time - timer_ <= 3.0) return;
+    if (time - timer_ <= 3.0)
+        return;
     timer_ = time;
     float angleRad = parent_->rotation()*M_PI / 180;
     Vector2f faceDirection(std::cos(angleRad), std::sin(angleRad));
+    
     particles::spawn(particles::pAmmoROFLE, parent_->location() + faceDirection*parent_->radius(), faceDirection, parent_->velocity(), Color3f(), parent_->getOwner());
     sound::playSound(sound::Sniper, parent_->location());
 }
 
-float ROFLE::maxDistance() const {
+float ROFLE::maxDistance() const
+{
     return FLT_MAX;
 }
 
-float ROFLE::minDistance() const {
+float ROFLE::minDistance() const
+{
     return 0.f;
 }
 
-float ROFLE::maxAngle() const {
+float ROFLE::maxAngle() const
+{
     return 5.f;
 }

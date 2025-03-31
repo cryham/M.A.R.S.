@@ -20,16 +20,19 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 # include "Interface/UiWindow.hpp"
 
-class ExitConfirm: public UiWindow {
+class ExitConfirm: public UiWindow
+{
     public:
         static UiWindow* get();
         void checkWidgets();
-        void onShow() {  }
+        void onShow()
+        {   }
 
         static void reset();
 
     private:
-        ExitConfirm(int width, int height): UiWindow(width, height) {}
+        ExitConfirm(int width, int height): UiWindow(width, height)
+        {   }
         ExitConfirm(ExitConfirm const& copy);
 
         static UiWindow* instance_;
@@ -38,5 +41,3 @@ class ExitConfirm: public UiWindow {
 };
 
 # endif // EXITCONFIRM_HPP_INCLUDED
-
-

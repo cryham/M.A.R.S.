@@ -25,9 +25,11 @@ CannonControl::CannonControl(Vector2f const& location):
     respawnLocation_(location),
     location_(location),
     ship_(NULL),
-    collected_(false){}
+    collected_(false)
+{   }
 
-void CannonControl::update() {
+void CannonControl::update()
+{
     if (!collected_) {
         std::vector<Ship*> const& shipList = ships::getShips();
         for (std::vector<Ship*>::const_iterator it = shipList.begin(); it != shipList.end(); ++it)
@@ -50,7 +52,8 @@ void CannonControl::update() {
     }
 }
 
-void CannonControl::draw() const {
+void CannonControl::draw() const
+{
     if (!collected_) {
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
@@ -142,13 +145,15 @@ void CannonControl::draw() const {
     }
 }
 
-Player* CannonControl::getCarrier() const {
+Player* CannonControl::getCarrier() const
+{
     if (ship_)
         return ship_->owner_;
     else
         return NULL;
 }
 
-Vector2f const& CannonControl::location() const {
+Vector2f const& CannonControl::location() const
+{
     return location_;
 }

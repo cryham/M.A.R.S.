@@ -30,7 +30,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 UiWindow* InfoCK::instance_(NULL);
 bool InfoCK::kClose_(false);
 
-UiWindow* InfoCK::get() {
+UiWindow* InfoCK::get()
+{
     if (instance_ == NULL) {
         instance_ = new InfoCK(320*scale_, 300);
         instance_->addWidget(new Button(locales::getLocale(locales::Close), NULL, &kClose_, Vector2f(220,270), 90, 20));
@@ -44,7 +45,8 @@ UiWindow* InfoCK::get() {
     return instance_;
 }
 
-void InfoCK::checkWidgets() {
+void InfoCK::checkWidgets()
+{
     if (kClose_) {
         kClose_ = false;
         menus::hideWindow();
@@ -52,11 +54,13 @@ void InfoCK::checkWidgets() {
     }
 }
 
-void InfoCK::onShow() {
+void InfoCK::onShow()
+{
     settings::C_showInfoCK = false;
 }
 
-void InfoCK::reset() {
+void InfoCK::reset()
+{
     if (instance_)
         delete instance_;
     instance_ = NULL;

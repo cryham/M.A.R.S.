@@ -24,15 +24,16 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 std::list<CrushedIce*> CrushedIce::activeParticles_;
 
 CrushedIce::CrushedIce(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity, Color3f const& color, Player* damageSource):
-           Particle<CrushedIce>(spaceObjects::oDust, location, 4, 0, randomizer::random(0.5f, 1.5f)*settings::C_globalParticleLifeTime/100.f) {
-
+           Particle<CrushedIce>(spaceObjects::oDust, location, 4, 0, randomizer::random(0.5f, 1.5f)*settings::C_globalParticleLifeTime/100.f)
+{
     velocity_ = Vector2f::randDir()*20*randomizer::random(1.f, 2.f)*randomizer::random(1.f, 2.f);
 
     color_ = Color3f::random();
     color_.s(0.0);
 }
 
-void CrushedIce::update() {
+void CrushedIce::update()
+{
     float time = timer::frameTime();
 
     color_.v(-0.7/totalLifeTime_*lifeTime_+0.7);
@@ -45,7 +46,8 @@ void CrushedIce::update() {
     lifeTime_ += time;
 }
 
-void CrushedIce::draw() const {
+void CrushedIce::draw() const
+{
     color_.gl4f(1.0f);
     const int posX = 5;
     const int posY = 1;
@@ -55,7 +57,8 @@ void CrushedIce::draw() const {
     glTexCoord2f((posX+1)*0.125f, posY*0.125f);     glVertex2f(location_.x_+radius_, location_.y_-radius_);
 }
 
-void CrushedIce::shockWave(Vector2f const& location, float strength, float radius) {
+void CrushedIce::shockWave(Vector2f const& location, float strength, float radius)
+{
     for (std::list<CrushedIce*>::iterator it = activeParticles_.begin(); it != activeParticles_.end(); ++it) {
         Vector2f direction((*it)->location_ - location);
         float distance = direction.length();

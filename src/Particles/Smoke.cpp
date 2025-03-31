@@ -24,12 +24,13 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 std::list<Smoke*> Smoke::activeParticles_;
 
 Smoke::Smoke(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity, Color3f const& color, Player* damageSource):
-           Particle<Smoke>(spaceObjects::oSmoke, location+Vector2f::randDirLen()*2.f, 4, 0, randomizer::random(0.8f, 2.0f)*settings::C_globalParticleLifeTime/100.f) {
-
+           Particle<Smoke>(spaceObjects::oSmoke, location+Vector2f::randDirLen()*2.f, 4, 0, randomizer::random(0.8f, 2.0f)*settings::C_globalParticleLifeTime/100.f)
+{
     color_ = Color3f(0.7, 0.7, 0.7);
 }
 
-void Smoke::update() {
+void Smoke::update()
+{
     float time = timer::frameTime();
     Vector2f acceleration = physics::attract(this);
 
@@ -43,7 +44,8 @@ void Smoke::update() {
     lifeTime_ += time;
 }
 
-void Smoke::draw() const {
+void Smoke::draw() const
+{
     color_.gl4f(-0.3/totalLifeTime_*lifeTime_+0.3);
     const int posX = 1;
     const int posY = 0;
@@ -53,7 +55,8 @@ void Smoke::draw() const {
     glTexCoord2f((posX+1)*0.125f, posY*0.125f);     glVertex2f(location_.x_+radius_, location_.y_-radius_);
 }
 
-void Smoke::shockWave(Vector2f const& location, float strength, float radius) {
+void Smoke::shockWave(Vector2f const& location, float strength, float radius)
+{
     for (std::list<Smoke*>::iterator it = activeParticles_.begin(); it != activeParticles_.end(); ++it) {
         Vector2f direction((*it)->location_ - location);
         float distance = direction.length();
@@ -65,5 +68,3 @@ void Smoke::shockWave(Vector2f const& location, float strength, float radius) {
         }
     }
 }
-
-

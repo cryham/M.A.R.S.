@@ -20,16 +20,19 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 # include "Interface/UiWindow.hpp"
 
-class ToMainConfirm: public UiWindow {
+class ToMainConfirm: public UiWindow
+{
     public:
         static UiWindow* get();
         void checkWidgets();
-        void onShow() {  }
+        void onShow()
+        {   }
 
         static void reset();
 
     private:
-        ToMainConfirm(int width, int height): UiWindow(width, height) {}
+        ToMainConfirm(int width, int height): UiWindow(width, height)
+        {   }
         ToMainConfirm(ToMainConfirm const& copy);
 
         static UiWindow* instance_;
@@ -38,6 +41,3 @@ class ToMainConfirm: public UiWindow {
 };
 
 # endif // TOMAINCONFIRM_HPP_INCLUDED
-
-
-

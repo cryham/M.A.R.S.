@@ -33,7 +33,8 @@ bool EndMenu::kOptions_(false);
 bool EndMenu::kToMainMenu_(false);
 bool EndMenu::kHide_(false);
 
-UiWindow* EndMenu::get() {
+UiWindow* EndMenu::get()
+{
     if (instance_ == NULL) {
         instance_ = new EndMenu(180, 130);
         instance_->addWidget(new Button(locales::getLocale(locales::RestartGame),     NULL, &kNew_,         Vector2f(10,10), 160, 20));
@@ -44,7 +45,8 @@ UiWindow* EndMenu::get() {
     return instance_;
 }
 
-void EndMenu::checkWidgets() {
+void EndMenu::checkWidgets()
+{
     if (kToMainMenu_) {
         kToMainMenu_ = false;
         menus::showWindow(ToMainConfirm::get());
@@ -67,7 +69,8 @@ void EndMenu::checkWidgets() {
     }
 }
 
-void EndMenu::reset() {
+void EndMenu::reset()
+{
     if (instance_)
         delete instance_;
     instance_ = NULL;

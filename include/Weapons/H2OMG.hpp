@@ -23,11 +23,13 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 /// Weapon: H2OMG.
 /// A long distance gun, which fires some icy cubes.
 
-class H2OMG: public Weapon {
+class H2OMG: public Weapon
+{
     public:
         /// Ctor which constructs the weapon.
         H2OMG(Ship* parent):
-              Weapon(weapons::wH2OMG, parent, sf::String("H2O-MG")) {};
+              Weapon(weapons::wH2OMG, parent, sf::String("H2O-MG"))
+        {   }
 
         /// Spawns some particles.
         void fire() const;

@@ -20,11 +20,13 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 # include "Hud/HudElement.hpp"
 
-class GameStats: public HudElement {
+class GameStats: public HudElement
+{
     public:
         GameStats():
             updateTimer_(0.5f),
-            particleCount_(0) {}
+            particleCount_(0)
+        {   }
 
         void draw() const;
 
@@ -34,9 +36,3 @@ class GameStats: public HudElement {
 };
 
 # endif // GAMESTATS_HPP_INCLUDED
-
-
-
-
-
-

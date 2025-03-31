@@ -25,8 +25,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # include "Teams/teams.hpp"
 
 TeamDeathMatch::TeamDeathMatch():
-    Game(games::gTeamDeathMatch) {
-
+    Game(games::gTeamDeathMatch)
+{
     settings::C_EnabledWeapons  = settings::C_EnabledWeaponsByUser;
     settings::C_EnabledSpecials = settings::C_EnabledSpecialsByUser;
 
@@ -82,12 +82,14 @@ TeamDeathMatch::TeamDeathMatch():
     zones::createRaster(4,3);
 }
 
-void TeamDeathMatch::draw() const {
+void TeamDeathMatch::draw() const
+{
     if (settings::C_drawZones) zones::draw();
     Game::draw();
 }
 
-void TeamDeathMatch::restart() {
+void TeamDeathMatch::restart()
+{
     Game::restart();
 
     Home* homeL = spaceObjects::addHome(HOME_LEFT, 100, teams::getTeamL()->color());

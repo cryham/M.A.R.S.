@@ -22,29 +22,31 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 /// Weapon: NoWeapon.
 
-class NoWeapon: public Weapon {
+class NoWeapon: public Weapon
+{
     public:
         /// Ctor which constructs the weapon.
         NoWeapon(Ship* parent):
-              Weapon(weapons::wNoWeapon, parent, sf::String("Nothing")) {};
+              Weapon(weapons::wNoWeapon, parent, sf::String("Nothing"))
+        {   }
 
-        /// Does nothing.
-        void fire() const {}
+        void fire() const
+        {   }
 
-        /// Does nothing.
-        void draw(float alpha) const {}
+        void draw(float alpha) const
+        {   }
 
         /// Returns the maximum distance from which this weapon should be used.
-        float maxDistance() const { return .0F; }
+        float maxDistance() const
+        {  return 0.f;  }
 
         /// Returns the minimum distance from which this weapon should be used.
-        float minDistance() const { return .0F; }
+        float minDistance() const
+        {  return 0.f;  }
 
         /// Returns the maximum angle from which this weapon should be used.
-        float maxAngle() const { return .0F; }
+        float maxAngle() const
+        {  return 0.f;  }
 };
 
 # endif // NOWEAPON_HPP_INCLUDED
-
-
-

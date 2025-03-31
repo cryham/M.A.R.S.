@@ -41,11 +41,13 @@ TacticalZone::TacticalZone(Vector2f const& location, float radius) :
             homeSide_ = 1;
     }
 
-bool TacticalZone::isInside(SpaceObject const& toBeChecked) const {
+bool TacticalZone::isInside(SpaceObject const& toBeChecked) const
+{
     return((toBeChecked.location()-location_).lengthSquare() <= radius_*radius_);
 }
 
-void TacticalZone::update() {
+void TacticalZone::update()
+{
     shipCount_ = 0;
     if (homeSide_ == 0) {
         std::vector<Player*> const& players = teams::getTeamL()->members();
@@ -69,7 +71,8 @@ void TacticalZone::update() {
         covered_ = false;
 }
 
-void TacticalZone::draw() const {
+void TacticalZone::draw() const
+{
     glColor4f(0.f, 0.f, 0.f, 0.f);
 
     glBlendFunc(GL_ONE, GL_ONE);
@@ -85,29 +88,35 @@ void TacticalZone::draw() const {
 
 }
 
-Vector2f TacticalZone::getRandomPoint() const {
+Vector2f TacticalZone::getRandomPoint() const
+{
     Vector2f randomPoint;
     for (int i=0; i<100; ++i) {
         randomPoint = Vector2f(location_ + Vector2f::randDir()*(radius_ - 20.f));
         if (   randomPoint.x_ > 0.f
             && randomPoint.x_ < SPACE_X_RESOLUTION
             && randomPoint.y_ > 0.f
-            && randomPoint.y_ < SPACE_Y_RESOLUTION) {
+            && randomPoint.y_ < SPACE_Y_RESOLUTION)
+        {
             bool fits = true;
-            for (std::vector<SpaceObject*>::const_iterator it = spaceObjects::getObjects().begin(); it != spaceObjects::getObjects().end(); ++it) {
+            for (std::vector<SpaceObject*>::const_iterator it = spaceObjects::getObjects().begin(); it != spaceObjects::getObjects().end(); ++it)
+            {
                 if ((randomPoint - (*it)->location()).lengthSquare() < std::pow((*it)->radius() + 50, 2))
                     fits = false;
             }
-            if (fits) break;
+            if (fits)
+                break;
         }
     }
     return randomPoint;
 }
 
-Vector2f const& TacticalZone::location() const {
+Vector2f const& TacticalZone::location() const
+{
     return location_;
 }
 
-bool TacticalZone::covered() const {
+bool TacticalZone::covered() const
+{
     return covered_;
 }

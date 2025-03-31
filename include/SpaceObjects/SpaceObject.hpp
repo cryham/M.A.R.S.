@@ -25,34 +25,38 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 class Player;
 
-class SpaceObject {
+class SpaceObject
+{
     public:
         SpaceObject(spaceObjects::ObjectType type, Vector2f location, float radius, float mass):
                     location_(location),
                     radius_(radius),
                     mass_(mass),
                     damageSource_(NULL),
-                    type_(type) {}
+                    type_(type)
+        {   }
 
         virtual void update() = 0;
         virtual void draw() const = 0;
 
         virtual void onCollision(SpaceObject* source, Vector2f const& location,
-                                 Vector2f const& direction, Vector2f const& velocity) {};
+                                 Vector2f const& direction, Vector2f const& velocity)
+        {   }
 
-        virtual void onShockWave(Player* damageSource, float intensity) {};
+        virtual void onShockWave(Player* damageSource, float intensity)
+        {   }
 
-        virtual void setDamageSource(Player* evilOne) {damageSource_ = evilOne;}
-        Player*      damageSource() const             {return damageSource_;}
+        virtual void setDamageSource(Player* evilOne) {  damageSource_ = evilOne;  }
+        Player*      damageSource() const             {  return damageSource_;  }
 
         spaceObjects::ObjectType type()     const {return type_;}
         Vector2f const&          location() const {return location_;}
         float                    radius()   const {return radius_;}
         float                    mass()     const {return mass_;}
 
-        friend Vector2f          physics::attract(MobileSpaceObject*);
-        friend void              physics::collide(MobileSpaceObject*, int);
-        friend void              physics::causeShockWave(Player* damageSource, Vector2f const& location, float strength, float radius, float damage);
+        friend Vector2f  physics::attract(MobileSpaceObject*);
+        friend void      physics::collide(MobileSpaceObject*, int);
+        friend void      physics::causeShockWave(Player* damageSource, Vector2f const& location, float strength, float radius, float damage);
 
     protected:
         Vector2f location_;

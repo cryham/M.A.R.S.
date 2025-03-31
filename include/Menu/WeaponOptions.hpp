@@ -20,7 +20,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 # include "Interface/UiWindow.hpp"
 
-class WeaponOptions: public UiWindow {
+class WeaponOptions: public UiWindow
+{
     public:
         static UiWindow* get();
         void checkWidgets();
@@ -29,7 +30,9 @@ class WeaponOptions: public UiWindow {
         static void reset();
 
     private:
-        WeaponOptions(int width, int height): UiWindow(width, height) {}
+        WeaponOptions(int width, int height): UiWindow(width, height)
+        {   }
+
         WeaponOptions(WeaponOptions const& copy);
 
         static UiWindow* instance_;
@@ -40,10 +43,3 @@ class WeaponOptions: public UiWindow {
 };
 
 # endif // WEAPONOPTIONS_HPP_INCLUDED
-
-
-
-
-
-
-

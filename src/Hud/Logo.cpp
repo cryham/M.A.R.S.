@@ -27,9 +27,11 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 Logo::Logo():
     timer_(1.f),
     on_(false),
-    flicCount_(1) {}
+    flicCount_(1)
+{   }
 
-void Logo::update() {
+void Logo::update()
+{
     if (games::elapsedTime() < 5.f) {
         on_ =  randomizer::random(15, 25)*games::elapsedTime() > 50 && randomizer::random(0, 1000) < 990;
     }
@@ -57,7 +59,8 @@ void Logo::update() {
     }
 }
 
-void Logo::draw() const {
+void Logo::draw() const
+{
 
     glEnable(GL_TEXTURE_2D);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);

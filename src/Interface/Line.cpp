@@ -24,9 +24,11 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 Line::Line (Vector2f const& begin, Vector2f const& end):
     UiElement(Vector2f(std::min(begin.x_, end.x_), std::min(begin.y_, end.y_)), std::abs(static_cast<int>(begin.x_ - end.x_)), std::abs(static_cast<int>(begin.y_ - end.y_))),
     begin_(begin),
-    end_(end) {}
+    end_(end)
+{   }
 
-void Line::draw() const {
+void Line::draw() const
+{
     Vector2f begin = parent_->getTopLeft() + begin_;
     Vector2f end   = parent_->getTopLeft() + end_;
 
@@ -47,8 +49,4 @@ void Line::draw() const {
         else              setColor4f(0.4f, 0.4f, 0.4f, 0.0f);
         glVertex2f(end.x_,end.y_);
     glEnd();
-
-
 }
-
-

@@ -22,7 +22,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 class TextBox;
 
-class InfoTDM: public UiWindow {
+class InfoTDM: public UiWindow
+{
     public:
         static UiWindow* get();
         void checkWidgets();
@@ -31,7 +32,8 @@ class InfoTDM: public UiWindow {
         static void reset();
 
     private:
-        InfoTDM(int width, int height): UiWindow(width, height) {}
+        InfoTDM(int width, int height): UiWindow(width, height)
+        {   }
         InfoTDM(InfoTDM const& copy);
 
         static UiWindow* instance_;
@@ -40,7 +42,3 @@ class InfoTDM: public UiWindow {
 };
 
 # endif // INFOTDM_HPP_INCLUDED
-
-
-
-

@@ -28,7 +28,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 UiWindow* ShaderError::instance_(NULL);
 bool ShaderError::kOk_(false);
 
-UiWindow* ShaderError::get() {
+UiWindow* ShaderError::get()
+{
     if (instance_ == NULL) {
         instance_ = new ShaderError(350, 80);
         instance_->addWidget(new Button(locales::getLocale(locales::Ok),     NULL, &kOk_, Vector2f(250,50), 90, 20));
@@ -37,14 +38,16 @@ UiWindow* ShaderError::get() {
     return instance_;
 }
 
-void ShaderError::checkWidgets() {
+void ShaderError::checkWidgets()
+{
     if (kOk_) {
         kOk_ = false;
         menus::hideWindow();
     }
 }
 
-void ShaderError::reset() {
+void ShaderError::reset()
+{
     if (instance_)
         delete instance_;
     instance_ = NULL;

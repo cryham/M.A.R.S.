@@ -25,8 +25,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 std::list<Star*> Star::activeParticles_;
 
 Star::Star(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity, Color3f const& color, Player* damageSource):
-           Particle<Star>(spaceObjects::oStar, location, 0.f, 0.f, 1.f) {
-
+           Particle<Star>(spaceObjects::oStar, location, 0.f, 0.f, 1.f)
+{
     location_     += Vector2f::randDir()*randomizer::random(0.2f, 5.f);
     depth_        =  0.2f/(location-location_).lengthSquare();
     velocity_     =  (location_ - location)*depth_*0.005f;
@@ -37,11 +37,13 @@ Star::Star(Vector2f const& location, Vector2f const& direction, Vector2f const& 
     alpha_ = 0.f;
 }
 
-void Star::update() {
+void Star::update()
+{
     update(timer::frameTime());
 }
 
-void Star::update(float time) {
+void Star::update(float time)
+{
     if (location_.x_ < -radius_ || location_.x_ > SPACE_X_RESOLUTION + radius_ || location_.y_ < -radius_ || location_.y_ > SPACE_Y_RESOLUTION + radius_) {
         spawn(Vector2f(SPACE_X_RESOLUTION*0.5f, SPACE_Y_RESOLUTION*0.5f), Vector2f(), Vector2f(), Color3f(), NULL);
         killMe();
@@ -57,7 +59,8 @@ void Star::update(float time) {
     }
 }
 
-void Star::draw() const {
+void Star::draw() const
+{
     color_.gl4f(alpha_);
     glTexCoord2f(0, 0); glVertex2f(location_.x_-radius_, location_.y_-radius_);
     glTexCoord2f(0, 1); glVertex2f(location_.x_-radius_, location_.y_+radius_);
@@ -65,7 +68,8 @@ void Star::draw() const {
     glTexCoord2f(1, 0); glVertex2f(location_.x_+radius_, location_.y_-radius_);
 }
 
-void Star::init() {
+void Star::init()
+{
     for (std::list<Star*>::iterator it=activeParticles_.begin(); it!=activeParticles_.end(); ++it)
         delete *it;
     activeParticles_.clear();
@@ -76,4 +80,3 @@ void Star::init() {
     for (std::list<Star*>::iterator it=activeParticles_.begin(); it!=activeParticles_.end(); ++it)
         (*it)->update(randomizer::random(0.f, 100.f));
 }
-

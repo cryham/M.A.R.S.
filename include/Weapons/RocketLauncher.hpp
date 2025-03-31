@@ -23,11 +23,13 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 /// Weapon: ROCK'n'LOL.
 /// A rocket launcher which aims at nearby enemies.
 
-class RocketLauncher: public Weapon {
+class RocketLauncher: public Weapon
+{
     public:
         /// Ctor which constructs the weapon.
         RocketLauncher(Ship* parent):
-              Weapon(weapons::wRocketLauncher, parent, "ROCK'n'LOL") {};
+              Weapon(weapons::wRocketLauncher, parent, "ROCK'n'LOL")
+        {   }
 
         /// Spawns some particles.
         void fire() const;
@@ -46,7 +48,3 @@ class RocketLauncher: public Weapon {
 };
 
 # endif // ROCKETLAUNCHER_HPP_INCLUDED
-
-
-
-

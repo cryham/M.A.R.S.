@@ -20,9 +20,11 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 # include "Hud/HudElement.hpp"
 
-class GamePoints: public HudElement {
+class GamePoints: public HudElement
+{
     public:
-        GamePoints(): timer_(0.f) {}
+        GamePoints(): timer_(0.f)
+        {   }
 
         void draw() const;
         void update();
@@ -34,10 +36,3 @@ class GamePoints: public HudElement {
 };
 
 # endif // GAMEPOINTS_HPP_INCLUDED
-
-
-
-
-
-
-

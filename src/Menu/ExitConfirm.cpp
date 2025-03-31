@@ -29,7 +29,8 @@ UiWindow* ExitConfirm::instance_(NULL);
 bool ExitConfirm::kOk_(false);
 bool ExitConfirm::kCancel_(false);
 
-UiWindow* ExitConfirm::get() {
+UiWindow* ExitConfirm::get()
+{
     if (settings::C_noConfirmations) {
         settings::save();
         window::close();
@@ -44,7 +45,8 @@ UiWindow* ExitConfirm::get() {
     return instance_;
 }
 
-void ExitConfirm::checkWidgets() {
+void ExitConfirm::checkWidgets()
+{
     if (kOk_) {
         kOk_ = false;
         settings::save();
@@ -56,7 +58,8 @@ void ExitConfirm::checkWidgets() {
     }
 }
 
-void ExitConfirm::reset() {
+void ExitConfirm::reset()
+{
     if (instance_)
         delete instance_;
     instance_ = NULL;

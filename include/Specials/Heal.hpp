@@ -23,12 +23,14 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 /// Special: Heal.
 /// A healing wave.
 
-class Heal: public Special {
+class Heal: public Special
+{
     public:
         /// Ctor which constructs the special.
         Heal(Ship* parent):
               Special(specials::sHeal, parent, sf::String("HEAL")),
-              radius_(0.f) {};
+              radius_(0.f)
+        {   }
 
         /// Heals nearby friends.
         void activate() const;
@@ -43,6 +45,3 @@ class Heal: public Special {
 };
 
 # endif // HEAL_HPP_INCLUDED
-
-
-

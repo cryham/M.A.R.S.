@@ -28,10 +28,11 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 DropDownWindow::DropDownWindow (int width, ComboBox* parent, std::vector<sf::String> elements):
     UiWindow(200, elements.size()*24 + 20),
     parent_(parent),
-    elements_(elements.size()) {
-
+    elements_(elements.size())
+{
     int top(10);
-    for (int i=0; i<elements_.size(); ++i) {
+    for (int i=0; i<elements_.size(); ++i)
+    {
         elements_[i] = std::make_pair(elements[i], false);
         Button* newOne;
         newOne=new Button(&(elements_[i].first), NULL, &(elements_[i].second), Vector2f(10, top), width_-20, 20, TEXT_ALIGN_CENTER);
@@ -41,7 +42,8 @@ DropDownWindow::DropDownWindow (int width, ComboBox* parent, std::vector<sf::Str
     }
 }
 
-void DropDownWindow::checkWidgets() {
+void DropDownWindow::checkWidgets()
+{
     for (std::vector<std::pair<sf::String, bool> >::iterator it=elements_.begin(); it!=elements_.end(); ++it)
         if (it->second) {
             it->second = false;
@@ -50,9 +52,11 @@ void DropDownWindow::checkWidgets() {
         }
 }
 
-void DropDownWindow::onShow() {
+void DropDownWindow::onShow()
+{
     for (int i=0; i<elements_.size(); ++i) {
-        if (elements_[i].first == *parent_->currentValue_) {
+        if (elements_[i].first == *parent_->currentValue_)
+        {
             if (focusedWidget_)
                 focusedWidget_->clearFocus();
             focusedWidget_ = widgets_[i];

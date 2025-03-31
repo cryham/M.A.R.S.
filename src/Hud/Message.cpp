@@ -26,14 +26,17 @@ Message::Message(sf::String const& message, Color3f const& color):
     location_(SPACE_X_RESOLUTION*0.5f, 200),
     timer_(0.f),
     alpha_(1.f),
-    speed_(0.f) {}
+    speed_(0.f)
+{   }
 
-void Message::draw() const {
+void Message::draw() const
+{
     text::drawMobileSpaceText(text_, location_+Vector2f(1.f, 1.f), 20.f, TEXT_ALIGN_CENTER, Color3f(0.f, 0.f, 0.f), alpha_);
     text::drawMobileSpaceText(text_, location_, 20.f, TEXT_ALIGN_CENTER, color_, alpha_);
 }
 
-void Message::update() {
+void Message::update()
+{
     timer_ += timer::realFrameTime();
     if (timer_ > 1.f) {
         speed_       += timer::realFrameTime();
@@ -42,6 +45,7 @@ void Message::update() {
     }
 }
 
-bool Message::isDead() const {
+bool Message::isDead() const
+{
     return timer_ > 2.f;
 }

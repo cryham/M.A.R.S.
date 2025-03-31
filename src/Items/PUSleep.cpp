@@ -21,7 +21,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # include "Players/Player.hpp"
 # include "Particles/particles.hpp"
 
-void PUSleep::draw() const {
+void PUSleep::draw() const
+{
     if (!collected_) {
         PowerUp::draw();
     }
@@ -50,7 +51,8 @@ void PUSleep::draw() const {
     }
 }
 
-void PUSleep::refreshLifeTime() {
+void PUSleep::refreshLifeTime()
+{
     lifeTime_ = 0.f;
     totalLifeTime_ = 5.f;
     // direction is abused for texture coords

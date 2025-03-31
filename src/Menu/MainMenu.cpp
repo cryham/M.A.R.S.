@@ -39,8 +39,10 @@ bool MainMenu::kOptions_(false);
 bool MainMenu::kAbout_(false);
 bool MainMenu::kExit_(false);
 
-UiWindow* MainMenu::get() {
-    if (instance_ == NULL) {
+UiWindow* MainMenu::get()
+{
+    if (instance_ == NULL)
+    {
         float y = 10, w = 180 * scale_, h = 20, yadd = h + 10;
         
         instance_ = new MainMenu(w + 20, 190, Vector2f(0.f, 50.f));
@@ -55,41 +57,43 @@ UiWindow* MainMenu::get() {
     return instance_;
 }
 
-void MainMenu::checkWidgets() {
-    if (kExit_) {
-        kExit_ = false;
+void MainMenu::checkWidgets()
+{
+    if (kExit_)
+    {   kExit_ = false;
         menus::showWindow(ExitConfirm::get());
     }
-    else if (kAbout_) {
-        kAbout_ = false;
+    else if (kAbout_)
+    {   kAbout_ = false;
         menus::showWindow(About::get());
     }
-    else if (kOptions_) {
-        kOptions_ = false;
+    else if (kOptions_)
+    {   kOptions_ = false;
         menus::showWindow(OptionsMenu::get());
     }
-    else if (kStartLocal_) {
-        kStartLocal_ = false;
+    else if (kStartLocal_)
+    {   kStartLocal_ = false;
         menus::showWindow(NewGameMenu::get());
-        if(settings::C_showInfoSB)
+        if (settings::C_showInfoSB)
             menus::showWindow(InfoSB::get());
     }
-    else if (kStartTut_) {
-        kStartTut_ = false;
+    else if (kStartTut_)
+    {   kStartTut_ = false;
         menus::hideWindow();
         games::start(games::gTutorial);
     }
-    else if (kJoinMulti_) {
-        kJoinMulti_ = false;
+    else if (kJoinMulti_)
+    {   kJoinMulti_ = false;
         menus::showWindow(Connect::get());
     }
-    else if (kStartMulti_) {
-        kStartMulti_ = false;
+    else if (kStartMulti_)
+    {   kStartMulti_ = false;
         menus::showWindow(Connect::get());
     }
 }
 
-void MainMenu::reset() {
+void MainMenu::reset()
+{
     if (instance_)
         delete instance_;
     instance_ = NULL;

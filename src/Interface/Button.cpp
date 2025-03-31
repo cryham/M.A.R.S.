@@ -28,29 +28,31 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 Button::Button (sf::String* text, sf::String* toolTip, bool* key, Vector2f const& topLeft, int width, int height, int align, sf::Font* font):
     UiElement(topLeft, width, height),
     key_(key),
-    toolTip_(toolTip) {
-
+    toolTip_(toolTip)
+{
     switch (align) {
         case TEXT_ALIGN_LEFT:  label_ = new Label(text, align, Vector2f(4, 2),          12.f, getColor3f(0.75f,0.75f,0.75f), true, font);  break;
         case TEXT_ALIGN_RIGHT: label_ = new Label(text, align, Vector2f(width-4, 2),    12.f, getColor3f(0.75f,0.75f,0.75f), true, font);  break;
         default:               label_ = new Label(text, align, Vector2f(width*0.5f, 2), 12.f, getColor3f(0.75f,0.75f,0.75f), true, font);
     }
-
     label_->setParent(this);
 }
 
-Button::~Button () {
+Button::~Button ()
+{
     delete label_;
 }
 
-void Button::mouseMoved(Vector2f const& position) {
+void Button::mouseMoved(Vector2f const& position)
+{
     UiElement::mouseMoved(position);
     label_->mouseMoved(position);
     if (hovered_ && toolTip_)
         toolTip::show(toolTip_);
 }
 
-void Button::mouseLeft(bool down) {
+void Button::mouseLeft(bool down)
+{
     UiElement::mouseLeft(down);
     if (!pressed_ && hovered_ && focused_) {
         *key_ = true;
@@ -60,7 +62,8 @@ void Button::mouseLeft(bool down) {
     }
 }
 
-void Button::keyEvent(bool down, Key const& key) {
+void Button::keyEvent(bool down, Key const& key)
+{
     if (key.navi_ == Key::nConfirm) {
         pressed_ = down;
         if (!pressed_) {
@@ -72,7 +75,8 @@ void Button::keyEvent(bool down, Key const& key) {
     }
 }
 
-void Button::draw () const {
+void Button::draw () const
+{
     UiElement::draw();
 
     Vector2f origin = getTopLeft();
@@ -156,12 +160,14 @@ void Button::draw () const {
     label_->draw();
 }
 
-void Button::setFocus (UiElement* toBeFocused, bool isPrevious) {
+void Button::setFocus (UiElement* toBeFocused, bool isPrevious)
+{
     UiElement::setFocus(this, isPrevious);
     label_->setFocus(this, isPrevious);
 }
 
-void Button::clearFocus() {
+void Button::clearFocus()
+{
     UiElement::clearFocus();
     label_->clearFocus();
 }

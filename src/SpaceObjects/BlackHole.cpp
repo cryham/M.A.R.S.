@@ -23,15 +23,18 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 BlackHole::BlackHole(Vector2f const& location, float radius):
                      SpaceObject(spaceObjects::oBlackHole, location, radius, radius*130),
-                     rotation_(0) {
+                     rotation_(0)
+{
     physics::addGravitySource(this);
 }
 
-void BlackHole::update() {
+void BlackHole::update()
+{
     rotation_ = fmod(rotation_ += 10*timer::frameTime(), 360);
 }
 
-void BlackHole::draw() const {
+void BlackHole::draw() const
+{
     glPushMatrix();
     glLoadIdentity();
     glTranslatef(location_.x_, location_.y_, 0);
@@ -72,5 +75,3 @@ void BlackHole::draw() const {
     glBindTexture(GL_TEXTURE_2D, 0);
     glPopMatrix();
 }
-
-

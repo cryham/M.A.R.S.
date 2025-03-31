@@ -26,8 +26,8 @@ std::list<Number*> Number::activeParticles_;
 
 Number::Number(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity, Color3f const& color, Player* damageSource):
            Particle<Number>(spaceObjects::oNumber, location, 4, 0, 1.f),
-           alpha_(1.f) {
-
+           alpha_(1.f)
+{
     velocity_ = velocity;
 
     value_ = direction.x_;
@@ -41,7 +41,8 @@ Number::Number(Vector2f const& location, Vector2f const& direction, Vector2f con
         color_ = Color3f(1.0f, 0.4f, 0.4f);
 }
 
-void Number::update() {
+void Number::update()
+{
     float time = timer::frameTime();
 
     alpha_ = 1.f-1.f/totalLifeTime_*lifeTime_;
@@ -52,10 +53,9 @@ void Number::update() {
     lifeTime_ += time;
 }
 
-void Number::draw() const {
+void Number::draw() const
+{
     std::stringstream sstr;
     sstr << value_;
     text::drawMobileSpaceText(sf::String(sstr.str()), location_, radius_, TEXT_ALIGN_CENTER, color_, alpha_);
 }
-
-

@@ -28,7 +28,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 UiWindow* Connect::instance_(NULL);
 bool Connect::kClose_(false);
 
-UiWindow* Connect::get() {
+UiWindow* Connect::get()
+{
     if (instance_ == NULL) {
         instance_ = new Connect(320, 180);
         instance_->addWidget(new Button(locales::getLocale(locales::Close), NULL, &kClose_, Vector2f(220,150), 90, 20));
@@ -40,14 +41,16 @@ UiWindow* Connect::get() {
     return instance_;
 }
 
-void Connect::checkWidgets() {
+void Connect::checkWidgets()
+{
     if (kClose_) {
         kClose_ = false;
         menus::hideWindow();
     }
 }
 
-void Connect::reset() {
+void Connect::reset()
+{
     if (instance_)
         delete instance_;
     instance_ = NULL;

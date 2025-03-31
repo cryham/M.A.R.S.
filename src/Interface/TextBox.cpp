@@ -26,8 +26,8 @@ TextBox::TextBox(sf::String* text, Vector2f const& topLeft, int width, int heigh
     color_(color),
     slider_(NULL),
     position_(0),
-    scrollSpeed_(0.f) {
-
+    scrollSpeed_(0.f)
+{
         sf::String wholeText = *text;
         sf::String word;
         sf::String line;
@@ -99,32 +99,37 @@ TextBox::TextBox(sf::String* text, Vector2f const& topLeft, int width, int heigh
 
 }
 
-TextBox::~TextBox() {
+TextBox::~TextBox()
+{
     for (std::vector<sf::String*>::iterator it=texts_.begin(); it!=texts_.end(); ++it)
         delete *it;
     if (slider_)
         delete slider_;
 }
 
-void TextBox::mouseMoved(Vector2f const& position) {
+void TextBox::mouseMoved(Vector2f const& position)
+{
     UiElement::mouseMoved(position);
     if (slider_)
         slider_->mouseMoved(position);
 }
 
-void TextBox::mouseWheelMoved(Vector2f const& position, int delta) {
+void TextBox::mouseWheelMoved(Vector2f const& position, int delta)
+{
     if (hovered_ && slider_) {
         if (delta > 0) scrollSpeed_ = -200.f;
         else           scrollSpeed_ =  200.f;
     }
 }
 
-void TextBox::mouseLeft(bool down) {
+void TextBox::mouseLeft(bool down)
+{
     if (slider_)
         slider_->mouseLeft(down);
 }
 
-void TextBox::draw () const {
+void TextBox::draw () const
+{
     //mouswheel scroll
     if (slider_) {
         if (scrollSpeed_ > 0.f) {
@@ -174,7 +179,3 @@ void TextBox::draw () const {
 
     text::drawFooText();
 }
-
-
-
-

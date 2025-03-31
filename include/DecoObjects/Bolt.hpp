@@ -24,7 +24,8 @@ class SpaceObject;
 
 /// An object for drawing bolts between ships.
 
-class Bolt: public DecoObject {
+class Bolt: public DecoObject
+{
     public:
         Bolt(SpaceObject *from, SpaceObject *to, float intensity):
             from_(from),
@@ -33,7 +34,8 @@ class Bolt: public DecoObject {
             maxLifeTime_(0.3f),
             lifeTime_(0.f),
             boltImage_(0),
-            flickerTimer_(0.f) {}
+            flickerTimer_(0.f)
+        {   }
 
         void draw() const;
 
@@ -46,5 +48,3 @@ class Bolt: public DecoObject {
 };
 
 # endif // BOLT_HPP_INCLUDED
-
-

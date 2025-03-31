@@ -25,7 +25,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # include <SFML/Graphics.hpp>
 # include <cfloat>
 
-void H2OMG::draw(float alpha) const {
+void H2OMG::draw(float alpha) const
+{
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glColor3f(0.7f, 0.7f, 1.f);
     const int posX = 0;
@@ -38,12 +39,14 @@ void H2OMG::draw(float alpha) const {
     glEnd();
 }
 
-void H2OMG::fire() const {
+void H2OMG::fire() const
+{
     float time = timer::totalTime();
-    if (time - timer_ > 0.1f) {
-        timer_ = time;
+    if (time - timer_ > 0.1f)
+    {   timer_ = time;
         float angleRad = parent_->rotation()*M_PI / 180;
         Vector2f faceDirection(std::cos(angleRad), std::sin(angleRad));
+        
         particles::spawn(particles::pAmmoH2OMG, parent_->location() + faceDirection*parent_->radius()*1.5, faceDirection, parent_->velocity(), Color3f(), parent_->getOwner());
         particles::spawn(particles::pAmmoH2OMG, parent_->location() + faceDirection*parent_->radius(), faceDirection, parent_->velocity(), Color3f(), parent_->getOwner());
         sound::playSound(sound::BlubPop, parent_->location());
@@ -52,14 +55,17 @@ void H2OMG::fire() const {
     }
 }
 
-float H2OMG::maxDistance() const {
+float H2OMG::maxDistance() const
+{
     return FLT_MAX;
 }
 
-float H2OMG::minDistance() const {
+float H2OMG::minDistance() const
+{
     return 0.f;
 }
 
-float H2OMG::maxAngle() const {
+float H2OMG::maxAngle() const
+{
     return 20.f;
 }

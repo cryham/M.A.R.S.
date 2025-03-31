@@ -16,7 +16,7 @@ void main(void) {
 
     TexCoord -= radial_origin;
     float lengthSquare = length(TexCoord);
-    if(lengthSquare < 0.12)
+    if (lengthSquare < 0.12)
         gl_FragColor = texture2D(Texture,  TexCoord * (1.f - (0.12f - lengthSquare) * size * 3.0f) + radial_origin);
     else
         gl_FragColor = texture2D(Texture,  TexCoord + radial_origin);

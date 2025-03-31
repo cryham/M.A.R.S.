@@ -53,7 +53,8 @@ Game::Game(games::GameType const& type):
     stars::init();
 }
 
-Game::~Game() {
+Game::~Game()
+{
     items::clear();
     ships::clear();
     balls::clear();
@@ -69,7 +70,8 @@ Game::~Game() {
     timer::resetSlowMotion();
 }
 
-void Game::update() {
+void Game::update()
+{
     announcer::update();
     hud::update();
     if ((!menus::visible()) || (type_ == games::gMenu)) {
@@ -110,7 +112,8 @@ void Game::update() {
         startTime_ += timer::frameTime();
 }
 
-void Game::draw() const {
+void Game::draw() const
+{
     if (settings::C_StarField)
         particles::drawStars();
     particles::drawLower();
@@ -124,7 +127,8 @@ void Game::draw() const {
     items::draw();
 }
 
-void Game::restart() {
+void Game::restart()
+{
     items::clear();
     ships::clear();
     balls::clear();
@@ -145,15 +149,18 @@ void Game::restart() {
     ended_ = false;
 }
 
-games::GameType Game::type() const {
+games::GameType Game::type() const
+{
     return type_;
 }
 
-float Game::elapsedTime() const {
+float Game::elapsedTime() const
+{
     return timer::totalTime() - startTime_;
 }
 
-bool Game::ended() const {
+bool Game::ended() const
+{
     return ended_;
 }
 

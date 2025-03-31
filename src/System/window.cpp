@@ -40,9 +40,10 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # endif
 
 
-namespace window {
-
-    namespace {
+namespace window
+{
+    namespace
+    {
         // main window of the game
         sf::RenderWindow  window_;
         sf::Clock         clock_;
@@ -55,7 +56,9 @@ namespace window {
         float            joyButtonTimer_(0.f);
         const float      ratio(static_cast<float>(SPACE_X_RESOLUTION)/static_cast<float>(SPACE_Y_RESOLUTION));
 
-        void setViewPort() {
+
+        void setViewPort()
+        {
             const int windowHeight(window_.getSize().y), windowWidth(window_.getSize().x);
             sf::View view(sf::FloatRect(0,0, windowWidth, windowHeight));
             if (static_cast<float>(windowWidth)/windowHeight > ratio) {
@@ -71,17 +74,18 @@ namespace window {
             window_.setView(view);
         }
 
-
-        void resized() {
+        void resized()
+        {
             window_.setActive(true);
             int windowHeight(window_.getSize().y), windowWidth(window_.getSize().x);
             // if windows aspect ration is greater than aspect ratio of space
-            if (static_cast<float>(windowWidth)/windowHeight > ratio) {
+            if (static_cast<float>(windowWidth)/windowHeight > ratio)
+            {
                 scale_ = static_cast<float>(windowHeight)/SPACE_Y_RESOLUTION;
                 viewPort_.y_ = windowHeight;
                 viewPort_.x_  = windowHeight * ratio;
-            }
-            else {
+            }else
+            {
                 scale_ = static_cast<float>(windowWidth)/SPACE_X_RESOLUTION;
                 viewPort_.y_ = windowWidth / ratio;
                 viewPort_.x_  = windowWidth;
@@ -90,7 +94,8 @@ namespace window {
 
             setViewPort();
 
-            if (settings::C_shaders) {
+            if (settings::C_shaders)
+            {
                 backBuffer_.setActive(true);
                 backBuffer_.clear();
                 backBuffer_.create(viewPort_.x_, viewPort_.y_);
@@ -99,40 +104,52 @@ namespace window {
             }
         }
 
-        void update() {
+        void update()
+        {
             timer::update(clock_.restart().asSeconds());
             sf::Event event;
-            while (window_.pollEvent(event)) {
+            while (window_.pollEvent(event))
+            {
                 if      (event.type == sf::Event::Resized)
                     resized();
                 else if (event.type == sf::Event::Closed)
                     close();
-                else if (event.type == sf::Event::KeyPressed) {
+                else if (event.type == sf::Event::KeyPressed)
+                {
                     if (!menus::visible())
                         controllers::singleKeyEvent(Key(event.key.code));
                     menus::keyEvent(true, Key(event.key.code));
                 }
-                else if (event.type == sf::Event::KeyReleased) {
+                else if (event.type == sf::Event::KeyReleased)
+                {
                     menus::keyEvent(false, Key(event.key.code));
                 }
-                else if (event.type == sf::Event::TextEntered) {
+                else if (event.type == sf::Event::TextEntered)
+                {
                     if (menus::visible())
                         menus::textEntered(event.text.unicode);
                 }
-                else if (event.type == sf::Event::MouseMoved) {
+                else if (event.type == sf::Event::MouseMoved)
+                {
                     if (menus::visible())
-                        menus::mouseMoved(Vector2f(event.mouseMove.x - (window_.getSize().x - viewPort_.x_)/2, event.mouseMove.y - (window_.getSize().y - viewPort_.y_)/2));
+                        menus::mouseMoved(Vector2f(
+                            event.mouseMove.x - (window_.getSize().x - viewPort_.x_)/2,
+                            event.mouseMove.y - (window_.getSize().y - viewPort_.y_)/2));
                 }
-                else if (event.type == sf::Event::MouseButtonPressed) {
+                else if (event.type == sf::Event::MouseButtonPressed)
+                {
                     if (menus::visible() && event.mouseButton.button == sf::Mouse::Left)
                         menus::mouseLeft(true);
                 }
-                else if (event.type == sf::Event::MouseButtonReleased) {
+                else if (event.type == sf::Event::MouseButtonReleased)
+                {
                     if (menus::visible() && event.mouseButton.button == sf::Mouse::Left)
                         menus::mouseLeft(false);
                 }
-                else if (event.type == sf::Event::JoystickButtonPressed) {
-                    if (timer::realTotalTime() - joyButtonTimer_ > 0.1f) {
+                else if (event.type == sf::Event::JoystickButtonPressed)
+                {
+                    if (timer::realTotalTime() - joyButtonTimer_ > 0.1f)
+                    {
                         if (!menus::visible())
                             controllers::singleKeyEvent(Key(event.joystickButton.joystickId, event.joystickButton.button));
                         menus::keyEvent(true, Key(event.joystickButton.joystickId, event.joystickButton.button));
@@ -141,26 +158,33 @@ namespace window {
                 }
                 else if (event.type == sf::Event::JoystickButtonReleased)
                     menus::keyEvent(false, Key(event.joystickButton.joystickId, event.joystickButton.button));
-                else if (event.type == sf::Event::JoystickMoved) {
+                else if (event.type == sf::Event::JoystickMoved)
+                {
                     Key key(event.joystickMove.joystickId, event.joystickMove.axis, event.joystickMove.position);
-                    if (key.strength_ >= 95 && timer::realTotalTime() - joyButtonTimer_ > 0.1f) {
+                    if (key.strength_ >= 95 && timer::realTotalTime() - joyButtonTimer_ > 0.1f)
+                    {
                         if (!menus::visible())
                             controllers::singleKeyEvent(key);
-                        if(key.strength_ >= 95)
+                        if (key.strength_ >= 95)
                             menus::keyEvent(true, key);
                         joyButtonTimer_ = timer::realTotalTime();
                     }
                 }
-                else if (event.type == sf::Event::MouseWheelMoved) {
+                else if (event.type == sf::Event::MouseWheelMoved)
+                {
                     if (menus::visible())
-                        menus::mouseWheelMoved(Vector2f(event.mouseWheel.x - (window_.getSize().x - viewPort_.x_)/2, event.mouseWheel.y - (window_.getSize().y - viewPort_.y_)/2), event.mouseWheel.delta);
+                        menus::mouseWheelMoved(Vector2f(
+                            event.mouseWheel.x - (window_.getSize().x - viewPort_.x_)/2,
+                            event.mouseWheel.y - (window_.getSize().y - viewPort_.y_)/2), event.mouseWheel.delta);
                 }
             }
         }
 
-        void display() {
+        void display()
+        {
             window_.display();
-            if (++clearCount_ > 30) {
+            if (++clearCount_ > 30)
+            {
                 glClear(GL_COLOR_BUFFER_BIT);
                 clearCount_ = 0;
             }
@@ -169,8 +193,10 @@ namespace window {
 
     // "public" methodes /////////////////////////////////////////////////
 
-    bool open() {
-        if (settings::load() && locales::load()) {
+    bool open()
+    {
+        if (settings::load() && locales::load())
+        {
             postFX::load();
 
             create();
@@ -179,15 +205,19 @@ namespace window {
         else return false;
     }
 
-    void close() {
+    void close()
+    {
         music::stop();
         window_.close();
     }
 
-    void mainLoop() {
-        while (window_.isOpen()) {
+    void mainLoop()
+    {
+        while (window_.isOpen())
+        {
             update();
-            if (window_.isOpen()) {
+            if (window_.isOpen())
+            {
                 games::update();
                 games::draw();
                 display();
@@ -195,7 +225,8 @@ namespace window {
         }
     }
 
-    void create() {
+    void create()
+    {
         sf::VideoMode mode(settings::C_resX, settings::C_resY, settings::C_colorDepth);
 
         if (settings::C_fullScreen && mode.isValid())
@@ -242,7 +273,8 @@ namespace window {
         glLoadIdentity();
     }
 
-    void startDrawSpace() {
+    void startDrawSpace()
+    {
         if (settings::C_shaders)
             backBuffer_.setActive(true);
 
@@ -261,8 +293,10 @@ namespace window {
         glLoadIdentity();
     }
 
-    void startDrawHUD() {
-        if (settings::C_shaders) {
+    void startDrawHUD()
+    {
+        if (settings::C_shaders)
+        {
             backBuffer_.display();
 
             window_.setActive(true);
@@ -291,8 +325,8 @@ namespace window {
             glLoadIdentity();
 
             glEnable(GL_BLEND);
-        }
-        else {
+        }else
+        {
             glMatrixMode(GL_PROJECTION);
             glLoadIdentity();
             glOrtho(0.f, viewPort_.x_, viewPort_.y_, 0.f, -1, 1);
@@ -301,30 +335,31 @@ namespace window {
         }
     }
 
-    void draw(sf::Drawable const& toBeDrawn, sf::RenderStates const& states, sf::Shader* shader) {
+    void draw(sf::Drawable const& toBeDrawn, sf::RenderStates const& states, sf::Shader* shader)
+    {
         glPushAttrib(GL_ALL_ATTRIB_BITS);
         glPushMatrix();
         window_.pushGLStates();
         window_.setActive(true);
         glEnable(GL_TEXTURE_2D);
 
-        if (shader) {
+        if (shader)
             sf::Shader::bind(shader);
-        }
 
         window_.draw(toBeDrawn, states);
 
-        if (shader) {
+        if (shader)
             sf::Shader::bind(NULL);
-        }
 
         window_.popGLStates();
         glPopMatrix();
         glPopAttrib();
     }
 
-    int isKeyDown(Key const& key) {
-        switch (key.type_) {
+    int isKeyDown(Key const& key)
+    {
+        switch (key.type_)
+        {
             case Key::kKeyBoard:
                 if (sf::Keyboard::isKeyPressed(key.code_.keyBoard_))
                     return 100;
@@ -339,23 +374,26 @@ namespace window {
                 sf::Joystick::Axis tmp(Key::convertToSFML(key.code_.joyAxis_));
                 int strength(sf::Joystick::getAxisPosition(key.joyID_, tmp));
                 std::pair<Key::AxisType, int> result(Key::convertFromSFML(tmp,strength));
+                
                 return result.first == key.code_.joyAxis_ ? result.second : 0;
                 break;
         }
         return 0;
     }
 
-    Vector2f const getMousePosition() {
+    Vector2f const getMousePosition()
+    {
         return Vector2f(sf::Mouse::getPosition(window_).x, sf::Mouse::getPosition(window_).y);
     }
 
-    void screenShot() {
+    void screenShot()
+    {
         sf::Image shot = window_.capture();
-       // const int windowHeight(window_.GetHeight()), windowWidth(window_.GetWidth());
-       // if (static_cast<float>(windowWidth)/windowHeight > ratio)
-       //     shot.Copy(window_, sf::IntRect((windowWidth-viewPort_.x_)*0.5f, 0, viewPort_.x_, viewPort_.y_));
-       // else
-       //     shot.Copy(window_, sf::IntRect(0, (windowHeight-viewPort_.y_)*0.5f, viewPort_.x_, viewPort_.y_));
+        // const int windowHeight(window_.GetHeight()), windowWidth(window_.GetWidth());
+        // if (static_cast<float>(windowWidth)/windowHeight > ratio)
+        //     shot.Copy(window_, sf::IntRect((windowWidth-viewPort_.x_)*0.5f, 0, viewPort_.x_, viewPort_.y_));
+        // else
+        //     shot.Copy(window_, sf::IntRect(0, (windowHeight-viewPort_.y_)*0.5f, viewPort_.x_, viewPort_.y_));
 
         time_t rawtime;
         struct tm* timeinfo;
@@ -363,7 +401,8 @@ namespace window {
         timeinfo = localtime(&rawtime);
 
         std::stringstream filename;
-        filename << "ScreenShot_" << timeinfo->tm_year << timeinfo->tm_mon << timeinfo->tm_mday << timeinfo->tm_hour << timeinfo->tm_min << timeinfo->tm_sec << "." << settings::C_screenShotFormat;
+        filename << "ScreenShot_" << timeinfo->tm_year << timeinfo->tm_mon << timeinfo->tm_mday
+            << timeinfo->tm_hour << timeinfo->tm_min << timeinfo->tm_sec << "." << settings::C_screenShotFormat;
 
         # ifdef __linux__
             mkdir((settings::C_configPath + "screenshots/").c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
@@ -396,19 +435,25 @@ namespace window {
         # endif
     }
 
-    void showCursor(bool show) {
+    void showCursor(bool show)
+    {
         window_.setMouseCursorVisible(show);
     }
 
-    Vector2f const coordToPixel(Vector2f const& spaceCoord) {
+    Vector2f const coordToPixel(Vector2f const& spaceCoord)
+    {
         return spaceCoord*scale_;
     }
 
-    Vector2f const PixelToCoord(Vector2f const& screenCoord) {
-        return Vector2f(screenCoord.x_ - (window_.getSize().x - viewPort_.x_)/2, screenCoord.y_ - (window_.getSize().y - viewPort_.y_)/2);
+    Vector2f const PixelToCoord(Vector2f const& screenCoord)
+    {
+        return Vector2f(
+            screenCoord.x_ - (window_.getSize().x - viewPort_.x_)/2,
+            screenCoord.y_ - (window_.getSize().y - viewPort_.y_)/2);
     }
 
-    Vector2f const& getViewPort() {
+    Vector2f const& getViewPort()
+    {
         return viewPort_;
     }
 }

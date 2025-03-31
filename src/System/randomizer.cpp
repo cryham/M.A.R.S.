@@ -21,9 +21,10 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include <cstdlib>
 #include <ctime>
 
-namespace {
-
-    unsigned int InitializeSeed() {
+namespace
+{
+    unsigned int InitializeSeed()
+    {
         unsigned int seed = static_cast<unsigned int>(std::time(NULL));
         std::srand(seed);
         return seed;
@@ -32,19 +33,23 @@ namespace {
     unsigned int globalSeed = InitializeSeed();
 }
 
-void randomizer::setSeed(unsigned int seed) {
+void randomizer::setSeed(unsigned int seed)
+{
     std::srand(seed);
     globalSeed = seed;
 }
 
-unsigned int randomizer::getSeed() {
+unsigned int randomizer::getSeed()
+{
     return globalSeed;
 }
 
-float randomizer::random(float begin, float end) {
+float randomizer::random(float begin, float end)
+{
     return static_cast<float>(std::rand()) / RAND_MAX * (end - begin) + begin;
 }
 
-int randomizer::random(int begin, int end) {
+int randomizer::random(int begin, int end)
+{
     return std::rand() % (end - begin + 1) + begin;
 }

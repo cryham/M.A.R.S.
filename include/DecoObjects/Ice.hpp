@@ -28,14 +28,17 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 /// An ice block drawn over frozen SpaceObjects.
 
-
 template <typename Object>
-class Ice: public DecoObject {
+class Ice: public DecoObject
+{
     public:
-        Ice(Object* object): object_(object) {}
+        Ice(Object* object): object_(object)
+        {   }
 
-        void draw() const {
-            if (object_->visible_ && object_->frozen_ > 0.f) {
+        void draw() const
+        {
+            if (object_->visible_ && object_->frozen_ > 0.f)
+            {
                 glEnable(GL_TEXTURE_2D);
                 glBindTexture(GL_TEXTURE_2D, texture::getTexture(texture::Ice));
                 glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -44,7 +47,8 @@ class Ice: public DecoObject {
                 glLoadIdentity();
                 glTranslatef(object_->location_.x_, object_->location_.y_, 0.f);
                 glRotatef(object_->rotation_, 0.f, 0.f, 1.f);
-                if (object_->frozen_ > 0) {
+                if (object_->frozen_ > 0)
+                {
                     int posX;
                     int posY;
 
@@ -64,7 +68,6 @@ class Ice: public DecoObject {
                         posX = 1;
                         posY = 1;
                     }
-
                     else {
                         decoObjects::removeIce(this);
                         return;
@@ -85,7 +88,8 @@ class Ice: public DecoObject {
                 glDisable(GL_TEXTURE_2D);
                 glBindTexture(GL_TEXTURE_2D, 0);
             }
-            else {
+            else
+            {
                 decoObjects::removeIce(this);
             }
         }
@@ -95,6 +99,3 @@ class Ice: public DecoObject {
 };
 
 # endif // ICE_HPP_INCLUDED
-
-
-

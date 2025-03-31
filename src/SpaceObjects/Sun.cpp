@@ -29,12 +29,14 @@ Sun::Sun(Vector2f const& location, float radius):
     physics::addGravitySource(this);
 }
 
-void Sun::update() {
-    if (eruptionTimer_ > 0) {
+void Sun::update()
+{
+    if (eruptionTimer_ > 0)
+    {
         float time = timer::frameTime();
         eruptionTimer_ -= time;
-    }
-    else {
+    }else
+    {
         // get random direction
         Vector2f direction = Vector2f::randDir();
         Vector2f eruptionLocation = location_ + direction * radius_ * 0.9;
@@ -44,7 +46,8 @@ void Sun::update() {
     }
 }
 
-void Sun::draw() const {
+void Sun::draw() const
+{
     glEnable(GL_TEXTURE_2D);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glBindTexture(GL_TEXTURE_2D, texture::getTexture(texture::Sun1));
@@ -63,7 +66,8 @@ void Sun::draw() const {
 }
 
 void Sun::onCollision(SpaceObject* with, Vector2f const& location,
-                      Vector2f const& direction, Vector2f const& velocity) {
+                      Vector2f const& direction, Vector2f const& velocity)
+{
     float strength = velocity.length();
 
     if (with->type() != spaceObjects::oFuel && with->type() != spaceObjects::oAmmoBurner  && strength > 50)

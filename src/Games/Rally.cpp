@@ -30,8 +30,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # include "System/randomizer.hpp"
 
 Rally::Rally():
-    Game(games::gRally) {
-
+    Game(games::gRally)
+{
     settings::C_EnabledWeapons  = settings::C_EnabledWeaponsByUser;
     settings::C_EnabledSpecials = settings::C_EnabledSpecialsByUser;
 
@@ -60,17 +60,20 @@ Rally::Rally():
     track_ = new Track(home);
 }
 
-Rally::~Rally() {
+Rally::~Rally()
+{
     delete track_;
 }
 
-void Rally::draw() const {
+void Rally::draw() const
+{
     if (settings::C_drawZones) zones::draw();
     track_->draw();
     Game::draw();
 }
 
-void Rally::restart() {
+void Rally::restart()
+{
     Game::restart();
 
     Home* home = spaceObjects::addHome(HOME_RALLY, 100, Color3f(1.f, 1.f, 1.f));

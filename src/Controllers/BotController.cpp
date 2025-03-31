@@ -39,13 +39,18 @@ BotController::BotController(Player* slave, float strength):
     currentJob_(Job::jCharge, 1),
     nextRoutePoint_(FLT_MAX, FLT_MAX),
     toCover_(NULL),
-    strength_(strength) {}
+    strength_(strength)
+{   }
 
-void BotController::update() {
-    if(aggroTable_.empty()) {
+void BotController::update()
+{
+    if (aggroTable_.empty())
+    {
         std::vector<Team*> const& teams = teams::getAllTeams();
-        for (std::vector<Team*>::const_iterator it = teams.begin(); it != teams.end(); ++it) {
-            if ((*it) != slave_->team()) {
+        for (std::vector<Team*>::const_iterator it = teams.begin(); it != teams.end(); ++it)
+        {
+            if ((*it) != slave_->team())
+            {
                 std::vector<Player*> const& players = (*it)->members();
                 for (std::vector<Player*>::const_iterator it = players.begin(); it != players.end(); ++it)
                     aggroTable_.insert(std::make_pair((*it)->ship(), 0.f));
@@ -62,7 +67,8 @@ void BotController::update() {
     performJob();
 }
 
-void BotController::performJob() {
+void BotController::performJob()
+{
     if (ship()->docked_ && (weaponChangeTimer_ < 0.5f || specialChangeTimer_ < 0.5f) && currentJob_.type_ != Job::jKickOutHome) {
         charge();
     }
@@ -90,28 +96,34 @@ void BotController::performJob() {
     }
 }
 
-void BotController::evaluate() {
+void BotController::evaluate()
+{
     checkEnergy();
     checkCloseEnemies();
     checkAggro();
     checkSpecial();
 }
 
-void BotController::applyForJob(std::multimap<Job, std::multimap<short, BotController*> >& jobMap) {
-    for (std::multimap<Job, std::multimap<short, BotController*> >::iterator it=jobMap.begin(); it!=jobMap.end(); ++it) {
+void BotController::applyForJob(std::multimap<Job, std::multimap<short, BotController*> >& jobMap)
+{
+    for (std::multimap<Job, std::multimap<short, BotController*> >::iterator it=jobMap.begin(); it!=jobMap.end(); ++it)
+    {
         short need(0);
 
         short didThisJobLAstTimeToo(0);
         if (currentJob_.type_ == it->first.type_)
             didThisJobLAstTimeToo = 10;
 
-        if (ship()->getLife() > 0 && ship()->frozen_ <= 0.f) {
+        if (ship()->getLife() > 0 && ship()->frozen_ <= 0.f)
+        {
             switch (it->first.type_) {
-                case Job::jAttackAny: {
+                case Job::jAttackAny:
+                {
                     need = 5;
                     break;
                 }
-                case Job::jCharge: {
+                case Job::jCharge:
+                {
                     if (ship()->docked_) {
                         float life = 100.f - std::pow(ship()->getLife(),5)*0.00000001f;
                         float fuel = 100.f - std::pow(ship()->getFuel(),5)*0.00000001f;
@@ -119,13 +131,15 @@ void BotController::applyForJob(std::multimap<Job, std::multimap<short, BotContr
                     }
                     break;
                 }
-                case Job::jLand: {
+                case Job::jLand:
+                {
                     float life = std::pow(100.f - ship()->getLife(),3)*0.0001f;
                     float fuel = std::pow(100.f - ship()->getFuel(),3)*0.0001f;
                     need = std::max(life,fuel) + didThisJobLAstTimeToo;
                     break;
                 }
-                case Job::jHeal: {
+                case Job::jHeal:
+                {
                     // 20 - 100, based on fragstars and distance
                     if (ship()->currentSpecial_->getType() == specials::sHeal && ship()->fragStars_ > 0) {
                         Ship* target = static_cast<Ship*>(it->first.object_);
@@ -139,7 +153,8 @@ void BotController::applyForJob(std::multimap<Job, std::multimap<short, BotContr
                     }
                     break;
                 }
-                case Job::jUnfreeze: {
+                case Job::jUnfreeze:
+                {
                     // 20 - 100, based on distance
                     Ship* target = static_cast<Ship*>(it->first.object_);
                     float dist = ((target->location()-ship()->location()).length());
@@ -149,7 +164,8 @@ void BotController::applyForJob(std::multimap<Job, std::multimap<short, BotContr
                     need = 1 + dist + didThisJobLAstTimeToo;
                     break;
                 }
-                case Job::jAttackTarget: {
+                case Job::jAttackTarget:
+                {
                     // 20 - 100, based on distance and much life
                     Ship* target = static_cast<Ship*>(it->first.object_);
                     float dist = ((target->location()-ship()->location()).length());
@@ -160,7 +176,8 @@ void BotController::applyForJob(std::multimap<Job, std::multimap<short, BotContr
                     need = dist + life + didThisJobLAstTimeToo;
                     break;
                 }
-                case Job::jGetPUShield: case Job::jGetPUHealth: {
+                case Job::jGetPUShield: case Job::jGetPUHealth:
+                {
                     // 0 - 100, based on distance and few life
                     float dist = ((*static_cast<Vector2f*>(it->first.object_)-ship()->location()).length());
                     dist *= 0.2f;
@@ -170,7 +187,8 @@ void BotController::applyForJob(std::multimap<Job, std::multimap<short, BotContr
                     need = dist*life*0.01 + didThisJobLAstTimeToo;
                     break;
                 }
-                case Job::jGetPUReverse: case Job::jGetPUSleep: {
+                case Job::jGetPUReverse: case Job::jGetPUSleep:
+{
                     // 0 - 70, based on distance
                     float dist = ((*static_cast<Vector2f*>(it->first.object_)-ship()->location()).length());
                     dist *= 0.3f;
@@ -179,7 +197,8 @@ void BotController::applyForJob(std::multimap<Job, std::multimap<short, BotContr
                     need = dist + didThisJobLAstTimeToo;
                     break;
                 }
-                case Job::jGetPUFuel: {
+                case Job::jGetPUFuel:
+                {
                     // 0 - 100, based on distance and few fuel
                     float dist = ((*static_cast<Vector2f*>(it->first.object_)-ship()->location()).length());
                     dist *= 0.2f;
@@ -189,7 +208,8 @@ void BotController::applyForJob(std::multimap<Job, std::multimap<short, BotContr
                     need = dist*fuel*0.01f + didThisJobLAstTimeToo;
                     break;
                 }
-                case Job::jKickToEnemy: {
+                case Job::jKickToEnemy:
+                {
                     // 0 - 100, based on distance and few fuel
                     float dist = ((static_cast<Ball*>(it->first.object_)->location()-ship()->location()).length());
                     dist *= 0.075f;
@@ -201,7 +221,8 @@ void BotController::applyForJob(std::multimap<Job, std::multimap<short, BotContr
                     need = 1 + dist + dir + didThisJobLAstTimeToo;
                     break;
                 }
-                case Job::jKickOutHome: {
+                case Job::jKickOutHome:
+                {
                     // 0 - 100, based on distance and few fuel
                     float dist = ((static_cast<Ball*>(it->first.object_)->location()-ship()->location()).length());
                     dist *= 0.1f;
@@ -213,7 +234,8 @@ void BotController::applyForJob(std::multimap<Job, std::multimap<short, BotContr
                     need = dist + dir + didThisJobLAstTimeToo;
                     break;
                 }
-                case Job::jProtectZone: {
+                case Job::jProtectZone:
+                {
                     // 0 - 100, based on distance and few fuel
                     float dist = ((static_cast<TacticalZone*>(it->first.object_)->location()-ship()->location()).length());
                     dist *= 0.1f;
@@ -226,7 +248,8 @@ void BotController::applyForJob(std::multimap<Job, std::multimap<short, BotContr
                     need = 1 + dist + didThisJobLAstTimeToo;
                     break;
                 }
-                case Job::jWaitForBall: {
+                case Job::jWaitForBall:
+                {
                     // 0 - 100, based on distance and few fuel
                     float dist = (static_cast<Ball*>(it->first.object_)->location()-ship()->location()).length();
                     dist *= 0.1f;
@@ -235,7 +258,8 @@ void BotController::applyForJob(std::multimap<Job, std::multimap<short, BotContr
                     need = 10 + dist + didThisJobLAstTimeToo;
                     break;
                 }
-                case Job::jEscape: {
+                case Job::jEscape:
+                {
                     need = 10 + didThisJobLAstTimeToo;
                     CannonControl* control(items::getCannonControl());
                     if (control) {
@@ -245,7 +269,8 @@ void BotController::applyForJob(std::multimap<Job, std::multimap<short, BotContr
                     }
                     break;
                 }
-                case Job::jGetControl: {
+                case Job::jGetControl:
+                {
                     // 20 - 100, based on distance and much life
                     CannonControl* control(items::getCannonControl());
                     if (control) {
@@ -269,7 +294,8 @@ void BotController::applyForJob(std::multimap<Job, std::multimap<short, BotContr
     }
 }
 
-void BotController::reset() {
+void BotController::reset()
+{
     target_ = NULL;
     weaponChangeTimer_ =  0.f;
     specialChangeTimer_ = 0.f;
@@ -280,6 +306,7 @@ void BotController::reset() {
         it->second = 0.f;
 }
 
-void BotController::assignJob(Job const& job) {
+void BotController::assignJob(Job const& job)
+{
     currentJob_=job;
 }

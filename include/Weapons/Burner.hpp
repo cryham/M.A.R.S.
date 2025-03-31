@@ -23,11 +23,13 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 /// Weapon: Burner.
 /// A short distance weapon, which burns nearby enemies.
 
-class Burner: public Weapon {
+class Burner: public Weapon
+{
     public:
         /// Ctor which constructs the weapon.
         Burner(Ship* parent):
-              Weapon(weapons::wBurner, parent, sf::String("WT-FLAMER")) {};
+              Weapon(weapons::wBurner, parent, sf::String("WT-FLAMER"))
+        {   }
 
         /// Spawns some particles.
         void fire() const;
@@ -46,6 +48,3 @@ class Burner: public Weapon {
 };
 
 # endif // BURNER_HPP_INCLUDED
-
-
-

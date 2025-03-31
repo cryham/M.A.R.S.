@@ -28,13 +28,16 @@ Label::Label (sf::String* text, int textAlign, Vector2f const& topLeft, float fo
     textAlign_(textAlign),
     fontSize_(fontSize), //*scale_),
     color_(color),
-    interactive_(interactive) {}
+    interactive_(interactive)
+{   }
 
-void Label::mouseMoved(Vector2f const& position) {
+void Label::mouseMoved(Vector2f const& position)
+{
     hovered_ = parent_->isHovered();
 }
 
-void Label::draw() const {
+void Label::draw() const
+{
     UiElement::draw();
 
     glBlendFunc(GL_SRC_ALPHA, GL_ONE);
@@ -56,10 +59,12 @@ void Label::draw() const {
     }
 }
 
-void Label::setFocus(UiElement* toBeFocused, bool isPrevious) {
+void Label::setFocus(UiElement* toBeFocused, bool isPrevious)
+{
     focused_ = true;
 }
 
-void Label::clearFocus() {
+void Label::clearFocus()
+{
     focused_ = false;
 }

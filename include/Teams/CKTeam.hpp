@@ -20,10 +20,12 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 # include "Teams/Team.hpp"
 
-class CKTeam: public Team {
+class CKTeam: public Team
+{
     public:
         CKTeam(Color3f const& color = Color3f::random()):
-            Team(color) {}
+            Team(color)
+        {   }
 
     private:
         void createJobs();
@@ -36,8 +38,3 @@ class CKTeam: public Team {
 };
 
 # endif // CKTEAM_HPP_INCLUDED
-
-
-
-
-

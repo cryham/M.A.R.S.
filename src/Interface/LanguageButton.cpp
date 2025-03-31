@@ -31,22 +31,25 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 LanguageButton::LanguageButton (sf::String* text, Vector2f const& topLeft, int width, int labelWidth):
     UiElement(topLeft, width, 16),
-    labelWidth_(labelWidth) {
-
+    labelWidth_(labelWidth)
+{
     label_ = new Label(text, TEXT_ALIGN_LEFT, Vector2f(0,0));
     label_->setParent(this);
 }
 
-LanguageButton::~LanguageButton () {
+LanguageButton::~LanguageButton ()
+{
     delete label_;
 }
 
-void LanguageButton::mouseMoved(Vector2f const& position) {
+void LanguageButton::mouseMoved(Vector2f const& position)
+{
     UiElement::mouseMoved(position);
     label_->mouseMoved(position);
 }
 
-void LanguageButton::mouseWheelMoved(Vector2f const& position, int delta) {
+void LanguageButton::mouseWheelMoved(Vector2f const& position, int delta)
+{
     if (hovered_) {
         while (delta > 0) {
             ChooseLanguage::previous();
@@ -59,7 +62,8 @@ void LanguageButton::mouseWheelMoved(Vector2f const& position, int delta) {
     }
 }
 
-void LanguageButton::mouseLeft(bool down) {
+void LanguageButton::mouseLeft(bool down)
+{
     UiElement::mouseLeft(hovered_ && down);
     if (!pressed_ && hovered_ && focused_) {
         hovered_ = false;
@@ -68,7 +72,8 @@ void LanguageButton::mouseLeft(bool down) {
     }
 }
 
-void LanguageButton::keyEvent(bool down, Key const& key) {
+void LanguageButton::keyEvent(bool down, Key const& key)
+{
     if (key.navi_ == Key::nConfirm) {
         pressed_ = down;
         if (!pressed_) {
@@ -79,7 +84,8 @@ void LanguageButton::keyEvent(bool down, Key const& key) {
     }
 }
 
-void LanguageButton::draw() const {
+void LanguageButton::draw() const
+{
     UiElement::draw();
 
     Vector2f origin = getTopLeft();
@@ -193,12 +199,14 @@ void LanguageButton::draw() const {
     label_->draw();
 }
 
-void LanguageButton::setFocus (UiElement* toBeFocused, bool isPrevious) {
+void LanguageButton::setFocus (UiElement* toBeFocused, bool isPrevious)
+{
     UiElement::setFocus(this, isPrevious);
     label_->setFocus(this, isPrevious);
 }
 
-void LanguageButton::clearFocus() {
+void LanguageButton::clearFocus()
+{
     UiElement::clearFocus();
     label_->clearFocus();
 }

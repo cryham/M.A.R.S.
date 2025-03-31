@@ -20,13 +20,15 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # include "SpaceObjects/Ship.hpp"
 # include "Particles/particles.hpp"
 
-void PUFuel::draw() const {
+void PUFuel::draw() const
+{
     if (!collected_) {
         PowerUp::draw();
     }
 }
 
-void PUFuel::refreshLifeTime() {
+void PUFuel::refreshLifeTime()
+{
     lifeTime_ = totalLifeTime_;
     for (std::list<Ship*>::iterator it = ships_.begin(); it != ships_.end(); ++it)
         (*it)->refuel((*it)->owner_, 100);

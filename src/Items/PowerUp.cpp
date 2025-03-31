@@ -32,38 +32,47 @@ PowerUp::PowerUp(items::PowerUpType type, Vector2f const& location, float radius
     type_(type),
     lifeTime_(0.f),
     totalLifeTime_(totalLifeTime),
-    bgColor_(bgColor) {}
+    bgColor_(bgColor)
+{   }
 
-PowerUp::~PowerUp() {
+PowerUp::~PowerUp()
+{
     for (std::list<Ship*>::iterator it = ships_.begin(); it != ships_.end(); ++it)
         (*it)->collectedPowerUps_[type_] = NULL;
 }
 
-void PowerUp::update() {
-
+void PowerUp::update()
+{
     lifeTime_ += timer::frameTime();
 
-    if(!collected_) {
+    if (!collected_)
+    {
         std::vector<Ship*> const& shipList = ships::getShips();
         for (std::vector<Ship*>::const_iterator it = shipList.begin(); it != shipList.end(); ++it)
-            if ((*it)->getLife() > 0.f && ((*it)->location() - location_).lengthSquare() < std::pow(radius_*2.f + (*it)->radius(),2)) {
+            if ((*it)->getLife() > 0.f && ((*it)->location() - location_).lengthSquare() < std::pow(radius_*2.f + (*it)->radius(),2))
+            {
                 collected_ = true;
-                if (type_ == items::puReverse || type_ == items::puSleep) {
+                if (type_ == items::puReverse || type_ == items::puSleep)
+                {
                     for (std::vector<Ship*>::const_iterator ite = shipList.begin(); ite != shipList.end(); ++ite)
-                        if((*it)->getOwner()->team() != (*ite)->getOwner()->team())
+                        if ((*it)->getOwner()->team() != (*ite)->getOwner()->team())
                             ships_.push_back(*ite);
                 }
                 else
                     ships_.push_back(*it);
             }
+        
         std::list<Ship*>::iterator it = ships_.begin();
-        while (it != ships_.end()) {
-            if ((*it)->collectedPowerUps_[type_] != NULL) {
+        while (it != ships_.end())
+        {
+            if ((*it)->collectedPowerUps_[type_] != NULL)
+            {
                 (*it)->collectedPowerUps_[type_]->lifeTime_ = 0;
                 it = ships_.erase(it);
                 lifeTime_ = totalLifeTime_;
             }
-            else {
+            else
+            {
                 (*it)->collectedPowerUps_[type_] = this;
                 refreshLifeTime();
                 ++it;
@@ -77,10 +86,13 @@ void PowerUp::update() {
         else
             radius_ = 15.f;
     }
-    else {
+    else
+    {
         std::list<Ship*>::iterator it = ships_.begin();
-        while (it != ships_.end()) {
-            if (*it && (*it)->getLife() == 0.f) {
+        while (it != ships_.end())
+        {
+            if (*it && (*it)->getLife() == 0.f)
+            {
                 (*it)->collectedPowerUps_[type_] = NULL;
                 it = ships_.erase(it);
             }
@@ -94,8 +106,8 @@ void PowerUp::update() {
     }
 }
 
-void PowerUp::draw() const {
-
+void PowerUp::draw() const
+{
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
     glPushMatrix();
@@ -131,22 +143,27 @@ void PowerUp::draw() const {
     glPopMatrix();
 }
 
-Vector2f const& PowerUp::location() const {
+Vector2f const& PowerUp::location() const
+{
     return location_;
 }
 
-float PowerUp::radius() const {
+float PowerUp::radius() const
+{
     return radius_;
 }
 
-items::PowerUpType PowerUp::type() const {
+items::PowerUpType PowerUp::type() const
+{
     return type_;
 }
 
-bool PowerUp::isDead() const {
+bool PowerUp::isDead() const
+{
     return lifeTime_ >= totalLifeTime_;
 }
 
-bool PowerUp::isCollected() const {
+bool PowerUp::isCollected() const
+{
     return collected_;
 }

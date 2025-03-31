@@ -22,11 +22,13 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 # include <map>
 
-class ChooseLanguage: public UiWindow {
+class ChooseLanguage: public UiWindow
+{
     public:
         static UiWindow* get();
         void checkWidgets();
-        void onShow() {}
+        void onShow()
+        {   }
 
         static void reset();
 
@@ -34,7 +36,8 @@ class ChooseLanguage: public UiWindow {
         static void previous();
 
     private:
-        ChooseLanguage(int width, int height): UiWindow(width, height) {}
+        ChooseLanguage(int width, int height): UiWindow(width, height)
+        {   }
         ChooseLanguage(ChooseLanguage const& copy);
 
         static UiWindow* instance_;
@@ -45,9 +48,3 @@ class ChooseLanguage: public UiWindow {
 };
 
 # endif // CHOOSELANGUAGE_HPP_INCLUDED
-
-
-
-
-
-

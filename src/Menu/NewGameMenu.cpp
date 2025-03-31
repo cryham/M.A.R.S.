@@ -62,7 +62,8 @@ Tab* NewGameMenu::tabCannonKeep_(NULL);
 Tab* NewGameMenu::tabGraveItation_(NULL);
 Tab* NewGameMenu::tabRally_(NULL);
 
-UiWindow* NewGameMenu::get() {
+UiWindow* NewGameMenu::get()
+{
     if (instance_ == NULL) {
         instance_ = new NewGameMenu(580, 335);
         instance_->addWidget(new Button(locales::getLocale(locales::Start), NULL, &kStart_, Vector2f(475,300), 90, 20));
@@ -211,7 +212,8 @@ UiWindow* NewGameMenu::get() {
     return instance_;
 }
 
-void NewGameMenu::checkWidgets() {
+void NewGameMenu::checkWidgets()
+{
     if (kStart_) {
         kStart_ = false;
         music::fadeOut();
@@ -288,32 +290,32 @@ void NewGameMenu::checkWidgets() {
     }
     else if (tSB_) {
         tSB_ = false;
-        if(settings::C_showInfoSB)
+         if (settings::C_showInfoSB)
             menus::showWindow(InfoSB::get());
     }
     else if (tDM_) {
         tDM_ = false;
-        if(settings::C_showInfoDM)
+        if (settings::C_showInfoDM)
             menus::showWindow(InfoDM::get());
     }
     else if (tTDM_) {
         tTDM_ = false;
-        if(settings::C_showInfoTDM)
+        if (settings::C_showInfoTDM)
             menus::showWindow(InfoTDM::get());
     }
     else if (tCK_) {
         tCK_ = false;
-        if(settings::C_showInfoCK)
+        if (settings::C_showInfoCK)
             menus::showWindow(InfoCK::get());
     }
     else if (tGI_) {
         tGI_ = false;
-        if(settings::C_showInfoCK)
+        if (settings::C_showInfoCK)
             menus::showWindow(InfoGIP::get());
     }
     else if (tRLY_) {
         tRLY_ = false;
-        if(settings::C_showInfoCK)
+        if (settings::C_showInfoCK)
             menus::showWindow(InfoGIP::get());
     }
     else if (kWeaponOptions_) {
@@ -330,14 +332,16 @@ void NewGameMenu::checkWidgets() {
     }
 }
 
-void NewGameMenu::onShow() {
+void NewGameMenu::onShow()
+{
     if (settings::C_playerIteamL | settings::C_playerIteamR)
         playerI_ = true;
     if (settings::C_playerIIteamL | settings::C_playerIIteamR)
         playerII_ = true;
 }
 
-void NewGameMenu::reset() {
+void NewGameMenu::reset()
+{
     if (instance_)
         delete instance_;
     instance_ = NULL;

@@ -26,11 +26,13 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 /// Special: Shocker.
 /// Fires shocking bolts.
 
-class Shocker: public Special {
+class Shocker: public Special
+{
     public:
         /// Ctor which constructs the special.
         Shocker(Ship* parent):
-              Special(specials::sShocker, parent, sf::String("SHOCKER")) {};
+              Special(specials::sShocker, parent, sf::String("SHOCKER"))
+        {   }
 
         /// Blasts away nearby ships.
         void activate() const;
@@ -46,8 +48,3 @@ class Shocker: public Special {
 };
 
 # endif // SHOCKER_HPP_INCLUDED
-
-
-
-
-

@@ -28,7 +28,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 # include <SFML/Graphics.hpp>
 
-void Blast::draw(float alpha) const {
+void Blast::draw(float alpha) const
+{
     glBlendFunc(GL_SRC_ALPHA, GL_ONE);
 
     // draw glow
@@ -47,12 +48,13 @@ void Blast::draw(float alpha) const {
     glEnd();
 
     // draw effect
-    if (timer_ > 0.f) {
+    if (timer_ > 0.f)
+    {
         if (parent_->getLife() <= 0.f)
             timer_ = 0.f;
 
         float alpha(0.f);
-        if(timer_ > 0.4f)
+        if (timer_ > 0.4f)
             alpha = std::pow(0.5f-timer_,2)*100.f;
         else
             alpha = -2.5f*(0.5f-timer_)+1.25f;
@@ -77,7 +79,8 @@ void Blast::draw(float alpha) const {
     }
 }
 
-void Blast::activate() const {
+void Blast::activate() const
+{
     if (parent_->fragStars_ > 0  && timer_ <= 0.f) {
         radius_ = radius();
         parent_->fragStars_ = 0;
@@ -86,8 +89,7 @@ void Blast::activate() const {
     }
 }
 
-float Blast::radius() const {
+float Blast::radius() const
+{
     return (parent_->fragStars_ > 0 ? parent_->fragStars_*150.f+150.f : 0.f);
 }
-
-

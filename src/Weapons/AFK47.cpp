@@ -25,7 +25,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # include <SFML/Graphics.hpp>
 # include <cfloat>
 
-void AFK47::draw(float alpha) const {
+void AFK47::draw(float alpha) const
+{
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     parent_->getOwner()->color().gl4f(alpha);
     const int posX = 0;
@@ -43,7 +44,8 @@ void AFK47::draw(float alpha) const {
     glEnd();
 }
 
-void AFK47::fire() const {
+void AFK47::fire() const
+{
     float time = timer::totalTime();
     if (time - timer_ > 0.1) {
         timer_ = time;
@@ -55,14 +57,17 @@ void AFK47::fire() const {
     }
 }
 
-float AFK47::maxDistance() const {
+float AFK47::maxDistance() const
+{
     return FLT_MAX;
 }
 
-float AFK47::minDistance() const {
+float AFK47::minDistance() const
+{
     return 0.f;
 }
 
-float AFK47::maxAngle() const {
+float AFK47::maxAngle() const
+{
     return 10.f;
 }

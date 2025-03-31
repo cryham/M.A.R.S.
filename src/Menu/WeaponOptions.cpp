@@ -43,8 +43,10 @@ bool WeaponOptions::kHeal_(false);
 bool WeaponOptions::kBlast_(false);
 bool WeaponOptions::kFireWall_(false);
 
-UiWindow* WeaponOptions::get() {
-    if (instance_ == NULL) {
+UiWindow* WeaponOptions::get()
+{
+    if (instance_ == NULL)
+    {
         instance_ = new WeaponOptions(350, 300);
         instance_->addWidget(new Button(locales::getLocale(locales::Ok), NULL, &kOk_, Vector2f(250,270), 90, 20));
         instance_->addWidget(new Label(locales::getLocale(locales::WeaponOptions), TEXT_ALIGN_LEFT, Vector2f(10,10), 20.f, getColor3f(0.5f, 0.9f, 1.f), false));
@@ -72,7 +74,8 @@ UiWindow* WeaponOptions::get() {
     return instance_;
 }
 
-void WeaponOptions::onShow() {
+void WeaponOptions::onShow()
+{
     kAFK_ = settings::C_EnabledWeaponsByUser & weapons::wAFK47;
     kBurner_ = settings::C_EnabledWeaponsByUser & weapons::wBurner;
     kFist_ = settings::C_EnabledWeaponsByUser & weapons::wFist;
@@ -89,9 +92,10 @@ void WeaponOptions::onShow() {
     kShocker_ = settings::C_EnabledSpecialsByUser & specials::sShocker;
 }
 
-void WeaponOptions::checkWidgets() {
-    if (kOk_) {
-        kOk_ = false;
+void WeaponOptions::checkWidgets()
+{
+    if (kOk_)
+    {   kOk_ = false;
 
         settings::C_EnabledWeaponsByUser  = (kAFK_ ? weapons::wAFK47:0) | (kBurner_ ? weapons::wBurner:0) | (kFist_ ? weapons::wFist:0) |
                                            (kFlubba ? weapons::wFlubba:0) | (kShotgun_ ? weapons::wShotgun:0) | (kRocket_ ? weapons::wRocketLauncher:0) |
@@ -110,7 +114,8 @@ void WeaponOptions::checkWidgets() {
     }
 }
 
-void WeaponOptions::reset() {
+void WeaponOptions::reset()
+{
     if (instance_)
         delete instance_;
     instance_ = NULL;

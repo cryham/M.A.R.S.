@@ -25,7 +25,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 # include <sstream>
 
-void ShipName::draw() const {
+void ShipName::draw() const
+{
     if (ship_->visible_) {
         if (ship_->weaponChange_ && ((ship_->owner_->type() == controllers::cPlayer1) | (ship_->owner_->type() == controllers::cPlayer2))) {
             text::drawSpaceText(ship_->currentWeapon_->getName(), ship_->location_ + Vector2f(0.f, -ship_->radius_*2.5f), 12.f, TEXT_ALIGN_CENTER, Color3f(1.f, 0.5f, 0.8f));

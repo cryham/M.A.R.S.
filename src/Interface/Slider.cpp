@@ -36,22 +36,25 @@ Slider::Slider (sf::String* text, sf::String* toolTip, int* value, int minValue,
     labelWidth_(labelWidth),
     showValue_(showValue),
     sliderNames_(sliderNames),
-    toolTip_(toolTip) {
-
+    toolTip_(toolTip)
+{
     label_ = new Label(text, TEXT_ALIGN_LEFT, Vector2f(0,0));
     label_->setParent(this);
 }
 
-Slider::~Slider () {
+Slider::~Slider ()
+{
     delete label_;
 }
 
-void Slider::mouseLeft(bool down) {
+void Slider::mouseLeft(bool down)
+{
     UiElement::mouseLeft(hovered_ && down);
     mouseMoved(window::PixelToCoord(window::getMousePosition()));
 }
 
-void Slider::mouseMoved(Vector2f const& position) {
+void Slider::mouseMoved(Vector2f const& position)
+{
     UiElement::mouseMoved(position);
     int mirror(locales::getCurrentLocale().LTR_ ? 1 : -1);
 
@@ -66,7 +69,8 @@ void Slider::mouseMoved(Vector2f const& position) {
         toolTip::show(toolTip_);
 }
 
-void Slider::mouseWheelMoved(Vector2f const& position, int delta) {
+void Slider::mouseWheelMoved(Vector2f const& position, int delta)
+{
     if (hovered_) {
         *value_ += delta;
         if (*value_ < minValue_) *value_ = minValue_;
@@ -74,7 +78,8 @@ void Slider::mouseWheelMoved(Vector2f const& position, int delta) {
     }
 }
 
-void Slider::keyEvent(bool down, Key const& key) {
+void Slider::keyEvent(bool down, Key const& key)
+{
     if (down) {
         if (locales::getCurrentLocale().LTR_) {
             if (key.navi_ == Key::nLeft)
@@ -94,7 +99,8 @@ void Slider::keyEvent(bool down, Key const& key) {
     }
 }
 
-void Slider::draw() const {
+void Slider::draw() const
+{
     UiElement::draw();
 
     Vector2f origin = getTopLeft();
@@ -114,7 +120,9 @@ void Slider::draw() const {
     glEnd();
 
     // Hover effect
-    Vector2f sliderPosition(((width()-(labelWidth_+10)*mirror)*(*value_- minValue_)/(maxValue_ - minValue_)) + origin.x_+(labelWidth_+5)*mirror, 10 + origin.y_);
+    Vector2f sliderPosition(
+        ((width()-(labelWidth_+10)*mirror) * (*value_- minValue_)/(maxValue_ - minValue_)) +
+        origin.x_+(labelWidth_+5)*mirror, 10 + origin.y_);
 
     glEnable(GL_TEXTURE_2D);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -149,19 +157,27 @@ void Slider::draw() const {
 
     text::drawFooText();
 
-    if (showValue_) {
+    if (showValue_)
+    {
         std::stringstream sstr;
-        if(!sliderNames_.empty()) {
-            if (sliderNames_.size() <= *value_-minValue_) {
+        if (!sliderNames_.empty())
+        {
+            if (sliderNames_.size() <= *value_-minValue_)
+            {
                 sstr << *value_;
-                text::drawScreenText(sf::String(sstr.str()), origin + Vector2f((labelWidth_-10)*mirror,1), 12.f, TEXT_ALIGN_RIGHT, Color3f(0.7, 0.7, 0.7));
+                text::drawScreenText( sf::String(sstr.str()),
+                    origin + Vector2f((labelWidth_-10)*mirror,1),
+                    12.f, TEXT_ALIGN_RIGHT, Color3f(0.7, 0.7, 0.7));
             }
             else
-                text::drawScreenText(sliderNames_[*value_-minValue_], origin + Vector2f((labelWidth_-10)*mirror,1), 12.f, TEXT_ALIGN_RIGHT, Color3f(0.7, 0.7, 0.7));
-        }
-        else {
-            sstr << *value_;
-            text::drawScreenText(sf::String(sstr.str()), origin + Vector2f((labelWidth_-10)*mirror,1), 12.f, TEXT_ALIGN_RIGHT, Color3f(0.7, 0.7, 0.7));
+                text::drawScreenText( sliderNames_[*value_-minValue_],
+                    origin + Vector2f((labelWidth_-10)*mirror,1),
+                    12.f, TEXT_ALIGN_RIGHT, Color3f(0.7, 0.7, 0.7));
+        }else
+        {   sstr << *value_;
+            text::drawScreenText(sf::String( sstr.str()),
+                origin + Vector2f((labelWidth_-10)*mirror,1),
+                12.f, TEXT_ALIGN_RIGHT, Color3f(0.7, 0.7, 0.7));
         }
 
     }
@@ -170,12 +186,14 @@ void Slider::draw() const {
     label_->draw();
 }
 
-void Slider::setFocus (UiElement* toBeFocused, bool isPrevious) {
+void Slider::setFocus (UiElement* toBeFocused, bool isPrevious)
+{
     UiElement::setFocus(this, isPrevious);
     label_->setFocus(this, isPrevious);
 }
 
-void Slider::clearFocus() {
+void Slider::clearFocus()
+{
     UiElement::clearFocus();
     label_->clearFocus();
 }

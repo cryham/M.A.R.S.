@@ -27,8 +27,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # include "System/randomizer.hpp"
 
 DeathMatch::DeathMatch():
-    Game(games::gDeathMatch) {
-
+    Game(games::gDeathMatch)
+{
     settings::C_EnabledWeapons  = settings::C_EnabledWeaponsByUser;
     settings::C_EnabledSpecials = settings::C_EnabledSpecialsByUser;
 
@@ -53,13 +53,16 @@ DeathMatch::DeathMatch():
     spaceObjects::populateSpace(5.f, 10.f, 4);
     zones::createRaster(4,3);
 }
-void DeathMatch::draw() const {
-    if (settings::C_drawZones) zones::draw();
-    Game::draw();
 
+void DeathMatch::draw() const
+{
+    if (settings::C_drawZones)
+        zones::draw();
+    Game::draw();
 }
 
-void DeathMatch::restart() {
+void DeathMatch::restart()
+{
     Game::restart();
 
     teams::assignHomes(spaceObjects::addHome(HOME_MIDDLE, 100, Color3f(1.f, 1.f, 1.f)));

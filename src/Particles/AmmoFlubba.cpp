@@ -26,8 +26,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 std::list<AmmoFlubba*> AmmoFlubba::activeParticles_;
 
 AmmoFlubba::AmmoFlubba(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity, Color3f const& color, Player* damageSource):
-         Particle<AmmoFlubba>(spaceObjects::oAmmoFlubba, location, 8.f, 1.0f, randomizer::random(12.f, 15.f)) {
-
+         Particle<AmmoFlubba>(spaceObjects::oAmmoFlubba, location, 8.f, 1.0f, randomizer::random(12.f, 15.f))
+{
     setDamageSource(damageSource);
     velocity_ = velocity + direction*900;
     location_ += velocity_*timer::frameTime()*1.2f;
@@ -37,7 +37,8 @@ AmmoFlubba::AmmoFlubba(Vector2f const& location, Vector2f const& direction, Vect
     color_ = Color3f(randomizer::random(0.0f, 0.4f), randomizer::random(0.8f, 1.f), randomizer::random(0.0f, 0.4f));
 }
 
-void AmmoFlubba::update() {
+void AmmoFlubba::update()
+{
     float time = timer::frameTime();
 
     physics::collide(this, STATICS | MOBILES | PARTICLES);
@@ -61,7 +62,8 @@ void AmmoFlubba::update() {
     }
 }
 
-void AmmoFlubba::draw() const {
+void AmmoFlubba::draw() const
+{
     color_.gl4f(0.8f);
     const int posX = 4;
     const int posY = 0;
@@ -80,7 +82,8 @@ void AmmoFlubba::onCollision(SpaceObject* with, Vector2f const& location,
     }
 }
 
-void AmmoFlubba::shockWave(Vector2f const& location, float strength, float radius) {
+void AmmoFlubba::shockWave(Vector2f const& location, float strength, float radius)
+{
     for (std::list<AmmoFlubba*>::iterator it = activeParticles_.begin(); it != activeParticles_.end(); ++it) {
         Vector2f direction((*it)->location_ - location);
         float distance = direction.length();

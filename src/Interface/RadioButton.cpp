@@ -30,17 +30,19 @@ RadioButton::RadioButton (sf::String* text, sf::String* toolTip, bool* value, Ve
     UiElement(topLeft, width, 20),
     value_(value),
     offSwitchable_(offSwitchable),
-    toolTip_(toolTip) {
-
+    toolTip_(toolTip)
+{
     label_ = new Label(text, false, Vector2f(15,0));
     label_->setParent(this);
 }
 
-RadioButton::~RadioButton () {
+RadioButton::~RadioButton ()
+{
     delete label_;
 }
 
-void RadioButton::mouseMoved(Vector2f const& position) {
+void RadioButton::mouseMoved(Vector2f const& position)
+{
     UiElement::mouseMoved(position);
     label_->mouseMoved(position);
 
@@ -48,7 +50,8 @@ void RadioButton::mouseMoved(Vector2f const& position) {
         toolTip::show(toolTip_);
 }
 
-void RadioButton::mouseLeft(bool down) {
+void RadioButton::mouseLeft(bool down)
+{
     UiElement::mouseLeft(down);
     if (!pressed_ && hovered_ && focused_) {
         if (*value_ && offSwitchable_)
@@ -61,7 +64,8 @@ void RadioButton::mouseLeft(bool down) {
     }
 }
 
-void RadioButton::keyEvent(bool down, Key const& key) {
+void RadioButton::keyEvent(bool down, Key const& key)
+{
     if (key.navi_ == Key::nConfirm) {
         pressed_ = down;
         if (!pressed_) {
@@ -76,7 +80,8 @@ void RadioButton::keyEvent(bool down, Key const& key) {
     }
 }
 
-void RadioButton::draw() const {
+void RadioButton::draw() const
+{
     Vector2f origin = getTopLeft();
 
     glEnable(GL_TEXTURE_2D);
@@ -86,7 +91,8 @@ void RadioButton::draw() const {
 
     int x(0), y(0);
 
-    if (hovered_ && pressed_) {
+    if (hovered_ && pressed_)
+    {
         if (*value_) {
             x = 2;
             y = 0;
@@ -96,7 +102,8 @@ void RadioButton::draw() const {
             y = 1;
         }
     }
-    else if (hovered_) {
+    else if (hovered_)
+    {
         if (*value_) {
             x = 1;
             y = 0;
@@ -106,7 +113,8 @@ void RadioButton::draw() const {
             y = 1;
         }
     }
-    else {
+    else
+    {
         if (*value_) {
             x = 0;
             y = 0;
@@ -135,12 +143,14 @@ void RadioButton::draw() const {
     label_->draw();
 }
 
-void RadioButton::setFocus (UiElement* toBeFocused, bool isPrevious) {
+void RadioButton::setFocus (UiElement* toBeFocused, bool isPrevious)
+{
     UiElement::setFocus(this, isPrevious);
     label_->setFocus(this, isPrevious);
 }
 
-void RadioButton::clearFocus() {
+void RadioButton::clearFocus()
+{
     UiElement::clearFocus();
     label_->clearFocus();
 }

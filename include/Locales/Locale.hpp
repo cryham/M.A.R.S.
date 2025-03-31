@@ -20,14 +20,16 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 # include <SFML/System.hpp>
 
-struct Locale {
+struct Locale
+{
     Locale():
         name_("NULL"),
         fileName_("NULL"),
         // font_("Comfortaa-Regular.ttf"),
         font_("DejaVuSans.ttf"),
         author_(""),
-        LTR_(true) {}
+        LTR_(true)
+    {   }
 
     sf::String name_;
     sf::String fileName_;

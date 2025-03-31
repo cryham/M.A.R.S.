@@ -32,13 +32,15 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 # include <list>
 
-namespace items {
-
-    namespace {
+namespace items
+{
+    namespace
+    {
         CannonControl* cannonControl_(NULL);
         std::list<PowerUp*> powerUps_ = std::list<PowerUp*>();
 
-        void spawnPowerUp() {
+        void spawnPowerUp()
+        {
             int tries(0);
             bool newPowerUpFits(false);
             Vector2f position(0.f, 0.f);
@@ -60,19 +62,24 @@ namespace items {
 
                 if (newPowerUpFits) break;
             }
-            if(newPowerUpFits) {
-                if (randomizer::random(0, 4) == 0) {
+            if (newPowerUpFits)
+            {
+                if (randomizer::random(0, 4) == 0)
+                {
                     // rare powerUps
-                    switch (randomizer::random(0, 1)) {
+                    switch (randomizer::random(0, 1))
+                    {
                         case 0:
                             powerUps_.push_back(new PUReverse(position)); break;
                         case 1:
                             powerUps_.push_back(new PUSleep(position)); break;
                     }
                 }
-                else {
+                else
+                {
                     // common powerUps
-                    switch (randomizer::random(0, 2)) {
+                    switch (randomizer::random(0, 2))
+                    {
                         case 0:
                             powerUps_.push_back(new PUShield(position)); break;
                         case 1:
@@ -85,11 +92,13 @@ namespace items {
         }
     }
 
-    void update() {
+    void update()
+    {
         if (cannonControl_)
             cannonControl_->update();
 
-        if (settings::C_powerUpRate > 0) {
+        if (settings::C_powerUpRate > 0)
+        {
             static float spawnTimer(1.f);
             spawnTimer -= timer::frameTime();
             if (spawnTimer <= 0.f) {
@@ -99,17 +108,20 @@ namespace items {
         }
 
         std::list<PowerUp*>::iterator it = powerUps_.begin();
-        while (it != powerUps_.end()) {
+        while (it != powerUps_.end())
+        {
             (*it)->update();
-            if ((*it)->isDead()) {
+            if ((*it)->isDead())
+            {
                 delete *it;
                 it = powerUps_.erase(it);
-            }
-            else ++it;
+            }else
+                ++it;
         }
     }
 
-    void draw() {
+    void draw()
+    {
         glEnable(GL_TEXTURE_2D);
         glBindTexture(GL_TEXTURE_2D, texture::getTexture(texture::PowerUps));
 
@@ -123,11 +135,13 @@ namespace items {
         glBindTexture(GL_TEXTURE_2D, 0);
     }
 
-    void addCannonControl() {
+    void addCannonControl()
+    {
         // temporary list of all homes
         std::vector<Home*>const& homes = spaceObjects::getHomes();
 
-        if (homes.size() >= 2) {
+        if (homes.size() >= 2)
+        {
             Vector2f midPoint;
             for (std::vector<Home*>::const_iterator it = homes.begin(); it != homes.end(); ++it)
                 midPoint += (*it)->location();
@@ -138,16 +152,20 @@ namespace items {
             cannonControl_ = new CannonControl(Vector2f());
     }
 
-    CannonControl* getCannonControl() {
+    CannonControl* getCannonControl()
+    {
         return cannonControl_;
     }
 
-    std::list<PowerUp*>const& getPowerUps() {
+    std::list<PowerUp*>const& getPowerUps()
+    {
         return powerUps_;
     }
 
-    void clear() {
-        if (cannonControl_) {
+    void clear()
+    {
+        if (cannonControl_)
+        {
             delete cannonControl_;
             cannonControl_ = NULL;
         }

@@ -26,7 +26,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # include <SFML/Graphics.hpp>
 # include <cfloat>
 
-void Insta::draw(float alpha) const {
+void Insta::draw(float alpha) const
+{
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     parent_->getOwner()->team()->color().brightened().gl4f(alpha);
     const int posX = 2;
@@ -39,10 +40,12 @@ void Insta::draw(float alpha) const {
     glEnd();
 }
 
-void Insta::fire() const {
+void Insta::fire() const
+{
     float time = timer::totalTime();
-    if (time - timer_ > 3.0) {
-        timer_ = time;
+    if (time - timer_ > 3.0)
+    {   timer_ = time;
+    
         float angleRad = parent_->rotation()*M_PI / 180;
         Vector2f faceDirection(std::cos(angleRad), std::sin(angleRad));
         Color3f tmp = parent_->getOwner()->team()->color().brightened();
@@ -52,14 +55,17 @@ void Insta::fire() const {
 }
 
 
-float Insta::maxDistance() const {
+float Insta::maxDistance() const
+{
     return FLT_MAX;
 }
 
-float Insta::minDistance() const {
+float Insta::minDistance() const
+{
     return 500.f;
 }
 
-float Insta::maxAngle() const {
+float Insta::maxAngle() const
+{
     return 30.f;
 }

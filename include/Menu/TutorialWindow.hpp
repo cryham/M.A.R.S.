@@ -20,16 +20,19 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 # include "Interface/UiWindow.hpp"
 
-class TutorialWindow: public UiWindow {
+class TutorialWindow: public UiWindow
+{
     public:
         static UiWindow* get(sf::String* text, sf::String* title, int index, bool info, bool next);
         void checkWidgets();
-        void onShow() {}
+        void onShow()
+        {   }
 
         static void reset();
 
     private:
-        TutorialWindow(int width, int height): UiWindow(width, height) {}
+        TutorialWindow(int width, int height): UiWindow(width, height)
+        {   }
         TutorialWindow(TutorialWindow const& copy);
 
         static UiWindow* instance_;
@@ -39,9 +42,3 @@ class TutorialWindow: public UiWindow {
 };
 
 # endif // TUTORIALWINDOW_HPP_INCLUDED
-
-
-
-
-
-

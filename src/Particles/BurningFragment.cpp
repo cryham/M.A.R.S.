@@ -29,8 +29,8 @@ BurningFragment::BurningFragment(Vector2f const& location, Vector2f const& direc
          Particle<BurningFragment>(spaceObjects::oBurningFragment, location, 1.f, 0, randomizer::random(4.5f, 5.5f)),
          color_(randomizer::random(0.7f, 1.f), randomizer::random(0.7f, 1.f), 0.f),
          timer1_(0.5f),
-         timer2_(0.25f) {
-
+         timer2_(0.25f)
+{
     radius_   = randomizer::random(0.5f, 5.0f);
     velocity_ = Vector2f::randDir()*randomizer::random(200, 600);
 
@@ -38,11 +38,13 @@ BurningFragment::BurningFragment(Vector2f const& location, Vector2f const& direc
     trailEffects::attach(this, 0.05f, 0.2f, radius_, color_, false);
 }
 
-BurningFragment::~BurningFragment() {
+BurningFragment::~BurningFragment()
+{
     trailEffects::detach(this);
 }
 
-void BurningFragment::update() {
+void BurningFragment::update()
+{
     float time = timer::frameTime();
     Vector2f acceleration = physics::attract(this);
     physics::collide(this, STATICS);
@@ -52,21 +54,22 @@ void BurningFragment::update() {
 
     if (timer1_ > 0)
         timer1_ -= time;
-    else {
-        timer1_ = lifeTime_*4.f/settings::C_globalParticleCount;
+    else
+    {   timer1_ = lifeTime_*4.f/settings::C_globalParticleCount;
         particles::spawn(particles::pSmoke, location_, velocity_);
     }
     if (timer2_ > 0)
         timer2_ -= time;
-    else {
-        timer2_ = lifeTime_/settings::C_globalParticleCount;
+    else
+    {   timer2_ = lifeTime_/settings::C_globalParticleCount;
         particles::spawn(particles::pFragmentFlame, location_, Vector2f(), velocity_);
     }
 
     lifeTime_ += time;
 }
 
-void BurningFragment::draw() const {
+void BurningFragment::draw() const
+{
     color_.gl4f(-1.0/totalLifeTime_*lifeTime_+1);
     const int posX = 5;
     const int posY = 0;
@@ -77,9 +80,10 @@ void BurningFragment::draw() const {
 }
 
 void BurningFragment::onCollision(SpaceObject* with, Vector2f const& location,
-                                  Vector2f const& direction, Vector2f const& velocity) {
-
-    if ((with->type() == spaceObjects::oHome | with->type() == spaceObjects::oSun) | (with->type() == spaceObjects::oPlanet)) {
+                                  Vector2f const& direction, Vector2f const& velocity)
+{
+    if ((with->type() == spaceObjects::oHome | with->type() == spaceObjects::oSun) | (with->type() == spaceObjects::oPlanet))
+    {
         particles::spawn(particles::pMiniFlame, location_);
         particles::spawn(particles::pMiniFlame, location_);
         particles::spawn(particles::pMiniFlame, location_);
@@ -87,4 +91,3 @@ void BurningFragment::onCollision(SpaceObject* with, Vector2f const& location,
     }
     killMe();
 }
-

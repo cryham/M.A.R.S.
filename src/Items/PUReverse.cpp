@@ -21,7 +21,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # include "Players/Player.hpp"
 # include "Particles/particles.hpp"
 
-void PUReverse::draw() const {
+void PUReverse::draw() const
+{
     if (!collected_) {
         PowerUp::draw();
         return;
@@ -51,7 +52,8 @@ void PUReverse::draw() const {
     }
 }
 
-void PUReverse::refreshLifeTime() {
+void PUReverse::refreshLifeTime()
+{
     lifeTime_ = 0.f;
     totalLifeTime_ = 10.f;
     // direction is abused for texture coords

@@ -30,22 +30,23 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 TutorialZone::TutorialZone(Vector2f const& location, float radius) :
     radius_(radius),
-    location_(location) {}
+    location_(location)
+{   }
 
-bool TutorialZone::isInside(SpaceObject const& toBeChecked) const {
-    return((toBeChecked.location()-location_).lengthSquare() <= radius_*radius_*0.7f);
+bool TutorialZone::isInside(SpaceObject const& toBeChecked) const
+{
+    return (toBeChecked.location()-location_).lengthSquare() <= radius_*radius_*0.7f;
 }
 
-void TutorialZone::draw() const {
+void TutorialZone::draw() const
+{
     glBlendFunc(GL_SRC_ALPHA, GL_ONE);
 
     glBegin(GL_TRIANGLE_FAN);
          glColor4f(1.f, 0.5f, 0.8f, (std::sin(timer::totalTime()*2.f) + 1.f) * 0.3f + 0.4f);
          glVertex2f(location_.x_, location_.y_);
          glColor4f(1.f, 0.5f, 0.8f, 0.f);
-         for (double i=0; i<=2*M_PI; i+=M_PI*0.02)
+         for (double i=0; i <= 2*M_PI; i += M_PI*0.02)
             glVertex2f( location_.x_ + std::sin(i) * radius_, location_.y_ + std::cos(i) * radius_);
     glEnd();
 }
-
-

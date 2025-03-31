@@ -23,7 +23,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 # include <SFML/OpenGL.hpp>
 
-void Evil::draw() const {
+void Evil::draw() const
+{
     glPushMatrix();
     glLoadIdentity();
 
@@ -47,9 +48,3 @@ void Evil::draw() const {
     glBindTexture(GL_TEXTURE_2D, 0);
     glPopMatrix();
 }
-
-
-
-
-
-

@@ -31,15 +31,17 @@ VerticalSlider::VerticalSlider (float* value, float minValue, float maxValue, Ve
     UiElement(topLeft, 20, height),
     value_(value),
     minValue_(minValue),
-    maxValue_(maxValue) {
-}
+    maxValue_(maxValue)
+{   }
 
-void VerticalSlider::mouseLeft(bool down) {
+void VerticalSlider::mouseLeft(bool down)
+{
     UiElement::mouseLeft(hovered_ && down);
     mouseMoved(window::PixelToCoord(window::getMousePosition()));
 }
 
-void VerticalSlider::mouseMoved(Vector2f const& position) {
+void VerticalSlider::mouseMoved(Vector2f const& position)
+{
     UiElement::mouseMoved(position);
 
     if (pressed_ && focused_) {
@@ -49,7 +51,8 @@ void VerticalSlider::mouseMoved(Vector2f const& position) {
     }
 }
 
-void VerticalSlider::keyEvent(bool down, Key const& key) {
+void VerticalSlider::keyEvent(bool down, Key const& key)
+{
     if (down) {
         if (key.navi_ == Key::nLeft && *value_ > minValue_)
             --(*value_);
@@ -58,7 +61,8 @@ void VerticalSlider::keyEvent(bool down, Key const& key) {
     }
 }
 
-void VerticalSlider::draw() const {
+void VerticalSlider::draw() const
+{
     UiElement::draw();
 
     Vector2f origin = getTopLeft();

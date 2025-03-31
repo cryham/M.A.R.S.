@@ -35,12 +35,14 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # include <iomanip>
 
 // helper function
-void inline writeScoreAtCol(sf::String value, int col, Vector2f topLeft, int mirror, Color3f drawColor) {
+void inline writeScoreAtCol(sf::String value, int col, Vector2f topLeft, int mirror, Color3f drawColor)
+{
     text::drawScreenText(value, topLeft+Vector2f((140+80*col + 1)*mirror,1), 12.f, TEXT_ALIGN_CENTER, Color3f(0.f, 0.f, 0.f));
     text::drawScreenText(value, topLeft+Vector2f((140+80*col)*mirror,0), 12.f, TEXT_ALIGN_CENTER, drawColor);
 }
 
-void inline writeScoreAtCol(int value, int col, Vector2f topLeft, int mirror, Color3f drawColor) {
+void inline writeScoreAtCol(int value, int col, Vector2f topLeft, int mirror, Color3f drawColor)
+{
     std::stringstream sstr;
     sstr << value;
     writeScoreAtCol(sf::String(sstr.str()), col, topLeft, mirror, drawColor);
@@ -51,10 +53,10 @@ TabStats::TabStats():
     visible_(false),
     refresh_(false),
     sumPoints_(0)
-{
-}
+{   }
 
-void TabStats::update() {
+void TabStats::update()
+{
     if (visible_ || refresh_) {
         // check for necessity of a map-update
         int currentPoints(0);
@@ -387,14 +389,17 @@ void TabStats::draw() const
     }
 }
 
-void TabStats::display(bool show) {
+void TabStats::display(bool show)
+{
     visible_ = show;
 }
 
-void TabStats::refresh() {
+void TabStats::refresh()
+{
     refresh_ = true;
 }
 
-bool TabStats::visible() const {
+bool TabStats::visible() const
+{
     return visible_;
 }

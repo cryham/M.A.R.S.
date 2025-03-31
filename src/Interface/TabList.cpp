@@ -32,32 +32,41 @@ TabList::TabList (Vector2f const& topLeft, int width, int height):
     lastTabEnd_(0)
 {   }
 
-TabList::~TabList() {
+TabList::~TabList()
+{
     for (std::vector<Tab*>::iterator i=tabs_.begin(); i != tabs_.end(); ++i)
         delete *i;
 }
 
-void TabList::mouseMoved(Vector2f const& position) {
+void TabList::mouseMoved(Vector2f const& position)
+{
     for (std::vector<Tab*>::iterator i=tabs_.begin(); i != tabs_.end(); ++i)
         (*i)->mouseMoved(position);
 }
 
-void TabList::mouseWheelMoved(Vector2f const& position, int delta) {
+void TabList::mouseWheelMoved(Vector2f const& position, int delta)
+{
     for (std::vector<Tab*>::iterator i=tabs_.begin(); i != tabs_.end(); ++i)
         (*i)->mouseWheelMoved(position, delta);
 }
 
-void TabList::mouseLeft(bool down) {
+void TabList::mouseLeft(bool down)
+{
     for (std::vector<Tab*>::iterator i=tabs_.begin(); i != tabs_.end(); ++i)
         (*i)->mouseLeft(down);
 }
 
-void TabList::keyEvent(bool down, Key const& key) {
-    if (focusedTab_) {
+void TabList::keyEvent(bool down, Key const& key)
+{
+    if (focusedTab_)
+    {
         if (focusedTab_->isFocused())
             focusedTab_->keyEvent(down, key);
-        else {
-            if (down && ((key.navi_ == Key::nLeft && locales::getCurrentLocale().LTR_) || (key.navi_ == Key::nRight && !locales::getCurrentLocale().LTR_))) {
+        else
+        {
+            if (down && ((key.navi_ == Key::nLeft && locales::getCurrentLocale().LTR_) ||
+                         (key.navi_ == Key::nRight && !locales::getCurrentLocale().LTR_)))
+            {
                 int i(0);
                 while ( tabs_[i] != focusedTab_) i = (i-1 + tabs_.size())%tabs_.size();
                 i = (i-1 + tabs_.size())%tabs_.size();
@@ -67,7 +76,9 @@ void TabList::keyEvent(bool down, Key const& key) {
                 focusedTab_ = tabs_[i];
                 focusedTab_->active_=true;
             }
-            if (down && ((key.navi_ == Key::nRight && locales::getCurrentLocale().LTR_) || (key.navi_ == Key::nLeft && !locales::getCurrentLocale().LTR_))) {
+            if (down && ((key.navi_ == Key::nRight && locales::getCurrentLocale().LTR_) ||
+                         (key.navi_ == Key::nLeft && !locales::getCurrentLocale().LTR_)))
+            {
                 int i(0);
                 while ( tabs_[i] != focusedTab_) i = (i+1)%tabs_.size();
                 i = (i+1)%tabs_.size();
@@ -81,12 +92,16 @@ void TabList::keyEvent(bool down, Key const& key) {
     }
 }
 
-bool TabList::tabNext() {
-    if (focusedTab_) {
-        if (focusedTab_->isFocused()) {
+bool TabList::tabNext()
+{
+    if (focusedTab_)
+    {
+        if (focusedTab_->isFocused())
+        {
             return focusedTab_->tabNext();
         }
-        else {
+        else
+        {
             focusedTab_->setFocus(focusedTab_, false);
             focusedTab_->tabNext();
             return false;
@@ -95,10 +110,14 @@ bool TabList::tabNext() {
     return true;
 }
 
-bool TabList::tabPrevious() {
-    if (focusedTab_) {
-        if (focusedTab_->isFocused()) {
-            if (focusedTab_->tabPrevious()) {
+bool TabList::tabPrevious()
+{
+    if (focusedTab_)
+    {
+        if (focusedTab_->isFocused())
+        {
+            if (focusedTab_->tabPrevious())
+            {
                 menus::clearFocus();
                 //
                 // THIS ONE IS HACKY! the false below is a workaround to make tabLists tabable from below...
@@ -107,20 +126,20 @@ bool TabList::tabPrevious() {
                 setFocus(this, false);
             }
             return false;
-        }
-        else {
+        }else
             return true;
-        }
     }
     return true;
 }
 
-void TabList::textEntered(sf::Uint32 keyCode) {
+void TabList::textEntered(sf::Uint32 keyCode)
+{
     if (focusedTab_)
         focusedTab_->textEntered(keyCode);
 }
 
-void TabList::draw () const {
+void TabList::draw () const
+{
     Vector2f origin = getTopLeft();
 
     int mirror(locales::getCurrentLocale().LTR_ ? 1 : -1);
@@ -148,22 +167,26 @@ void TabList::draw () const {
         (*i)->draw();
 }
 
-void TabList::setFocus(UiElement* toBeFocused, bool isPrevious) {
+void TabList::setFocus(UiElement* toBeFocused, bool isPrevious)
+{
     UiElement::setFocus(this, isPrevious);
     Tab* toFocus = dynamic_cast<Tab*>(toBeFocused);
-    if (toFocus) {
+    if (toFocus)
         focusedTab_ = toFocus;
-    } else if (toBeFocused == this && isPrevious && focusedTab_ && !focusedTab_->isFocused())
+    else
+    if (toBeFocused == this && isPrevious && focusedTab_ && !focusedTab_->isFocused())
         focusedTab_->tabPrevious();
 }
 
-void TabList::clearFocus() {
+void TabList::clearFocus()
+{
     UiElement::clearFocus();
     for (std::vector<Tab*>::iterator i=tabs_.begin(); i != tabs_.end(); ++i)
         (*i)->clearFocus();
 }
 
-void TabList::addTab(Tab* toBeAdded) {
+void TabList::addTab(Tab* toBeAdded)
+{
     toBeAdded->setParent(this);
 
     if (tabs_.size() == 0)
@@ -185,16 +208,19 @@ void TabList::addTab(Tab* toBeAdded) {
         focusedTab_ = toBeAdded;
 }
 
-void TabList::activate(Tab* toBeActivated) {
+void TabList::activate(Tab* toBeActivated)
+{
     for (std::vector<Tab*>::iterator i=tabs_.begin(); i != tabs_.end(); ++i)
         (*i)->active_ = false;
 
     menus::clearFocus();
     setFocus(this, false);
     focusedTab_ = toBeActivated;
+    
     toBeActivated->active_ = true;
-    if(toBeActivated->activated_)
+    if (toBeActivated->activated_)
         *toBeActivated->activated_ = true;
+
     sound::playSound(sound::Tab);
 }
 

@@ -22,7 +22,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 class TextBox;
 
-class InfoSB: public UiWindow {
+class InfoSB: public UiWindow
+{
     public:
         static UiWindow* get();
         void checkWidgets();
@@ -31,7 +32,8 @@ class InfoSB: public UiWindow {
         static void reset();
 
     private:
-        InfoSB(int width, int height): UiWindow(width, height) {}
+        InfoSB(int width, int height): UiWindow(width, height)
+        {   }
         InfoSB(InfoSB const& copy);
 
         static UiWindow* instance_;
@@ -40,6 +42,3 @@ class InfoSB: public UiWindow {
 };
 
 # endif // INFOSB_HPP_INCLUDED
-
-
-

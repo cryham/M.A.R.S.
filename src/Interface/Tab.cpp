@@ -30,14 +30,17 @@ Tab::Tab (sf::String* name, int width, bool* activated):
     focusedWidget_(NULL),
     name_(name),
     activated_(activated),
-    active_(false) {}
+    active_(false)
+{   }
 
-Tab::~Tab() {
+Tab::~Tab()
+{
     for (std::vector<UiElement*>::iterator i=widgets_.begin(); i != widgets_.end(); ++i)
         delete *i;
 }
 
-void Tab::mouseMoved(Vector2f const& position) {
+void Tab::mouseMoved(Vector2f const& position)
+{
     int mirror(locales::getCurrentLocale().LTR_ ? 1 : -1);
     Vector2f topLeftAbs(getTopLeft() + topLeft_*mirror-Vector2f(0.f, 10.f));
     if (locales::getCurrentLocale().LTR_) {
@@ -58,13 +61,15 @@ void Tab::mouseMoved(Vector2f const& position) {
             (*i)->mouseMoved(position);
 }
 
-void Tab::mouseWheelMoved(Vector2f const& position, int delta) {
+void Tab::mouseWheelMoved(Vector2f const& position, int delta)
+{
     if (active_)
         for (std::vector<UiElement*>::iterator i=widgets_.begin(); i != widgets_.end(); ++i)
             (*i)->mouseWheelMoved(position, delta);
 }
 
-void Tab::mouseLeft(bool down) {
+void Tab::mouseLeft(bool down)
+{
     pressed_ = hovered_ && down;
 
     if (!pressed_ && hovered_) {
@@ -77,12 +82,14 @@ void Tab::mouseLeft(bool down) {
             (*i)->mouseLeft(down);
 }
 
-void Tab::keyEvent(bool down, Key const& key) {
+void Tab::keyEvent(bool down, Key const& key)
+{
     if (focusedWidget_)
         focusedWidget_->keyEvent(down, key);
 }
 
-bool Tab::tabNext() {
+bool Tab::tabNext()
+{
     if (!focusedWidget_ && widgets_.size() > 0) {
         int i(0);
         while (i<widgets_.size() && !widgets_[i]->isTabable()) ++i;
@@ -113,7 +120,8 @@ bool Tab::tabNext() {
     return false;
 }
 
-bool Tab::tabPrevious() {
+bool Tab::tabPrevious()
+{
     if (!focusedWidget_ && widgets_.size() > 0) {
         int i(widgets_.size()-1);
         while (i>=0 && !widgets_[i]->isTabable()) --i;
@@ -145,12 +153,14 @@ bool Tab::tabPrevious() {
 }
 
 
-void Tab::textEntered(sf::Uint32 keyCode) {
+void Tab::textEntered(sf::Uint32 keyCode)
+{
     if (active_ && focusedWidget_)
         focusedWidget_->textEntered(keyCode);
 }
 
-void Tab::draw () const {
+void Tab::draw () const
+{
     int mirror(locales::getCurrentLocale().LTR_ ? 1 : -1);
 
     Vector2f origin = getTopLeft() + topLeft_*mirror-Vector2f(0.f, 10.f);
@@ -210,14 +220,16 @@ void Tab::draw () const {
             (*i)->draw();
 }
 
-void Tab::setFocus(UiElement* toBeFocused, bool isPrevious) {
+void Tab::setFocus(UiElement* toBeFocused, bool isPrevious)
+{
     UiElement::setFocus(this, isPrevious);
     if (toBeFocused != this) focusedWidget_ = toBeFocused;
     else                     focusedWidget_ = NULL;
     label_->setFocus(this, isPrevious);
 }
 
-void Tab::clearFocus() {
+void Tab::clearFocus()
+{
     UiElement::clearFocus();
     focusedWidget_ = NULL;
     for (std::vector<UiElement*>::iterator i=widgets_.begin(); i != widgets_.end(); ++i)
@@ -225,12 +237,14 @@ void Tab::clearFocus() {
     label_->clearFocus();
 }
 
-void Tab::addWidget(UiElement* toBeAdded) {
+void Tab::addWidget(UiElement* toBeAdded)
+{
     toBeAdded->setParent(this);
     widgets_.push_back(toBeAdded);
 }
 
-Vector2f Tab::getTopLeft() const {
+Vector2f Tab::getTopLeft() const
+{
     if (locales::getCurrentLocale().LTR_)
         return UiElement::getTopLeft() - topLeft_ + Vector2f(0.f, 10.f);
     else

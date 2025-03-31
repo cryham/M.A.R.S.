@@ -23,11 +23,13 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 /// Weapon: ROFLE.
 /// A long distance gun, a sniper.
 
-class ROFLE: public Weapon {
+class ROFLE: public Weapon
+{
     public:
         /// Ctor which constructs the weapon.
         ROFLE(Ship* parent):
-              Weapon(weapons::wROFLE, parent, sf::String("ROFLE")) {};
+              Weapon(weapons::wROFLE, parent, sf::String("ROFLE"))
+        {   }
 
         /// Spawns some particles.
         void fire() const;

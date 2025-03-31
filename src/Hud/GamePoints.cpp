@@ -30,7 +30,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # include <SFML/OpenGL.hpp>
 # include <sstream>
 
-void GamePoints::draw() const {
+void GamePoints::draw() const
+{
 
     if (timer_ > 0.f) {
         Vector2f viewPort = window::getViewPort();
@@ -103,12 +104,14 @@ void GamePoints::draw() const {
     }
 }
 
-void GamePoints::update() {
+void GamePoints::update()
+{
     if (timer_ > 0.f)
         timer_ -= timer::realFrameTime();
 }
 
-void GamePoints::display(bool show) {
+void GamePoints::display(bool show)
+{
     if (show) {
         if (timer_ <= 0.f) {
             sound::playSound(sound::Score);

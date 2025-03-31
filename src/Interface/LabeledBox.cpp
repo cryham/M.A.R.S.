@@ -24,20 +24,22 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 LabeledBox::LabeledBox (sf::String* text, Vector2f const& topLeft, int width, int height):
     UiElement(topLeft, width, height),
-    label_(NULL) {
-
+    label_(NULL)
+{
     if (text) {
         label_ = new Label(text, TEXT_ALIGN_LEFT, Vector2f(5, 5), 12.f, getColor3f(0.5f, 0.9f, 1.f), false);
         label_->setParent(this);
     }
 }
 
-LabeledBox::~LabeledBox () {
+LabeledBox::~LabeledBox ()
+{
     if (label_)
         delete label_;
 }
 
-void LabeledBox::draw() const {
+void LabeledBox::draw() const
+{
     UiElement::draw();
 
     Vector2f origin = getTopLeft();

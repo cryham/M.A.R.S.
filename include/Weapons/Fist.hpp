@@ -23,12 +23,14 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 /// Weapon: Fist.
 /// A short distance gun, which pwnes nearby enemies
 
-class Fist: public Weapon {
+class Fist: public Weapon
+{
     public:
         /// Ctor which constructs the weapon.
         Fist(Ship* parent):
               Weapon(weapons::wFist, parent, sf::String("FIST OF ALI")),
-              position_(1.f) {};
+              position_(1.f)
+        {   }
 
         /// Spawns some particles.
         void fire() const;
@@ -50,6 +52,3 @@ class Fist: public Weapon {
 };
 
 # endif // FIST_HPP_INCLUDED
-
-
-

@@ -30,7 +30,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 UiWindow* InfoGIP::instance_(NULL);
 bool InfoGIP::kClose_(false);
 
-UiWindow* InfoGIP::get() {
+UiWindow* InfoGIP::get()
+{
     if (instance_ == NULL) {
         instance_ = new InfoGIP(320*scale_, 300);
         instance_->addWidget(new Button(locales::getLocale(locales::Close), NULL, &kClose_, Vector2f(220,270), 90, 20));
@@ -44,7 +45,8 @@ UiWindow* InfoGIP::get() {
     return instance_;
 }
 
-void InfoGIP::checkWidgets() {
+void InfoGIP::checkWidgets()
+{
     if (kClose_) {
         kClose_ = false;
         menus::hideWindow();
@@ -52,11 +54,13 @@ void InfoGIP::checkWidgets() {
     }
 }
 
-void InfoGIP::onShow() {
+void InfoGIP::onShow()
+{
     settings::C_showInfoDM = false;
 }
 
-void InfoGIP::reset() {
+void InfoGIP::reset()
+{
     if (instance_)
         delete instance_;
     instance_ = NULL;

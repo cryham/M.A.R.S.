@@ -27,8 +27,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 std::list<AmmoBurner*> AmmoBurner::activeParticles_;
 
 AmmoBurner::AmmoBurner(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity, Color3f const& color, Player* damageSource):
-         Particle<AmmoBurner>(spaceObjects::oAmmoBurner, location, 1.f, 0.f, randomizer::random(0.4f, 0.5f)) {
-
+         Particle<AmmoBurner>(spaceObjects::oAmmoBurner, location, 1.f, 0.f, randomizer::random(0.4f, 0.5f))
+{
     setDamageSource(damageSource);
     Vector2f distortion(Vector2f::randDirLen()*3.f);
     location_ = location + direction*randomizer::random(0.f, 20.f);
@@ -39,7 +39,8 @@ AmmoBurner::AmmoBurner(Vector2f const& location, Vector2f const& direction, Vect
     color_.s(0.3f);
 }
 
-void AmmoBurner::update() {
+void AmmoBurner::update()
+{
     float time = timer::frameTime();
     physics::collide(this, STATICS);
     // update Color
@@ -68,7 +69,8 @@ void AmmoBurner::update() {
             ball->onCollision(this, location_, velocity_, velocity_);
 }
 
-void AmmoBurner::draw() const {
+void AmmoBurner::draw() const
+{
     color_.gl3f();
     const int posX = 0;
     const int posY = 0;

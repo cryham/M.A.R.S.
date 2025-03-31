@@ -37,18 +37,21 @@ Home::Home(Vector2f const& location, int life, float radius, float mass, Color3f
                SpaceObject(spaceObjects::oHome, location, radius, mass),
                color_(color.brightened()),
                life_(life),
-               visible_(true) {
-
+               visible_(true)
+{
     physics::addStaticObject(this);
     physics::addGravitySource(this);
 }
 
-void Home::update() {
+void Home::update()
+{
     if (life_ <= 0.f && visible_) explode();
 }
 
-void Home::draw() const {
-    if (visible_) {
+void Home::draw() const
+{
+    if (visible_)
+    {
         glEnable(GL_TEXTURE_2D);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         glBindTexture(GL_TEXTURE_2D, texture::getTexture(texture::Home));
@@ -67,9 +70,11 @@ void Home::draw() const {
     }
 }
 
-void Home::drawLife() const {
+void Home::drawLife() const
+{
     int lifeSize = 20.f / SPACE_X_RESOLUTION * window::getViewPort().x_;
-    if (visible_) {
+    if (visible_)
+    {
         std::stringstream sstr;
         sstr << getLife();
 
@@ -78,21 +83,25 @@ void Home::drawLife() const {
     }
 }
 
-int Home::getLife() const {
+int Home::getLife() const
+{
     return life_ < 0 ? 0 : life_;
 }
 
-void Home::createShips(std::vector<Player*>& inhabitants) const {
+void Home::createShips(std::vector<Player*>& inhabitants) const
+{
     // set ship locations....
     // calculate available surface angle of homePlanet, looking at two cases:
-    if (location_.x_ < radius_) {
+    if (location_.x_ < radius_)
+    {
         // 1. homeplanet is covered by left screen edge
         float angle = std::acos(-location_.x_/radius_);
         float deltaAngle = 2*angle/(inhabitants.size()+1);
         angle = ((inhabitants.size()+1)%2)*deltaAngle/2;
         int shipCounter = 0;
 
-         for (std::vector<Player*>::iterator it = inhabitants.begin(); it != inhabitants.end(); ++it) {
+        for (std::vector<Player*>::iterator it = inhabitants.begin(); it != inhabitants.end(); ++it)
+        {
             // calc location of ship
             angle += deltaAngle*shipCounter*std::pow(-1.0, shipCounter);
             Vector2f location = Vector2f(std::cos(angle), std::sin(angle)) * (radius_+SHIP_RADIUS)+location_;
@@ -101,14 +110,16 @@ void Home::createShips(std::vector<Player*>& inhabitants) const {
             ++shipCounter;
         }
     }
-    else if (location_.x_ > SPACE_X_RESOLUTION - radius_) {
+    else if (location_.x_ > SPACE_X_RESOLUTION - radius_)
+    {
         // 2. homeplanet is covered by right screen edge
         float angle = std::acos((location_.x_ - SPACE_X_RESOLUTION)/radius_);
         float deltaAngle = 2*angle/(inhabitants.size()+1);
         angle = ((inhabitants.size()+1)%2)*deltaAngle/2;
         int shipCounter = 0;
 
-        for (std::vector<Player*>::iterator it = inhabitants.begin(); it != inhabitants.end(); ++it) {
+        for (std::vector<Player*>::iterator it = inhabitants.begin(); it != inhabitants.end(); ++it)
+        {
             // calc location of ship
             angle += deltaAngle*shipCounter*std::pow(-1.0, shipCounter);
             Vector2f location = Vector2f(-std::cos(angle), std::sin(angle)) * (radius_+16)+location_;
@@ -116,13 +127,14 @@ void Home::createShips(std::vector<Player*>& inhabitants) const {
             ships::addShip(location, rotation, *it);
             ++shipCounter;
         }
-    }
-    else {
+    }else
+    {
         // 3. homeplanet is entirely visible
         float deltaAngle = 2*M_PI/(inhabitants.size());
         float angle = 0;
 
-        for (std::vector<Player*>::iterator it = inhabitants.begin(); it != inhabitants.end(); ++it) {
+        for (std::vector<Player*>::iterator it = inhabitants.begin(); it != inhabitants.end(); ++it)
+        {
             // calc location of ship
             angle += deltaAngle;
             Vector2f location = Vector2f(std::cos(angle), std::sin(angle)) * (radius_+16)+location_;
@@ -133,10 +145,12 @@ void Home::createShips(std::vector<Player*>& inhabitants) const {
 }
 
 void Home::onCollision(SpaceObject* with, Vector2f const& location,
-                         Vector2f const& direction, Vector2f const& velocity) {
+    Vector2f const& direction, Vector2f const& velocity)
+{
     float strength = velocity.length();
 
-    switch (with->type()) {
+    switch (with->type())
+    {
         case spaceObjects::oAmmoROFLE: case spaceObjects::oAmmoInsta:
             particles::spawnMultiple(20, particles::pMud, location, direction, velocity, color_);
             break;
@@ -154,7 +168,8 @@ void Home::onCollision(SpaceObject* with, Vector2f const& location,
                 particles::spawnMultiple(10, particles::pMud, location, direction, velocity, color_);
             break;
 
-        case spaceObjects::oBall: {
+        case spaceObjects::oBall:
+        {
                 Ball* ball = dynamic_cast<Ball*>(with);
                 int amount =  1 + (ball->heatAmount() > 10 ? 1 : 0);
                 life_ -= amount;
@@ -162,7 +177,8 @@ void Home::onCollision(SpaceObject* with, Vector2f const& location,
                 for (int i=0; i<amount; ++i)
                     teams::getTeamL()->home() == this ? teams::getTeamR()->addPoint() : teams::getTeamL()->addPoint();
 
-                if (ball->lastShooter() != NULL) {
+                if (ball->lastShooter() != NULL)
+                {
                     // If an oponnent threw the ball to the home, give him a
                     // point
                     if (ball->lastShooter()->team()->home() != this)
@@ -189,7 +205,8 @@ void Home::onCollision(SpaceObject* with, Vector2f const& location,
     }
 }
 
-void Home::explode() {
+void Home::explode()
+{
     sound::playSound(sound::PlanetExplode, location_, 100.f);
     announcer::announce(announcer::Neutral);
     physics::causeShockWave(damageSource(), location_, 200.f, 500.f, 5.f);

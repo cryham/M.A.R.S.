@@ -28,6 +28,8 @@ void BotController::charge() {
     turnTo(direction + ship()->location());
     slaveFire(0);
     slaveUp(0);
+    slaveDown(0);
+    slaveBoost(0);
     switchWeapon();
     if (weaponChangeTimer_ > 0.5f)
         switchSpecial();

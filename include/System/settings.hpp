@@ -50,11 +50,13 @@ namespace settings {
     extern bool           C_showParticleCount;
     extern bool           C_fullScreen;
     extern bool           C_vsync;
+
     extern bool           C_StarsHigh;
     extern int            C_StarField;
     extern int            C_globalParticleCount;
     extern bool           C_adaptiveParticleCount;
     extern int            C_globalParticleLifeTime;
+
     extern int            C_botsLeft;
     extern int            C_botsRight;
     extern int            C_botsDeath;
@@ -65,6 +67,7 @@ namespace settings {
     extern int            C_powerUpRate;
     extern int            C_slowMoKickIn;
     extern int            C_gameSpeed;
+
     extern bool           C_showInfoHide;
     extern bool           C_showInfoSB;
     extern bool           C_showInfoDM;
@@ -72,19 +75,23 @@ namespace settings {
     extern bool           C_showInfoCK;
     extern bool           C_showSelectLanguage;
     extern bool           C_showToolTips;
+
     extern int            C_languageID;
     extern int            C_resX;
     extern int            C_resY;
     extern int            C_colorDepth;
     extern bool           C_shaders;
     extern Key            C_screenShotKey;
+
     extern bool           C_audioRandom;
     extern Key            C_audioNextKey;
     extern Key            C_audioPreviousKey;
+
     extern Key            C_statisticsKey;
     extern std::string    C_configPath;
     extern std::string    C_dataPath;
     extern std::string    C_screenShotFormat;
+    
     extern int            C_EnabledWeapons;
     extern int            C_EnabledSpecials;
     extern int            C_EnabledWeaponsByUser;
@@ -97,23 +104,36 @@ namespace settings {
     extern Color3f        C_playerIColor;
     extern Color3f        C_playerITeamColor;
     extern Key            C_playerIup;
+    extern Key            C_playerIdown;
+    extern Key            C_playerIboost;
+
     extern Key            C_playerIleft;
     extern Key            C_playerIright;
     extern Key            C_playerIfire;
     extern Key            C_playerISpecialKey;
+    extern Key            C_playerIprev;
+    extern Key            C_playerInext;
+
     extern bool           C_playerIteamL;
     extern bool           C_playerIteamR;
     extern int            C_playerIShip;
     extern weapons::WeaponType   C_playerIWeapon;
     extern specials::SpecialType C_playerISpecial;
+
     extern sf::String     C_playerIIName;
     extern Color3f        C_playerIIColor;
     extern Color3f        C_playerIITeamColor;
     extern Key            C_playerIIup;
+    extern Key            C_playerIIdown;
+    extern Key            C_playerIIboost;
+
     extern Key            C_playerIIleft;
     extern Key            C_playerIIright;
     extern Key            C_playerIIfire;
     extern Key            C_playerIISpecialKey;
+    extern Key            C_playerIIprev;
+    extern Key            C_playerIInext;
+
     extern bool           C_playerIIteamL;
     extern bool           C_playerIIteamR;
     extern int            C_playerIIShip;

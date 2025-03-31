@@ -373,4 +373,9 @@
 258 Artist: 
 259 Album: 
 
-// 270
+270 Backward
+271 Boost
+272 Next Weapon
+273 Previous Weapon
+
+// 273

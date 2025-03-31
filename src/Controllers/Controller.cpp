@@ -33,6 +33,21 @@ void Controller::slaveUp (int up) const {
         slave_->ship_->up_ = 0;
 }
 
+void Controller::slaveDown (int down) const {
+    if (slave_->ship_->visible_ && !slave_->ship_->collectedPowerUps_[items::puSleep])
+        slave_->ship_->down_ = down;
+    else
+        slave_->ship_->down_ = 0;
+}
+
+void Controller::slaveBoost (int down) const {
+    if (slave_->ship_->visible_ && !slave_->ship_->collectedPowerUps_[items::puSleep])
+        slave_->ship_->boost_ = down;
+    else
+        slave_->ship_->boost_ = 0;
+}
+
+
 void Controller::slaveLeft (int left) const {
     if (!slave_->ship_->weaponChange_ && !slave_->ship_->specialChange_ && slave_->ship_->visible_ && !slave_->ship_->collectedPowerUps_[items::puSleep]) {
         if (left && slave_->ship_->right_)
@@ -67,8 +82,27 @@ void Controller::slaveSpecial (int special) const {
 
 // single key presses
 void Controller::slaveUp () const {
-
 }
+
+void Controller::slaveDown () const {
+}
+
+void Controller::slaveBoost () const {
+}
+
+
+void Controller::slaveNext  () const {
+    if (slave_->ship_->visible_ && !slave_->ship_->collectedPowerUps_[items::puSleep])
+        slave_->ship_->currentWeapon_->next();
+    //     slave_->ship_->currentSpecial_->next();
+}
+
+void Controller::slavePrev  () const {
+    if (slave_->ship_->visible_ && !slave_->ship_->collectedPowerUps_[items::puSleep])
+        slave_->ship_->currentWeapon_->previous();
+    //     slave_->ship_->currentSpecial_->previous();
+}
+
 
 void Controller::slaveLeft () const {
     if (slave_->ship_->weaponChange_ && slave_->ship_->visible_ && !slave_->ship_->collectedPowerUps_[items::puSleep])

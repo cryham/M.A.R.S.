@@ -87,7 +87,7 @@ class Ship: public MobileSpaceObject {
 
         float rotation_;
         float rotateSpeed_;
-        int up_, left_, right_;
+        int up_, down_, left_, right_, boost_;
         bool docked_;
         bool weaponChange_;
         bool specialChange_;

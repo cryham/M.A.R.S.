@@ -29,16 +29,24 @@ KeyController::KeyController(Player* slave):
 void KeyController::update() const {
     if (type_ == controllers::cPlayer1) {
         slaveUp   (window::isKeyDown(settings::C_playerIup));
+        slaveDown (window::isKeyDown(settings::C_playerIdown));
+        slaveBoost(window::isKeyDown(settings::C_playerIboost));
+
         slaveLeft (window::isKeyDown(settings::C_playerIleft));
         slaveRight(window::isKeyDown(settings::C_playerIright));
+        
         slaveFire (window::isKeyDown(settings::C_playerIfire));
         slaveSpecial (window::isKeyDown(settings::C_playerISpecialKey));
     }
 
     else if (type_ == controllers::cPlayer2) {
         slaveUp   (window::isKeyDown(settings::C_playerIIup));
+        slaveDown (window::isKeyDown(settings::C_playerIIdown));
+        slaveBoost(window::isKeyDown(settings::C_playerIIboost));
+
         slaveLeft (window::isKeyDown(settings::C_playerIIleft));
         slaveRight(window::isKeyDown(settings::C_playerIIright));
+
         slaveFire (window::isKeyDown(settings::C_playerIIfire));
         slaveSpecial (window::isKeyDown(settings::C_playerIISpecialKey));
     }
@@ -47,18 +55,32 @@ void KeyController::update() const {
 void KeyController::update(Key const& key) const {
     if (type_ == controllers::cPlayer1 && key.strength_ == 100) {
         if      (key == settings::C_playerIup)    slaveUp();
+        else if (key == settings::C_playerIdown)  slaveDown();
+        else if (key == settings::C_playerIboost) slaveBoost();
+
         else if (key == settings::C_playerIleft)  slaveLeft();
         else if (key == settings::C_playerIright) slaveRight();
+        
         else if (key == settings::C_playerIfire)  slaveFire();
         else if (key == settings::C_playerISpecialKey)  slaveSpecial();
+
+        else if (key == settings::C_playerIprev)  slavePrev();
+        else if (key == settings::C_playerInext)  slaveNext();
     }
 
     else if (type_ == controllers::cPlayer2 && key.strength_ == 100) {
         if      (key == settings::C_playerIIup)    slaveUp();
+        else if (key == settings::C_playerIIdown)  slaveDown();
+        else if (key == settings::C_playerIIboost) slaveBoost();
+
         else if (key == settings::C_playerIIleft)  slaveLeft();
         else if (key == settings::C_playerIIright) slaveRight();
+        
         else if (key == settings::C_playerIIfire)  slaveFire();
         else if (key == settings::C_playerIISpecialKey)  slaveSpecial();
+
+        else if (key == settings::C_playerIIprev)  slavePrev();
+        else if (key == settings::C_playerIInext)  slaveNext();
     }
 }
 

@@ -43,6 +43,13 @@ class Controller {
         /// Accelerates the Ship. (continous action)
         void slaveUp    (int up)    const;
 
+        /// Backward accelerates the Ship. (continous action)
+        void slaveDown  (int down)  const;
+
+        /// Boost accelerates the Ship. (continous action)
+        void slaveBoost (int down)  const;
+
+
         /// Turns the Ship left. (continous action)
         void slaveLeft  (int left)  const;
 
@@ -52,14 +59,22 @@ class Controller {
         /// Fires the Ship's Weapon. (continous action)
         void slaveFire  (int fire)  const;
 
+
         /// "Presses" the Special-key. (single action)
         void slaveSpecial (int special) const;
 
         /// "Presses" the Up-key. (single action)
         void slaveUp    () const;
 
+        /// "Presses" the Down-key. (single action)
+        void slaveDown  () const;
+
         /// "Presses" the Left-key. (single action)
         void slaveLeft  () const;
+
+        /// "Presses" the Boost-key. (single action)
+        void slaveBoost () const;
+
 
         /// "Presses" the Right-key. (single action)
         void slaveRight () const;
@@ -69,6 +84,14 @@ class Controller {
 
         /// "Presses" the Special-key. (single action)
         void slaveSpecial () const;
+
+
+        /// "Presses" the Weapon-next key. (single action)
+        void slaveNext  () const;
+
+        /// "Presses" the Weapon-previous key. (single action)
+        void slavePrev  () const;
+
 
         /// The type of the controller.
         controllers::ControlType type_;

@@ -36,7 +36,8 @@ inline int clamp(int x, int min, int max) {
     return x < min ? min : (x > max ? max : x);
 }
 
-namespace settings {
+namespace settings
+{
     // game settings ------ adjustable via options menu
     int         C_soundVolume =             30;
     int         C_announcerVolume =          0;
@@ -46,11 +47,13 @@ namespace settings {
     bool        C_showLatency =             false;
     bool        C_fullScreen =              false;
     bool        C_vsync =                   true;
+
     bool        C_adaptiveParticleCount =   false;
     int         C_globalParticleCount =     100;
     int         C_globalParticleLifeTime =  100;
     bool        C_StarsHigh =               true;
     int         C_StarField =               500;
+
     int         C_botsLeft =                4;
     int         C_botsRight =               4;
     int         C_botsDeath =               10;
@@ -58,9 +61,11 @@ namespace settings {
     int         C_pointLimitCK =            10;
     int         C_pointLimitDM =            20;
     int         C_pointLimitTDM =           50;
+
     int         C_powerUpRate =             40;
     int         C_slowMoKickIn =            3;
     int         C_gameSpeed =               100;
+
     bool        C_showInfoHide =            true;
     bool        C_showInfoSB =              true;
     bool        C_showInfoDM =              true;
@@ -68,54 +73,78 @@ namespace settings {
     bool        C_showInfoCK =              true;
     bool        C_showSelectLanguage =      true;
     bool        C_showToolTips =            true;
+
     int         C_languageID =              0;
     int         C_resX =                    INITIAL_WINDOW_X;
     int         C_resY =                    INITIAL_WINDOW_Y;
     int         C_colorDepth =              32;
     bool        C_shaders =                 false;
     Key         C_screenShotKey =           Key(sf::Keyboard::F12);
+
     bool        C_audioRandom =             true;
     Key         C_audioNextKey =            Key(sf::Keyboard::F8);
     Key         C_audioPreviousKey =        Key(sf::Keyboard::F7);
     Key         C_statisticsKey =           Key(sf::Keyboard::Tab);
+
     std::string C_configPath =              "";
     std::string C_dataPath =                "";
     std::string C_screenShotFormat =        "jpg";
-    int         C_EnabledWeapons =          weapons::wAFK47 | weapons::wShotgun | weapons::wFlubba | weapons::wFist |
-                                            weapons::wRocketLauncher | weapons::wROFLE | weapons::wBurner | weapons::wH2OMG;
+    int         C_EnabledWeapons =          weapons::wNoWeapon-1;  // all
+                                         // weapons::wAFK47 | weapons::wShotgun | weapons::wFlubba | weapons::wFist |
+                                         // weapons::wRocketLauncher | weapons::wROFLE | weapons::wBurner | weapons::wH2OMG;
     int         C_EnabledSpecials =         specials::sBlast | specials::sFreeze | specials::sHeal | specials::sFireWall |
                                             specials::sShocker;
     int         C_EnabledWeaponsByUser =    C_EnabledWeapons;
     int         C_EnabledSpecialsByUser =   C_EnabledSpecials;
 
+
     // player settings ----- adjustable via options menu
     sf::String    C_playerIName =           "PlayerI";
     Color3f       C_playerIColor =          Color3f(1.f, 0.87f, 0.0125f);
     Color3f       C_playerITeamColor =      Color3f(0.94f, 0.24f, 1.f);
+    
     Key           C_playerIup =             Key(sf::Keyboard::Up);
+    Key           C_playerIdown =           Key(sf::Keyboard::Down);
+    Key           C_playerIboost =          Key(sf::Keyboard::RAlt);
+
     Key           C_playerIleft =           Key(sf::Keyboard::Left);
     Key           C_playerIright =          Key(sf::Keyboard::Right);
     Key           C_playerIfire =           Key(sf::Keyboard::RControl);
+
     Key           C_playerISpecialKey =     Key(sf::Keyboard::RShift);
+    Key           C_playerIprev =           Key(sf::Keyboard::Divide);
+    Key           C_playerInext =           Key(sf::Keyboard::Multiply);
+
     bool          C_playerIteamL =          false;
     bool          C_playerIteamR =          true;
     int           C_playerIShip =           0;
+
     weapons::WeaponType   C_playerIWeapon =  weapons::wAFK47;
     specials::SpecialType C_playerISpecial = specials::sHeal;
     sf::String    C_playerIIName =          "PlayerII";
     Color3f       C_playerIIColor =         Color3f(0.5f, 0.4f, 0.82f);
     Color3f       C_playerIITeamColor =     Color3f(0.05f, 1.f, 0.785f);
+
     Key           C_playerIIup =            Key(sf::Keyboard::W);
+    Key           C_playerIIdown =          Key(sf::Keyboard::S);
+    Key           C_playerIIboost =         Key(sf::Keyboard::LAlt);
+
     Key           C_playerIIleft =          Key(sf::Keyboard::A);
     Key           C_playerIIright =         Key(sf::Keyboard::D);
     Key           C_playerIIfire =          Key(sf::Keyboard::LControl);
+
     Key           C_playerIISpecialKey =    Key(sf::Keyboard::LShift);
+    Key           C_playerIIprev =          Key(sf::Keyboard::Num1);
+    Key           C_playerIInext =          Key(sf::Keyboard::Num2);
+
     bool          C_playerIIteamL =         true;
     bool          C_playerIIteamR =         false;
     int           C_playerIIShip =          0;
+
     weapons::WeaponType   C_playerIIWeapon =  weapons::wAFK47;
     specials::SpecialType C_playerIISpecial = specials::sHeal;
     bool          C_networkPlayerI =        true;
+
 
     // ai settings ------ adjustable via options menu
     bool        C_drawBotJobs =             false;
@@ -127,7 +156,10 @@ namespace settings {
     sf::String C_ip =                      "192.168.0.1";
     sf::String C_port =                    "12345";
 
-    bool save() {
+
+    //--------------------------------------------------------------------------------------------------------------------------------------------
+    bool save()
+    {
         std::ofstream outStream((C_configPath + "mars.cfg").c_str());
 
         if (outStream) {
@@ -167,7 +199,8 @@ namespace settings {
                 ++i;
             }
             outStream << "0" << std::endl;
-            outStream << "[playerIKeys] "           <<  C_playerIup << " "<< C_playerIright << " " << C_playerIleft << " " << C_playerIfire << " " << C_playerISpecialKey << std::endl;
+            outStream << "[playerIKeys] "           <<  C_playerIup << " " << C_playerIright << " " << C_playerIleft << " " << C_playerIfire << " " << C_playerISpecialKey 
+                      << " " << C_playerIdown << " " << C_playerIboost << " " << C_playerIprev << " " << C_playerInext << std::endl;
             outStream << "[playerIColor] "          <<  C_playerIColor.r() << " "<< C_playerIColor.g() << " " << C_playerIColor.b() << std::endl;
             outStream << "[playerITeamColor] "      <<  C_playerITeamColor.r() << " "<< C_playerITeamColor.g() << " " << C_playerITeamColor.b() << std::endl;
             outStream << "[playerITeamL] "          << (C_playerIteamL ? "true" : "false") << std::endl;
@@ -182,7 +215,8 @@ namespace settings {
                 ++i;
             }
             outStream << "0" << std::endl;
-            outStream << "[playerIIKeys] "          <<  C_playerIIup << " "<< C_playerIIright << " " << C_playerIIleft << " " << C_playerIIfire << " " << C_playerIISpecialKey <<  std::endl;
+            outStream << "[playerIIKeys] "          <<  C_playerIIup << " "<< C_playerIIright << " " << C_playerIIleft << " " << C_playerIIfire << " " << C_playerIISpecialKey 
+                      << " " << C_playerIIdown << " " << C_playerIIboost << " " << C_playerIIprev << " " << C_playerIInext << std::endl;
             outStream << "[playerIIColor] "         <<  C_playerIIColor.r() << " "<< C_playerIIColor.g() << " " << C_playerIIColor.b() << std::endl;
             outStream << "[playerIITeamColor] "     <<  C_playerIITeamColor.r() << " "<< C_playerIITeamColor.g() << " " << C_playerIITeamColor.b() << std::endl;
             outStream << "[playerIITeamL] "         << (C_playerIIteamL ? "true" : "false") << std::endl;
@@ -226,7 +260,9 @@ namespace settings {
         }
     }
 
-    bool load() {
+    //--------------------------------------------------------------------------------------------------------------------------------------------
+    bool load()
+    {
         // check whether application directory in the home diretory exists, if not create it
         # ifdef __linux__
             std::string home(getenv("HOME"));
@@ -519,36 +555,30 @@ namespace settings {
                 }
                 else if (inputLine == "[playerIKeys]") {
                     iss >> C_playerIup >> C_playerIright >> C_playerIleft >> C_playerIfire >> C_playerISpecialKey;
+                    iss >> C_playerIdown >> C_playerIboost >> C_playerIprev >> C_playerInext;
                 }
                 else if (inputLine == "[playerIIKeys]") {
                     iss >> C_playerIIup >> C_playerIIright >> C_playerIIleft >> C_playerIIfire >> C_playerIISpecialKey;
+                    iss >> C_playerIIdown >> C_playerIIboost >> C_playerIIprev >> C_playerIInext;
                 }
                 else if (inputLine == "[playerIColor]") {
                     float r, g, b;
-                    iss >> r;
-                    iss >> g;
-                    iss >> b;
+                    iss >> r >> g >> b;
                     C_playerIColor = Color3f(r,g,b);
                 }
                 else if (inputLine == "[playerIIColor]") {
                     float r, g, b;
-                    iss >> r;
-                    iss >> g;
-                    iss >> b;
+                    iss >> r >> g >> b;
                     C_playerIIColor = Color3f(r,g,b);
                 }
                 else if (inputLine == "[playerITeamColor]") {
                     float r, g, b;
-                    iss >> r;
-                    iss >> g;
-                    iss >> b;
+                    iss >> r >> g >> b;
                     C_playerITeamColor = Color3f(r,g,b);
                 }
                 else if (inputLine == "[playerIITeamColor]") {
                     float r, g, b;
-                    iss >> r;
-                    iss >> g;
-                    iss >> b;
+                    iss >> r >> g >> b;
                     C_playerIITeamColor = Color3f(r,g,b);
                 }
                 else if (inputLine == "[playerITeamL]") {

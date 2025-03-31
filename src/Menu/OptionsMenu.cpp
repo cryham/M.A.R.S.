@@ -101,6 +101,9 @@ UiWindow* OptionsMenu::get() {
         tabInterface->addWidget(new Checkbox(locales::getLocale(locales::FramesPerSecond), locales::getLocale(locales::ttFramesPerSecond), &settings::C_showFPS, Vector2f(20,190), 140));
         tabInterface->addWidget(new Checkbox(locales::getLocale(locales::ParticleCount), locales::getLocale(locales::ttParticleCount), &settings::C_showParticleCount, Vector2f(20,210), 140));
         tabInterface->addWidget(new Checkbox(locales::getLocale(locales::ShowToolTips), locales::getLocale(locales::ttShowToolTips), &settings::C_showToolTips, Vector2f(20,230), 140));
+        //  new
+        tabInterface->addWidget(new Slider(locales::getLocale(locales::Scale), locales::getLocale(locales::ttScale), &settings::C_globalParticleCount, 1, 300, 15, Vector2f(20,240), 540, 240));
+        tabInterface->addWidget(new Checkbox(locales::getLocale(locales::NoConfirmations), locales::getLocale(locales::ttNoConfirmations), &settings::C_noConfirmations, Vector2f(20,230), 140));
         
         //  Graphics
         tabGraphics->addWidget(new Checkbox(locales::getLocale(locales::Fullscreen), locales::getLocale(locales::ttFullscreen), &fullscreen_, Vector2f(20,60), 150));

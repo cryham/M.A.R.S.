@@ -135,6 +135,8 @@ namespace menus {
     }
 
     void showWindow(UiWindow* toBeShown) {
+        if (!toBeShown)
+            return;
         window::showCursor(true);
         toBeShown->onShow();
         toBeShown->setTopMost(true);

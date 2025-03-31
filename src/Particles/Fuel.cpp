@@ -29,7 +29,7 @@ Fuel::Fuel(Vector2f const& location, Vector2f const& direction, Vector2f const& 
     location_ = location + distortion;
     velocity_ = velocity + direction*(-90.f) + distortion*30.f;
 
-    color_.h(50.f);
+    color_.h(150.f);
     color_.v(0.6f);
     color_.s(0.8f);
 }
@@ -38,12 +38,12 @@ void Fuel::update() {
     float time = timer::frameTime();
     physics::collide(this, STATICS);
     // update Color
-    color_.h((-1.f/totalLifeTime_*lifeTime_+1.f)*60.f+350.f);
+    color_.h((1.f/totalLifeTime_*lifeTime_+1.f)*60.f+150.f);
     color_.v(-0.6f/totalLifeTime_*lifeTime_+0.6f);
     color_.s(lifeTime_/100.f + 0.8f);
 
     // update Size
-    radius_ = lifeTime_*40 + 1;
+    radius_ = -lifeTime_*10 + 5;
 
     location_ += velocity_*time;
     velocity_ += velocity_*(-1.f)*time;

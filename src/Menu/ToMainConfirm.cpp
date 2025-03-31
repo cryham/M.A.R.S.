@@ -30,6 +30,11 @@ bool ToMainConfirm::kOk_(false);
 bool ToMainConfirm::kCancel_(false);
 
 UiWindow* ToMainConfirm::get() {
+    if (settings::C_noConfirmations) {
+        games::start(games::gMenu);
+        music::fadeOut();
+        return 0;
+    }
     if (instance_ == NULL) {
         instance_ = new ToMainConfirm(280, 80);
         instance_->addWidget(new Button(locales::getLocale(locales::Ok),     NULL, &kOk_, Vector2f(180,50), 90, 20));

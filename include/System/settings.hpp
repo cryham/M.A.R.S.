@@ -76,6 +76,8 @@ namespace settings {
     extern bool           C_showSelectLanguage;
     extern bool           C_showToolTips;
 
+    extern bool           C_noConfirmations;
+
     extern int            C_languageID;
     extern int            C_resX;
     extern int            C_resY;

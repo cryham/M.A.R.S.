@@ -378,4 +378,9 @@
 272 Next Weapon
 273 Previous Weapon
 
-// 273
+274 Scale
+275 Scales the UI size
+276 No confirmations
+277 No dialog confirmations for game or menu quit
+
+// 275

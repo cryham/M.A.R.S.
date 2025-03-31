@@ -30,6 +30,10 @@ bool NewGameConfirm::kOk_(false);
 bool NewGameConfirm::kCancel_(false);
 
 UiWindow* NewGameConfirm::get() {
+    if (settings::C_noConfirmations) {
+        games::restart();
+        return 0;
+    }
     if (instance_ == NULL) {
         instance_ = new NewGameConfirm(280, 80);
         instance_->addWidget(new Button(locales::getLocale(locales::Ok), NULL, &kOk_, Vector2f(180,50), 90, 20));

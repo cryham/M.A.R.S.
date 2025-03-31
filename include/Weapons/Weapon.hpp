@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef WEAPON_HPP_INCLUDED
-# define WEAPON_HPP_INCLUDED
+#pragma once
 
 #include "System/timer.hpp"
 #include "Weapons/weapons.hpp"
@@ -69,4 +68,3 @@ class Weapon {
         weapons::WeaponType type_;
 };
 
-#endif // WEAPON_HPP_INCLUDED

@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef RALLY_HPP_INCLUDED
-# define RALLY_HPP_INCLUDED
+#pragma once
 
 #include "Games/Game.hpp"
 
@@ -41,7 +40,6 @@ class Rally: public Game {
         Track* track_;
 };
 
-#endif // RALLY_HPP_INCLUDED
 
 
 

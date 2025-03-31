@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef FIREWALL_HPP_INCLUDED
-# define FIREWALL_HPP_INCLUDED
+#pragma once
 
 #include "Specials/Special.hpp"
 
@@ -44,4 +43,3 @@ class FireWall: public Special
         mutable float burnTimer_;
 };
 
-#endif // FIREWALL_HPP_INCLUDED

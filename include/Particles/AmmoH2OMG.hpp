@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef AMMOH2OMG_HPP_INCLUDED
-# define AMMOH2OMG_HPP_INCLUDED
+#pragma once
 
 #include "Particles/Particle.hpp"
 
@@ -39,6 +38,5 @@ class AmmoH2OMG: public Particle<AmmoH2OMG> {
         static std::list<AmmoH2OMG*> activeParticles_;
 };
 
-#endif // AMMOH2OMG_HPP_INCLUDED
 
 

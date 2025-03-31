@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef ERUPTION_HPP_INCLUDED
-# define ERUPTION_HPP_INCLUDED
+#pragma once
 
 #include "Particles/Particle.hpp"
 
@@ -36,6 +35,5 @@ class Eruption: public Particle<Eruption> {
         static std::list<Eruption*> activeParticles_;
 };
 
-#endif // ERUPTION_HPP_INCLUDED
 
 

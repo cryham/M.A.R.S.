@@ -15,9 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-
-# ifndef RASTERZONE_HPP_INCLUDED
-# define RASTERZONE_HPP_INCLUDED
+#pragma once
 
 #include "Zones/Zone.hpp"
 
@@ -53,4 +51,3 @@ class RasterZone: public Zone {
         bool covered_;
 };
 
-#endif // RASTERZONE_HPP_INCLUDED

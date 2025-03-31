@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef ROCKETLAUNCHER_HPP_INCLUDED
-# define ROCKETLAUNCHER_HPP_INCLUDED
+#pragma once
 
 #include "Weapons/Weapon.hpp"
 
@@ -47,4 +46,3 @@ class RocketLauncher: public Weapon
         float maxAngle()   const;
 };
 
-#endif // ROCKETLAUNCHER_HPP_INCLUDED

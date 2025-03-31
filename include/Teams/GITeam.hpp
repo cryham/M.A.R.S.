@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef GITEAM_HPP_INCLUDED
-# define GITEAM_HPP_INCLUDED
+#pragma once
 
 #include "Teams/Team.hpp"
 
@@ -33,4 +32,3 @@ class GITeam: public Team
         void checkEnemies();
 };
 
-#endif // GITEAM_HPP_INCLUDED

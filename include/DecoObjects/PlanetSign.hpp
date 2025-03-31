@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef PLANETSIGN_HPP_INCLUDED
-# define PLANETSIGN_HPP_INCLUDED
+#pragma once
 
 #include "DecoObjects/DecoObject.hpp"
 
@@ -42,4 +41,3 @@ class PlanetSign: public DecoObject {
         float scale_;
 };
 
-#endif // PLANETSIGN_HPP_INCLUDED

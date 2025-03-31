@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef TEAMS_HPP_INCLUDED
-# define TEAMS_HPP_INCLUDED
+#pragma once
 
 #include "System/Color3f.hpp"
 #include "Controllers/controllers.hpp"
@@ -49,5 +48,4 @@ namespace teams {
     int getSecondPoints();
 }
 
-#endif // TEAMS_HPP_INCLUDED
 

@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef LOCALPLAYER_HPP_INCLUDED
-# define LOCALPLAYER_HPP_INCLUDED
+#pragma once
 
 #include "Players/Player.hpp"
 
@@ -40,6 +39,5 @@ class LocalPlayer: public Player {
         KeyController* controller_;
 };
 
-#endif // LOCALPLAYER_HPP_INCLUDED
 
 

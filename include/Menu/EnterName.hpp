@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef ENTERNAME_HPP_INCLUDED
-# define ENTERNAME_HPP_INCLUDED
+#pragma once
 
 #include "Interface/UiWindow.hpp"
 
@@ -39,4 +38,3 @@ class EnterName: public UiWindow
         static bool kOk_;
 };
 
-#endif // ENTERNAME_HPP_INCLUDED

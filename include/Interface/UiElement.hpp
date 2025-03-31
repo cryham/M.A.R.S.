@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef UIELEMENT_HPP_INCLUDED
-# define UIELEMENT_HPP_INCLUDED
+#pragma once
 
 #include "System/Vector2f.hpp"
 #include "System/Key.hpp"
@@ -24,7 +23,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include <SFML/Window.hpp>
 
-class UiElement {
+class UiElement
+{
     public:
         UiElement(Vector2f const& topLeft, int width, int height);
 
@@ -69,5 +69,3 @@ class UiElement {
         mutable float hoveredFadeTime_;
         mutable float focusedFadeTime_;
 };
-
-#endif

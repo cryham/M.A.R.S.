@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef SLIDER_HPP_INCLUDED
-# define SLIDER_HPP_INCLUDED
+#pragma once
 
 #include "Interface/UiElement.hpp"
 #include "Interface/Label.hpp"
@@ -47,6 +46,3 @@ class Slider: public UiElement {
         std::vector<sf::String> sliderNames_;
         sf::String* toolTip_;
 };
-
-#endif
-

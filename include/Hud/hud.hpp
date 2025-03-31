@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef HUD_HPP_INCLUDED
-# define HUD_HPP_INCLUDED
+#pragma once
 
 #include "System/Vector2f.hpp"
 #include "System/Color3f.hpp"
@@ -35,6 +34,5 @@ namespace hud {
     void displayMessage(sf::String const& message, Color3f const& color = Color3f(0.55f, 1.0f, 1.0f));
 }
 
-#endif // HUD_HPP_INCLUDED
 
 

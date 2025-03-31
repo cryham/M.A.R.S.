@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef PLAYERS_HPP_INCLUDED
-# define PLAYERS_HPP_INCLUDED
+#pragma once
 
 #include "System/Color3f.hpp"
 #include "Controllers/controllers.hpp"
@@ -37,4 +36,3 @@ namespace players {
     Player const* getPlayerII();
 }
 
-#endif // PLAYERS_HPP_INCLUDED

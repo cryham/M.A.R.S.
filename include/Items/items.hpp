@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef ITEMS_HPP_INCLUDED
-# define ITEMS_HPP_INCLUDED
+#pragma once
 
 #include "System/Vector2f.hpp"
 
@@ -39,7 +38,6 @@ namespace items {
     void clear();
 }
 
-#endif // ITEMS_HPP_INCLUDED
 
 
 

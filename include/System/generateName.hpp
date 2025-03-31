@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef GENERATENAME_HPP_INCLUDED
-# define GENERATENAME_HPP_INCLUDED
+#pragma once
 
 #include "System/Key.hpp"
 
@@ -48,4 +47,3 @@ namespace generateName {
     sf::String const key(Key const& keyCode);
 }
 
-#endif //GENERATENAME_HPP_INCLUDED

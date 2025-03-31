@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef JOB_HPP_INCLUDED
-# define JOB_HPP_INCLUDED
+#pragma once
 
 struct Job
 {
@@ -50,4 +49,3 @@ struct Job
     }
 };
 
-#endif // JOB_HPP_INCLUDED

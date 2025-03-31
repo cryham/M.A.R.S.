@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef DECOOBJECT_HPP_INCLUDED
-# define DECOOBJECT_HPP_INCLUDED
+#pragma once
 
 #include "System/Vector2f.hpp"
 
@@ -28,7 +27,6 @@ class DecoObject {
         virtual void draw() const = 0;
 };
 
-#endif // DECOOBJECT_HPP_INCLUDED
 
 
 

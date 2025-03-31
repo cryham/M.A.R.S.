@@ -15,9 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-
-# ifndef TUTORIALZONE_HPP_INCLUDED
-# define TUTORIALZONE_HPP_INCLUDED
+#pragma once
 
 #include "Zones/Zone.hpp"
 
@@ -40,6 +38,5 @@ class TutorialZone: public Zone {
         Vector2f location_;
 };
 
-#endif // TUTORIALZONE_HPP_INCLUDED
 
 

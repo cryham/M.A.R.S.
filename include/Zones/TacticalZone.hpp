@@ -15,9 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-
-# ifndef TACTICALZONE_HPP_INCLUDED
-# define TACTICALZONE_HPP_INCLUDED
+#pragma once
 
 #include "Zones/Zone.hpp"
 
@@ -61,5 +59,4 @@ class TacticalZone: public Zone {
         float  shipCount_;
 };
 
-#endif // TACTICALZONE_HPP_INCLUDED
 

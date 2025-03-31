@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef INFOHIDE_HPP_INCLUDED
-# define INFOHIDE_HPP_INCLUDED
+#pragma once
 
 #include "Interface/UiWindow.hpp"
 
@@ -42,4 +41,3 @@ class InfoHide: public UiWindow
         static bool kOk_;
 };
 
-#endif // INFOHIDE_HPP_INCLUDED

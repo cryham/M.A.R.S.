@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef CONTROLLER_HPP_INCLUDED
-# define CONTROLLER_HPP_INCLUDED
+#pragma once
 
 #include "Controllers/controllers.hpp"
 
@@ -100,4 +99,3 @@ class Controller {
         Player* slave_;
 };
 
-#endif // CONTROLLER_HPP_INCLUDED

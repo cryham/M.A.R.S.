@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef CANNONKEEP_HPP_INCLUDED
-# define CANNONKEEP_HPP_INCLUDED
+#pragma once
 
 #include "Games/Game.hpp"
 
@@ -38,4 +37,3 @@ class CannonKeep: public Game {
         void restart();
 };
 
-#endif // CANNONKEEP_HPP_INCLUDED

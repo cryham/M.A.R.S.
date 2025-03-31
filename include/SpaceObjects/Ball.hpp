@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef BALL_HPP_INCLUDED
-# define BALL_HPP_INCLUDED
+#pragma once
 
 #include "SpaceObjects/MobileSpaceObject.hpp"
 #include "Players/Player.hpp"
@@ -62,4 +61,3 @@ class Ball: public MobileSpaceObject
         Player* lastShooter_;
 };
 
-#endif // BALL_HPP_INCLUDED

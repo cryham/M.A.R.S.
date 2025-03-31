@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef HOME_HPP_INCLUDED
-# define HOME_HPP_INCLUDED
+#pragma once
 
 #include "SpaceObjects/SpaceObject.hpp"
 #include "Players/Player.hpp"
@@ -46,5 +45,4 @@ class Home: public SpaceObject {
         bool visible_;
 };
 
-#endif // HOME_HPP_INCLUDED
 

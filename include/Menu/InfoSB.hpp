@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef INFOSB_HPP_INCLUDED
-# define INFOSB_HPP_INCLUDED
+#pragma once
 
 #include "Interface/UiWindow.hpp"
 
@@ -41,4 +40,3 @@ class InfoSB: public UiWindow
         static bool kClose_;
 };
 
-#endif // INFOSB_HPP_INCLUDED

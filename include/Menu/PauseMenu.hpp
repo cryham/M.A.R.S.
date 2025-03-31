@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef PAUSEMENU_HPP_INCLUDED
-# define PAUSEMENU_HPP_INCLUDED
+#pragma once
 
 #include "Interface/UiWindow.hpp"
 
@@ -40,4 +39,3 @@ class PauseMenu: public UiWindow
         static bool kResume_, kNew_, kOptions_, kToMainMenu_, kHide_;
 };
 
-#endif // PAUSEMENU_HPP_INCLUDED

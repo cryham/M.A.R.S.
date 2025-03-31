@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef CHOOSELANGUAGE_HPP_INCLUDED
-# define CHOOSELANGUAGE_HPP_INCLUDED
+#pragma once
 
 #include "Interface/UiWindow.hpp"
 
@@ -47,4 +46,3 @@ class ChooseLanguage: public UiWindow
         static std::map<sf::String, int> sortedLocales_;
 };
 
-#endif // CHOOSELANGUAGE_HPP_INCLUDED

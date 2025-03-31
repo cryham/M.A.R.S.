@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef EXPLODE_HPP_INCLUDED
-# define EXPLODE_HPP_INCLUDED
+#pragma once
 
 #include "Particles/Particle.hpp"
 
@@ -36,6 +35,5 @@ class Explode: public Particle<Explode> {
         static std::list<Explode*> activeParticles_;
 };
 
-#endif // EXPLODE_HPP_INCLUDED
 
 

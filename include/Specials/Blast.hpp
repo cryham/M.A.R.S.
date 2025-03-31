@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef BLAST_HPP_INCLUDED
-# define BLAST_HPP_INCLUDED
+#pragma once
 
 #include "Specials/Special.hpp"
 
@@ -44,4 +43,3 @@ class Blast: public Special
         mutable float radius_;
 };
 
-#endif // BLAST_HPP_INCLUDED

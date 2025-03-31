@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef SPACEOBJECT_HPP_INCLUDED
-# define SPACEOBJECT_HPP_INCLUDED
+#pragma once
 
 #include "System/Vector2f.hpp"
 #include "Media/texture.hpp"
@@ -68,4 +67,3 @@ class SpaceObject
         spaceObjects::ObjectType type_;
 };
 
-#endif // SPACEOBJECT_HPP_INCLUDED

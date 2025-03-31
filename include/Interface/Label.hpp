@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef LABEL_HPP_INCLUDED
-# define LABEL_HPP_INCLUDED
+#pragma once
 
 #include "Interface/UiElement.hpp"
 #include "System/Color3f.hpp"
@@ -44,4 +43,3 @@ class Label: public UiElement {
         bool interactive_;
 };
 
-#endif

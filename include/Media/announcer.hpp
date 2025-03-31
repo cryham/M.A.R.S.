@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef ANNOUNCER_HPP_INCLUDED
-# define ANNOUNCER_HPP_INCLUDED
+#pragma once
 
 /// A namespace for the commentator of the game.
 /// The different moods which can be given to the
@@ -40,4 +39,3 @@ namespace announcer {
     void announce (SoundMood mood);
 }
 
-#endif // ANNOUNCER_HPP_INCLUDED

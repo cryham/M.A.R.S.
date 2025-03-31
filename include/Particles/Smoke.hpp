@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef SMOKE_HPP_INCLUDED
-# define SMOKE_HPP_INCLUDED
+#pragma once
 
 #include "Particles/Particle.hpp"
 
@@ -36,7 +35,6 @@ class Smoke: public Particle<Smoke> {
         static std::list<Smoke*> activeParticles_;
 };
 
-#endif // SMOKE_HPP_INCLUDED
 
 
 

@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef AMMOROCKET_HPP_INCLUDED
-# define AMMOROCKET_HPP_INCLUDED
+#pragma once
 
 #include "Particles/Particle.hpp"
 
@@ -53,4 +52,3 @@ class AmmoRocket: public Particle<AmmoRocket> {
         static std::list<AmmoRocket*> activeParticles_;
 };
 
-#endif // AMMOROCKET_HPP_INCLUDED

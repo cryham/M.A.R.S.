@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef TEXT_HPP_INCLUDED
-# define TEXT_HPP_INCLUDED
+#pragma once
 
 # define TEXT_ALIGN_LEFT   0
 # define TEXT_ALIGN_CENTER 1
@@ -63,7 +62,6 @@ namespace text {
     float getCharacterPos   (sf::String const&, int pos, float size, int align, sf::Font* font = NULL);
 }
 
-#endif // TEXT_HPP_INCLUDED
 
 
 

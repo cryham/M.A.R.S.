@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef CRUSHEDICE_HPP_INCLUDED
-# define CRUSHEDICE_HPP_INCLUDED
+#pragma once
 
 #include "Particles/Particle.hpp"
 
@@ -38,7 +37,6 @@ class CrushedIce: public Particle<CrushedIce> {
         static std::list<CrushedIce*> activeParticles_;
 };
 
-#endif // CRUSHEDICE_HPP_INCLUDED
 
 
 

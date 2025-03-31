@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef BOTCONTROLLER_HPP_INCLUDED
-# define BOTCONTROLLER_HPP_INCLUDED
+#pragma once
 
 #include "Controllers/Controller.hpp"
 
@@ -108,6 +107,5 @@ class BotController: public Controller {
         Vector2f nextPathPoint_;
 };
 
-#endif // BOTCONTROLLER_HPP_INCLUDED
 
 

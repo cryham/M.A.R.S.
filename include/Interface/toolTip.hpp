@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef TOOLTIP_HPP_INCLUDED
-# define TOOLTIP_HPP_INCLUDED
+#pragma once
 
 #include "System/Vector2f.hpp"
 
@@ -31,5 +30,4 @@ namespace toolTip {
     void show(sf::String* text);
 }
 
-#endif // TOOLTIP_HPP_INCLUDED
 

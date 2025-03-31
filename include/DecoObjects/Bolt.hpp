@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef BOLT_HPP_INCLUDED
-# define BOLT_HPP_INCLUDED
+#pragma once
 
 #include "DecoObjects/DecoObject.hpp"
 
@@ -47,4 +46,3 @@ class Bolt: public DecoObject
         mutable float flickerTimer_;
 };
 
-#endif // BOLT_HPP_INCLUDED

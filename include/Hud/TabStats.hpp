@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef TABSTATS_HPP_INCLUDED
-# define TABSTATS_HPP_INCLUDED
+#pragma once
 
 #include "Hud/HudElement.hpp"
 
@@ -56,7 +55,6 @@ class TabStats: public HudElement {
         std::multimap<Team*, std::multiset<Player*, playerPtrCmp>, teamPtrCmp > teamMap_;
 };
 
-#endif // TABSTATS_HPP_INCLUDED
 
 
 

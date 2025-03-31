@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef OPTIONSMENU_HPP_INCLUDED
-# define OPTIONSMENU_HPP_INCLUDED
+#pragma once
 
 #include "Interface/UiWindow.hpp"
 
@@ -43,4 +42,3 @@ class OptionsMenu: public UiWindow
         static int        soundVolume_, musicVolume_, announcerVolume_, starfield_;
 };
 
-#endif // OPTIONSMENU_HPP_INCLUDED

@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef BOTPLAYER_HPP_INCLUDED
-# define BOTPLAYER_HPP_INCLUDED
+#pragma once
 
 #include "Players/Player.hpp"
 
@@ -41,5 +40,4 @@ class BotPlayer: public Player {
         BotController* controller_;
 };
 
-#endif // BOTPLAYER_HPP_INCLUDED
 

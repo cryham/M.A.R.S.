@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef TABLIST_HPP_INCLUDED
-# define TABLIST_HPP_INCLUDED
+#pragma once
 
 #include "Interface/UiElement.hpp"
 #include "Interface/Tab.hpp"
@@ -50,7 +49,3 @@ class TabList: public UiElement {
         Tab* focusedTab_;
         int lastTabEnd_;
 };
-
-#endif
-
-

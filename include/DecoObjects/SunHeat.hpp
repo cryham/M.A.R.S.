@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef SUNHEAT_HPP_INCLUDED
-# define SUNHEAT_HPP_INCLUDED
+#pragma once
 
 #include "DecoObjects/DecoObject.hpp"
 
@@ -40,5 +39,4 @@ class SunHeat: public DecoObject {
         float radius_;
 };
 
-#endif // SUNHEAT_HPP_INCLUDED
 

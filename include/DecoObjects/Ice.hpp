@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef ICE_HPP_INCLUDED
-# define ICE_HPP_INCLUDED
+#pragma once
 
 #include "DecoObjects/DecoObject.hpp"
 
@@ -98,4 +97,3 @@ class Ice: public DecoObject
         Object* object_;
 };
 
-#endif // ICE_HPP_INCLUDED

@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef TUTORIALWINDOW_HPP_INCLUDED
-# define TUTORIALWINDOW_HPP_INCLUDED
+#pragma once
 
 #include "Interface/UiWindow.hpp"
 
@@ -41,4 +40,3 @@ class TutorialWindow: public UiWindow
         static sf::String index_;
 };
 
-#endif // TUTORIALWINDOW_HPP_INCLUDED

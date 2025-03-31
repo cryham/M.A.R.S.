@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef FILE_HPP_INCLUDED
-# define FILE_HPP_INCLUDED
+#pragma once
 
 #include <SFML/System.hpp>
 #include <string>
@@ -33,6 +32,5 @@ namespace file {
     bool load(std::string fileName, std::vector<sf::String>& strings);
 }
 
-#endif // FILE_HPP_INCLUDED
 
 

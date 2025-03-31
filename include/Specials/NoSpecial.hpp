@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef NOSPECIAL_HPP_INCLUDED
-# define NOSPECIAL_HPP_INCLUDED
+#pragma once
 
 #include "Specials/Special.hpp"
 
@@ -42,4 +41,3 @@ class NoSpecial: public Special
         void draw(float alpha) const;
 };
 
-#endif // NOSPECIAL_HPP_INCLUDED

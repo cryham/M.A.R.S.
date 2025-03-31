@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef LOCALE_HPP_INCLUDED
-# define LOCALE_HPP_INCLUDED
+#pragma once
 
 #include <SFML/System.hpp>
 
@@ -38,4 +37,3 @@ struct Locale
     bool       LTR_;
 };
 
-#endif // LOCALE_HPP_INCLUDED

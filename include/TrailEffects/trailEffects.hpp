@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef TRAILEFFECTS_HPP_INCLUDED
-# define TRAILEFFECTS_HPP_INCLUDED
+#pragma once
 
 #include "System/Color3f.hpp"
 
@@ -37,5 +36,4 @@ namespace trailEffects {
     void clear();
 }
 
-#endif // TRAILEFFECTS_HPP_INCLUDED
 

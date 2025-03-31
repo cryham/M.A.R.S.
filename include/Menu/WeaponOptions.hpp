@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef WEAPONOPTIONS_HPP_INCLUDED
-# define WEAPONOPTIONS_HPP_INCLUDED
+#pragma once
 
 #include "Interface/UiWindow.hpp"
 
@@ -42,4 +41,3 @@ class WeaponOptions: public UiWindow
         static bool kFreeze_, kHeal_, kBlast_, kFireWall_, kShocker_;
 };
 
-#endif // WEAPONOPTIONS_HPP_INCLUDED

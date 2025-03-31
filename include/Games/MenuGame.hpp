@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef MENUGAME_HPP_INCLUDED
-# define MENUGAME_HPP_INCLUDED
+#pragma once
 
 #include "Games/Game.hpp"
 
@@ -33,7 +32,6 @@ class MenuGame: public Game {
         void restart();
 };
 
-#endif // MENUGAME_HPP_INCLUDED
 
 
 

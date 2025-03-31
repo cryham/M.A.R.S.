@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef UIWINDOW_HPP_INCLUDED
-# define UIWINDOW_HPP_INCLUDED
+#pragma once
 
 #include "Interface/UiElement.hpp"
 
@@ -60,4 +59,3 @@ class UiWindow: public UiElement {
         bool topMost_;
 };
 
-#endif

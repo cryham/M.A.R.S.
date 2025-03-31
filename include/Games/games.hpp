@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef GAMES_HPP_INCLUDED
-# define GAMES_HPP_INCLUDED
+#pragma once
 
 /// A namespace which handles the current game.
 /// With functions of this namespace, games may be launched,
@@ -71,5 +70,4 @@ namespace games {
     float elapsedTime();
 }
 
-#endif // GAMES_HPP_INCLUDED
 

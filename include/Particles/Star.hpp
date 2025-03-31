@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef STAR_HPP_INCLUDED
-# define STAR_HPP_INCLUDED
+#pragma once
 
 #include "Particles/Particle.hpp"
 
@@ -43,7 +42,6 @@ class Star: public Particle<Star> {
         static std::list<Star*> activeParticles_;
 };
 
-#endif // STAR_HPP_INCLUDED
 
 
 

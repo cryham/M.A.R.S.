@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef NUMBER_HPP_INCLUDED
-# define NUMBER_HPP_INCLUDED
+#pragma once
 
 #include "Particles/Particle.hpp"
 
@@ -38,7 +37,6 @@ class Number: public Particle<Number> {
         static std::list<Number*> activeParticles_;
 };
 
-#endif // NUMBER_HPP_INCLUDED
 
 
 

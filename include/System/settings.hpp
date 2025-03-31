@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef SETTINGS_HPP_INCLUDED
-# define SETTINGS_HPP_INCLUDED
+#pragma once
 
 #include "Color3f.hpp"
 #include "Weapons/Weapon.hpp"
@@ -159,4 +158,3 @@ namespace settings {
     ///@}
 };
 
-#endif //SETTINGS_HPP_INCLUDED

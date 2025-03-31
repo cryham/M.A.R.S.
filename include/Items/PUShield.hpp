@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef PUSHIELD_HPP_INCLUDED
-# define PUSHIELD_HPP_INCLUDED
+#pragma once
 
 #include "System/Vector2f.hpp"
 #include "Items/PowerUp.hpp"
@@ -35,7 +34,6 @@ class PUShield: public PowerUp{
         void refreshLifeTime();
 };
 
-#endif // PUSHIELD_HPP_INCLUDED
 
 
 

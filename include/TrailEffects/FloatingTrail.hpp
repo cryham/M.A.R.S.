@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef FLOATINGTRAIL_HPP_INCLUDED
-# define FLOATINGTRAIL_HPP_INCLUDED
+#pragma once
 
 #include "TrailEffects/Trail.hpp"
 #include "System/Vector2f.hpp"
@@ -44,6 +43,5 @@ class FloatingTrail: public Trail {
         Color3f color_;
 };
 
-#endif //FLOATINGTRAIL_HPP_INCLUDED
 
 

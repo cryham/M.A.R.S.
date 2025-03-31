@@ -15,24 +15,22 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef LINE_HPP_INCLUDED
-# define LINE_HPP_INCLUDED
+#pragma once
 
 #include "Interface/UiElement.hpp"
 
-class Line: public UiElement {
+class Line: public UiElement
+{
     public:
         Line(Vector2f const& begin, Vector2f const& end);
 
         void draw() const;
 
-        bool isTabable() const {return false;}
+        bool isTabable() const
+        {   return false;  }
 
     private:
         Vector2f begin_;
         Vector2f end_;
 };
-
-#endif
-
 

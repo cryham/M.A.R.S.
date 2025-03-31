@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef LOCALES_HPP_INCLUDED
-# define LOCALES_HPP_INCLUDED
+#pragma once
 
 #include "Locales/Locale.hpp"
 
@@ -112,5 +111,4 @@ namespace locales {
     void                       setCurrentLocale();
 }
 
-#endif // LOCALES_HPP_INCLUDED
 

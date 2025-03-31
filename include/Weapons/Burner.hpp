@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef BURNER_HPP_INCLUDED
-# define BURNER_HPP_INCLUDED
+#pragma once
 
 #include "Weapons/Weapon.hpp"
 
@@ -47,4 +46,3 @@ class Burner: public Weapon
         float maxAngle()   const;
 };
 
-#endif // BURNER_HPP_INCLUDED

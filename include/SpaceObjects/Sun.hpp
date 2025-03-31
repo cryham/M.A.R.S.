@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef SUN_HPP_INCLUDED
-# define SUN_HPP_INCLUDED
+#pragma once
 
 #include "SpaceObjects/SpaceObject.hpp"
 
@@ -34,4 +33,3 @@ class Sun: public SpaceObject {
         float eruptionTimer_;
 };
 
-#endif // SUN_HPP_INCLUDED

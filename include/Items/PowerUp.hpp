@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef ITEM_HPP_INCLUDED
-# define ITEM_HPP_INCLUDED
+#pragma once
 
 #include "System/Vector2f.hpp"
 #include "System/Color3f.hpp"
@@ -58,7 +57,6 @@ class PowerUp {
         Color3f bgColor_;
 };
 
-#endif // ITEM_HPP_INCLUDED
 
 
 

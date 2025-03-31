@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef PLAYER_HPP_INCLUDED
-# define PLAYER_HPP_INCLUDED
+#pragma once
 
 #include "SpaceObjects/Ship.hpp"
 #include "Players/players.hpp"
@@ -56,4 +55,3 @@ class Player {
 };
 
 
-#endif // PLAYER_HPP_INCLUDED

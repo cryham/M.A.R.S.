@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef SPACEOBJECTS_HPP_INCLUDED
-# define SPACEOBJECTS_HPP_INCLUDED
+#pragma once
 
 # define HOME_LEFT   0
 # define HOME_RIGHT  1
@@ -58,5 +57,4 @@ namespace spaceObjects {
     void clear();
 }
 
-#endif // SPACEOBJECTS_HPP_INCLUDED
 

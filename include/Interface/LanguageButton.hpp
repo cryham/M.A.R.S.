@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef LANGUAGEBUTTON_HPP_INCLUDED
-# define LANGUAGEBUTTON_HPP_INCLUDED
+#pragma once
 
 #include "Interface/UiElement.hpp"
 #include "Interface/Label.hpp"
@@ -45,6 +44,5 @@ class LanguageButton: public UiElement {
         bool opened_;
 };
 
-#endif // LANGUAGEBUTTON_HPP_INCLUDED
 
 

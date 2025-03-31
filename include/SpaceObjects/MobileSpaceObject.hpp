@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef MOBLIESPACEOBJECT_HPP_INCLUDED
-# define MOBLIESPACEOBJECT_HPP_INCLUDED
+#pragma once
 
 #include "SpaceObjects/SpaceObject.hpp"
 
@@ -35,4 +34,3 @@ class MobileSpaceObject: public SpaceObject
         Vector2f velocity_;
 };
 
-#endif // MOBLIESPACEOBJECT_HPP_INCLUDED

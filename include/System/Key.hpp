@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef KEY_HPP_INCLUDED
-# define KEY_HPP_INCLUDED
+#pragma once
 
 #include <SFML/Window.hpp>
 
@@ -47,4 +46,3 @@ bool operator== (Key const& lhs, Key const& rhs);
 std::ostream& operator<< (std::ostream& stream, Key const& input);
 std::istream& operator>> (std::istream& stream, Key& output);
 
-#endif // KEY_HPP_INCLUDED

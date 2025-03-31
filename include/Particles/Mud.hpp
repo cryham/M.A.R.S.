@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef MUD_HPP_INCLUDED
-# define MUD_HPP_INCLUDED
+#pragma once
 
 #include "Particles/Particle.hpp"
 
@@ -36,6 +35,5 @@ class Mud: public Particle<Mud> {
         static std::list<Mud*> activeParticles_;
 };
 
-#endif // MUD_HPP_INCLUDED
 
 

@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef AMMOFLUBBA_HPP_INCLUDED
-# define AMMOFLUBBA_HPP_INCLUDED
+#pragma once
 
 #include "Particles/Particle.hpp"
 
@@ -39,7 +38,6 @@ class AmmoFlubba: public Particle<AmmoFlubba> {
         static std::list<AmmoFlubba*> activeParticles_;
 };
 
-#endif // AMMOFLUBBA_HPP_INCLUDED
 
 
 

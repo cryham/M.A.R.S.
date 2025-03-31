@@ -15,13 +15,13 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef KEYEDIT_HPP_INCLUDED
-# define KEYEDIT_HPP_INCLUDED
+#pragma once
 
 #include "Interface/UiElement.hpp"
 #include "Interface/Label.hpp"
 
-class KeyEdit: public UiElement {
+class KeyEdit: public UiElement
+{
     public:
         KeyEdit (sf::String* text, sf::String* toolTip, Key* value, Vector2f const& topLeft, int width, int labelWidth);
         ~KeyEdit ();
@@ -41,6 +41,4 @@ class KeyEdit: public UiElement {
         sf::String* toolTip_;
         int labelWidth_;
 };
-
-#endif
 

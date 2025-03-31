@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef ENDMENU_HPP_INCLUDED
-# define ENDMENU_HPP_INCLUDED
+#pragma once
 
 #include "Interface/UiWindow.hpp"
 
@@ -39,4 +38,3 @@ class EndMenu: public UiWindow
         static bool kNew_, kOptions_, kToMainMenu_, kHide_;
 };
 
-#endif // ENDMENU_HPP_INCLUDED

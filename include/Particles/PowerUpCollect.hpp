@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef POWERUPCOLLECT_HPP_INCLUDED
-# define POWERUPCOLLECT_HPP_INCLUDED
+#pragma once
 
 #include "Particles/Particle.hpp"
 
@@ -38,7 +37,6 @@ class PowerUpCollect: public Particle<PowerUpCollect> {
         static std::list<PowerUpCollect*> activeParticles_;
 };
 
-#endif // POWERUPCOLLECT_HPP_INCLUDED
 
 
 

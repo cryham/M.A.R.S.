@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef TRACK_HPP_INCLUDED
-# define TRACK_HPP_INCLUDED
+#pragma once
 
 #include "System/Vector2f.hpp"
 #include "System/Color3f.hpp"
@@ -45,6 +44,5 @@ class Track {
         std::vector<Vector2f> anchors_;
 };
 
-#endif // TRACK_HPP_INCLUDED
 
 

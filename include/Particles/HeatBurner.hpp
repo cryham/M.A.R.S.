@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef HEATBURNER_HPP_INCLUDED
-# define HEATBURNER_HPP_INCLUDED
+#pragma once
 
 #include "Particles/Particle.hpp"
 
@@ -33,5 +32,4 @@ class HeatBurner: public Particle<HeatBurner> {
         static std::list<HeatBurner*> activeParticles_;
 };
 
-#endif // HEATBURNER_HPP_INCLUDED
 

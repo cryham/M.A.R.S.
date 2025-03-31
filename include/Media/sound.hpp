@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef SOUND_HPP_INCLUDED
-# define SOUND_HPP_INCLUDED
+#pragma once
 
 #include "System/Vector2f.hpp"
 #include "defines.hpp"
@@ -45,4 +44,3 @@ namespace sound {
     void playSound (SoundType type, Vector2f const& position = Vector2f(SPACE_X_RESOLUTION*0.5f, 0), float volume = 100.f);
 }
 
-#endif // SOUND_HPP_INCLUDED

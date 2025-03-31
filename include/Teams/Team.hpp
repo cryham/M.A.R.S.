@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef TEAM_HPP_INCLUDED
-# define TEAM_HPP_INCLUDED
+#pragma once
 
 #include "System/Color3f.hpp"
 #include "Controllers/controllers.hpp"
@@ -73,5 +72,4 @@ class Team {
         mutable int points_;
 };
 
-#endif // TEAM_HPP_INCLUDED
 

@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef CHECKBOX_HPP_INCLUDED
-# define CHECKBOX_HPP_INCLUDED
+#pragma once
 
 #include "Interface/UiElement.hpp"
 #include "Interface/Label.hpp"
@@ -40,6 +39,4 @@ class Checkbox: public UiElement {
         Label* label_;
         sf::String* toolTip_;
 };
-
-#endif
 

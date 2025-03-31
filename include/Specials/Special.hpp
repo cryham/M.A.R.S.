@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef SPECIAL_HPP_INCLUDED
-# define SPECIAL_HPP_INCLUDED
+#pragma once
 
 #include "System/timer.hpp"
 #include "Specials/specials.hpp"
@@ -66,5 +65,4 @@ class Special {
         sf::String name_;
 };
 
-#endif // SPECIAL_HPP_INCLUDED
 

@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef MAINMENU_HPP_INCLUDED
-# define MAINMENU_HPP_INCLUDED
+#pragma once
 
 #include "Interface/UiWindow.hpp"
 
@@ -40,4 +39,3 @@ class MainMenu: public UiWindow
         static bool kStartLocal_, kStartTut_, kStartMulti_, kJoinMulti_, kOptions_, kAbout_, kExit_;
 };
 
-#endif // MAINMENU_HPP_INCLUDED

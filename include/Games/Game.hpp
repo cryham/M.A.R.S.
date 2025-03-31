@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef GAME_HPP_INCLUDED
-# define GAME_HPP_INCLUDED
+#pragma once
 
 #include "Games/games.hpp"
 
@@ -66,7 +65,6 @@ class Game {
         bool            ended_;
 };
 
-#endif // GAME_HPP_INCLUDED
 
 
 

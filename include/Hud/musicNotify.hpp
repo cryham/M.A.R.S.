@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef MUSICNOTIFY_HPP_INCLUDED
-# define MUSICNOTIFY_HPP_INCLUDED
+#pragma once
 
 #include <string>
 
@@ -29,5 +28,4 @@ namespace musicNotify {
     void show(std::string const& fileName);
 }
 
-#endif // MUSICNOTIFY_HPP_INCLUDED
 

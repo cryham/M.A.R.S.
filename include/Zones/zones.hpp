@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef ZONES_HPP_INCLUDED
-# define ZONES_HPP_INCLUDED
+#pragma once
 
 # define NO_ZONE 0
 # define OWN_HOME 1
@@ -90,5 +89,4 @@ namespace zones {
     void clear();
 }
 
-#endif // ZONES_HPP_INCLUDED
 

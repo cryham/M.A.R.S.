@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef PARTICLES_HPP_INCLUDED
-# define PARTICLES_HPP_INCLUDED
+#pragma once
 
 #include "System/Vector2f.hpp"
 #include "System/Color3f.hpp"
@@ -135,4 +134,3 @@ namespace particles {
     void clear();
 }
 
-#endif // PARTICLES_HPP_INCLUDED

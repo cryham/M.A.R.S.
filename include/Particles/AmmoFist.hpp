@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef AMMOFIST_HPP_INCLUDED
-# define AMMOFIST_HPP_INCLUDED
+#pragma once
 
 #include "Particles/Particle.hpp"
 
@@ -38,7 +37,6 @@ class AmmoFist: public Particle<AmmoFist> {
         static std::list<AmmoFist*> activeParticles_;
 };
 
-#endif // AMMOFIST_HPP_INCLUDED
 
 
 

@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef SPECIALS_HPP_INCLUDED
-# define SPECIALS_HPP_INCLUDED
+#pragma once
 
 class Special;
 class Ship;
@@ -29,5 +28,4 @@ namespace specials {
     Special* createPrev(SpecialType type, Ship* parent);
 }
 
-#endif // SPECIALS_HPP_INCLUDED
 

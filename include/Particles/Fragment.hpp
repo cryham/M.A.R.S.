@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef FRAGMENT_HPP_INCLUDED
-# define FRAGMENT_HPP_INCLUDED
+#pragma once
 
 #include "Particles/Particle.hpp"
 
@@ -36,6 +35,5 @@ class Fragment: public Particle<Fragment> {
         static std::list<Fragment*> activeParticles_;
 };
 
-#endif // FRAGMENT_HPP_INCLUDED
 
 

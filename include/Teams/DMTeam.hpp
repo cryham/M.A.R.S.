@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef DMTEAM_HPP_INCLUDED
-# define DMTEAM_HPP_INCLUDED
+#pragma once
 
 #include "Teams/Team.hpp"
 
@@ -36,4 +35,3 @@ class DMTeam: public Team
         std::vector<Vector2f> powerUpLocations_;
 };
 
-#endif // DMTEAM_HPP_INCLUDED

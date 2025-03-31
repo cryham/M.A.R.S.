@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef COLOR4F_HPP_INCLUDED
-# define COLOR4F_HPP_INCLUDED
+#pragma once
 
 #include <cmath>
 #include <algorithm>
@@ -112,4 +111,3 @@ Color3f      operator-  (Color3f const& lhs, Color3f const& rhs);
 /// Division of a color by a float.
 Color3f      operator/  (Color3f const& lhs, float rhs);
 
-#endif //COLOR4F_HPP_INCLUDED

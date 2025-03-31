@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef COUNTDOWN_HPP_INCLUDED
-# define COUNTDOWN_HPP_INCLUDED
+#pragma once
 
 #include "Hud/HudElement.hpp"
 
@@ -25,7 +24,6 @@ class CountDown: public HudElement {
         void draw() const;
 };
 
-#endif // CANNON_HPP_INCLUDED
 
 
 

@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef COLORPICKERWINDOW_HPP_INCLUDED
-# define COLORPICKERWINDOW_HPP_INCLUDED
+#pragma once
 
 #include "Interface/UiWindow.hpp"
 
@@ -44,4 +43,3 @@ class ColorPickerWindow: public UiWindow
         Color3f*  color_;
 };
 
-#endif // COLORPICKERWINDOW_HPP_INCLUDED

@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef PARTICLE_HPP_INCLUDED
-# define PARTICLE_HPP_INCLUDED
+#pragma once
 
 #include "SpaceObjects/MobileSpaceObject.hpp"
 #include "System/timer.hpp"
@@ -172,4 +171,3 @@ class Particle: public MobileSpaceObject
         float lifeTime_;
 };
 
-#endif // PARTICLE_HPP_INCLUDED

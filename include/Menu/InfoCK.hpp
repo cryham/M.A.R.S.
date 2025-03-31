@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef INFOCK_HPP_INCLUDED
-# define INFOCK_HPP_INCLUDED
+#pragma once
 
 #include "Interface/UiWindow.hpp"
 
@@ -41,7 +40,6 @@ class InfoCK: public UiWindow {
         static bool kClose_;
 };
 
-#endif // INFOCK_HPP_INCLUDED
 
 
 

@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef RADIOBUTTON_HPP_INCLUDED
-# define RADIOBUTTON_HPP_INCLUDED
+#pragma once
 
 #include "Interface/UiElement.hpp"
 #include "Interface/Label.hpp"
@@ -24,7 +23,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 class RadioGroup;
 
-class RadioButton: public UiElement {
+class RadioButton: public UiElement
+{
     public:
         RadioButton(sf::String* text, sf::String* toolTip, bool* value, Vector2f const& topLeft, int width, bool offSwitchable = false);
         ~RadioButton();
@@ -46,7 +46,4 @@ class RadioButton: public UiElement {
         bool offSwitchable_;
         sf::String* toolTip_;
 };
-
-#endif
-
 

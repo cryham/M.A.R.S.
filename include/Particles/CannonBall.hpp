@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef CANNONBALL_HPP_INCLUDED
-# define CANNONBALL_HPP_INCLUDED
+#pragma once
 
 #include "Particles/Particle.hpp"
 
@@ -34,5 +33,4 @@ class CannonBall: public Particle<CannonBall> {
         static std::list<CannonBall*> activeParticles_;
 };
 
-#endif // CANNONBALL_HPP_INCLUDED
 

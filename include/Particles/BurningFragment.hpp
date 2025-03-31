@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef BURNINGFRAGMENT_HPP_INCLUDED
-# define BURNINGFRAGMENT_HPP_INCLUDED
+#pragma once
 
 #include "Particles/Particle.hpp"
 
@@ -39,5 +38,4 @@ class BurningFragment: public Particle<BurningFragment> {
         static std::list<BurningFragment*> activeParticles_;
 };
 
-#endif // BURNINGFRAGMENT_HPP_INCLUDED
 

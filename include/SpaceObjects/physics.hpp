@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef PHYSICS_HPP_INCLUDED
-# define PHYSICS_HPP_INCLUDED
+#pragma once
 
 #include "System/Vector2f.hpp"
 
@@ -47,4 +46,3 @@ namespace physics {
     void clear              ();
 }
 
-#endif // PHYSICS_HPP_INCLUDED

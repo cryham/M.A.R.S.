@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef SHIP_HPP_INCLUDED
-# define SHIP_HPP_INCLUDED
+#pragma once
 
 #include "SpaceObjects/MobileSpaceObject.hpp"
 #include "Weapons/Weapon.hpp"
@@ -116,4 +115,3 @@ class Ship: public MobileSpaceObject {
         int collisionCount_;
 };
 
-#endif // SHIP_HPP_INCLUDED

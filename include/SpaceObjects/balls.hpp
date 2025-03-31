@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef BALLS_HPP_INCLUDED
-# define BALLS_HPP_INCLUDED
+#pragma once
 
 #include "System/Vector2f.hpp"
 #include "SpaceObjects/Ball.hpp"
@@ -34,4 +33,3 @@ namespace balls {
     void clear();
 }
 
-#endif // BALLS_HPP_INCLUDED

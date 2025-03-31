@@ -15,16 +15,18 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef BUTTON_HPP_INCLUDED
-# define BUTTON_HPP_INCLUDED
+#pragma once
 
 #include "Interface/UiElement.hpp"
 #include "Interface/Label.hpp"
 #include "Media/text.hpp"
 
-class Button: public UiElement {
+class Button: public UiElement
+{
     public:
-        Button (sf::String* text, sf::String* toolTip, bool* key, Vector2f const& topLeft, int width, int height, int align = TEXT_ALIGN_CENTER, sf::Font* font = NULL);
+        Button (sf::String* text, sf::String* toolTip, bool* key,
+            Vector2f const& topLeft, int width, int height,
+            int align = TEXT_ALIGN_CENTER, sf::Font* font = NULL);
         ~Button ();
 
         void mouseMoved(Vector2f const& position);
@@ -42,4 +44,3 @@ class Button: public UiElement {
         sf::String* toolTip_;
 };
 
-#endif

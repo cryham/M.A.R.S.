@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef AMMOINSTA_HPP_INCLUDED
-# define AMMOINSTA_HPP_INCLUDED
+#pragma once
 
 #include "Particles/Particle.hpp"
 
@@ -44,6 +43,5 @@ class AmmoInsta: public Particle<AmmoInsta> {
         Color3f color_;
 };
 
-#endif // AMMOINSTA_HPP_INCLUDED
 
 

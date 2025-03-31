@@ -15,10 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-
-
-# ifndef HOMEZONE_HPP_INCLUDED
-# define HOMEZONE_HPP_INCLUDED
+#pragma once
 
 #include "Zones/Zone.hpp"
 
@@ -43,4 +40,3 @@ class HomeZone: public Zone {
         int homeSide_;
 };
 
-#endif // HOMEZONE_HPP_INCLUDED

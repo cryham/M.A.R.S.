@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef HEAT_HPP_INCLUDED
-# define HEAT_HPP_INCLUDED
+#pragma once
 
 #include "Particles/Particle.hpp"
 
@@ -33,5 +32,4 @@ class Heat: public Particle<Heat> {
         static std::list<Heat*> activeParticles_;
 };
 
-#endif // HEAT_HPP_INCLUDED
 

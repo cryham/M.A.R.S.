@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef VECTOR2F_HPP_INCLUDED
-# define VECTOR2F_HPP_INCLUDED
+#pragma once
 
 #include <iostream>
 
@@ -107,4 +106,3 @@ bool clockWise(Vector2f const& first, Vector2f const& second);
 /// Creates an output like [x, y].
 std::ostream& operator<< (std::ostream& os, Vector2f const& rhs);
 
-#endif //VECTOR2F_HPP_INCLUDED

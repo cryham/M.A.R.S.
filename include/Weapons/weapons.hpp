@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef WEAPONS_HPP_INCLUDED
-# define WEAPONS_HPP_INCLUDED
+#pragma once
 
 class Weapon;
 class Ship;
@@ -31,4 +30,3 @@ namespace weapons {
     Weapon* createPrev(WeaponType type, Ship* parent);
 }
 
-#endif // WEAPONS_HPP_INCLUDED

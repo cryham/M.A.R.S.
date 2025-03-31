@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef CANNON_HPP_INCLUDED
-# define CANNON_HPP_INCLUDED
+#pragma once
 
 #include "DecoObjects/DecoObject.hpp"
 
@@ -34,7 +33,6 @@ class Cannon: public DecoObject {
         float rotation_;
 };
 
-#endif // CANNON_HPP_INCLUDED
 
 
 

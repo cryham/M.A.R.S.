@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef DROPDOWNWINDOW_HPP_INCLUDED
-# define DROPDOWNWINDOW_HPP_INCLUDED
+#pragma once
 
 #include "Interface/UiWindow.hpp"
 
@@ -41,4 +40,3 @@ class DropDownWindow: public UiWindow
         std::vector<std::pair<sf::String, bool> >  elements_;
 };
 
-#endif // DROPDOWNWINDOW_HPP_INCLUDED

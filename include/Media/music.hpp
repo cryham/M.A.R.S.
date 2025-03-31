@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef MUSIC_HPP_INCLUDED
-# define MUSIC_HPP_INCLUDED
+#pragma once
 
 #include <SFML/Audio.hpp>
 
@@ -49,4 +48,3 @@ namespace music {
     void setGlobalVolume();
 }
 
-#endif // MUSIC_HPP_INCLUDED

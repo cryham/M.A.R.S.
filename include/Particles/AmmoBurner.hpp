@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef AMMOBURNER_HPP_INCLUDED
-# define AMMOBURNER_HPP_INCLUDED
+#pragma once
 
 #include "Particles/Particle.hpp"
 
@@ -39,6 +38,5 @@ class AmmoBurner: public Particle<AmmoBurner> {
         static std::list<AmmoBurner*> activeParticles_;
 };
 
-#endif // AMMOBURNER_HPP_INCLUDED
 
 

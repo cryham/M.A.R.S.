@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef FONT_HPP_INCLUDED
-# define FONT_HPP_INCLUDED
+#pragma once
 
 #include "System/settings.hpp"
 
@@ -30,5 +29,4 @@ namespace font {
     sf::Font* getFont(int languageID = settings::C_languageID);
 }
 
-#endif // FONT_HPP_INCLUDED
 

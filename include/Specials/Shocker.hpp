@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef SHOCKER_HPP_INCLUDED
-# define SHOCKER_HPP_INCLUDED
+#pragma once
 
 #include "Specials/Special.hpp"
 #include "SpaceObjects/Ball.hpp"
@@ -47,4 +46,3 @@ class Shocker: public Special
         mutable Ball* ballTarget_;
 };
 
-#endif // SHOCKER_HPP_INCLUDED

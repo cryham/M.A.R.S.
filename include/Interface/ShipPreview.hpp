@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef COLORPREVIEW_HPP_INCLUDED
-# define COLORPREVIEW_HPP_INCLUDED
+#pragma once
 
 #include "Interface/UiElement.hpp"
 #include "System/Color3f.hpp"
@@ -34,6 +33,3 @@ class ShipPreview: public UiElement {
         Color3f* teamColor_;
         int*     graphic_;
 };
-
-#endif
-

@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef VERTICALSLIDER_HPP_INCLUDED
-# define VERTICALSLIDER_HPP_INCLUDED
+#pragma once
 
 #include "Interface/UiElement.hpp"
 #include "Interface/Label.hpp"
@@ -38,6 +37,5 @@ class VerticalSlider: public UiElement {
         float minValue_, maxValue_;
 };
 
-#endif //VERTICALSLIDER_HPP_INCLUDED
 
 

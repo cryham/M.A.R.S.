@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef SPACEBALL_HPP_INCLUDED
-# define SPACEBALL_HPP_INCLUDED
+#pragma once
 
 #include "Games/Game.hpp"
 
@@ -36,7 +35,6 @@ class SpaceBall: public Game {
         void restart();
 };
 
-#endif // SPACEBALL_HPP_INCLUDED
 
 
 

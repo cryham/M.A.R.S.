@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef COMBOBOX_HPP_INCLUDED
-# define COMBOBOX_HPP_INCLUDED
+#pragma once
 
 #include "Interface/UiElement.hpp"
 #include "Interface/Label.hpp"
@@ -51,5 +50,4 @@ class ComboBox: public UiElement {
         sf::String* toolTip_;
 };
 
-#endif // COMBOBOX_HPP_INCLUDED
 

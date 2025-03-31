@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef RADIOGROUP_HPP_INCLUDED
-# define RADIOGROUP_HPP_INCLUDED
+#pragma once
 
 #include "Interface/UiElement.hpp"
 #include "Interface/RadioButton.hpp"
@@ -50,6 +49,3 @@ class RadioGroup: public UiElement {
             std::vector<RadioButton*> radioButtons_;
             RadioButton* focusedButton_;
 };
-
-#endif
-

@@ -26,7 +26,7 @@ Label::Label (sf::String* text, int textAlign, Vector2f const& topLeft, float fo
     text_(text),
     font_(font),
     textAlign_(textAlign),
-    fontSize_(fontSize),
+    fontSize_(fontSize), //*scale_),
     color_(color),
     interactive_(interactive) {}
 

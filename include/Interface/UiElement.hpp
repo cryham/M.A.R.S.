@@ -52,6 +52,8 @@ class UiElement {
         static void setColor4f(float r, float g, float b, float a);
         static void setColor3f(float r, float g, float b);
         static Color3f getColor3f(float r, float g, float b);
+    
+        static float scale_;
 
     protected:
         int width() const;

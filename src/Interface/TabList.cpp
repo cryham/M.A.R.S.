@@ -27,9 +27,10 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # include <SFML/OpenGL.hpp>
 
 TabList::TabList (Vector2f const& topLeft, int width, int height):
-    UiElement(topLeft, width, height),
+    UiElement(topLeft * 1.f/scale_,  width * 1.f/scale_, height),
     focusedTab_(NULL),
-    lastTabEnd_(0) {}
+    lastTabEnd_(0)
+{   }
 
 TabList::~TabList() {
     for (std::vector<Tab*>::iterator i=tabs_.begin(); i != tabs_.end(); ++i)
@@ -169,9 +170,11 @@ void TabList::addTab(Tab* toBeAdded) {
         toBeAdded->active_ = true;
 
     toBeAdded->topLeft_ = Vector2f(lastTabEnd_, 0.f);
+    toBeAdded->width_ *= scale_;
 
     toBeAdded->label_ = new Label(toBeAdded->name_, TEXT_ALIGN_CENTER,
-        Vector2f(lastTabEnd_+toBeAdded->width_/2, -6), 12.f, getColor3f(0.65f, 0.65f, 0.65f), false);
+        Vector2f(lastTabEnd_+toBeAdded->width_/2, -6) * 1.f/scale_,
+        12.f, getColor3f(0.85f, 0.95f, 1.0f), false);
     toBeAdded->label_->setParent(toBeAdded);
 
     tabs_.push_back(toBeAdded);

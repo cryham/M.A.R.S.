@@ -27,16 +27,20 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # include <SFML/OpenGL.hpp>
 # include <iostream>
 
+float UiElement::scale_ = 3.f/2.f;  // global UI scale
+
 UiElement::UiElement(Vector2f const& topLeft, int width, int height):
     parent_(NULL),
-    topLeft_(topLeft),
-    width_(width),
-    height_(height),
+    topLeft_(topLeft * scale_),
+    width_(width * scale_),
+    height_(height * scale_),
     hovered_(false),
     focused_(false),
     pressed_(false),
     hoveredFadeTime_(0.f),
-    focusedFadeTime_(0.f) {}
+    focusedFadeTime_(0.f)
+{
+}
 
 void UiElement::mouseMoved(Vector2f const& position) {
     Vector2f topLeftAbs(getTopLeft());

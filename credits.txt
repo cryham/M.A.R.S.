@@ -1,6 +1,7 @@
 
 *************************************
-M.A.R.S. - a ridiculous Shooter 0.7.0
+M.A.R.S. - a ridiculous Shooter
+CryHam's fork, ver 0.8.0
 *************************************
 
 Credits:

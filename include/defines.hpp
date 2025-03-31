@@ -19,9 +19,9 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # define DEFINES_HPP_INCLUDED
 
 # define VERSION_MAJOR               "0"
-# define VERSION_MINOR               "7"
-# define VERSION_PATCH               "5"
-# define VERSION_REVIS               "216"
+# define VERSION_MINOR               "8"
+# define VERSION_PATCH               "0"
+# define VERSION_REVIS               "1"
 
 # define SHIP_GRAPHICS_COUNT         15
 # define SHIP_RADIUS                 18.f

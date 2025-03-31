@@ -91,6 +91,9 @@ void UiWindow::textEntered(sf::Uint32 keyCode) {
 
 void UiWindow::draw () const {
 
+    if (!topMost_)
+        return;
+
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
     Vector2f viewPort = window::getViewPort();
@@ -101,7 +104,7 @@ void UiWindow::draw () const {
 
     glBegin(GL_QUADS);
         // bg
-        setColor4f(0.0,0.05,0.1, 0.9);
+        setColor4f(0.0,0.05,0.1, 0.6);  //`
         glVertex2f(origin.x_-10,origin.y_-10);
         glVertex2f(origin.x_+width_+10,origin.y_-10);
         glVertex2f(origin.x_+width_+10,origin.y_+height_+10);

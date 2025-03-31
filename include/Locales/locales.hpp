@@ -94,6 +94,7 @@ namespace locales {
         
         AccelerateBack, Boost, NextWeapon, PrevWeapon,
         Scale, ttScale, NoConfirmations, ttNoConfirmations,
+        MapOptions,
 
         COUNT  /// amount of entries in the enum
     };

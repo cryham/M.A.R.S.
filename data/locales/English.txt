@@ -382,5 +382,6 @@
 275 Scales the UI size
 276 No confirmations
 277 No dialog confirmations for game or menu quit
+278 Map Options
 
-// 275
+// 278

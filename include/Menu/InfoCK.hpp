@@ -31,7 +31,9 @@ class InfoCK: public UiWindow {
         static void reset();
 
     private:
-        InfoCK(int width, int height): UiWindow(width, height){}
+        InfoCK(int width, int height
+            ): UiWindow(width, height)
+        {   }
         InfoCK(InfoCK const& copy);
 
         static UiWindow* instance_;

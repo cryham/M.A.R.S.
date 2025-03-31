@@ -46,7 +46,7 @@ UiWindow* TutorialWindow::get(sf::String* title, sf::String* text, int index, bo
             index_ = sf::String(sstr.str());
             instance_->addWidget(new Label(&index_, TEXT_ALIGN_RIGHT, Vector2f(380,18), 12.f, getColor3f(0.5f, 0.9f, 1.f), false));
         }
-        instance_->addWidget(new Line(Vector2f(10, 35), Vector2f(340, 35)));
+        // instance_->addWidget(new Line(Vector2f(10, 35), Vector2f(340, 35)));
         instance_->addWidget(new TextBox(text, Vector2f(10, 50), 380, 110));
     }
     return instance_;

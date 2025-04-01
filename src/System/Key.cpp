@@ -57,7 +57,7 @@ Key::Key(unsigned int joyID, sf::Joystick::Axis joyAxis, int strength):
     if ((joyAxis == 7 && strength == -100) || (joyAxis == 1 && strength == -100) ||
         #if defined __WIN32__
             (joyAxis == 3 && strength == -100)
-        # else
+        #else
             (joyAxis == 5 && strength == -100)
         #endif
         )
@@ -65,7 +65,7 @@ Key::Key(unsigned int joyID, sf::Joystick::Axis joyAxis, int strength):
     else if ((joyAxis == 7 && strength == 100) || (joyAxis == 1 && strength == 100) ||
         #if defined __WIN32__
             (joyAxis == 3 && strength == 100)
-        # else
+        #else
             (joyAxis == 5 && strength == 100)
         #endif
         )
@@ -89,7 +89,7 @@ Key::Key(unsigned int joyID, unsigned int joyButton):
     else if (joyButton == 6 ||
         #if defined __WIN32__
              joyButton == 7
-        # else
+        #else
              joyButton == 10
         #endif
         )
@@ -126,7 +126,7 @@ std::pair<Key::AxisType, int> Key::convertFromSFML(sf::Joystick::Axis joyAxis, i
                     result.first = aRT;
                     result.second = std::abs(strength);
                 }
-            # else
+            #else
                 result.first = aLT;
                 result.second = strength*0.5 + 50;
             #endif
@@ -136,7 +136,7 @@ std::pair<Key::AxisType, int> Key::convertFromSFML(sf::Joystick::Axis joyAxis, i
             #if defined __WIN32__
                 if (strength < 0) result.first = aARup;
                 else              result.first = aARdown;
-            # else
+            #else
                 result.first = aRT;
                 result.second = strength*0.5 + 50;
             #endif
@@ -176,7 +176,7 @@ sf::Joystick::Axis Key::convertToSFML(AxisType joyAxis)
     {
         #if defined __WIN32__
             return sf::Joystick::Z;
-        # else
+        #else
             return sf::Joystick::R;
         #endif
     }
@@ -185,7 +185,7 @@ sf::Joystick::Axis Key::convertToSFML(AxisType joyAxis)
     else if (joyAxis == aARup || joyAxis == aARdown)
         #if defined __WIN32__
             return sf::Joystick::R;
-        # else
+        #else
             return sf::Joystick::V;
         #endif
     else

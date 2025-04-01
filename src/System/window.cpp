@@ -235,7 +235,7 @@ namespace window
         window_.setVerticalSyncEnabled(settings::C_vsync);
         //window_.SetFramerateLimit(15);
 
-        # ifndef __APPLE__
+        #ifndef __APPLE__
             // apple uses bundle icon instead
             sf::Image icon;
             icon.loadFromFile(settings::C_dataPath + "tex/icon.png");
@@ -403,7 +403,7 @@ namespace window
         filename << "ScreenShot_" << timeinfo->tm_year << timeinfo->tm_mon << timeinfo->tm_mday
             << timeinfo->tm_hour << timeinfo->tm_min << timeinfo->tm_sec << "." << settings::C_screenShotFormat;
 
-        # ifdef __linux__
+        #ifdef __linux__
             mkdir((settings::C_configPath + "screenshots/").c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
             if (shot.saveToFile(settings::C_configPath + "screenshots/" + filename.str())) {
                 std::cout << "Saved screenshot to " << settings::C_configPath << "screenshots/" << filename.str() << "." << std::endl;
@@ -413,7 +413,7 @@ namespace window
             }
         #endif
 
-        # ifdef __APPLE__
+        #ifdef __APPLE__
             mkdir((settings::C_configPath + "screenshots/").c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
             if (shot.saveToFile(settings::C_configPath + "screenshots/" + filename.str())) {
                 std::cout << "Saved screenshot to " << settings::C_configPath << "screenshots/" << filename.str() << "." << std::endl;

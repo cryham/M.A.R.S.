@@ -17,11 +17,11 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #pragma once
 
-# define NO_ZONE 0
-# define OWN_HOME 1
-# define OWN_TEAM 2
-# define ENEMY_HOME 3
-# define ENEMY_TEAM 4
+#define NO_ZONE 0
+#define OWN_HOME 1
+#define OWN_TEAM 2
+#define ENEMY_HOME 3
+#define ENEMY_TEAM 4
 
 #include "System/Vector2f.hpp"
 #include "Zones/Zone.hpp"

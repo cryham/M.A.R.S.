@@ -22,7 +22,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Specials/Special.hpp"
 #include "DecoObjects/Ice.hpp"
 
-# define ITEM_CANNON_CONTROL 0
+#define ITEM_CANNON_CONTROL 0
 
 class Player;
 class PowerUp;

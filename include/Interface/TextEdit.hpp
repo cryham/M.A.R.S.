@@ -20,9 +20,9 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Interface/UiElement.hpp"
 #include "Interface/Label.hpp"
 
-# define TEXT_EDIT  0
-# define PORT_EDIT  1
-# define IP_EDIT    2
+#define TEXT_EDIT  0
+#define PORT_EDIT  1
+#define IP_EDIT    2
 
 class TextEdit: public UiElement
 {

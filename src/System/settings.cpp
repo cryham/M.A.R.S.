@@ -266,7 +266,7 @@ namespace settings
     bool load()
     {
         // check whether application directory in the home diretory exists, if not create it
-        # ifdef __linux__
+        #ifdef __linux__
             std::string home(getenv("HOME"));
             if (*home.rbegin() != '/') home += '/';
             mkdir((home + ".marsshooter/").c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
@@ -279,7 +279,7 @@ namespace settings
             CreateDirectory((home + "/.marsshooter/").c_str(), NULL);
         #endif
 
-        # ifdef __APPLE__
+        #ifdef __APPLE__
             std::string home(getenv("HOME"));
             if (*home.rbegin() != '/') home += '/';
             mkdir((home + "Library/Preferences/mars/").c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
@@ -291,7 +291,7 @@ namespace settings
             std::cout << "Searching for configuration file... " << std::flush;
             C_configPath = "./";
 
-            # ifdef __linux__
+            #ifdef __linux__
                 std::string home(getenv("HOME"));
                 if (*home.rbegin() != '/') home += '/';
 
@@ -320,7 +320,7 @@ namespace settings
                     C_configPath =      home + "/.marsshooter/";
             #endif
 
-            # ifdef __APPLE__
+            #ifdef __APPLE__
                 std::string home(getenv("HOME"));
                 if (*home.rbegin() != '/') home += '/';
 
@@ -344,7 +344,7 @@ namespace settings
             std::cout << "Searching for data files... " << std::flush;
             C_dataPath = "./data/";
 
-            # ifdef __linux__
+            #ifdef __linux__
                 if (std::ifstream((C_dataPath + "locales/English.txt").c_str()))
                     success = true;
                 else if (std::ifstream("/usr/share/marsshooter/locales/English.txt")) {
@@ -370,7 +370,7 @@ namespace settings
                     success = true;
             #endif
 
-            # ifdef __APPLE__
+            #ifdef __APPLE__
                 if (std::ifstream("../Resources/data/locales/English.txt")) {
                     C_dataPath = "../Resources/data/";
                     success = true;

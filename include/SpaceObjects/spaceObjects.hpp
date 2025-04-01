@@ -17,10 +17,10 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #pragma once
 
-# define HOME_LEFT   0
-# define HOME_RIGHT  1
-# define HOME_MIDDLE 2
-# define HOME_RALLY  3
+#define HOME_LEFT   0
+#define HOME_RIGHT  1
+#define HOME_MIDDLE 2
+#define HOME_RALLY  3
 
 #include "System/Color3f.hpp"
 #include "System/Vector2f.hpp"

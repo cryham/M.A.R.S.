@@ -26,11 +26,11 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include <vector>
 #include <SFML/OpenGL.hpp>
 
-# define WAITING   0
-# define FADE_IN   1
-# define VISIBLE   2
-# define FADE_OUT  3
-# define INVISIBLE 4
+#define WAITING   0
+#define FADE_IN   1
+#define VISIBLE   2
+#define FADE_OUT  3
+#define INVISIBLE 4
 
 namespace toolTip {
 

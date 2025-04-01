@@ -17,9 +17,9 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #pragma once
 
-# define TEXT_ALIGN_LEFT   0
-# define TEXT_ALIGN_CENTER 1
-# define TEXT_ALIGN_RIGHT  2
+#define TEXT_ALIGN_LEFT   0
+#define TEXT_ALIGN_CENTER 1
+#define TEXT_ALIGN_RIGHT  2
 
 #include "Media/font.hpp"
 #include "System/Vector2f.hpp"

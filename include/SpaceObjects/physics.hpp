@@ -22,9 +22,9 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include <vector>
 #include <list>
 
-# define MOBILES   1
-# define STATICS   2
-# define PARTICLES 4
+#define MOBILES   1
+#define STATICS   2
+#define PARTICLES 4
 
 class SpaceObject;
 class MobileSpaceObject;

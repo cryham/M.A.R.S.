@@ -24,7 +24,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 class RadioButton;
 
-class RadioGroup: public UiElement {
+class RadioGroup: public UiElement
+{
         public:
             RadioGroup();
             ~RadioGroup();

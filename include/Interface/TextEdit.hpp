@@ -24,7 +24,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 # define PORT_EDIT  1
 # define IP_EDIT    2
 
-class TextEdit: public UiElement {
+class TextEdit: public UiElement
+{
     public:
         TextEdit (sf::String* text, sf::String* value, sf::String fallBack,
             Vector2f const& topLeft, int width, int labelWidth, int type, int maxLength=0);

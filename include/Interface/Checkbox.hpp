@@ -20,7 +20,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Interface/UiElement.hpp"
 #include "Interface/Label.hpp"
 
-class Checkbox: public UiElement {
+class Checkbox: public UiElement
+{
     public:
         Checkbox (sf::String* text, sf::String* toolTip, bool* value, Vector2f const& topLeft, int width);
         ~Checkbox ();

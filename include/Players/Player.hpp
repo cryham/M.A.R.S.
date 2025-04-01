@@ -23,15 +23,16 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 class Team;
 
-class Player {
+class Player
+{
     public:
         Player(controllers::ControlType controlType);
 
         void                      resetPoints();
 
-        Team*                     team()    const {return team_;}
-        Ship*                     ship()    const {return ship_;}
-        controllers::ControlType  type()    const {return controlType_;}
+        Team*                     team()    const {  return team_;  }
+        Ship*                     ship()    const {  return ship_;  }
+        controllers::ControlType  type()    const {  return controlType_;  }
 
         virtual Color3f const&    color()   const = 0;
         virtual sf::String const& name()    const = 0;
@@ -53,5 +54,3 @@ class Player {
             goals_, selfGoals_;
         controllers::ControlType controlType_;
 };
-
-

@@ -22,7 +22,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include <vector>
 
-class TabList: public UiElement {
+class TabList: public UiElement
+{
     public:
         TabList (Vector2f const& topLeft, int width, int height);
         ~TabList();

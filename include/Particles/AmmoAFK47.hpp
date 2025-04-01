@@ -19,9 +19,11 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "Particles/Particle.hpp"
 
-class AmmoAFK47: public Particle<AmmoAFK47> {
+class AmmoAFK47: public Particle<AmmoAFK47>
+{
     public:
-        AmmoAFK47(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity, Color3f const& color, Player* damageSource);
+        AmmoAFK47(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,
+            Color3f const& color, Player* damageSource);
 
         void update();
         void draw() const;
@@ -34,5 +36,3 @@ class AmmoAFK47: public Particle<AmmoAFK47> {
     private:
         static std::list<AmmoAFK47*> activeParticles_;
 };
-
-

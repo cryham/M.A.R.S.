@@ -61,16 +61,15 @@ namespace window
         {
             const int windowHeight(window_.getSize().y), windowWidth(window_.getSize().x);
             sf::View view(sf::FloatRect(0,0, windowWidth, windowHeight));
-            if (static_cast<float>(windowWidth)/windowHeight > ratio) {
-
+            if (static_cast<float>(windowWidth)/windowHeight > ratio)
+            {
                 view.setViewport(sf::FloatRect((windowWidth-viewPort_.x_)*0.5f / windowWidth, 0, 1, 1));
                 glViewport((windowWidth-viewPort_.x_)*0.5f, 0, viewPort_.x_, viewPort_.y_);
-            }
-            else {
+            }else
+            {
                 view.setViewport(sf::FloatRect(0, (windowHeight-viewPort_.y_)*0.5f / windowHeight, 1, 1));
                 glViewport(0, (windowHeight-viewPort_.y_)*0.5f, viewPort_.x_, viewPort_.y_);
             }
-
             window_.setView(view);
         }
 

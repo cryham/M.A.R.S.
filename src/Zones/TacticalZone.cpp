@@ -50,21 +50,21 @@ bool TacticalZone::isInside(SpaceObject const& toBeChecked) const
 void TacticalZone::update()
 {
     shipCount_ = 0;
-    if (homeSide_ == 0) {
+    if (homeSide_ == 0)
+    {
         std::vector<Player*> const& players = teams::getTeamL()->members();
         for (std::vector<Player*>::const_iterator it = players.begin(); it != players.end(); ++it)
             if (isInside(*(*it)->ship()))
                 ++shipCount_;
         shipCount_ /= players.size();
-    }
-    else {
+    }else
+    {
         std::vector<Player*> const& players = teams::getTeamR()->members();
         for (std::vector<Player*>::const_iterator it = players.begin(); it != players.end(); ++it)
             if (isInside(*(*it)->ship()))
                 ++shipCount_;
         shipCount_ /= players.size();
     }
-
 
     if (shipCount_ != 0  && radius_ * radius_ / zones::totalTacticalArea(homeSide_) < shipCount_)
         covered_ = true;

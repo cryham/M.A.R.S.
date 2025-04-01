@@ -21,9 +21,11 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "System/Color3f.hpp"
 
-class CrushedIce: public Particle<CrushedIce> {
+class CrushedIce: public Particle<CrushedIce>
+{
     public:
-        CrushedIce(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity, Color3f const& color, Player* damageSource);
+        CrushedIce(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,
+            Color3f const& color, Player* damageSource);
 
         void update();
         void draw() const;
@@ -36,7 +38,3 @@ class CrushedIce: public Particle<CrushedIce> {
         Color3f color_;
         static std::list<CrushedIce*> activeParticles_;
 };
-
-
-
-

@@ -19,9 +19,11 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "Particles/Particle.hpp"
 
-class BurningFragment: public Particle<BurningFragment> {
+class BurningFragment: public Particle<BurningFragment>
+{
     public:
-        BurningFragment(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity, Color3f const& color, Player* damageSource);
+        BurningFragment(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,
+            Color3f const& color, Player* damageSource);
         ~BurningFragment();
 
         void update();
@@ -37,5 +39,3 @@ class BurningFragment: public Particle<BurningFragment> {
         float timer1_, timer2_;
         static std::list<BurningFragment*> activeParticles_;
 };
-
-

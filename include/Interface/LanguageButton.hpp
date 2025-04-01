@@ -22,7 +22,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 class UiWindow;
 
-class LanguageButton: public UiElement {
+class LanguageButton: public UiElement
+{
     public:
         LanguageButton (sf::String* text, Vector2f const& topLeft, int width, int labelWidth=185);
         ~LanguageButton ();

@@ -20,13 +20,16 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Interface/UiElement.hpp"
 #include "System/Color3f.hpp"
 
-class ShipPreview: public UiElement {
+class ShipPreview: public UiElement
+{
     public:
-        ShipPreview (Color3f* color, Color3f* teamColor, int* graphic, Vector2f const& topLeft);
+        ShipPreview (Color3f* color, Color3f* teamColor,
+            int* graphic, Vector2f const& topLeft);
 
         void draw() const;
 
-        bool isTabable() const {return false;}
+        bool isTabable() const
+        {   return false;  }
 
     private:
         Color3f* color_;

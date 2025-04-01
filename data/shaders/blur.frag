@@ -9,7 +9,8 @@ uniform float radial_bright; // bright factor
 uniform vec2 radial_origin;  // blur origin
 
 
-void main(void) {
+void main(void)
+{
     float size = radial_blur;
 
     vec2 TexCoord = vec2(gl_TexCoord[0]);
@@ -22,13 +23,15 @@ void main(void) {
         gl_FragColor = texture2D(Texture,  TexCoord + radial_origin);
 }
 
-/*void main(void) {
+/*void main(void)
+{
     vec2 TexCoord = vec2(gl_TexCoord[0]);
 
     vec4 SumColor = vec4(0.0, 0.0, 0.0, 0.0);
     TexCoord += radial_size * 0.5 - radial_origin;
 
-    for (int i = 0; i < 9; i++) {
+    for (int i = 0; i < 9; i++)
+    {
         float scale = 1.0 - radial_blur * (float(i) * 0.1);
         SumColor += texture2D(Texture, TexCoord * scale + radial_origin)*(1.0 - float(i) * 0.1);
     }

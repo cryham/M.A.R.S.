@@ -21,9 +21,11 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "System/Color3f.hpp"
 
-class Dust: public Particle<Dust> {
+class Dust: public Particle<Dust>
+{
     public:
-        Dust(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity, Color3f const& color, Player* damageSource);
+        Dust(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,
+            Color3f const& color, Player* damageSource);
 
         void update();
         void draw() const;
@@ -36,6 +38,3 @@ class Dust: public Particle<Dust> {
         Color3f color_;
         static std::list<Dust*> activeParticles_;
 };
-
-
-

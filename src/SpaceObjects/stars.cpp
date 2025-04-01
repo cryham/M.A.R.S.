@@ -27,32 +27,37 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include <SFML/System.hpp>
 
-namespace stars {
-
-    namespace {
+namespace stars
+{
+    namespace
+    {
         int tex_;
         float top_, left_;
         float spawnTimer_(0.f);
     }
 
-    void init() {
+    void init()
+    {
         tex_ = randomizer::random(0, 1);
         top_ = randomizer::random(0.f, 1.f);
         left_= randomizer::random(0.f, 1.f);
         Star::init();
     }
 
-    void draw() {
+    void draw()
+    {
         glDisable(GL_BLEND);
         glEnable(GL_TEXTURE_2D);
 
         if (settings::C_StarsHigh)
-            switch (tex_) {
+            switch (tex_)
+            {
                 case 0: glBindTexture(GL_TEXTURE_2D, texture::getTexture(texture::Stars1_large)); break;
                 case 1: glBindTexture(GL_TEXTURE_2D, texture::getTexture(texture::Stars2_large)); break;
             }
         else
-            switch (tex_) {
+            switch (tex_)
+            {
                 case 0: glBindTexture(GL_TEXTURE_2D, texture::getTexture(texture::Stars1_medium)); break;
                 case 1: glBindTexture(GL_TEXTURE_2D, texture::getTexture(texture::Stars2_medium)); break;
             }

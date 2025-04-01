@@ -21,9 +21,11 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "System/Color3f.hpp"
 
-class Eruption: public Particle<Eruption> {
+class Eruption: public Particle<Eruption>
+{
     public:
-        Eruption(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity, Color3f const& color, Player* damageSource);
+        Eruption(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,
+            Color3f const& color, Player* damageSource);
 
         void update();
         void draw() const;
@@ -34,6 +36,3 @@ class Eruption: public Particle<Eruption> {
         Color3f color_;
         static std::list<Eruption*> activeParticles_;
 };
-
-
-

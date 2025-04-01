@@ -24,7 +24,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 class Home;
 
-class Track {
+class Track
+{
     public:
         Track(Home* home);
 
@@ -34,15 +35,14 @@ class Track {
         void calcTrack();
         void findAnchors();
         void addAnchor(Vector2f const& point);
+
         void sortAnchors();
         void sortLTR();
         void sortHalf (Vector2f const& origin, int startIndex, int endIndex, bool rightHalf, bool CW);
+
         void removeSharpCorners();
         void createBezier();
 
         std::vector<Vector2f> points_;
         std::vector<Vector2f> anchors_;
 };
-
-
-

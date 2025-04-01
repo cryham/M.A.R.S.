@@ -22,9 +22,11 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 class Trail;
 class Team;
 
-class AmmoInsta: public Particle<AmmoInsta> {
+class AmmoInsta: public Particle<AmmoInsta>
+{
     public:
-        AmmoInsta(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity, Color3f const& color, Player* damageSource);
+        AmmoInsta(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,
+            Color3f const& color, Player* damageSource);
         ~AmmoInsta();
 
         void update();
@@ -42,6 +44,3 @@ class AmmoInsta: public Particle<AmmoInsta> {
         Trail* trail_;
         Color3f color_;
 };
-
-
-

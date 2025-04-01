@@ -21,7 +21,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 /// A very evil sign
 
-class Evil: public DecoObject {
+class Evil: public DecoObject
+{
     public:
         void draw() const;
 };

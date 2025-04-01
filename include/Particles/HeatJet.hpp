@@ -19,9 +19,11 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "Particles/Particle.hpp"
 
-class HeatJet: public Particle<HeatJet> {
+class HeatJet: public Particle<HeatJet>
+{
     public:
-        HeatJet(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity, Color3f const& color, Player* damageSource);
+        HeatJet(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,
+            Color3f const& color, Player* damageSource);
 
         void update();
         void draw() const;
@@ -31,5 +33,3 @@ class HeatJet: public Particle<HeatJet> {
     private:
         static std::list<HeatJet*> activeParticles_;
 };
-
-

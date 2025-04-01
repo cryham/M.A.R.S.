@@ -27,7 +27,8 @@ class Home;
 class BotController;
 class KeyController;
 
-class Team {
+class Team
+{
     public:
         Team(Color3f const& color);
 
@@ -38,11 +39,12 @@ class Team {
 
         void addJob(Job const& job);
 
-        std::vector<Player*> const& members()   const {return members_;}
-        Home                 const* home()      const {return home_;}
-        Color3f              const& color()     const {return color_;}
-        int                         points()    const {return points_;}
-        int                         victories() const {return victories_;}
+        std::vector<Player*> const& members()   const {  return members_;  }
+        Home                 const* home()      const {  return home_;  }
+        Color3f              const& color()     const {  return color_;  }
+        int                         points()    const {  return points_;  }
+        int                         victories() const {  return victories_;  }
+
         void                        addStars()  const;
         void                        addPoint()  const;
         void                        subtractPoint() const;
@@ -71,5 +73,3 @@ class Team {
         mutable int victories_;
         mutable int points_;
 };
-
-

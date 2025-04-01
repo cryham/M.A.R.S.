@@ -22,7 +22,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 /// Zone: TutorialZone.
 /// A beautiful pinkish Zone, employed in the Tutorial.
 
-class TutorialZone: public Zone {
+class TutorialZone: public Zone
+{
     public:
         /// Ctor, which creates the Zone.
         TutorialZone(Vector2f const& location, float radius);

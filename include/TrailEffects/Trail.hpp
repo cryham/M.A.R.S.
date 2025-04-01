@@ -19,7 +19,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 class SpaceObject;
 
-class Trail {
+class Trail
+{
     public:
         Trail(SpaceObject* target);
 
@@ -33,5 +34,3 @@ class Trail {
     protected:
         SpaceObject* target_;
 };
-
-

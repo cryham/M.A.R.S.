@@ -19,42 +19,51 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "SpaceObjects/Home.hpp"
 
-namespace balls {
-    namespace {
+namespace balls
+{
+    namespace
+    {
         Ball* ball_(NULL);
     }
 
-    void addBall(Vector2f const& location) {
+    void addBall(Vector2f const& location)
+    {
         // temporary list of all homes
         std::vector<Home*>const& homes = spaceObjects::getHomes();
 
-        if (homes.size() >= 2 && location == Vector2f(0,0)) {
+        if (homes.size() >= 2 && location == Vector2f(0,0))
+        {
             Vector2f midPoint;
             for (std::vector<Home*>::const_iterator it = homes.begin(); it != homes.end(); ++it)
                 midPoint += (*it)->location();
             midPoint /= homes.size();
+
             ball_ = new Ball(midPoint);
-        }
-        else
+        }else
             ball_ = new Ball(location);
     }
 
-    void update() {
+    void update()
+    {
         if (ball_)
             ball_->update();
     }
 
-    void draw() {
+    void draw()
+    {
         if (ball_)
             ball_->draw();
     }
 
-    Ball* getBall() {
+    Ball* getBall()
+    {
         return ball_;
     }
 
-    void clear() {
-        if (ball_) {
+    void clear()
+    {
+        if (ball_)
+        {
             delete ball_;
             ball_ = NULL;
         }

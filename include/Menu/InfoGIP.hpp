@@ -21,7 +21,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 class TextBox;
 
-class InfoGIP: public UiWindow {
+class InfoGIP: public UiWindow
+{
     public:
         static UiWindow* get();
         void checkWidgets();
@@ -30,16 +31,11 @@ class InfoGIP: public UiWindow {
         static void reset();
 
     private:
-        InfoGIP(int width, int height): UiWindow(width, height){}
+        InfoGIP(int width, int height): UiWindow(width, height)
+        {   }
         InfoGIP(InfoGIP const& copy);
 
         static UiWindow* instance_;
 
         static bool kClose_;
 };
-
-
-
-
-
-

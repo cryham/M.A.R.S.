@@ -21,9 +21,11 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "System/Color3f.hpp"
 
-class AmmoH2OMG: public Particle<AmmoH2OMG> {
+class AmmoH2OMG: public Particle<AmmoH2OMG>
+{
     public:
-        AmmoH2OMG(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity, Color3f const& color, Player* damageSource);
+        AmmoH2OMG(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,
+            Color3f const& color, Player* damageSource);
 
         void update();
         void draw() const;
@@ -37,6 +39,3 @@ class AmmoH2OMG: public Particle<AmmoH2OMG> {
         Color3f color_;
         static std::list<AmmoH2OMG*> activeParticles_;
 };
-
-
-

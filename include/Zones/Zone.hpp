@@ -15,8 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-# ifndef ZONE_HPP
-# define ZONE_HPP
+#pragma once
 
 #include "System/Vector2f.hpp"
 
@@ -24,7 +23,8 @@ class SpaceObject;
 
 /// Basic interface for all Zones.
 
-class Zone {
+class Zone
+{
     public:
         /// Returns true, if the given SpaceObject is inside this Zone.
         virtual bool isInside(SpaceObject const& toBeChecked) const = 0;
@@ -33,5 +33,3 @@ class Zone {
         /// Only for debugging information.
         virtual void draw() const = 0;
 };
-
-#endif

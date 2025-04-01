@@ -22,7 +22,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 class Player;
 class Ship;
 
-class CannonControl{
+class CannonControl
+{
     public:
         CannonControl(Vector2f const& location);
 
@@ -38,10 +39,3 @@ class CannonControl{
         Ship* ship_;
         bool collected_;
 };
-
-
-
-
-
-
-

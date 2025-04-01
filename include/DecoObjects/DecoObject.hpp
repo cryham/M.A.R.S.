@@ -21,12 +21,9 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 /// A simple interface providing just a virtual draw function.
 
-class DecoObject {
+class DecoObject
+{
     public:
         /// Draws the DecoObject.
         virtual void draw() const = 0;
 };
-
-
-
-

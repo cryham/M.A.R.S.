@@ -19,9 +19,11 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "Particles/Particle.hpp"
 
-class MiniFlameSmoke: public Particle<MiniFlameSmoke> {
+class MiniFlameSmoke: public Particle<MiniFlameSmoke>
+{
     public:
-        MiniFlameSmoke(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity, Color3f const& color, Player* damageSource);
+        MiniFlameSmoke(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,
+            Color3f const& color, Player* damageSource);
 
         void update();
         void draw() const;
@@ -34,8 +36,3 @@ class MiniFlameSmoke: public Particle<MiniFlameSmoke> {
         Color3f color_;
         static std::list<MiniFlameSmoke*> activeParticles_;
 };
-
-
-
-
-

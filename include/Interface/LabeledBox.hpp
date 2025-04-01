@@ -22,7 +22,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 class Label;
 
-class LabeledBox: public UiElement {
+class LabeledBox: public UiElement
+{
     public:
         LabeledBox(sf::String* text, Vector2f const& topLeft, int width, int height);
 
@@ -30,7 +31,8 @@ class LabeledBox: public UiElement {
 
         void draw() const;
 
-        bool isTabable() const {return false;}
+        bool isTabable() const
+        {   return false;  }
 
     private:
         Label* label_;

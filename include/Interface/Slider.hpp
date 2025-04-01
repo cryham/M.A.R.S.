@@ -22,9 +22,14 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include <vector>
 
-class Slider: public UiElement {
+class Slider: public UiElement
+{
     public:
-        Slider (sf::String* text, sf::String* toolTip, int* value, int min, int max, int step, Vector2f const& topLeft, int width, int labelWidth=185, bool showValue=false, std::vector<sf::String> const& sliderNames = std::vector<sf::String>() );
+        Slider (sf::String* text, sf::String* toolTip, int* value,
+            int min, int max, int step,
+            Vector2f const& topLeft, int width, int labelWidth = 185,
+            bool showValue = false,
+            std::vector<sf::String> const& sliderNames = std::vector<sf::String>() );
         ~Slider ();
 
         void mouseLeft(bool down);

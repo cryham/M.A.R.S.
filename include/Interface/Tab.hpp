@@ -22,7 +22,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include <vector>
 
-class Tab: public UiElement {
+class Tab: public UiElement
+{
     public:
         Tab (sf::String* text, int width, bool* activated = NULL);
         ~Tab();
@@ -45,7 +46,8 @@ class Tab: public UiElement {
 
         /* virtual */
         Vector2f getTopLeft() const;
-        bool isActive() const {return active_;}
+        bool isActive() const
+        {   return active_;  }
 
         friend class TabList;
 

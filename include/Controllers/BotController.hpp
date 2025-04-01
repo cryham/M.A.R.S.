@@ -26,7 +26,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 class TacticalZone;
 
-class BotController: public Controller {
+class BotController: public Controller
+{
     public:
         /// Constructs the BotController, initializing it's members.
         /// \param slave The Player, controlled by this bot.

@@ -71,7 +71,8 @@ void SBTeam::checkPowerUps()
 
     powerUpLocations_.clear();
     std::list<PowerUp*> const& powerUps = items::getPowerUps();
-    for (std::list<PowerUp*>::const_iterator it=powerUps.begin(); it!=powerUps.end(); ++it) {
+    for (std::list<PowerUp*>::const_iterator it=powerUps.begin(); it!=powerUps.end(); ++it)
+    {
         if (!(*it)->isCollected())
         {
             powerUpLocations_.push_back((*it)->location());
@@ -94,8 +95,8 @@ void SBTeam::checkBall()
     {
         if (!ball->isVisible())
         {
-            int waitCount(settings::C_iDumb*(botControllers_.size()+1)/200);
-            for (int i=0; i<waitCount; ++i)
+            int waitCount(settings::C_iDumb * (botControllers_.size()+1) / 200);
+            for (int i=0; i < waitCount; ++i)
                 addJob(Job(Job::jWaitForBall, 5, ball));
         }else
         {

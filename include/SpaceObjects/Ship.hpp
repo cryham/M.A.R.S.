@@ -27,7 +27,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 class Player;
 class PowerUp;
 
-class Ship: public MobileSpaceObject {
+class Ship: public MobileSpaceObject
+{
     public:
         Ship(Vector2f const& location, float rotation, Player* owner);
 
@@ -114,4 +115,3 @@ class Ship: public MobileSpaceObject {
         Vector2f damageDirection_;
         int collisionCount_;
 };
-

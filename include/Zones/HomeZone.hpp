@@ -22,7 +22,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 /// Zone: HomeZone.
 /// A large round Zone around the HomePlanet.
 
-class HomeZone: public Zone {
+class HomeZone: public Zone
+{
     public:
         /// Ctor, which creates the Zone.
         HomeZone(Vector2f const& location);

@@ -25,7 +25,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 /// A Controller which updates it's associated Ship based on keyboard events.
 /// Used for local players.
 
-class KeyController: public Controller {
+class KeyController: public Controller
+{
     public:
         /// Constructs a KeyController, attached to a Player.
         /// \param slave The Player, controlled by the Keyboard.

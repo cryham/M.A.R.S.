@@ -22,9 +22,11 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include <vector>
 
-class VerticalSlider: public UiElement {
+class VerticalSlider: public UiElement
+{
     public:
-        VerticalSlider (float* value, float min, float max, Vector2f const& topLeft, int height);
+        VerticalSlider (float* value, float min, float max,
+            Vector2f const& topLeft, int height);
 
         void mouseLeft(bool down);
         void mouseMoved(Vector2f const& position);
@@ -36,6 +38,3 @@ class VerticalSlider: public UiElement {
         float* value_;
         float minValue_, maxValue_;
 };
-
-
-

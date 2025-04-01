@@ -21,9 +21,11 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "System/Color3f.hpp"
 
-class PowerUpCollect: public Particle<PowerUpCollect> {
+class PowerUpCollect: public Particle<PowerUpCollect>
+{
     public:
-        PowerUpCollect(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity, Color3f const& color, Player* damageSource);
+        PowerUpCollect(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,
+            Color3f const& color, Player* damageSource);
 
         void update();
         void draw() const;
@@ -36,7 +38,3 @@ class PowerUpCollect: public Particle<PowerUpCollect> {
         int const texY_;
         static std::list<PowerUpCollect*> activeParticles_;
 };
-
-
-
-

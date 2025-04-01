@@ -19,7 +19,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "Hud/HudElement.hpp"
 
-class Logo: public HudElement {
+class Logo: public HudElement
+{
     public:
         Logo();
 

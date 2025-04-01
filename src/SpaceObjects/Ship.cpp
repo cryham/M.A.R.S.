@@ -604,7 +604,8 @@ void Ship::onShockWave(Player* damageSource, float intensity)
 
 void Ship::setDamageSource(Player* evilOne)
 {
-    if (frozen_<=0.f) {
+    if (frozen_<=0.f)
+    {
         damageSource_ = evilOne;
         damageSourceResetTimer_ = 1.8f;
     }

@@ -46,11 +46,11 @@ namespace teams
 
     void assignHomes(Home* homeL, Home* homeR)
     {
-        if (allTeams_.size() == 2) {
+        if (allTeams_.size() == 2)
+        {
             allTeams_[0]->setHome(homeL);
             allTeams_[1]->setHome(homeR);
-        }
-        else
+        }else
             std::cout << "Cant assign two Home Planets! There have to be exactly two Teams specified!\n";
     }
 

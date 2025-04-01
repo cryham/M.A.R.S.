@@ -21,7 +21,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 class TextBox;
 
-class InfoDM: public UiWindow {
+class InfoDM: public UiWindow
+{
     public:
         static UiWindow* get();
         void checkWidgets();
@@ -30,15 +31,11 @@ class InfoDM: public UiWindow {
         static void reset();
 
     private:
-        InfoDM(int width, int height): UiWindow(width, height){}
+        InfoDM(int width, int height): UiWindow(width, height)
+        {   }
         InfoDM(InfoDM const& copy);
 
         static UiWindow* instance_;
 
         static bool kClose_;
 };
-
-
-
-
-

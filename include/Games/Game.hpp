@@ -22,7 +22,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 /// Base class for all games.
 /// Provides some basic methods.
 
-class Game {
+class Game
+{
     public:
         /// Ctor starts a game based on the given GameType.
         /// The previous game has to be deleted before creating
@@ -64,9 +65,3 @@ class Game {
         int             pointLimit_;
         bool            ended_;
 };
-
-
-
-
-
-

@@ -19,9 +19,11 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "Particles/Particle.hpp"
 
-class AmmoROFLE: public Particle<AmmoROFLE> {
+class AmmoROFLE: public Particle<AmmoROFLE>
+{
     public:
-        AmmoROFLE(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity, Color3f const& color, Player* damageSource);
+        AmmoROFLE(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,
+            Color3f const& color, Player* damageSource);
         ~AmmoROFLE();
 
         void update();
@@ -35,5 +37,3 @@ class AmmoROFLE: public Particle<AmmoROFLE> {
     private:
         static std::list<AmmoROFLE*> activeParticles_;
 };
-
-

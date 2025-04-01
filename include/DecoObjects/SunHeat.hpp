@@ -26,7 +26,8 @@ class Sun;
 /// A heat texture on a Sun.
 /// Very decorative.
 
-class SunHeat: public DecoObject {
+class SunHeat: public DecoObject
+{
     public:
         /// Creates a heat texture on the target Sun.
         SunHeat(Sun* sun);

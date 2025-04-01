@@ -22,7 +22,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 /// Zone: RasterZone.
 /// A square shaped zone.
 
-class RasterZone: public Zone {
+class RasterZone: public Zone
+{
     public:
         /// Ctor, which creates the Zone.
         RasterZone(Vector2f const& bottomLeft, Vector2f const& topRight);

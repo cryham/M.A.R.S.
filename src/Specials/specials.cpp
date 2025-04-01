@@ -29,9 +29,11 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 namespace specials {
 
-    Special* create(SpecialType type, Ship* parent) {
+    Special* create(SpecialType type, Ship* parent)
+    {
         int i(1), tmpType(type);
-        while (i < sNoSpecial && !(settings::C_EnabledSpecials & tmpType)) {
+        while (i < sNoSpecial && !(settings::C_EnabledSpecials & tmpType))
+        {
             i *= 2;
             if ((tmpType*=2) > sNoSpecial)
                 tmpType = 1;
@@ -43,7 +45,8 @@ namespace specials {
         else if  (parent->getOwner()->type()  == controllers::cPlayer2 && type != sNoSpecial)
             settings::C_playerIISpecial = type;
 
-        switch (type) {
+        switch (type)
+        {
             case sHeal:      return new Heal(parent);
             case sBlast:     return new Blast(parent);
             case sFireWall:  return new FireWall(parent);
@@ -53,10 +56,12 @@ namespace specials {
         }
     }
 
-    Special* createNext(SpecialType type, Ship* parent) {
+    Special* createNext(SpecialType type, Ship* parent)
+    {
         int next(type == sNoSpecial ? 1 : type*2), i(1);
 
-        while (i < sNoSpecial && !(settings::C_EnabledSpecials & next)) {
+        while (i < sNoSpecial && !(settings::C_EnabledSpecials & next))
+        {
             i *= 2;
             if ((next*=2) > sNoSpecial)
                 next = 1;
@@ -64,10 +69,12 @@ namespace specials {
         return create(static_cast<SpecialType>(next), parent);
     }
 
-    Special* createPrev(SpecialType type, Ship* parent) {
+    Special* createPrev(SpecialType type, Ship* parent)
+    {
         int next(type == 1 ? sNoSpecial : type*0.5), i(1);
 
-        while (i < sNoSpecial && !(settings::C_EnabledSpecials & next)) {
+        while (i < sNoSpecial && !(settings::C_EnabledSpecials & next))
+        {
             i *= 2;
             if ((next/=2) < 1)
                 next = sNoSpecial;

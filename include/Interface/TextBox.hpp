@@ -23,9 +23,12 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include <vector>
 
-class TextBox: public UiElement {
+class TextBox: public UiElement
+{
     public:
-        TextBox (sf::String* text, Vector2f const& topLeft, int width, int height, Color3f const& color = Color3f(0.7f, 0.7f, 0.7f));
+        TextBox (sf::String* text,
+            Vector2f const& topLeft, int width, int height,
+            Color3f const& color = Color3f(0.7f, 0.7f, 0.7f));
         ~TextBox();
 
         void mouseMoved(Vector2f const& position);
@@ -34,7 +37,8 @@ class TextBox: public UiElement {
 
         void draw () const;
 
-        bool isTabable() const {return false;}
+        bool isTabable() const
+        {   return false;  }
 
     private:
         Color3f color_;

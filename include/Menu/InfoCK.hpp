@@ -21,7 +21,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 class TextBox;
 
-class InfoCK: public UiWindow {
+class InfoCK: public UiWindow
+{
     public:
         static UiWindow* get();
         void checkWidgets();
@@ -30,8 +31,8 @@ class InfoCK: public UiWindow {
         static void reset();
 
     private:
-        InfoCK(int width, int height
-            ): UiWindow(width, height)
+        InfoCK(int width, int height)
+            : UiWindow(width, height)
         {   }
         InfoCK(InfoCK const& copy);
 
@@ -39,8 +40,3 @@ class InfoCK: public UiWindow {
 
         static bool kClose_;
 };
-
-
-
-
-

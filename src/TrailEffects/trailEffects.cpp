@@ -23,20 +23,25 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include <vector>
 #include <set>
 
-namespace trailEffects {
-    namespace {
+namespace trailEffects
+{
+    namespace
+    {
         std::vector<Trail*> trails_;
         std::set<SpaceObject*> toBeDetached_;
     }
 
-    void update() {
+    void update()
+    {
         std::vector<Trail*>::iterator it = trails_.begin();
-        while (it != trails_.end()) {
-            if ((*it)->isDead()) {
+        while (it != trails_.end())
+        {
+            if ((*it)->isDead())
+            {
                 delete *it;
                 it = trails_.erase(it);
-            }
-            else {
+            }else
+            {
                 if (toBeDetached_.find((*it)->target()) != toBeDetached_.end())
                     (*it)->detach();
                 (*it)->update();
@@ -46,30 +51,36 @@ namespace trailEffects {
         toBeDetached_.clear();
     }
 
-    void draw() {
+    void draw()
+    {
         for (std::vector<Trail*>::iterator it = trails_.begin(); it != trails_.end(); ++it)
             (*it)->draw();
     }
 
-    Trail* attach(SpaceObject* target, float timeStep, float duration, float width, Color3f const& color, bool persistant) {
+    Trail* attach(SpaceObject* target, float timeStep, float duration, float width, Color3f const& color, bool persistant)
+    {
         Trail* trail;
         if (persistant)
             trail = new PersistantTrail(target, timeStep, duration, width, color);
         else
             trail = new FloatingTrail(target, timeStep, duration, width, color);
+
         trails_.push_back(trail);
         return trail;
     }
 
-    void detach(SpaceObject* target) {
+    void detach(SpaceObject* target)
+    {
         toBeDetached_.insert(target);
     }
 
-    int  count() {
+    int  count()
+    {
         return trails_.size();
     }
 
-    void clear() {
+    void clear()
+    {
         for (std::vector<Trail*>::iterator it = trails_.begin(); it != trails_.end(); ++it)
             delete *it;
         trails_.clear();

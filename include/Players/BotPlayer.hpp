@@ -22,13 +22,15 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 class BotController;
 class Team;
 
-class BotPlayer: public Player {
+class BotPlayer: public Player
+{
     public:
-        BotPlayer(std::pair<sf::String, int>const& nameStrength, Color3f const& color, int  graphic);
+        BotPlayer(std::pair<sf::String, int>const& nameStrength,
+            Color3f const& color, int  graphic);
 
-        Color3f const&           color()  const {return color_;}
-        sf::String const&        name()   const {return name_;}
-        int                      graphic()const {return graphic_;}
+        Color3f const&     color()   const {  return color_;  }
+        sf::String const&  name()    const {  return name_;  }
+        int                graphic() const {  return graphic_;  }
 
         friend class BotController;
         friend class Team;
@@ -39,5 +41,3 @@ class BotPlayer: public Player {
         int graphic_;
         BotController* controller_;
 };
-
-

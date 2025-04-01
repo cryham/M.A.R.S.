@@ -25,9 +25,11 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 class SpaceObject;
 
-class PersistantTrail: public Trail {
+class PersistantTrail: public Trail
+{
     public:
-        PersistantTrail(SpaceObject* target, float timeStep, float duration, float width, Color3f const& color);
+        PersistantTrail(SpaceObject* target, float timeStep, float duration, float width,
+            Color3f const& color);
 
         void update();
         void draw() const;
@@ -36,13 +38,11 @@ class PersistantTrail: public Trail {
     private:
         std::vector<Vector2f> points_;
         float alpha_;
+
         float timer_;
         const float duration_;
         const float timeStep_;
+
         const float width_;
         Color3f color_;
 };
-
-
-
-

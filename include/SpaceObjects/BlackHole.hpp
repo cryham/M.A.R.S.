@@ -19,7 +19,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "SpaceObjects/SpaceObject.hpp"
 
-class BlackHole: public SpaceObject {
+class BlackHole: public SpaceObject
+{
     public:
         BlackHole(Vector2f const& location, float radius);
 
@@ -29,4 +30,3 @@ class BlackHole: public SpaceObject {
     private:
         float rotation_;
 };
-

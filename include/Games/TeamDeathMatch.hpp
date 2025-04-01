@@ -23,7 +23,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 /// Classic DeathMatch, but in teams: Smash as many opponents as possible.
 /// Be in the team which first reaches the frag limit.
 
-class TeamDeathMatch: public Game {
+class TeamDeathMatch: public Game
+{
     public:
         /// Ctor starts a new game.
         TeamDeathMatch();

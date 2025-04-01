@@ -58,13 +58,15 @@ namespace spaceObjects
                         newPlanetFits = false;
                 // check for collisions with balls
                 Ball* ball = balls::getBall();
-                if (ball) {
+                if (ball)
+                {
                     if ((ball->location() - position).lengthSquare() < std::pow(ball->radius() + radius + 50, 2))
                         newPlanetFits = false;
                 }
                 // check for collisions with cannoncontrol
                 CannonControl* cannonControl = items::getCannonControl();
-                if (cannonControl) {
+                if (cannonControl)
+                {
                     if ((cannonControl->location() - position).lengthSquare() < std::pow(radius + 70.f, 2))
                         newPlanetFits = false;
                 }
@@ -217,32 +219,36 @@ namespace spaceObjects
                 }
             }
         }
-
         return closest;
     }
 
-    bool isOnLine(Vector2f const& source, Vector2f const& direction, Vector2f const& target, float maxAngle) {
+    bool isOnLine(Vector2f const& source, Vector2f const& direction, Vector2f const& target, float maxAngle)
+    {
         return std::acos(direction.normalize()*(target - source).normalize()) < maxAngle*M_PI/360;
     }
 
-    void clear() {
+    void clear()
+    {
         for (std::vector<SpaceObject*>::iterator it = objectList_.begin(); it != objectList_.end(); ++it)
             delete *it;
         objectList_.clear();
         homeList_.clear();
     }
 
-    void populateSpace(float holePercentage, float sunPercentage, int maxObjects) {
+    void populateSpace(float holePercentage, float sunPercentage, int maxObjects)
+    {
         int count = randomizer::random(1, maxObjects);
 
-        while (--count >= 0) {
+        while (--count >= 0)
+        {
             float percentage = randomizer::random(0.f, 100.f);
 
             int type(2);
             if (percentage < holePercentage)                      type = 0;
             else if (percentage < holePercentage + sunPercentage) type = 1;
 
-            switch (type) {
+            switch (type)
+            {
                 case 0:
                     addBlackHole();
                     break;

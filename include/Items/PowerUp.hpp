@@ -25,7 +25,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 class Ship;
 
-class PowerUp {
+class PowerUp
+{
     public:
         PowerUp(items::PowerUpType type, Vector2f const& location, float radius,
                 float totalLifeTime, int texX, int texY, Color3f const& bgColor);
@@ -56,9 +57,3 @@ class PowerUp {
         int texX_, texY_;
         Color3f bgColor_;
 };
-
-
-
-
-
-

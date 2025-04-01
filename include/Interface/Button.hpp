@@ -43,4 +43,3 @@ class Button: public UiElement
         Label* label_;
         sf::String* toolTip_;
 };
-

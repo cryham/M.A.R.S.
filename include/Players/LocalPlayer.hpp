@@ -22,13 +22,14 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 class Team;
 class KeyController;
 
-class LocalPlayer: public Player {
+class LocalPlayer: public Player
+{
     public:
         LocalPlayer(controllers::ControlType type);
 
-        Color3f const&           color()  const {return *color_;}
-        sf::String const&        name()   const {return *name_;}
-        int                      graphic()const {return *graphic_;}
+        Color3f const&     color()   const {  return *color_;  }
+        sf::String const&  name()    const {  return *name_;  }
+        int                graphic() const {  return *graphic_;  }
 
         friend class Team;
 
@@ -38,6 +39,3 @@ class LocalPlayer: public Player {
         int* graphic_;
         KeyController* controller_;
 };
-
-
-

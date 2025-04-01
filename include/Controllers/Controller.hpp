@@ -25,7 +25,8 @@ class Ship;
 /// It provides some basic functionallity which directly
 /// interacts with the Ship.
 
-class Controller {
+class Controller
+{
     public:
         /// Constructs an Controller, attached to a Player.
         /// \param slave The controlled Player.
@@ -98,4 +99,3 @@ class Controller {
         /// The controlled Player.
         Player* slave_;
 };
-

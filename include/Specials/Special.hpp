@@ -25,7 +25,8 @@ class Ship;
 /// A virtual base class for all specials.
 /// Provides a basic interface for all specials, some base members and methodes.
 
-class Special {
+class Special
+{
     public:
         /// Ctor which constructs the base special.
         Special(specials::SpecialType type, Ship* parent, sf::String name);
@@ -64,5 +65,3 @@ class Special {
         specials::SpecialType type_;
         sf::String name_;
 };
-
-

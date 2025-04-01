@@ -25,7 +25,8 @@ class Ship;
 /// A virtual base class for all weapons.
 /// Provides a basic interface for all weapons, some base members and methodes.
 
-class Weapon {
+class Weapon
+{
     public:
         /// Ctor which constructs the base Weapon.
         Weapon(weapons::WeaponType type, Ship* parent, sf::String name);
@@ -67,4 +68,3 @@ class Weapon {
         sf::String name_;
         weapons::WeaponType type_;
 };
-

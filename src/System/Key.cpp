@@ -104,7 +104,8 @@ std::pair<Key::AxisType, int> Key::convertFromSFML(sf::Joystick::Axis joyAxis, i
 {
     std::pair<AxisType, int> result;
     result.second = std::abs(strength);
-    switch (joyAxis) {
+    switch (joyAxis)
+    {
         case sf::Joystick::X:
             if (strength < 0) result.first = aALleft;
             else              result.first = aALright;
@@ -116,11 +117,12 @@ std::pair<Key::AxisType, int> Key::convertFromSFML(sf::Joystick::Axis joyAxis, i
 
         case sf::Joystick::Z:
             #if defined __WIN32__
-                if (strength > 0) {
+                if (strength > 0)
+                {
                     result.first = aLT;
                     result.second = strength;
-                }
-                else {
+                }else
+                {
                     result.first = aRT;
                     result.second = std::abs(strength);
                 }

@@ -22,9 +22,12 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 class UiWindow;
 
-class ComboBox: public UiElement {
+class ComboBox: public UiElement
+{
     public:
-        ComboBox (sf::String* text, sf::String* toolTip, sf::String* value, std::vector<sf::String> const& values, Vector2f const& topLeft, int width, int labelWidth=185);
+        ComboBox (sf::String* text, sf::String* toolTip,
+            sf::String* value, std::vector<sf::String> const& values,
+            Vector2f const& topLeft, int width, int labelWidth = 185);
         ~ComboBox ();
 
         void mouseMoved(Vector2f const& position);
@@ -49,5 +52,3 @@ class ComboBox: public UiElement {
         bool opened_;
         sf::String* toolTip_;
 };
-
-

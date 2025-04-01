@@ -216,11 +216,13 @@ namespace zones
                     else if (objectsRight[i]->location().y_ < lowestR->location().y_)
                         lowestR = objectsRight[i];
                     else
-                    if (objectsRight[i]->location().y_ > highestR->location().y_ - 100.f && objectsRight[i]->location().y_ < highestR->location().y_ + 100.f) {
+                    if (objectsRight[i]->location().y_ > highestR->location().y_ - 100.f && objectsRight[i]->location().y_ < highestR->location().y_ + 100.f)
+                    {
                         if (objectsRight[i]->location().x_ > highestR->location().x_)
                             highestR = objectsRight[i];
                     }else
-                    if (objectsRight[i]->location().y_ > lowestR->location().y_ - 100.f && objectsRight[i]->location().y_ < lowestR->location().y_ + 100.f) {
+                    if (objectsRight[i]->location().y_ > lowestR->location().y_ - 100.f && objectsRight[i]->location().y_ < lowestR->location().y_ + 100.f)
+                    {
                         if (objectsRight[i]->location().x_ > lowestR->location().x_)
                             lowestR = objectsRight[i];
                     }

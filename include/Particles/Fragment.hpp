@@ -21,9 +21,11 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "System/Color3f.hpp"
 
-class Fragment: public Particle<Fragment> {
+class Fragment: public Particle<Fragment>
+{
     public:
-        Fragment(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity, Color3f const& color, Player* damageSource);
+        Fragment(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,
+            Color3f const& color, Player* damageSource);
 
         void update();
         void draw() const;
@@ -34,6 +36,3 @@ class Fragment: public Particle<Fragment> {
         Color3f color_;
         static std::list<Fragment*> activeParticles_;
 };
-
-
-

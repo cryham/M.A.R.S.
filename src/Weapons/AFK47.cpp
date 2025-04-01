@@ -47,10 +47,12 @@ void AFK47::draw(float alpha) const
 void AFK47::fire() const
 {
     float time = timer::totalTime();
-    if (time - timer_ > 0.1) {
-        timer_ = time;
+    if (time - timer_ > 0.1)
+    {   timer_ = time;
+
         float angleRad = parent_->rotation()*M_PI / 180;
         Vector2f faceDirection(std::cos(angleRad), std::sin(angleRad));
+
         particles::spawn(particles::pAmmoAFK47, Vector2f(parent_->location().x_+(faceDirection.x_*parent_->radius()*0.9 - faceDirection.y_*parent_->radius()*0.9), parent_->location().y_+( faceDirection.x_*parent_->radius()*0.7 + faceDirection.y_*parent_->radius()*0.7)), faceDirection, parent_->velocity(), Color3f(), parent_->getOwner());
         particles::spawn(particles::pAmmoAFK47, Vector2f(parent_->location().x_+(faceDirection.x_*parent_->radius()*0.9 + faceDirection.y_*parent_->radius()*0.9), parent_->location().y_+(-faceDirection.x_*parent_->radius()*0.7 + faceDirection.y_*parent_->radius()*0.7)), faceDirection, parent_->velocity(), Color3f(), parent_->getOwner());
         sound::playSound(sound::Laser, parent_->location());

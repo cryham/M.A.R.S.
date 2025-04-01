@@ -19,7 +19,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "Hud/HudElement.hpp"
 
-class RightLife: public HudElement {
+class RightLife: public HudElement
+{
     public:
         void draw() const;
 };

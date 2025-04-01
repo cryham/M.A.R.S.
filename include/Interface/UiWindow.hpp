@@ -21,7 +21,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include <vector>
 
-class UiWindow: public UiElement {
+class UiWindow: public UiElement
+{
     public:
         UiWindow (int width, int height, Vector2f const& position = Vector2f());
         ~UiWindow();
@@ -37,7 +38,7 @@ class UiWindow: public UiElement {
 
         virtual void draw () const;
 
-        void setFocus  (UiElement* toBeFocused, bool isPrevious);
+        void setFocus(UiElement* toBeFocused, bool isPrevious);
         void clearFocus();
 
         virtual void checkWidgets() = 0;
@@ -46,8 +47,8 @@ class UiWindow: public UiElement {
         void addWidget (UiElement* toBeAdded);
 
         void setTopMost(bool);
-        bool isTopMost() const {return topMost_;}
-        bool isTabable() const {return false;}
+        bool isTopMost() const {  return topMost_;  }
+        bool isTabable() const {  return false;  }
 
         virtual Vector2f getTopLeft() const;
 
@@ -58,4 +59,3 @@ class UiWindow: public UiElement {
     private:
         bool topMost_;
 };
-

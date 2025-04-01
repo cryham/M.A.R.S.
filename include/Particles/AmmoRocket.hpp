@@ -24,9 +24,11 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 class Ship;
 class Ball;
 
-class AmmoRocket: public Particle<AmmoRocket> {
+class AmmoRocket: public Particle<AmmoRocket>
+{
     public:
-        AmmoRocket(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity, Color3f const& color, Player* damageSource);
+        AmmoRocket(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,
+            Color3f const& color, Player* damageSource);
         ~AmmoRocket();
 
         void update();
@@ -42,13 +44,16 @@ class AmmoRocket: public Particle<AmmoRocket> {
     private:
         Color3f color_;
         float timer_;
+
         Ship* shipTarget_;
         Ball* ballTarget_;
         Player* parent_;
+
         float rotation_;
         float life_;
+
         float frozen_;
         bool visible_;
+
         static std::list<AmmoRocket*> activeParticles_;
 };
-

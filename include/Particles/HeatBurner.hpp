@@ -19,9 +19,11 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "Particles/Particle.hpp"
 
-class HeatBurner: public Particle<HeatBurner> {
+class HeatBurner: public Particle<HeatBurner>
+{
     public:
-        HeatBurner(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity, Color3f const& color, Player* damageSource);
+        HeatBurner(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,
+            Color3f const& color, Player* damageSource);
 
         void update();
         void draw() const;
@@ -31,5 +33,3 @@ class HeatBurner: public Particle<HeatBurner> {
     private:
         static std::list<HeatBurner*> activeParticles_;
 };
-
-

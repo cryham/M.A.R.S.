@@ -21,9 +21,11 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "System/Color3f.hpp"
 
-class Number: public Particle<Number> {
+class Number: public Particle<Number>
+{
     public:
-        Number(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity, Color3f const& color, Player* damageSource);
+        Number(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,
+            Color3f const& color, Player* damageSource);
 
         void update();
         void draw() const;
@@ -36,7 +38,3 @@ class Number: public Particle<Number> {
         float   alpha_;
         static std::list<Number*> activeParticles_;
 };
-
-
-
-

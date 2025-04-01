@@ -22,9 +22,11 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include <float.h>
 
-class Home: public SpaceObject {
+class Home: public SpaceObject
+{
     public:
-        Home(Vector2f const& location, int life, float radius, float mass, Color3f const& color);
+        Home(Vector2f const& location, int life, float radius, float mass,
+            Color3f const& color);
 
         void update();
         void draw() const;
@@ -44,5 +46,3 @@ class Home: public SpaceObject {
         int life_;
         bool visible_;
 };
-
-

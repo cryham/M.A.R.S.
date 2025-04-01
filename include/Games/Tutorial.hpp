@@ -25,7 +25,8 @@ class Player;
 /// Game: Tutorial.
 /// This is the tutorial which, in fact,  is a special game.
 
-class Tutorial: public Game {
+class Tutorial: public Game
+{
     public:
         /// Ctor starts the tutorial.
         Tutorial();

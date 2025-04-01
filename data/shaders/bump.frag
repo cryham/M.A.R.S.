@@ -3,7 +3,8 @@ uniform sampler2D BumpMap;
 
 uniform float Exposure;
 
-void main(void) {
+void main(void)
+{
     vec2 TexCoord = vec2(gl_TexCoord[0]);
     vec2 distort  = vec2(texture2D(BumpMap, TexCoord).rb) - vec2(0.5f, 0.5f);
 

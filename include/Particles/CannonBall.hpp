@@ -19,9 +19,11 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "Particles/Particle.hpp"
 
-class CannonBall: public Particle<CannonBall> {
+class CannonBall: public Particle<CannonBall>
+{
     public:
-        CannonBall(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity, Color3f const& color, Player* damageSource);
+        CannonBall(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,
+            Color3f const& color, Player* damageSource);
 
         void update();
         void draw() const;
@@ -32,5 +34,3 @@ class CannonBall: public Particle<CannonBall> {
         float timer1_, timer2_;
         static std::list<CannonBall*> activeParticles_;
 };
-
-

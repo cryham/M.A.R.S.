@@ -24,7 +24,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 class Track;
 
-class Rally: public Game {
+class Rally: public Game
+{
     public:
         /// Ctor starts a new game.
         Rally();

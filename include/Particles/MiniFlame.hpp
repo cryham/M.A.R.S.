@@ -21,9 +21,11 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "System/Color3f.hpp"
 
-class MiniFlame: public Particle<MiniFlame> {
+class MiniFlame: public Particle<MiniFlame>
+{
     public:
-        MiniFlame(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity, Color3f const& color, Player* damageSource);
+        MiniFlame(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,
+            Color3f const& color, Player* damageSource);
 
         void update();
         void draw() const;
@@ -35,6 +37,3 @@ class MiniFlame: public Particle<MiniFlame> {
         float flickerSpeed_, timer_;
         static std::list<MiniFlame*> activeParticles_;
 };
-
-
-

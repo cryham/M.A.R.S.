@@ -22,7 +22,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 /// Zone: TacticalZone.
 /// A round Zone.
 
-class TacticalZone: public Zone {
+class TacticalZone: public Zone
+{
     public:
         /// Ctor, which creates the Zone.
         TacticalZone(Vector2f const& location, float radius);

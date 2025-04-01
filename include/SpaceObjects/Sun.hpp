@@ -19,7 +19,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "SpaceObjects/SpaceObject.hpp"
 
-class Sun: public SpaceObject {
+class Sun: public SpaceObject
+{
     public:
         Sun(Vector2f const& location, float radius);
 
@@ -32,4 +33,3 @@ class Sun: public SpaceObject {
     private:
         float eruptionTimer_;
 };
-

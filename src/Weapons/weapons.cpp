@@ -33,9 +33,11 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 namespace weapons {
 
-    Weapon* create(WeaponType type, Ship* parent) {
+    Weapon* create(WeaponType type, Ship* parent)
+    {
         int i(1), tmpType(type);
-        while (i < wNoWeapon && !(settings::C_EnabledWeapons & tmpType)) {
+        while (i < wNoWeapon && !(settings::C_EnabledWeapons & tmpType))
+        {
             i *= 2;
             if ((tmpType*=2) > wNoWeapon)
                 tmpType = 1;
@@ -47,7 +49,8 @@ namespace weapons {
         else if  (parent->getOwner()->type()  == controllers::cPlayer2 && type != wNoWeapon && type != wInsta)
             settings::C_playerIIWeapon = type;
 
-        switch (type) {
+        switch (type)
+        {
             case wAFK47:           return new AFK47(parent);
             case wBurner:          return new Burner(parent);
             case wFist:            return new Fist(parent);
@@ -61,10 +64,12 @@ namespace weapons {
         }
     }
 
-    Weapon* createNext(WeaponType type, Ship* parent) {
+    Weapon* createNext(WeaponType type, Ship* parent)
+    {
         int next(type == wNoWeapon ? 1 : type*2), i(1);
 
-        while (i < wNoWeapon && !(settings::C_EnabledWeapons & next)) {
+        while (i < wNoWeapon && !(settings::C_EnabledWeapons & next))
+        {
             i *= 2;
             if ((next*=2) > wNoWeapon)
                 next = 1;
@@ -72,10 +77,12 @@ namespace weapons {
         return create(static_cast<WeaponType>(next), parent);
     }
 
-    Weapon* createPrev(WeaponType type, Ship* parent) {
+    Weapon* createPrev(WeaponType type, Ship* parent)
+    {
         int next(type == 1 ? wNoWeapon : type*0.5), i(1);
 
-        while (i < wNoWeapon && !(settings::C_EnabledWeapons & next)) {
+        while (i < wNoWeapon && !(settings::C_EnabledWeapons & next))
+        {
             i *= 2;
             if ((next/=2) < 1)
                 next = wNoWeapon;
@@ -84,5 +91,3 @@ namespace weapons {
     }
 
 }
-
-

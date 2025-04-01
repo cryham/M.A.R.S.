@@ -52,7 +52,3 @@ void ShaderError::reset()
         delete instance_;
     instance_ = NULL;
 }
-
-
-
-

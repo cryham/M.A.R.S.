@@ -70,7 +70,3 @@ void TutorialWindow::reset()
 }
 
 
-
-
-
-

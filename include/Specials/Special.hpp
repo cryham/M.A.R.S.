@@ -52,10 +52,12 @@ class Special
         void stop();
 
         /// Returns the name of the special.
-        sf::String const& getName() const {return name_;}
+        sf::String const& getName() const
+        {   return name_;  }
 
         /// Returns the type of the Special.
-        specials::SpecialType getType() const {return type_;}
+        specials::SpecialType getType() const
+        {   return type_;  }
 
     protected:
         Ship* parent_;

@@ -43,6 +43,3 @@ namespace postFX {
     /// Has to be called once at the beginnig of the program.
     void load();
 }
-
-
-

@@ -41,11 +41,3 @@ class Rally: public Game
         Track* track_;
 };
 
-
-
-
-
-
-
-
-

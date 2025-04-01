@@ -44,6 +44,3 @@ class LanguageButton: public UiElement
         int labelWidth_;
         bool opened_;
 };
-
-
-

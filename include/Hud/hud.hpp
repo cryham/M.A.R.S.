@@ -33,6 +33,3 @@ namespace hud {
 
     void displayMessage(sf::String const& message, Color3f const& color = Color3f(0.55f, 1.0f, 1.0f));
 }
-
-
-

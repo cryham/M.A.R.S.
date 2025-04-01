@@ -26,7 +26,3 @@ class LeftLife: public HudElement
 };
 
 
-
-
-
-

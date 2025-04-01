@@ -70,6 +70,3 @@ void CrushedIce::shockWave(Vector2f const& location, float strength, float radiu
         }
     }
 }
-
-
-

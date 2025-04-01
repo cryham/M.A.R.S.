@@ -123,7 +123,3 @@ void ChooseLanguage::previous()
         }
     }
 }
-
-
-
-

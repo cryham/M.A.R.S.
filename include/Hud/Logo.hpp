@@ -34,7 +34,3 @@ class Logo: public HudElement
 };
 
 
-
-
-
-

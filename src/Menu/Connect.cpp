@@ -56,7 +56,3 @@ void Connect::reset()
     instance_ = NULL;
 }
 
-
-
-
-

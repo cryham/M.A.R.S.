@@ -33,7 +33,8 @@ class Label: public UiElement
 
         void draw() const;
 
-        bool isTabable() const {return false;}
+        bool isTabable() const
+        {   return false;  }
 
         void setFocus  (UiElement* toBeFocused, bool isPrevious);
         void clearFocus();

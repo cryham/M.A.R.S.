@@ -34,7 +34,3 @@ class Cannon: public DecoObject
         float rotation_;
 };
 
-
-
-
-

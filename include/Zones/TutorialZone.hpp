@@ -38,6 +38,3 @@ class TutorialZone: public Zone
         const float radius_;
         Vector2f location_;
 };
-
-
-

@@ -48,10 +48,10 @@ class SpaceObject
         virtual void setDamageSource(Player* evilOne) {  damageSource_ = evilOne;  }
         Player*      damageSource() const             {  return damageSource_;  }
 
-        spaceObjects::ObjectType type()     const {return type_;}
-        Vector2f const&          location() const {return location_;}
-        float                    radius()   const {return radius_;}
-        float                    mass()     const {return mass_;}
+        spaceObjects::ObjectType type()     const {  return type_;  }
+        Vector2f const&          location() const {  return location_;  }
+        float                    radius()   const {  return radius_;  }
+        float                    mass()     const {  return mass_;  }
 
         friend Vector2f  physics::attract(MobileSpaceObject*);
         friend void      physics::collide(MobileSpaceObject*, int);
@@ -66,4 +66,3 @@ class SpaceObject
     private:
         spaceObjects::ObjectType type_;
 };
-

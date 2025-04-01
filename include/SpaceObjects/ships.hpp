@@ -33,6 +33,3 @@ namespace ships {
 
     void clear();
 }
-
-
-

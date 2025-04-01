@@ -107,6 +107,3 @@ class BotController: public Controller
         Vector2f moveToPoint_;
         Vector2f nextPathPoint_;
 };
-
-
-

@@ -57,9 +57,6 @@ namespace musicNotify {
             const float fromLength(text::getCharacterPos(*from_, from_->getSize(), 12.f, TEXT_ALIGN_LEFT));
             const float byLength(text::getCharacterPos(*by_, by_->getSize(), 12.f, TEXT_ALIGN_LEFT));
             const float spaceLength(text::getCharacterPos(" ", 1, 12.f, TEXT_ALIGN_LEFT));
-
-
-
             float byLineLenght(0.f);
             if (artist_ != "" && album_ != "") byLineLenght = artistLength + albumLength + byLength + fromLength + spaceLength;
             else if (artist_ != "")            byLineLenght = artistLength + byLength;
@@ -68,9 +65,6 @@ namespace musicNotify {
             const float titleLenght(text::getCharacterPos(title_, title_.getSize(), 20.f, TEXT_ALIGN_LEFT));
 
             const float cornerRadius(8.f);
-
-
-
             int   height((byLineLenght == 0.f) ? 38 : 50);
             int   width(std::max(titleLenght, byLineLenght) + 10);
 

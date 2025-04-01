@@ -35,11 +35,3 @@ class GraveItation: public Game
         void restart();
 };
 
-
-
-
-
-
-
-
-

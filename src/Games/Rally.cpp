@@ -86,14 +86,3 @@ void Rally::restart()
     delete track_;
     track_ = new Track(home);
 }
-
-
-
-
-
-
-
-
-
-
-

@@ -112,11 +112,3 @@ void SpaceBall::restart()
     zones::createRaster(4, 3);
 }
 
-
-
-
-
-
-
-
-

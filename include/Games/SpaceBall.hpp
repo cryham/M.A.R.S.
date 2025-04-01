@@ -35,10 +35,3 @@ class SpaceBall: public Game
         /// Restarts the game.
         void restart();
 };
-
-
-
-
-
-
-

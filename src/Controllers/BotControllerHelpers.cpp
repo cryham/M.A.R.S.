@@ -214,6 +214,3 @@ void BotController::shootPoint(Vector2f const& location, bool avoidTeamMembers)
         }
     }
 }
-
-
-

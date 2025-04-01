@@ -24,10 +24,3 @@ class RightLife: public HudElement
     public:
         void draw() const;
 };
-
-
-
-
-
-
-

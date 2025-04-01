@@ -36,10 +36,3 @@ class DeathMatch: public Game
         void restart();
 };
 
-
-
-
-
-
-
-

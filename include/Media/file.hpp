@@ -31,6 +31,3 @@ namespace file {
     /// Comments (//) and empty lines in this file will be ignored.
     bool load(std::string fileName, std::vector<sf::String>& strings);
 }
-
-
-

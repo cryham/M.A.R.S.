@@ -40,10 +40,3 @@ class Message: public HudElement
         float      speed_;
 };
 
-
-
-
-
-
-
-

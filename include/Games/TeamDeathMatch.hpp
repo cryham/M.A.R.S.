@@ -36,11 +36,3 @@ class TeamDeathMatch: public Game
         void restart();
 };
 
-
-
-
-
-
-
-
-

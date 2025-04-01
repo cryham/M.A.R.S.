@@ -121,7 +121,3 @@ void WeaponOptions::reset()
     instance_ = NULL;
 }
 
-
-
-
-

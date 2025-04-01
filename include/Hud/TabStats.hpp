@@ -39,14 +39,17 @@ class TabStats: public HudElement
         bool visible() const;
 
     private:
-        struct playerPtrCmp{
-            bool operator()(Player* lhs, Player* rhs) const {
+        struct playerPtrCmp
+        {
+            bool operator()(Player* lhs, Player* rhs) const
+            {
                 return lhs->points_ > rhs->points_;
             }
         };
-
-        struct teamPtrCmp{
-            bool operator()(Team* lhs, Team* rhs) const {
+        struct teamPtrCmp
+        {
+            bool operator()(Team* lhs, Team* rhs) const
+            {
                 return lhs->points() > rhs->points();
             }
         };
@@ -55,11 +58,3 @@ class TabStats: public HudElement
         int sumPoints_;
         std::multimap<Team*, std::multiset<Player*, playerPtrCmp>, teamPtrCmp > teamMap_;
 };
-
-
-
-
-
-
-
-

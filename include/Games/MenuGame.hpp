@@ -33,10 +33,3 @@ class MenuGame: public Game
         void restart();
 };
 
-
-
-
-
-
-
-

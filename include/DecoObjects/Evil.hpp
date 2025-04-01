@@ -26,7 +26,3 @@ class Evil: public DecoObject
     public:
         void draw() const;
 };
-
-
-
-

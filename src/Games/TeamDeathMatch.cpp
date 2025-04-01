@@ -101,14 +101,3 @@ void TeamDeathMatch::restart()
     spaceObjects::populateSpace(5.f, 10.f, 4);
     zones::createRaster(4,3);
 }
-
-
-
-
-
-
-
-
-
-
-

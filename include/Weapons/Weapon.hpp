@@ -46,10 +46,12 @@ class Weapon
         void previous();
 
         /// Returns the name of the Weapon.
-        sf::String const& getName() const {return name_;}
+        sf::String const& getName() const
+        {   return name_;  }
 
         /// Returns the type of the Weapon.
-        weapons::WeaponType getType() const {return type_;}
+        weapons::WeaponType getType() const
+        {   return type_;  }
 
         /// Returns the maximum distance from which this weapon should be used.
         virtual float maxDistance() const = 0;

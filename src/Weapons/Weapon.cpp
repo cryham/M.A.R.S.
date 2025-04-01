@@ -37,7 +37,3 @@ void Weapon::previous()
     parent_->currentWeapon_ = weapons::createPrev(type_, parent_);
     delete this;
 }
-
-
-
-

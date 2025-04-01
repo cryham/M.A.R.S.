@@ -79,7 +79,3 @@ void About::reset()
     instance_ = NULL;
 }
 
-
-
-
-

@@ -61,7 +61,3 @@ namespace text {
     /// Returns the position of a character in a string relatively to it's location.
     float getCharacterPos   (sf::String const&, int pos, float size, int align, sf::Font* font = NULL);
 }
-
-
-
-

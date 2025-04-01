@@ -27,16 +27,19 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include <SFML/OpenGL.hpp>
 #include <sstream>
 
-Slider::Slider (sf::String* text, sf::String* toolTip, int* value, int minValue, int maxValue, int step, Vector2f const& topLeft, int width, int labelWidth, bool showValue, std::vector<sf::String> const& sliderNames):
-    UiElement(topLeft, width, 20),
-    value_(value),
-    minValue_(minValue),
-    maxValue_(maxValue),
-    step_(step),
-    labelWidth_(labelWidth),
-    showValue_(showValue),
-    sliderNames_(sliderNames),
-    toolTip_(toolTip)
+Slider::Slider (sf::String* text, sf::String* toolTip,
+        int* value, int minValue, int maxValue, int step,
+        Vector2f const& topLeft, int width, int labelWidth,
+        bool showValue, std::vector<sf::String> const& sliderNames)
+    : UiElement(topLeft, width, 20)
+    , value_(value)
+    , minValue_(minValue)
+    , maxValue_(maxValue)
+    , step_(step)
+    , labelWidth_(labelWidth * scale_)
+    , showValue_(showValue)
+    , sliderNames_(sliderNames)
+    , toolTip_(toolTip)
 {
     label_ = new Label(text, TEXT_ALIGN_LEFT, Vector2f(0,0));
     label_->setParent(this);
@@ -58,10 +61,12 @@ void Slider::mouseMoved(Vector2f const& position)
     UiElement::mouseMoved(position);
     int mirror(locales::getCurrentLocale().LTR_ ? 1 : -1);
 
-    if (pressed_ && focused_) {
-        *value_ = (position.x_+(0.5f*(width() - (labelWidth_+10)*mirror))/(maxValue_ - minValue_)-getTopLeft().x_-(labelWidth_+5)*mirror)*(maxValue_ - minValue_)/(width() - (labelWidth_+10)*mirror) + minValue_;
-        if (*value_ < minValue_) *value_ = minValue_;
-        if (*value_ > maxValue_) *value_ = maxValue_;
+    if (pressed_ && focused_)
+    {
+        *value_ = (position.x_+(0.5f*(width() - (labelWidth_+10)*mirror))/(maxValue_ - minValue_) -
+            getTopLeft().x_-(labelWidth_+5)*mirror) * (maxValue_ - minValue_)/(width() - (labelWidth_+10)*mirror) + minValue_;
+        if (*value_ < minValue_)  *value_ = minValue_;
+        if (*value_ > maxValue_)  *value_ = maxValue_;
     }
     label_->mouseMoved(position);
 

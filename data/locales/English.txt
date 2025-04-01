@@ -382,6 +382,13 @@
 275 Scales the UI size
 276 No confirmations
 277 No dialog confirmations for game or menu quit
-278 Map Options
 
-// 278
+278 Map Options
+279 Space Objects
+280 Min count
+281 Max count
+282 Min radius
+283 Max radius
+284 Min Gap
+
+// 285

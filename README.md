@@ -2,12 +2,14 @@
 
 This is my fork with many changes:
 - Gameplay
-  - new player keys for ship: backwards, boost and sideways, next,prev weapon change
-  - ToDo: new fast/excessive weapons: ..
-  - ToDo: more game options in Gui:
-    - Map planets: min,max count and their size range
-	- ToDo: possible on sliders: more bots, more kills to end game, regeneration
-  - ship thrusters blue
+   - new player keys for ship: backwards, boost and sideways, next,prev weapon change
+   - ship thrusters blue
+   - ToDo: new fast/excessive weapons: ..
+   - ToDo: more game options in Gui:
+   - Map options, with sliders for:  
+     min,max count of space objects (planets, stars, black holes) and their radius range, minimal gap between, etc
+   - ToDo: possible on sliders: more bots, more kills to end game, regeneration
+   - ToDo: turrets, near team homes, or any middle, destroyable, respawned
 - Gui
   - bigger Gui, font
   - color Skyblue, not Pink-Red

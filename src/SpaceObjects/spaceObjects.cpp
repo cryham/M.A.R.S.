@@ -25,6 +25,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Items/CannonControl.hpp"
 #include "Items/items.hpp"
 #include "DecoObjects/decoObjects.hpp"
+#include "System/settings.hpp"
 #include "defines.hpp"
 #include "System/randomizer.hpp"
 
@@ -54,7 +55,7 @@ namespace spaceObjects
                 // check for collisions with other objects
                 newPlanetFits = true;
                 for (std::vector<SpaceObject*>::iterator it = objectList_.begin(); it != objectList_.end(); ++it)
-                    if (((*it)->location() - position).lengthSquare() < std::pow((*it)->radius() + radius + SPACEOBJECT_MIN_GAP, 2))
+                    if (((*it)->location() - position).lengthSquare() < std::pow((*it)->radius() + radius + settings::C_MapMinPlanetGap, 2))
                         newPlanetFits = false;
                 // check for collisions with balls
                 Ball* ball = balls::getBall();
@@ -71,7 +72,8 @@ namespace spaceObjects
                         newPlanetFits = false;
                 }
 
-                if (newPlanetFits) return position;
+                if (newPlanetFits)
+                    return position;
             }
             return Vector2f(0,0);
         }
@@ -89,9 +91,15 @@ namespace spaceObjects
             (*it)->draw();
     }
 
+    int randomPlanetSize()
+    {
+        // return rand() % (SPACEOBJECT_MAX_RADIUS - SPACEOBJECT_MIN_RADIUS) + SPACEOBJECT_MIN_RADIUS;
+        return rand() % (settings::C_MapMaxPlanetsSize - settings::C_MapMinPlanetsSize) + settings::C_MapMinPlanetsSize;
+    }
+
     void addPlanet()
     {
-        int radius = (rand() % (SPACEOBJECT_MAX_RADIUS - SPACEOBJECT_MIN_RADIUS) + SPACEOBJECT_MIN_RADIUS);
+        int radius = randomPlanetSize();
         Vector2f position = possiblePlanetLocation(radius, 100);
         if (position != Vector2f(0,0))
             addPlanet(position, radius);
@@ -104,7 +112,7 @@ namespace spaceObjects
 
     void addSun()
     {
-        int radius = (rand() % (SPACEOBJECT_MAX_RADIUS - SPACEOBJECT_MIN_RADIUS) + SPACEOBJECT_MIN_RADIUS);
+        int radius = randomPlanetSize();
         Vector2f position = possiblePlanetLocation(radius, 200);
         if (position != Vector2f(0,0))
         {
@@ -116,7 +124,7 @@ namespace spaceObjects
 
     void addBlackHole()
     {
-        int radius = (rand() % (SPACEOBJECT_MAX_RADIUS - SPACEOBJECT_MIN_RADIUS) + SPACEOBJECT_MIN_RADIUS);
+        int radius = randomPlanetSize();
         Vector2f position = possiblePlanetLocation(radius, 200);
         if (position != Vector2f(0,0))
             objectList_.push_back(new BlackHole(position, radius));
@@ -125,18 +133,18 @@ namespace spaceObjects
     Home* addHome(int where, int life, Color3f const& color)
     {
         Vector2f position;
-        float    radius(100.f);
+        float    radius(100.f);  // settings::C_MapHomeRadius
         float    mass(radius*150.f);
 
         switch (where)
         {
-            case HOME_LEFT:  position = Vector2f(-50,     (rand()%(SPACE_Y_RESOLUTION-300)) + 150); break;
-            case HOME_RIGHT: position = Vector2f(SPACE_X_RESOLUTION+50, (rand()%(SPACE_Y_RESOLUTION-300)) + 150); break;
-            case HOME_RALLY: position = Vector2f(-150, (rand()%(SPACE_Y_RESOLUTION-300)) + 150);
+            case HOME_LEFT:  position = Vector2f(-50,  (rand() % (SPACE_Y_RESOLUTION - 300)) + 150);  break;
+            case HOME_RIGHT: position = Vector2f(SPACE_X_RESOLUTION+50, (rand() % (SPACE_Y_RESOLUTION - 300)) + 150);  break;
+            case HOME_RALLY: position = Vector2f(-150, (rand() % (SPACE_Y_RESOLUTION - 300)) + 150);
                              radius   = 180.f;
                              mass     *= 0.8f;
                              break;
-            default:         position = possiblePlanetLocation(HOME_PLANET_RADIUS, 100);
+            default:         position = possiblePlanetLocation(settings::C_MapHomeRadius, 100);
         }
         return addHome(position, life, color, radius, mass);
     }
@@ -237,7 +245,7 @@ namespace spaceObjects
 
     void populateSpace(float holePercentage, float sunPercentage, int maxObjects)
     {
-        int count = randomizer::random(1, maxObjects);
+        int count = randomizer::random(settings::C_MapMinPlanets, settings::C_MapMaxPlanets);
 
         while (--count >= 0)
         {
@@ -250,11 +258,9 @@ namespace spaceObjects
             switch (type)
             {
                 case 0:
-                    addBlackHole();
-                    break;
+                    addBlackHole();  break;
                 case 1:
-                    addSun();
-                    break;
+                    addSun();  break;
                 default:
                     addPlanet();
             }

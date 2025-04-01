@@ -100,6 +100,18 @@ namespace settings
     extern int            C_EnabledSpecialsByUser;
     ///@}
 
+    /// \name Map settings
+    ///@{
+    extern int            C_MapMinPlanets;
+    extern int            C_MapMaxPlanets;
+    extern int            C_MapMinPlanetsSize;
+    extern int            C_MapMaxPlanetsSize;
+    extern int            C_MapMinPlanetGap;
+    extern int            C_MapHomeRadius;
+    extern int            C_MapXsize;
+    extern int            C_MapYsize;
+    ///@}
+
     /// \name Player settings
     ///@{
     extern sf::String     C_playerIName;

@@ -29,7 +29,8 @@ class WeaponOptions: public UiWindow
         static void reset();
 
     private:
-        WeaponOptions(int width, int height): UiWindow(width, height)
+        WeaponOptions(int width, int height)
+            : UiWindow(width, height)
         {   }
 
         WeaponOptions(WeaponOptions const& copy);

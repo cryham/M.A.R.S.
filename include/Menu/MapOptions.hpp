@@ -1,4 +1,4 @@
-/* LocalPlayer.cpp
+/* WeaponOptions.hpp
 
 Copyright (c) 2010 - 2011 by Felix Lauer and Simon Schneegans
 
@@ -15,16 +15,28 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-#include "Players/LocalPlayer.hpp"
+#pragma once
 
-#include "Controllers/controllers.hpp"
-#include "System/settings.hpp"
+#include "Interface/UiWindow.hpp"
 
-LocalPlayer::LocalPlayer(controllers::ControlType controlType)
-    : Player(controlType)
-    , name_(controlType == controllers::cPlayer1 ? &settings::C_playerIName : &settings::C_playerIIName)
-    , color_(controlType == controllers::cPlayer1 ? &settings::C_playerIColor : &settings::C_playerIIColor)
-    , graphic_(controlType == controllers::cPlayer1 ? &settings::C_playerIShip : &settings::C_playerIIShip)
+class MapOptions: public UiWindow
 {
-    controller_ = controllers::addKeyController(this);
-}
+    public:
+        static UiWindow* get();
+        void checkWidgets();
+        void onShow();
+
+        static void reset();
+
+    private:
+        MapOptions(int width, int height)
+            : UiWindow(width, height)
+        {   }
+
+        MapOptions(MapOptions const& copy);
+
+        static UiWindow* instance_;
+
+        static bool kOk_;
+};
+

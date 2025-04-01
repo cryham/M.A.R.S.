@@ -91,16 +91,25 @@ namespace settings
     std::string C_configPath =              "";
     std::string C_dataPath =                "";
     std::string C_screenShotFormat =        "jpg";
+
+    //  map setup
+    int         C_MapMinPlanets      = 1;  // 1
+    int         C_MapMaxPlanets      = 4;  // 4
+    int         C_MapMinPlanetsSize  = 50;  // 50
+    int         C_MapMaxPlanetsSize  = 120;  // 120
+    int         C_MapMinPlanetGap    = 150;  // 150
+    int         C_MapHomeRadius      = 100;
+    int         C_MapXsize           = 1440; // 1440
+    int         C_MapYsize           = 810;  // 810
+
+    //  weapons
     int         C_EnabledWeapons =          weapons::wNoWeapon-1;  // all
-                                         // weapons::wAFK47 | weapons::wShotgun | weapons::wFlubba | weapons::wFist |
-                                         // weapons::wRocketLauncher | weapons::wROFLE | weapons::wBurner | weapons::wH2OMG;
-    int         C_EnabledSpecials =         specials::sBlast | specials::sFreeze | specials::sHeal | specials::sFireWall |
-                                            specials::sShocker;
+    int         C_EnabledSpecials =         specials::sNoSpecial-1;
     int         C_EnabledWeaponsByUser =    C_EnabledWeapons;
     int         C_EnabledSpecialsByUser =   C_EnabledSpecials;
 
 
-    // player settings ----- adjustable via options menu
+    //  player settings ----- adjustable via options menu
     sf::String    C_playerIName =           "PlayerI";
     Color3f       C_playerIColor =          Color3f(1.f, 0.87f, 0.0125f);
     Color3f       C_playerITeamColor =      Color3f(0.94f, 0.24f, 1.f);
@@ -148,13 +157,13 @@ namespace settings
     bool          C_networkPlayerI =        true;
 
 
-    // ai settings ------ adjustable via options menu
+    //  ai settings ------ adjustable via options menu
     bool        C_drawBotJobs =             false;
     bool        C_drawZones =               false;
     bool        C_drawAIPath =              false;
     int         C_iDumb =                   70;
 
-    // network settings ----- adjustable via options menu
+    //  network settings ----- adjustable via options menu
     sf::String C_ip =                      "192.168.0.1";
     sf::String C_port =                    "12345";
 
@@ -164,8 +173,8 @@ namespace settings
     {
         std::ofstream outStream((C_configPath + "mars.cfg").c_str());
 
-        if (outStream) {
-
+        if (outStream)
+        {
             outStream << "// mars config file" << std::endl;
             outStream << "// nearly all these options can be changed with the in-game menu, too." << std::endl << std::endl;
 
@@ -196,7 +205,8 @@ namespace settings
             outStream << "[gameSpeed] "             << C_gameSpeed << std::endl;
             outStream << "[playerIName] ";
             int i(0);
-            while (i < 12 && i < C_playerIName.getSize()) {
+            while (i < 12 && i < C_playerIName.getSize())
+            {
                 outStream<<C_playerIName[i]<<" ";
                 ++i;
             }
@@ -212,7 +222,8 @@ namespace settings
             outStream << "[playerISpecial] "        <<  C_playerISpecial << std::endl;
             outStream << "[playerIIName] ";
             i = 0;
-            while (i < 12 && i < C_playerIIName.getSize()) {
+            while (i < 12 && i < C_playerIIName.getSize())
+            {
                 outStream<<C_playerIIName[i]<<" ";
                 ++i;
             }
@@ -256,7 +267,8 @@ namespace settings
 
             return true;
         }
-        else {
+        else
+        {
             std::cout << "Faild to save configuration file " << C_configPath << "mars.cfg!" << std::endl;
             return false;
         }
@@ -286,7 +298,8 @@ namespace settings
         #endif
 
         // search for config file
-        if (C_configPath == "") {
+        if (C_configPath == "")
+        {
             bool success(false);
             std::cout << "Searching for configuration file... " << std::flush;
             C_configPath = "./";
@@ -377,9 +390,10 @@ namespace settings
                 }
             #endif
 
-            if (success) std::cout << "Found " << C_dataPath << std::endl;
-            else {
-                std::cout << "Found nothing. Aborting." << std::endl;
+            if (success)
+                std::cout << "Found " << C_dataPath << std::endl;
+            else
+            {   std::cout << "Found nothing. Aborting." << std::endl;
                 return false;
             }
         }
@@ -779,9 +793,9 @@ namespace settings
                 else
                     std::cout << inputLine << " is a bad option in " << C_configPath << "mars.cfg!\n";
             }
-
         }
-        else {
+        else 
+        {
             if (save())
                 std::cout << "Created " << C_configPath << "mars.cfg, using default settings.\n";
         }

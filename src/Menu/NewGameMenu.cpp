@@ -38,6 +38,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Menu/InfoCK.hpp"
 #include "Menu/InfoGIP.hpp"
 #include "Menu/WeaponOptions.hpp"
+#include "Menu/MapOptions.hpp"
 #include "Locales/locales.hpp"
 
 UiWindow* NewGameMenu::instance_(NULL);
@@ -323,8 +324,8 @@ void NewGameMenu::checkWidgets()
         menus::showWindow(WeaponOptions::get());
     }
     else if (kMapOptions_) {
-        kWeaponOptions_ = false;
-        // menus::showWindow(MapOptions::get());
+        kMapOptions_ = false;
+        menus::showWindow(MapOptions::get());
     }
     else if (kCancel_) {
         kCancel_ = false;

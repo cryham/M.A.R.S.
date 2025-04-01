@@ -51,6 +51,8 @@ namespace spaceObjects
     void  addPlanet(Vector2f const& location, float radius);
     void  addSun();
     void  addBlackHole();
+    int   randomPlanetSize();
+
     Home* addHome(int where, int life, Color3f const& color);
     Home* addHome(Vector2f const& location, int life, Color3f const& color, float radius, float mass);
 

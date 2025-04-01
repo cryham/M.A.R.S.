@@ -95,7 +95,9 @@ namespace locales
         
         AccelerateBack, Boost, NextWeapon, PrevWeapon,
         Scale, ttScale, NoConfirmations, ttNoConfirmations,
+
         MapOptions,
+        SpaceObjects, MinPlanets, MaxPlanets, MinPlanetsSize, MaxPlanetsSize, MinPlanetGap,
 
         COUNT  /// amount of entries in the enum
     };

@@ -26,8 +26,10 @@ namespace announcer
     /// Several categories of sayings of the commentator.
     /// For each there are a lot of soundfiles which will
     /// be chosen randomly.
-    enum SoundMood {Affronting, Praising, Neutral,
-                    COUNT ///< COUNT contains the amount of entries in the enum. Keep it the last!
+    enum SoundMood
+    {
+        Affronting, Praising, Neutral,
+        COUNT ///< COUNT contains the amount of entries in the enum. Keep it the last!
     };
 
     /// Updates the announcer.

@@ -26,7 +26,11 @@ class PowerUp;
 
 namespace items 
 {
-    enum PowerUpType {puShield, puReverse, puSleep, puHealth, puFuel, COUNT};
+    enum PowerUpType
+    {
+        puShield, puReverse, puSleep, puHealth, puFuel,
+        COUNT
+    };
 
     void update();
     void draw();

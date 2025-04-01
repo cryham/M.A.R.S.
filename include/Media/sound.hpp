@@ -26,15 +26,18 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 /// It is possible to choose which sound to play,
 /// it's volume and where to play it (for stereo effects).
 
-namespace sound {
+namespace sound 
+{
     /// All different sound effects.
 
-    enum SoundType {Pump, Laser, BallExplode, ShipExplode, ShipCollide,  BallPlanetCollide,
-                    Particle, ShipBallCollide, BallRespawn, PlanetExplode, PumpShipCollide,
-                    ShipPlanetCollide, ShipRespawn, BlubPop, Fuel, LaserCollide, NoFuel,
-                    Sniper, Blub, BlubCollide, SniperShipCollide, SniperPlanetCollide, Click,
-                    Tab, Check, Countdown, Start, Swish, Score,
-                    COUNT ///< COUNT contains the amount of entries in the enum. Keep it the last!
+    enum SoundType
+    {
+        Pump, Laser, BallExplode, ShipExplode, ShipCollide,  BallPlanetCollide,
+        Particle, ShipBallCollide, BallRespawn, PlanetExplode, PumpShipCollide,
+        ShipPlanetCollide, ShipRespawn, BlubPop, Fuel, LaserCollide, NoFuel,
+        Sniper, Blub, BlubCollide, SniperShipCollide, SniperPlanetCollide, Click,
+        Tab, Check, Countdown, Start, Swish, Score,
+        COUNT //  amount of entries
     };
 
     /// Plays a sound file.
@@ -43,4 +46,3 @@ namespace sound {
     /// \param sets the volume
     void playSound (SoundType type, Vector2f const& position = Vector2f(SPACE_X_RESOLUTION*0.5f, 0), float volume = 100.f);
 }
-

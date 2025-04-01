@@ -26,7 +26,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 namespace locales 
 {
     /// The different texts included in MARS.
-    enum LocaleType {
+    enum LocaleType
+    {
         StartLocalGame,  StartNetworkGame, JoinNetworkGame,
         Options, About, Quit, Continue, RestartGame,
         HideMenu, QuitCurrentGame,
@@ -111,5 +112,3 @@ namespace locales
     Locale const&              getCurrentLocale();
     void                       setCurrentLocale();
 }
-
-

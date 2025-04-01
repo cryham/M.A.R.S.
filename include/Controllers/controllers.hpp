@@ -32,7 +32,8 @@ class KeyController;
 namespace controllers 
 {
     /// A list of all supported control types.
-    enum ControlType {
+    enum ControlType
+    {
         cBot,           ///< A bot controlled by AI.
         cPlayer1,       ///< Local player one.
         cPlayer2        ///< Local player two.

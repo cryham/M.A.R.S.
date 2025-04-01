@@ -25,7 +25,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 namespace games 
 {
     /// The different games included in MARS.
-    enum GameType {
+    enum GameType
+    {
         gNoGame,        ///< No game is currently played (rarely used).
         gMenu,          ///< This is the game which plays in the background of the main menu.
                         ///< It's simplified TeamDeathMatch - no human players are added.

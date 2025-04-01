@@ -30,11 +30,19 @@ class SpaceObject;
 
 namespace spaceObjects 
 {
-    enum ObjectType {oPlanet, oSun, oBlackHole, oHome, oShip, oBall, oFuel, oAmmoAFK47, oAmmoROFLE, oAmmoShotgun,
-                     oMud, oSmoke, oEruption, oDust, oExplode, oFragment, oBurningFragment, oFragmentFlame,
-                     oMiniFlame, oAmmoFlubba, oMiniAmmoFlubba, oCannonBall, oSpark, oAmmoBurner, oAmmoH2OMG, oHeat,
-                     oHeatJet, oShockWave, oHeatBurner, oMiniFlameSmoke, oAmmoRocket, oPowerUpCollect, oAmmoFist,
-                     oNumber, oAmmoInsta, oStar};
+    enum ObjectType
+    {
+        oPlanet, oSun, oBlackHole,
+        oHome, oShip, oBall, oFuel,
+        oAmmoAFK47, oAmmoROFLE, oAmmoShotgun,
+        oMud, oSmoke, oEruption, oDust, oExplode,
+        oFragment, oBurningFragment, oFragmentFlame,
+        oMiniFlame, oAmmoFlubba, oMiniAmmoFlubba, oCannonBall, oSpark,
+        oAmmoBurner, oAmmoH2OMG, oHeat,
+        oHeatJet, oShockWave, oHeatBurner, oMiniFlameSmoke,
+        oAmmoRocket, oPowerUpCollect, oAmmoFist,
+        oNumber, oAmmoInsta, oStar
+    };
 
     void update();
     void draw();
@@ -57,5 +65,3 @@ namespace spaceObjects
 
     void clear();
 }
-
-

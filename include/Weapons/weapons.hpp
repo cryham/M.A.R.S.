@@ -22,12 +22,15 @@ class Ship;
 
 namespace weapons 
 {
-    enum WeaponType {wInsta=1, wAFK47=2, wBurner=4, wFist=8, wFlubba=16,
-                     wShotgun=32, wRocketLauncher=64, wROFLE=128,
-                     wH2OMG=256, wNoWeapon=512};
+    enum WeaponType
+    {
+        wInsta=1, wAFK47=2, wBurner=4, wFist=8, wFlubba=16,
+        wShotgun=32, wRocketLauncher=64, wROFLE=128,
+        wH2OMG=256,
+        wNoWeapon=512
+    };
 
     Weapon* create    (WeaponType type, Ship* parent);
     Weapon* createNext(WeaponType type, Ship* parent);
     Weapon* createPrev(WeaponType type, Ship* parent);
 }
-

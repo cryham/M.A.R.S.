@@ -22,11 +22,13 @@ class Ship;
 
 namespace specials 
 {
-    enum SpecialType {sFreeze=1, sHeal=2, sBlast=4, sFireWall=8, sShocker=16, sNoSpecial=32};
+    enum SpecialType
+    {
+        sFreeze=1, sHeal=2, sBlast=4, sFireWall=8, sShocker=16,
+        sNoSpecial=32
+    };
 
     Special* create    (SpecialType type, Ship* parent);
     Special* createNext(SpecialType type, Ship* parent);
     Special* createPrev(SpecialType type, Ship* parent);
 }
-
-

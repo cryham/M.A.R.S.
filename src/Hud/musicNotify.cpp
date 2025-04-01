@@ -28,8 +28,10 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include <taglib/fileref.h>
 #include <taglib/tag.h>
 
-namespace musicNotify {
-    namespace {
+namespace musicNotify
+{
+    namespace
+    {
         float timer_(0.f);
 
         sf::String title_;
@@ -41,8 +43,10 @@ namespace musicNotify {
 
     }
 
-    void draw() {
-        if (timer_ > 0.f) {
+    void draw()
+    {
+        if (timer_ > 0.f)
+        {
 
             float alpha(1.f);
             if (timer_ > 4.f)
@@ -57,6 +61,7 @@ namespace musicNotify {
             const float fromLength(text::getCharacterPos(*from_, from_->getSize(), 12.f, TEXT_ALIGN_LEFT));
             const float byLength(text::getCharacterPos(*by_, by_->getSize(), 12.f, TEXT_ALIGN_LEFT));
             const float spaceLength(text::getCharacterPos(" ", 1, 12.f, TEXT_ALIGN_LEFT));
+            
             float byLineLenght(0.f);
             if (artist_ != "" && album_ != "") byLineLenght = artistLength + albumLength + byLength + fromLength + spaceLength;
             else if (artist_ != "")            byLineLenght = artistLength + byLength;
@@ -121,7 +126,6 @@ namespace musicNotify {
                         glVertex2f(position.x_+cornerRadius*mirror, position.y_+height);
                     }
 
-
                     if (i < 90)         cornerPosition = position;
                     else if (i < 180)   cornerPosition = position + Vector2f(width, 0.f);
                     else if (i < 270)   cornerPosition = position + Vector2f(width, height);
@@ -160,7 +164,8 @@ namespace musicNotify {
             // draw text
             text::drawScreenText(title_, position + Vector2f(-5*mirror, 5), 20.f, TEXT_ALIGN_RIGHT, Color3f(1.f, 0.5f, 0.9f)*alpha);
 
-            if (artist_ != "" && album_ != "") {
+            if (artist_ != "" && album_ != "")
+            {
                 text::drawScreenText(*by_, position + Vector2f(mirror*( -artistLength - spaceLength - albumLength - fromLength - 5), 28), 12.f, TEXT_ALIGN_RIGHT, Color3f(0.7f, 0.7f, 0.7f)*alpha);
                 text::drawScreenText(artist_, position + Vector2f(mirror*( -spaceLength - albumLength - fromLength -5), 28), 12.f, TEXT_ALIGN_RIGHT, Color3f(1.f, 0.5f, 0.9f)*alpha);
                 text::drawScreenText(" ", position + Vector2f(mirror*( -albumLength - fromLength -5), 28), 12.f, TEXT_ALIGN_RIGHT, Color3f(0.7f, 0.7f, 0.7f)*alpha);
@@ -178,12 +183,14 @@ namespace musicNotify {
         }
     }
 
-    void update() {
+    void update()
+    {
          if (timer_ > 0.f)
             timer_ -= timer::realFrameTime();
     }
 
-    void show(std::string const& fileName) {
+    void show(std::string const& fileName)
+    {
         by_ = locales::getLocale(locales::Artist);
         from_ = locales::getLocale(locales::Album);
 
@@ -204,5 +211,3 @@ namespace musicNotify {
             timer_ = 4.f;
     }
 }
-
-

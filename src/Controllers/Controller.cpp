@@ -54,37 +54,41 @@ void Controller::slaveBoost (int down) const
 
 void Controller::slaveLeft (int left) const
 {
-    if (!slave_->ship_->weaponChange_ && !slave_->ship_->specialChange_ && slave_->ship_->visible_ && !slave_->ship_->collectedPowerUps_[items::puSleep]) {
+    if (!slave_->ship_->weaponChange_ && !slave_->ship_->specialChange_ && slave_->ship_->visible_ &&
+        !slave_->ship_->collectedPowerUps_[items::puSleep])
+    {
         if (left && slave_->ship_->right_)
             slave_->ship_->right_ = 0;
         else
             slave_->ship_->left_ = left;
-    }
-    else
+    }else
         slave_->ship_->left_ = 0;
 }
 
 void Controller::slaveRight (int right) const
 {
-    if (!slave_->ship_->weaponChange_ && !slave_->ship_->specialChange_ && slave_->ship_->visible_ && !slave_->ship_->collectedPowerUps_[items::puSleep]) {
+    if (!slave_->ship_->weaponChange_ && !slave_->ship_->specialChange_ && slave_->ship_->visible_ &&
+        !slave_->ship_->collectedPowerUps_[items::puSleep])
+    {
         if (right && slave_->ship_->left_)
             slave_->ship_->left_ = 0;
         else
             slave_->ship_->right_ = right;
-    }
-    else
+    }else
         slave_->ship_->right_ = 0;
 }
 
 void Controller::slaveFire (int fire) const
 {
-    if (fire > 50 && !slave_->ship_->docked_ && slave_->ship_->visible_ && !slave_->ship_->collectedPowerUps_[items::puSleep] && slave_->ship_->frozen_<=0.f)
+    if (fire > 50 && !slave_->ship_->docked_ && slave_->ship_->visible_ &&
+        !slave_->ship_->collectedPowerUps_[items::puSleep] && slave_->ship_->frozen_<=0.f)
         slave_->ship_->currentWeapon_->fire();
 }
 
 void Controller::slaveSpecial (int special) const
 {
-    if (special > 50 && !slave_->ship_->docked_ && slave_->ship_->visible_ && !slave_->ship_->collectedPowerUps_[items::puSleep] && slave_->ship_->frozen_<=0.f)
+    if (special > 50 && !slave_->ship_->docked_ && slave_->ship_->visible_ &&
+        !slave_->ship_->collectedPowerUps_[items::puSleep] && slave_->ship_->frozen_<=0.f)
         slave_->ship_->currentSpecial_->activate();
 }
 
@@ -119,23 +123,31 @@ void Controller::slavePrev  () const
 
 void Controller::slaveLeft () const
 {
-    if (slave_->ship_->weaponChange_ && slave_->ship_->visible_ && !slave_->ship_->collectedPowerUps_[items::puSleep])
+    if (slave_->ship_->weaponChange_ && slave_->ship_->visible_ &&
+        !slave_->ship_->collectedPowerUps_[items::puSleep])
         slave_->ship_->currentWeapon_->previous();
-    else if (slave_->ship_->specialChange_ && slave_->ship_->visible_ && !slave_->ship_->collectedPowerUps_[items::puSleep])
+    else
+    if (slave_->ship_->specialChange_ && slave_->ship_->visible_ &&
+        !slave_->ship_->collectedPowerUps_[items::puSleep])
         slave_->ship_->currentSpecial_->previous();
 }
 
 void Controller::slaveRight () const
 {
-    if (slave_->ship_->weaponChange_ && slave_->ship_->visible_ && !slave_->ship_->collectedPowerUps_[items::puSleep])
+    if (slave_->ship_->weaponChange_ && slave_->ship_->visible_ &&
+        !slave_->ship_->collectedPowerUps_[items::puSleep])
         slave_->ship_->currentWeapon_->next();
-    else if (slave_->ship_->specialChange_ && slave_->ship_->visible_ && !slave_->ship_->collectedPowerUps_[items::puSleep])
+    else
+    if (slave_->ship_->specialChange_ && slave_->ship_->visible_ &&
+        !slave_->ship_->collectedPowerUps_[items::puSleep])
         slave_->ship_->currentSpecial_->next();
 }
 
 void Controller::slaveFire () const
 {
-    if (slave_->ship_->docked_ && slave_->ship_->visible_ && !slave_->ship_->collectedPowerUps_[items::puSleep] && slave_->ship_->frozen_<=0.f) {
+    if (slave_->ship_->docked_ && slave_->ship_->visible_ &&
+        !slave_->ship_->collectedPowerUps_[items::puSleep] && slave_->ship_->frozen_<=0.f)
+    {
         slave_->ship_->weaponChange_ = !slave_->ship_->weaponChange_;
         slave_->ship_->specialChange_ = false;
     }
@@ -143,13 +155,16 @@ void Controller::slaveFire () const
 
 void Controller::slaveSpecial () const
 {
-    if (slave_->ship_->docked_ && slave_->ship_->visible_ && !slave_->ship_->collectedPowerUps_[items::puSleep] && slave_->ship_->frozen_<=0.f) {
+    if (slave_->ship_->docked_ && slave_->ship_->visible_ &&
+        !slave_->ship_->collectedPowerUps_[items::puSleep] && slave_->ship_->frozen_<=0.f)
+    {
         slave_->ship_->specialChange_ = !slave_->ship_->specialChange_;
         slave_->ship_->weaponChange_ = false;
     }
 }
 
-Ship* Controller::ship() const {
+Ship* Controller::ship() const
+{
     return slave_->ship_;
 }
 

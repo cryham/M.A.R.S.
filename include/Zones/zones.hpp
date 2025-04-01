@@ -36,7 +36,8 @@ class RasterZone;
 /// A Zone is an area in space which is useful for tactical
 /// calculations, the tutorial and path finding.
 
-namespace zones {
+namespace zones 
+{
     /// Adds a TeamZone.
     /// \param location The location of the Home Planet.
     Zone* addTeamZone(Vector2f const& location);

@@ -27,26 +27,31 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 namespace announcer 
 {
-
     namespace
 	{
-        enum SoundType {Bam, Impressive, NiceOne, NotFunny, ThatWasGreat, WellDone,
-                        YouSuck,
-                        COUNT};
+        enum SoundType
+        {
+            Bam, Impressive, NiceOne, NotFunny,
+            ThatWasGreat, WellDone, YouSuck,
+            COUNT
+        };
 
         std::vector<sf::SoundBuffer*> sounds_(COUNT);
         sf::Sound soundChannel_;
 
-        void loadSound_(SoundType sound, std::string fileName) {
+        void loadSound_(SoundType sound, std::string fileName)
+        {
             sounds_[sound] = new sf::SoundBuffer;
             if (!sounds_[sound]->loadFromFile(fileName))
                 std::cout << "Failed to load Soundfile \"" << fileName << "\"!" << std::endl;
         }
 
-        void playSound(SoundType sound) {
+        void playSound(SoundType sound)
+        {
             // check if sound is already loaded
             if (sounds_[sound] != NULL) {
-                if (soundChannel_.getStatus() != sf::Sound::Playing) {
+                if (soundChannel_.getStatus() != sf::Sound::Playing)
+                {
                     // play sound
                     soundChannel_.setBuffer(*sounds_[sound]);
                     soundChannel_.setVolume(static_cast<float>(settings::C_announcerVolume));
@@ -54,17 +59,18 @@ namespace announcer
                     soundChannel_.setAttenuation(0.f);
                     soundChannel_.play();
                 }
-            }
-            else {
+            }else
+            {
                 // load it from file and...
-                switch (sound) {
-                    case Bam:                 loadSound_(sound, settings::C_dataPath + "audio/announcer/bam.wav");              break;
-                    case Impressive:          loadSound_(sound, settings::C_dataPath + "audio/announcer/impressive.wav");       break;
-                    case NiceOne:             loadSound_(sound, settings::C_dataPath + "audio/announcer/niceOne.wav");          break;
-                    case NotFunny:            loadSound_(sound, settings::C_dataPath + "audio/announcer/notFunny.wav");         break;
-                    case ThatWasGreat:        loadSound_(sound, settings::C_dataPath + "audio/announcer/thatWasGreat.wav");     break;
-                    case WellDone:            loadSound_(sound, settings::C_dataPath + "audio/announcer/wellDone.wav");         break;
-                    case YouSuck:             loadSound_(sound, settings::C_dataPath + "audio/announcer/youSuck.wav");          break;
+                switch (sound)
+                {
+                    case Bam:          loadSound_(sound, settings::C_dataPath + "audio/announcer/bam.wav");              break;
+                    case Impressive:   loadSound_(sound, settings::C_dataPath + "audio/announcer/impressive.wav");       break;
+                    case NiceOne:      loadSound_(sound, settings::C_dataPath + "audio/announcer/niceOne.wav");          break;
+                    case NotFunny:     loadSound_(sound, settings::C_dataPath + "audio/announcer/notFunny.wav");         break;
+                    case ThatWasGreat: loadSound_(sound, settings::C_dataPath + "audio/announcer/thatWasGreat.wav");     break;
+                    case WellDone:     loadSound_(sound, settings::C_dataPath + "audio/announcer/wellDone.wav");         break;
+                    case YouSuck:      loadSound_(sound, settings::C_dataPath + "audio/announcer/youSuck.wav");          break;
                     case COUNT: std::cout << "COUNT is not a valid Soundtype..." << std::endl;
                 }
                 // ... play it afterwards
@@ -74,42 +80,46 @@ namespace announcer
         }
     }
 
-    void update() {
-        if (settings::C_announcerVolume > 0) {
+    void update()
+    {
+        if (settings::C_announcerVolume > 0)
+        {
             float slowMoTime(timer::slowMoTime());
-            if (slowMoTime > 0.75f) {
-                soundChannel_.setPitch(slowMoTime*0.666f);
-            }
-            else if (slowMoTime > 0.25f) {
-                soundChannel_.setPitch(0.5f);
-            }
-            else if (slowMoTime > 0.0f) {
-                soundChannel_.setPitch(1.f-slowMoTime*2.f);
-            }
-            else soundChannel_.setPitch(1.f);
+                 if (slowMoTime > 0.75f)  soundChannel_.setPitch(slowMoTime*0.666f);
+            else if (slowMoTime > 0.25f)  soundChannel_.setPitch(0.5f);
+            else if (slowMoTime > 0.0f)   soundChannel_.setPitch(1.f-slowMoTime*2.f);
+            else                          soundChannel_.setPitch(1.f);
         }
     }
 
-    void announce (SoundMood mood) {
-        if (settings::C_announcerVolume > 0) {
-            switch (mood) {
+    void announce (SoundMood mood)
+    {
+        if (settings::C_announcerVolume > 0)
+        {
+            switch (mood)
+            {
                 case Affronting:
-                    switch (randomizer::random(0,2)) {
-                        case 0: playSound(YouSuck); break;
-                        case 1: playSound(NotFunny); break;
+                    switch (randomizer::random(0,2))
+                    {
+                        case 0:  playSound(YouSuck);  break;
+                        case 1:  playSound(NotFunny);  break;
                         default:;
                     } break;
+
                 case Praising:
-                    switch (randomizer::random(0,4)) {
-                        case 0: playSound(Impressive); break;
-                        case 1: playSound(NiceOne); break;
-                        case 2: playSound(ThatWasGreat); break;
-                        case 3: playSound(WellDone); break;
+                    switch (randomizer::random(0,4))
+                    {
+                        case 0:  playSound(Impressive);  break;
+                        case 1:  playSound(NiceOne);  break;
+                        case 2:  playSound(ThatWasGreat);  break;
+                        case 3:  playSound(WellDone);  break;
                         default:;
                     } break;
+                    
                 case Neutral:
-                    switch (randomizer::random(0,1)) {
-                        case 0: playSound(Bam); break;
+                    switch (randomizer::random(0,1))
+                    {
+                        case 0:  playSound(Bam);  break;
                         default:;
                     } break;
                 default:;

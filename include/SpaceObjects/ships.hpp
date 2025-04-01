@@ -23,7 +23,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 class Player;
 class Ship;
 
-namespace ships {
+namespace ships 
+{
     void addShip(Vector2f const& location, float rotation, Player* owner);
 
     void update();

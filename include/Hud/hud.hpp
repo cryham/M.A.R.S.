@@ -20,7 +20,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "System/Vector2f.hpp"
 #include "System/Color3f.hpp"
 
-namespace hud {
+namespace hud 
+{
     void init();
 
     void update();

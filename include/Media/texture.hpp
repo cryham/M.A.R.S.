@@ -26,7 +26,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 /// texture from file. Additionally it stores the overall colors of the
 /// planet textures.
 
-namespace texture {
+namespace texture 
+{
     /// All different textures.
     enum TextureType {Home, Planet1, Planet2, Planet3, Planet4, Planet5, Planet6, Planet7, Planet8, Planet9, Planet10,
                       Planet11, Planet12, Planet13, Planet14, Planet15, Sun1, SunHeat, Ice, Bolt, Cracks, Hole1, Ball, Particles, PowerUps, Ships, Weapons, MotherShip,

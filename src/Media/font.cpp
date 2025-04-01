@@ -22,8 +22,10 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include <iostream>
 
-namespace font {
-    namespace {
+namespace font 
+{
+    namespace
+	{
         std::map<int, sf::Font*> fonts_;
     }
 

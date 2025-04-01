@@ -27,8 +27,10 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include <climits>
 
-namespace players {
-    namespace {
+namespace players 
+{
+    namespace
+	{
         std::vector<Player*> allPlayers_;
         Player* playerI_;
         Player* playerII_;

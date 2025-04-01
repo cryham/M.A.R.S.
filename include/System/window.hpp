@@ -25,7 +25,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 /// A namespace handling the main window of the game.
 
-namespace window {
+namespace window 
+{
     /// Opens the window.
     /// Should be called once at the beginning.
     /// Returns false, if something went wrong.

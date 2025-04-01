@@ -28,7 +28,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 /// A namespace for drawing text on the screen.
 
-namespace text {
+namespace text 
+{
     /// Draws text to the given space coordinates.
     /// Internally the given space location (from upper left (0, 0) to lower right (SPACE_X_RESOLUTION, SPACE_Y_RESOLUTION))
     /// is transformed to a pixel location on the screen, depending on the current window resolution.

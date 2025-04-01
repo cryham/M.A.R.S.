@@ -32,9 +32,11 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #define FADE_OUT  3
 #define INVISIBLE 4
 
-namespace toolTip {
+namespace toolTip 
+{
 
-    namespace {
+    namespace
+	{
         sf::String*             currentLocale_(NULL);
         std::vector<sf::String> lines_;
         int                     width_(300);

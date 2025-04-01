@@ -26,7 +26,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 class UiWindow;
 class UiElement;
 
-namespace menus {
+namespace menus 
+{
 
     void draw();
 

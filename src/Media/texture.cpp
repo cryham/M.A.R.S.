@@ -24,9 +24,11 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include <vector>
 #include <iostream>
 
-namespace texture {
+namespace texture 
+{
 
-    namespace {
+    namespace
+	{
         std::vector<GLuint*> textures_(COUNT);
 
         void loadTexture_(TextureType type, std::string fileName) {

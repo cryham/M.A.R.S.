@@ -22,8 +22,10 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include <SFML/Window.hpp>
 
-namespace controllers {
-    namespace {
+namespace controllers 
+{
+    namespace
+	{
         KeyController* keyControllers1_(NULL);
         KeyController* keyControllers2_(NULL);
         std::vector<BotController*> botControllers_;

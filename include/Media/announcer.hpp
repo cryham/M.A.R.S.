@@ -21,7 +21,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 /// The different moods which can be given to the
 /// commentator will lead to different sayings.
 
-namespace announcer {
+namespace announcer 
+{
     /// Several categories of sayings of the commentator.
     /// For each there are a lot of soundfiles which will
     /// be chosen randomly.

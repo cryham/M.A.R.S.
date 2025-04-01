@@ -21,7 +21,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include <SFML/System.hpp>
 
-namespace toolTip {
+namespace toolTip 
+{
 
     void draw();
 

@@ -22,7 +22,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 /// A namespace for playing music.
 /// Music is streamed from OGG files.
 
-namespace music {
+namespace music 
+{
     /// Updates the music player.
     /// If the ingame music has stopped, a new randomly
     /// chosen track will be played.

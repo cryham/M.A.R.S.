@@ -22,7 +22,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include <vector>
 
-namespace balls {
+namespace balls 
+{
     void addBall(Vector2f const& location = Vector2f(0, 0));
 
     void update();

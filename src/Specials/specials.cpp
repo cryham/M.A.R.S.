@@ -27,7 +27,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Players/Player.hpp"
 #include "System/settings.hpp"
 
-namespace specials {
+namespace specials 
+{
 
     Special* create(SpecialType type, Ship* parent)
     {

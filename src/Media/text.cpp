@@ -24,9 +24,11 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include <SFML/Graphics.hpp>
 #include <SFML/OpenGL.hpp>
 
-namespace text {
+namespace text 
+{
 
-    namespace {
+    namespace
+	{
         void drawText(sf::String const& text, Vector2f const& location,
                       float size, int align, Color3f const& color, float alpha, sf::Font* font) {
 

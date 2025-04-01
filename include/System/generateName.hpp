@@ -27,7 +27,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 /// It generates names for bots, the game itself and
 /// stores the names for the ships.
 
-namespace generateName {
+namespace generateName 
+{
     /// Returns a random bot name and its associated strength.
     /// The name is loaded from the file "botnames.txt".
     /// \param randomNumber Chooses the group of names from which the returned

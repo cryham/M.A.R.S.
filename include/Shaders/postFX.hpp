@@ -23,7 +23,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 /// A namespace for post processing shaders.
 
-namespace postFX {
+namespace postFX 
+{
     /// Updates the internal bumpmap GLSL shader.
     /// It will not do so, when settings::C_shaders is set to false.
     void update();

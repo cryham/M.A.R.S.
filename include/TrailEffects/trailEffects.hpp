@@ -22,7 +22,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 class SpaceObject;
 class Trail;
 
-namespace trailEffects {
+namespace trailEffects 
+{
     void update();
 
     void draw();

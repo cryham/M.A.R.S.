@@ -22,7 +22,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 /// A namespace handling time.
 /// The entire game is timed by this namespace.
 
-namespace timer {
+namespace timer 
+{
     /// Updates the timer.
     /// Has to be called every frame once.
     void update(float frameTime);

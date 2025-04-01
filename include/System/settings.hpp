@@ -29,7 +29,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 /// All settings are stored in global variables and
 /// can be saved to and loaded from file
 
-namespace settings {
+namespace settings 
+{
     /// Loads all settings from the file.
     /// All settings are stored in the file mars.cfg in C_configPath.
     /// This has to be called once at the beginning of the game. If an error

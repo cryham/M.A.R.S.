@@ -29,7 +29,8 @@ class KeyController;
 /// Local Player's Ships are controlled by KeyControllers, Bots
 /// are controlled by BotControllers.
 
-namespace controllers {
+namespace controllers 
+{
     /// A list of all supported control types.
     enum ControlType {
         cBot,           ///< A bot controlled by AI.

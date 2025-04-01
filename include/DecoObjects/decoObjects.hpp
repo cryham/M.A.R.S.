@@ -31,7 +31,8 @@ class SpaceObject;
 
 /// A namespace which handles objects in the space, which can't be interacted with.
 
-namespace decoObjects {
+namespace decoObjects 
+{
     /// Updates every DecoObject.
     void update();
 

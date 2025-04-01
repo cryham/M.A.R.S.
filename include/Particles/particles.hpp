@@ -28,7 +28,8 @@ class MobileSpaceObject;
 /// The functions in this namespace can spawn, draw, count and
 /// clear all particles.
 
-namespace particles {
+namespace particles 
+{
     /// A list of all supported particle types.
     enum ParticleType {
         pFuel,              ///< Spawned by the Ships exhaust.

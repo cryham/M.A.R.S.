@@ -22,7 +22,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 /// updated and drawn. Furthermore some information on the
 /// current game can be retrieved.
 
-namespace games {
+namespace games 
+{
     /// The different games included in MARS.
     enum GameType {
         gNoGame,        ///< No game is currently played (rarely used).

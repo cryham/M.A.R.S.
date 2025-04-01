@@ -24,7 +24,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 class CannonControl;
 class PowerUp;
 
-namespace items {
+namespace items 
+{
     enum PowerUpType {puShield, puReverse, puSleep, puHealth, puFuel, COUNT};
 
     void update();

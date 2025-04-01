@@ -31,7 +31,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Players/Player.hpp"
 #include "System/settings.hpp"
 
-namespace weapons {
+namespace weapons 
+{
 
     Weapon* create(WeaponType type, Ship* parent)
     {

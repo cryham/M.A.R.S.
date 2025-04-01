@@ -25,9 +25,11 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include <iostream>
 #include <SFML/Audio.hpp>
 
-namespace announcer {
+namespace announcer 
+{
 
-    namespace {
+    namespace
+	{
         enum SoundType {Bam, Impressive, NiceOne, NotFunny, ThatWasGreat, WellDone,
                         YouSuck,
                         COUNT};

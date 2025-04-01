@@ -24,7 +24,8 @@ class Team;
 class Home;
 class Player;
 
-namespace players {
+namespace players 
+{
     void addPlayer (Team* team, controllers::ControlType type, Color3f const& = Color3f::random());
 
     void createShips();

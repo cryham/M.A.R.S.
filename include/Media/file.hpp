@@ -25,7 +25,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 /// It contains function which work with
 /// UTF-8 encoded text files.
 
-namespace file {
+namespace file 
+{
     /// Loads an UTF-8 encoded text file.
     /// The lines of this file are stored in a std::vector of SFML-Strings.
     /// Comments (//) and empty lines in this file will be ignored.

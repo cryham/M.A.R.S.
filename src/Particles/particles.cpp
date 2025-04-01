@@ -55,7 +55,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "TrailEffects/trailEffects.hpp"
 
-namespace particles {
+namespace particles 
+{
     void update() {
         AmmoAFK47::        updateAll();
         AmmoBurner::       updateAll();

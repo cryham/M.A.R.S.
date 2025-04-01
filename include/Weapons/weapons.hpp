@@ -20,7 +20,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 class Weapon;
 class Ship;
 
-namespace weapons {
+namespace weapons 
+{
     enum WeaponType {wInsta=1, wAFK47=2, wBurner=4, wFist=8, wFlubba=16,
                      wShotgun=32, wRocketLauncher=64, wROFLE=128,
                      wH2OMG=256, wNoWeapon=512};

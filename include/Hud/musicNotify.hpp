@@ -19,7 +19,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include <string>
 
-namespace musicNotify {
+namespace musicNotify 
+{
 
     void draw();
 

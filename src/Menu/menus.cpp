@@ -36,9 +36,11 @@ this program.  If not, see <http://www.gnu.org/licenses/>.*/
 #include "defines.hpp"
 #include "Games/games.hpp"
 
-namespace menus {
+namespace menus 
+{
 
-    namespace {
+    namespace
+	{
         std::vector<UiWindow*> windowStack_;
         bool hidden_(false);
         UiElement* keyboardFixTarget_(NULL);

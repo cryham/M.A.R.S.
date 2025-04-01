@@ -24,7 +24,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include <fribidi/fribidi.h>
 
-namespace file {
+namespace file 
+{
     bool load(std::string fileName, std::vector<sf::String>& strings) {
         // Open the file (contains UTF-8 encoded text)
         std::ifstream fileStream(fileName.c_str());

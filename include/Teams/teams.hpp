@@ -24,7 +24,8 @@ class Team;
 class Home;
 class Player;
 
-namespace teams {
+namespace teams 
+{
     Team* addTeam(Team* newTeam);
 
     void assignHomes(Home* home);

@@ -28,7 +28,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 class Home;
 class SpaceObject;
 
-namespace spaceObjects {
+namespace spaceObjects 
+{
     enum ObjectType {oPlanet, oSun, oBlackHole, oHome, oShip, oBall, oFuel, oAmmoAFK47, oAmmoROFLE, oAmmoShotgun,
                      oMud, oSmoke, oEruption, oDust, oExplode, oFragment, oBurningFragment, oFragmentFlame,
                      oMiniFlame, oAmmoFlubba, oMiniAmmoFlubba, oCannonBall, oSpark, oAmmoBurner, oAmmoH2OMG, oHeat,

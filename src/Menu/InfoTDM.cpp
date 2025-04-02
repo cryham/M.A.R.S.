@@ -32,7 +32,8 @@ bool InfoTDM::kClose_(false);
 
 UiWindow* InfoTDM::get()
 {
-    if (instance_ == NULL) {
+    if (instance_ == NULL)
+    {
         instance_ = new InfoTDM(320*scale_, 300);
         instance_->addWidget(new Button(locales::getLocale(locales::Close), NULL, &kClose_, Vector2f(220,270), 90, 20));
         instance_->addWidget(new Label(new sf::String("Team-DeathMatch"), TEXT_ALIGN_LEFT, Vector2f(10,10), 20.f, getColor3f(0.5f, 0.9f, 1.f), false));

@@ -30,7 +30,8 @@ bool Connect::kClose_(false);
 
 UiWindow* Connect::get()
 {
-    if (instance_ == NULL) {
+    if (instance_ == NULL)
+    {
         instance_ = new Connect(320, 180);
         instance_->addWidget(new Button(locales::getLocale(locales::Close), NULL, &kClose_, Vector2f(220,150), 90, 20));
         instance_->addWidget(new Label(locales::getLocale(locales::StartNetworkGame), TEXT_ALIGN_LEFT, Vector2f(10,10), 20.f, getColor3f(0.5f, 0.9f, 1.f), false));

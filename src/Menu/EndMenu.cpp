@@ -27,15 +27,18 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "System/settings.hpp"
 #include "Locales/locales.hpp"
 
+
 UiWindow* EndMenu::instance_(NULL);
 bool EndMenu::kNew_(false);
 bool EndMenu::kOptions_(false);
 bool EndMenu::kToMainMenu_(false);
 bool EndMenu::kHide_(false);
 
+
 UiWindow* EndMenu::get()
 {
-    if (instance_ == NULL) {
+    if (instance_ == NULL)
+    {
         instance_ = new EndMenu(180, 130);
         instance_->addWidget(new Button(locales::getLocale(locales::RestartGame),     NULL, &kNew_,         Vector2f(10,10), 160, 20));
         instance_->addWidget(new Button(locales::getLocale(locales::Options),         NULL, &kOptions_,     Vector2f(10,40), 160, 20));
@@ -47,21 +50,25 @@ UiWindow* EndMenu::get()
 
 void EndMenu::checkWidgets()
 {
-    if (kToMainMenu_) {
-        kToMainMenu_ = false;
+    if (kToMainMenu_)
+    {   kToMainMenu_ = false;
+
         menus::showWindow(ToMainConfirm::get());
     }
-    else if (kOptions_) {
-        kOptions_ = false;
+    else if (kOptions_)
+    {   kOptions_ = false;
+
         menus::showWindow(OptionsMenu::get());
     }
-    else if (kNew_) {
-        kNew_ = false;
+    else if (kNew_)
+    {   kNew_ = false;
+
         menus::hideWindow();
         games::restart();
     }
-    else if (kHide_) {
-        kHide_ = false;
+    else if (kHide_)
+    {   kHide_ = false;
+
         if (settings::C_showInfoHide)
             menus::showWindow(InfoHide::get());
         else
@@ -75,5 +82,3 @@ void EndMenu::reset()
         delete instance_;
     instance_ = NULL;
 }
-
-

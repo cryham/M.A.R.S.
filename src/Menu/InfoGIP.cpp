@@ -32,7 +32,8 @@ bool InfoGIP::kClose_(false);
 
 UiWindow* InfoGIP::get()
 {
-    if (instance_ == NULL) {
+    if (instance_ == NULL)
+    {
         instance_ = new InfoGIP(320*scale_, 300);
         instance_->addWidget(new Button(locales::getLocale(locales::Close), NULL, &kClose_, Vector2f(220,270), 90, 20));
         instance_->addWidget(new Label(new sf::String("Grave-Itation Pit"), TEXT_ALIGN_LEFT, Vector2f(10,10), 20.f, getColor3f(0.5f, 0.9f, 1.f), false));

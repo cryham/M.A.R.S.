@@ -46,13 +46,16 @@ namespace menus
         UiElement* keyboardFixTarget_(NULL);
     }
 
-    void showMain() {
+    void showMain()
+    {
         windowStack_.clear();
         showWindow(MainMenu::get());
     }
 
-    void showPause() {
-        if (!visible()) {
+    void showPause()
+    {
+        if (!visible())
+        {
             if (games::ended())
                 showWindow(EndMenu::get());
             else
@@ -60,55 +63,65 @@ namespace menus
         }
     }
 
-    void draw() {
-        if (visible() && !hidden_) {
+    void draw()
+    {
+        if (visible() && !hidden_)
+        {
             for (std::vector<UiWindow*>::iterator it = windowStack_.begin(); it != windowStack_.end(); ++it)
                 (*it)->draw();
 
             Vector2f viewPort = window::getViewPort();
             text::drawScreenText(sf::String("M.A.R.S. ") + sf::String(VERSION_MAJOR) + "." + sf::String(VERSION_MINOR) + "." + sf::String(VERSION_PATCH),
                                             Vector2f(viewPort.x_-4.f, viewPort.y_-14.f) , 11.f, TEXT_ALIGN_RIGHT, Color3f(0.8, 0.8, 0.8));
-
             toolTip::draw();
         }
     }
 
-    void mouseMoved(Vector2f const& position) {
-        if (visible()) {
+    void mouseMoved(Vector2f const& position)
+    {
+        if (visible())
+        {
             toolTip::mouseMoved(position);
             windowStack_.back()->mouseMoved(position);
             windowStack_.back()->checkWidgets();
         }
     }
 
-    void mouseWheelMoved(Vector2f const& position, int delta) {
+    void mouseWheelMoved(Vector2f const& position, int delta)
+    {
         if (visible())
             windowStack_.back()->mouseWheelMoved(position, delta);
     }
 
-    void mouseLeft(bool down) {
-        if (visible()) {
+    void mouseLeft(bool down)
+    {
+        if (visible())
+        {
             windowStack_.back()->mouseLeft(down);
             if (!down)
                 windowStack_.back()->checkWidgets();
         }
     }
 
-    void keyEvent(bool down, Key const& key) {
+    void keyEvent(bool down, Key const& key)
+    {
         if (down && key == settings::C_screenShotKey && !menus::keyboardFixed())
             window::screenShot();
         else if (down && key == settings::C_audioNextKey && !menus::keyboardFixed())
             music::next();
         else if (down && key == settings::C_audioPreviousKey && !menus::keyboardFixed())
             music::previous();
-        if (visible()) {
-            if (keyboardFixTarget_) {
-                keyboardFixTarget_->keyEvent(down, key);
+
+        if (visible())
+        {
+            if (keyboardFixTarget_)
+            {   keyboardFixTarget_->keyEvent(down, key);
                 windowStack_.back()->checkWidgets();
             }
-            else if (down && key.navi_ == Key::nAbort) {
-                if (hidden_) {
-                    hidden_ = false;
+            else if (down && key.navi_ == Key::nAbort)
+            {
+                if (hidden_)
+                {   hidden_ = false;
                     window::showCursor(true);
                 }
                 else if (windowStack_.back() == MainMenu::get())
@@ -116,13 +129,12 @@ namespace menus
                 else
                     hideWindow();
             }
-            else if (down && key.navi_ == Key::nUp && !hidden_) {
+            else if (down && key.navi_ == Key::nUp && !hidden_)
                 windowStack_.back()->tabPrevious();
-            }
-            else if (down && key.navi_ == Key::nDown && !hidden_) {
+            else if (down && key.navi_ == Key::nDown && !hidden_)
                 windowStack_.back()->tabNext();
-            }
-            else if (!hidden_) {
+            else if (!hidden_)
+            {
                 windowStack_.back()->keyEvent(down, key);
                 windowStack_.back()->checkWidgets();
             }
@@ -131,15 +143,18 @@ namespace menus
             showPause();
     }
 
-    void textEntered(sf::Uint32 keyCode) {
+    void textEntered(sf::Uint32 keyCode)
+    {
         if (visible())
             windowStack_.back()->textEntered(keyCode);
     }
 
-    void showWindow(UiWindow* toBeShown) {
+    void showWindow(UiWindow* toBeShown)
+    {
         if (!toBeShown)
             return;
         window::showCursor(true);
+
         toBeShown->onShow();
         toBeShown->setTopMost(true);
         if (visible())
@@ -147,7 +162,8 @@ namespace menus
         windowStack_.push_back(toBeShown);
     }
 
-    void hideWindow() {
+    void hideWindow()
+    {
         windowStack_.pop_back();
         if (!visible())
             window::showCursor(false);
@@ -155,29 +171,35 @@ namespace menus
             windowStack_.back()->setTopMost(true);
     }
 
-    void hideMenu() {
+    void hideMenu()
+    {
         window::showCursor(false);
         hidden_ = true;
     }
 
-    void clearFocus() {
+    void clearFocus()
+    {
         if (visible())
             windowStack_.back()->clearFocus();
     }
 
-    void fixKeyboardOn(UiElement* target) {
+    void fixKeyboardOn(UiElement* target)
+    {
         keyboardFixTarget_ = target;
     }
 
-    void unFixKeyboard() {
+    void unFixKeyboard()
+    {
         keyboardFixTarget_ = NULL;
     }
 
-    bool keyboardFixed() {
+    bool keyboardFixed()
+    {
         return keyboardFixTarget_;
     }
 
-    void reload() {
+    void reload()
+    {
         About::reset();
         Connect::reset();
         InfoCK::reset();
@@ -187,7 +209,8 @@ namespace menus
         InfoTDM::reset();
     }
 
-    bool visible() {
+    bool visible()
+    {
         return !windowStack_.empty();
     }
 }

@@ -29,9 +29,10 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include <SFML/OpenGL.hpp>
 #include <iostream>
 
-LanguageButton::LanguageButton (sf::String* text, Vector2f const& topLeft, int width, int labelWidth):
-    UiElement(topLeft, width, 16),
-    labelWidth_(labelWidth)
+
+LanguageButton::LanguageButton (sf::String* text, Vector2f const& topLeft, int width, int labelWidth)
+    :UiElement(topLeft, width, 16)
+    ,labelWidth_(labelWidth)
 {
     label_ = new Label(text, TEXT_ALIGN_LEFT, Vector2f(0,0));
     label_->setParent(this);
@@ -50,12 +51,15 @@ void LanguageButton::mouseMoved(Vector2f const& position)
 
 void LanguageButton::mouseWheelMoved(Vector2f const& position, int delta)
 {
-    if (hovered_) {
-        while (delta > 0) {
+    if (hovered_)
+    {
+        while (delta > 0)
+        {
             ChooseLanguage::previous();
             --delta;
         }
-        while (delta < 0) {
+        while (delta < 0)
+        {
             ChooseLanguage::next();
             ++delta;
         }
@@ -65,7 +69,8 @@ void LanguageButton::mouseWheelMoved(Vector2f const& position, int delta)
 void LanguageButton::mouseLeft(bool down)
 {
     UiElement::mouseLeft(hovered_ && down);
-    if (!pressed_ && hovered_ && focused_) {
+    if (!pressed_ && hovered_ && focused_)
+    {
         hovered_ = false;
         sound::playSound(sound::Click);
         menus::showWindow(ChooseLanguage::get());
@@ -74,9 +79,11 @@ void LanguageButton::mouseLeft(bool down)
 
 void LanguageButton::keyEvent(bool down, Key const& key)
 {
-    if (key.navi_ == Key::nConfirm) {
+    if (key.navi_ == Key::nConfirm)
+    {
         pressed_ = down;
-        if (!pressed_) {
+        if (!pressed_)
+        {
             hovered_ = false;
             sound::playSound(sound::Click);
             menus::showWindow(ChooseLanguage::get());
@@ -121,7 +128,8 @@ void LanguageButton::draw() const
         glVertex2f(width() + origin.x_, height_ + origin.y_);
         glVertex2f(boxBegin, height_ + origin.y_);
 
-    if (pressed_ && hovered_) {
+    if (pressed_ && hovered_)
+    {
         // bottom glow
         setColor4f(0.25,0.4,0.5,0.0);
         glVertex2f(boxBegin,origin.y_);
@@ -130,7 +138,8 @@ void LanguageButton::draw() const
         glVertex2f(origin.x_+width(),origin.y_+height_);
         glVertex2f(boxBegin,origin.y_+height_);
     }
-    else if (hovered_) {
+    else if (hovered_)
+    {
         setColor4f(0.25,0.4,0.5,0.0);
         glVertex2f(boxBegin,height_*0.5f + origin.y_);
         glVertex2f(origin.x_+width(),height_*0.5f + origin.y_);
@@ -145,8 +154,8 @@ void LanguageButton::draw() const
         setColor4f(1.0,1.0,1.0,0.05);
         glVertex2f(width() + origin.x_, height_*0.5f + origin.y_);
         glVertex2f(boxBegin, height_*0.5f + origin.y_);
-    }
-    else {
+    }else
+    {
         // glossy top
         setColor4f(1.0,1.0,1.0,0.2);
         glVertex2f(boxBegin, origin.y_);

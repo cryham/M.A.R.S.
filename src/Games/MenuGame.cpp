@@ -27,8 +27,9 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "SpaceObjects/Home.hpp"
 #include "Teams/teams.hpp"
 
-MenuGame::MenuGame():
-    Game(games::gMenu)
+
+MenuGame::MenuGame()
+    :Game(games::gMenu)
 {
     settings::C_EnabledWeapons  = weapons::wInsta;
     settings::C_EnabledSpecials = specials::sNoSpecial;
@@ -51,7 +52,8 @@ MenuGame::MenuGame():
 
     menus::showMain();
 
-    if (settings::C_showSelectLanguage) {
+    if (settings::C_showSelectLanguage)
+    {
         menus::showWindow(ChooseLanguage::get());
         settings::C_showSelectLanguage = false;
     }
@@ -75,55 +77,3 @@ void MenuGame::restart()
     spaceObjects::populateSpace(40.f, 5.f, 2);
     zones::createRaster(4,3);
 }
-
-/*
-MenuGame::MenuGame():
-    Game(games::gMenu)
-{
-    settings::C_EnabledWeapons  = settings::C_EnabledWeaponsByUser;
-    settings::C_EnabledSpecials = settings::C_EnabledSpecialsByUser;
-
-    music::playMenuMusic();
-
-    Color3f rand = Color3f::random();
-
-    Team* myTeamL = teams::addTeam(new TDMTeam(rand));
-    Team* myTeamR = teams::addTeam(new TDMTeam(rand.inverted()));
-
-    for (int i=0; i<5; ++i)  players::addPlayer(myTeamL, controllers::cBot);
-    for (int i=0; i<5; ++i)  players::addPlayer(myTeamR, controllers::cBot);
-
-    Home* homeL = spaceObjects::addHome(HOME_LEFT,  myTeamL->color());
-    Home* homeR = spaceObjects::addHome(HOME_RIGHT, myTeamR->color());
-
-    teams::assignHomes(homeL, homeR);
-    players::createShips();
-
-    menus::showMain();
-
-    if (settings::C_showSelectLanguage) {
-        menus::showWindow(ChooseLanguage::get());
-        settings::C_showSelectLanguage = false;
-    }
-
-    spaceObjects::populateSpace(5.f, 10.f, 4);
-    zones::createRaster(4,3);
-}
-
-void MenuGame::restart()
-{
-    Game::restart();
-
-    Home* homeL = spaceObjects::addHome(HOME_LEFT,  teams::getTeamL()->color());
-    Home* homeR = spaceObjects::addHome(HOME_RIGHT, teams::getTeamR()->color());
-
-    teams::assignHomes(homeL, homeR);
-    players::createShips();
-
-    menus::showMain();
-
-    spaceObjects::populateSpace(5.f, 10.f, 4);
-    zones::createRaster(4,3);
-}
-*/
-

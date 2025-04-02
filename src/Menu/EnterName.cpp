@@ -33,7 +33,8 @@ bool EnterName::kOk_(false);
 
 UiWindow* EnterName::get()
 {
-    if (instance_ == NULL) {
+    if (instance_ == NULL)
+    {
         instance_ = new EnterName(320, 160);
         instance_->addWidget(new TextEdit(NULL, &settings::C_playerIName, "PlayerI", Vector2f(10,85), 300, 0, TEXT_EDIT, 12));
         instance_->addWidget(new Button(locales::getLocale(locales::Ok), NULL, &kOk_, Vector2f(220,130), 90, 20));

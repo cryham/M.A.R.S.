@@ -41,6 +41,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Menu/MapOptions.hpp"
 #include "Locales/locales.hpp"
 
+
 UiWindow* NewGameMenu::instance_(NULL);
 bool NewGameMenu::kStart_(false);
 bool NewGameMenu::kInfo_(false);
@@ -63,9 +64,11 @@ Tab* NewGameMenu::tabCannonKeep_(NULL);
 Tab* NewGameMenu::tabGraveItation_(NULL);
 Tab* NewGameMenu::tabRally_(NULL);
 
+
 UiWindow* NewGameMenu::get()
 {
-    if (instance_ == NULL) {
+    if (instance_ == NULL)
+    {
         instance_ = new NewGameMenu(580, 335);
         instance_->addWidget(new Button(locales::getLocale(locales::Start), NULL, &kStart_, Vector2f(475,300), 90, 20));
 

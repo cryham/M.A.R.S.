@@ -31,12 +31,14 @@ bool ExitConfirm::kCancel_(false);
 
 UiWindow* ExitConfirm::get()
 {
-    if (settings::C_noConfirmations) {
+    if (settings::C_noConfirmations)
+    {
         settings::save();
         window::close();
         return 0;
     }
-    if (instance_ == NULL) {
+    if (instance_ == NULL)
+    {
         instance_ = new ExitConfirm(280, 80);
         instance_->addWidget(new Button(locales::getLocale(locales::Ok), NULL, &kOk_, Vector2f(180,50), 90, 20));
         instance_->addWidget(new Button(locales::getLocale(locales::Cancel), NULL, &kCancel_, Vector2f(80,50), 90, 20));

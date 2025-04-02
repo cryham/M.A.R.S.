@@ -25,17 +25,21 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Media/text.hpp"
 #include "Locales/locales.hpp"
 
+
 UiWindow* NewGameConfirm::instance_(NULL);
 bool NewGameConfirm::kOk_(false);
 bool NewGameConfirm::kCancel_(false);
 
+
 UiWindow* NewGameConfirm::get()
 {
-    if (settings::C_noConfirmations) {
+    if (settings::C_noConfirmations)
+    {
         games::restart();
         return 0;
     }
-    if (instance_ == NULL) {
+    if (instance_ == NULL)
+    {
         instance_ = new NewGameConfirm(280, 80);
         instance_->addWidget(new Button(locales::getLocale(locales::Ok), NULL, &kOk_, Vector2f(180,50), 90, 20));
         instance_->addWidget(new Button(locales::getLocale(locales::Cancel), NULL, &kCancel_, Vector2f(80,50), 90, 20));
@@ -46,14 +50,14 @@ UiWindow* NewGameConfirm::get()
 
 void NewGameConfirm::checkWidgets()
 {
-    if (kOk_) {
-        kOk_ = false;
+    if (kOk_)
+    {   kOk_ = false;
         menus::hideWindow();
         menus::hideWindow();
         games::restart();
     }
-    else if (kCancel_) {
-        kCancel_ = false;
+    else if (kCancel_)
+    {   kCancel_ = false;
         menus::hideWindow();
     }
 }

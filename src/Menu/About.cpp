@@ -26,9 +26,11 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Media/text.hpp"
 #include "Locales/locales.hpp"
 
+
 UiWindow* About::instance_(NULL);
 bool About::kClose_(false);
 sf::String About::marsName_("");
+
 
 UiWindow* About::get()
 {

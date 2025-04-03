@@ -25,8 +25,10 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Media/text.hpp"
 #include "Locales/locales.hpp"
 
+
 UiWindow* Connect::instance_(NULL);
 bool Connect::kClose_(false);
+
 
 UiWindow* Connect::get()
 {

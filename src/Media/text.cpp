@@ -26,22 +26,21 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 namespace text 
 {
-
     namespace
 	{
         void drawText(sf::String const& text, Vector2f const& location,
-                      float size, int align, Color3f const& color, float alpha, sf::Font* font) {
-
+                      float size, int align, Color3f const& color, float alpha, sf::Font* font)
+        {
             sf::Text drawString(text, font ? *font : *font::getFont(), size);
             drawString.setColor(sf::Color(color.r()*255, color.g()*255, color.b()*255, alpha<0 ? 0 : alpha*255));
-
 
             Vector2f loc(location);
             sf::FloatRect boundingBox = drawString.getGlobalBounds();
 
             if (align == TEXT_ALIGN_CENTER)
                 loc.x_ -= static_cast<int>(boundingBox.width*0.5f);
-            else if ((align == TEXT_ALIGN_RIGHT && locales::getCurrentLocale().LTR_) || (align == TEXT_ALIGN_LEFT && !locales::getCurrentLocale().LTR_))
+            else if ((align == TEXT_ALIGN_RIGHT && locales::getCurrentLocale().LTR_) ||
+                     (align == TEXT_ALIGN_LEFT && !locales::getCurrentLocale().LTR_))
                 loc.x_ -= static_cast<int>(boundingBox.width);
 
             // prevent text from being outside of screen
@@ -58,43 +57,46 @@ namespace text
     }
 
     void drawSpaceText(sf::String const& text, Vector2f const& location,
-                       float size, int align, Color3f const& color, float alpha, sf::Font* font) {
-
+                       float size, int align, Color3f const& color, float alpha, sf::Font* font)
+    {
         drawScreenText(text, window::coordToPixel(location),
             size, align, color, alpha, font);
     }
 
     void drawMobileSpaceText(sf::String const& text, Vector2f const& location,
-                             float size, int align, Color3f const& color, float alpha, sf::Font* font) {
-
+                             float size, int align, Color3f const& color, float alpha, sf::Font* font)
+    {
         drawText(text, window::coordToPixel(location),
             size /* 4/3*/, align, color, alpha, font);
 
     }
 
     void drawScreenText(sf::String const& text, Vector2f const& location,
-                       float size, int align, Color3f const& color, float alpha, sf::Font* font) {
-
+                       float size, int align, Color3f const& color, float alpha, sf::Font* font)
+    {
         drawText(text, Vector2f(static_cast<int>(location.x_), static_cast<int>(location.y_)),
             size * UiElement::scale_, align, color, alpha, font);
     }
 
-    void drawFooText() {
+    void drawFooText()
+    {
        // drawScreenText(sf::String("."), Vector2f(0.f, 0.f), 1.f, TEXT_ALIGN_LEFT, Color3f(0.f, 0.f, 0.f));
     }
 
-    float getCharacterPos(sf::String const& text, int pos, float size, int align, sf::Font* font) {
+    float getCharacterPos(sf::String const& text, int pos, float size, int align, sf::Font* font)
+    {
         sf::Text drawString(text, font ? *font : *font::getFont(), size);
         float result = drawString.findCharacterPos(pos).x;
 
-        switch (align) {
-            case TEXT_ALIGN_CENTER: {
-                sf::FloatRect boundingBox = drawString.getLocalBounds();
+        switch (align)
+        {
+            case TEXT_ALIGN_CENTER:
+            {   sf::FloatRect boundingBox = drawString.getLocalBounds();
                 result -= boundingBox.width*0.5f;
                 break;
             }
-            case TEXT_ALIGN_RIGHT: {
-                sf::FloatRect boundingBox = drawString.getLocalBounds();
+            case TEXT_ALIGN_RIGHT:
+            {   sf::FloatRect boundingBox = drawString.getLocalBounds();
                 result -= boundingBox.width;
                 break;
             }
@@ -103,5 +105,3 @@ namespace text
         return result;
     }
 }
-
-

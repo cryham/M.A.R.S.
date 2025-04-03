@@ -28,8 +28,10 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Media/text.hpp"
 #include "Locales/locales.hpp"
 
+
 UiWindow* EnterName::instance_(NULL);
 bool EnterName::kOk_(false);
+
 
 UiWindow* EnterName::get()
 {

@@ -25,9 +25,11 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Locales/locales.hpp"
 #include "System/settings.hpp"
 
+
 UiWindow* ExitConfirm::instance_(NULL);
 bool ExitConfirm::kOk_(false);
 bool ExitConfirm::kCancel_(false);
+
 
 UiWindow* ExitConfirm::get()
 {
@@ -49,13 +51,13 @@ UiWindow* ExitConfirm::get()
 
 void ExitConfirm::checkWidgets()
 {
-    if (kOk_) {
-        kOk_ = false;
+    if (kOk_)
+    {   kOk_ = false;
         settings::save();
         window::close();
     }
-    else if (kCancel_) {
-        kCancel_ = false;
+    else if (kCancel_)
+    {   kCancel_ = false;
         menus::hideWindow();
     }
 }

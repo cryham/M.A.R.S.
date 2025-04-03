@@ -87,10 +87,14 @@ UiWindow* OptionsMenu::get()
         Tab* tabPlayer1   = new Tab(&settings::C_playerIName, 100);
         Tab* tabPlayer2   = new Tab(&settings::C_playerIIName, 100);
 
-        //  Interface
+        //  Interface GUI
         int y = 30, yadd = 20;
         tabInterface->addWidget(new LabeledBox(locales::getLocale(locales::GeneralOptions), Vector2f(10, y), 560, 110));  y += yadd*3/2;
-        tabInterface->addWidget(new LanguageButton(locales::getLocale(locales::Language), Vector2f(20, y), 540, 240));  y += yadd;
+        tabInterface->addWidget(new LanguageButton(locales::getLocale(locales::Language), Vector2f(20, y), 540, 240));  y += yadd*3/2;
+
+        tabInterface->addWidget(new Slider(locales::getLocale(locales::Scale), locales::getLocale(locales::ttScale), &settings::C_globalParticleCount, 1, 300, 15, Vector2f(20,y), 540, 240, true));  y += yadd;
+        tabInterface->addWidget(new Checkbox(locales::getLocale(locales::NoConfirmations), locales::getLocale(locales::ttNoConfirmations), &settings::C_noConfirmations, Vector2f(20,y), 140));  y += yadd;
+
         std::vector<sf::String> fileFormats;
             fileFormats.push_back("BITMAP (*.bmp)");
             fileFormats.push_back("GIF (*.gif)");
@@ -105,10 +109,7 @@ UiWindow* OptionsMenu::get()
         tabInterface->addWidget(new Checkbox(locales::getLocale(locales::FramesPerSecond), locales::getLocale(locales::ttFramesPerSecond), &settings::C_showFPS, Vector2f(20,y), 140));  y += yadd;
         tabInterface->addWidget(new Checkbox(locales::getLocale(locales::ParticleCount), locales::getLocale(locales::ttParticleCount), &settings::C_showParticleCount, Vector2f(20,y), 140));  y += yadd;
         tabInterface->addWidget(new Checkbox(locales::getLocale(locales::ShowToolTips), locales::getLocale(locales::ttShowToolTips), &settings::C_showToolTips, Vector2f(20,y), 140));  y += yadd*3/2;
-
-        tabInterface->addWidget(new Slider(locales::getLocale(locales::Scale), locales::getLocale(locales::ttScale), &settings::C_globalParticleCount, 1, 300, 15, Vector2f(20,y), 540, 240));  y += yadd;
-        tabInterface->addWidget(new Checkbox(locales::getLocale(locales::NoConfirmations), locales::getLocale(locales::ttNoConfirmations), &settings::C_noConfirmations, Vector2f(20,y), 140));  y += yadd;
-        
+       
         //  Graphics
         y = 30;
         tabGraphics->addWidget(new LabeledBox(locales::getLocale(locales::WindowSettings), Vector2f(10, y), 560, 110));  y += yadd*3/2;
@@ -146,8 +147,8 @@ UiWindow* OptionsMenu::get()
         tabGraphics->addWidget(new LabeledBox(locales::getLocale(locales::GameSettings), Vector2f(10,y), 560, 90));  y += yadd*3/2;
         tabGraphics->addWidget(new Checkbox(locales::getLocale(locales::StarsHigh), locales::getLocale(locales::ttStarsHigh), &settings::C_StarsHigh, Vector2f(20,y), 150));  y += yadd;
         tabGraphics->addWidget(new Slider(locales::getLocale(locales::StarField), locales::getLocale(locales::ttStarField), &starfield_, 0, 20000, 1000, Vector2f(20,y), 540, 240, true, off));  y += yadd;
-        tabGraphics->addWidget(new Slider(locales::getLocale(locales::ParticleCountSlider), locales::getLocale(locales::ttParticleCountSlider), &settings::C_globalParticleCount, 1, 300, 15, Vector2f(20,y), 540, 240));  y += yadd;
-        tabGraphics->addWidget(new Slider(locales::getLocale(locales::ParticleLifetime), locales::getLocale(locales::ttParticleLifetime), &settings::C_globalParticleLifeTime, 1, 300, 15, Vector2f(20,y), 540, 240));  y += yadd;
+        tabGraphics->addWidget(new Slider(locales::getLocale(locales::ParticleCountSlider), locales::getLocale(locales::ttParticleCountSlider), &settings::C_globalParticleCount, 1, 300, 15, Vector2f(20,y), 540, 240, true));  y += yadd;
+        tabGraphics->addWidget(new Slider(locales::getLocale(locales::ParticleLifetime), locales::getLocale(locales::ttParticleLifetime), &settings::C_globalParticleLifeTime, 1, 300, 15, Vector2f(20,y), 540, 240, true));  y += yadd;
 
         //  Audio
         y = 30.f;

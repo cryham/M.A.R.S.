@@ -27,6 +27,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Teams/teams.hpp"
 #include "Particles/AmmoInsta.hpp"
 #include "defines.hpp"
+#include "System/settings.hpp"
 
 #include <cfloat>
 
@@ -113,10 +114,10 @@ Vector2f BotController::calcPath(Vector2f const& endPoint, bool avoidBall)
                             break;
                         }
                     }
-                    if (surfacePoint.x_<0.f || surfacePoint.x_>SPACE_X_RESOLUTION)
+                    if (surfacePoint.x_<0.f || surfacePoint.x_ > settings::C_MapXsize)
                         fits = false;
                 }
-                if (surfacePoint.x_>0.f && surfacePoint.x_<SPACE_X_RESOLUTION)
+                if (surfacePoint.x_>0.f && surfacePoint.x_ < settings::C_MapXsize)
                     return surfacePoint;
                 else
                     return obstacle->location() - toEndPoint*(obstacle->radius() + 20.f);

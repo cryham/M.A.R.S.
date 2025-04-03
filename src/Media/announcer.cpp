@@ -55,7 +55,7 @@ namespace announcer
                     // play sound
                     soundChannel_.setBuffer(*sounds_[sound]);
                     soundChannel_.setVolume(static_cast<float>(settings::C_announcerVolume));
-                    soundChannel_.setPosition(SPACE_X_RESOLUTION*0.5f, 0.f, 0.f);
+                    soundChannel_.setPosition(settings::C_MapXsize*0.5f, 0.f, 0.f);
                     soundChannel_.setAttenuation(0.f);
                     soundChannel_.play();
                 }

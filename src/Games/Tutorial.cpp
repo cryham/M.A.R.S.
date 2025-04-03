@@ -36,6 +36,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Locales/locales.hpp"
 #include "defines.hpp"
 
+
 Tutorial::Tutorial():
     Game(games::gTutorial),
     state_(-1),
@@ -49,8 +50,8 @@ Tutorial::Tutorial():
     dead_(false),
     life_(false),
     fuel_(false),
-    name_(false) {
-
+    name_(false)
+{
     settings::C_EnabledWeapons  = weapons::wAFK47 | weapons::wShotgun | weapons::wROFLE;
     settings::C_EnabledSpecials = specials::sFreeze | specials::sHeal | specials::sBlast;
 
@@ -63,7 +64,7 @@ Tutorial::Tutorial():
     settings::C_playerIIteamR = false;
     settings::C_playerIteamL = false;
     settings::C_playerIteamR = true;
-    teams::assignHomes(spaceObjects::addHome(Vector2f(SPACE_X_RESOLUTION+20, 450.f), 100, settings::C_playerITeamColor, 100, 15000));
+    teams::assignHomes(spaceObjects::addHome(Vector2f(settings::C_MapXsize+20, 450.f), 100, settings::C_playerITeamColor, 100, 15000));
     players::createShips();
 
     evilHome_ = spaceObjects::addHome(Vector2f(-40.f, 550.f), 100, settings::C_playerITeamColor.inverted(), 100, 15000);
@@ -98,7 +99,8 @@ void Tutorial::update()
         state_ = 53;
     }
 
-    switch (state_) {
+    switch (state_)
+    {
         case -1:
             if (!menus::visible()) {
                 if (settings::C_playerIName == "PlayerI")
@@ -142,7 +144,7 @@ void Tutorial::update()
         case 7:
             if (zones::updateTutZones()){
                 menus::showWindow(TutorialWindow::get(locales::getLocale(locales::Tut04), locales::getLocale(locales::TutText04), 4, false, false));
-                zones::addTutorialZone(Vector2f(SPACE_X_RESOLUTION+20, 450.f), 190.f);
+                zones::addTutorialZone(Vector2f(settings::C_MapXsize+20, 450.f), 190.f);
                 ++state_;
             } break;
         case 8:
@@ -177,7 +179,7 @@ void Tutorial::update()
         case 12:
             if (!menus::visible()) {
                 menus::showWindow(TutorialWindow::get(locales::getLocale(locales::Tut08), locales::getLocale(locales::TutText08), 8, false, false));
-                zones::addTutorialZone(Vector2f(SPACE_X_RESOLUTION+20, 450.f), 190.f);
+                zones::addTutorialZone(Vector2f(settings::C_MapXsize+20, 450.f), 190.f);
                 ++state_;
             } break;
         case 13:
@@ -219,7 +221,7 @@ void Tutorial::update()
             if (timer::totalTime() > timer_ + 1.f) {
                 evilPlayer1_->ship()->location_ = Vector2f(3000, 3000);
                 evilPlayer1_->ship()->respawnTimer_ = FLT_MAX;
-                zones::addTutorialZone(Vector2f(SPACE_X_RESOLUTION+20, 450.f), 190.f);
+                zones::addTutorialZone(Vector2f(settings::C_MapXsize+20, 450.f), 190.f);
                 menus::showWindow(TutorialWindow::get(locales::getLocale(locales::Tut12), locales::getLocale(locales::TutText12), 12, false, true));
                 ++state_;
             } break;
@@ -250,7 +252,7 @@ void Tutorial::update()
                 }
                 else {
                     menus::showWindow(TutorialWindow::get(locales::getLocale(locales::Tut23), locales::getLocale(locales::TutText23), 0, true, false));
-                    zones::addTutorialZone(Vector2f(SPACE_X_RESOLUTION+20, 450.f), 190.f);
+                    zones::addTutorialZone(Vector2f(settings::C_MapXsize+20, 450.f), 190.f);
                     ++state_;
                 }
             } break;
@@ -297,7 +299,7 @@ void Tutorial::update()
          case 28:
             if (timer::totalTime() > timer_ + 1.5f) {
                 menus::showWindow(TutorialWindow::get(locales::getLocale(locales::Tut27), locales::getLocale(locales::TutText27), 17, true, false));
-                zones::addTutorialZone(Vector2f(SPACE_X_RESOLUTION+20, 450.f), 190.f);
+                zones::addTutorialZone(Vector2f(settings::C_MapXsize+20, 450.f), 190.f);
                 ++state_;
             } break;
         case 29:
@@ -410,7 +412,7 @@ void Tutorial::restart()
     evilPlayer2_ = NULL;
 
     players::addPlayer(teams::addTeam(new DMTeam(settings::C_playerITeamColor)), controllers::cPlayer1);
-    teams::assignHomes(spaceObjects::addHome(Vector2f(SPACE_X_RESOLUTION+20, 450.f), 100, settings::C_playerIColor, 100, 15000));
+    teams::assignHomes(spaceObjects::addHome(Vector2f(settings::C_MapXsize+20, 450.f), 100, settings::C_playerIColor, 100, 15000));
     players::createShips();
 
     evilHome_ = spaceObjects::addHome(Vector2f(-40.f, 550.f), 100, Color3f(0.5f, 0.f, 0.5f), 100, 15000);
@@ -418,5 +420,3 @@ void Tutorial::restart()
     spaceObjects::addPlanet(Vector2f(680.f, 300.f), 150.f);
     spaceObjects::addPlanet(Vector2f(280.f, 650.f), 80.f);
 }
-
-

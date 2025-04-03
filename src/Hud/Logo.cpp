@@ -22,6 +22,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Games/games.hpp"
 #include "System/timer.hpp"
 #include "defines.hpp"
+#include "System/settings.hpp"
 #include "System/randomizer.hpp"
 
 Logo::Logo():
@@ -72,8 +73,8 @@ void Logo::draw() const
 
     int mid(window::getViewPort().x_/2);
     int height(0);
-    if (window::getViewPort().y_ < SPACE_Y_RESOLUTION)
-        height = (window::getViewPort().y_ - SPACE_Y_RESOLUTION)*0.3;
+    if (window::getViewPort().y_ < settings::C_MapYsize)
+        height = (window::getViewPort().y_ - settings::C_MapYsize)*0.3;
     glBegin(GL_QUADS);
         glColor3f(1.0,1.0,1.0);
         glTexCoord2f(0, 0 + offset);                   glVertex2f(mid-400, 0+height);

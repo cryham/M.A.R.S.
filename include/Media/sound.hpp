@@ -19,6 +19,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "System/Vector2f.hpp"
 #include "defines.hpp"
+#include "System/settings.hpp"
 
 #include <SFML/Audio.hpp>
 
@@ -44,5 +45,5 @@ namespace sound
     /// \param type specifies the sound::SoundType
     /// \param position selects the location on the screen, where the sound should be played
     /// \param sets the volume
-    void playSound (SoundType type, Vector2f const& position = Vector2f(SPACE_X_RESOLUTION*0.5f, 0), float volume = 100.f);
+    void playSound (SoundType type, Vector2f const& position = Vector2f(settings::C_MapXsize*0.5f, 0), float volume = 100.f);
 }

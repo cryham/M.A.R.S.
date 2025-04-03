@@ -28,6 +28,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "SpaceObjects/ships.hpp"
 #include "Teams/teams.hpp"
 #include "defines.hpp"
+#include "System/settings.hpp"
 
 Cannon::Cannon():
     timer_(0.f),
@@ -40,7 +41,7 @@ void Cannon::update()
 
     Vector2f toTarget;
     if (carrier && teams::getEnemy(carrier->team())->home()->getLife() > 0 && carrier->team()->home()->getLife() > 0)
-        toTarget = (teams::getEnemy(carrier->team())->home()->location() - Vector2f(SPACE_X_RESOLUTION*0.5f, 0.f)).normalize();
+        toTarget = (teams::getEnemy(carrier->team())->home()->location() - Vector2f(settings::C_MapXsize*0.5f, 0.f)).normalize();
     else
         toTarget = Vector2f(0.f, -1.f);
 
@@ -65,7 +66,7 @@ void Cannon::update()
     else if (std::abs(angle) > 0.1f) {
         timer_ += timer::frameTime();
         Vector2f direction(-std::sin(rotation_*M_PI/180), std::cos(rotation_*M_PI/180));
-        Vector2f location(Vector2f(SPACE_X_RESOLUTION*0.5f, 0.f) + direction*180.f);
+        Vector2f location(Vector2f(settings::C_MapXsize*0.5f, 0.f) + direction*180.f);
         const float shootSpeed(15.f/ships::getShips().size());
         if (timer_ > shootSpeed) {
             timer_ = 0.f;
@@ -89,7 +90,7 @@ void Cannon::draw() const
 
     glBindTexture(GL_TEXTURE_2D, texture::getTexture(texture::CannonSocket));
     glColor3f(1,1,1);
-    glTranslatef(SPACE_X_RESOLUTION*0.5f, 0.f, 0.f);
+    glTranslatef(settings::C_MapXsize*0.5f, 0.f, 0.f);
 
     glBegin(GL_QUADS);
         glTexCoord2f(0.f, 0.f); glVertex2f(-100.f, 0.f);

@@ -43,7 +43,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include <sstream>
 
 Ship::Ship(Vector2f const& location, float rotation, Player* owner)
-    : MobileSpaceObject(spaceObjects::oShip, location, SHIP_RADIUS, 10.f)
+    : MobileSpaceObject(spaceObjects::oShip, location, settings::C_ShipRadius, 10.f)
     ,owner_(owner)
     ,rotation_(rotation)
     ,rotateSpeed_(1.f)
@@ -263,16 +263,16 @@ void Ship::update()
                     location_.x_ = radius_;
                     velocity_.x_ = 0.f;
                 }
-                if (location_.x_ > SPACE_X_RESOLUTION - radius_) {
-                    location_.x_ = SPACE_X_RESOLUTION - radius_;
+                if (location_.x_ > settings::C_MapXsize - radius_) {
+                    location_.x_ = settings::C_MapXsize - radius_;
                     velocity_.x_ = 0.f;
                 }
                 if (location_.y_ < radius_) {
                     location_.y_ = radius_;
                     velocity_.y_ = 0.f;
                 }
-                if (location_.y_ > SPACE_Y_RESOLUTION - radius_) {
-                    location_.y_ = SPACE_Y_RESOLUTION - radius_;
+                if (location_.y_ > settings::C_MapYsize - radius_) {
+                    location_.y_ = settings::C_MapYsize - radius_;
                     velocity_.y_ = 0.f;
                 }
             }else

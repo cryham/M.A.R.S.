@@ -48,8 +48,8 @@ namespace spaceObjects
             while (!newPlanetFits && ++tries < 500)
             {
                 // 100 is min distance between edge and planet
-                int randx = rand() % (SPACE_X_RESOLUTION - 2*(100 + radius)) + 100 + radius;
-                int randy = rand() % (SPACE_Y_RESOLUTION  - 2*(100 + radius)) + 100 + radius;
+                int randx = rand() % (settings::C_MapXsize - 2*(100 + radius)) + 100 + radius;
+                int randy = rand() % (settings::C_MapYsize  - 2*(100 + radius)) + 100 + radius;
                 Vector2f position(randx, randy);
 
                 // check for collisions with other objects
@@ -138,9 +138,9 @@ namespace spaceObjects
 
         switch (where)
         {
-            case HOME_LEFT:  position = Vector2f(-50,  (rand() % (SPACE_Y_RESOLUTION - 300)) + 150);  break;
-            case HOME_RIGHT: position = Vector2f(SPACE_X_RESOLUTION+50, (rand() % (SPACE_Y_RESOLUTION - 300)) + 150);  break;
-            case HOME_RALLY: position = Vector2f(-150, (rand() % (SPACE_Y_RESOLUTION - 300)) + 150);
+            case HOME_LEFT:  position = Vector2f(-50,  (rand() % (settings::C_MapYsize - 300)) + 150);  break;
+            case HOME_RIGHT: position = Vector2f(settings::C_MapXsize+50, (rand() % (settings::C_MapYsize - 300)) + 150);  break;
+            case HOME_RALLY: position = Vector2f(-150, (rand() % (settings::C_MapYsize - 300)) + 150);
                              radius   = 180.f;
                              mass     *= 0.8f;
                              break;

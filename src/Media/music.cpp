@@ -61,7 +61,7 @@ namespace music
 
             musicChannel_.setLoop(false);
             musicChannel_.setRelativeToListener(true);
-            sf::Listener::setPosition(SPACE_X_RESOLUTION*0.5f, 0.f, 300.f);
+            sf::Listener::setPosition(settings::C_MapXsize*0.5f, 0.f, 300.f);
             setGlobalVolume();
             initialized_ = true;
         }

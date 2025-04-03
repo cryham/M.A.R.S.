@@ -23,6 +23,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Players/Player.hpp"
 #include "Teams/Team.hpp"
 #include "defines.hpp"
+#include "System/settings.hpp"
 
 #include <cmath>
 
@@ -30,7 +31,7 @@ HomeZone::HomeZone(Vector2f const& location) :
     radius_(450.f),
     location_(location)
 {
-    if (location_.x_ < SPACE_X_RESOLUTION*0.5f)
+    if (location_.x_ < settings::C_MapXsize*0.5f)
         homeSide_ = 0;
     else
         homeSide_ = 1;

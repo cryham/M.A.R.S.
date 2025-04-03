@@ -38,5 +38,9 @@ class MapOptions: public UiWindow
         static UiWindow* instance_;
 
         static bool kOk_;
+        static bool kDefaults_;
+
+        static const int kMapSizes_ = 7;
+        static bool kMapSize_[kMapSizes_];
 };
 

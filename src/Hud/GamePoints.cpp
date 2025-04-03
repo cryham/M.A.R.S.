@@ -47,7 +47,7 @@ void GamePoints::draw() const
             top = 0.f;
         else
         {   top = -6.12f * std::pow((timer_-6.5f), 2) +15.f;
-            particles::spawnTimed(20, particles::pDust, Vector2f(SPACE_X_RESOLUTION*0.5f, 820));
+            particles::spawnTimed(20, particles::pDust, Vector2f(settings::C_MapXsize*0.5f, 820));
         }
 
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);

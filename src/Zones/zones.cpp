@@ -29,6 +29,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "SpaceObjects/Home.hpp"
 #include "SpaceObjects/balls.hpp"
 #include "defines.hpp"
+#include "System/settings.hpp"
 #include "System/randomizer.hpp"
 
 #include <iostream>
@@ -50,7 +51,7 @@ namespace zones
 
     Zone* addTeamZone(Vector2f const& location)
     {
-        if (location.x_ < SPACE_X_RESOLUTION*0.5f)
+        if (location.x_ < settings::C_MapXsize*0.5f)
             return teamL_ = new TeamZone(0);
         else
             return teamR_ = new TeamZone(1);
@@ -58,7 +59,7 @@ namespace zones
 
     Zone* addHomeZone(Vector2f const& location)
     {
-        if (location.x_ < SPACE_X_RESOLUTION*0.5f)
+        if (location.x_ < settings::C_MapXsize*0.5f)
             return homeL_ = new HomeZone(location);
         else
             return homeR_ = new HomeZone(location);
@@ -77,7 +78,7 @@ namespace zones
 
         for (std::vector<SpaceObject*>::const_iterator it=spaceObjects::getObjects().begin(); it!=spaceObjects::getObjects().end(); ++it)
         {
-            if ((*it)->location().x_ < SPACE_X_RESOLUTION*0.5f && *it != spaceObjects::getHomes()[0] && *it != spaceObjects::getHomes()[1])
+            if ((*it)->location().x_ < settings::C_MapXsize*0.5f && *it != spaceObjects::getHomes()[0] && *it != spaceObjects::getHomes()[1])
                 objectsLeft.push_back(*it);
             if ((*it)->location().x_ > 641 && *it != spaceObjects::getHomes()[0] && *it != spaceObjects::getHomes()[1])
                 objectsRight.push_back(*it);
@@ -173,15 +174,15 @@ namespace zones
             // zone between border and object with highest y values
             Vector2f homeToHighestL((highestL->location() - spaceObjects::getHomes()[0]->location()).normalize());
             Vector2f directionH (-homeToHighestL.y_, homeToHighestL.x_);
-            float lengthFactorH ((SPACE_Y_RESOLUTION - highestL->location().y_) / directionH.y_);
+            float lengthFactorH ((settings::C_MapYsize - highestL->location().y_) / directionH.y_);
             Vector2f objectToBorderH(directionH * lengthFactorH);
             float distanceH((objectToBorderH.length() - highestL->radius())/2.f);
             
             Vector2f centerH(highestL->location() +  directionH * (highestL->radius() + distanceH));
-            if (centerH.x_ + distanceH < SPACE_X_RESOLUTION*0.5f)
+            if (centerH.x_ + distanceH < settings::C_MapXsize*0.5f)
                 tacticalZonesL_.push_back(new TacticalZone(centerH, distanceH));
             else
-            {   float newDistanceH((SPACE_Y_RESOLUTION - highestL->location().y_ - highestL->radius())/2.f);
+            {   float newDistanceH((settings::C_MapYsize - highestL->location().y_ - highestL->radius())/2.f);
                 tacticalZonesL_.push_back(new TacticalZone(highestL->location() + Vector2f(0.f, 1.f) * (highestL->radius() + newDistanceH), newDistanceH));
             }
             totalTacticalAreaL_ += distanceH * distanceH;
@@ -194,7 +195,7 @@ namespace zones
             float distanceL((objectToBorderL.length() - lowestL->radius())/2.f);
 
             Vector2f centerL(lowestL->location() +  directionL * (lowestL->radius() + distanceL));
-            if (centerL.x_ + distanceL < SPACE_X_RESOLUTION*0.5f)
+            if (centerL.x_ + distanceL < settings::C_MapXsize*0.5f)
                 tacticalZonesL_.push_back(new TacticalZone(centerL, distanceL));
             else
             {   float newDistanceH((lowestL->location().y_ - lowestL->radius())/2.f);
@@ -231,7 +232,7 @@ namespace zones
             // zone between border and object with highest y values
             Vector2f homeToHighestR((highestR->location() - spaceObjects::getHomes()[1]->location()).normalize());
             Vector2f directionH (homeToHighestR.y_, -homeToHighestR.x_);
-            float lengthFactorH ((SPACE_Y_RESOLUTION - highestR->location().y_) / directionH.y_);
+            float lengthFactorH ((settings::C_MapYsize - highestR->location().y_) / directionH.y_);
             Vector2f objectToBorderH(directionH * lengthFactorH);
             float distanceH((objectToBorderH.length() - highestR->radius())/2.f);
             Vector2f centerH(highestR->location() +  directionH * (highestR->radius() + distanceH));
@@ -239,7 +240,7 @@ namespace zones
             if (centerH.x_ + distanceH > 641)
                 tacticalZonesR_.push_back(new TacticalZone(centerH, distanceH));
             else
-            {   float newDistanceH((SPACE_Y_RESOLUTION - highestR->location().y_ - highestR->radius())/2.f);
+            {   float newDistanceH((settings::C_MapYsize - highestR->location().y_ - highestR->radius())/2.f);
                 tacticalZonesR_.push_back(new TacticalZone(
                     highestR->location() + Vector2f(0.f, 1.f) * (highestR->radius() + newDistanceH), newDistanceH));
             }
@@ -279,11 +280,11 @@ namespace zones
             {
                 if (!((x==0 && y==0) || (x==dimX-1 && y==0) || (x==0 && y==dimY-1) || (x==dimX-1 && y==dimY-1)))
                     rasterZones_.push_back(new RasterZone(Vector2f(maxX, maxY),
-                        Vector2f(maxX + SPACE_X_RESOLUTION / dimX,  maxY + SPACE_Y_RESOLUTION / dimY)));
-                maxX += SPACE_X_RESOLUTION / dimX;
+                        Vector2f(maxX + settings::C_MapXsize / dimX,  maxY + settings::C_MapYsize / dimY)));
+                maxX += settings::C_MapXsize / dimX;
             }
             maxX = 0;
-            maxY += SPACE_Y_RESOLUTION / dimY;
+            maxY += settings::C_MapYsize / dimY;
         }
     }
 

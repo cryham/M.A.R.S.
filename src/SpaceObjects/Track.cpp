@@ -21,6 +21,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Zones/zones.hpp"
 #include "Zones/RasterZone.hpp"
 #include "defines.hpp"
+#include "System/settings.hpp"
 #include "System/randomizer.hpp"
 
 Track::Track(Home* home)
@@ -99,15 +100,15 @@ void Track::findAnchors()
     if (randomizer::random(0,1)==1)
         addAnchor(Vector2f(40.f,40.f));
     if (randomizer::random(0,1)==1)
-        addAnchor(Vector2f(SPACE_X_RESOLUTION-40.f, 40.f));
+        addAnchor(Vector2f(settings::C_MapXsize-40.f, 40.f));
     if (randomizer::random(0,1)==1)
-        addAnchor(Vector2f(SPACE_X_RESOLUTION-40.f, SPACE_Y_RESOLUTION-40.f));
+        addAnchor(Vector2f(settings::C_MapXsize-40.f, settings::C_MapYsize-40.f));
     if (randomizer::random(0,1)==1)
-        addAnchor(Vector2f(40.f, SPACE_Y_RESOLUTION-40.f));
+        addAnchor(Vector2f(40.f, settings::C_MapYsize-40.f));
 
     int tries(0);
     while (anchors_.size() < 10 && ++tries<100)
-        addAnchor(Vector2f(randomizer::random(0, SPACE_X_RESOLUTION), randomizer::random(0, SPACE_Y_RESOLUTION)));
+        addAnchor(Vector2f(randomizer::random(0, settings::C_MapXsize), randomizer::random(0, settings::C_MapYsize)));
 }
 
 void Track::addAnchor(Vector2f const& point)

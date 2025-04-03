@@ -47,8 +47,8 @@ namespace items
 
             while (!newPowerUpFits && ++tries < 500) {
                 // 100 is min distance between edge and planet
-                int randx = rand() % (SPACE_X_RESOLUTION - 2*(50)) + 50;
-                int randy = rand() % (SPACE_Y_RESOLUTION - 2*(50)) + 50 ;
+                int randx = rand() % (settings::C_MapXsize - 2*(50)) + 50;
+                int randy = rand() % (settings::C_MapYsize - 2*(50)) + 50 ;
                 position.x_ = randx;
                 position.y_ = randy;
 

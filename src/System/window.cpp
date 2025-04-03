@@ -51,10 +51,10 @@ namespace window
         sf::Sprite        fxImage_;
 
         Vector2f         viewPort_;
-        float            scale_(static_cast<float>(settings::C_resX)/SPACE_X_RESOLUTION);
+        float            scale_(static_cast<float>(settings::C_resX) / settings::C_MapXsize);
         int              clearCount_(0);
         float            joyButtonTimer_(0.f);
-        const float      ratio(static_cast<float>(SPACE_X_RESOLUTION)/static_cast<float>(SPACE_Y_RESOLUTION));
+        const float      ratio(static_cast<float>(settings::C_MapXsize) / static_cast<float>(settings::C_MapYsize));
 
 
         void setViewPort()
@@ -80,12 +80,12 @@ namespace window
             // if windows aspect ration is greater than aspect ratio of space
             if (static_cast<float>(windowWidth)/windowHeight > ratio)
             {
-                scale_ = static_cast<float>(windowHeight)/SPACE_Y_RESOLUTION;
+                scale_ = static_cast<float>(windowHeight)/settings::C_MapYsize;
                 viewPort_.y_ = windowHeight;
                 viewPort_.x_  = windowHeight * ratio;
             }else
             {
-                scale_ = static_cast<float>(windowWidth)/SPACE_X_RESOLUTION;
+                scale_ = static_cast<float>(windowWidth)/settings::C_MapXsize;
                 viewPort_.y_ = windowWidth / ratio;
                 viewPort_.x_  = windowWidth;
             }
@@ -252,7 +252,7 @@ namespace window
         glLoadIdentity();
 
         // Setup translation (according to left-upper corner)
-        glOrtho(0.f, SPACE_X_RESOLUTION, SPACE_Y_RESOLUTION, 0.f, -1, 1);
+        glOrtho(0.f, settings::C_MapXsize, settings::C_MapYsize, 0.f, -1, 1);
 
 
         // probably improves performance...
@@ -287,7 +287,7 @@ namespace window
 
         glMatrixMode(GL_PROJECTION);
         glLoadIdentity();
-        glOrtho(0.f, SPACE_X_RESOLUTION, SPACE_Y_RESOLUTION, 0.f, -1, 1);
+        glOrtho(0.f, settings::C_MapXsize, settings::C_MapYsize, 0.f, -1, 1);
         glMatrixMode(GL_MODELVIEW);
         glLoadIdentity();
     }

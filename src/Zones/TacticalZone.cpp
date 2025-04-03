@@ -26,6 +26,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Teams/Team.hpp"
 #include "Teams/teams.hpp"
 #include "defines.hpp"
+#include "System/settings.hpp"
 
 #include <SFML/System.hpp>
 #include <cmath>
@@ -36,7 +37,7 @@ TacticalZone::TacticalZone(Vector2f const& location, float radius) :
     covered_(false),
     shipCount_(0)
 {
-    if (location_.x_ < SPACE_X_RESOLUTION*0.5f)
+    if (location_.x_ < settings::C_MapXsize*0.5f)
         homeSide_ = 0;
     else
         homeSide_ = 1;
@@ -96,9 +97,9 @@ Vector2f TacticalZone::getRandomPoint() const
     {
         randomPoint = Vector2f(location_ + Vector2f::randDir()*(radius_ - 20.f));
         if (   randomPoint.x_ > 0.f
-            && randomPoint.x_ < SPACE_X_RESOLUTION
+            && randomPoint.x_ < settings::C_MapXsize
             && randomPoint.y_ > 0.f
-            && randomPoint.y_ < SPACE_Y_RESOLUTION)
+            && randomPoint.y_ < settings::C_MapYsize)
         {
             bool fits = true;
             for (std::vector<SpaceObject*>::const_iterator it = spaceObjects::getObjects().begin(); it != spaceObjects::getObjects().end(); ++it)

@@ -74,8 +74,8 @@ void AmmoInsta::update()
         else break;
     }
 
-    if (location_.x_ < -100 || location_.x_ > SPACE_X_RESOLUTION + 100 ||
-        location_.y_ < -100 || location_.y_ > SPACE_Y_RESOLUTION + 100)
+    if (location_.x_ < -100 || location_.x_ > settings::C_MapXsize + 100 ||
+        location_.y_ < -100 || location_.y_ > settings::C_MapYsize + 100)
         killMe();
 }
 
@@ -192,7 +192,7 @@ int AmmoInsta::hitsAny(Vector2f const& location, Vector2f const& direction, Team
             }
         }
 
-        if (to.x_ < -100 || to.x_ > SPACE_X_RESOLUTION + 100 || to.y_ < -100 || to.y_ > SPACE_Y_RESOLUTION + 100)
+        if (to.x_ < -100 || to.x_ > settings::C_MapXsize + 100 || to.y_ < -100 || to.y_ > settings::C_MapYsize + 100)
             return 0;
 
         for (std::vector<SpaceObject*>::const_iterator it = physics::getGravitySources().begin(); it != physics::getGravitySources().end(); ++it)

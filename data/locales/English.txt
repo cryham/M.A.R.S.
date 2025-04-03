@@ -383,12 +383,29 @@
 276 No confirmations
 277 No dialog confirmations for game or menu quit
 
+//  Map
 278 Map Options
 279 Space Objects
+
 280 Min count
 281 Max count
 282 Min radius
 283 Max radius
-284 Min Gap
 
-// 285
+284 Min Gap
+285 Home planet radius
+
+286 Map Size
+287 Map Width
+288 Map Height
+289 Ship radius
+
+290 Tiny
+291 Small
+292 Medium
+293 Normal
+294 Big
+295 Large
+296 Huge
+
+297 Reset Defaults

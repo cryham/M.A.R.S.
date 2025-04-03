@@ -36,6 +36,6 @@ class PauseMenu: public UiWindow
 
         static UiWindow* instance_;
 
-        static bool kResume_, kNew_, kOptions_, kToMainMenu_, kHide_;
+        static bool kResume_, kNew_, kOptions_, kMapOptions_, kToMainMenu_, kHide_;
 };
 

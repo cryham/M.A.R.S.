@@ -29,7 +29,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 /// All settings are stored in global variables and
 /// can be saved to and loaded from file
 
-namespace settings 
+namespace settings
 {
     /// Loads all settings from the file.
     /// All settings are stored in the file mars.cfg in C_configPath.
@@ -106,10 +106,14 @@ namespace settings
     extern int            C_MapMaxPlanets;
     extern int            C_MapMinPlanetsSize;
     extern int            C_MapMaxPlanetsSize;
+
     extern int            C_MapMinPlanetGap;
     extern int            C_MapHomeRadius;
+
+    extern int            C_ShipRadius;
     extern int            C_MapXsize;
     extern int            C_MapYsize;
+    extern int            C_MapYaspect;
     ///@}
 
     /// \name Player settings

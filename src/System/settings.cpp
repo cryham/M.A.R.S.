@@ -97,10 +97,14 @@ namespace settings
     int         C_MapMaxPlanets      = 4;  // 4
     int         C_MapMinPlanetsSize  = 50;  // 50
     int         C_MapMaxPlanetsSize  = 120;  // 120
+
     int         C_MapMinPlanetGap    = 150;  // 150
     int         C_MapHomeRadius      = 100;
+
+    int         C_ShipRadius         = 18;  // 18.f
     int         C_MapXsize           = 1440; // 1440
     int         C_MapYsize           = 810;  // 810
+    int         C_MapYaspect         = 1000 * 1440 / 810;  // / 1000 = 1
 
     //  weapons
     int         C_EnabledWeapons =          weapons::wNoWeapon-1;  // all

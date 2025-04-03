@@ -23,6 +23,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Media/sound.hpp"
 #include "Media/announcer.hpp"
 #include "Media/text.hpp"
+#include "System/settings.hpp"
 #include "System/window.hpp"
 #include "Games/games.hpp"
 #include "Teams/Team.hpp"
@@ -72,13 +73,13 @@ void Home::draw() const
 
 void Home::drawLife() const
 {
-    int lifeSize = 20.f / SPACE_X_RESOLUTION * window::getViewPort().x_;
+    int lifeSize = 20.f / settings::C_MapXsize * window::getViewPort().x_;
     if (visible_)
     {
         std::stringstream sstr;
         sstr << getLife();
 
-        int xOffset(location_.x_ > SPACE_X_RESOLUTION ? -65 : 65);
+        int xOffset(location_.x_ > settings::C_MapXsize ? -65 : 65);
         text::drawSpaceText(sf::String(sstr.str()), location_ + Vector2f(xOffset, -30 + lifeSize), lifeSize, TEXT_ALIGN_CENTER, Color3f(0.9, 0.9, 0.9));
     }
 }
@@ -104,16 +105,16 @@ void Home::createShips(std::vector<Player*>& inhabitants) const
         {
             // calc location of ship
             angle += deltaAngle*shipCounter*std::pow(-1.0, shipCounter);
-            Vector2f location = Vector2f(std::cos(angle), std::sin(angle)) * (radius_+SHIP_RADIUS)+location_;
+            Vector2f location = Vector2f(std::cos(angle), std::sin(angle)) * (radius_+settings::C_playerIShip) + location_;
             float    rotation = angle*180/M_PI;
             ships::addShip(location, rotation, *it);
             ++shipCounter;
         }
     }
-    else if (location_.x_ > SPACE_X_RESOLUTION - radius_)
+    else if (location_.x_ > settings::C_MapXsize - radius_)
     {
         // 2. homeplanet is covered by right screen edge
-        float angle = std::acos((location_.x_ - SPACE_X_RESOLUTION)/radius_);
+        float angle = std::acos((location_.x_ - settings::C_MapXsize)/radius_);
         float deltaAngle = 2*angle/(inhabitants.size()+1);
         angle = ((inhabitants.size()+1)%2)*deltaAngle/2;
         int shipCounter = 0;

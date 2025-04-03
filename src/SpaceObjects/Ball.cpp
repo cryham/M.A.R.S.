@@ -71,16 +71,16 @@ void Ball::update()
                     location_.x_ = radius_;
                     velocity_.x_ = -velocity_.x_*0.6;
                 }
-                if (location_.x_ > SPACE_X_RESOLUTION - radius_) {
-                    location_.x_ = SPACE_X_RESOLUTION - radius_;
+                if (location_.x_ > settings::C_MapXsize - radius_) {
+                    location_.x_ = settings::C_MapXsize - radius_;
                     velocity_.x_ = -velocity_.x_*0.6;
                 }
                 if (location_.y_ < radius_) {
                     location_.y_ = radius_;
                     velocity_.y_ = -velocity_.y_*0.6;
                 }
-                if (location_.y_ > SPACE_Y_RESOLUTION - radius_) {
-                    location_.y_ = SPACE_Y_RESOLUTION - radius_;
+                if (location_.y_ > settings::C_MapYsize - radius_) {
+                    location_.y_ = settings::C_MapYsize - radius_;
                     velocity_.y_ = -velocity_.y_*0.6;
                 }
             }

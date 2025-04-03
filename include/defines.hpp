@@ -23,15 +23,6 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #define VERSION_REVIS               "1"
 
 #define SHIP_GRAPHICS_COUNT         15
-#define SHIP_RADIUS                 18.f
-
-#define SPACE_X_RESOLUTION          1440
-#define SPACE_Y_RESOLUTION          810
 
 #define INITIAL_WINDOW_X            960
 #define INITIAL_WINDOW_Y            540
-
-#define HOME_PLANET_RADIUS          100
-#define SPACEOBJECT_MIN_RADIUS      50
-#define SPACEOBJECT_MAX_RADIUS      120
-#define SPACEOBJECT_MIN_GAP         150

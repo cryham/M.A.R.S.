@@ -92,12 +92,16 @@ namespace locales
 
         StarField, ttStarField, SpaceBallGoals,
         GameSpeed, ttGameSpeed,
-        
+        //  cryham new
         AccelerateBack, Boost, NextWeapon, PrevWeapon,
         Scale, ttScale, NoConfirmations, ttNoConfirmations,
-
-        MapOptions,
-        SpaceObjects, MinPlanets, MaxPlanets, MinPlanetsSize, MaxPlanetsSize, MinPlanetGap,
+        //  Map
+        MapOptions, SpaceObjects,
+        MinPlanets, MaxPlanets, MinPlanetsSize, MaxPlanetsSize,
+        MinPlanetGap, MapHomeRadius,
+        MapSize, MapXsize, MapYsize, ShipRadius,
+        MapSize0,MapSize1,MapSize2,MapSize3,MapSize4,MapSize5,MapSize6,
+        Defaults,
 
         COUNT  /// amount of entries in the enum
     };

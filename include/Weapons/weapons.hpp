@@ -23,11 +23,15 @@ class Ship;
 namespace weapons 
 {
     enum WeaponType
-    {
-        wInsta=1, wAFK47=2, wBurner=4, wFist=8, wFlubba=16,
-        wShotgun=32, wRocketLauncher=64, wROFLE=128,
-        wH2OMG=256,
-        wNoWeapon=512
+	{
+        wInsta = 1<<0,
+        wAFK47 = 1<<1, wBurner = 1<<2, wFist = 1<<3, wFlubba = 1<<4,  // original
+        wShotgun = 1<<5, wRocketLauncher = 1<<6, wROFLE = 1<<7, wH2OMG = 1<<8,
+                     
+        wShotgun2 = 1<<9, wPlasma = 1<<10, wMiniRockets = 1<<11, wFlamer2 = 1<<12,  // cryham excessive, modded originals
+        wAFK85 = 1<<13, wRifle2 = 1<<14, wH2OStorm = 1<<15,
+        // wMinigun = 1<<16, wGrenades = 1<<17, wLaser = 1<<18, wLightning = 1<<19,  // cryham new todo
+        wNoWeapon = 1<<20
     };
 
     Weapon* create    (WeaponType type, Ship* parent);

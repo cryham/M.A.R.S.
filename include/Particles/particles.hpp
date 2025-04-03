@@ -69,7 +69,15 @@ namespace particles
         pNumber,            ///< Spawned when damage is done.
         pCrushedIce,        ///< Spawned when damage is done.
         pAmmoInsta,         ///< Spawned by the InstaGib rifle.
-        pStar               ///< For the background starfield.
+        pStar,              ///< For the background starfield.
+        //  new
+        pAmmoPlasma,        ///< Spawned by the Plasma.
+        pAmmoAFK85,         ///< Spawned by the AFK85,
+        pAmmoShotgun2,      ///< Spawned by the Shotgun2.
+        pAmmoRifle2,        ///< Spawned by the Rifle2.
+        pAmmoFlamer2,       ///< Spawned by the Flamer2.
+        pAmmoH2OStorm,      ///< Spawned by the H2OStorm.
+        pAmmoMiniRocket,    ///< Spawned by the MiniRockets.
     };
 
     /// Updates all particles.

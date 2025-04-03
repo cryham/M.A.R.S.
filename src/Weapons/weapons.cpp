@@ -27,6 +27,15 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Weapons/RocketLauncher.hpp"
 #include "Weapons/Shotgun.hpp"
 #include "Weapons/NoWeapon.hpp"
+
+#include "Weapons/AFK85.hpp"
+#include "Weapons/Flamer2.hpp"
+#include "Weapons/Plasma.hpp"
+#include "Weapons/H2OStorm.hpp"
+#include "Weapons/Rifle2.hpp"
+#include "Weapons/MiniRockets.hpp"
+#include "Weapons/Shotgun2.hpp"
+
 #include "SpaceObjects/Ship.hpp"
 #include "Players/Player.hpp"
 #include "System/settings.hpp"
@@ -61,7 +70,17 @@ namespace weapons
             case wRocketLauncher:  return new RocketLauncher(parent);
             case wInsta:           return new Insta(parent);
             case wShotgun:         return new Shotgun(parent);
-            default:               return new NoWeapon(parent);
+
+            // cryham  excessive, modded originals
+            case wAFK85:        return new AFK85(parent);
+            case wFlamer2:      return new Flamer2(parent);
+            case wPlasma:       return new Plasma(parent);
+            case wH2OStorm:     return new H2OStorm(parent);
+            case wRifle2:       return new Rifle2(parent);
+            case wMiniRockets:  return new MiniRockets(parent);
+            case wShotgun2:     return new Shotgun2(parent);
+
+            default:            return new NoWeapon(parent);
         }
     }
 

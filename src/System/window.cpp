@@ -51,7 +51,9 @@ namespace window
         sf::Sprite        fxImage_;
 
         Vector2f         viewPort_;
-        float            scale_(static_cast<float>(settings::C_resX) / settings::C_MapXsize);
+        float            scale_x() {  return static_cast<float>(settings::C_resX) / settings::C_MapXsize;  }
+        float            scale_y() {  return static_cast<float>(settings::C_resY) / settings::C_MapYsize;  }
+
         int              clearCount_(0);
         float            joyButtonTimer_(0.f);
         const float      ratio(static_cast<float>(settings::C_MapXsize) / static_cast<float>(settings::C_MapYsize));
@@ -80,12 +82,12 @@ namespace window
             // if windows aspect ration is greater than aspect ratio of space
             if (static_cast<float>(windowWidth)/windowHeight > ratio)
             {
-                scale_ = static_cast<float>(windowHeight)/settings::C_MapYsize;
+                // scale_ = static_cast<float>(windowHeight)/settings::C_MapYsize;
                 viewPort_.y_ = windowHeight;
                 viewPort_.x_  = windowHeight * ratio;
             }else
             {
-                scale_ = static_cast<float>(windowWidth)/settings::C_MapXsize;
+                // scale_ = static_cast<float>(windowWidth)/settings::C_MapXsize;
                 viewPort_.y_ = windowWidth / ratio;
                 viewPort_.x_  = windowWidth;
             }
@@ -441,7 +443,7 @@ namespace window
 
     Vector2f const coordToPixel(Vector2f const& spaceCoord)
     {
-        return spaceCoord*scale_;
+        return Vector2f(spaceCoord.x_ * scale_x(), spaceCoord.y_ * scale_y());
     }
 
     Vector2f const PixelToCoord(Vector2f const& screenCoord)

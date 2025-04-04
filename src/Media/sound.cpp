@@ -60,10 +60,10 @@ namespace sound
                     i++;
                 if (i < CHANNELCOUNT)
                 {
-                    // play sound with random pitch
+                    // play sound with random pitch  settings::soundPitchVar
                     soundChannel_[i].setBuffer(*sounds_[sound]);
                     if (sound != Click && sound != Tab && sound != Check && sound != Countdown && sound != Start )
-                        soundChannel_[i].setPitch(1 + static_cast<float>(rand()%100)/200.f - 0.25f);
+                        soundChannel_[i].setPitch(1.f + 0.3f * static_cast<float>(rand()%100)/200.f - 0.25f);
                     soundChannel_[i].setVolume((volume < 0.f ? -volume : volume)*static_cast<float>(settings::C_soundVolume)/100.f);
                     soundChannel_[i].setPosition(position.x_, 0.f, 0.f);
                     soundChannel_[i].setAttenuation(0.f);

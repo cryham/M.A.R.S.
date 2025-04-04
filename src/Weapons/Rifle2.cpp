@@ -28,7 +28,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 void Rifle2::draw(float alpha) const
 {
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    glColor4f(1.0, 0.4, 0.4, alpha);
+    glColor4f(1.0, 0.4, 0.7, alpha);
     const int posX = 0;
     const int posY = 31;
     glBegin(GL_QUADS);

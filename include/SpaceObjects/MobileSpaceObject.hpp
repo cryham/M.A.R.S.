@@ -32,5 +32,6 @@ class MobileSpaceObject: public SpaceObject
 
     protected:
         Vector2f velocity_;
+        float acceleration_;
 };
 

@@ -28,10 +28,10 @@ AmmoRifle2::AmmoRifle2(Vector2f const& location, Vector2f const& direction, Vect
          Particle<AmmoRifle2>(spaceObjects::oAmmoRifle2, location, 1.f, 1.0f, 3.0f)
 {
     setDamageSource(damageSource);
-    velocity_ = direction*1300.f;
+    velocity_ = direction * 2100.f;
     location_ += velocity_*timer::frameTime()*1.2f;
 
-    trailEffects::attach(this, 0.05, 1.f, 4.f, Color3f(0.6f, 0.5f, 0.8f), false);
+    trailEffects::attach(this, 0.05, 1.f, 4.f, Color3f(0.3f, 0.1f, 0.2f), false);
 }
 
 AmmoRifle2::~AmmoRifle2()
@@ -58,7 +58,7 @@ void AmmoRifle2::update()
 
 void AmmoRifle2::draw() const
 {
-    glColor3f(1.f, 1.f, 1.f);
+    glColor3f(0.5f, 1.f, 1.f);
 
     Vector2f direction(velocity_*0.025f);
     Vector2f normDirection(direction.y_, -1.f*direction.x_);

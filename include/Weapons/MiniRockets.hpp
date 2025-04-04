@@ -32,6 +32,7 @@ class MiniRockets: public Weapon
 
         /// Spawns some particles.
         void fire() const;
+        mutable int side_ = 0;
 
         /// Draws the weapon.
         void draw(float alpha) const;

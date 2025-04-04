@@ -26,15 +26,16 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 std::list<AmmoH2OStorm*> AmmoH2OStorm::activeParticles_;
 
 AmmoH2OStorm::AmmoH2OStorm(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity, Color3f const& color, Player* damageSource):
-         Particle<AmmoH2OStorm>(spaceObjects::oAmmoH2OStorm, location, 8.f, 0.4f, randomizer::random(9.f, 11.f))
+         Particle<AmmoH2OStorm>(spaceObjects::oAmmoH2OStorm, location, 8.f /*R*/, 0.4f /*mass*/, randomizer::random(9.f, 11.f) /*life*/)
 {
     setDamageSource(damageSource);
     velocity_ = velocity + direction*1100.f + Vector2f::randDirLen()*150.f;
     location_ += velocity_*timer::frameTime()*1.2f;
 
-    radius_ = randomizer::random(5.f, 13.f);
+    radius_ = randomizer::random(15.f, 23.f);
 
-    color_ = Color3f(randomizer::random(0.3f, 0.8f), randomizer::random(0.6f, 1.f), randomizer::random(0.9f, 1.0f));
+    color_ = 0.7f * Color3f(randomizer::random(0.4f, 0.9f), randomizer::random(0.7f, 1.f), randomizer::random(0.9f, 1.0f));
+    index_ = rand() % 3;
 }
 
 void AmmoH2OStorm::update()
@@ -61,9 +62,8 @@ void AmmoH2OStorm::update()
 
 void AmmoH2OStorm::draw() const
 {
-    color_.gl4f(1.0f);
-    const int posX = 2;
-    const int posY = 1;
+    color_.gl4f(0.8f);  // alpha
+    const int posX = index_, posY = 0;
     glTexCoord2f(posX*0.125f,     posY*0.125f);     glVertex2f(location_.x_-radius_, location_.y_-radius_);
     glTexCoord2f(posX*0.125f,     (posY+1)*0.125f); glVertex2f(location_.x_-radius_, location_.y_+radius_);
     glTexCoord2f((posX+1)*0.125f, (posY+1)*0.125f); glVertex2f(location_.x_+radius_, location_.y_+radius_);

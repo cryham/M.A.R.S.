@@ -17,6 +17,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "SpaceObjects/Ball.hpp"
 
+#include "SpaceObjects/spaceObjects.hpp"
 #include "System/timer.hpp"
 #include "System/settings.hpp"
 #include "Media/sound.hpp"
@@ -213,6 +214,7 @@ void Ball::onCollision(SpaceObject* with, Vector2f const& location,
             unfreeze = 10.f;
             break;
 
+        case spaceObjects::oAmmoAFK85:
         case spaceObjects::oAmmoAFK47:
             particles::spawnMultiple(1, particles::pSpark, location,
                 dynamic_cast<MobileSpaceObject*>(with)->velocity()*0.3f,
@@ -220,6 +222,7 @@ void Ball::onCollision(SpaceObject* with, Vector2f const& location,
             unfreeze = 1.f;
             break;
 
+        case spaceObjects::oAmmoRifle2:
         case spaceObjects::oAmmoROFLE:
             particles::spawnMultiple(10, particles::pSpark, location,
                 dynamic_cast<MobileSpaceObject*>(with)->velocity()*0.5f,
@@ -227,6 +230,7 @@ void Ball::onCollision(SpaceObject* with, Vector2f const& location,
             unfreeze = 10.f;
             break;
 
+        case spaceObjects::oAmmoShotgun2:
         case spaceObjects::oAmmoShotgun:
             particles::spawnMultiple(1, particles::pSpark, location,
                 dynamic_cast<MobileSpaceObject*>(with)->velocity()*0.7f,
@@ -234,18 +238,26 @@ void Ball::onCollision(SpaceObject* with, Vector2f const& location,
             unfreeze = 1.f;
             break;
 
+        case spaceObjects::oAmmoPlasma:
+            velocity_ += velocity * 6.f*timer::frameTime();
         case spaceObjects::oAmmoFlubba:
             unfreeze = 10.f;
             break;
 
+        case spaceObjects::oAmmoFlamer2:
+            if (heatTimer_ < 20.f)  heatTimer_ += 0.01f;
+            velocity_ += velocity * 0.01f*timer::frameTime();
+            unfreeze = 1.f;
+            break;
         case spaceObjects::oAmmoBurner:
-            if (heatTimer_ < 20.f) heatTimer_ += 0.01f;
-            velocity_ += velocity*0.03f*timer::frameTime();
+            if (heatTimer_ < 20.f)  heatTimer_ += 0.01f;
+            velocity_ += velocity * 0.03f*timer::frameTime();
             unfreeze = 1.f;
             break;
 
+        case spaceObjects::oAmmoH2OStorm:
         case spaceObjects::oAmmoH2OMG:
-            if (heatTimer_ > 0.f) heatTimer_ -= 0.1f;
+            if (heatTimer_ > 0.f)  heatTimer_ -= 0.1f;
             unfreeze = 1.f;
             break;
 

@@ -73,7 +73,7 @@ void AmmoFlamer2::update()
 
 void AmmoFlamer2::draw() const
 {
-    color_.gl3f();
+    color_.gl4f(0.15f);
     const int posX = 0;
     const int posY = 0;
     glTexCoord2f(posX*0.125f,     posY*0.125f);     glVertex2f(location_.x_-radius_, location_.y_-radius_);
@@ -83,7 +83,8 @@ void AmmoFlamer2::draw() const
 }
 
 void AmmoFlamer2::onCollision(SpaceObject* with, Vector2f const& location,
-                        Vector2f const& direction, Vector2f const& velocity) {
+                        Vector2f const& direction, Vector2f const& velocity)
+{
     killMe();
 }
 

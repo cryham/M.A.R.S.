@@ -36,6 +36,7 @@ class AmmoH2OStorm: public Particle<AmmoH2OStorm>
         friend class Particle<AmmoH2OStorm>;
 
     private:
+        int index_;
         Color3f color_;
         static std::list<AmmoH2OStorm*> activeParticles_;
 };

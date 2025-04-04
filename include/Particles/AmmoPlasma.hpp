@@ -24,6 +24,7 @@ class AmmoPlasma: public Particle<AmmoPlasma>
     public:
         AmmoPlasma(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,
             Color3f const& color, Player* damageSource);
+        ~AmmoPlasma();
 
         void update();
         void draw() const;

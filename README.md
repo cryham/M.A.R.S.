@@ -2,16 +2,20 @@
 
 This is my fork with many changes:
 - Gameplay
-   - new player keys for ship: backwards, boost and sideways, next,prev weapon change
-   - ship thrusters blue
-   - ToDo: new fast/excessive weapons: ..
-   - ToDo: more game options in Gui:
-   - Map options, with sliders for:  
+   - New **keys** for player ship:  
+     - *Backwards* accelerate
+     - *Boost* - holding does faster acceleration
+       and with left/right goes *sideways* instead of turning
+     - Next, previous weapon change, at any time
+   - 7 new **Weapons** - fast, excessive:  
+     AFK-85, Plasma, H2OStorm, Flamer2, Shotgun2, MiniRockets, Rifle2
+   - **Map Options**, with sliders for:  
      min,max count of space objects (planets, stars, black holes) and their radius range, minimal gap between, etc
-   - ToDo: possible on sliders: more bots, more kills to end game, regeneration
+   - Ship thrusters now blue
+   - ToDo: more game options in Gui on sliders: more bots, more kills to end game, regeneration
    - ToDo: turrets, near team homes, or any middle, destroyable, respawned
 - Gui
-  - bigger Gui, font
+  - bigger Gui, font, ToDo: scale slider
   - color Skyblue, not Pink-Red
   - fast fadein/out, no game countdown
   - option for no confirmation dialogs

@@ -133,7 +133,7 @@ void Ship::update()
         {
             if (frozen_ <= 0)
             {
-                const float rot = 0.2f; //0.3f;
+                const float rot = 0.25f; //0.3f;  settings::turnSpeed
                 float angleRad = rotation_ * M_PI / 180.f;
                 Vector2f faceDirection(std::cos(angleRad), std::sin(angleRad));
                 Vector2f sideDirection(std::cos(angleRad + M_PI_2), std::sin(angleRad + M_PI_2));
@@ -200,7 +200,7 @@ void Ship::update()
                     {
                         acceleration = Vector2f();
                         if (getFuel() < maxFuel_)
-                            fuel_ += time*0.5f;  /// fuel regen  settings::fuelRegen
+                            fuel_ += time*0.5f;  /// fuel regen  settings::fuelRegen 
                         else
                             fuel_ = maxFuel_;
                     }
@@ -438,7 +438,7 @@ void Ship::onCollision(SpaceObject* with, Vector2f const& location,
 
         case spaceObjects::oPlanet:
             if (strength > 75)
-                amount = strength*0.08f;
+                amount = strength*0.04f;  // 0.08
             if (strength > 50)
                 sound::playSound(sound::ShipPlanetCollide, location, (strength-50)/3);
             break;
@@ -459,7 +459,14 @@ void Ship::onCollision(SpaceObject* with, Vector2f const& location,
             break;
 
         //  Ammo
-        case spaceObjects::oAmmoAFK85:
+        case spaceObjects::oAmmoAFK85:  // =
+            amount = strength*0.0023f;
+            waitForOtherDamage = 0.15f;
+            setDamageSource(with->damageSource());
+            particles::spawnMultiple(2, particles::pSpark, location,
+                dynamic_cast<MobileSpaceObject*>(with)->velocity() * 0.3f, velocity_, owner_->color());
+            unfreeze = 0.1f;
+            break;
         case spaceObjects::oAmmoAFK47:
             amount = strength*0.003f;
             waitForOtherDamage = 0.15f;
@@ -469,7 +476,13 @@ void Ship::onCollision(SpaceObject* with, Vector2f const& location,
             unfreeze = 0.1f;
             break;
 
-        case spaceObjects::oAmmoRifle2:
+        case spaceObjects::oAmmoRifle2:  // --
+            amount = strength*0.006f;
+            setDamageSource(with->damageSource());
+            particles::spawnMultiple(20, particles::pSpark, location,
+                dynamic_cast<MobileSpaceObject*>(with)->velocity() * 0.5f, velocity_, owner_->color());
+            unfreeze = 20.f;
+            break;
         case spaceObjects::oAmmoROFLE:
             amount = strength*0.0004f;
             setDamageSource(with->damageSource());
@@ -478,7 +491,14 @@ void Ship::onCollision(SpaceObject* with, Vector2f const& location,
             unfreeze = 20.f;
             break;
 
-        case spaceObjects::oAmmoShotgun2:
+        case spaceObjects::oAmmoShotgun2:  // <
+            amount = strength*0.0007f;
+            waitForOtherDamage = 0.1f;
+            setDamageSource(with->damageSource());
+            particles::spawnMultiple(2, particles::pSpark, location,
+                dynamic_cast<MobileSpaceObject*>(with)->velocity() * 0.7f, velocity_, owner_->color());
+            unfreeze = 0.1f;
+            break;
         case spaceObjects::oAmmoShotgun:
             amount = strength*0.0015f;
             waitForOtherDamage = 0.1f;
@@ -488,14 +508,23 @@ void Ship::onCollision(SpaceObject* with, Vector2f const& location,
             unfreeze = 0.1f;
             break;
 
-        case spaceObjects::oAmmoPlasma:
+        case spaceObjects::oAmmoPlasma:  // o
+            amount = randomizer::random(5.f, 6.f);
+            setDamageSource(with->damageSource());
+            unfreeze = 4.f;
+            break;
         case spaceObjects::oAmmoFlubba:
             amount = randomizer::random(2.5f, 3.f);
             setDamageSource(with->damageSource());
             unfreeze = 4.f;
             break;
 
-        case spaceObjects::oAmmoH2OStorm:
+        case spaceObjects::oAmmoH2OStorm:  // *
+            amount = strength*0.002f;
+            waitForOtherDamage = 0.15f;
+            setDamageSource(with->damageSource());
+            unfreeze = 0.1f;
+            break;
         case spaceObjects::oAmmoH2OMG:
             amount = strength*0.01f;
             waitForOtherDamage = 0.15f;
@@ -507,13 +536,6 @@ void Ship::onCollision(SpaceObject* with, Vector2f const& location,
             amount = randomizer::random(0.7f, 1.f);
             waitForOtherDamage = 0.3f;
             setDamageSource(with->damageSource());
-            break;
-
-
-        case spaceObjects::oCannonBall:
-            amount = life_;
-            setDamageSource(owner_);
-            unfreeze = frozen_;
             break;
 
         case spaceObjects::oAmmoFlamer2:
@@ -529,15 +551,20 @@ void Ship::onCollision(SpaceObject* with, Vector2f const& location,
             break;
 
         case spaceObjects::oAmmoMiniRocket:
-            amount = 1.f;
+            amount = 20.f;
             setDamageSource(with->damageSource());
             unfreeze = 10.f;
             break;
-
         case spaceObjects::oAmmoRocket:
             amount = 10.f;
             setDamageSource(with->damageSource());
             unfreeze = 10.f;
+            break;
+
+        case spaceObjects::oCannonBall:
+            amount = life_;
+            setDamageSource(owner_);
+            unfreeze = frozen_;
             break;
 
         case spaceObjects::oAmmoFist:
@@ -565,7 +592,7 @@ void Ship::onCollision(SpaceObject* with, Vector2f const& location,
         }
     }
 
-    amount *= 0.7f;  // damage scale  settings::damageScale
+    amount *= 0.5f;  // damage scale  settings::damageScale
 
     if (attackable())
     {

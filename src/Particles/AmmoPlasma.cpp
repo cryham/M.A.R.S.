@@ -20,6 +20,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "System/timer.hpp"
 #include "System/settings.hpp"
 #include "Particles/particles.hpp"
+#include "TrailEffects/trailEffects.hpp"
 #include "Media/sound.hpp"
 #include "System/randomizer.hpp"
 
@@ -28,16 +29,23 @@ std::list<AmmoPlasma*> AmmoPlasma::activeParticles_;
 
 
 AmmoPlasma::AmmoPlasma(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity, Color3f const& color, Player* damageSource):
-         Particle<AmmoPlasma>(spaceObjects::oAmmoPlasma, location, randomizer::random(9.f, 15.f), 1.0f, randomizer::random(12.f, 15.f))
+         Particle<AmmoPlasma>(spaceObjects::oAmmoPlasma, location, randomizer::random(9.f, 15.f), 0.01f, randomizer::random(12.f, 15.f))
 {
     setDamageSource(damageSource);
     velocity_ = velocity + direction*1500;
     location_ += velocity_*timer::frameTime()*1.2f;
 
-    radius_ = randomizer::random(7.f, 11.f);
+    radius_ = randomizer::random(7.f, 11.f) * 3.f;
 
     // color_ = Color3f(randomizer::random(0.2f, 0.8f), randomizer::random(0.8f, 1.f), randomizer::random(0.0f, 0.6f));
-    color_ = Color3f(randomizer::random(0.4f, 0.9f), randomizer::random(0.8f, 1.f), randomizer::random(0.9f, 1.0f));
+    color_ = Color3f(randomizer::random(0.2f, 0.7f), randomizer::random(0.8f, 1.f), randomizer::random(0.9f, 1.f));
+
+    trailEffects::attach(this, 0.05, 0.2f, radius_ * 2.5f, Color3f(0.04f, 0.31f, randomizer::random(0.28f, 0.35f)), false);
+}
+
+AmmoPlasma::~AmmoPlasma()
+{
+    trailEffects::detach(this);
 }
 
 void AmmoPlasma::update()
@@ -47,12 +55,7 @@ void AmmoPlasma::update()
     physics::collide(this, STATICS | MOBILES | PARTICLES);
     Vector2f acceleration = physics::attract(this)*0.8f;
 
-    // update Size
-    if (lifeTime_ > totalLifeTime_-0.3f)
-        radius_ = -400.0*pow(lifeTime_+0.2-totalLifeTime_, 2)+12;
-
     location_ += velocity_*time + acceleration*time*time;
-    // velocity_ += acceleration*time - 2.5f*velocity_*time;
     velocity_ += acceleration*time + 0.1f*velocity_*time;
 
     lifeTime_ += time;
@@ -69,9 +72,9 @@ void AmmoPlasma::update()
 
 void AmmoPlasma::draw() const
 {
-    color_.gl4f(0.8f);
-    const int posX = 4;
-    const int posY = 0;
+    color_.gl4f(0.6f);
+    // const int posX = 3, posY = 0;
+    const int posX = 0, posY = 1;
     glTexCoord2f(posX*0.125f,     posY*0.125f);     glVertex2f(location_.x_-radius_, location_.y_-radius_);
     glTexCoord2f(posX*0.125f,     (posY+1)*0.125f); glVertex2f(location_.x_-radius_, location_.y_+radius_);
     glTexCoord2f((posX+1)*0.125f, (posY+1)*0.125f); glVertex2f(location_.x_+radius_, location_.y_+radius_);
@@ -83,7 +86,6 @@ void AmmoPlasma::onCollision(SpaceObject* with, Vector2f const& location,
 {
     if (!isDead() && with->type() != spaceObjects::oAmmoPlasma /*&& with->type() != spaceObjects::oMiniAmmoPlasma*/)
     {
-        physics::causeShockWave(damageSource(), location_, 350.f, 100.f, 0.f);
         sound::playSound(sound::BlubCollide, location_);
         killMe();
     }

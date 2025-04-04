@@ -17,6 +17,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "Particles/AmmoMiniRocket.hpp"
 
+#include "SpaceObjects/spaceObjects.hpp"
 #include "System/timer.hpp"
 #include "Media/sound.hpp"
 #include "TrailEffects/trailEffects.hpp"
@@ -34,7 +35,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 std::list<AmmoMiniRocket*> AmmoMiniRocket::activeParticles_;
 
 AmmoMiniRocket::AmmoMiniRocket(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity, Color3f const& color, Player* damageSource):
-         Particle<AmmoMiniRocket>(spaceObjects::oAmmoMiniRocket, location, 2.f, 3.0f, 10000.f),
+         Particle<AmmoMiniRocket>(spaceObjects::oAmmoMiniRocket, location, 3.f, 3.0f, 10000.f),
          timer_(1.f),
          shipTarget_(NULL),
          ballTarget_(NULL),
@@ -45,10 +46,10 @@ AmmoMiniRocket::AmmoMiniRocket(Vector2f const& location, Vector2f const& directi
          visible_(true)
 {
     setDamageSource(damageSource);
-    velocity_ = direction*800.f;
-    location_ += velocity_*timer::frameTime()*1.2f;
+    velocity_ = direction * 550.f;
+    acceleration_ = 600.0f;
 
-    trailEffects::attach(this, 0.05, 2.5f, 20.f, Color3f(0.6f, 0.2f, 0.f), false);
+    trailEffects::attach(this, 0.05, 0.5f, 6.f, Color3f(0.1f, 0.23f, 0.35f), false);
 }
 
 AmmoMiniRocket::~AmmoMiniRocket()
@@ -65,6 +66,7 @@ void AmmoMiniRocket::update()
     {
         physics::collide(this, STATICS | MOBILES | PARTICLES);
 
+        #if 0
         if (shipTarget_ || ballTarget_)
         {
             MobileSpaceObject* target(NULL);
@@ -82,17 +84,20 @@ void AmmoMiniRocket::update()
                 velocity_ = Vector2f (std::cos(std::atan2(velocity_.y_, velocity_.x_)+phi), std::sin(std::atan2(velocity_.y_, velocity_.x_)+phi));
             else
                 velocity_ = Vector2f (std::cos(std::atan2(velocity_.y_, velocity_.x_)-phi), std::sin(std::atan2(velocity_.y_, velocity_.x_)-phi));
-            velocity_ *= 500.f;
+            velocity_ *= speed;
 
             if (shipTarget_ && dynamic_cast<Ship*>(shipTarget_)->getLife() <= 0.f)
                 shipTarget_ = NULL;
             else if (ballTarget_ && !(dynamic_cast<Ball*>(ballTarget_)->isVisible()))
                 ballTarget_ = NULL;
         }
-
-        location_ += velocity_*time;
+        #endif
 
         Vector2f const faceDirection(velocity_.normalize());
+
+        location_ += velocity_ * time;
+        velocity_ += acceleration_ * faceDirection * time;
+        // todo clamp max vel..
 
         particles::spawnTimed(80.f/settings::C_globalParticleCount, particles::pFuel, location_-faceDirection*radius_*2.3f, faceDirection, velocity_);
         particles::spawnTimed(5.f/settings::C_globalParticleCount, particles::pHeatJet, location_-faceDirection*radius_*3.f, faceDirection, velocity_);
@@ -145,53 +150,58 @@ void AmmoMiniRocket::update()
     if (life_<=0.f)
     {
         visible_ = false;
-        particles::spawnMultiple(50, particles::pDust, location_);
-        particles::spawnMultiple(20, particles::pExplode, location_);
-        particles::spawnMultiple(5, particles::pBurningFragment, location_);
-        particles::spawnMultiple(1, particles::pMiniFlame, location_);
+        // particles::spawnMultiple(50, particles::pDust, location_);
+        // particles::spawnMultiple(20, particles::pExplode, location_);
+        // particles::spawnMultiple(2, particles::pBurningFragment, location_);
+        // particles::spawnMultiple(1, particles::pMiniFlame, location_);
+        particles::spawnMultiple(4, particles::pHeatJet, location_);        
 
-        postFX::onExplosion();
+        // postFX::onExplosion();
         setDamageSource(parent_);
-        physics::  causeShockWave(damageSource(), location_, 150.f, 300.f, 3.f);
-        particles::spawn(particles::pShockWave, location_);
+        // physics::  causeShockWave(damageSource(), location_, 150.f, 300.f, 3.f);
+        // particles::spawn(particles::pShockWave, location_);
         killMe();
     }
 }
 
 void AmmoMiniRocket::draw() const
 {
-    glColor3f(1.f, 1.f, 1.f);
+    glColor4f(0.3f, 0.4f, 0.3f, 0.3f);
 
     Vector2f direction(velocity_.normalize()*10.f);
     Vector2f normDirection(direction.y_, -1.f*direction.x_);
-    const Vector2f topLeft(location_ + direction + normDirection), topRight(location_ + direction - normDirection), bottomLeft(location_ - 3*direction + normDirection), bottomRight(location_ - 3*direction - normDirection);
+    const Vector2f
+        topLeft(location_ + direction + normDirection),
+        topRight(location_ + direction - normDirection),
+        bottomLeft(location_ - 3*direction + normDirection),
+        bottomRight(location_ - 3*direction - normDirection);
 
     const int posX = 0;
-    const int posY = (static_cast<int>(lifeTime_*3.f) % 2) * 2 + 3;
+    const int posY = 5;  //(static_cast<int>(lifeTime_*3.f) % 2) * 2 + 3;
     glTexCoord2f(posX*0.125f,    (posY+2)*0.125f); glVertex2f(topLeft.x_, topLeft.y_);
     glTexCoord2f((posX+4)*0.125f,(posY+2)*0.125f); glVertex2f(bottomLeft.x_, bottomLeft.y_);
     glTexCoord2f((posX+4)*0.125f, posY*0.125f);    glVertex2f(bottomRight.x_, bottomRight.y_);
     glTexCoord2f(posX*0.125f,     posY*0.125f);    glVertex2f(topRight.x_, topRight.y_);
 
-    MobileSpaceObject* target(NULL);
+    /*MobileSpaceObject* target(NULL);
     if (ballTarget_)
         target = ballTarget_;
     else if (shipTarget_)
         target = shipTarget_;
 
-    if (target && frozen_ <= 0)
+    /*if (target && frozen_ <= 0)
     {
-        glColor3f(1.f, 0.7f, 0.9f);
+        glColor3f(0.6f, 0.7f, 0.8f);
         const int posX = 5;
         const int posY = 5;
-        float const size = std::sin(lifeTime_*5.f)*4.f + 26.f;
+        float const size = std::sin(lifeTime_*5.f)*4.f + 16.f;
         Vector2f const loc(target->location());
 
         glTexCoord2f(posX*0.125f,    (posY+3)*0.125f); glVertex2f(loc.x_ - size, loc.y_ - size);
         glTexCoord2f((posX+3)*0.125f,(posY+3)*0.125f); glVertex2f(loc.x_ + size, loc.y_ - size);
         glTexCoord2f((posX+3)*0.125f, posY*0.125f);    glVertex2f(loc.x_ + size, loc.y_ + size);
         glTexCoord2f(posX*0.125f,     posY*0.125f);    glVertex2f(loc.x_ - size, loc.y_ + size);
-    }
+    }*/
 }
 
 void AmmoMiniRocket::onCollision(SpaceObject* with, Vector2f const& location,
@@ -203,25 +213,28 @@ void AmmoMiniRocket::onCollision(SpaceObject* with, Vector2f const& location,
     switch (with->type())
     {
         case spaceObjects::oAmmoAFK47:
+        case spaceObjects::oAmmoAFK85:
             amount = strength*0.01f;
             unfreeze = 1.f;
             break;
 
         case spaceObjects::oAmmoShotgun:
+        case spaceObjects::oAmmoShotgun2:
             amount = strength*0.01f;
             unfreeze = 1.f;
             break;
 
         case spaceObjects::oAmmoH2OMG:
+        case spaceObjects::oAmmoH2OStorm:
         case spaceObjects::oAmmoFlubba:
             amount = 5.f;
             unfreeze = 10.f;
             break;
-
         case spaceObjects::oMiniAmmoFlubba:
             amount = 1.f;
             break;
 
+        case spaceObjects::oAmmoFlamer2:
         case spaceObjects::oAmmoBurner:
             amount = timer::frameTime()*2.f;
             unfreeze = 1.f;

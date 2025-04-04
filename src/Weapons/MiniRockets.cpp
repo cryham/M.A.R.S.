@@ -24,6 +24,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include <SFML/Graphics.hpp>
 
+
 void MiniRockets::draw(float alpha) const
 {
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -41,16 +42,22 @@ void MiniRockets::draw(float alpha) const
 void MiniRockets::fire() const
 {
     float time = timer::totalTime();
-    if (time - timer_ > 0.2f)
+    if (time - timer_ > 0.15f)
     {   timer_ = time;
 
         float angleRad = parent_->rotation()*M_PI / 180.f;
         Vector2f faceDirection(std::cos(angleRad), std::sin(angleRad));
+        Vector2f sideDirection(std::cos(angleRad + M_PI_2), std::sin(angleRad + M_PI_2));
 
-        particles::spawn(particles::pAmmoMiniRocket, parent_->location() + faceDirection*parent_->radius(), faceDirection, parent_->velocity(), Color3f(), parent_->getOwner());
-        particles::spawnMultiple(4.f, particles::pDust,  parent_->location() + faceDirection*parent_->radius(), parent_->velocity() + faceDirection*4.f);
+        particles::spawn(particles::pAmmoMiniRocket,
+            parent_->location() + 3.f * faceDirection * parent_->radius() + sideDirection * parent_->radius() * (side_ ? -0.8f : 0.8f),
+            faceDirection, parent_->velocity(), Color3f(), parent_->getOwner());
+        // particles::spawnMultiple(4.f, particles::pDust,  parent_->location() + faceDirection*parent_->radius(), parent_->velocity() + faceDirection*4.f);
         // parent_->velocity() -= faceDirection*400.f;
         sound::playSound(sound::Swish, parent_->location());
+        ++side_;
+        if (side_ >= 2)
+            side_ = 0;
     }
 }
 

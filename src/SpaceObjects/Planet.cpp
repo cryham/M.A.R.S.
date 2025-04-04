@@ -29,8 +29,8 @@ Planet::Planet(Vector2f const& location, float radius):
     physics::addStaticObject(this);
     physics::addGravitySource(this);
 
-    if (randomizer::random(0, 2) == 0)
-        decoObjects::addPlanetSign(this);
+    // if (randomizer::random(0, 2) == 0)  // settings::logo
+    //     decoObjects::addPlanetSign(this);
 }
 
 void Planet::draw() const

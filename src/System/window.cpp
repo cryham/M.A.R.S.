@@ -54,7 +54,6 @@ namespace window
         float            scale_x() {  return static_cast<float>(settings::C_resX) / settings::C_MapXsize;  }
         float            scale_y() {  return static_cast<float>(settings::C_resY) / settings::C_MapYsize;  }
 
-        int              clearCount_(0);
         float            joyButtonTimer_(0.f);
         const float      ratio(static_cast<float>(settings::C_MapXsize) / static_cast<float>(settings::C_MapYsize));
 
@@ -91,7 +90,7 @@ namespace window
                 viewPort_.y_ = windowWidth / ratio;
                 viewPort_.x_  = windowWidth;
             }
-            glClear(GL_COLOR_BUFFER_BIT);
+            // glClear(GL_COLOR_BUFFER_BIT);
 
             setViewPort();
 
@@ -184,11 +183,6 @@ namespace window
         void display()
         {
             window_.display();
-            if (++clearCount_ > 30)
-            {
-                glClear(GL_COLOR_BUFFER_BIT);
-                clearCount_ = 0;
-            }
         }
     }
 
@@ -276,6 +270,10 @@ namespace window
 
     void startDrawSpace()
     {
+        window_.setActive(true);
+        glClearColor(0.f, 0.f, 0.f, 1.f);
+        glClear(GL_COLOR_BUFFER_BIT);
+
         if (settings::C_shaders)
             backBuffer_.setActive(true);
 

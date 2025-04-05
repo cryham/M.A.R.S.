@@ -70,6 +70,7 @@ void TutTeam::checkPowerUps()
 
     powerUpLocations_.clear();
     const auto& powerUps = items::getPowerUps();
+    powerUpLocations_.reserve(powerUps.size());
     for (const auto& it : powerUps)
     {
         if (!it->isCollected())

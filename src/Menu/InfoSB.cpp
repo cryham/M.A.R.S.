@@ -27,8 +27,10 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "System/settings.hpp"
 #include "Locales/locales.hpp"
 
+
 UiWindow* InfoSB::instance_(NULL);
 bool InfoSB::kClose_(false);
+
 
 UiWindow* InfoSB::get()
 {
@@ -48,8 +50,9 @@ UiWindow* InfoSB::get()
 
 void InfoSB::checkWidgets()
 {
-    if (kClose_) {
-        kClose_ = false;
+    if (kClose_)
+    {   kClose_ = false;
+
         menus::hideWindow();
         settings::save();
     }

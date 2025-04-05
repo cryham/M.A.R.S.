@@ -25,6 +25,7 @@ class Player;
 class BotController;
 class KeyController;
 
+
 /// A namespace which controls all Ships.
 /// Local Player's Ships are controlled by KeyControllers, Bots
 /// are controlled by BotControllers.
@@ -63,5 +64,3 @@ namespace controllers
     /// Deletes all Controllers.
     void clear();
 }
-
-

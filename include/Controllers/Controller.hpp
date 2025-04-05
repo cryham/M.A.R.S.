@@ -21,6 +21,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 class Ship;
 
+
 /// A base class which controls a Player's Ship.
 /// It provides some basic functionallity which directly
 /// interacts with the Ship.

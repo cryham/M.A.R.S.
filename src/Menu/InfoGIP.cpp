@@ -27,8 +27,10 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "System/settings.hpp"
 #include "Locales/locales.hpp"
 
+
 UiWindow* InfoGIP::instance_(NULL);
 bool InfoGIP::kClose_(false);
+
 
 UiWindow* InfoGIP::get()
 {
@@ -48,8 +50,9 @@ UiWindow* InfoGIP::get()
 
 void InfoGIP::checkWidgets()
 {
-    if (kClose_) {
-        kClose_ = false;
+    if (kClose_)
+    {   kClose_ = false;
+
         menus::hideWindow();
         settings::save();
     }
@@ -66,4 +69,3 @@ void InfoGIP::reset()
         delete instance_;
     instance_ = NULL;
 }
-

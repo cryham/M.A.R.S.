@@ -27,8 +27,10 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "System/settings.hpp"
 #include "Locales/locales.hpp"
 
+
 UiWindow* InfoTDM::instance_(NULL);
 bool InfoTDM::kClose_(false);
+
 
 UiWindow* InfoTDM::get()
 {
@@ -48,8 +50,9 @@ UiWindow* InfoTDM::get()
 
 void InfoTDM::checkWidgets()
 {
-    if (kClose_) {
-        kClose_ = false;
+    if (kClose_)
+    {   kClose_ = false;
+
         menus::hideWindow();
         settings::save();
     }

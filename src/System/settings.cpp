@@ -187,16 +187,19 @@ namespace settings
             outStream << "[musicVolume] "           <<  C_musicVolume << std::endl;
             outStream << "[globalParticleCount] "   <<  C_globalParticleCount << std::endl;
             outStream << "[globalParticleLifeTime] "<<  C_globalParticleLifeTime << std::endl;
+            
             outStream << "[showFPS] "               << (C_showFPS ? "true" : "false") << std::endl;
             outStream << "[showParticleCount] "     << (C_showParticleCount ? "true" : "false") << std::endl;
             outStream << "[showLatency] "           << (C_showLatency ? "true" : "false") << std::endl;
             outStream << "[fullScreen] "            << (C_fullScreen ? "true" : "false") << std::endl;
             outStream << "[vsync] "                 << (C_vsync ? "true" : "false") << std::endl;
+            
             outStream << "[drawAIPath] "            << (C_drawAIPath ? "true" : "false") << std::endl;
             outStream << "[iDumb] "                 << (C_iDumb) << std::endl;
             outStream << "[adaptiveParticleCount] " << (C_adaptiveParticleCount ? "true" : "false") << std::endl;
             outStream << "[drawBotJobs] "           << (C_drawBotJobs ? "true" : "false") << std::endl;
             outStream << "[drawZones] "             << (C_drawZones ? "true" : "false") << std::endl;
+            
             outStream << "[botsLeft] "              << C_botsLeft << std::endl;
             outStream << "[botsRight] "             << C_botsRight << std::endl;
             outStream << "[botsDeath] "             << C_botsDeath << std::endl;
@@ -204,17 +207,20 @@ namespace settings
             outStream << "[pointLimitCK] "          << C_pointLimitCK << std::endl;
             outStream << "[pointLimitDM] "          << C_pointLimitDM << std::endl;
             outStream << "[pointLimitTDM] "         << C_pointLimitTDM << std::endl;
+            
             outStream << "[powerUpRate] "           << C_powerUpRate << std::endl;
             outStream << "[slowMoKickIn] "          << C_slowMoKickIn << std::endl;
             outStream << "[gameSpeed] "             << C_gameSpeed << std::endl;
+            
             outStream << "[playerIName] ";
-            int i(0);
+            int i = 0;
             while (i < 12 && i < C_playerIName.getSize())
             {
-                outStream<<C_playerIName[i]<<" ";
+                outStream << C_playerIName[i]<<" ";
                 ++i;
             }
             outStream << "0" << std::endl;
+
             outStream << "[playerIKeys] "           <<  C_playerIup << " " << C_playerIright << " " << C_playerIleft << " " << C_playerIfire << " " << C_playerISpecialKey 
                       << " " << C_playerIdown << " " << C_playerIboost << " " << C_playerIprev << " " << C_playerInext << std::endl;
             outStream << "[playerIColor] "          <<  C_playerIColor.r() << " "<< C_playerIColor.g() << " " << C_playerIColor.b() << std::endl;
@@ -224,14 +230,16 @@ namespace settings
             outStream << "[playerIShip] "           <<  C_playerIShip << std::endl;
             outStream << "[playerIWeapon] "         <<  C_playerIWeapon << std::endl;
             outStream << "[playerISpecial] "        <<  C_playerISpecial << std::endl;
+            
             outStream << "[playerIIName] ";
             i = 0;
             while (i < 12 && i < C_playerIIName.getSize())
             {
-                outStream<<C_playerIIName[i]<<" ";
+                outStream << C_playerIIName[i]<<" ";
                 ++i;
             }
             outStream << "0" << std::endl;
+
             outStream << "[playerIIKeys] "          <<  C_playerIIup << " "<< C_playerIIright << " " << C_playerIIleft << " " << C_playerIIfire << " " << C_playerIISpecialKey 
                       << " " << C_playerIIdown << " " << C_playerIIboost << " " << C_playerIIprev << " " << C_playerIInext << std::endl;
             outStream << "[playerIIColor] "         <<  C_playerIIColor.r() << " "<< C_playerIIColor.g() << " " << C_playerIIColor.b() << std::endl;
@@ -241,6 +249,7 @@ namespace settings
             outStream << "[playerIIShip] "          <<  C_playerIIShip << std::endl;
             outStream << "[playerIIWeapon] "        <<  C_playerIIWeapon << std::endl;
             outStream << "[playerIISpecial] "       <<  C_playerIISpecial << std::endl;
+            
             outStream << "[connectIP] "             <<  C_ip.toAnsiString() << std::endl;
             outStream << "[connectPort] "           <<  C_port.toAnsiString() << std::endl;
             outStream << "[networkTeamRed] "        << (C_networkPlayerI ? "true" : "false") << std::endl;
@@ -254,16 +263,19 @@ namespace settings
             outStream << "[languageID] "            <<  C_languageID << std::endl;
             outStream << "[highStarResolution] "    << (C_StarsHigh ? "true" : "false") << std::endl;
             outStream << "[starField] "             <<  C_StarField << std::endl;
+            
             outStream << "[shaders] "               << (C_shaders ? "true" : "false") << std::endl;
             outStream << "[resolutionX] "           << C_resX << std::endl;
             outStream << "[resolutionY] "           << C_resY << std::endl;
             outStream << "[colorDepth] "            << C_colorDepth << std::endl;
+            
             outStream << "[audioRandom] "           << (C_audioRandom ? "true" : "false") << std::endl;
             outStream << "[audioNextKey] "          << C_audioNextKey << std::endl;
             outStream << "[audioPreviousKey] "      << C_audioPreviousKey << std::endl;
             outStream << "[screenShotKey] "         << C_screenShotKey << std::endl;
             outStream << "[statisticsKey] "         << C_statisticsKey << std::endl;
             outStream << "[screenShotFormat] "      << C_screenShotFormat << std::endl;
+            
             outStream << "[enabledWeapons] "        << C_EnabledWeaponsByUser << std::endl;
             outStream << "[enabledSpecials] "       << C_EnabledSpecialsByUser << std::endl;
 

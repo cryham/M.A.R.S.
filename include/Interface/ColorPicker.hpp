@@ -22,10 +22,12 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 class UiWindow;
 
+
 class ColorPicker: public UiElement
 {
     public:
-        ColorPicker (sf::String* text, Color3f* value, Vector2f const& topLeft, int width, int labelWidth=185);
+        ColorPicker (sf::String* text, Color3f* value,
+            Vector2f const& topLeft, int width, int labelWidth=185);
         ~ColorPicker ();
 
         void mouseMoved(Vector2f const& position);
@@ -47,5 +49,3 @@ class ColorPicker: public UiElement
         int labelWidth_;
         bool opened_;
 };
-
-

@@ -22,6 +22,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include <vector>
 
+
 class Tab: public UiElement
 {
     public:
@@ -54,6 +55,7 @@ class Tab: public UiElement
     private:
         std::vector<UiElement*> widgets_;
         UiElement* focusedWidget_;
+        
         sf::String* name_;
         Label* label_;
         bool* activated_;

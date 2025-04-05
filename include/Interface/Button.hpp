@@ -21,6 +21,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Interface/Label.hpp"
 #include "Media/text.hpp"
 
+
 class Button: public UiElement
 {
     public:
@@ -35,7 +36,7 @@ class Button: public UiElement
 
         void draw() const;
 
-        void setFocus  (UiElement* toBeFocused, bool isPrevious);
+        void setFocus(UiElement* toBeFocused, bool isPrevious);
         void clearFocus();
 
     private:

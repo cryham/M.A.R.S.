@@ -22,6 +22,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include <vector>
 #include <list>
 
+
 #define MOBILES   1
 #define STATICS   2
 #define PARTICLES 4
@@ -29,6 +30,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 class SpaceObject;
 class MobileSpaceObject;
 class Player;
+
 
 namespace physics 
 {
@@ -44,6 +46,5 @@ namespace physics
 
     std::vector<SpaceObject*> const& getGravitySources();
 
-    void clear              ();
+    void clear();
 }
-

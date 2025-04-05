@@ -19,11 +19,13 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include <iostream>
 
+
 /// A struct representing a 2D-Vector.
 /// It provides more math functions then the SFML Vector
 /// and is more optimized for MARS.
 
-struct Vector2f {
+struct Vector2f
+{
     /// Default ctor (0, 0).
     Vector2f ();
     /// Copy ctor.
@@ -32,12 +34,12 @@ struct Vector2f {
     Vector2f (float x, float y);
 
     /// Sets the length of the vector to 1.
-    Vector2f normalize()    const;
+    Vector2f normalize() const;
 
     /// Returns the length of the vector.
     /// Use Vector2f::lengthSquare for comparing the length
     /// of vectors, because it's much faster.
-    float    length()       const;
+    float    length() const;
 
     /// Returns the squared length of the vector.
     float    lengthSquare() const;
@@ -68,6 +70,7 @@ struct Vector2f {
     float x_, y_;
     ///@}
 };
+
 
 /// Addition of two vectors.
 Vector2f      operator+  (Vector2f const& lhs, Vector2f const& rhs);
@@ -105,4 +108,3 @@ bool clockWise(Vector2f const& first, Vector2f const& second);
 /// Stream operator for a vector.
 /// Creates an output like [x, y].
 std::ostream& operator<< (std::ostream& os, Vector2f const& rhs);
-

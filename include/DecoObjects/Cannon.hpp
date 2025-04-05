@@ -19,6 +19,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "DecoObjects/DecoObject.hpp"
 
+
 /// The cannon, displayed at the top of the screen when playing CannonKeep.
 
 class Cannon: public DecoObject
@@ -33,4 +34,3 @@ class Cannon: public DecoObject
         float timer_;
         float rotation_;
 };
-

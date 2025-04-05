@@ -21,18 +21,19 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 class TextBox;
 
+
 class InfoCK: public UiWindow
 {
     public:
         static UiWindow* get();
+
         void checkWidgets();
         void onShow();
 
         static void reset();
 
     private:
-        InfoCK(int width, int height)
-            : UiWindow(width, height)
+        InfoCK(int width, int height): UiWindow(width, height)
         {   }
         InfoCK(InfoCK const& copy);
 

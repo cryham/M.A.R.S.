@@ -18,7 +18,6 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #pragma once
 
 #include "DecoObjects/DecoObject.hpp"
-
 #include "DecoObjects/decoObjects.hpp"
 #include "SpaceObjects/Ball.hpp"
 #include "SpaceObjects/Ship.hpp"
@@ -46,28 +45,16 @@ class Ice: public DecoObject
                 glLoadIdentity();
                 glTranslatef(object_->location_.x_, object_->location_.y_, 0.f);
                 glRotatef(object_->rotation_, 0.f, 0.f, 1.f);
+                
                 if (object_->frozen_ > 0)
                 {
                     int posX;
                     int posY;
-
-                    if (object_->frozen_ >= 30) {
-                        posX = 0;
-                        posY = 0;
-                    }
-                    else if (object_->frozen_ >= 20) {
-                        posX = 1;
-                        posY = 0;
-                    }
-                    else if (object_->frozen_ >= 10) {
-                        posX = 0;
-                        posY = 1;
-                    }
-                    else if (object_->frozen_ > 0) {
-                        posX = 1;
-                        posY = 1;
-                    }
-                    else {
+                    if (object_->frozen_ >= 30) {  posX = 0;  posY = 0;  }else
+                    if (object_->frozen_ >= 20) {  posX = 1;  posY = 0;  }else
+                    if (object_->frozen_ >= 10) {  posX = 0;  posY = 1;  }else
+                    if (object_->frozen_ > 0)   {  posX = 1;  posY = 1;  }else
+                    {
                         decoObjects::removeIce(this);
                         return;
                     }
@@ -96,4 +83,3 @@ class Ice: public DecoObject
     private:
         Object* object_;
 };
-

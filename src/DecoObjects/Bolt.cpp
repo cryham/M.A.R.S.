@@ -22,11 +22,14 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Menu/menus.hpp"
 #include "System/randomizer.hpp"
 
+
 void Bolt::draw() const
 {
-    if (lifeTime_ <= maxLifeTime_) {
+    if (lifeTime_ <= maxLifeTime_)
+    {
         bool ballVisible(false);
-        if (to_->type()==spaceObjects::oBall) {
+        if (to_->type() == spaceObjects::oBall)
+        {
             Ball* ball(dynamic_cast<Ball*>(to_));
             ballVisible = ball->isVisible();
         }
@@ -56,19 +59,18 @@ void Bolt::draw() const
 
             glBegin(GL_QUADS);
 
-            for (int i(0); i<intensity_; ++i) {
+            for (int i=0; i < intensity_; ++i)
+            {
                 int pos = (boltImage_ + i) % 4;
-
                 glTexCoord2f(0.f, 0.f + 0.25f*pos);   glVertex2f(from_->location().x_ - ortho.y_, from_->location().y_ + ortho.x_);
                 glTexCoord2f(0.f, 0.25f + 0.25f*pos); glVertex2f(from_->location().x_ + ortho.y_, from_->location().y_ - ortho.x_);
                 glTexCoord2f(1.f, 0.25f + 0.25f*pos); glVertex2f(to_->location().x_   + ortho.y_, to_->location().y_   - ortho.x_);
                 glTexCoord2f(1.f, 0.f + 0.25f*pos);   glVertex2f(to_->location().x_   - ortho.y_, to_->location().y_   + ortho.x_);
-
             }
             glEnd();
 
 
-            //draw cracks on target
+            // draw cracks on target
 
             glBindTexture(GL_TEXTURE_2D, texture::getTexture(texture::Cracks));
 

@@ -27,14 +27,15 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Media/text.hpp"
 #include "Locales/locales.hpp"
 
+
 UiWindow* InfoHide::instance_(NULL);
 bool InfoHide::kOk_(false);
+
 
 UiWindow* InfoHide::get()
 {
     if (instance_ == NULL)
-    {
-        instance_ = new InfoHide(320*scale_, 200);
+    {   instance_ = new InfoHide(320*scale_, 200);
         instance_->addWidget(new Button(locales::getLocale(locales::Close), NULL, &kOk_, Vector2f(220,170), 90, 20));
         instance_->addWidget(new Label(locales::getLocale(locales::HideMenu), TEXT_ALIGN_LEFT, Vector2f(10,10), 20.f, getColor3f(0.5f, 0.9f, 1.f), false));
         instance_->addWidget(new Label(locales::getLocale(locales::Info), TEXT_ALIGN_RIGHT, Vector2f(310,18), 12.f, getColor3f(0.5f, 0.9f, 1.f), false));
@@ -47,8 +48,9 @@ UiWindow* InfoHide::get()
 
 void InfoHide::checkWidgets()
 {
-    if (kOk_) {
-        kOk_ = false;
+    if (kOk_)
+    {   kOk_ = false;
+
         menus::hideWindow();
         menus::hideMenu();
         settings::save();

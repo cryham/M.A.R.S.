@@ -19,6 +19,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "Interface/UiWindow.hpp"
 
+
 class MapOptions: public UiWindow
 {
     public:
@@ -43,4 +44,3 @@ class MapOptions: public UiWindow
         static const int kMapSizes_ = 7;
         static bool kMapSize_[kMapSizes_];
 };
-

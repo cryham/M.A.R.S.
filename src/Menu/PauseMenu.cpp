@@ -28,6 +28,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "System/settings.hpp"
 #include "Locales/locales.hpp"
 
+
 UiWindow* PauseMenu::instance_(NULL);
 bool PauseMenu::kResume_(false);
 bool PauseMenu::kNew_(false);
@@ -35,6 +36,7 @@ bool PauseMenu::kOptions_(false);
 bool PauseMenu::kMapOptions_(false);
 bool PauseMenu::kToMainMenu_(false);
 bool PauseMenu::kHide_(false);
+
 
 UiWindow* PauseMenu::get()
 {

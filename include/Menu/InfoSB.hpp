@@ -21,10 +21,12 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 class TextBox;
 
+
 class InfoSB: public UiWindow
 {
     public:
         static UiWindow* get();
+
         void checkWidgets();
         void onShow();
 

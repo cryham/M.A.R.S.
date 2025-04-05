@@ -27,8 +27,10 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "System/settings.hpp"
 #include "Locales/locales.hpp"
 
+
 UiWindow* InfoCK::instance_(NULL);
 bool InfoCK::kClose_(false);
+
 
 UiWindow* InfoCK::get()
 {
@@ -48,8 +50,9 @@ UiWindow* InfoCK::get()
 
 void InfoCK::checkWidgets()
 {
-    if (kClose_) {
-        kClose_ = false;
+    if (kClose_)
+    {   kClose_ = false;
+
         menus::hideWindow();
         settings::save();
     }

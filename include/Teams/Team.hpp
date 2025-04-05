@@ -27,6 +27,7 @@ class Home;
 class BotController;
 class KeyController;
 
+
 class Team
 {
     public:
@@ -64,7 +65,8 @@ class Team
 
         float evaluationTimer_;
         std::vector<Player*> members_;
-        std::multimap<Job, std::multimap<short, BotController*> > jobMap_;
+        
+        JobMap jobMap_;
 
         Home* home_;
         Color3f color_;

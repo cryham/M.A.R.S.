@@ -26,6 +26,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 class TacticalZone;
 
+
 class BotController: public Controller
 {
     public:
@@ -41,7 +42,7 @@ class BotController: public Controller
 
         void evaluate();
 
-        void applyForJob(std::multimap<Job, std::multimap<short, BotController*> >& jobMap);
+        void applyForJob(JobMap& jobMap);
 
         /// Draws some debugging stuff.
         /// Like lines, showing where the bot heads.

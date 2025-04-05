@@ -17,6 +17,10 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #pragma once
 
+#include "Controllers/controllers.hpp"
+#include <map>
+
+
 struct Job
 {
     enum JobType
@@ -49,3 +53,6 @@ struct Job
     }
 };
 
+class BotController;
+
+typedef std::multimap<Job, std::multimap<short, BotController*> > JobMap;

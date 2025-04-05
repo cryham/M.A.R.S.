@@ -111,7 +111,7 @@ void BotController::evaluate()
 
 void BotController::applyForJob(JobMap& jobMap)
 {
-    for (auto it = jobMap.begin(); it!=jobMap.end(); ++it)
+    for (auto it = jobMap.begin(); it != jobMap.end(); ++it)
     {
         short need(0);
 

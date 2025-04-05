@@ -19,11 +19,17 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "Interface/UiElement.hpp"
 #include "Interface/Label.hpp"
+#include "Locales/locales.hpp"
+
 
 class KeyEdit: public UiElement
 {
     public:
-        KeyEdit (sf::String* text, sf::String* toolTip, Key* value,
+        KeyEdit (locales::LocaleType text, locales::LocaleType toolTip,
+            Key* value,
+            Vector2f const& topLeft, int width, int labelWidth);
+        KeyEdit (sf::String* text, sf::String* toolTip,
+            Key* value,
             Vector2f const& topLeft, int width, int labelWidth);
         ~KeyEdit ();
 

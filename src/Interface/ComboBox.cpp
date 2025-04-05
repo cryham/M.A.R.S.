@@ -31,15 +31,26 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include <SFML/OpenGL.hpp>
 #include <iostream>
 
-ComboBox::ComboBox (sf::String* text, sf::String* toolTip, sf::String* value, std::vector<sf::String> const& values, Vector2f const& topLeft, int width, int labelWidth):
-    UiElement(topLeft, width, 16),
-    dropBox_(NULL),
-    values_(values),
-    labelWidth_(labelWidth),
-    currentValue_(value),
-    opened_(false),
-    toolTip_(toolTip) {
 
+ComboBox::ComboBox (locales::LocaleType text, locales::LocaleType toolTip,
+        sf::String* value, std::vector<sf::String> const& values,
+        Vector2f const& topLeft, int width, int labelWidth)
+    :ComboBox(locales::getLocale(text), locales::getLocale(toolTip),
+        value, values,
+        topLeft, width, labelWidth)
+{   }
+
+ComboBox::ComboBox (sf::String* text, sf::String* toolTip,
+        sf::String* value, std::vector<sf::String> const& values,
+        Vector2f const& topLeft, int width, int labelWidth)
+    :UiElement(topLeft, width, 16)
+    ,dropBox_(NULL)
+    ,values_(values)
+    ,labelWidth_(labelWidth)
+    ,currentValue_(value)
+    ,opened_(false)
+    ,toolTip_(toolTip)
+{
     label_ = new Label(text, TEXT_ALIGN_LEFT, Vector2f(0,0));
     label_->setParent(this);
 
@@ -88,9 +99,11 @@ void ComboBox::mouseLeft(bool down)
 
 void ComboBox::keyEvent(bool down, Key const& key)
 {
-    if (key.navi_ == Key::nConfirm) {
+    if (key.navi_ == Key::nConfirm)
+    {
         pressed_ = down;
-        if (!pressed_) {
+        if (!pressed_)
+        {
             hovered_ = false;
             sound::playSound(sound::Click);
             menus::showWindow(dropBox_);

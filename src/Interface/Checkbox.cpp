@@ -26,6 +26,13 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include <SFML/OpenGL.hpp>
 
+
+Checkbox::Checkbox (locales::LocaleType text, locales::LocaleType toolTip,
+        bool* value, Vector2f const& topLeft, int width)
+    :Checkbox(locales::getLocale(text), locales::getLocale(toolTip),
+        value, topLeft, width)
+{   }
+
 Checkbox::Checkbox (sf::String* text, sf::String* toolTip, bool* value, Vector2f const& topLeft, int width):
     UiElement(topLeft, width, 20),
     value_(value),
@@ -40,6 +47,7 @@ Checkbox::~Checkbox ()
     delete label_;
 }
 
+
 void Checkbox::mouseMoved(Vector2f const& position)
 {
     UiElement::mouseMoved(position);
@@ -52,7 +60,8 @@ void Checkbox::mouseMoved(Vector2f const& position)
 void Checkbox::mouseLeft(bool down)
 {
     UiElement::mouseLeft(down);
-    if (!pressed_ && hovered_ && focused_) {
+    if (!pressed_ && hovered_ && focused_)
+    {
         *value_ = !*value_;
         sound::playSound(sound::Check);
     }
@@ -60,14 +69,17 @@ void Checkbox::mouseLeft(bool down)
 
 void Checkbox::keyEvent(bool down, Key const& key)
 {
-    if (key.navi_ == Key::nConfirm) {
+    if (key.navi_ == Key::nConfirm)
+    {
         pressed_ = down;
-        if (!pressed_) {
+        if (!pressed_)
+        {
             *value_ = !*value_;
             sound::playSound(sound::Click);
         }
     }
 }
+
 
 void Checkbox::draw() const
 {
@@ -80,35 +92,19 @@ void Checkbox::draw() const
 
     int x(0), y(0);
 
-    if (hovered_ && pressed_) {
-        if (*value_) {
-            x = 2;
-            y = 2;
-        }
-        else {
-            x = 2;
-            y = 3;
-        }
+    if (hovered_ && pressed_)
+    {
+        if (*value_) {  x = 2;  y = 2;  }
+        else         {  x = 2;  y = 3;  }
     }
-    else if (hovered_) {
-        if (*value_) {
-            x = 1;
-            y = 2;
-        }
-        else {
-            x = 1;
-            y = 3;
-        }
-    }
-    else {
-        if (*value_) {
-            x = 0;
-            y = 2;
-        }
-        else {
-            x = 0;
-            y = 3;
-        }
+    else if (hovered_)
+    {
+        if (*value_) {  x = 1;  y = 2;  }
+        else         {  x = 1;  y = 3;  }
+    }else
+    {
+        if (*value_) {  x = 0;  y = 2;  }
+        else         {  x = 0;  y = 3;  }
     }
 
     int mirror(locales::getCurrentLocale().LTR_ ? 1 : -1);

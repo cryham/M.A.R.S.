@@ -27,6 +27,18 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include <SFML/OpenGL.hpp>
 #include <sstream>
 
+
+Slider::Slider (locales::LocaleType text, locales::LocaleType toolTip,
+        int* value, int minValue, int maxValue, int step,
+        Vector2f const& topLeft, int width, int labelWidth,
+        bool showValue,
+        std::vector<sf::String> const& sliderNames)
+    :Slider (locales::getLocale(text), locales::getLocale(toolTip),
+        value, minValue, maxValue, step,
+        topLeft, width, labelWidth,
+        showValue, sliderNames)
+{   }
+
 Slider::Slider (sf::String* text, sf::String* toolTip,
         int* value, int minValue, int maxValue, int step,
         Vector2f const& topLeft, int width, int labelWidth,
@@ -49,6 +61,7 @@ Slider::~Slider ()
 {
     delete label_;
 }
+
 
 void Slider::mouseLeft(bool down)
 {
@@ -104,6 +117,7 @@ void Slider::keyEvent(bool down, Key const& key)
     }
 }
 
+
 void Slider::draw() const
 {
     UiElement::draw();
@@ -136,18 +150,12 @@ void Slider::draw() const
 
     int x(0), y(0);
 
-    if (hovered_ && pressed_) {
-        x = 3;
-        y = 2;
-    }
-    else if (hovered_){
-        x = 3;
-        y = 1;
-    }
-    else {
-        x = 3;
-        y = 0;
-    }
+    if (hovered_ && pressed_)
+    {   x = 3;  y = 2;  }
+    else if (hovered_)
+    {   x = 3;  y = 1;  }
+    else
+    {   x = 3;  y = 0;  }
 
     setColor3f(1.f, 1.f, 1.f);
     glBegin(GL_QUADS);

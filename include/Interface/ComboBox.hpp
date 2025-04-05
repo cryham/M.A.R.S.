@@ -19,12 +19,17 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "Interface/UiElement.hpp"
 #include "Interface/Label.hpp"
+#include "Locales/locales.hpp"
 
 class UiWindow;
+
 
 class ComboBox: public UiElement
 {
     public:
+        ComboBox (locales::LocaleType text, locales::LocaleType toolTip,
+            sf::String* value, std::vector<sf::String> const& values,
+            Vector2f const& topLeft, int width, int labelWidth = 185);
         ComboBox (sf::String* text, sf::String* toolTip,
             sf::String* value, std::vector<sf::String> const& values,
             Vector2f const& topLeft, int width, int labelWidth = 185);
@@ -37,7 +42,7 @@ class ComboBox: public UiElement
 
         void draw() const;
 
-        void setFocus  (UiElement* toBeFocused, bool isPrevious);
+        void setFocus(UiElement* toBeFocused, bool isPrevious);
         void clearFocus();
 
         friend class DropDownWindow;

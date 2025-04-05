@@ -27,11 +27,22 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include <SFML/OpenGL.hpp>
 
-KeyEdit::KeyEdit (sf::String* text, sf::String* toolTip, Key* value, Vector2f const& topLeft, int width, int labelWidth):
-    UiElement(topLeft, width, 20),
-    value_(value),
-    toolTip_(toolTip),
-    labelWidth_(labelWidth)
+
+KeyEdit::KeyEdit (locales::LocaleType text, locales::LocaleType toolTip,
+        Key* value,
+        Vector2f const& topLeft, int width, int labelWidth)
+    :KeyEdit(locales::getLocale(text), locales::getLocale(toolTip),
+        value,
+        topLeft, width, labelWidth)
+{   }
+
+KeyEdit::KeyEdit (sf::String* text, sf::String* toolTip,
+        Key* value,
+        Vector2f const& topLeft, int width, int labelWidth)
+    :UiElement(topLeft, width, 20)
+    ,value_(value)
+    ,toolTip_(toolTip)
+    ,labelWidth_(labelWidth)
 {
     label_ = new Label(text, TEXT_ALIGN_LEFT, Vector2f(0,0));
     label_->setParent(this);
@@ -41,6 +52,7 @@ KeyEdit::~KeyEdit ()
 {
     delete label_;
 }
+
 
 void KeyEdit::mouseMoved(Vector2f const& position)
 {
@@ -53,7 +65,8 @@ void KeyEdit::mouseMoved(Vector2f const& position)
 
 void KeyEdit::mouseLeft(bool down)
 {
-    if (down && hovered_) {
+    if (down && hovered_)
+    {
         menus::clearFocus();
         setFocus(this, false);
         pressed_ = true;
@@ -64,23 +77,29 @@ void KeyEdit::mouseLeft(bool down)
 
 void KeyEdit::keyEvent(bool down, Key const& key)
 {
-    if (pressed_) {
-        if (down && (key.navi_ != Key::nAbort) && key.strength_ >= 95) {
+    if (pressed_)
+    {
+        if (down && (key.navi_ != Key::nAbort) && key.strength_ >= 95)
+        {
             *value_ = key;
             pressed_ = false;
             menus::unFixKeyboard();
         }
-        else if (down && (key.navi_ == Key::nAbort)) {
+        else if (down && (key.navi_ == Key::nAbort))
+        {
             menus::unFixKeyboard();
             pressed_ = false;
         }
     }
-    else if (down && (key.navi_ == Key::nConfirm)) {
+    else if (down && (key.navi_ == Key::nConfirm))
+    {
         menus::fixKeyboardOn(this);
         pressed_ = true;
     }
 }
 
+
+//  draw
 void KeyEdit::draw() const
 {
     UiElement::draw();
@@ -92,7 +111,7 @@ void KeyEdit::draw() const
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
     glBegin(GL_QUADS);
-        if (isTopMost())   setColor4f(0.1*focusedFadeTime_,0.2*focusedFadeTime_,0.3*focusedFadeTime_,0.8);
+        if (isTopMost())   setColor4f(0.1*focusedFadeTime_, 0.2*focusedFadeTime_, 0.3*focusedFadeTime_, 0.8);
         else               setColor4f(0.0,0.0,0.0,0.8);
         glVertex2f(origin.x_+labelWidth_*mirror, origin.y_+2);
         glVertex2f(width() + origin.x_, origin.y_+2);
@@ -122,7 +141,7 @@ void KeyEdit::draw() const
     glBlendFunc(GL_SRC_ALPHA, GL_ONE);
     glLineWidth(1.f);
 
-    setColor4f(0.4,0.8,1,0.3f+hoveredFadeTime_*0.7f);
+    setColor4f(0.4,0.8,1, 0.3f + hoveredFadeTime_ * 0.7f);
     glBegin(GL_LINE_LOOP);
         glVertex2f(origin.x_+labelWidth_*mirror, origin.y_+2);
         glVertex2f(width() + origin.x_, origin.y_+2);
@@ -131,16 +150,23 @@ void KeyEdit::draw() const
     glEnd();
 
     float highlight(std::max(hoveredFadeTime_, focusedFadeTime_));
-    Color3f color(Color3f(0.7f, 0.7f, 0.7f)*(1-highlight) + highlight*(Color3f(0.6f, 0.8f, 1.f)*(1-hoveredFadeTime_) + Color3f(1, 1, 1)*hoveredFadeTime_));
+    Color3f color(Color3f(0.7f, 0.7f, 0.7f) * (1-highlight) +
+        highlight*(Color3f(0.6f, 0.8f, 1.f) * (1-hoveredFadeTime_) +
+        Color3f(1, 1, 1)*hoveredFadeTime_));
 
     if (pressed_)
-        text::drawScreenText("...", origin + Vector2f((width()+labelWidth_*mirror)/2,1)+Vector2f(1, 1), 12.f, TEXT_ALIGN_CENTER, color);
+        text::drawScreenText("...",
+            origin + Vector2f((width() + labelWidth_ * mirror)/2, 1) + Vector2f(1, 1),
+            12.f, TEXT_ALIGN_CENTER, color);
     else
-        text::drawScreenText(generateName::key(*value_), origin + Vector2f((width()+labelWidth_*mirror)/2,1), 12.f, TEXT_ALIGN_CENTER, color);
+        text::drawScreenText(generateName::key(*value_),
+            origin + Vector2f((width() + labelWidth_ * mirror)/2, 1),
+            12.f, TEXT_ALIGN_CENTER, color);
 
-    //draw Label
+    // draw Label
     label_->draw();
 }
+
 
 void KeyEdit::setFocus (UiElement* toBeFocused, bool isPrevious)
 {

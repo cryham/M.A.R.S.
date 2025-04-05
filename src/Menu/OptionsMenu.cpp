@@ -111,13 +111,13 @@ UiWindow* OptionsMenu::get()
             fileFormats.push_back("JPEG (*.jpg)");
             fileFormats.push_back("PNG(*.png)");
             fileFormats.push_back("TARGA (*.tga)");
-        tabInterface->addWidget(new ComboBox(locales::getLocale(locales::ScreenShotFormat), locales::getLocale(locales::ttScreenShotFormat),
+        tabInterface->addWidget(new ComboBox(locales::ScreenShotFormat, locales::ttScreenShotFormat,
             &format_, fileFormats,
             Vector2f(20,y), 540, 240));  y += yadd;
-        tabInterface->addWidget(new KeyEdit(locales::getLocale(locales::ScreenShotKey), locales::getLocale(locales::ttScreenShotKey),
+        tabInterface->addWidget(new KeyEdit(locales::ScreenShotKey, locales::ttScreenShotKey,
             &settings::C_screenShotKey,
             Vector2f(20,y), 540, 240));  y += yadd;
-        tabInterface->addWidget(new KeyEdit(locales::getLocale(locales::StatisticsKey), locales::getLocale(locales::ttStatisticsKey),
+        tabInterface->addWidget(new KeyEdit(locales::StatisticsKey, locales::ttStatisticsKey,
             &settings::C_statisticsKey,
             Vector2f(20,y), 540, 240));  y += yadd*2;
 
@@ -175,7 +175,7 @@ UiWindow* OptionsMenu::get()
         std::vector<sf::String> off;
         off.push_back(*locales::getLocale(locales::SlowMoOff));
 
-        tabGraphics->addWidget(new ComboBox(locales::getLocale(locales::Resolution), locales::getLocale(locales::ttResolution),
+        tabGraphics->addWidget(new ComboBox(locales::Resolution, locales::ttResolution,
             &resolution_, resolutions,
             Vector2f(20,y), 540, 240));  y += yadd;
         

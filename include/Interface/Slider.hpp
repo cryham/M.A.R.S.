@@ -19,6 +19,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "Interface/UiElement.hpp"
 #include "Interface/Label.hpp"
+#include "Locales/locales.hpp"
 
 #include <vector>
 
@@ -26,8 +27,13 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 class Slider: public UiElement
 {
     public:
-        Slider (sf::String* text, sf::String* toolTip, int* value,
-            int min, int max, int step,
+        Slider (locales::LocaleType text, locales::LocaleType toolTip,
+            int* value, int minValue, int maxValue, int step,
+            Vector2f const& topLeft, int width, int labelWidth = 185,
+            bool showValue = false,
+            std::vector<sf::String> const& sliderNames = std::vector<sf::String>() );
+        Slider (sf::String* text, sf::String* toolTip,
+            int* value, int minValue, int maxValue, int step,
             Vector2f const& topLeft, int width, int labelWidth = 185,
             bool showValue = false,
             std::vector<sf::String> const& sliderNames = std::vector<sf::String>() );

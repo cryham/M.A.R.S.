@@ -109,22 +109,22 @@ UiWindow* NewGameMenu::get()
 			&settings::C_playerIIteamR,
 			Vector2f(410,60), 80, true));
         tabSpaceBall_->addWidget(player2Group);
-        tabSpaceBall_->addWidget(new Slider(locales::getLocale(locales::Bots), locales::getLocale(locales::ttBotCount),
+        tabSpaceBall_->addWidget(new Slider(locales::Bots, locales::ttBotCount,
 			&settings::C_botsLeft, 0, 20, 1,
 			Vector2f(20,80), 230, 120, true));
-        tabSpaceBall_->addWidget(new Slider(locales::getLocale(locales::Bots), locales::getLocale(locales::ttBotCount),
+        tabSpaceBall_->addWidget(new Slider(locales::Bots, locales::ttBotCount,
 			&settings::C_botsRight, 0, 20, 1,
 			Vector2f(310,80), 230, 120, true));
         tabSpaceBall_->addWidget(new LabeledBox(locales::getLocale(locales::GameOptions),
 			Vector2f(10, 120), 540, 100));
 
-        tabSpaceBall_->addWidget(new Slider(locales::getLocale(locales::Pointlimit), locales::getLocale(locales::ttPointLimitTeam),
+        tabSpaceBall_->addWidget(new Slider(locales::Pointlimit, locales::ttPointLimitTeam,
 			&settings::C_pointLimitSB, 1, 20, 1,
 			Vector2f(20,150), 520, 270, true));
-        tabSpaceBall_->addWidget(new Slider(locales::getLocale(locales::iDumb), locales::getLocale(locales::ttBotStrength),
+        tabSpaceBall_->addWidget(new Slider(locales::iDumb, locales::ttBotStrength,
 			&settings::C_iDumb, 0, 100, 5,
 			Vector2f(20,170), 520, 270, true));
-        tabSpaceBall_->addWidget(new Slider(locales::getLocale(locales::PowerUpRate), locales::getLocale(locales::ttPowerUpRate),
+        tabSpaceBall_->addWidget(new Slider(locales::PowerUpRate, locales::ttPowerUpRate,
 			&settings::C_powerUpRate, 0, 100, 5,
 			Vector2f(20,190), 520, 270, true));
         //  bottom
@@ -142,19 +142,19 @@ UiWindow* NewGameMenu::get()
 			Vector2f(20,60), 100));
         tabDeathMatch_->addWidget(new Checkbox(&settings::C_playerIIName, locales::getLocale(locales::ttPlayersWho), &playerII_,
 			Vector2f(310,60), 100));
-        tabDeathMatch_->addWidget(new Slider(locales::getLocale(locales::Bots), locales::getLocale(locales::ttBotCount),
+        tabDeathMatch_->addWidget(new Slider(locales::Bots, locales::ttBotCount,
 			&settings::C_botsDeath, 0, 80, 1,
 			Vector2f(20,80), 520, 270, true));
         tabDeathMatch_->addWidget(new LabeledBox(locales::getLocale(locales::GameOptions),
 			Vector2f(10, 120), 540, 100));
         
-        tabDeathMatch_->addWidget(new Slider(locales::getLocale(locales::Fraglimit), locales::getLocale(locales::ttPointLimitTeam),
+        tabDeathMatch_->addWidget(new Slider(locales::Fraglimit, locales::ttPointLimitTeam,
 			&settings::C_pointLimitDM, 1, 400, 1,
 			Vector2f(20,150), 520, 270, true));
-        tabDeathMatch_->addWidget(new Slider(locales::getLocale(locales::iDumb), locales::getLocale(locales::ttBotStrength),
+        tabDeathMatch_->addWidget(new Slider(locales::iDumb, locales::ttBotStrength,
 			&settings::C_iDumb, 0, 100, 5,
 			Vector2f(20,170), 520, 270, true));
-        tabDeathMatch_->addWidget(new Slider(locales::getLocale(locales::PowerUpRate), locales::getLocale(locales::ttPowerUpRate),
+        tabDeathMatch_->addWidget(new Slider(locales::PowerUpRate, locales::ttPowerUpRate,
 			&settings::C_powerUpRate, 0, 100, 5,
 			Vector2f(20,190), 520, 270, true));
         //  bottom
@@ -188,22 +188,22 @@ UiWindow* NewGameMenu::get()
 			&settings::C_playerIIteamR,
 			Vector2f(410,60), 80, true));
         tabTeamDeathMatch_->addWidget(player2Group2);
-        tabTeamDeathMatch_->addWidget(new Slider(locales::getLocale(locales::Bots), locales::getLocale(locales::ttBotCount),
+        tabTeamDeathMatch_->addWidget(new Slider(locales::Bots, locales::ttBotCount,
 			&settings::C_botsLeft, 0, 30, 1,
 			Vector2f(20,80), 230, 120, true));
-        tabTeamDeathMatch_->addWidget(new Slider(locales::getLocale(locales::Bots), locales::getLocale(locales::ttBotCount),
+        tabTeamDeathMatch_->addWidget(new Slider(locales::Bots, locales::ttBotCount,
 			&settings::C_botsRight, 0, 30, 1,
 			Vector2f(310,80), 230, 120, true));
         tabTeamDeathMatch_->addWidget(new LabeledBox(locales::getLocale(locales::GameOptions),
 			Vector2f(10, 120), 540, 100));
         
-        tabTeamDeathMatch_->addWidget(new Slider(locales::getLocale(locales::Fraglimit), locales::getLocale(locales::ttPointLimitTeam),
+        tabTeamDeathMatch_->addWidget(new Slider(locales::Fraglimit, locales::ttPointLimitTeam,
 			&settings::C_pointLimitTDM, 1, 400, 1,
 			Vector2f(20,150), 520, 270, true));
-        tabTeamDeathMatch_->addWidget(new Slider(locales::getLocale(locales::iDumb), locales::getLocale(locales::ttBotStrength),
+        tabTeamDeathMatch_->addWidget(new Slider(locales::iDumb, locales::ttBotStrength,
 			&settings::C_iDumb, 0, 100, 5,
 			Vector2f(20,170), 520, 270, true));
-        tabTeamDeathMatch_->addWidget(new Slider(locales::getLocale(locales::PowerUpRate), locales::getLocale(locales::ttPowerUpRate),
+        tabTeamDeathMatch_->addWidget(new Slider(locales::PowerUpRate, locales::ttPowerUpRate,
 			&settings::C_powerUpRate, 0, 100, 5,
 			Vector2f(20,190), 520, 270, true));
         //  bottom
@@ -235,22 +235,22 @@ UiWindow* NewGameMenu::get()
 			&settings::C_playerIIteamR,
 			Vector2f(410,60), 80, true));
         tabCannonKeep_->addWidget(player2Group3);
-        tabCannonKeep_->addWidget(new Slider(locales::getLocale(locales::Bots), locales::getLocale(locales::ttBotCount),
+        tabCannonKeep_->addWidget(new Slider(locales::Bots, locales::ttBotCount,
 			&settings::C_botsLeft, 0, 20, 1,
 			Vector2f(20,80), 230, 120, true));
-        tabCannonKeep_->addWidget(new Slider(locales::getLocale(locales::Bots), locales::getLocale(locales::ttBotCount),
+        tabCannonKeep_->addWidget(new Slider(locales::Bots, locales::ttBotCount,
 			&settings::C_botsRight, 0, 20, 1,
 			Vector2f(310,80), 230, 120, true));
         tabCannonKeep_->addWidget(new LabeledBox(locales::getLocale(locales::GameOptions),
 			Vector2f(10, 120), 540, 100));
         
-        tabCannonKeep_->addWidget(new Slider(locales::getLocale(locales::Pointlimit), locales::getLocale(locales::ttPointLimitTeam),
+        tabCannonKeep_->addWidget(new Slider(locales::Pointlimit, locales::ttPointLimitTeam,
 			&settings::C_pointLimitCK, 1, 50, 1,
 			Vector2f(20,150), 520, 270, true));
-        tabCannonKeep_->addWidget(new Slider(locales::getLocale(locales::iDumb), locales::getLocale(locales::ttBotStrength),
+        tabCannonKeep_->addWidget(new Slider(locales::iDumb, locales::ttBotStrength,
 			&settings::C_iDumb, 0, 100, 5,
 			Vector2f(20,170), 520, 270, true));
-        tabCannonKeep_->addWidget(new Slider(locales::getLocale(locales::PowerUpRate), locales::getLocale(locales::ttPowerUpRate),
+        tabCannonKeep_->addWidget(new Slider(locales::PowerUpRate, locales::ttPowerUpRate,
 			&settings::C_powerUpRate, 0, 100, 5,
 			Vector2f(20,190), 520, 270, true));
         //  bottom
@@ -282,18 +282,18 @@ UiWindow* NewGameMenu::get()
 			&settings::C_playerIIteamR,
 			Vector2f(410,60), 80, true));
         tabGraveItation_->addWidget(player2Group4);
-        tabGraveItation_->addWidget(new Slider(locales::getLocale(locales::Bots), locales::getLocale(locales::ttBotCount),
+        tabGraveItation_->addWidget(new Slider(locales::Bots, locales::ttBotCount,
 			&settings::C_botsLeft, 0, 20, 1,
 			Vector2f(20,80), 230, 120, true));
-        tabGraveItation_->addWidget(new Slider(locales::getLocale(locales::Bots), locales::getLocale(locales::ttBotCount),
+        tabGraveItation_->addWidget(new Slider(locales::Bots, locales::ttBotCount,
 			&settings::C_botsRight, 0, 20, 1,
 			Vector2f(310,80), 230, 120, true));
         tabGraveItation_->addWidget(new LabeledBox(locales::getLocale(locales::GameOptions),
 			Vector2f(10, 120), 540, 80));
-        tabGraveItation_->addWidget(new Slider(locales::getLocale(locales::Fraglimit), locales::getLocale(locales::ttPointLimitTeam),
+        tabGraveItation_->addWidget(new Slider(locales::Fraglimit, locales::ttPointLimitTeam,
 			&settings::C_pointLimitTDM, 1, 100, 1,
 			Vector2f(20,150), 520, 270, true));
-        tabGraveItation_->addWidget(new Slider(locales::getLocale(locales::iDumb), locales::getLocale(locales::ttBotStrength),
+        tabGraveItation_->addWidget(new Slider(locales::iDumb, locales::ttBotStrength,
 			&settings::C_iDumb, 0, 100, 5,
 			Vector2f(20,170), 520, 270, true));
         //  bottom
@@ -309,19 +309,19 @@ UiWindow* NewGameMenu::get()
 			Vector2f(20,60), 100));
         tabRally_->addWidget(new Checkbox(&settings::C_playerIIName, locales::getLocale(locales::ttPlayersWho), &playerII_,
 			Vector2f(310,60), 100));
-        tabRally_->addWidget(new Slider(locales::getLocale(locales::Bots), locales::getLocale(locales::ttBotCount),
+        tabRally_->addWidget(new Slider(locales::Bots, locales::ttBotCount,
 			&settings::C_botsDeath, 0, 50, 1,
 			Vector2f(20,80), 520, 270, true));
         tabRally_->addWidget(new LabeledBox(locales::getLocale(locales::GameOptions),
 			Vector2f(10, 120), 540, 100));
         
-        tabRally_->addWidget(new Slider(locales::getLocale(locales::Fraglimit), locales::getLocale(locales::ttPointLimitTeam),
+        tabRally_->addWidget(new Slider(locales::Fraglimit, locales::ttPointLimitTeam,
 			&settings::C_pointLimitDM, 1, 100, 1,
 			Vector2f(20,150), 520, 270, true));
-        tabRally_->addWidget(new Slider(locales::getLocale(locales::iDumb), locales::getLocale(locales::ttBotStrength),
+        tabRally_->addWidget(new Slider(locales::iDumb, locales::ttBotStrength,
 			&settings::C_iDumb, 0, 100, 5,
 			Vector2f(20,170), 520, 270, true));
-        tabRally_->addWidget(new Slider(locales::getLocale(locales::PowerUpRate), locales::getLocale(locales::ttPowerUpRate),
+        tabRally_->addWidget(new Slider(locales::PowerUpRate, locales::ttPowerUpRate,
 			&settings::C_powerUpRate, 0, 100, 5,
 			Vector2f(20,190), 520, 270, true));
         //  bottom

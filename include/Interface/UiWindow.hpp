@@ -26,7 +26,7 @@ class UiWindow: public UiElement
 {
     public:
         UiWindow (int width, int height, Vector2f const& position = Vector2f());
-        ~UiWindow();
+        virtual ~UiWindow();
 
         void mouseMoved(Vector2f const& position);
         void mouseWheelMoved(Vector2f const& position, int delta);

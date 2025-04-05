@@ -19,11 +19,14 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "System/Vector2f.hpp"
 
+
 /// A simple interface providing just a virtual draw function.
 
 class DecoObject
 {
     public:
+        virtual ~DecoObject()
+        {   }
         /// Draws the DecoObject.
         virtual void draw() const = 0;
 };

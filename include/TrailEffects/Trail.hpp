@@ -19,10 +19,13 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 class SpaceObject;
 
+
 class Trail
 {
     public:
         Trail(SpaceObject* target);
+        virtual ~Trail()
+        {   }
 
         virtual void update() = 0;
         virtual void draw() const = 0;

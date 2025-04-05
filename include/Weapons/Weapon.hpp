@@ -22,6 +22,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 class Ship;
 
+
 /// A virtual base class for all weapons.
 /// Provides a basic interface for all weapons, some base members and methodes.
 
@@ -30,6 +31,8 @@ class Weapon
     public:
         /// Ctor which constructs the base Weapon.
         Weapon(weapons::WeaponType type, Ship* parent, sf::String name);
+        virtual ~Weapon()
+        {   }
 
         /// This function is called whenever the weapon is fired.
         virtual void fire() const = 0;

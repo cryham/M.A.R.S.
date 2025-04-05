@@ -32,6 +32,8 @@ class Team
 {
     public:
         Team(Color3f const& color);
+        virtual ~Team()
+        {   }
 
         void update();
 

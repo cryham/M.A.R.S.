@@ -21,11 +21,15 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 class SpaceObject;
 
+
 /// Basic interface for all Zones.
 
 class Zone
 {
     public:
+        virtual ~Zone()
+        {   }
+
         /// Returns true, if the given SpaceObject is inside this Zone.
         virtual bool isInside(SpaceObject const& toBeChecked) const = 0;
 

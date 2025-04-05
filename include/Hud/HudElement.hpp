@@ -17,11 +17,14 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #pragma once
 
+
 class HudElement
 {
     public:
+        virtual ~HudElement()
+        {   }
+
         virtual void draw() const = 0;
         virtual void update()
         {   }
 };
-

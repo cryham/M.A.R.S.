@@ -22,6 +22,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include <SFML/Window.hpp>
 
+
 /// A Controller which updates it's associated Ship based on keyboard events.
 /// Used for local players.
 
@@ -41,5 +42,3 @@ class KeyController: public Controller
 
         void evaluate();
 };
-
-

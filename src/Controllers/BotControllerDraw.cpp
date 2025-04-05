@@ -28,6 +28,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include <SFML/OpenGL.hpp>
 
+
 void BotController::draw()
 {
     if (ship()->getLife() > 0)
@@ -105,13 +106,14 @@ void BotController::draw()
                 }
                 case Job::jAttackAny:
                 {
-                    for (std::map<Ship*, float>::iterator it = aggroTable_.begin(); it != aggroTable_.end(); ++it) {
-                        if (it->first == target_) {
+                    for (auto it = aggroTable_.begin(); it != aggroTable_.end(); ++it)
+                    {
+                        if (it->first == target_)
+                        {
                             Vector2f direction(it->first->location() - shipLocation);
                             decoObjects::drawArrow(shipLocation + direction*0.1f, shipLocation + direction*0.9f, Color3f(0.6f, 0.f, 0.f), 8.f);
-                        }
-                        else {
-                            Vector2f direction(it->first->location() - shipLocation);
+                        }else
+                        {   Vector2f direction(it->first->location() - shipLocation);
                             decoObjects::drawArrow(shipLocation + direction*0.1f, shipLocation + direction*0.9f, Color3f(it->second/120.f, it->second/240.f, 0), 8.f*it->second/120.f);
                         }
                     }
@@ -152,8 +154,8 @@ void BotController::draw()
                 case Job::jGetControl:
                 {
                     CannonControl* control(items::getCannonControl());
-                    if (control) {
-                        Vector2f direction(control->location() - shipLocation);
+                    if (control)
+                    {   Vector2f direction(control->location() - shipLocation);
                         decoObjects::drawArrow(shipLocation + direction*0.1f, shipLocation + direction*0.9f, Color3f(0.6f, 0.f, 0.6f));
                     }
                     break;

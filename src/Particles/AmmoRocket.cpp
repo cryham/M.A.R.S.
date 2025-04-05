@@ -31,18 +31,21 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include <cfloat>
 
+
 std::list<AmmoRocket*> AmmoRocket::activeParticles_;
 
-AmmoRocket::AmmoRocket(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity, Color3f const& color, Player* damageSource):
-         Particle<AmmoRocket>(spaceObjects::oAmmoRocket, location, 10.f, 3.0f, 10000.f),
-         timer_(1.f),
-         shipTarget_(NULL),
-         ballTarget_(NULL),
-         parent_(damageSource),
-         rotation_(0.f),
-         life_(50.f),
-         frozen_(0.f),
-         visible_(true)
+
+AmmoRocket::AmmoRocket(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,
+        Color3f const& color, Player* damageSource)
+    :Particle<AmmoRocket>(spaceObjects::oAmmoRocket, location, 10.f, 3.0f, 10000.f)
+    ,timer_(1.f)
+    ,shipTarget_(NULL)
+    ,ballTarget_(NULL)
+    ,parent_(damageSource)
+    ,rotation_(0.f)
+    ,life_(50.f)
+    ,frozen_(0.f)
+    ,visible_(true)
 {
     setDamageSource(damageSource);
     velocity_ = direction*300.f;
@@ -61,14 +64,17 @@ void AmmoRocket::update()
 {
     float const time = timer::frameTime();
 
-    if (frozen_ <= 0) {
+    if (frozen_ <= 0)
+    {
         physics::collide(this, STATICS | MOBILES | PARTICLES);
 
-        if (shipTarget_ || ballTarget_) {
-
+        if (shipTarget_ || ballTarget_)
+        {
             MobileSpaceObject* target(NULL);
-            if (ballTarget_) target = ballTarget_;
-            else if (shipTarget_) target = shipTarget_;
+            if (ballTarget_)
+                target = ballTarget_;
+            else if (shipTarget_)
+                target = shipTarget_;
 
             float const speed(velocity_.length());
             velocity_ /= speed;
@@ -81,12 +87,11 @@ void AmmoRocket::update()
                 velocity_ = Vector2f (std::cos(std::atan2(velocity_.y_, velocity_.x_)-phi), std::sin(std::atan2(velocity_.y_, velocity_.x_)-phi));
             velocity_ *= 300.f;
 
-            if (shipTarget_ && dynamic_cast<Ship*>(shipTarget_)->getLife() <= 0.f) {
+            if (shipTarget_ && dynamic_cast<Ship*>(shipTarget_)->getLife() <= 0.f)
                 shipTarget_ = NULL;
-            }
-            else if (ballTarget_ && !(dynamic_cast<Ball*>(ballTarget_)->isVisible())) {
+            else
+            if (ballTarget_ && !(dynamic_cast<Ball*>(ballTarget_)->isVisible()))
                 ballTarget_ = NULL;
-            }
         }
 
         location_ += velocity_*time;
@@ -108,25 +113,29 @@ void AmmoRocket::update()
 
             std::vector<Ship*> const& ships (ships::getShips());
             float closest(FLT_MAX);
-            for (std::vector<Ship*>::const_iterator it = ships.begin(); it != ships.end(); ++it) {
-                float distance((location_ - (*it)->location()).lengthSquare());
-                if ( distance < closest && (*it)->collidable()) {
-                    shipTarget_ = *it;
+            for (const auto& it : ships)
+            {
+                float distance((location_ - it->location()).lengthSquare());
+                if (distance < closest && it->collidable())
+                {
+                    shipTarget_ = it;
                     closest = distance;
                 }
             }
 
             Ball* ball(balls::getBall());
-            if (ball) {
+            if (ball)
+            {
                 float distance((location_ - ball->location()).lengthSquare());
-                if (distance < closest && ball->isVisible()) {
+                if (distance < closest && ball->isVisible())
+                {
                     ballTarget_ = ball;
                     shipTarget_ = NULL;
                 }
             }
         }
-    }
-    else {
+    }else
+    {
         physics::collide(this, STATICS | MOBILES | PARTICLES);
 
         frozen_  -= time*3.f;
@@ -161,7 +170,11 @@ void AmmoRocket::draw() const
 
     Vector2f direction(velocity_.normalize()*10.f);
     Vector2f normDirection(direction.y_, -1.f*direction.x_);
-    const Vector2f topLeft(location_ + direction + normDirection), topRight(location_ + direction - normDirection), bottomLeft(location_ - 3*direction + normDirection), bottomRight(location_ - 3*direction - normDirection);
+    const Vector2f
+        topLeft(location_ + direction + normDirection),
+        topRight(location_ + direction - normDirection),
+        bottomLeft(location_ - 3*direction + normDirection),
+        bottomRight(location_ - 3*direction - normDirection);
 
     const int posX = 0;
     const int posY = (static_cast<int>(lifeTime_*3.f) % 2) * 2 + 3;
@@ -184,10 +197,10 @@ void AmmoRocket::draw() const
         float const size = std::sin(lifeTime_*5.f)*4.f + 26.f;
         Vector2f const loc(target->location());
 
-        glTexCoord2f(posX*0.125f,    (posY+3)*0.125f); glVertex2f(loc.x_ - size, loc.y_ - size);
-        glTexCoord2f((posX+3)*0.125f,(posY+3)*0.125f); glVertex2f(loc.x_ + size, loc.y_ - size);
-        glTexCoord2f((posX+3)*0.125f, posY*0.125f);    glVertex2f(loc.x_ + size, loc.y_ + size);
-        glTexCoord2f(posX*0.125f,     posY*0.125f);    glVertex2f(loc.x_ - size, loc.y_ + size);
+        glTexCoord2f(posX*0.125f,    (posY+3)*0.125f);  glVertex2f(loc.x_ - size, loc.y_ - size);
+        glTexCoord2f((posX+3)*0.125f,(posY+3)*0.125f);  glVertex2f(loc.x_ + size, loc.y_ - size);
+        glTexCoord2f((posX+3)*0.125f, posY*0.125f);     glVertex2f(loc.x_ + size, loc.y_ + size);
+        glTexCoord2f(posX*0.125f,     posY*0.125f);     glVertex2f(loc.x_ - size, loc.y_ + size);
     }
 }
 

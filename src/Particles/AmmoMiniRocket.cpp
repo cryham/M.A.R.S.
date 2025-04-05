@@ -32,18 +32,21 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include <cfloat>
 
+
 std::list<AmmoMiniRocket*> AmmoMiniRocket::activeParticles_;
 
-AmmoMiniRocket::AmmoMiniRocket(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity, Color3f const& color, Player* damageSource):
-         Particle<AmmoMiniRocket>(spaceObjects::oAmmoMiniRocket, location, 3.f, 3.0f, 10000.f),
-         timer_(1.f),
-         shipTarget_(NULL),
-         ballTarget_(NULL),
-         parent_(damageSource),
-         rotation_(0.f),
-         life_(50.f),
-         frozen_(0.f),
-         visible_(true)
+
+AmmoMiniRocket::AmmoMiniRocket(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,
+        Color3f const& color, Player* damageSource)
+    :Particle<AmmoMiniRocket>(spaceObjects::oAmmoMiniRocket, location, 3.f, 3.0f, 10000.f)
+    ,timer_(1.f)
+    ,shipTarget_(NULL)
+    ,ballTarget_(NULL)
+    ,parent_(damageSource)
+    ,rotation_(0.f)
+    ,life_(50.f)
+    ,frozen_(0.f)
+    ,visible_(true)
 {
     setDamageSource(damageSource);
     velocity_ = direction * 550.f;
@@ -113,18 +116,19 @@ void AmmoMiniRocket::update()
 
             std::vector<Ship*> const& ships (ships::getShips());
             float closest(FLT_MAX);
-            for (std::vector<Ship*>::const_iterator it = ships.begin(); it != ships.end(); ++it)
+            for (const auto& it : ships)
             {
-                float distance((location_ - (*it)->location()).lengthSquare());
-                if ( distance < closest && (*it)->collidable())
+                float distance((location_ - it->location()).lengthSquare());
+                if (distance < closest && it->collidable())
                 {
-                    shipTarget_ = *it;
+                    shipTarget_ = it;
                     closest = distance;
                 }
             }
 
             Ball* ball(balls::getBall());
-            if (ball) {
+            if (ball)
+            {
                 float distance((location_ - ball->location()).lengthSquare());
                 if (distance < closest && ball->isVisible())
                 {
@@ -150,9 +154,6 @@ void AmmoMiniRocket::update()
     if (life_<=0.f)
     {
         visible_ = false;
-        // particles::spawnMultiple(50, particles::pDust, location_);
-        // particles::spawnMultiple(20, particles::pExplode, location_);
-        // particles::spawnMultiple(2, particles::pBurningFragment, location_);
         // particles::spawnMultiple(1, particles::pMiniFlame, location_);
         particles::spawnMultiple(4, particles::pHeatJet, location_);        
 
@@ -189,7 +190,7 @@ void AmmoMiniRocket::draw() const
     else if (shipTarget_)
         target = shipTarget_;
 
-    /*if (target && frozen_ <= 0)
+    if (target && frozen_ <= 0)
     {
         glColor3f(0.6f, 0.7f, 0.8f);
         const int posX = 5;

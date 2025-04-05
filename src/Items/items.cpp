@@ -39,13 +39,15 @@ namespace items
         CannonControl* cannonControl_(NULL);
         std::list<PowerUp*> powerUps_ = std::list<PowerUp*>();
 
+
         void spawnPowerUp()
         {
             int tries(0);
             bool newPowerUpFits(false);
             Vector2f position(0.f, 0.f);
 
-            while (!newPowerUpFits && ++tries < 500) {
+            while (!newPowerUpFits && ++tries < 500)
+            {
                 // 100 is min distance between edge and planet
                 int randx = rand() % (settings::C_MapXsize - 2*(50)) + 50;
                 int randy = rand() % (settings::C_MapYsize - 2*(50)) + 50 ;
@@ -54,14 +56,16 @@ namespace items
 
                 // check for collisions with other objects
                 newPowerUpFits = true;
-                for (std::vector<SpaceObject*>::const_iterator it = spaceObjects::getObjects().begin(); it != spaceObjects::getObjects().end(); ++it)
-                    if (((*it)->location() - position).lengthSquare() < std::pow((*it)->radius() + 50, 2)) {
+                for (auto& it : spaceObjects::getObjects())
+                    if ((it->location() - position).lengthSquare() < std::pow(it->radius() + 50, 2))
+                    {
                         newPowerUpFits = false;
                         break;
                     }
-
-                if (newPowerUpFits) break;
+                if (newPowerUpFits)
+                    break;
             }
+
             if (newPowerUpFits)
             {
                 if (randomizer::random(0, 4) == 0)
@@ -69,28 +73,23 @@ namespace items
                     // rare powerUps
                     switch (randomizer::random(0, 1))
                     {
-                        case 0:
-                            powerUps_.push_back(new PUReverse(position)); break;
-                        case 1:
-                            powerUps_.push_back(new PUSleep(position)); break;
+                        case 0:  powerUps_.push_back(new PUReverse(position));  break;
+                        case 1:  powerUps_.push_back(new PUSleep(position));  break;
                     }
-                }
-                else
+                }else
                 {
                     // common powerUps
                     switch (randomizer::random(0, 2))
                     {
-                        case 0:
-                            powerUps_.push_back(new PUShield(position)); break;
-                        case 1:
-                            powerUps_.push_back(new PUHealth(position)); break;
-                        case 2:
-                            powerUps_.push_back(new PUFuel(position)); break;
+                        case 0:  powerUps_.push_back(new PUShield(position));  break;
+                        case 1:  powerUps_.push_back(new PUHealth(position));  break;
+                        case 2:  powerUps_.push_back(new PUFuel(position));  break;
                     }
                 }
             }
         }
     }
+
 
     void update()
     {
@@ -107,7 +106,7 @@ namespace items
             }
         }
 
-        std::list<PowerUp*>::iterator it = powerUps_.begin();
+        auto it = powerUps_.begin();
         while (it != powerUps_.end())
         {
             (*it)->update();
@@ -128,8 +127,8 @@ namespace items
         if (cannonControl_)
             cannonControl_->draw();
 
-        for (std::list<PowerUp*>::iterator it = powerUps_.begin(); it != powerUps_.end(); ++it)
-            (*it)->draw();
+        for (auto& it : powerUps_)
+            it->draw();
 
         glDisable(GL_TEXTURE_2D);
         glBindTexture(GL_TEXTURE_2D, 0);
@@ -138,17 +137,17 @@ namespace items
     void addCannonControl()
     {
         // temporary list of all homes
-        std::vector<Home*>const& homes = spaceObjects::getHomes();
+        const auto& homes = spaceObjects::getHomes();
 
         if (homes.size() >= 2)
         {
             Vector2f midPoint;
-            for (std::vector<Home*>::const_iterator it = homes.begin(); it != homes.end(); ++it)
-                midPoint += (*it)->location();
+            for (const auto& it : homes)
+                midPoint += it->location();
             midPoint /= homes.size();
+            
             cannonControl_ = new CannonControl(midPoint);
-        }
-        else
+        }else
             cannonControl_ = new CannonControl(Vector2f());
     }
 
@@ -169,8 +168,8 @@ namespace items
             delete cannonControl_;
             cannonControl_ = NULL;
         }
-        for (std::list<PowerUp*>::iterator it = powerUps_.begin(); it != powerUps_.end(); ++it)
-            delete(*it);
+        for (auto& it : powerUps_)
+            delete it;
         powerUps_.clear();
     }
 }

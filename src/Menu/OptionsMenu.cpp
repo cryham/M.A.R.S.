@@ -57,6 +57,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include <SFML/Window.hpp>
 #include <sstream>
 
+
 UiWindow* OptionsMenu::instance_(NULL);
 bool OptionsMenu::kOk_(false);
 bool OptionsMenu::fullscreen_(false);
@@ -69,6 +70,7 @@ sf::String OptionsMenu::format_("");
 int  OptionsMenu::soundVolume_(0);
 int  OptionsMenu::musicVolume_(0);
 int  OptionsMenu::announcerVolume_(0);
+
 
 UiWindow* OptionsMenu::get()
 {
@@ -120,19 +122,22 @@ UiWindow* OptionsMenu::get()
         std::vector<sf::VideoMode> modes = sf::VideoMode::getFullscreenModes();
         std::vector<sf::String> resolutions;
         std::vector<sf::String> colorDepths;
-        for (std::vector<sf::VideoMode>::iterator it = modes.begin(); it != modes.end(); ++it) {
-            if (it->width >= 800 && it->bitsPerPixel >= 8)
+        for (auto& it : modes)
+        {
+            if (it.width >= 800 && it.bitsPerPixel >= 8)
             {
                 std::stringstream res, depth;
-                res << it->width << " x " << it->height;
-                depth << it->bitsPerPixel;
+                res << it.width << " x " << it.height;
+                depth << it.bitsPerPixel;
                 sf::String resString(res.str()), depthString(depth.str());
 
                 bool newDepth(true), newRes(true);
-                for (std::vector<sf::String>::iterator it = resolutions.begin(); it != resolutions.end(); ++it)
-                    if (*it == resString) newRes = false;
-                for (std::vector<sf::String>::iterator it = colorDepths.begin(); it != colorDepths.end(); ++it)
-                    if (*it == depthString) newDepth = false;
+                for (auto& it : resolutions)
+                    if (it == resString)
+                        newRes = false;
+                for (auto& it : colorDepths)
+                    if (it == depthString) newDepth = false;
+                
                 if (newRes)
                     resolutions.push_back(res.str());
                 if (newDepth)

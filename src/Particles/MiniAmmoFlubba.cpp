@@ -23,10 +23,13 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Media/sound.hpp"
 #include "System/randomizer.hpp"
 
+
 std::list<MiniAmmoFlubba*> MiniAmmoFlubba::activeParticles_;
 
-MiniAmmoFlubba::MiniAmmoFlubba(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity, Color3f const& color, Player* damageSource):
-           Particle<MiniAmmoFlubba>(spaceObjects::oMiniAmmoFlubba, location, 8.f, 0.2f, randomizer::random(10.f, 17.f))
+
+MiniAmmoFlubba::MiniAmmoFlubba(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,
+    Color3f const& color, Player* damageSource)
+    :Particle<MiniAmmoFlubba>(spaceObjects::oMiniAmmoFlubba, location, 8.f, 0.2f, randomizer::random(10.f, 17.f))
 {
     setDamageSource(damageSource);
 
@@ -81,14 +84,16 @@ void MiniAmmoFlubba::onCollision(SpaceObject* with, Vector2f const& location,
 
 void MiniAmmoFlubba::shockWave(Vector2f const& location, float strength, float radius)
 {
-    for (std::list<MiniAmmoFlubba*>::iterator it = activeParticles_.begin(); it != activeParticles_.end(); ++it) {
-        Vector2f direction((*it)->location_ - location);
+    for (auto& it : activeParticles_)
+    {
+        Vector2f direction(it->location_ - location);
         float distance = direction.length();
-        if (distance < radius && direction != Vector2f()) {
+        if (distance < radius && direction != Vector2f())
+        {
             float intensity = radius-distance;
             direction = direction.normalize();
             direction *= intensity;
-            (*it)->velocity_ += direction;
+            it->velocity_ += direction;
         }
     }
 }

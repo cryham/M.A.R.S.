@@ -53,39 +53,37 @@ namespace decoObjects
         if (cannon_)
             cannon_->draw();
         
-        for (std::vector<DecoObject*>::iterator it = decos_.begin(); it != decos_.end(); ++it)
-            (*it)->draw();
+        for (const auto& it : decos_)
+            it->draw();
 
-        for (std::list<DecoObject*>::iterator it=ices_.begin(); it!=ices_.end(); ++it)
+        for (auto it = ices_.begin(); it != ices_.end(); ++it)
         {
-            if ((*it)!=NULL)
+            if ((*it) != NULL)
                 (*it)->draw();
-            else {
+            else
                 it = ices_.erase(it);
-            }
         }
 
-        for (std::list<DecoObject*>::iterator it=bolts_.begin(); it!=bolts_.end(); ++it)
+        for (auto it = bolts_.begin(); it != bolts_.end(); ++it)
         {
-            if ((*it)!=NULL)
+            if ((*it) != NULL)
                 (*it)->draw();
-            else {
+            else
                 it = bolts_.erase(it);
-            }
         }
     }
 
     void drawHeat()
     {
-        for (std::vector<DecoObject*>::iterator it = heats_.begin(); it != heats_.end(); ++it)
-            (*it)->draw();
+        for (const auto& it : heats_)
+            it->draw();
     }
 
     void drawNames()
     {
         glBlendFunc(GL_SRC_ALPHA, GL_ONE);
-        for (std::vector<DecoObject*>::iterator it = names_.begin(); it != names_.end(); ++it)
-            (*it)->draw();
+        for (const auto& it : names_)
+            it->draw();
     }
 
     void drawArrow(Vector2f const& from,  Vector2f const& to, Color3f const& color, float width)
@@ -143,26 +141,27 @@ namespace decoObjects
 
     void removeIce(DecoObject const* toBeRemoved)
     {
-        for(std::list<DecoObject*>::iterator it=ices_.begin(); it!=ices_.end(); ++it)
-            if (*it==toBeRemoved) {
+        for (auto it = ices_.begin(); it != ices_.end(); ++it)
+            if (*it == toBeRemoved)
+            {
                 delete *it;
-                *it=NULL;
+                *it = NULL;
                 break;
             }
     }
 
-    void addBolt (SpaceObject* from, SpaceObject* to, float intensity)
+    void addBolt(SpaceObject* from, SpaceObject* to, float intensity)
     {
         bolts_.push_back(new Bolt(from, to, intensity));
     }
 
-    void removeBolt (DecoObject const* toBeRemoved)
+    void removeBolt(DecoObject const* toBeRemoved)
     {
-        for(std::list<DecoObject*>::iterator it=bolts_.begin(); it!=bolts_.end(); ++it)
-            if (*it==toBeRemoved)
+        for (auto it = bolts_.begin(); it != bolts_.end(); ++it)
+            if (*it == toBeRemoved)
             {
                 delete *it;
-                *it=NULL;
+                *it = NULL;
                 break;
             }
     }
@@ -179,16 +178,17 @@ namespace decoObjects
 
     void clear()
     {
-        if (cannon_) {
-            delete cannon_;
+        if (cannon_)
+        {   delete cannon_;
             cannon_ = NULL;
         }
-        for (std::vector<DecoObject*>::iterator it = decos_.begin(); it != decos_.end(); ++it)
-            delete *it;
-        for (std::vector<DecoObject*>::iterator it = heats_.begin(); it != heats_.end(); ++it)
-            delete *it;
-        for (std::vector<DecoObject*>::iterator it = names_.begin(); it != names_.end(); ++it)
-            delete *it;
+        for (auto& it : decos_)
+            delete it;
+        for (auto& it : heats_)
+            delete it;
+        for (auto& it : names_)
+            delete it;
+        
         decos_.clear();
         heats_.clear();
         names_.clear();

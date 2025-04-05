@@ -26,6 +26,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include <SFML/OpenGL.hpp>
 
+
 TabList::TabList (Vector2f const& topLeft, int width, int height):
     UiElement(topLeft * 1.f/scale_,  width * 1.f/scale_, height),
     focusedTab_(NULL),
@@ -34,26 +35,26 @@ TabList::TabList (Vector2f const& topLeft, int width, int height):
 
 TabList::~TabList()
 {
-    for (std::vector<Tab*>::iterator i=tabs_.begin(); i != tabs_.end(); ++i)
-        delete *i;
+    for (auto& it : tabs_)
+        delete it;
 }
 
 void TabList::mouseMoved(Vector2f const& position)
 {
-    for (std::vector<Tab*>::iterator i=tabs_.begin(); i != tabs_.end(); ++i)
-        (*i)->mouseMoved(position);
+    for (auto& it : tabs_)
+        it->mouseMoved(position);
 }
 
 void TabList::mouseWheelMoved(Vector2f const& position, int delta)
 {
-    for (std::vector<Tab*>::iterator i=tabs_.begin(); i != tabs_.end(); ++i)
-        (*i)->mouseWheelMoved(position, delta);
+    for (auto& it : tabs_)
+        it->mouseWheelMoved(position, delta);
 }
 
 void TabList::mouseLeft(bool down)
 {
-    for (std::vector<Tab*>::iterator i=tabs_.begin(); i != tabs_.end(); ++i)
-        (*i)->mouseLeft(down);
+    for (auto& it : tabs_)
+        it->mouseLeft(down);
 }
 
 void TabList::keyEvent(bool down, Key const& key)
@@ -163,8 +164,8 @@ void TabList::draw () const
         glVertex2f(origin.x_+width(),origin.y_+20);
     glEnd();*/
 
-    for (std::vector<Tab*>::const_iterator i=tabs_.begin(); i != tabs_.end(); ++i)
-        (*i)->draw();
+    for (const auto& it : tabs_)
+        it->draw();
 }
 
 void TabList::setFocus(UiElement* toBeFocused, bool isPrevious)
@@ -181,8 +182,8 @@ void TabList::setFocus(UiElement* toBeFocused, bool isPrevious)
 void TabList::clearFocus()
 {
     UiElement::clearFocus();
-    for (std::vector<Tab*>::iterator i=tabs_.begin(); i != tabs_.end(); ++i)
-        (*i)->clearFocus();
+    for (auto& it : tabs_)
+        it->clearFocus();
 }
 
 void TabList::addTab(Tab* toBeAdded)
@@ -210,8 +211,8 @@ void TabList::addTab(Tab* toBeAdded)
 
 void TabList::activate(Tab* toBeActivated)
 {
-    for (std::vector<Tab*>::iterator i=tabs_.begin(); i != tabs_.end(); ++i)
-        (*i)->active_ = false;
+    for (auto& it : tabs_)
+        it->active_ = false;
 
     menus::clearFocus();
     setFocus(this, false);

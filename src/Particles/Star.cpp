@@ -22,10 +22,13 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "defines.hpp"
 #include "System/randomizer.hpp"
 
+
 std::list<Star*> Star::activeParticles_;
 
-Star::Star(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity, Color3f const& color, Player* damageSource):
-           Particle<Star>(spaceObjects::oStar, location, 0.f, 0.f, 1.f)
+
+Star::Star(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,
+        Color3f const& color, Player* damageSource)
+    :Particle<Star>(spaceObjects::oStar, location, 0.f, 0.f, 1.f)
 {
     location_     += Vector2f::randDir()*randomizer::random(0.2f, 5.f);
     depth_        =  0.2f/(location-location_).lengthSquare();
@@ -44,11 +47,13 @@ void Star::update()
 
 void Star::update(float time)
 {
-    if (location_.x_ < -radius_ || location_.x_ > settings::C_MapXsize + radius_ || location_.y_ < -radius_ || location_.y_ > settings::C_MapYsize + radius_) {
+    if (location_.x_ < -radius_ || location_.x_ > settings::C_MapXsize + radius_ ||
+        location_.y_ < -radius_ || location_.y_ > settings::C_MapYsize + radius_)
+    {
         spawn(Vector2f(settings::C_MapXsize*0.5f, settings::C_MapYsize*0.5f), Vector2f(), Vector2f(), Color3f(), NULL);
         killMe();
-    }
-    else {
+    }else
+    {
         location_ += velocity_*time + acceleration_*time*time;
         velocity_ += acceleration_*time;
         radius_   += time*depth_*0.4f;
@@ -70,13 +75,13 @@ void Star::draw() const
 
 void Star::init()
 {
-    for (std::list<Star*>::iterator it=activeParticles_.begin(); it!=activeParticles_.end(); ++it)
-        delete *it;
+    for (auto& it : activeParticles_)
+        delete it;
     activeParticles_.clear();
 
-    for (int i=0; i<settings::C_StarField; ++i)
+    for (int i=0; i < settings::C_StarField; ++i)
         spawn(Vector2f(settings::C_MapXsize*0.5f, settings::C_MapYsize*0.5f), Vector2f(), Vector2f(), Color3f(), NULL);
 
-    for (std::list<Star*>::iterator it=activeParticles_.begin(); it!=activeParticles_.end(); ++it)
-        (*it)->update(randomizer::random(0.f, 100.f));
+    for (auto& it : activeParticles_)
+        it->update(randomizer::random(0.f, 100.f));
 }

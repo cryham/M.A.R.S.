@@ -38,8 +38,8 @@ namespace teams
     void assignHomes(Home* home)
     {
         if (allTeams_.size() > 0)
-            for (std::vector<Team*>::iterator it = allTeams_.begin(); it != allTeams_.end(); ++it)
-                (*it)->setHome(home);
+            for (auto& it : allTeams_)
+                it->setHome(home);
         else
             std::cout << "Cant assign Home Planet! No Teams are specified!\n";
     }
@@ -56,8 +56,8 @@ namespace teams
 
     void update()
     {
-        for (std::vector<Team*>::iterator it = allTeams_.begin(); it != allTeams_.end(); ++it)
-            (*it)->update();
+        for (auto& it : allTeams_)
+            it->update();
     }
 
     Team const* getTeamL()
@@ -83,9 +83,9 @@ namespace teams
     int getFirstPoints()
     {
         int highest(INT_MIN);
-        for (std::vector<Team*>::iterator it = allTeams_.begin(); it != allTeams_.end(); ++it)
-            if ((*it)->points() > highest)
-                highest = (*it)->points();
+        for (auto& it : allTeams_)
+            if (it->points() > highest)
+                highest = it->points();
         return highest;
     }
 
@@ -93,15 +93,16 @@ namespace teams
     {
         int first (INT_MIN);
         int second(INT_MIN);
-        for (std::vector<Team*>::iterator it = allTeams_.begin(); it != allTeams_.end(); ++it)
-            if ((*it)->points() >= first)
+
+        for (auto& it : allTeams_)
+            if (it->points() >= first)
             {
                 second = first;
-                first  = (*it)->points();
+                first  = it->points();
             }
-            else if ((*it)->points() > second)
+            else if (it->points() > second)
             {
-                second = (*it)->points();
+                second = it->points();
             }
         if (second == INT_MIN)
             second = 0;
@@ -110,14 +111,14 @@ namespace teams
 
     void resetTeamPoints()
     {
-        for (std::vector<Team*>::iterator it = allTeams_.begin(); it != allTeams_.end(); ++it)
-            (*it)->resetPoints();
+        for (auto& it : allTeams_)
+            it->resetPoints();
     }
 
     void clear()
     {
-        for (std::vector<Team*>::iterator it = allTeams_.begin(); it != allTeams_.end(); ++it)
-            delete *it;
+        for (auto& it : allTeams_)
+            delete it;
         allTeams_.clear();
     }
 }

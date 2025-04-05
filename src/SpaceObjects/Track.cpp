@@ -19,10 +19,9 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "SpaceObjects/Home.hpp"
 #include "Zones/zones.hpp"
-#include "Zones/RasterZone.hpp"
-#include "defines.hpp"
 #include "System/settings.hpp"
 #include "System/randomizer.hpp"
+
 
 Track::Track(Home* home)
 {
@@ -44,7 +43,8 @@ void Track::draw() const
 
         Vector2f lastLeft, lastRight;
 
-        for (int i=0; i<points_.size()+1; ++i) {
+        for (int i=0; i<points_.size()+1; ++i)
+        {
             Vector2f p0(points_[(i+0)%points_.size()]);
             Vector2f p1(points_[(i+1)%points_.size()]);
             Vector2f p2(points_[(i+2)%points_.size()]);
@@ -66,7 +66,6 @@ void Track::draw() const
                     !clockWise(left-p1, p0-left) &&
                     clockWise(left-p1, lastLeft-left))
                     left = lastLeft;
-
             }
 
             glTexCoord2f((posX + 0.5)*0.125f,     posY*0.125f);
@@ -113,12 +112,12 @@ void Track::findAnchors()
 
 void Track::addAnchor(Vector2f const& point)
 {
-    for (std::vector<Vector2f>::iterator it = anchors_.begin(); it != anchors_.end(); ++it)
-        if ((*it-point).lengthSquare() < 90000.f)
+    for (const auto& it : anchors_)
+        if ((it - point).lengthSquare() < 90000.f)
             return;
 
-    for (std::vector<SpaceObject*>::const_iterator it = spaceObjects::getObjects().begin(); it != spaceObjects::getObjects().end(); ++it)
-        if (((*it)->location()-point).lengthSquare() < std::pow((*it)->radius()+200.f, 2))
+    for (const auto& it : spaceObjects::getObjects())
+        if ((it->location()-point).lengthSquare() < std::pow(it->radius() + 200.f, 2))
             return;
 
     anchors_.push_back(point);
@@ -128,17 +127,18 @@ void Track::addAnchor(Vector2f const& point)
 void Track::sortAnchors()
 {
     sortLTR();
+
     // find middle
     Vector2f middle;
-    for (std::vector<Vector2f>::iterator it = anchors_.begin(); it != anchors_.end(); ++it)
-    {
-        middle += *it;
-    }
-    middle/=anchors_.size();
+    for (const auto& it : anchors_)
+        middle += it;
+    middle /= anchors_.size();
+    
     zones::addTutorialZone(middle, 50.f);
-    int i(0);
 
-    while (anchors_[i++].x_ < middle.x_ && i<anchors_.size()) ;
+    int i(0);
+    while (anchors_[i++].x_ < middle.x_ && i < anchors_.size())
+    {   }
 
     sortHalf(middle, 0, i-2, true, true);
     sortHalf(middle, i-1, anchors_.size()-1, true, true);
@@ -152,9 +152,9 @@ void Track::sortLTR()
     {
         sorted = true;
 
-        for (std::vector<Vector2f>::iterator it = anchors_.begin(); it != --anchors_.end(); ++it)
+        for (auto it = anchors_.begin(); it != --anchors_.end(); ++it)
         {
-            std::vector<Vector2f>::iterator next(it);
+            auto next(it);
             ++next;
 
             if (it->x_ > next->x_)
@@ -206,7 +206,7 @@ void Track::removeSharpCorners()
 
 void Track::createBezier()
 {
-    for (int i(0); i<anchors_.size(); ++i)
+    for (int i(0); i < anchors_.size(); ++i)
     {
         Vector2f p0(anchors_[i]);
         Vector2f p1(anchors_[(i+1)%anchors_.size()]);

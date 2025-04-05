@@ -34,11 +34,12 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include <sstream>
 
-Home::Home(Vector2f const& location, int life, float radius, float mass, Color3f const& color):
-               SpaceObject(spaceObjects::oHome, location, radius, mass),
-               color_(color.brightened()),
-               life_(life),
-               visible_(true)
+
+Home::Home(Vector2f const& location, int life, float radius, float mass, Color3f const& color)
+    :SpaceObject(spaceObjects::oHome, location, radius, mass)
+    ,color_(color.brightened())
+    ,life_(life)
+    ,visible_(true)
 {
     physics::addStaticObject(this);
     physics::addGravitySource(this);
@@ -80,7 +81,8 @@ void Home::drawLife() const
         sstr << getLife();
 
         int xOffset(location_.x_ > settings::C_MapXsize ? -65 : 65);
-        text::drawSpaceText(sf::String(sstr.str()), location_ + Vector2f(xOffset, -30 + lifeSize), lifeSize, TEXT_ALIGN_CENTER, Color3f(0.9, 0.9, 0.9));
+        text::drawSpaceText(sf::String(sstr.str()), location_ +
+            Vector2f(xOffset, -30 + lifeSize), lifeSize, TEXT_ALIGN_CENTER, Color3f(0.9, 0.9, 0.9));
     }
 }
 
@@ -101,13 +103,13 @@ void Home::createShips(std::vector<Player*>& inhabitants) const
         angle = ((inhabitants.size()+1)%2)*deltaAngle/2;
         int shipCounter = 0;
 
-        for (std::vector<Player*>::iterator it = inhabitants.begin(); it != inhabitants.end(); ++it)
+        for (auto& it : inhabitants)
         {
             // calc location of ship
             angle += deltaAngle*shipCounter*std::pow(-1.0, shipCounter);
             Vector2f location = Vector2f(std::cos(angle), std::sin(angle)) * (radius_+settings::C_playerIShip) + location_;
             float    rotation = angle*180/M_PI;
-            ships::addShip(location, rotation, *it);
+            ships::addShip(location, rotation, it);
             ++shipCounter;
         }
     }
@@ -119,13 +121,13 @@ void Home::createShips(std::vector<Player*>& inhabitants) const
         angle = ((inhabitants.size()+1)%2)*deltaAngle/2;
         int shipCounter = 0;
 
-        for (std::vector<Player*>::iterator it = inhabitants.begin(); it != inhabitants.end(); ++it)
+        for (auto& it : inhabitants)
         {
             // calc location of ship
             angle += deltaAngle*shipCounter*std::pow(-1.0, shipCounter);
             Vector2f location = Vector2f(-std::cos(angle), std::sin(angle)) * (radius_+16)+location_;
             float    rotation = 180-angle*180/M_PI;
-            ships::addShip(location, rotation, *it);
+            ships::addShip(location, rotation, it);
             ++shipCounter;
         }
     }else
@@ -134,13 +136,13 @@ void Home::createShips(std::vector<Player*>& inhabitants) const
         float deltaAngle = 2*M_PI/(inhabitants.size());
         float angle = 0;
 
-        for (std::vector<Player*>::iterator it = inhabitants.begin(); it != inhabitants.end(); ++it)
+        for (auto& it : inhabitants)
         {
             // calc location of ship
             angle += deltaAngle;
             Vector2f location = Vector2f(std::cos(angle), std::sin(angle)) * (radius_+16)+location_;
             float    rotation = angle*180/M_PI;
-            ships::addShip(location, rotation, *it);
+            ships::addShip(location, rotation, it);
         }
     }
 }
@@ -171,26 +173,25 @@ void Home::onCollision(SpaceObject* with, Vector2f const& location,
 
         case spaceObjects::oBall:
         {
-                Ball* ball = dynamic_cast<Ball*>(with);
-                int amount =  1 + (ball->heatAmount() > 10 ? 1 : 0);
-                life_ -= amount;
-                teams::getTeamL()->home() == this ? teams::getTeamR()->addStars() : teams::getTeamL()->addStars();
-                for (int i=0; i<amount; ++i)
-                    teams::getTeamL()->home() == this ? teams::getTeamR()->addPoint() : teams::getTeamL()->addPoint();
+            Ball* ball = dynamic_cast<Ball*>(with);
+            int amount =  1 + (ball->heatAmount() > 10 ? 1 : 0);
+            life_ -= amount;
+            teams::getTeamL()->home() == this ? teams::getTeamR()->addStars() : teams::getTeamL()->addStars();
+            for (int i=0; i < amount; ++i)
+                teams::getTeamL()->home() == this ? teams::getTeamR()->addPoint() : teams::getTeamL()->addPoint();
 
-                if (ball->lastShooter() != NULL)
-                {
-                    // If an oponnent threw the ball to the home, give him a
-                    // point
-                    if (ball->lastShooter()->team()->home() != this)
-                        ball->lastShooter()->addGoal();
-                    else
-                        //someone goaled against his own team... bad!
-                        ball->lastShooter()->subGoal();
-                }
-
-                ball->resetShooter();
-                break;
+            if (ball->lastShooter() != NULL)
+            {
+                // If an oponnent threw the ball to the home, give him a
+                // point
+                if (ball->lastShooter()->team()->home() != this)
+                    ball->lastShooter()->addGoal();
+                else
+                    //someone goaled against his own team... bad!
+                    ball->lastShooter()->subGoal();
+            }
+            ball->resetShooter();
+            break;
         }
         case spaceObjects::oCannonBall:
             life_ -= 1;
@@ -210,10 +211,12 @@ void Home::explode()
 {
     sound::playSound(sound::PlanetExplode, location_, 100.f);
     announcer::announce(announcer::Neutral);
+
     physics::causeShockWave(damageSource(), location_, 200.f, 500.f, 5.f);
     particles::spawnMultiple(200, particles::pDust, location_);
     particles::spawnMultiple(20, particles::pExplode, location_);
     particles::spawnMultiple(2, particles::pBurningFragment, location_);
+
     postFX::   onExplosion();
     physics::removeStaticObject(this);
     location_ = Vector2f(5000.f, 5000.f);

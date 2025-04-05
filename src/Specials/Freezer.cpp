@@ -84,19 +84,20 @@ void Freezer::activate() const
         const float strength = parent_->fragStars_*14.f;
 
         std::vector<Ship*> const& ships = ships::getShips();
-        for (std::vector<Ship*>::const_iterator it=ships.begin(); it!=ships.end(); ++it)
+        for (auto& it : ships)
         {
-            if ((*it)!=parent_ && (*it)->collidable() && !(*it)->collectedPowerUps_[items::puShield])
+            if (it != parent_ && it->collidable() && !it->collectedPowerUps_[items::puShield])
             {
-                float distance(((*it)->location()-parent_->location()).length());
+                float distance((it->location()-parent_->location()).length());
                 if (distance <= radius_)
                 {
-                    (*it)->setDamageSource(parent_->getOwner());
-                    (*it)->velocity_=Vector2f();
-                    (*it)->mass_=9999999999.f;
-                    if ((*it)->frozen_ <= 0)
-                        decoObjects::addIce(*it);
-                    (*it)->frozen_= strength;
+                    it->setDamageSource(parent_->getOwner());
+                    it->velocity_=Vector2f();
+                    it->mass_ = 9999999999.f;
+                    
+                    if (it->frozen_ <= 0)
+                        decoObjects::addIce(it);
+                    it->frozen_= strength;
                 }
             }
         }
@@ -108,23 +109,25 @@ void Freezer::activate() const
                 if (distance <= radius_)
                 {
                     ball->velocity_=Vector2f();
-                    ball->mass_=9999999999.f;
+                    ball->mass_ = 9999999999.f;
+                    
                     if (ball->frozen_ <= 0)
                         decoObjects::addIce(ball);
                     ball->frozen_=strength;
             }
         }
 
-        for (std::list<AmmoRocket*>::iterator it=AmmoRocket::activeParticles_.begin(); it!=AmmoRocket::activeParticles_.end(); ++it)
+        for (auto& it : AmmoRocket::activeParticles_)
         {
-            float distance(((*it)->location()-parent_->location()).length());
+            float distance((it->location()-parent_->location()).length());
             if (distance <= radius_)
             {
-                (*it)->velocity_ = (*it)->velocity_*0.00001f;
-                (*it)->mass_=9999999999.f;
-                if ((*it)->frozen_ <= 0)
-                    decoObjects::addIce(*it);
-                (*it)->frozen_=strength;
+                it->velocity_ = it->velocity_*0.00001f;
+                it->mass_ = 9999999999.f;
+                
+                if (it->frozen_ <= 0)
+                    decoObjects::addIce(it);
+                it->frozen_=strength;
             }
         }
 

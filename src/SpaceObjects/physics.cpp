@@ -40,13 +40,13 @@ namespace physics
         if (with & STATICS)
         {
             // check for collision with each static object
-            for (std::vector<SpaceObject*>::iterator it = staticObjects_.begin(); it != staticObjects_.end(); ++it)
+            for (auto& it : staticObjects_)
             {
                 // if object touches obstacle
-                if (((*it)->location_ - object->location_).lengthSquare() < std::pow((*it)->radius_ + object->radius_, 2))
+                if ((it->location_ - object->location_).lengthSquare() < std::pow(it->radius_ + object->radius_, 2))
                 {
-                    const Vector2f impactDirection = ((*it)->location_ - object->location_).normalize();
-                    object->location_ = (*it)->location_ - impactDirection*((*it)->radius_ + object->radius_);
+                    const Vector2f impactDirection = (it->location_ - object->location_).normalize();
+                    object->location_ = it->location_ - impactDirection*(it->radius_ + object->radius_);
 
                     // if object is moving towards obstacle... avoiding double interactions
                     if ((object->velocity()*impactDirection) > 0)
@@ -54,9 +54,9 @@ namespace physics
                         const Vector2f velocityBefore = (object->velocity() * impactDirection) * impactDirection;
                         object->velocity() = object->velocity() - velocityBefore*0.6 - velocityBefore;
 
-                        const Vector2f impactLocation = (*it)->location_ - impactDirection*(*it)->radius_;
-                        (*it)-> onCollision(object, impactLocation, impactDirection, velocityBefore);
-                        object->onCollision(*it,    impactLocation, impactDirection, velocityBefore);
+                        const Vector2f impactLocation = it->location_ - impactDirection*it->radius_;
+                        it-> onCollision(object, impactLocation, impactDirection, velocityBefore);
+                        object->onCollision(it,  impactLocation, impactDirection, velocityBefore);
                         break;
                     }
                 }
@@ -66,24 +66,23 @@ namespace physics
         if (with & MOBILES)
         {
             // check for collision with each mobile object
-            for (std::vector<MobileSpaceObject*>::iterator it = mobileObjects_.begin(); it != mobileObjects_.end(); ++it)
+            for (auto& it : mobileObjects_)
             {
                 // don't check for self collision
-                if (*it != object)
+                if (it != object)
                 {
                     // get faster object
                     MobileSpaceObject *source, *target;
-                    if (object->velocity() > (*it)->velocity())
+                    if (object->velocity() > it->velocity())
                     {
                         source = object;
-                        target = *it;
+                        target = it;
                     }else
-                    {
-                        source = *it;
+                    {   source = it;
                         target = object;
                     }
 
-                    const float minDistSquared = std::pow(object->radius_ + (*it)->radius_, 2);
+                    const float minDistSquared = std::pow(object->radius_ + it->radius_, 2);
                     // if objects are moving
                     if (source->velocity().lengthSquare() > 0)
                     {
@@ -164,28 +163,28 @@ namespace physics
     Vector2f attract (MobileSpaceObject* attracted)
     {
         Vector2f totalAcceleration;
-        for (std::vector<SpaceObject*>::iterator it = gravitySources_.begin(); it != gravitySources_.end(); ++it)
+        for (auto& it : gravitySources_)
         {
-            float distanceSquared = (attracted->location_ - (*it)->location_).lengthSquare();
+            float distanceSquared = (attracted->location_ - it->location_).lengthSquare();
             if (distanceSquared > 100.f)
-                totalAcceleration += ((*it)->location_ - attracted->location_) * (*it)->mass_ / distanceSquared;
+                totalAcceleration += (it->location_ - attracted->location_) * it->mass_ / distanceSquared;
         }
         return totalAcceleration;
     }
 
     void causeShockWave(Player* damageSource, Vector2f const& location, float strength, float radius, float damage)
     {
-        for (std::vector<MobileSpaceObject*>::iterator it = mobileObjects_.begin(); it != mobileObjects_.end(); ++it)
+        for (auto& it : mobileObjects_)
         {
-            Vector2f direction((*it)->location_ - location);
+            Vector2f direction(it->location_ - location);
             float distance = direction.length();
             if (distance < radius && direction != Vector2f())
             {
                 float intensity = ((radius-distance)/radius);
                 direction /= distance;
                 direction *= (intensity*strength);
-                (*it)->velocity() += direction;
-                (*it)->onShockWave(damageSource, intensity*damage);
+                it->velocity() += direction;
+                it->onShockWave(damageSource, intensity*damage);
             }
         }
         particles::shockWave(location, strength, radius);
@@ -198,7 +197,7 @@ namespace physics
 
     void removeMobileObject (MobileSpaceObject* object)
     {
-        for (std::vector<MobileSpaceObject*>::iterator it = mobileObjects_.begin(); it != mobileObjects_.end(); ++it)
+        for (auto it = mobileObjects_.begin(); it != mobileObjects_.end(); ++it)
             if (*it == object)
             {
                 mobileObjects_.erase(it);
@@ -213,7 +212,7 @@ namespace physics
 
     void removeStaticObject (SpaceObject* object)
     {
-        for (std::vector<SpaceObject*>::iterator it = staticObjects_.begin(); it != staticObjects_.end(); ++it)
+        for (auto it = staticObjects_.begin(); it != staticObjects_.end(); ++it)
             if (*it == object)
             {
                 staticObjects_.erase(it);

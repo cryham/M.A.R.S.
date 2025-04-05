@@ -74,8 +74,9 @@ void BotController::kickBallToEnemy()
             if ((balls::getBall()->location_-shipLocation).lengthSquare() < 5000.f)
             {
                 bool ballIsCloseToPlanet(false);
-                for (std::vector<SpaceObject*>::const_iterator it = spaceObjects::getObjects().begin(); it != spaceObjects::getObjects().end(); ++it)
-                    if ((*it)->type() != spaceObjects::oBlackHole && ((*it)->location() - aimPosition).lengthSquare() < std::pow((*it)->radius(), 2))
+                for (const auto& it : spaceObjects::getObjects())
+                    if (it->type() != spaceObjects::oBlackHole &&
+                        (it->location() - aimPosition).lengthSquare() < std::pow(it->radius(), 2))
                     {
                         ballIsCloseToPlanet = true;
                         break;
@@ -168,15 +169,15 @@ void BotController::attackAny()
     {
         std::vector<Ship*> const& ships = ships::getShips();
         float maxDistance(FLT_MAX);
-        for (std::vector<Ship*>::const_iterator it = ships.begin(); it != ships.end(); ++it)
+        for (const auto& it : ships)
         {
-            if ((*it)->owner_->team() != slave_->team() && (*it)->attackable())
+            if (it->owner_->team() != slave_->team() && it->attackable())
             {
-                float distance = ((*it)->location() - ship()->location_).lengthSquare()*(*it)->getLife();
+                float distance = (it->location() - ship()->location_).lengthSquare() * it->getLife();
                 if (distance < maxDistance)
                 {
                     maxDistance = distance;
-                    target_ = (*it);
+                    target_ = it;
                 }
             }
         }

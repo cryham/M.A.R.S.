@@ -25,8 +25,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Controllers/KeyController.hpp"
 #include "Games/games.hpp"
 #include "Controllers/BotController.hpp"
-
 #include <set>
+
 
 Team::Team(Color3f const& color):
     evaluationTimer_(0.f),
@@ -99,8 +99,8 @@ void Team::addVictory() const
 
 void Team::addStars() const
 {
-    for(std::vector<Player*>::const_iterator it=members_.begin(); it!=members_.end(); ++it)
-        ++(*it)->ship()->fragStars_;
+    for (const auto& it : members_)
+        ++it->ship()->fragStars_;
 }
 
 void Team::evaluate()
@@ -111,28 +111,29 @@ void Team::evaluate()
     {
         createJobs();
 
-        for (std::vector<BotController*>::iterator it=botControllers_.begin(); it!=botControllers_.end(); ++it)
-            (*it)->evaluate();
+        for (auto& it : botControllers_)
+            it->evaluate();
 
-        for (std::vector<KeyController*>::iterator it=keyControllers_.begin(); it!=keyControllers_.end(); ++it)
-            (*it)->evaluate();
+        for (auto& it : keyControllers_)
+            it->evaluate();
 
-        for (std::vector<BotController*>::iterator it=botControllers_.begin(); it!=botControllers_.end(); ++it)
-            (*it)->applyForJob(jobMap_);
+        for (auto& it : botControllers_)
+            it->applyForJob(jobMap_);
 
         std::set<BotController*> unemployedBots(botControllers_.begin(), botControllers_.end());
         bool botsLeft(true);
 
         while (botsLeft)
         {
-            std::multimap<Job, std::multimap<short, BotController*> >::iterator mostWantedJob;
-            BotController* mostWanting=NULL;
+            JobMap::iterator mostWantedJob;
+            BotController* mostWanting = NULL;
             short highestDesire(0);
 
-            for (std::multimap<Job, std::multimap<short, BotController*> >::iterator it=jobMap_.begin(); it!=jobMap_.end(); ++it)
+            for (auto it = jobMap_.begin(); it != jobMap_.end(); ++it)
             {
-                std::multimap<short, BotController*>::reverse_iterator bot=it->second.rbegin();
-                while (bot != it->second.rend() && unemployedBots.find(bot->second) == unemployedBots.end())
+                auto bot = it->second.rbegin();
+                while (bot != it->second.rend() &&
+                    unemployedBots.find(bot->second) == unemployedBots.end())
                     ++bot;
                 
                 if (bot != it->second.rend() && bot->first > highestDesire)
@@ -153,7 +154,7 @@ void Team::evaluate()
                 botsLeft = false;
         }
 
-        for (std::set<BotController*>::iterator it=unemployedBots.begin(); it!=unemployedBots.end(); ++it)
-            (*it)->assignJob(Job(Job::jLand, 10));
+        for (auto& it : unemployedBots)
+            it->assignJob(Job(Job::jLand, 10));
     }
 }

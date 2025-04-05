@@ -268,7 +268,6 @@ namespace settings
             outStream << "[enabledSpecials] "       << C_EnabledSpecialsByUser << std::endl;
 
             outStream.close();
-
             return true;
         }
         else
@@ -314,11 +313,11 @@ namespace settings
 
                 if (std::ifstream((C_configPath + "mars.cfg").c_str()))
                     success = true;
-                else if (std::ifstream((home + ".marsshooter/mars.cfg").c_str())) {
+                else if (std::ifstream((home + ".marsshooter/mars.cfg").c_str()))
+                {
                     C_configPath =      home + ".marsshooter/";
                     success = true;
-                }
-                else
+                }else
                     C_configPath =      home + ".marsshooter/";
             #endif
 
@@ -329,11 +328,11 @@ namespace settings
 
                 if (std::ifstream((C_configPath + "mars.cfg").c_str()))
                     success = true;
-                else if (std::ifstream((home + "/.marsshooter/mars.cfg").c_str())) {
+                else if (std::ifstream((home + "/.marsshooter/mars.cfg").c_str()))
+                {
                     C_configPath =      home + "/.marsshooter/";
                     success = true;
-                }
-                else
+                }else
                     C_configPath =      home + "/.marsshooter/";
             #endif
 
@@ -341,22 +340,21 @@ namespace settings
                 std::string home(getenv("HOME"));
                 if (*home.rbegin() != '/') home += '/';
 
-                if (std::ifstream((home + "Library/Preferences/mars/mars.cfg").c_str())) {
+                if (std::ifstream((home + "Library/Preferences/mars/mars.cfg").c_str()))
+                {
                     C_configPath =      home + "Library/Preferences/mars/";
                     success = true;
-                }
-                else {
+                }else
                     C_configPath =      home + "Library/Preferences/mars/";
-                }
             #endif
-
 
             if (success) std::cout << "Found " << C_configPath << "mars.cfg"  << std::endl;
             else         std::cout << "Found nothing. Will create a new one." << std::endl;
         }
 
         // search for data files
-        if (C_dataPath == "") {
+        if (C_dataPath == "")
+        {
             bool success(false);
             std::cout << "Searching for data files... " << std::flush;
             C_dataPath = "./data/";
@@ -403,9 +401,11 @@ namespace settings
         }
 
         std::vector<sf::String> lines;
-        if (file::load(C_configPath + "mars.cfg", lines)) {
-            for (std::vector<sf::String>::iterator it = lines.begin(); it != lines.end(); ++it) {
-                std::istringstream iss (it->toAnsiString());
+        if (file::load(C_configPath + "mars.cfg", lines))
+        {
+            for (auto& it : lines)
+            {
+                std::istringstream iss (it.toAnsiString());
                 std::string inputLine;
                 iss >> inputLine;
                 if      (inputLine == "[soundVolume]") {

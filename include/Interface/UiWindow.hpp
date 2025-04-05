@@ -21,6 +21,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include <vector>
 
+
 class UiWindow: public UiElement
 {
     public:

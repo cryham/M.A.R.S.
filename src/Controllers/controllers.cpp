@@ -31,36 +31,42 @@ namespace controllers
         std::vector<BotController*> botControllers_;
     }
 
-    void update() {
+    void update()
+    {
         if (keyControllers1_ != NULL && (settings::C_playerIteamL | settings::C_playerIteamR))
             keyControllers1_->update();
         if (keyControllers2_ != NULL && (settings::C_playerIIteamL | settings::C_playerIIteamR))
             keyControllers2_->update();
 
-        for (std::vector<BotController*>::iterator it = botControllers_.begin(); it != botControllers_.end(); ++it)
-            (*it)->update();
+        for (auto& it : botControllers_)
+            it->update();
     }
 
-    void singleKeyEvent(Key const& keyCode) {
+    void singleKeyEvent(Key const& keyCode)
+    {
         if (keyControllers1_ != NULL && (settings::C_playerIteamL | settings::C_playerIteamR))
             keyControllers1_->update(keyCode);
         if (keyControllers2_ != NULL && (settings::C_playerIIteamL | settings::C_playerIIteamR))
             keyControllers2_->update(keyCode);
     }
 
-    void draw() {
-        for (std::vector<BotController*>::iterator it = botControllers_.begin(); it != botControllers_.end(); ++it)
-            (*it)->draw();
+    void draw()
+    {
+        for (const auto& it : botControllers_)
+            it->draw();
     }
 
-    BotController* addBotController(Player* slave, float strength) {
+    BotController* addBotController(Player* slave, float strength)
+    {
         BotController* bot = new BotController(slave, strength);
         botControllers_.push_back(bot);
         return bot;
     }
 
-    KeyController* addKeyController(Player* slave) {
-        switch (slave->type()) {
+    KeyController* addKeyController(Player* slave)
+    {
+        switch (slave->type())
+        {
             case cPlayer1:
                 keyControllers1_ = new KeyController(slave);
                 return keyControllers1_;
@@ -70,21 +76,21 @@ namespace controllers
         }
     }
 
-    void resetBots() {
-        for (std::vector<BotController*>::iterator it = botControllers_.begin(); it != botControllers_.end(); ++it)
-            (*it)->reset();
+    void resetBots()
+    {
+        for (auto& it : botControllers_)
+            it->reset();
     }
 
-    void clear() {
+    void clear()
+    {
         delete keyControllers1_;
         delete keyControllers2_;
         keyControllers1_ = NULL;
         keyControllers2_ = NULL;
 
-        for (std::vector<BotController*>::iterator it = botControllers_.begin(); it != botControllers_.end(); ++it)
-            delete *it;
+        for (auto& it : botControllers_)
+            delete it;
         botControllers_.clear();
     }
 }
-
-

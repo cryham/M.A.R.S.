@@ -26,6 +26,7 @@ namespace balls
         Ball* ball_(NULL);
     }
 
+
     void addBall(Vector2f const& location)
     {
         // temporary list of all homes
@@ -34,8 +35,8 @@ namespace balls
         if (homes.size() >= 2 && location == Vector2f(0,0))
         {
             Vector2f midPoint;
-            for (std::vector<Home*>::const_iterator it = homes.begin(); it != homes.end(); ++it)
-                midPoint += (*it)->location();
+            for (const auto& it : homes)
+                midPoint += it->location();
             midPoint /= homes.size();
 
             ball_ = new Ball(midPoint);
@@ -69,4 +70,3 @@ namespace balls
         }
     }
 }
-

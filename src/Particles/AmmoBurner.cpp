@@ -24,10 +24,13 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Media/sound.hpp"
 #include "System/randomizer.hpp"
 
+
 std::list<AmmoBurner*> AmmoBurner::activeParticles_;
 
-AmmoBurner::AmmoBurner(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity, Color3f const& color, Player* damageSource):
-         Particle<AmmoBurner>(spaceObjects::oAmmoBurner, location, 1.f, 0.f, randomizer::random(0.4f, 0.5f))
+
+AmmoBurner::AmmoBurner(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,
+        Color3f const& color, Player* damageSource)
+    :Particle<AmmoBurner>(spaceObjects::oAmmoBurner, location, 1.f, 0.f, randomizer::random(0.4f, 0.5f))
 {
     setDamageSource(damageSource);
     Vector2f distortion(Vector2f::randDirLen()*3.f);
@@ -57,10 +60,10 @@ void AmmoBurner::update()
     lifeTime_ += time;
 
     // check for collisions with ships
-    std::vector<Ship*>const& shipsList = ships::getShips();
-    for (std::vector<Ship*>::const_iterator it = shipsList.begin(); it != shipsList.end(); ++it)
-        if ((location_ - (*it)->location()).lengthSquare() < std::pow(radius_ + (*it)->radius(), 2) && (*it)->collidable())
-            (*it)->onCollision(this, location_, velocity_, velocity_);
+    const auto& shipsList = ships::getShips();
+    for (const auto& it : shipsList)
+        if ((location_ - it->location()).lengthSquare() < std::pow(radius_ + it->radius(), 2) && it->collidable())
+            it->onCollision(this, location_, velocity_, velocity_);
 
     // check for collisions with ball
     Ball* ball = balls::getBall();
@@ -81,7 +84,7 @@ void AmmoBurner::draw() const
 }
 
 void AmmoBurner::onCollision(SpaceObject* with, Vector2f const& location,
-                        Vector2f const& direction, Vector2f const& velocity) {
+                        Vector2f const& direction, Vector2f const& velocity)
+{
     killMe();
 }
-

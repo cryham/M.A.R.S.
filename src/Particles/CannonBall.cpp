@@ -24,12 +24,14 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "SpaceObjects/Home.hpp"
 #include "SpaceObjects/ships.hpp"
 
+
 std::list<CannonBall*> CannonBall::activeParticles_;
 
-CannonBall::CannonBall(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity, Color3f const& color, Player* damageSource):
-         Particle<CannonBall>(spaceObjects::oCannonBall, location, 25.f, 30.0f, 5.0f),
-         timer1_(0.f),
-         timer2_(0.f)
+
+CannonBall::CannonBall(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity, Color3f const& color, Player* damageSource)
+    :Particle<CannonBall>(spaceObjects::oCannonBall, location, 25.f, 30.0f, 5.0f)
+    ,timer1_(0.f)
+    ,timer2_(0.f)
 {
     velocity_ = direction*300.f;
 }
@@ -42,8 +44,7 @@ void CannonBall::update()
     if (timer1_ > 0)
         timer1_ -= time;
     else
-    {
-        timer1_ = 0.03f / settings::C_globalParticleCount;
+    {   timer1_ = 0.03f / settings::C_globalParticleCount;
         for (int i=0; i < 20; ++i)
         {
             particles::spawn(particles::pSmoke, location_+Vector2f::randDirLen()*15.f, velocity_);
@@ -60,21 +61,21 @@ void CannonBall::update()
 
     // check for collisions with homes
     std::vector<Home*>const& homes = spaceObjects::getHomes();
-    for (std::vector<Home*>::const_iterator it = homes.begin(); it != homes.end(); ++it)
+    for (const auto& it : homes)
     {
-        if ((location_ - (*it)->location()).lengthSquare() < std::pow(radius_ + (*it)->radius(), 2))
+        if ((location_ - it->location()).lengthSquare() < std::pow(radius_ + it->radius(), 2))
         {
-            (*it)->onCollision(this, Vector2f(), Vector2f(), Vector2f());
+            it->onCollision(this, Vector2f(), Vector2f(), Vector2f());
             killMe();
         }
     }
 
     // check for collisions with ships
-    std::vector<Ship*>const& shipsList = ships::getShips();
-    for (std::vector<Ship*>::const_iterator it = shipsList.begin(); it != shipsList.end(); ++it)
-        if ((location_ - (*it)->location()).lengthSquare() < std::pow(radius_ + (*it)->radius(), 2) && (*it)->collidable())
+    const auto& shipsList = ships::getShips();
+    for (const auto& it : shipsList)
+        if ((location_ - it->location()).lengthSquare() < std::pow(radius_ + it->radius(), 2) && it->collidable())
         {
-            (*it)->onCollision(this, Vector2f(), Vector2f(), Vector2f());
+            it->onCollision(this, Vector2f(), Vector2f(), Vector2f());
             killMe();
         }
 

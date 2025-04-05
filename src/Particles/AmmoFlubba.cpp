@@ -23,10 +23,15 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Media/sound.hpp"
 #include "System/randomizer.hpp"
 
+
 std::list<AmmoFlubba*> AmmoFlubba::activeParticles_;
 
-AmmoFlubba::AmmoFlubba(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity, Color3f const& color, Player* damageSource):
-         Particle<AmmoFlubba>(spaceObjects::oAmmoFlubba, location, 8.f, 1.0f, randomizer::random(12.f, 15.f))
+
+AmmoFlubba::AmmoFlubba(
+    Vector2f const& location, Vector2f const& direction,
+    Vector2f const& velocity, Color3f const& color,
+    Player* damageSource)
+    :Particle<AmmoFlubba>(spaceObjects::oAmmoFlubba, location, 8.f, 1.0f, randomizer::random(12.f, 15.f))
 {
     setDamageSource(damageSource);
     velocity_ = velocity + direction*900;
@@ -53,11 +58,13 @@ void AmmoFlubba::update()
 
     lifeTime_ += time;
 
-    if (lifeTime_ > totalLifeTime_) {
+    if (lifeTime_ > totalLifeTime_)
+    {
         particles::spawnMultiple(2, particles::pMud, location_, Vector2f(), Vector2f(), color_);
-        int rand = randomizer::random(8, 20);
         sound::playSound(sound::BlubCollide, location_);
-        for (int i=0; i<rand; ++i)
+
+        int rand = randomizer::random(8, 20);
+        for (int i=0; i < rand; ++i)
             particles::spawn(particles::pMiniAmmoFlubba, location_, Vector2f(), Vector2f(), Color3f(), damageSource_);
     }
 }
@@ -74,8 +81,12 @@ void AmmoFlubba::draw() const
 }
 
 void AmmoFlubba::onCollision(SpaceObject* with, Vector2f const& location,
-                        Vector2f const& direction, Vector2f const& velocity) {
-    if (!isDead() && with->type() != spaceObjects::oAmmoFlubba && with->type() != spaceObjects::oMiniAmmoFlubba) {
+                        Vector2f const& direction, Vector2f const& velocity)
+{
+    if (!isDead() &&
+        with->type() != spaceObjects::oAmmoFlubba &&
+        with->type() != spaceObjects::oMiniAmmoFlubba)
+    {
         physics::causeShockWave(damageSource(), location_, 350.f, 100.f, 0.f);
         sound::playSound(sound::BlubCollide, location_);
         killMe();
@@ -84,14 +95,16 @@ void AmmoFlubba::onCollision(SpaceObject* with, Vector2f const& location,
 
 void AmmoFlubba::shockWave(Vector2f const& location, float strength, float radius)
 {
-    for (std::list<AmmoFlubba*>::iterator it = activeParticles_.begin(); it != activeParticles_.end(); ++it) {
-        Vector2f direction((*it)->location_ - location);
+    for (auto& it : activeParticles_)
+    {
+        Vector2f direction(it->location_ - location);
         float distance = direction.length();
-        if (distance < radius && direction != Vector2f()) {
+        if (distance < radius && direction != Vector2f())
+        {
             float intensity = radius-distance;
             direction = direction.normalize();
             direction *= intensity;
-            (*it)->velocity_ += direction;
+            it->velocity_ += direction;
         }
     }
 }

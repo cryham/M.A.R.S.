@@ -28,6 +28,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include <SFML/Graphics.hpp>
 #include <vector>
 
+
 void Heal::draw(float alpha) const
 {
     glBlendFunc(GL_SRC_ALPHA, GL_ONE);
@@ -78,20 +79,20 @@ void Heal::activate() const
     if (parent_->fragStars_ > 0  && timer_ <= 0.f)
     {
         radius_ = radius();
-        std::vector<Ship*> const& ships = ships::getShips();
-        for (std::vector<Ship*>::const_iterator it=ships.begin(); it!=ships.end(); ++it)
+        const auto& ships = ships::getShips();
+        for (const auto& it : ships)
         {
-            if ((*it)!=parent_)
+            if (it != parent_)
             {
-                float distance(((*it)->location()-parent_->location()).length());
-                if ((*it)->collidable() && parent_->getOwner()->team() == (*it)->getOwner()->team() && distance <= radius_)
+                float distance((it->location()-parent_->location()).length());
+                if (it->collidable() && parent_->getOwner()->team() == it->getOwner()->team() && distance <= radius_)
                 {
-                    (*it)->heal(parent_->getOwner(), ((radius_/distance)-0.8f)*parent_->fragStars_*30);
-                    (*it)->refuel(parent_->getOwner(), ((radius_/distance)-0.8f)*parent_->fragStars_*30);
+                    it->heal(  parent_->getOwner(), ((radius_/distance)-0.8f)*parent_->fragStars_*30);
+                    it->refuel(parent_->getOwner(), ((radius_/distance)-0.8f)*parent_->fragStars_*30);
                 }
             }else
             {
-                parent_->heal(parent_->getOwner(), parent_->fragStars_*30);
+                parent_->heal(  parent_->getOwner(), parent_->fragStars_*30);
                 parent_->refuel(parent_->getOwner(), parent_->fragStars_*30);
             }
         }

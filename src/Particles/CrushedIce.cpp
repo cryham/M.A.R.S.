@@ -21,10 +21,12 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "System/settings.hpp"
 #include "System/randomizer.hpp"
 
+
 std::list<CrushedIce*> CrushedIce::activeParticles_;
 
-CrushedIce::CrushedIce(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity, Color3f const& color, Player* damageSource):
-           Particle<CrushedIce>(spaceObjects::oDust, location, 4, 0, randomizer::random(0.5f, 1.5f)*settings::C_globalParticleLifeTime/100.f)
+
+CrushedIce::CrushedIce(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity, Color3f const& color, Player* damageSource)
+    :Particle<CrushedIce>(spaceObjects::oDust, location, 4, 0, randomizer::random(0.5f, 1.5f)*settings::C_globalParticleLifeTime/100.f)
 {
     velocity_ = Vector2f::randDir()*20*randomizer::random(1.f, 2.f)*randomizer::random(1.f, 2.f);
 
@@ -59,14 +61,16 @@ void CrushedIce::draw() const
 
 void CrushedIce::shockWave(Vector2f const& location, float strength, float radius)
 {
-    for (std::list<CrushedIce*>::iterator it = activeParticles_.begin(); it != activeParticles_.end(); ++it) {
-        Vector2f direction((*it)->location_ - location);
+    for (auto& it : activeParticles_)
+    {
+        Vector2f direction(it->location_ - location);
         float distance = direction.length();
-        if (distance < radius && direction != Vector2f()) {
+        if (distance < radius && direction != Vector2f())
+        {
             float intensity = radius-distance;
             direction = direction.normalize();
             direction *= intensity;
-            (*it)->velocity_ += direction;
+            it->velocity_ += direction;
         }
     }
 }

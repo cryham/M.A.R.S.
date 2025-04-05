@@ -34,6 +34,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include <sstream>
 #include <iomanip>
 
+
 // helper function
 void inline writeScoreAtCol(sf::String value, int col, Vector2f topLeft, int mirror, Color3f drawColor)
 {
@@ -57,20 +58,23 @@ TabStats::TabStats():
 
 void TabStats::update()
 {
-    if (visible_ || refresh_) {
+    if (visible_ || refresh_)
+    {
         // check for necessity of a map-update
         int currentPoints(0);
-        for (std::vector<Team*>::const_iterator it = teams::getAllTeams().begin(); it != teams::getAllTeams().end(); ++it)
-            currentPoints += (*it)->points();
+        for (auto& it : teams::getAllTeams())
+            currentPoints += it->points();
 
-        if (currentPoints != sumPoints_ || refresh_) {
+        if (currentPoints != sumPoints_ || refresh_)
+        {
             refresh_ = false;
             sumPoints_ = currentPoints;
             // create Map
             teamMap_ = std::multimap<Team*, std::multiset<Player*, playerPtrCmp>, teamPtrCmp >();
             std::vector<Team*>const& teams = teams::getAllTeams();
-            for (std::vector<Team*>::const_iterator it = teams.begin(); it != teams.end(); ++it)
-                teamMap_.insert(std::make_pair(*it, std::multiset<Player*, playerPtrCmp>((*it)->members().begin(), (*it)->members().end())));
+            for (const auto& it : teams)
+                teamMap_.insert(std::make_pair(it,
+                    std::multiset<Player*, playerPtrCmp>(it->members().begin(), it->members().end())));
         }
     }
 }
@@ -191,7 +195,8 @@ void TabStats::draw() const
         int pointlimit;
         sf::String name = *locales::getLocale(locales::Fraglimit);
 
-         switch (games::type()) {
+         switch (games::type())
+         {
             case games::gSpaceBall:
                 pointlimit = settings::C_pointLimitSB;
                 name       = *locales::getLocale(locales::Pointlimit);
@@ -223,7 +228,7 @@ void TabStats::draw() const
 
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-        width -= 20*mirror;
+        width -= 20 * mirror;
         height = 12 * scale;
         topLeft += Vector2f(10.f*mirror, 60.f);
 
@@ -238,19 +243,23 @@ void TabStats::draw() const
         text::drawScreenText(*locales::getLocale(locales::Frags), topLeft + Vector2f((140+80*col++)*mirror, 0), 12.f, TEXT_ALIGN_CENTER, Color3f(0.7f, 0.7f, 0.7f));
         if (games::type() != games::gDeathMatch && games::type() != games::gRally)
             text::drawScreenText(*locales::getLocale(locales::TeamKills), topLeft + Vector2f((140+80*col++)*mirror, 0), 12.f, TEXT_ALIGN_CENTER, Color3f(0.7f, 0.7f, 0.7f));
+        
         text::drawScreenText(*locales::getLocale(locales::Suicides), topLeft + Vector2f((140+80*col++)*mirror, 0), 12.f, TEXT_ALIGN_CENTER, Color3f(0.7f, 0.7f, 0.7f));
         text::drawScreenText(*locales::getLocale(locales::Deaths), topLeft + Vector2f((140+80*col++)*mirror, 0), 12.f, TEXT_ALIGN_CENTER, Color3f(0.7f, 0.7f, 0.7f));
 
         topLeft.y_ += 15 * scale;
 
-        for (std::multimap<Team*, std::multiset<Player*, playerPtrCmp>, teamPtrCmp >::const_iterator it = teamMap_.begin(); it != teamMap_.end(); ++it) {
-            int totalPoints(0), totalFrags(0), totalCannonShots(0), totalGoals(0), totalSelfGoals(0), totalSuicides(0), totalTeamKills(0), totalDeaths(0);
+        for (auto it = teamMap_.begin(); it != teamMap_.end(); ++it)
+        {
+            int totalPoints(0), totalFrags(0), totalCannonShots(0), totalGoals(0),
+                totalSelfGoals(0), totalSuicides(0), totalTeamKills(0), totalDeaths(0);
             Color3f teamColor = it->first->color();
             teamColor.v(1.f);
             teamColor.s(0.5f);
             std::multiset<Player*, playerPtrCmp>const& members = it->second;
-            for (std::multiset<Player*, playerPtrCmp>::iterator currentPlayer = members.begin(); currentPlayer != members.end(); ++currentPlayer) {
-                if ((*currentPlayer)->controlType_ == controllers::cPlayer1 || (*currentPlayer)->controlType_ == controllers::cPlayer2)
+            for (auto& player : members)
+            {
+                if (player->controlType_ == controllers::cPlayer1 || player->controlType_ == controllers::cPlayer2)
                     teamColor.gl4f(0.4 + std::sin(timer::totalTime()*150.f)*0.1f);
                 else
                     teamColor.gl4f(0.2);
@@ -262,75 +271,90 @@ void TabStats::draw() const
                     glVertex2f(topLeft.x_,topLeft.y_+height+1);
                 glEnd();
 
-                Color3f drawColor((*currentPlayer)->color());
+                Color3f drawColor(player->color());
                 drawColor.v(1.f);
                 drawColor.s(0.8f);
                 // draw name, shadowed
-                text::drawScreenText((*currentPlayer)->name(), topLeft + Vector2f(3*mirror, 1), 12.f, TEXT_ALIGN_LEFT, Color3f(0.f, 0.f, 0.f));
-                text::drawScreenText((*currentPlayer)->name(), topLeft + Vector2f(2*mirror, 0), 12.f, TEXT_ALIGN_LEFT, drawColor);
+                text::drawScreenText(player->name(), topLeft + Vector2f(3*mirror, 1), 12.f, TEXT_ALIGN_LEFT, Color3f(0.f, 0.f, 0.f));
+                text::drawScreenText(player->name(), topLeft + Vector2f(2*mirror, 0), 12.f, TEXT_ALIGN_LEFT, drawColor);
                 // draw [BOT]
-                /*if ((*currentPlayer)->controlType_ != controllers::cPlayer1 && (*currentPlayer)->controlType_ != controllers::cPlayer2) {
-                    text::drawScreenText(sf::String("[BOT]"), topLeft+Vector2f(81*mirror,1), 12.f, TEXT_ALIGN_LEFT, Color3f(0.f, 0.f, 0.f));
+                /*if (player->controlType_ != controllers::cPlayer1 && player->controlType_ != controllers::cPlayer2)
+                {   text::drawScreenText(sf::String("[BOT]"), topLeft+Vector2f(81*mirror,1), 12.f, TEXT_ALIGN_LEFT, Color3f(0.f, 0.f, 0.f));
                     text::drawScreenText(sf::String("[BOT]"), topLeft+Vector2f(80*mirror,0), 12.f, TEXT_ALIGN_LEFT, drawColor);
                 }*/
                 col = 0;
+                
                 // draw points
-                int value = (*currentPlayer)->points_;
+                int value = player->points_;
                 if (value > 0)      drawColor = Color3f(0.3,1,0.3);
                 else if (value < 0) drawColor = Color3f(1,0.3,0.3);
                 else                drawColor = Color3f(1,1,0.3);
+                
                 writeScoreAtCol(value, col++, topLeft, mirror, drawColor);
                 totalPoints += value;
+                
                 // draw cannonShots
-                if (games::type() == games::gCannonKeep) {
-                    value = (*currentPlayer)->cannonShots_;
+                if (games::type() == games::gCannonKeep)
+                {
+                    value = player->cannonShots_;
                     if (value > 0)      drawColor = Color3f(0.3,1,0.3);
                     else                drawColor = Color3f(1,1,0.3);
                     writeScoreAtCol(value, col++, topLeft, mirror, drawColor);
                     totalCannonShots += value;
                 }
                 // draw goals
-                else if (games::type() == games::gSpaceBall) {
-                    value = (*currentPlayer)->goals_ + (*currentPlayer)->selfGoals_;
+                else if (games::type() == games::gSpaceBall)
+                {
+                    value = player->goals_ + player->selfGoals_;
                     std::stringstream sstr;
-                    sstr << (*currentPlayer)->goals_ << "/" << (*currentPlayer)->selfGoals_;
+                    sstr << player->goals_ << "/" << player->selfGoals_;
+                    
                     if (value > 0)      drawColor = Color3f(0.3,1,0.3);
                     else if (value < 0) drawColor = Color3f(1,0.3,0.3);
                     else                drawColor = Color3f(1,1,0.3);
+                    
                     writeScoreAtCol(sf::String(sstr.str()), col++, topLeft, mirror, drawColor);
-                    totalGoals += (*currentPlayer)->goals_;
-                    totalSelfGoals += (*currentPlayer)->selfGoals_;
+                    totalGoals += player->goals_;
+                    totalSelfGoals += player->selfGoals_;
                 }
                 // draw frags
-                value = (*currentPlayer)->frags_;
-                if (value > 0)      drawColor = Color3f(0.3,1,0.3);
-                else                drawColor = Color3f(1,1,0.3);
+                value = player->frags_;
+                if (value > 0)  drawColor = Color3f(0.3,1,0.3);
+                else            drawColor = Color3f(1,1,0.3);
+                
                 writeScoreAtCol(value, col++, topLeft, mirror, drawColor);
                 totalFrags += value;
+                
                 // draw teamKills
-                if (games::type() != games::gDeathMatch && games::type() != games::gRally) {
-                    value = (*currentPlayer)->teamKills_;
-                    if (value > 0)      drawColor = Color3f(1,0.3,0.3);
-                    else                drawColor = Color3f(0.3,1,0.3);
+                if (games::type() != games::gDeathMatch && games::type() != games::gRally)
+                {
+                    value = player->teamKills_;
+                    if (value > 0)  drawColor = Color3f(1,0.3,0.3);
+                    else            drawColor = Color3f(0.3,1,0.3);
+                    
                     writeScoreAtCol(value, col++, topLeft, mirror, drawColor);
                     totalTeamKills += value;
                 }
                 // draw suicides
-                value = (*currentPlayer)->suicides_;
-                if (value > 0)      drawColor = Color3f(1,0.3,0.3);
-                else                drawColor = Color3f(0.3,1,0.3);
+                value = player->suicides_;
+                if (value > 0)  drawColor = Color3f(1,0.3,0.3);
+                else            drawColor = Color3f(0.3,1,0.3);
+                
                 writeScoreAtCol(value, col++, topLeft, mirror, drawColor);
                 totalSuicides += value;
+                
                 // draw deaths
-                value = (*currentPlayer)->deaths_;
-                if (value > 0)      drawColor = Color3f(1,0.3,0.3);
-                else                drawColor = Color3f(0.3,1,0.3);
+                value = player->deaths_;
+                if (value > 0)  drawColor = Color3f(1,0.3,0.3);
+                else            drawColor = Color3f(0.3,1,0.3);
+                
                 writeScoreAtCol(value, col++, topLeft, mirror, drawColor);
                 totalDeaths += value;
 
                 topLeft.y_ += 12 * scale;
             }
-            if (games::type() != games::gDeathMatch && games::type() != games::gRally) {
+            if (games::type() != games::gDeathMatch && games::type() != games::gRally)
+            {
                 topLeft.y_ += 2 * scale;
                 col = 0;
 
@@ -343,22 +367,27 @@ void TabStats::draw() const
                 glEnd();
 
                 Color3f drawColor(teamColor);
-                text::drawScreenText(*locales::getLocale(locales::Total), topLeft + Vector2f(2*mirror, 0), 12.f, TEXT_ALIGN_LEFT, drawColor);
+                text::drawScreenText(*locales::getLocale(locales::Total),
+                    topLeft + Vector2f(2*mirror, 0), 12.f, TEXT_ALIGN_LEFT, drawColor);
 
                 if (totalPoints > 0)      drawColor = Color3f(0.3,1,0.3);
                 else if (totalPoints < 0) drawColor = Color3f(1,0.3,0.3);
-                else                              drawColor = Color3f(1,1,0.3);
+                else                      drawColor = Color3f(1,1,0.3);
                 writeScoreAtCol(totalPoints, col++, topLeft, mirror, drawColor);
 
-                if (games::type() == games::gCannonKeep) {
-                    if (totalCannonShots > 0)     drawColor = Color3f(0.3,1,0.3);
-                    else                          drawColor = Color3f(1,1,0.3);
+                if (games::type() == games::gCannonKeep)
+                {
+                    if (totalCannonShots > 0) drawColor = Color3f(0.3,1,0.3);
+                    else                      drawColor = Color3f(1,1,0.3);
                     writeScoreAtCol(totalCannonShots, col++, topLeft, mirror, drawColor);
-                } else if (games::type() == games::gSpaceBall) {
+                }
+                else if (games::type() == games::gSpaceBall)
+                {
                     const int goalDiff (totalGoals + totalSelfGoals);
                     if (goalDiff > 0)      drawColor = Color3f(0.3,1,0.3);
                     else if (goalDiff < 0) drawColor = Color3f(1,0.3,0.3);
                     else                   drawColor = Color3f(1,1,0.3);
+                    
                     std::stringstream sstr;
                     sstr << totalGoals << "/" <<totalSelfGoals;
                     writeScoreAtCol(sf::String(sstr.str()), col++, topLeft, mirror, drawColor);
@@ -377,7 +406,7 @@ void TabStats::draw() const
                 writeScoreAtCol(totalSuicides, col++, topLeft, mirror, drawColor);
 
                 if (totalDeaths > 0)  drawColor = Color3f(1,0.3,0.3);
-                else                    drawColor = Color3f(0.3,1,0.3);
+                else                  drawColor = Color3f(0.3,1,0.3);
                 writeScoreAtCol(totalDeaths, col++, topLeft, mirror, drawColor);
 
                 topLeft.y_ += 18 * scale;

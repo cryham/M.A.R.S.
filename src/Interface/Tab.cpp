@@ -17,69 +17,79 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "Interface/Tab.hpp"
 
-#include "System/settings.hpp"
-#include "System/window.hpp"
 #include "Interface/TabList.hpp"
 #include "Menu/menus.hpp"
 #include "Locales/locales.hpp"
 
 #include <SFML/OpenGL.hpp>
 
-Tab::Tab (sf::String* name, int width, bool* activated):
-    UiElement(Vector2f() * 1.f/scale_, width * 1.f/scale_, 20),
-    focusedWidget_(NULL),
-    name_(name),
-    activated_(activated),
-    active_(false)
+
+Tab::Tab (sf::String* name, int width, bool* activated)
+    :UiElement(Vector2f() * 1.f/scale_, width * 1.f/scale_, 20)
+    ,focusedWidget_(NULL)
+    ,name_(name)
+    ,activated_(activated)
+    ,active_(false)
 {   }
 
 Tab::~Tab()
 {
-    for (std::vector<UiElement*>::iterator i=widgets_.begin(); i != widgets_.end(); ++i)
-        delete *i;
+    for (auto& it : widgets_)
+        delete it;
 }
 
 void Tab::mouseMoved(Vector2f const& position)
 {
     int mirror(locales::getCurrentLocale().LTR_ ? 1 : -1);
     Vector2f topLeftAbs(getTopLeft() + topLeft_*mirror-Vector2f(0.f, 10.f));
-    if (locales::getCurrentLocale().LTR_) {
-        if ((!sf::Mouse::isButtonPressed(sf::Mouse::Left) || pressed_) && topLeftAbs.x_+width_ > position.x_ && topLeftAbs.y_+height_ > position.y_ && topLeftAbs.x_ < position.x_ && topLeftAbs.y_ < position.y_)
+    
+    if (locales::getCurrentLocale().LTR_)
+    {
+        if ((!sf::Mouse::isButtonPressed(sf::Mouse::Left) || pressed_) &&
+            topLeftAbs.x_+width_ > position.x_ &&
+            topLeftAbs.y_+height_ > position.y_ &&
+            topLeftAbs.x_ < position.x_ &&
+            topLeftAbs.y_ < position.y_)
             hovered_ = true;
         else
             hovered_ = false;
     }
     else {
-        if ((!sf::Mouse::isButtonPressed(sf::Mouse::Left) || pressed_) && topLeftAbs.x_-width_ < position.x_ && topLeftAbs.y_+height_ > position.y_ && topLeftAbs.x_ > position.x_ && topLeftAbs.y_ < position.y_)
+        if ((!sf::Mouse::isButtonPressed(sf::Mouse::Left) || pressed_) &&
+            topLeftAbs.x_-width_ < position.x_ &&
+            topLeftAbs.y_+height_ > position.y_ &&
+            topLeftAbs.x_ > position.x_ &&
+            topLeftAbs.y_ < position.y_)
             hovered_ = true;
         else
             hovered_ = false;
     }
 
     if (active_)
-        for (std::vector<UiElement*>::iterator i=widgets_.begin(); i != widgets_.end(); ++i)
-            (*i)->mouseMoved(position);
+        for (auto& it : widgets_)
+            it->mouseMoved(position);
 }
 
 void Tab::mouseWheelMoved(Vector2f const& position, int delta)
 {
     if (active_)
-        for (std::vector<UiElement*>::iterator i=widgets_.begin(); i != widgets_.end(); ++i)
-            (*i)->mouseWheelMoved(position, delta);
+        for (auto& it : widgets_)
+            it->mouseWheelMoved(position, delta);
 }
 
 void Tab::mouseLeft(bool down)
 {
     pressed_ = hovered_ && down;
 
-    if (!pressed_ && hovered_) {
+    if (!pressed_ && hovered_)
+    {
         TabList* parent(dynamic_cast<TabList*>(parent_));
         if (parent)
             parent->activate(this);
     }
     if (active_)
-        for (std::vector<UiElement*>::iterator i=widgets_.begin(); i != widgets_.end(); ++i)
-            (*i)->mouseLeft(down);
+        for (auto& it : widgets_)
+            it->mouseLeft(down);
 }
 
 void Tab::keyEvent(bool down, Key const& key)
@@ -92,28 +102,34 @@ bool Tab::tabNext()
 {
     if (!focusedWidget_ && widgets_.size() > 0) {
         int i(0);
-        while (i<widgets_.size() && !widgets_[i]->isTabable()) ++i;
-        if (i<widgets_.size()) {
+        while (i < widgets_.size() && !widgets_[i]->isTabable())
+            ++i;
+        if (i < widgets_.size())
+        {
             focusedWidget_ = widgets_[i];
             focusedWidget_->setFocus(focusedWidget_, false);
             return false;
-        }
-        else return true;
+        }else
+            return true;
     }
-    else if (focusedWidget_->tabNext()) {
+    else if (focusedWidget_->tabNext())
+    {
         int i(0);
-        while ( widgets_[i] != focusedWidget_ && i<widgets_.size()-1) ++i;
-        if (i<widgets_.size()-1) ++i;
-        while (!widgets_[i]->isTabable() && i<widgets_.size()-1)      ++i;
+        while (widgets_[i] != focusedWidget_ && i < widgets_.size()-1)
+            ++i;
+        if (i < widgets_.size()-1)
+            ++i;
+        while (!widgets_[i]->isTabable() && i < widgets_.size()-1)
+            ++i;
 
-        if (widgets_[i]->isTabable() && widgets_[i] != focusedWidget_) {
+        if (widgets_[i]->isTabable() && widgets_[i] != focusedWidget_)
+        {
             menus::clearFocus();
             focusedWidget_ = widgets_[i];
             focusedWidget_->setFocus(focusedWidget_, false);
             return false;
-        }
-        else {
-            focusedWidget_ = NULL;
+        }else
+        {   focusedWidget_ = NULL;
             return true;
         }
     }
@@ -122,30 +138,37 @@ bool Tab::tabNext()
 
 bool Tab::tabPrevious()
 {
-    if (!focusedWidget_ && widgets_.size() > 0) {
+    if (!focusedWidget_ && widgets_.size() > 0)
+    {
         int i(widgets_.size()-1);
-        while (i>=0 && !widgets_[i]->isTabable()) --i;
-        if (i>=0) {
+        while (i >= 0 && !widgets_[i]->isTabable())
+            --i;
+        if (i >= 0)
+        {
             focusedWidget_ = widgets_[i];
             focusedWidget_->setFocus(focusedWidget_, true);
             return false;
-        }
-        else return true;
+        }else
+            return true;
     }
-    else if (focusedWidget_->tabPrevious()) {
+    else if (focusedWidget_->tabPrevious())
+    {
         int i(widgets_.size()-1);
-        while ( widgets_[i] != focusedWidget_ && i>0) --i;
-        if (i > 0) --i;
-        while (!widgets_[i]->isTabable() && i>0)      --i;
+        while (widgets_[i] != focusedWidget_ && i > 0)
+            --i;
+        if (i > 0)
+            --i;
+        while (!widgets_[i]->isTabable() && i > 0)
+            --i;
 
-        if (widgets_[i]->isTabable() && widgets_[i] != focusedWidget_) {
+        if (widgets_[i]->isTabable() && widgets_[i] != focusedWidget_)
+        {
             menus::clearFocus();
             focusedWidget_ = widgets_[i];
             focusedWidget_->setFocus(focusedWidget_, true);
             return false;
-        }
-        else {
-            focusedWidget_ = NULL;
+        }else
+        {   focusedWidget_ = NULL;
             return true;
         }
     }
@@ -168,7 +191,8 @@ void Tab::draw () const
 
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-    if (!focusedWidget_ && parent_->isFocused() && isTopMost() && active_) {
+    if (!focusedWidget_ && parent_->isFocused() && isTopMost() && active_)
+    {
         glBegin(GL_QUADS);
             setColor4f(0.5, 0.8, 1.0, 0.7);
             glVertex2f(origin.x_+width(),origin.y_);
@@ -179,8 +203,10 @@ void Tab::draw () const
         glEnd();
     }
 
-    if (active_) {
-        if (isTopMost()) {
+    if (active_)
+    {
+        if (isTopMost())
+        {
             glBegin(GL_QUADS);
                 setColor4f(0.5, 0.8, 1.0, 0.7);
                 glVertex2f(origin.x_+width(),origin.y_);
@@ -190,7 +216,6 @@ void Tab::draw () const
                 glVertex2f(origin.x_+width(),origin.y_+height_*0.5);
             glEnd();
         }
-
         glLineWidth(2.f);
         glBegin(GL_LINE_STRIP);
             if (isTopMost())  setColor4f(0.5f, 0.8f, 1.0f, 1.0f);
@@ -200,8 +225,8 @@ void Tab::draw () const
             glVertex2f(origin.x_+width(),origin.y_);
             glVertex2f(origin.x_+width(),origin.y_+height_);
         glEnd();
-    }
-    else {
+    }else
+    {
         glLineWidth(2.f);
         glBegin(GL_LINES);
             if (isTopMost())  setColor4f(0.5f, 0.8f, 1.0f, 1.0f);
@@ -211,20 +236,23 @@ void Tab::draw () const
         glEnd();
 
     }
-
     // draw Label
     label_->draw();
 
     if (active_)
-        for (std::vector<UiElement*>::const_iterator i=widgets_.begin(); i != widgets_.end(); ++i)
-            (*i)->draw();
+        for (auto& it : widgets_)
+            it->draw();
 }
 
 void Tab::setFocus(UiElement* toBeFocused, bool isPrevious)
 {
     UiElement::setFocus(this, isPrevious);
-    if (toBeFocused != this) focusedWidget_ = toBeFocused;
-    else                     focusedWidget_ = NULL;
+
+    if (toBeFocused != this)
+        focusedWidget_ = toBeFocused;
+    else
+        focusedWidget_ = NULL;
+
     label_->setFocus(this, isPrevious);
 }
 
@@ -232,8 +260,9 @@ void Tab::clearFocus()
 {
     UiElement::clearFocus();
     focusedWidget_ = NULL;
-    for (std::vector<UiElement*>::iterator i=widgets_.begin(); i != widgets_.end(); ++i)
-        (*i)->clearFocus();
+
+    for (auto& it : widgets_)
+        it->clearFocus();
     label_->clearFocus();
 }
 

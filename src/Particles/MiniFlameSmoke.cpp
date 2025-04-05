@@ -21,10 +21,12 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "System/settings.hpp"
 #include "System/randomizer.hpp"
 
+
 std::list<MiniFlameSmoke*> MiniFlameSmoke::activeParticles_;
 
-MiniFlameSmoke::MiniFlameSmoke(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity, Color3f const& color, Player* damageSource):
-           Particle<MiniFlameSmoke>(spaceObjects::oMiniFlameSmoke, location+Vector2f::randDirLen()*2.f, 4, 0, randomizer::random(0.8f, 2.0f))
+
+MiniFlameSmoke::MiniFlameSmoke(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity, Color3f const& color, Player* damageSource)
+    :Particle<MiniFlameSmoke>(spaceObjects::oMiniFlameSmoke, location+Vector2f::randDirLen()*2.f, 4, 0, randomizer::random(0.8f, 2.0f))
 {
     color_ = Color3f(0.9, 0.8, 0.7);
 }
@@ -57,16 +59,16 @@ void MiniFlameSmoke::draw() const
 
 void MiniFlameSmoke::shockWave(Vector2f const& location, float strength, float radius)
 {
-    for (std::list<MiniFlameSmoke*>::iterator it = activeParticles_.begin(); it != activeParticles_.end(); ++it)
+    for (auto& it : activeParticles_)
     {
-        Vector2f direction((*it)->location_ - location);
+        Vector2f direction(it->location_ - location);
         float distance = direction.length();
         if (distance < radius && direction != Vector2f())
         {
             float intensity = radius-distance;
             direction = direction.normalize();
             direction *= intensity;
-            (*it)->velocity_ += direction;
+            it->velocity_ += direction;
         }
     }
 }

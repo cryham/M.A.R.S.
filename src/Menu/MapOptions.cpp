@@ -68,8 +68,6 @@ UiWindow* MapOptions::get()
         instance_->addWidget(new Slider(locales::getLocale(locales::MapXsize), NULL, &settings::C_MapXsize, 10, 23000, 10, Vector2f(20,y), 620, 240, true));  y += yadd;
         instance_->addWidget(new Slider(locales::getLocale(locales::MapYsize), NULL, &settings::C_MapYsize, 10, 23000, 10, Vector2f(20,y), 620, 240, true));  y += yadd;
         // C_MapYaspect ..
-
-        y += yadd;
     }
     return instance_;
 }

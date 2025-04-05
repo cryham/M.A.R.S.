@@ -28,8 +28,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 std::list<AmmoPlasma*> AmmoPlasma::activeParticles_;
 
 
-AmmoPlasma::AmmoPlasma(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity, Color3f const& color, Player* damageSource):
-         Particle<AmmoPlasma>(spaceObjects::oAmmoPlasma, location, randomizer::random(9.f, 15.f), 0.01f, randomizer::random(12.f, 15.f))
+AmmoPlasma::AmmoPlasma(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity, Color3f const& color, Player* damageSource)
+    :Particle<AmmoPlasma>(spaceObjects::oAmmoPlasma, location, randomizer::random(9.f, 15.f), 0.01f, randomizer::random(12.f, 15.f))
 {
     setDamageSource(damageSource);
     velocity_ = velocity + direction*1500;
@@ -93,16 +93,16 @@ void AmmoPlasma::onCollision(SpaceObject* with, Vector2f const& location,
 
 void AmmoPlasma::shockWave(Vector2f const& location, float strength, float radius)
 {
-    for (std::list<AmmoPlasma*>::iterator it = activeParticles_.begin(); it != activeParticles_.end(); ++it)
+    for (auto& it : activeParticles_)
     {
-        Vector2f direction((*it)->location_ - location);
+        Vector2f direction(it->location_ - location);
         float distance = direction.length();
         if (distance < radius && direction != Vector2f())
         {
             float intensity = radius-distance;
             direction = direction.normalize();
             direction *= intensity;
-            (*it)->velocity_ += direction;
+            it->velocity_ += direction;
         }
     }
 }

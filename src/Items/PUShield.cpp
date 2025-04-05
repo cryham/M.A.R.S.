@@ -21,28 +21,29 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Players/Player.hpp"
 #include "Particles/particles.hpp"
 
+
 void PUShield::draw() const
 {
-    if (!collected_) {
+    if (!collected_)
         PowerUp::draw();
-    }
-    else {
+    else
+    {
         glBlendFunc(GL_SRC_ALPHA, GL_ONE);
-        for (std::list<Ship*>::const_iterator it = ships_.begin(); it != ships_.end(); ++it) {
-
+        for (const auto& it : ships_)
+        {
             glPushMatrix();
             glLoadIdentity();
-            glTranslatef((*it)->location().x_, (*it)->location().y_, 0.f);
+            glTranslatef(it->location().x_, it->location().y_, 0.f);
 
             // shield bubble
             glColor4f(1.0f, 0.5f, 0.8f, 0.9f);
             glBegin(GL_QUADS);
-                    const int posX = 5;
-                    const int posY = 0;
-                    glTexCoord2f(posX*0.15625f,     posY*0.15625f);     glVertex2f(-35, -35);
-                    glTexCoord2f(posX*0.15625f,     (posY+1)*0.15625f); glVertex2f(-35, +35);
-                    glTexCoord2f((posX+1)*0.15625f, (posY+1)*0.15625f); glVertex2f(+35, +35);
-                    glTexCoord2f((posX+1)*0.15625f, posY*0.15625f);     glVertex2f(+35, -35);
+                const int posX = 5;
+                const int posY = 0;
+                glTexCoord2f(posX*0.15625f,     posY*0.15625f);     glVertex2f(-35, -35);
+                glTexCoord2f(posX*0.15625f,     (posY+1)*0.15625f); glVertex2f(-35, +35);
+                glTexCoord2f((posX+1)*0.15625f, (posY+1)*0.15625f); glVertex2f(+35, +35);
+                glTexCoord2f((posX+1)*0.15625f, posY*0.15625f);     glVertex2f(+35, -35);
             glEnd();
 
             glPopMatrix();

@@ -31,6 +31,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include <vector>
 
+
 namespace spaceObjects
 {
     namespace
@@ -54,9 +55,10 @@ namespace spaceObjects
 
                 // check for collisions with other objects
                 newPlanetFits = true;
-                for (std::vector<SpaceObject*>::iterator it = objectList_.begin(); it != objectList_.end(); ++it)
-                    if (((*it)->location() - position).lengthSquare() < std::pow((*it)->radius() + radius + settings::C_MapMinPlanetGap, 2))
+                for (const auto& it : objectList_)
+                    if ((it->location() - position).lengthSquare() < std::pow(it->radius() + radius + settings::C_MapMinPlanetGap, 2))
                         newPlanetFits = false;
+                
                 // check for collisions with balls
                 Ball* ball = balls::getBall();
                 if (ball)
@@ -81,14 +83,14 @@ namespace spaceObjects
 
     void update()
     {
-        for (std::vector<SpaceObject*>::iterator it = objectList_.begin(); it != objectList_.end(); ++it)
-            (*it)->update();
+        for (auto& it : objectList_)
+            it->update();
     }
 
     void draw()
     {
-        for (std::vector<SpaceObject*>::iterator it = objectList_.begin(); it != objectList_.end(); ++it)
-            (*it)->draw();
+        for (const auto& it : objectList_)
+            it->draw();
     }
 
     int randomPlanetSize()
@@ -130,6 +132,7 @@ namespace spaceObjects
             objectList_.push_back(new BlackHole(position, radius));
     }
 
+    //  Home planets
     Home* addHome(int where, int life, Color3f const& color)
     {
         Vector2f position;
@@ -167,12 +170,13 @@ namespace spaceObjects
         return objectList_;
     }
 
+    
     SpaceObject const* getObstacle(Vector2f const& start, Vector2f const& end, bool avoidBall, float minDistance)
     {
         SpaceObject const* closest(NULL);
         float closestDistance = FLT_MAX;
 
-        for (std::vector<SpaceObject*>::const_iterator it = objectList_.begin(); it != objectList_.end(); ++it)
+        for (auto it = objectList_.cbegin(); it != objectList_.cend(); ++it)
         {
             if ((*it)->type()!=oBlackHole)
             {
@@ -237,11 +241,12 @@ namespace spaceObjects
 
     void clear()
     {
-        for (std::vector<SpaceObject*>::iterator it = objectList_.begin(); it != objectList_.end(); ++it)
-            delete *it;
+        for (auto& it : objectList_)
+            delete it;
         objectList_.clear();
         homeList_.clear();
     }
+
 
     void populateSpace(float holePercentage, float sunPercentage, int maxObjects)
     {
@@ -251,9 +256,11 @@ namespace spaceObjects
         {
             float percentage = randomizer::random(0.f, 100.f);
 
-            int type(2);
-            if (percentage < holePercentage)                      type = 0;
-            else if (percentage < holePercentage + sunPercentage) type = 1;
+            int type = 2;
+            if (percentage < holePercentage)
+                type = 0;
+            else if (percentage < holePercentage + sunPercentage)
+                type = 1;
 
             switch (type)
             {

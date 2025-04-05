@@ -22,6 +22,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include <iostream>
 
+
 namespace font 
 {
     namespace
@@ -31,8 +32,9 @@ namespace font
 
     sf::Font* getFont(int languageID)
     {
-        std::map<int, sf::Font*>::iterator it = fonts_.find(languageID);
-        if (it == fonts_.end()) {
+        auto it = fonts_.find(languageID);
+        if (it == fonts_.end())
+        {
             // load it from file and...
             sf::Font* font = new sf::Font();
             font->loadFromFile(settings::C_dataPath + "fonts/" + locales::getLocales()[languageID].font_);
@@ -40,8 +42,7 @@ namespace font
             // ... return it afterwards
             return font;
         }
-        else {
+        else
             return it->second;
-        }
     }
 }

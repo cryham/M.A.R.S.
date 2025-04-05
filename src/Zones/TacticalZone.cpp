@@ -31,6 +31,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include <SFML/System.hpp>
 #include <cmath>
 
+
 TacticalZone::TacticalZone(Vector2f const& location, float radius) :
     radius_(radius),
     location_(location),
@@ -53,16 +54,16 @@ void TacticalZone::update()
     shipCount_ = 0;
     if (homeSide_ == 0)
     {
-        std::vector<Player*> const& players = teams::getTeamL()->members();
-        for (std::vector<Player*>::const_iterator it = players.begin(); it != players.end(); ++it)
-            if (isInside(*(*it)->ship()))
+        const auto& players = teams::getTeamL()->members();
+        for (const auto& it : players)
+            if (isInside(*it->ship()))
                 ++shipCount_;
         shipCount_ /= players.size();
     }else
     {
-        std::vector<Player*> const& players = teams::getTeamR()->members();
-        for (std::vector<Player*>::const_iterator it = players.begin(); it != players.end(); ++it)
-            if (isInside(*(*it)->ship()))
+        const auto& players = teams::getTeamR()->members();
+        for (const auto& it : players)
+            if (isInside(*it->ship()))
                 ++shipCount_;
         shipCount_ /= players.size();
     }
@@ -87,7 +88,6 @@ void TacticalZone::draw() const
          for (double i=0; i<=2*M_PI; i+=M_PI*0.02)
             glVertex2f( location_.x_ + std::sin(i) * radius_, location_.y_ + std::cos(i) * radius_);
     glEnd();
-
 }
 
 Vector2f TacticalZone::getRandomPoint() const
@@ -96,15 +96,15 @@ Vector2f TacticalZone::getRandomPoint() const
     for (int i=0; i < 100; ++i)
     {
         randomPoint = Vector2f(location_ + Vector2f::randDir()*(radius_ - 20.f));
-        if (   randomPoint.x_ > 0.f
-            && randomPoint.x_ < settings::C_MapXsize
-            && randomPoint.y_ > 0.f
-            && randomPoint.y_ < settings::C_MapYsize)
+        if (randomPoint.x_ > 0.f &&
+            randomPoint.x_ < settings::C_MapXsize &&
+            randomPoint.y_ > 0.f &&
+            randomPoint.y_ < settings::C_MapYsize)
         {
             bool fits = true;
-            for (std::vector<SpaceObject*>::const_iterator it = spaceObjects::getObjects().begin(); it != spaceObjects::getObjects().end(); ++it)
+            for (const auto& it : spaceObjects::getObjects())
             {
-                if ((randomPoint - (*it)->location()).lengthSquare() < std::pow((*it)->radius() + 50, 2))
+                if ((randomPoint - it->location()).lengthSquare() < std::pow(it->radius() + 50, 2))
                     fits = false;
             }
             if (fits)

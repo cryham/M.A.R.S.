@@ -17,15 +17,15 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "Teams/GITeam.hpp"
 
-#include "Teams/teams.hpp"
 #include "Players/Player.hpp"
 #include "SpaceObjects/ships.hpp"
+
 
 void GITeam::createJobs()
 {
     checkEnemies();
 
-    for (int i=0; i<botControllers_.size(); ++i)
+    for (int i=0; i < botControllers_.size(); ++i)
     {
         addJob(Job(Job::jLand, 1));
         addJob(Job(Job::jCharge, 1));
@@ -37,17 +37,17 @@ void GITeam::checkEnemies()
     std::vector<Ship*> ships = ships::getShips();
     bool existAny(false);
 
-    for (std::vector<Ship*>::const_iterator it = ships.begin(); it != ships.end(); ++it)
-        if ((*it)->getOwner()->team() != this && (*it)->attackable())
+    for (const auto& it : ships)
+        if (it->getOwner()->team() != this && it->attackable())
         {
             existAny = true;
             break;
         }
 
     if (existAny)
-        for (int i=0; i<botControllers_.size(); ++i)
+        for (int i=0; i < botControllers_.size(); ++i)
             addJob(Job(Job::jAttackAny, 90));
     else
-        for (int i=0; i<botControllers_.size(); ++i)
+        for (int i=0; i < botControllers_.size(); ++i)
             addJob(Job(Job::jEscape, 3));
 }

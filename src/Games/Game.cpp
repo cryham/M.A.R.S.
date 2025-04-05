@@ -37,12 +37,14 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "TrailEffects/trailEffects.hpp"
 #include "Teams/teams.hpp"
 
+
 Game::Game(games::GameType const& type):
     type_(type),
     startTime_(timer::totalTime()),
     ended_(false)
 {
-    switch (type_) {
+    switch (type_)
+    {
         case games::gSpaceBall:  pointLimit_ = settings::C_pointLimitSB;    break;
         case games::gCannonKeep: pointLimit_ = settings::C_pointLimitCK;    break;
         case games::gDeathMatch: pointLimit_ = settings::C_pointLimitDM;  break;
@@ -74,21 +76,25 @@ void Game::update()
 {
     announcer::update();
     hud::update();
-    if ((!menus::visible()) || (type_ == games::gMenu)) {
+    if ((!menus::visible()) || (type_ == games::gMenu))
+    {
         spaceObjects::update();
         particles::update();
         items::update();
         postFX::update();
         trailEffects::update();
 
-        if (teams::getFirstPoints() >= pointLimit_) {
-            if (!ended_) {
+        if (teams::getFirstPoints() >= pointLimit_)
+        {
+            if (!ended_)
+            {
                 Team* best(NULL);
                 int   most(0);
-                for (std::vector<Team*>::const_iterator it = teams::getAllTeams().begin(); it != teams::getAllTeams().end(); ++it)
-                    if (most < (*it)->points()) {
-                        best = *it;
-                        most = (*it)->points();
+                for (auto& it : teams::getAllTeams())
+                    if (most < it->points())
+                    {
+                        best = it;
+                        most = it->points();
                     }
                 if (best)
                     best->addVictory();
@@ -98,8 +104,8 @@ void Game::update()
 
             if (type_ != games::gDeathMatch)
                 hud::displayPoints();
-        }
-        else {
+        }else
+        {
             decoObjects::update();
             ships::update();
             balls::update();
@@ -138,10 +144,12 @@ void Game::restart()
     zones::clear();
     decoObjects::clear();
     trailEffects::clear();
+
     teams::resetTeamPoints();
     players::resetPlayerPoints();
     startTime_ = timer::totalTime();
     controllers::resetBots();
+    
     stars::init();
     hud::displayStats(false);
     hud::displayPoints(false);
@@ -163,5 +171,3 @@ bool Game::ended() const
 {
     return ended_;
 }
-
-

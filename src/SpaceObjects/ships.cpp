@@ -16,10 +16,10 @@ You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "SpaceObjects/ships.hpp"
-
 #include "SpaceObjects/Ship.hpp"
 
 #include <vector>
+
 
 namespace ships
 {
@@ -35,8 +35,8 @@ namespace ships
 
     void update()
     {
-        for (std::vector<Ship*>::iterator it = shipList_.begin(); it != shipList_.end(); ++it)
-            (*it)->update();
+        for (auto& it : shipList_)
+            it->update();
     }
 
     void draw()
@@ -44,13 +44,13 @@ namespace ships
         glEnable(GL_TEXTURE_2D);
         glBindTexture(GL_TEXTURE_2D, texture::getTexture(texture::Weapons));
 
-        for (std::vector<Ship*>::iterator it = shipList_.begin(); it != shipList_.end(); ++it)
-            (*it)->drawWeapon();
+        for (const auto& it : shipList_)
+            it->drawWeapon();
 
         glBindTexture(GL_TEXTURE_2D, texture::getTexture(texture::Ships));
 
-        for (std::vector<Ship*>::iterator it = shipList_.begin(); it != shipList_.end(); ++it)
-            (*it)->draw();
+        for (const auto& it : shipList_)
+            it->draw();
 
         glDisable(GL_TEXTURE_2D);
         glBindTexture(GL_TEXTURE_2D, 0);
@@ -63,8 +63,8 @@ namespace ships
 
     void clear()
     {
-        for (std::vector<Ship*>::iterator it = shipList_.begin(); it != shipList_.end(); ++it)
-            delete *it;
+        for (auto& it : shipList_)
+            delete it;
         shipList_.clear();
     }
 }

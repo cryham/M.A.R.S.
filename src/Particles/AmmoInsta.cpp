@@ -29,7 +29,9 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "System/settings.hpp"
 #include "defines.hpp"
 
+
 std::list<AmmoInsta*> AmmoInsta::activeParticles_;
+
 
 AmmoInsta::AmmoInsta(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity, Color3f const& color, Player* damageSource):
          Particle<AmmoInsta>(spaceObjects::oAmmoInsta, location, 1.f, 3.0f, 10.0f),
@@ -56,7 +58,7 @@ void AmmoInsta::update()
     const int steps(5);
     float time = timer::frameTime()/steps;
 
-    for (int i=0; i<steps; ++i)
+    for (int i=0; i < steps; ++i)
     {
         if (!isDead())
         {
@@ -68,10 +70,10 @@ void AmmoInsta::update()
 
             lifeTime_ += time;
 
-            if (i!=steps-1)
+            if (i != steps-1)
                 trail_->update();
-        }
-        else break;
+        }else
+            break;
     }
 
     if (location_.x_ < -100 || location_.x_ > settings::C_MapXsize + 100 ||
@@ -145,11 +147,11 @@ int AmmoInsta::hitsAny(Vector2f const& location, Vector2f const& direction, Team
     for (int i=0; i < 10+settings::C_iDumb*0.9f; ++i)
     {
         Vector2f acceleration;
-        for (std::vector<SpaceObject*>::const_iterator it = physics::getGravitySources().begin(); it != physics::getGravitySources().end(); ++it)
+        for (const auto& it : physics::getGravitySources())
         {
-            float distanceSquared = (from - (*it)->location()).lengthSquare();
+            float distanceSquared = (from - it->location()).lengthSquare();
             if (distanceSquared > 100.f)
-                acceleration += ((*it)->location() - from) * (*it)->mass() / distanceSquared;
+                acceleration += (it->location() - from) * it->mass() / distanceSquared;
         }
         acceleration *= 60.f;
         Vector2f to (from + velocity * resolution + acceleration*resolution*resolution);
@@ -160,31 +162,32 @@ int AmmoInsta::hitsAny(Vector2f const& location, Vector2f const& direction, Team
             glVertex2f(to.x_, to.y_);
         glEnd();*/
 
-        for (std::vector<Ship*>::const_iterator it = ships::getShips().begin(); it != ships::getShips().end(); ++it)
+        for (const auto& it : ships::getShips())
         {
-            if ((*it)->attackable())
+            if (it->attackable())
             {
-                Vector2f shipLocation((*it)->location() + (*it)->velocity()*resolution*i*0.01f*settings::C_iDumb);
+                Vector2f shipLocation(it->location() + it->velocity()*resolution*i*0.01f*settings::C_iDumb);
                 Vector2f orthoDir(velocity.y_, -velocity.x_);
-                orthoDir = orthoDir.normalize()*(*it)->radius();
+                orthoDir = orthoDir.normalize()*it->radius();
                 Vector2f shipLeft(shipLocation-orthoDir), shipRight(shipLocation+orthoDir);
 
                 if (clockWise(velocity, shipRight-to) && !clockWise(velocity, shipLeft-to) &&
                     clockWise(orthoDir, from-shipRight) && !clockWise(orthoDir, to-shipRight))
                 {
-                    if ((*it)->getOwner()->team() != team) {
+                    if (it->getOwner()->team() != team)
+                    {
                        /* glPointSize(50.f);
                         glColor3f(0.f, 1.f, 0.f);
                         glBegin(GL_POINTS);
-                            glVertex2f((*it)->location().x_, (*it)->location().y_);
+                            glVertex2f(it->location().x_, it->location().y_);
                         glEnd();*/
                         return 100;
-                    }
-                    else {
+                    }else
+                    {
                         /*glPointSize(50.f);
                         glColor3f(1.f, 0.f, 0.f);
                         glBegin(GL_POINTS);
-                            glVertex2f((*it)->location().x_, (*it)->location().y_);
+                            glVertex2f(it->location().x_, it->location().y_);
                         glEnd();*/
                         return 0;
                     }
@@ -192,19 +195,16 @@ int AmmoInsta::hitsAny(Vector2f const& location, Vector2f const& direction, Team
             }
         }
 
-        if (to.x_ < -100 || to.x_ > settings::C_MapXsize + 100 || to.y_ < -100 || to.y_ > settings::C_MapYsize + 100)
+        if (to.x_ < -100 || to.x_ > settings::C_MapXsize + 100 ||
+            to.y_ < -100 || to.y_ > settings::C_MapYsize + 100)
             return 0;
 
-        for (std::vector<SpaceObject*>::const_iterator it = physics::getGravitySources().begin(); it != physics::getGravitySources().end(); ++it)
+        for (const auto& it : physics::getGravitySources())
         {
-            if ((*it)->type() != spaceObjects::oBlackHole && ((*it)->location()-to).lengthSquare() < std::pow((*it)->radius(), 2))
+            if (it->type() != spaceObjects::oBlackHole && (it->location()-to).lengthSquare() < std::pow(it->radius(), 2))
                 return 0;
         }
-
         from = to;
     }
-
     return 0;
 }
-
-

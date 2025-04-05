@@ -30,6 +30,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include <SFML/Graphics.hpp>
 
+
 void Shocker::draw(float alpha) const
 {
     glBlendFunc(GL_SRC_ALPHA, GL_ONE);
@@ -73,14 +74,15 @@ void Shocker::activate() const
 
         if (ships.size() >= 2) {
 
-            for (std::vector<Ship*>::iterator it = ships.begin(); it!=ships.end(); ++it)
+            for (auto& it :ships)
             {
-                if (*it != parent_)
+                if (it != parent_)
                 {
-                    Vector2f direction((*it)->location()-parent_->location());
+                    Vector2f direction(it->location()-parent_->location());
                     float distance (direction.lengthSquare());
-                    if (distance <= radius()*radius() && (*it)->attackable())
-                        targets_.push_back(*it);
+
+                    if (distance <= radius()*radius() && it->attackable())
+                        targets_.push_back(it);
                 }
             }
         }
@@ -97,15 +99,15 @@ void Shocker::activate() const
         int targetCount = targets_.size() + (ballTarget_ == NULL ? 0 : 1);
         float damage = parent_->fragStars_/3.f * 200.f/targetCount;
 
-        for (std::list<Ship*>::iterator it=targets_.begin(); it!=targets_.end(); ++it)
+        for (auto& it : targets_)
         {
-            Vector2f direction((*it)->location()-parent_->location());
+            Vector2f direction(it->location()-parent_->location());
 
-            decoObjects::addBolt(parent_, *it, 100.f/targetCount);
+            decoObjects::addBolt(parent_, it, 100.f/targetCount);
 
-            (*it)->drainLife(parent_->getOwner(), damage, direction*10);
+            it->drainLife(parent_->getOwner(), damage, direction*10);
 
-            (*it)->velocity_+=direction.normalize()*damage*5.f;
+            it->velocity_+=direction.normalize()*damage*5.f;
         }
 
         if (ballTarget_)

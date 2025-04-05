@@ -21,10 +21,14 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "System/settings.hpp"
 #include "System/randomizer.hpp"
 
+
 std::list<Dust*> Dust::activeParticles_;
 
-Dust::Dust(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity, Color3f const& color, Player* damageSource):
-           Particle<Dust>(spaceObjects::oDust, location, 4, 0, randomizer::random(0.5f, 1.5f)*settings::C_globalParticleLifeTime/100.f)
+
+Dust::Dust(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,
+        Color3f const& color, Player* damageSource)
+    :Particle<Dust>(spaceObjects::oDust, location, 4, 0,
+    randomizer::random(0.5f, 1.5f)*settings::C_globalParticleLifeTime/100.f)
 {
     velocity_ = Vector2f::randDir() * 250 * randomizer::random(1.f, 1.2f) * randomizer::random(1.f, 1.2f);
 
@@ -59,16 +63,16 @@ void Dust::draw() const
 
 void Dust::shockWave(Vector2f const& location, float strength, float radius)
 {
-    for (std::list<Dust*>::iterator it = activeParticles_.begin(); it != activeParticles_.end(); ++it)
+    for (auto& it : activeParticles_)
     {
-        Vector2f direction((*it)->location_ - location);
+        Vector2f direction(it->location_ - location);
         float distance = direction.length();
         if (distance < radius && direction != Vector2f())
         {
             float intensity = radius-distance;
             direction = direction.normalize();
             direction *= intensity;
-            (*it)->velocity_ += direction;
+            it->velocity_ += direction;
         }
     }
 }

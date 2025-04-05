@@ -38,13 +38,13 @@ this program.  If not, see <http://www.gnu.org/licenses/>.*/
 
 namespace menus 
 {
-
     namespace
 	{
         std::vector<UiWindow*> windowStack_;
         bool hidden_(false);
         UiElement* keyboardFixTarget_(NULL);
     }
+
 
     void showMain()
     {
@@ -67,12 +67,13 @@ namespace menus
     {
         if (visible() && !hidden_)
         {
-            for (std::vector<UiWindow*>::iterator it = windowStack_.begin(); it != windowStack_.end(); ++it)
-                (*it)->draw();
+            for (auto& it : windowStack_)
+                it->draw();
 
             Vector2f viewPort = window::getViewPort();
-            text::drawScreenText(sf::String("M.A.R.S. ") + sf::String(VERSION_MAJOR) + "." + sf::String(VERSION_MINOR) + "." + sf::String(VERSION_PATCH),
-                                            Vector2f(viewPort.x_-4.f, viewPort.y_-14.f) , 11.f, TEXT_ALIGN_RIGHT, Color3f(0.8, 0.8, 0.8));
+            text::drawScreenText(sf::String("M.A.R.S. ") +
+                sf::String(VERSION_MAJOR) + "." + sf::String(VERSION_MINOR) + "." + sf::String(VERSION_PATCH),
+                Vector2f(viewPort.x_-4.f, viewPort.y_-14.f) , 11.f, TEXT_ALIGN_RIGHT, Color3f(0.8, 0.8, 0.8));
             toolTip::draw();
         }
     }

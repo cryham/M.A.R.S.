@@ -20,8 +20,6 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Interface/UiWindow.hpp"
 #include "Interface/Button.hpp"
 #include "Menu/menus.hpp"
-#include "Interface/TextBox.hpp"
-#include "Interface/Line.hpp"
 #include "Media/text.hpp"
 #include "Locales/locales.hpp"
 #include "System/settings.hpp"
@@ -44,7 +42,7 @@ UiWindow* ChooseLanguage::get()
             sortedLocales_.insert(std::make_pair(localeList[i].name_, i));
 
         int top(50);
-        for (std::map<sf::String, int>::iterator it=sortedLocales_.begin(); it!=sortedLocales_.end(); ++it)
+        for (auto it = sortedLocales_.begin(); it != sortedLocales_.end(); ++it)
         {
             bool* key = new bool(false);
             languageKeyMap_.insert(std::make_pair(it->second, key));
@@ -74,11 +72,11 @@ void ChooseLanguage::checkWidgets()
     {   kCancel_ = false;
         menus::hideWindow();
     }
-    for (std::map<int, bool*>::iterator it = languageKeyMap_.begin(); it != languageKeyMap_.end(); ++it)
-        if (*(it->second))
-        {   *(it->second) = false;
+    for (auto& it : languageKeyMap_)
+        if (*(it.second))
+        {   *(it.second) = false;
 
-            settings::C_languageID = it->first;
+            settings::C_languageID = it.first;
             locales::load();
             menus::reload();
             settings::save();
@@ -94,15 +92,16 @@ void ChooseLanguage::reset()
     instance_ = NULL;
 
     languageKeyMap_.clear();
-    for (std::map<int, bool*>::iterator it = languageKeyMap_.begin(); it != languageKeyMap_.end(); ++it)
-        delete it->second;
+    for (auto& it : languageKeyMap_)
+        delete it.second;
     sortedLocales_.clear();
 }
 
 void ChooseLanguage::next()
 {
     get();
-    for (std::map<sf::String, int>::iterator it = sortedLocales_.begin(); it != sortedLocales_.end(); ++it) {
+    for (auto it = sortedLocales_.begin(); it != sortedLocales_.end(); ++it)
+    {
         if (it->second == settings::C_languageID)
         {
             ++it;
@@ -120,7 +119,8 @@ void ChooseLanguage::next()
 void ChooseLanguage::previous()
 {
     get();
-    for (std::map<sf::String, int>::iterator it = sortedLocales_.begin(); it != sortedLocales_.end(); ++it) {
+    for (auto it = sortedLocales_.begin(); it != sortedLocales_.end(); ++it)
+    {
         if (it->second == settings::C_languageID)
         {
             --it;

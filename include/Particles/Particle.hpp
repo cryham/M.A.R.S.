@@ -22,6 +22,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include <list>
 
+
 /// Base class for all particles.
 
 template <typename Derived>
@@ -55,14 +56,14 @@ class Particle: public MobileSpaceObject
 
         static void clear()
         {
-            for (typename std::list<Derived*>::iterator it = Derived::activeParticles_.begin(); it != Derived::activeParticles_.end(); ++it)
-                delete *it;
+            for (auto& it : Derived::activeParticles_)
+                delete it;
             Derived::activeParticles_.clear();
         }
 
         static void updateAll()
         {
-            typename std::list<Derived*>::iterator it = Derived::activeParticles_.begin();
+            auto it = Derived::activeParticles_.begin();
             while (it != Derived::activeParticles_.end())
             {
                 (*it)->update();
@@ -77,8 +78,8 @@ class Particle: public MobileSpaceObject
 
         static void drawAll()
         {
-            for (typename std::list<Derived*>::iterator it = Derived::activeParticles_.begin(); it != Derived::activeParticles_.end(); ++it)
-                (*it)->draw();
+            for (auto& it : Derived::activeParticles_)
+                it->draw();
         }
 
         static void spawn(Vector2f const& location, Vector2f const& direction, Vector2f const& sourceVelocity, Color3f const& color, Player* damageSource)
@@ -89,23 +90,23 @@ class Particle: public MobileSpaceObject
         static void collideWith(MobileSpaceObject* object)
         {
              // check for collision with each mobile object
-            for (typename std::list<Derived*>::iterator it = Derived::activeParticles_.begin(); it != Derived::activeParticles_.end(); ++it)
+            for (auto& it : Derived::activeParticles_)
             {
                 // don't check for self collision
-                if (*it != object)
+                if (it != object)
                 {
                     // get faster object
                     MobileSpaceObject *source, *target;
-                    if (object->velocity() > (*it)->velocity())
+                    if (object->velocity() > it->velocity())
                     {
                         source = object;
-                        target = *it;
+                        target = it;
                     }else
-                    {   source = *it;
+                    {   source = it;
                         target = object;
                     }
 
-                    const float minDistSquared = std::pow(object->radius() + (*it)->radius(), 2);
+                    const float minDistSquared = std::pow(object->radius() + it->radius(), 2);
                     // if objects are moving
                     if (source->velocity().lengthSquare() > 0)
                     {

@@ -23,6 +23,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include <cfloat>
 
+
 RasterZone::RasterZone(Vector2f const& bottomLeft, Vector2f const& topRight):
     bottomLeft_(bottomLeft),
     topRight_(topRight),
@@ -31,18 +32,18 @@ RasterZone::RasterZone(Vector2f const& bottomLeft, Vector2f const& topRight):
 
 bool RasterZone::isInside(SpaceObject const& toBeChecked) const
 {
-    return    toBeChecked.location().x_ > bottomLeft_.x_
-           && toBeChecked.location().y_ > bottomLeft_.y_
-           && toBeChecked.location().x_ < topRight_.x_
-           && toBeChecked.location().y_ < topRight_.y_;
+    return toBeChecked.location().x_ > bottomLeft_.x_ &&
+           toBeChecked.location().y_ > bottomLeft_.y_ &&
+           toBeChecked.location().x_ < topRight_.x_ &&
+           toBeChecked.location().y_ < topRight_.y_;
 }
 
 void RasterZone::update()
 {
     covered_ = false;
     std::vector<Ship*> const& ships = ships::getShips();
-    for (std::vector<Ship*>::const_iterator it = ships.begin(); it != ships.end(); ++it)
-        if (isInside(*(*it)))
+    for (const auto& it : ships)
+        if (isInside(*it))
         {
             covered_ = true;
             break;
@@ -62,6 +63,7 @@ void RasterZone::draw() const
         glVertex2f(topRight_.x_, topRight_.y_);
         glVertex2f(topRight_.x_, bottomLeft_.y_);
     glEnd();
+    
     glLineWidth(2.f);
     glBegin(GL_LINE_LOOP);
         glColor4f(0.5f, 0.5f, 0.5f, 0.3f);
@@ -75,16 +77,19 @@ void RasterZone::draw() const
 Vector2f RasterZone::getRandomPoint() const
 {
     Vector2f randomPoint;
-    for (int i=0; i<100; ++i)
+    for (int i=0; i < 100; ++i)
     {
-        randomPoint = Vector2f(randomizer::random(bottomLeft_.x_, topRight_.x_), randomizer::random(bottomLeft_.y_, topRight_.y_));
+        randomPoint = Vector2f(
+            randomizer::random(bottomLeft_.x_, topRight_.x_),
+            randomizer::random(bottomLeft_.y_, topRight_.y_));
         bool fits = true;
-        for (std::vector<SpaceObject*>::const_iterator it = spaceObjects::getObjects().begin(); it != spaceObjects::getObjects().end(); ++it)
+        for (const auto& it : spaceObjects::getObjects())
         {
-            if ((randomPoint - (*it)->location()).lengthSquare() < std::pow((*it)->radius() + 50, 2))
+            if ((randomPoint - it->location()).lengthSquare() < std::pow(it->radius() + 50, 2))
                 fits = false;
         }
-        if (fits) break;
+        if (fits)
+            break;
     }
     return randomPoint;
 }

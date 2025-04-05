@@ -33,7 +33,7 @@ namespace trailEffects
 
     void update()
     {
-        std::vector<Trail*>::iterator it = trails_.begin();
+        auto it = trails_.begin();
         while (it != trails_.end())
         {
             if ((*it)->isDead())
@@ -53,8 +53,8 @@ namespace trailEffects
 
     void draw()
     {
-        for (std::vector<Trail*>::iterator it = trails_.begin(); it != trails_.end(); ++it)
-            (*it)->draw();
+        for (const auto& it : trails_)
+            it->draw();
     }
 
     Trail* attach(SpaceObject* target, float timeStep, float duration, float width, Color3f const& color, bool persistant)
@@ -81,8 +81,8 @@ namespace trailEffects
 
     void clear()
     {
-        for (std::vector<Trail*>::iterator it = trails_.begin(); it != trails_.end(); ++it)
-            delete *it;
+        for (auto& it : trails_)
+            delete it;
         trails_.clear();
     }
 }

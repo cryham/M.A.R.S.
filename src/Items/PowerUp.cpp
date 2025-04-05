@@ -21,24 +21,25 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "SpaceObjects/Ship.hpp"
 #include "Players/Player.hpp"
 
+
 PowerUp::PowerUp(items::PowerUpType type, Vector2f const& location, float radius,
-        float totalLifeTime, int texX, int texY, Color3f const& bgColor):
-    location_(location),
-    radius_(radius),
-    ships_(),
-    collected_(false),
-    texX_(texX),
-    texY_(texY),
-    type_(type),
-    lifeTime_(0.f),
-    totalLifeTime_(totalLifeTime),
-    bgColor_(bgColor)
+        float totalLifeTime, int texX, int texY, Color3f const& bgColor)
+    :location_(location)
+    ,radius_(radius)
+    ,ships_()
+    ,collected_(false)
+    ,texX_(texX)
+    ,texY_(texY)
+    ,type_(type)
+    ,lifeTime_(0.f)
+    ,totalLifeTime_(totalLifeTime)
+    ,bgColor_(bgColor)
 {   }
 
 PowerUp::~PowerUp()
 {
-    for (std::list<Ship*>::iterator it = ships_.begin(); it != ships_.end(); ++it)
-        (*it)->collectedPowerUps_[type_] = NULL;
+    for (auto& it : ships_)
+        it->collectedPowerUps_[type_] = NULL;
 }
 
 void PowerUp::update()
@@ -47,22 +48,21 @@ void PowerUp::update()
 
     if (!collected_)
     {
-        std::vector<Ship*> const& shipList = ships::getShips();
-        for (std::vector<Ship*>::const_iterator it = shipList.begin(); it != shipList.end(); ++it)
-            if ((*it)->getLife() > 0.f && ((*it)->location() - location_).lengthSquare() < std::pow(radius_*2.f + (*it)->radius(),2))
+        const auto& shipList = ships::getShips();
+        for (const auto& it : shipList)
+            if (it->getLife() > 0.f && (it->location() - location_).lengthSquare() < std::pow(radius_*2.f + it->radius(),2))
             {
                 collected_ = true;
                 if (type_ == items::puReverse || type_ == items::puSleep)
                 {
-                    for (std::vector<Ship*>::const_iterator ite = shipList.begin(); ite != shipList.end(); ++ite)
-                        if ((*it)->getOwner()->team() != (*ite)->getOwner()->team())
-                            ships_.push_back(*ite);
-                }
-                else
-                    ships_.push_back(*it);
+                    for (const auto& ite : shipList)
+                        if (it->getOwner()->team() != ite->getOwner()->team())
+                            ships_.push_back(ite);
+                }else
+                    ships_.push_back(it);
             }
         
-        std::list<Ship*>::iterator it = ships_.begin();
+        auto it = ships_.begin();
         while (it != ships_.end())
         {
             if ((*it)->collectedPowerUps_[type_] != NULL)
@@ -70,8 +70,7 @@ void PowerUp::update()
                 (*it)->collectedPowerUps_[type_]->lifeTime_ = 0;
                 it = ships_.erase(it);
                 lifeTime_ = totalLifeTime_;
-            }
-            else
+            }else
             {
                 (*it)->collectedPowerUps_[type_] = this;
                 refreshLifeTime();
@@ -85,22 +84,18 @@ void PowerUp::update()
             radius_ = -400.0*pow(lifeTime_+0.2-totalLifeTime_, 2)+25;
         else
             radius_ = 15.f;
-    }
-    else
+    }else
     {
-        std::list<Ship*>::iterator it = ships_.begin();
+        auto it = ships_.begin();
         while (it != ships_.end())
         {
             if (*it && (*it)->getLife() == 0.f)
             {
                 (*it)->collectedPowerUps_[type_] = NULL;
                 it = ships_.erase(it);
-            }
-            else {
+            }else
                 ++it;
-            }
         }
-
         if (ships_.empty())
             lifeTime_ = totalLifeTime_;
     }

@@ -26,6 +26,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include <SFML/OpenGL.hpp>
 
+
 UiWindow::UiWindow (int width, int height, Vector2f const& position):
     UiElement(position, width, height),
     topMost_(false),
@@ -34,26 +35,26 @@ UiWindow::UiWindow (int width, int height, Vector2f const& position):
 
 UiWindow::~UiWindow()
 {
-    for (std::vector<UiElement*>::iterator i=widgets_.begin(); i != widgets_.end(); ++i)
-        delete *i;
+    for (auto& it : widgets_)
+        delete it;
 }
 
 void UiWindow::mouseMoved(Vector2f const& position)
 {
-    for (std::vector<UiElement*>::iterator i=widgets_.begin(); i != widgets_.end(); ++i)
-        (*i)->mouseMoved(position);
+    for (auto& it : widgets_)
+        it->mouseMoved(position);
 }
 
 void UiWindow::mouseWheelMoved(Vector2f const& position, int delta)
 {
-    for (std::vector<UiElement*>::iterator i=widgets_.begin(); i != widgets_.end(); ++i)
-        (*i)->mouseWheelMoved(position, delta);
+    for (auto& it : widgets_)
+        it->mouseWheelMoved(position, delta);
 }
 
 void UiWindow::mouseLeft(bool down)
 {
-    for (std::vector<UiElement*>::iterator i=widgets_.begin(); i != widgets_.end(); ++i)
-        (*i)->mouseLeft(down);
+    for (auto& it : widgets_)
+        it->mouseLeft(down);
 }
 
 void UiWindow::keyEvent(bool down, Key const& key)
@@ -195,8 +196,8 @@ void UiWindow::draw () const
 
     // text::drawFooText();
 
-    for (std::vector<UiElement*>::const_iterator i=widgets_.begin(); i != widgets_.end(); ++i)
-        (*i)->draw();
+    for (const auto& it : widgets_)
+        it->draw();
 }
 
 void UiWindow::setFocus(UiElement* toBeFocused, bool isPrevious)
@@ -208,8 +209,8 @@ void UiWindow::setFocus(UiElement* toBeFocused, bool isPrevious)
 void UiWindow::clearFocus()
 {
     UiElement::clearFocus();
-    for (std::vector<UiElement*>::iterator i=widgets_.begin(); i != widgets_.end(); ++i)
-        (*i)->clearFocus();
+    for (auto& it : widgets_)
+        it->clearFocus();
 }
 
 void UiWindow::addWidget(UiElement* toBeAdded)

@@ -52,6 +52,7 @@ namespace hud
         std::list<Message*> messages_;
     }
 
+
     void update()
     {
         gamePoints_->update();
@@ -62,14 +63,16 @@ namespace hud
 
         tabStats_->display(games::type() != games::gMenu && window::isKeyDown(settings::C_statisticsKey));
 
-        std::list<Message*>::iterator it = messages_.begin();
-        while (it != messages_.end()) {
+        auto it = messages_.begin();
+        while (it != messages_.end())
+        {
             (*it)->update();
-            if ((*it)->isDead()) {
+            if ((*it)->isDead())
+            {
                 delete *it;
                 it = messages_.erase(it);
-            }
-            else ++it;
+            }else
+                ++it;
         }
         musicNotify::update();
 
@@ -93,9 +96,9 @@ namespace hud
         {
             if (games::type() == games::gSpaceBall || games::type() == games::gCannonKeep)
             {
-                std::vector<Home*> const& homes = spaceObjects::getHomes();
-                for (std::vector<Home*>::const_iterator it = homes.begin(); it != homes.end(); ++it)
-                    (*it)->drawLife();
+                const auto& homes = spaceObjects::getHomes();
+                for (auto& it : homes)
+                    it->drawLife();
             }
             gamePoints_->draw();
             rightLife_->draw();
@@ -108,8 +111,9 @@ namespace hud
     {
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         text::drawFooText();
-        for (std::list<Message*>::iterator it=messages_.begin(); it!=messages_.end(); ++it)
-            (*it)->draw();
+
+        for (auto& it : messages_)
+            it->draw();
         musicNotify::draw();
     }
 
@@ -138,4 +142,3 @@ namespace hud
         messages_.push_back(new Message(message, color));
     }
 }
-

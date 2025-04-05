@@ -25,20 +25,20 @@ RadioGroup::RadioGroup ():
 
 RadioGroup::~RadioGroup()
 {
-    for (std::vector<RadioButton*>::iterator i=radioButtons_.begin(); i != radioButtons_.end(); ++i)
-        delete *i;
+    for (auto& it : radioButtons_)
+        delete it;
 }
 
 void RadioGroup::mouseMoved(Vector2f const& position)
 {
-    for (std::vector<RadioButton*>::iterator i=radioButtons_.begin(); i != radioButtons_.end(); ++i)
-        (*i)->mouseMoved(position);
+    for (auto& it : radioButtons_)
+        it->mouseMoved(position);
 }
 
 void RadioGroup::mouseLeft(bool down)
 {
-    for (std::vector<RadioButton*>::iterator i=radioButtons_.begin(); i != radioButtons_.end(); ++i)
-        (*i)->mouseLeft(down);
+    for (auto& it : radioButtons_)
+        it->mouseLeft(down);
 }
 
 void RadioGroup::keyEvent(bool down, Key const& key)
@@ -116,14 +116,14 @@ void RadioGroup::clearFocus()
 {
     UiElement::clearFocus();
     focusedButton_ = NULL;
-    for (std::vector<RadioButton*>::iterator i=radioButtons_.begin(); i != radioButtons_.end(); ++i)
-        (*i)->clearFocus();
+    for (auto& it : radioButtons_)
+        it->clearFocus();
 }
 
 void RadioGroup::draw () const
 {
-    for (std::vector<RadioButton*>::const_iterator i=radioButtons_.begin(); i != radioButtons_.end(); ++i)
-        (*i)->draw();
+    for (const auto& it : radioButtons_)
+        it->draw();
 }
 
 void RadioGroup::addRadioButton(RadioButton* toBeAdded)
@@ -134,6 +134,6 @@ void RadioGroup::addRadioButton(RadioButton* toBeAdded)
 
 void RadioGroup::allOff()
 {
-    for (std::vector<RadioButton*>::iterator i=radioButtons_.begin(); i != radioButtons_.end(); ++i)
-        *((*i)->value_) = false;
+    for (auto& it : radioButtons_)
+        *(it->value_) = false;
 }

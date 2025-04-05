@@ -21,11 +21,10 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "System/settings.hpp"
 #include "Particles/particles.hpp"
 #include "DecoObjects/decoObjects.hpp"
-#include "Media/texture.hpp"
-#include "defines.hpp"
 
 #include <SFML/OpenGL.hpp>
 #include <iostream>
+
 
 namespace postFX
 {
@@ -59,7 +58,7 @@ namespace postFX
                 else
                     exposure_ = 1.f;
             }
-            postFX_.setParameter("Exposure", exposure_);
+            postFX_.setUniform("Exposure", exposure_);
         }
     }
 
@@ -88,8 +87,8 @@ namespace postFX
             glOrtho(0, settings::C_MapXsize, settings::C_MapYsize, 0, -1, 1);
             glEnable(GL_BLEND);
             glMatrixMode(GL_MODELVIEW);
-            postFX_.setParameter("BumpMap", bumpMap_.getTexture());
-            postFX_.setParameter("Exposure", exposure_);
+            postFX_.setUniform("BumpMap", bumpMap_.getTexture());
+            postFX_.setUniform("Exposure", exposure_);
         }
         else
             std::cout << "Shaders are not supported on your hardware! There will be no fancy graphics..." << std::endl;

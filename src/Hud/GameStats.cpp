@@ -85,13 +85,18 @@ void GameStats::draw() const
 
         top = 20.f;
 
-        if (settings::C_showFPS) {
+        if (settings::C_showFPS)
+        {
             std::stringstream sstr;
-            sstr << "FPS: " << static_cast<int>(timer::fps() + 0.5f);
-            text::drawScreenText(sf::String(sstr.str()), Vector2f(10.f,top), 12.f, TEXT_ALIGN_LEFT, Color3f(0.5f, 0.5f, 0.5f));
+            sstr << /*"Fps: " <<*/ static_cast<int>(timer::fps() + 0.5f);
+            text::drawScreenText(sf::String(sstr.str()), Vector2f(10.f,top), 12.f, TEXT_ALIGN_LEFT,
+                timer::fps() > 59.f ? Color3f(0.7f, 0.72f, 0.73f) :
+                timer::fps() > 30.f ? Color3f(0.8f, 0.8f, 0.3f) :
+                                      Color3f(0.9f, 0.4f, 0.4f) );
             top += 20.f;
         }
-        if (settings::C_showParticleCount) {
+        if (settings::C_showParticleCount)
+        {
             if (updateTimer_ > 0.f)
                 updateTimer_ -= timer::frameTime();
             else {
@@ -99,14 +104,15 @@ void GameStats::draw() const
                 updateTimer_ = 0.5f;
             }
             std::stringstream sstr;
-            sstr << "Particles: " << particleCount_;
-            text::drawScreenText(sf::String(sstr.str()), Vector2f(10.f,top), 12.f, TEXT_ALIGN_LEFT, Color3f(0.5f, 0.5f, 0.5f));
+            sstr << /*"Particles: " <<*/ particleCount_;
+            text::drawScreenText(sf::String(sstr.str()), Vector2f(10.f,top), 12.f, TEXT_ALIGN_LEFT, Color3f(0.7f, 0.7f, 0.7f));
             top += 20.f;
         }
-        if (settings::C_showLatency) {
+        if (settings::C_showLatency)
+        {
             std::stringstream sstr;
             sstr << "Latency: " << particles::count();
-            text::drawScreenText(sf::String(sstr.str()), Vector2f(10.f,top), 12.f, TEXT_ALIGN_LEFT, Color3f(0.5f, 0.5f, 0.5f));
+            text::drawScreenText(sf::String(sstr.str()), Vector2f(10.f,top), 12.f, TEXT_ALIGN_LEFT, Color3f(0.7f, 0.7f, 0.7f));
             top += 20.f;
         }
     }

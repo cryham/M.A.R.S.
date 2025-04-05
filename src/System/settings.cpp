@@ -279,6 +279,16 @@ namespace settings
             outStream << "[enabledWeapons] "        << C_EnabledWeaponsByUser << std::endl;
             outStream << "[enabledSpecials] "       << C_EnabledSpecialsByUser << std::endl;
 
+            outStream << "[MapXsize] "              << C_MapXsize << std::endl;
+            outStream << "[MapYsize] "              << C_MapYsize << std::endl;
+            outStream << "[MapMinPlanets] "         << C_MapMinPlanets << std::endl;
+            outStream << "[MapMaxPlanets] "         << C_MapMaxPlanets << std::endl;
+            outStream << "[MapMinPlanetsSize] "     << C_MapMinPlanetsSize << std::endl;
+            outStream << "[MapMaxPlanetsSize] "     << C_MapMaxPlanetsSize << std::endl;
+            outStream << "[MapMinPlanetGap] "       << C_MapMinPlanetGap << std::endl;
+            outStream << "[MapHomeRadius] "         << C_MapHomeRadius << std::endl;
+            outStream << "[ShipRadius] "            << C_ShipRadius << std::endl;
+
             outStream.close();
             return true;
         }
@@ -798,6 +808,7 @@ namespace settings
                 else if (inputLine == "[screenShotFormat]") {
                     iss >> C_screenShotFormat;
                 }
+
                 else if (inputLine == "[enabledWeapons]") {
                     iss >> C_EnabledWeaponsByUser;
                     C_EnabledWeapons = C_EnabledWeaponsByUser;
@@ -806,6 +817,26 @@ namespace settings
                     iss >> C_EnabledSpecialsByUser;
                     C_EnabledSpecials = C_EnabledSpecialsByUser;
                 }
+
+                else if (inputLine == "[MapXsize]")
+                    iss >> C_MapXsize;
+                else if (inputLine == "[MapYsize]")
+                    iss >> C_MapYsize;
+                else if (inputLine == "[MapMinPlanets]")
+                    iss >> C_MapMinPlanets;
+                else if (inputLine == "[MapMaxPlanets]")
+                    iss >> C_MapMaxPlanets;
+                else if (inputLine == "[MapMinPlanetsSize]")
+                    iss >> C_MapMinPlanetsSize;
+                else if (inputLine == "[MapMaxPlanetsSize]")
+                    iss >> C_MapMaxPlanetsSize;
+                else if (inputLine == "[MapMinPlanetGap]")
+                    iss >> C_MapMinPlanetGap;
+                else if (inputLine == "[MapHomeRadius]")
+                    iss >> C_MapHomeRadius;
+                else if (inputLine == "[ShipRadius]")
+                    iss >> C_ShipRadius;
+
                 else
                     std::cout << inputLine << " is a bad option in " << C_configPath << "mars.cfg!\n";
             }

@@ -25,9 +25,11 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Games/games.hpp"
 #include "Locales/locales.hpp"
 
+
 UiWindow* ToMainConfirm::instance_(NULL);
 bool ToMainConfirm::kOk_(false);
 bool ToMainConfirm::kCancel_(false);
+
 
 UiWindow* ToMainConfirm::get()
 {
@@ -40,9 +42,12 @@ UiWindow* ToMainConfirm::get()
     if (instance_ == NULL)
     {
         instance_ = new ToMainConfirm(280, 80);
-        instance_->addWidget(new Button(locales::getLocale(locales::Ok),     NULL, &kOk_, Vector2f(180,50), 90, 20));
-        instance_->addWidget(new Button(locales::getLocale(locales::Cancel), NULL, &kCancel_, Vector2f(80,50), 90, 20));
-        instance_->addWidget(new Label(locales::getLocale(locales::QuitCurrentGameText), TEXT_ALIGN_LEFT, Vector2f(10, 8), 12.f, getColor3f(0.7f, 0.7f, 0.7f), false));
+        instance_->addWidget(new Button(locales::getLocale(locales::Ok),     NULL, &kOk_,
+            Vector2f(180,50), 90, 20));
+        instance_->addWidget(new Button(locales::getLocale(locales::Cancel), NULL, &kCancel_,
+            Vector2f(80,50), 90, 20));
+        instance_->addWidget(new Label(locales::getLocale(locales::QuitCurrentGameText), TEXT_ALIGN_LEFT,
+            Vector2f(10,8), 12.f, getColor3f(0.7f, 0.7f, 0.7f), false));
     }
     return instance_;
 }

@@ -25,23 +25,27 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Games/games.hpp"
 #include "Locales/locales.hpp"
 
+
 UiWindow* ShaderError::instance_(NULL);
 bool ShaderError::kOk_(false);
 
+
 UiWindow* ShaderError::get()
 {
-    if (instance_ == NULL) {
-        instance_ = new ShaderError(350, 80);
-        instance_->addWidget(new Button(locales::getLocale(locales::Ok),     NULL, &kOk_, Vector2f(250,50), 90, 20));
-        instance_->addWidget(new Label(locales::getLocale(locales::ShaderError), TEXT_ALIGN_LEFT, Vector2f(10, 8)));
+    if (instance_ == NULL)
+    {   instance_ = new ShaderError(350, 80);
+        instance_->addWidget(new Button(locales::getLocale(locales::Ok),     NULL, &kOk_,
+            Vector2f(250,50), 90, 20));
+        instance_->addWidget(new Label(locales::getLocale(locales::ShaderError), TEXT_ALIGN_LEFT,
+            Vector2f(10,8)));
     }
     return instance_;
 }
 
 void ShaderError::checkWidgets()
 {
-    if (kOk_) {
-        kOk_ = false;
+    if (kOk_)
+    {   kOk_ = false;
         menus::hideWindow();
     }
 }

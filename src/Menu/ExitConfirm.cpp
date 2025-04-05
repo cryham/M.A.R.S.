@@ -40,11 +40,14 @@ UiWindow* ExitConfirm::get()
         return 0;
     }
     if (instance_ == NULL)
-    {
-        instance_ = new ExitConfirm(280, 80);
-        instance_->addWidget(new Button(locales::getLocale(locales::Ok), NULL, &kOk_, Vector2f(180,50), 90, 20));
-        instance_->addWidget(new Button(locales::getLocale(locales::Cancel), NULL, &kCancel_, Vector2f(80,50), 90, 20));
-        instance_->addWidget(new Label(locales::getLocale(locales::QuitText), TEXT_ALIGN_LEFT, Vector2f(10, 8), 12.f, getColor3f(0.7f, 0.7f, 0.7f), false));
+    {   instance_ = new ExitConfirm(280, 80);
+    
+        instance_->addWidget(new Button(locales::getLocale(locales::Ok), NULL, &kOk_,
+            Vector2f(180,50), 90, 20));
+        instance_->addWidget(new Button(locales::getLocale(locales::Cancel), NULL, &kCancel_,
+            Vector2f(80,50), 90, 20));
+        instance_->addWidget(new Label(locales::getLocale(locales::QuitText), TEXT_ALIGN_LEFT,
+            Vector2f(10, 8), 12.f, getColor3f(0.7f, 0.7f, 0.7f), false));
     }
     return instance_;
 }
@@ -68,5 +71,3 @@ void ExitConfirm::reset()
         delete instance_;
     instance_ = NULL;
 }
-
-

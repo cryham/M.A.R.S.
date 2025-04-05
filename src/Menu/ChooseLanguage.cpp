@@ -24,6 +24,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Locales/locales.hpp"
 #include "System/settings.hpp"
 
+
 UiWindow* ChooseLanguage::instance_(NULL);
 bool ChooseLanguage::kCancel_(false);
 std::map<int, bool*> ChooseLanguage::languageKeyMap_;
@@ -38,7 +39,7 @@ UiWindow* ChooseLanguage::get()
 
         instance_ = new ChooseLanguage(220, 110 + 24*localeList.size());
 
-        for (int i=0; i<localeList.size(); ++i)
+        for (int i=0; i < localeList.size(); ++i)
             sortedLocales_.insert(std::make_pair(localeList[i].name_, i));
 
         int top(50);
@@ -47,7 +48,8 @@ UiWindow* ChooseLanguage::get()
             bool* key = new bool(false);
             languageKeyMap_.insert(std::make_pair(it->second, key));
 
-            Button* newButton(new Button(new sf::String(it->first), new sf::String(localeList[it->second].author_), key, Vector2f(10, top), 200, 20, TEXT_ALIGN_CENTER, font::getFont(it->second)));
+            Button* newButton(new Button(new sf::String(it->first), new sf::String(localeList[it->second].author_), key,
+                Vector2f(10, top), 200, 20, TEXT_ALIGN_CENTER, font::getFont(it->second)));
             instance_->addWidget(newButton);
 
             if (it->first == locales::getCurrentLocale().name_)
@@ -58,9 +60,12 @@ UiWindow* ChooseLanguage::get()
             top += 24;
         }
 
-        instance_->addWidget(new Button(locales::getLocale(locales::Cancel), NULL, &kCancel_, Vector2f(120,top+30), 90, 20));
-        instance_->addWidget(new Label(new sf::String("Select Language"), TEXT_ALIGN_LEFT, Vector2f(10,10),  20.f, getColor3f(0.5f, 0.9f, 1.f), false));
-        instance_->addWidget(new Label(new sf::String("* Incomplete"), TEXT_ALIGN_LEFT, Vector2f(10,top+10), 12.f, getColor3f(0.5f, 0.9f, 1.f), false));
+        instance_->addWidget(new Button(locales::getLocale(locales::Cancel), NULL, &kCancel_,
+            Vector2f(120,top+30), 90, 20));
+        instance_->addWidget(new Label(new sf::String("Select Language"), TEXT_ALIGN_LEFT,
+            Vector2f(10,10),  20.f, getColor3f(0.5f, 0.9f, 1.f), false));
+        instance_->addWidget(new Label(new sf::String("* Incomplete"), TEXT_ALIGN_LEFT,
+            Vector2f(10,top+10), 12.f, getColor3f(0.5f, 0.9f, 1.f), false));
         // instance_->addWidget(new Line(Vector2f(10, 35), Vector2f(210, 35)));
     }
     return instance_;

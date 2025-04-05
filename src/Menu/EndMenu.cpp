@@ -38,12 +38,16 @@ bool EndMenu::kHide_(false);
 UiWindow* EndMenu::get()
 {
     if (instance_ == NULL)
-    {
-        instance_ = new EndMenu(180, 130);
-        instance_->addWidget(new Button(locales::getLocale(locales::RestartGame),     NULL, &kNew_,         Vector2f(10,10), 160, 20));
-        instance_->addWidget(new Button(locales::getLocale(locales::Options),         NULL, &kOptions_,     Vector2f(10,40), 160, 20));
-        instance_->addWidget(new Button(locales::getLocale(locales::HideMenu),        NULL, &kHide_,     Vector2f(10,70), 160, 20));
-        instance_->addWidget(new Button(locales::getLocale(locales::QuitCurrentGame), NULL, &kToMainMenu_,  Vector2f(10,100), 160, 20));
+    {   instance_ = new EndMenu(180, 130);
+    
+        instance_->addWidget(new Button(locales::getLocale(locales::RestartGame),     NULL, &kNew_,
+            Vector2f(10,10), 160, 20));
+        instance_->addWidget(new Button(locales::getLocale(locales::Options),         NULL, &kOptions_,
+            Vector2f(10,40), 160, 20));
+        instance_->addWidget(new Button(locales::getLocale(locales::HideMenu),        NULL, &kHide_,
+            Vector2f(10,70), 160, 20));
+        instance_->addWidget(new Button(locales::getLocale(locales::QuitCurrentGame), NULL, &kToMainMenu_,
+            Vector2f(10,100), 160, 20));
     }
     return instance_;
 }

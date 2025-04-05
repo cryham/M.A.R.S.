@@ -36,12 +36,20 @@ UiWindow* InfoHide::get()
 {
     if (instance_ == NULL)
     {   instance_ = new InfoHide(320*scale_, 200);
-        instance_->addWidget(new Button(locales::getLocale(locales::Close), NULL, &kOk_, Vector2f(220,170), 90, 20));
-        instance_->addWidget(new Label(locales::getLocale(locales::HideMenu), TEXT_ALIGN_LEFT, Vector2f(10,10), 20.f, getColor3f(0.5f, 0.9f, 1.f), false));
-        instance_->addWidget(new Label(locales::getLocale(locales::Info), TEXT_ALIGN_RIGHT, Vector2f(310,18), 12.f, getColor3f(0.5f, 0.9f, 1.f), false));
+        instance_->addWidget(new Button(locales::getLocale(locales::Close), NULL, &kOk_,
+            Vector2f(220,170), 90, 20));
+        
+        instance_->addWidget(new Label(locales::getLocale(locales::HideMenu), TEXT_ALIGN_LEFT,
+            Vector2f(10,10), 20.f, getColor3f(0.5f, 0.9f, 1.f), false));
+        instance_->addWidget(new Label(locales::getLocale(locales::Info), TEXT_ALIGN_RIGHT,
+            Vector2f(310,18), 12.f, getColor3f(0.5f, 0.9f, 1.f), false));
+        
         // instance_->addWidget(new Line(Vector2f(10, 35), Vector2f(310, 35)));
-        instance_->addWidget(new TextBox(locales::getLocale(locales::HideMenuText), Vector2f(10, 50), 300, 110));
-        instance_->addWidget(new Checkbox(locales::getLocale(locales::ShowAgainButton), NULL, &settings::C_showInfoHide, Vector2f(10,170), 170));
+        instance_->addWidget(new TextBox(locales::getLocale(locales::HideMenuText),
+            Vector2f(10, 50), 300, 110));
+        instance_->addWidget(new Checkbox(locales::getLocale(locales::ShowAgainButton), NULL,
+            &settings::C_showInfoHide,
+            Vector2f(10,170), 170));
     }
     return instance_;
 }

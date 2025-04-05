@@ -40,33 +40,62 @@ UiWindow* MapOptions::get()
 {
     if (instance_ == NULL)
     {
-        instance_ = new MapOptions(650, 400);
+        int w = 630;
+        instance_ = new MapOptions(w+20, 400);
         // instance_->addWidget(new Line(Vector2f(10, 35), Vector2f(310, 35)));
-        instance_->addWidget(new Button(locales::getLocale(locales::Ok), NULL, &kOk_, Vector2f(350,370), 90, 20));
-        instance_->addWidget(new Button(locales::getLocale(locales::Defaults), NULL, &kDefaults_, Vector2f(210,370), 130, 20));
+
+        instance_->addWidget(new Button(locales::getLocale(locales::Ok), NULL, &kOk_,
+            Vector2f(350,370), 90, 20));
+        instance_->addWidget(new Button(locales::getLocale(locales::Defaults), NULL, &kDefaults_,
+            Vector2f(210,370), 130, 20));
+
         int y = 10, yadd = 20;
-        instance_->addWidget(new Label(locales::getLocale(locales::MapOptions), TEXT_ALIGN_LEFT, Vector2f(10,y), 20.f, getColor3f(0.5f, 0.9f, 1.f), false));  y += yadd;
+        instance_->addWidget(new Label(locales::getLocale(locales::MapOptions), TEXT_ALIGN_LEFT,
+            Vector2f(10,y), 20.f, getColor3f(0.5f, 0.9f, 1.f), false));  y += yadd;
 
-        instance_->addWidget(new LabeledBox(locales::getLocale(locales::SpaceObjects), Vector2f(10, y), 100, 210));  y += yadd*3/2;
-        instance_->addWidget(new Slider(locales::getLocale(locales::MinPlanets), NULL, &settings::C_MapMinPlanets, 0, 30, 1, Vector2f(20,y), 540, 240, true));  y += yadd;
-        instance_->addWidget(new Slider(locales::getLocale(locales::MaxPlanets), NULL, &settings::C_MapMaxPlanets, 0, 30, 1, Vector2f(20,y), 540, 240, true));  y += yadd;
-        instance_->addWidget(new Slider(locales::getLocale(locales::MinPlanetsSize), NULL, &settings::C_MapMinPlanetsSize, 1, 300, 1, Vector2f(20,y), 540, 240, true));  y += yadd;
-        instance_->addWidget(new Slider(locales::getLocale(locales::MaxPlanetsSize), NULL, &settings::C_MapMaxPlanetsSize, 1, 300, 1, Vector2f(20,y), 540, 240, true));  y += yadd*3/2;
+        instance_->addWidget(new LabeledBox(locales::getLocale(locales::SpaceObjects),
+            Vector2f(10, y), 100, 210));  y += yadd*3/2;
+        instance_->addWidget(new Slider(locales::getLocale(locales::MinPlanets), NULL,
+            &settings::C_MapMinPlanets, 0, 30, 1,
+            Vector2f(20,y), w, 240, true));  y += yadd;
+        instance_->addWidget(new Slider(locales::getLocale(locales::MaxPlanets), NULL,
+            &settings::C_MapMaxPlanets, 0, 30, 1,
+            Vector2f(20,y), w, 240, true));  y += yadd;
+        instance_->addWidget(new Slider(locales::getLocale(locales::MinPlanetsSize), NULL,
+            &settings::C_MapMinPlanetsSize, 1, 300, 1,
+            Vector2f(20,y), w, 240, true));  y += yadd;
+        instance_->addWidget(new Slider(locales::getLocale(locales::MaxPlanetsSize), NULL,
+            &settings::C_MapMaxPlanetsSize, 1, 900, 1,
+            Vector2f(20,y), w, 240, true));  y += yadd*3/2;
 
-        instance_->addWidget(new Slider(locales::getLocale(locales::MinPlanetGap), NULL, &settings::C_MapMinPlanetGap, 0, 300, 1, Vector2f(20,y), 540, 240, true));  y += yadd;
-        instance_->addWidget(new Slider(locales::getLocale(locales::MapHomeRadius), NULL, &settings::C_MapHomeRadius, 1, 300, 1, Vector2f(20,y), 540, 240, true));  y += yadd*3/2;
+        instance_->addWidget(new Slider(locales::getLocale(locales::MinPlanetGap), NULL,
+            &settings::C_MapMinPlanetGap, 0, 900, 1,
+            Vector2f(20,y), w, 240, true));  y += yadd;
+        instance_->addWidget(new Slider(locales::getLocale(locales::MapHomeRadius), NULL,
+            &settings::C_MapHomeRadius, 1, 900, 1,
+            Vector2f(20,y), w, 240, true));  y += yadd*3/2;
 
-        instance_->addWidget(new Slider(locales::getLocale(locales::ShipRadius), NULL, &settings::C_ShipRadius, 5, 50, 10, Vector2f(20,y), 440, 240, true));  y += yadd*3/2;
+        instance_->addWidget(new Slider(locales::getLocale(locales::ShipRadius), NULL,
+            &settings::C_ShipRadius, 5, 60, 10,
+            Vector2f(20,y), w*2/3, 240, true));  y += yadd*3/2;
 
         //  map Size buttons
-        instance_->addWidget(new LabeledBox(locales::getLocale(locales::MapSize), Vector2f(10, y), 100, 210));  y += yadd*3/2;
+        instance_->addWidget(new LabeledBox(locales::getLocale(locales::MapSize),
+            Vector2f(10, y), 100, 210));  y += yadd*3/2;
+        
         for (int i=0; i < MapOptions::kMapSizes_; ++i)
-            instance_->addWidget(new Button(locales::getLocale(locales::LocaleType(locales::MapSize0 + i)),
-                                            NULL, &kMapSize_[i],  Vector2f(20 + i*90,y), 80, 20));
+            instance_->addWidget(new Button(
+                locales::getLocale(locales::LocaleType(locales::MapSize0 + i)), NULL,
+                &kMapSize_[i],  Vector2f(20 + i*90,y), 80, 20));
         y += yadd*3/2;
+        
         //  map Size
-        instance_->addWidget(new Slider(locales::getLocale(locales::MapXsize), NULL, &settings::C_MapXsize, 10, 23000, 10, Vector2f(20,y), 620, 240, true));  y += yadd;
-        instance_->addWidget(new Slider(locales::getLocale(locales::MapYsize), NULL, &settings::C_MapYsize, 10, 23000, 10, Vector2f(20,y), 620, 240, true));  y += yadd;
+        instance_->addWidget(new Slider(locales::getLocale(locales::MapXsize), NULL,
+            &settings::C_MapXsize, 10, 23000, 10,
+            Vector2f(20,y), w, 240, true));  y += yadd;
+        instance_->addWidget(new Slider(locales::getLocale(locales::MapYsize), NULL,
+            &settings::C_MapYsize, 10, 23000, 10,
+            Vector2f(20,y), w, 240, true));  y += yadd;
         // C_MapYaspect ..
     }
     return instance_;
@@ -100,18 +129,13 @@ void MapOptions::checkWidgets()
     if (kDefaults_)
     {   kDefaults_ = false;
 
-        settings::C_MapMinPlanets      = 1;
-        settings::C_MapMaxPlanets      = 4;
-        settings::C_MapMinPlanetsSize  = 50;
-        settings::C_MapMaxPlanetsSize  = 120;
+        settings::C_MapMinPlanets     = 1;    settings::C_MapMaxPlanets     = 4;
+        settings::C_MapMinPlanetsSize = 50;   settings::C_MapMaxPlanetsSize = 120;
+        settings::C_MapMinPlanetGap   = 150;  settings::C_MapHomeRadius     = 100;  settings::C_ShipRadius = 18;
 
-        settings::C_MapMinPlanetGap    = 150;
-        settings::C_MapHomeRadius      = 100;
-
-        settings::C_ShipRadius         = 18;
-        settings::C_MapXsize           = 1440;
-        settings::C_MapYsize           = 810;
-        settings::C_MapYaspect         = 1000 * 1440 / 810;
+        settings::C_MapXsize   = 1440;
+        settings::C_MapYsize   = 810;
+        settings::C_MapYaspect = 1000 * 1440 / 810;
     }
 
     if (kOk_)

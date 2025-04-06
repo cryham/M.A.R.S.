@@ -26,12 +26,14 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include <sstream>
 
+
 int main(int argc, char* argv[])
 {
     #if defined __APPLE__
 	static char path[1024]="";
 
-	if (strlen(path)==0) {
+	if (strlen(path)==0)
+    {
 		// Determining the Resources path inside the .app bundle
 		CFBundleRef mainBundle = CFBundleGetMainBundle();
 		CFURLRef resourcesURL = CFBundleCopyResourcesDirectoryURL( mainBundle );

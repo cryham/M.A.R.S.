@@ -21,6 +21,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "System/Color3f.hpp"
 #include "Hud/hud.hpp"
 
+
 class Label: public UiElement
 {
     public:
@@ -47,4 +48,3 @@ class Label: public UiElement
         Color3f color_;
         bool interactive_;
 };
-

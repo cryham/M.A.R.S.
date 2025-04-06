@@ -58,7 +58,8 @@ void ColorPicker::mouseMoved(Vector2f const& position)
 void ColorPicker::mouseLeft(bool down)
 {
     UiElement::mouseLeft(hovered_ && down);
-    if (!pressed_ && hovered_ && focused_) {
+    if (!pressed_ && hovered_ && focused_)
+    {
         hovered_ = false;
         sound::playSound(sound::Click);
         menus::showWindow(colorWindow_);
@@ -67,9 +68,11 @@ void ColorPicker::mouseLeft(bool down)
 
 void ColorPicker::keyEvent(bool down, Key const& key)
 {
-    if (key.navi_ == Key::nConfirm) {
+    if (key.navi_ == Key::nConfirm)
+    {
         pressed_ = down;
-        if (!pressed_) {
+        if (!pressed_)
+        {
             hovered_ = false;
             sound::playSound(sound::Click);
             menus::showWindow(colorWindow_);
@@ -103,7 +106,8 @@ void ColorPicker::draw() const
         glVertex2f(width() + origin.x_, height_ + origin.y_);
         glVertex2f(labelWidth_*mirror+origin.x_, height_ + origin.y_);
 
-    if (pressed_ && hovered_) {
+    if (pressed_ && hovered_)
+    {
         // bottom glow
         setColor4f(0.25,0.4,0.5,0.0);
         glVertex2f(labelWidth_*mirror+origin.x_,origin.y_);
@@ -112,7 +116,8 @@ void ColorPicker::draw() const
         glVertex2f(origin.x_+width(),origin.y_+height_);
         glVertex2f(labelWidth_*mirror+origin.x_,origin.y_+height_);
     }
-    else if (hovered_) {
+    else if (hovered_)
+    {
         setColor4f(0.25,0.4,0.5,0.0);
         glVertex2f(labelWidth_*mirror+origin.x_,height_*0.5f + origin.y_);
         glVertex2f(origin.x_+width(),height_*0.5f + origin.y_);

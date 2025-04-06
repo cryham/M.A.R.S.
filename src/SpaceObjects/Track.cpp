@@ -28,6 +28,7 @@ Track::Track(Home* home)
     calcTrack();
 }
 
+//  draw
 void Track::draw() const
 {
     if (points_.size() > 2)
@@ -169,20 +170,23 @@ void Track::sortLTR()
 void Track::sortHalf (Vector2f const& origin, int startIndex, int endIndex, bool rightHalf, bool CW)
 {
     bool sorted(false);
-    while (!sorted) {
+    while (!sorted)
+    {
         sorted = true;
 
-        for (int i(startIndex); i < endIndex; ++i)
+        for (int i = startIndex; i < endIndex; ++i)
         {
             if (rightHalf == CW)
             {
-                if ((anchors_[i] - origin).normalize().y_ > (anchors_[i+1] - origin).normalize().y_) {
+                if ((anchors_[i] - origin).normalize().y_ > (anchors_[i+1] - origin).normalize().y_)
+                {
                     sorted = false;
                     std::swap(anchors_[i], anchors_[i+1]);
                 }
             }else
             {
-                if ((anchors_[i] - origin).normalize().y_ < (anchors_[i+1] - origin).normalize().y_) {
+                if ((anchors_[i] - origin).normalize().y_ < (anchors_[i+1] - origin).normalize().y_)
+                {
                     sorted = false;
                     std::swap(anchors_[i], anchors_[i+1]);
                 }
@@ -193,7 +197,7 @@ void Track::sortHalf (Vector2f const& origin, int startIndex, int endIndex, bool
 
 void Track::removeSharpCorners()
 {
-    for (int i(0); i < anchors_.size(); ++i)
+    for (int i=0; i < anchors_.size(); ++i)
     {
         Vector2f current(anchors_[i]);
         Vector2f next(anchors_[(i+1)%anchors_.size()]);
@@ -206,7 +210,7 @@ void Track::removeSharpCorners()
 
 void Track::createBezier()
 {
-    for (int i(0); i < anchors_.size(); ++i)
+    for (int i=0; i < anchors_.size(); ++i)
     {
         Vector2f p0(anchors_[i]);
         Vector2f p1(anchors_[(i+1)%anchors_.size()]);

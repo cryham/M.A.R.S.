@@ -25,6 +25,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include <iostream>
 #include <SFML/Audio.hpp>
 
+
 namespace announcer 
 {
     namespace
@@ -39,6 +40,7 @@ namespace announcer
         std::vector<sf::SoundBuffer*> sounds_(COUNT);
         sf::Sound soundChannel_;
 
+
         void loadSound_(SoundType sound, std::string fileName)
         {
             sounds_[sound] = new sf::SoundBuffer;
@@ -49,7 +51,8 @@ namespace announcer
         void playSound(SoundType sound)
         {
             // check if sound is already loaded
-            if (sounds_[sound] != NULL) {
+            if (sounds_[sound] != NULL)
+            {
                 if (soundChannel_.getStatus() != sf::Sound::Playing)
                 {
                     // play sound
@@ -85,7 +88,8 @@ namespace announcer
         if (settings::C_announcerVolume > 0)
         {
             float slowMoTime(timer::slowMoTime());
-                 if (slowMoTime > 0.75f)  soundChannel_.setPitch(slowMoTime*0.666f);
+
+            if      (slowMoTime > 0.75f)  soundChannel_.setPitch(slowMoTime*0.666f);
             else if (slowMoTime > 0.25f)  soundChannel_.setPitch(0.5f);
             else if (slowMoTime > 0.0f)   soundChannel_.setPitch(1.f-slowMoTime*2.f);
             else                          soundChannel_.setPitch(1.f);
@@ -104,7 +108,7 @@ namespace announcer
                         case 0:  playSound(YouSuck);  break;
                         case 1:  playSound(NotFunny);  break;
                         default:;
-                    } break;
+                    }   break;
 
                 case Praising:
                     switch (randomizer::random(0,4))
@@ -114,14 +118,14 @@ namespace announcer
                         case 2:  playSound(ThatWasGreat);  break;
                         case 3:  playSound(WellDone);  break;
                         default:;
-                    } break;
+                    }   break;
                     
                 case Neutral:
                     switch (randomizer::random(0,1))
                     {
                         case 0:  playSound(Bam);  break;
                         default:;
-                    } break;
+                    }   break;
                 default:;
             }
         }

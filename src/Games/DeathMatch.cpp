@@ -26,8 +26,9 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Teams/teams.hpp"
 #include "System/randomizer.hpp"
 
-DeathMatch::DeathMatch():
-    Game(games::gDeathMatch)
+
+DeathMatch::DeathMatch()
+    :Game(games::gDeathMatch)
 {
     settings::C_EnabledWeapons  = settings::C_EnabledWeaponsByUser;
     settings::C_EnabledSpecials = settings::C_EnabledSpecialsByUser;
@@ -39,7 +40,8 @@ DeathMatch::DeathMatch():
     if (settings::C_playerIIteamL | settings::C_playerIIteamR)
         players::addPlayer (teams::addTeam(new DMTeam(settings::C_playerIITeamColor)), controllers::cPlayer2);
 
-    for (int i=0; i<settings::C_botsDeath; ++i) {
+    for (int i=0; i < settings::C_botsDeath; ++i)
+    {
         Team* newTeam = teams::addTeam(new DMTeam());
         Color3f color(newTeam->color());
         color.h(newTeam->color().h()+10*randomizer::random(-5, 5));
@@ -71,5 +73,3 @@ void DeathMatch::restart()
     spaceObjects::populateSpace(5.f, 10.f, 4);
     zones::createRaster(4,3);
 }
-
-

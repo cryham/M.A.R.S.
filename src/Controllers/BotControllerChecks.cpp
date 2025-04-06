@@ -29,6 +29,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include <cmath>
 
+
 void BotController::checkAggro()
 {
     if (ship()->collidable())
@@ -96,7 +97,6 @@ void BotController::checkEnergy()
             slave_->team()->addJob(Job(Job::jHeal, std::max(100 - ship()->getLife(), 100 - ship()->getFuel()), ship()));
             slave_->team()->addJob(Job(Job::jHeal, std::max(100 - ship()->getLife(), 100 - ship()->getFuel()), ship()));
         }
-
         if (ship()->frozen_ > 0)
         {
             slave_->team()->addJob(Job(Job::jUnfreeze, 90, ship()));
@@ -108,9 +108,11 @@ void BotController::checkEnergy()
 
 void BotController::checkSpecial()
 {
-    if (ship()->fragStars_ > 0 && randomizer::random(0, 10) == 1) {
+    if (ship()->fragStars_ > 0 && randomizer::random(0, 10) == 1)
+    {
         float radius(ship()->currentSpecial_->radius());
-        switch (ship()->currentSpecial_->getType()) {
+        switch (ship()->currentSpecial_->getType())
+        {
             case specials::sHeal:
                 if (ship()->getLife() < 10)
                     slaveSpecial(100);

@@ -52,16 +52,16 @@ namespace games
             if (fadeIn_)
             {
                 fadeFactor_ -= timer::frameTime()*9.f;
-                if (fadeFactor_ <= 0.f) {
-                    fadeFactor_ = 0.f;
+                if (fadeFactor_ <= 0.f)
+                {   fadeFactor_ = 0.f;
                     fadeIn_ = false;
                 }
             }
             else if (fadeOut_)
             {
                 fadeFactor_ += timer::frameTime()*9.f;
-                if (fadeFactor_ >= 1.f) {
-                    fadeFactor_ = 1.f;
+                if (fadeFactor_ >= 1.f)
+                {   fadeFactor_ = 1.f;
                     fadeOut_ = false;
                 }
             }
@@ -78,6 +78,7 @@ namespace games
             glEnd();
         }
     }
+
 
     void update()
     {

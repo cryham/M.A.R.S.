@@ -34,20 +34,19 @@ void CountDown::draw() const
     float time = games::elapsedTime();
     if (time < 1.f)
         glBindTexture(GL_TEXTURE_2D, texture::getTexture(texture::CountDown4));
-    else if (time < 2.f) {
-        if (time - timer::frameTime() <= 1.f) sound::playSound(sound::Countdown);
+    else if (time < 2.f)
+    {   if (time - timer::frameTime() <= 1.f) sound::playSound(sound::Countdown);
         glBindTexture(GL_TEXTURE_2D, texture::getTexture(texture::CountDown3));
     }
-    else if (time < 3.f) {
-        if (time - timer::frameTime() <= 2.f) sound::playSound(sound::Countdown);
+    else if (time < 3.f)
+    {   if (time - timer::frameTime() <= 2.f) sound::playSound(sound::Countdown);
         glBindTexture(GL_TEXTURE_2D, texture::getTexture(texture::CountDown2));
     }
-    else if (time < 4.f) {
-        if (time - timer::frameTime() <= 3.f) sound::playSound(sound::Countdown);
+    else if (time < 4.f)
+    {   if (time - timer::frameTime() <= 3.f) sound::playSound(sound::Countdown);
         glBindTexture(GL_TEXTURE_2D, texture::getTexture(texture::CountDown1));
-    }
-    else {
-        if (time - timer::frameTime() <= 4.f) sound::playSound(sound::Start);
+    }else
+    {   if (time - timer::frameTime() <= 4.f) sound::playSound(sound::Start);
         glBindTexture(GL_TEXTURE_2D, texture::getTexture(texture::CountDown0));
     }
 

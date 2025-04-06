@@ -355,8 +355,8 @@ void NewGameMenu::checkWidgets()
             games::start(games::gRally);
         }
     }
-    else if (kInfo_) {
-        kInfo_ = false;
+    else if (kInfo_)
+    {   kInfo_ = false;
         if      (tabSpaceBall_->isActive())       menus::showWindow(InfoSB::get());
         else if (tabDeathMatch_->isActive())      menus::showWindow(InfoDM::get());
         else if (tabTeamDeathMatch_->isActive())  menus::showWindow(InfoTDM::get());

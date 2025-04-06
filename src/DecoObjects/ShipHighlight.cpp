@@ -21,18 +21,19 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Players/Player.hpp"
 #include "Particles/AmmoInsta.hpp"
 
+
 void ShipHighlight::draw() const
 {
-    if (ship_->visible_) {
+    if (ship_->visible_)
+    {
         // wobble when charging
         if ((ship_->docked_ && (ship_->getLife() < 100.f) | (ship_->getFuel() < 100.f)))
             draw(ship_->location(), std::sin(timer::totalTime()*10.f)*0.15f + 1.f, 0.6f);
         else
             draw(ship_->location(), 1.f, 0.6f);
     }
-    else if (ship_->respawnTimer_ < 0.5f) {
+    else if (ship_->respawnTimer_ < 0.5f)
         draw(ship_->respawnLocation_, 1.f + ship_->respawnTimer_*7.f, 0.6f - ship_->respawnTimer_);
-    }
 }
 
 void ShipHighlight::draw(Vector2f const& location, float scale, float alpha) const
@@ -40,9 +41,8 @@ void ShipHighlight::draw(Vector2f const& location, float scale, float alpha) con
     const float    maxAngle     (ship_->currentWeapon_->maxAngle());
     const float    shipRotation (ship_->rotation_*M_PI/180.f);
     const Vector2f shipDirection(Vector2f(std::cos(shipRotation), std::sin(shipRotation)));
-    if (ship_->currentWeapon_->getType() == weapons::wInsta) {
+    // if (ship_->currentWeapon_->getType() == weapons::wInsta)
        // AmmoInsta::hitsAny(ship_->location() + shipDirection*ship_->radius(), shipDirection, ship_->owner_->team());
-    }
 
     glEnable(GL_TEXTURE_2D);
     glBindTexture(GL_TEXTURE_2D, texture::getTexture(texture::Ships));

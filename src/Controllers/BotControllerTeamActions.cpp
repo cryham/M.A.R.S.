@@ -57,16 +57,15 @@ void BotController::kickBallToEnemy()
         if (spaceObjects::isOnLine(shipLocation, ballLocation-shipLocation, targetPlanetLocation, 20.f))
         {
             // if so, is the ship correctly oriented
-            if (shipDirection*(ballLocation - shipLocation) > 0.8f) {
+            if (shipDirection*(ballLocation - shipLocation) > 0.8f)
+            {
                 // kick ball
                 moveTo(targetPlanetLocation, 0.f, false);
                 if (ballLocation == balls::getBall()->location_)
                     shootPoint(ballLocation);
-            }
-            else
+            }else
                 turnTo(ballLocation);
-        }
-        else
+        }else
         {
             // move behind the ball
             Vector2f aimPosition = ballLocation + (ballLocation - targetPlanetLocation).normalize()*30 + ballVelocity*0.5f;
@@ -110,17 +109,17 @@ void BotController::kickBallOutHome()
     if (spaceObjects::isOnLine(ballLocation, ballShip, homeLocation, 45.f))
     {
         // wait a bit and face ball
-        if (ballShip.lengthSquare() > 2500.f) {
+        if (ballShip.lengthSquare() > 2500.f)
+        {
             if (turnTo(ballLocation))
                 shootPoint(ballLocation, false);
-        }
-        else {
+        }else
+        {
             moveTo(shipLocation - ballShip*2.f, 0, false);
             if (spaceObjects::isOnLine(ballLocation, ballShip, shipLocation, 15.f))
                 shootPoint(ballLocation, false);
         }
-    }
-    else
+    }else
     {
         // go to planet surface, facing the ball
         Vector2f direction = (ballLocation - homeLocation).normalize();
@@ -164,8 +163,7 @@ void BotController::attackAny()
             escape();
             shootEnemy(target_);
         }
-    }
-    else
+    }else
     {
         std::vector<Ship*> const& ships = ships::getShips();
         float maxDistance(FLT_MAX);
@@ -188,7 +186,8 @@ void BotController::attackAny()
 
 void  BotController::attackTarget()
 {
-    if (currentJob_.object_) {
+    if (currentJob_.object_)
+    {
         moveTo(static_cast<Ship*>(currentJob_.object_)->location(), 0.f);
         shootEnemy(static_cast<Ship*>(currentJob_.object_));
     }
@@ -201,9 +200,8 @@ void BotController::protectZone()
         toCover_ = static_cast<TacticalZone*>(currentJob_.object_);
         nextRoutePoint_ = toCover_->getRandomPoint();
     }
-    if (moveTo(nextRoutePoint_, 0.5f, false, toCover_->radius_ / 4.f + 10.f)) {
+    if (moveTo(nextRoutePoint_, 0.5f, false, toCover_->radius_ / 4.f + 10.f))
         nextRoutePoint_.x_ = FLT_MAX;
-    }
 }
 
 void BotController::escape()

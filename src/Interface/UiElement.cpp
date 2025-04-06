@@ -27,7 +27,9 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include <SFML/OpenGL.hpp>
 #include <iostream>
 
+
 float UiElement::scale_ = 3.f/2.f;  // global UI scale
+
 
 UiElement::UiElement(Vector2f const& topLeft, int width, int height):
     parent_(NULL),
@@ -41,17 +43,27 @@ UiElement::UiElement(Vector2f const& topLeft, int width, int height):
     focusedFadeTime_(0.f)
 {   }
 
+
 void UiElement::mouseMoved(Vector2f const& position)
 {
     Vector2f topLeftAbs(getTopLeft());
-    if (locales::getCurrentLocale().LTR_) {
-        if ((!sf::Mouse::isButtonPressed(sf::Mouse::Left) || pressed_) && topLeftAbs.x_+width_ > position.x_ && topLeftAbs.y_+height_ > position.y_ && topLeftAbs.x_ < position.x_ && topLeftAbs.y_ < position.y_)
+    if (locales::getCurrentLocale().LTR_)
+    {
+        if ((!sf::Mouse::isButtonPressed(sf::Mouse::Left) || pressed_) &&
+            topLeftAbs.x_+width_ > position.x_ &&
+            topLeftAbs.y_+height_ > position.y_ &&
+            topLeftAbs.x_ < position.x_ &&
+            topLeftAbs.y_ < position.y_)
             hovered_ = true;
         else
             hovered_ = false;
-    }
-    else {
-        if ((!sf::Mouse::isButtonPressed(sf::Mouse::Left) || pressed_) && topLeftAbs.x_-width_ < position.x_ && topLeftAbs.y_+height_ > position.y_ && topLeftAbs.x_ > position.x_ && topLeftAbs.y_ < position.y_)
+    }else
+    {
+        if ((!sf::Mouse::isButtonPressed(sf::Mouse::Left) || pressed_) &&
+            topLeftAbs.x_-width_ < position.x_ &&
+            topLeftAbs.y_+height_ > position.y_ &&
+            topLeftAbs.x_ > position.x_ &&
+            topLeftAbs.y_ < position.y_)
             hovered_ = true;
         else
             hovered_ = false;
@@ -61,21 +73,24 @@ void UiElement::mouseMoved(Vector2f const& position)
 void UiElement::mouseLeft(bool down)
 {
     pressed_ = down && hovered_;
-    if (isTabable() && down && hovered_) {
+    if (isTabable() && down && hovered_)
+    {
         menus::clearFocus();
         setFocus(this, false);
     }
 }
 
+//  draw
 void UiElement::draw() const
 {
-    if      (hovered_)             hoveredFadeTime_ = 1.f;
-    else if (hoveredFadeTime_ > 0) hoveredFadeTime_ -= timer::realFrameTime()*5.f;
-    if      (hoveredFadeTime_ < 0) hoveredFadeTime_ = 0.f;
-    if      (focused_)             focusedFadeTime_ = 1.f;
-    else if (focusedFadeTime_ > 0) focusedFadeTime_ -= timer::realFrameTime()*5.f;
-    if      (focusedFadeTime_ < 0) focusedFadeTime_ = 0.f;
+    if      (hovered_)              hoveredFadeTime_ = 1.f;
+    else if (hoveredFadeTime_ > 0)  hoveredFadeTime_ -= timer::realFrameTime()*5.f;
+    if      (hoveredFadeTime_ < 0)  hoveredFadeTime_ = 0.f;
+    if      (focused_)              focusedFadeTime_ = 1.f;
+    else if (focusedFadeTime_ > 0)  focusedFadeTime_ -= timer::realFrameTime()*5.f;
+    if      (focusedFadeTime_ < 0)  focusedFadeTime_ = 0.f;
 }
+
 
 void UiElement::setParent(UiElement* newParent)
 {
@@ -113,6 +128,7 @@ int UiElement::width() const
 }
 
 
+//  utility
 void UiElement::setColor4f(float r, float g, float b, float a)
 {
     glColor4f(r, g, b, a);  // cyan

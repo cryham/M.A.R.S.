@@ -26,6 +26,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include <SFML/OpenGL.hpp>
 #include <sstream>
 
+
 void GameStats::draw() const
 {
     float top(20.f);
@@ -34,7 +35,8 @@ void GameStats::draw() const
     if (settings::C_showParticleCount)  top += 20.f;
     if (settings::C_showLatency)        top += 20.f;
 
-    if (top > 20.f) {
+    if (top > 20.f)
+    {
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
         glBegin(GL_QUADS);

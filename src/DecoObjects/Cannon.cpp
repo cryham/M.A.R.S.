@@ -30,6 +30,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "defines.hpp"
 #include "System/settings.hpp"
 
+
 Cannon::Cannon():
     timer_(0.f),
     rotation_(0.f)
@@ -40,35 +41,41 @@ void Cannon::update()
     Player* carrier = items::getCannonControl()->getCarrier();
 
     Vector2f toTarget;
-    if (carrier && teams::getEnemy(carrier->team())->home()->getLife() > 0 && carrier->team()->home()->getLife() > 0)
-        toTarget = (teams::getEnemy(carrier->team())->home()->location() - Vector2f(settings::C_MapXsize*0.5f, 0.f)).normalize();
+    if (carrier && teams::getEnemy(carrier->team())->home()->getLife() > 0 &&
+                                    carrier->team()->home()->getLife() > 0)
+        toTarget = (teams::getEnemy(carrier->team())->home()->location() -
+                    Vector2f(settings::C_MapXsize*0.5f, 0.f)).normalize();
     else
         toTarget = Vector2f(0.f, -1.f);
 
     float angle = std::acos(toTarget*Vector2f(1.f, 0.f))-M_PI/2;
 
-    if (std::abs(angle-rotation_*M_PI/180) > 0.01f) {
+    if (std::abs(angle-rotation_*M_PI/180) > 0.01f)
+    {
         timer_ = 0.f;
         const float rotSpeed(timer::frameTime()*4*ships::getShips().size());
-        if (angle > 0.f) {
+        if (angle > 0.f)
+        {
             if (angle > rotation_*M_PI/180)
                 rotation_ += rotSpeed;
             else
                 rotation_ -= rotSpeed;
-        }
-        else {
-            if (angle < rotation_*M_PI/180)
+        }else
+        {   if (angle < rotation_*M_PI/180)
                 rotation_ -= rotSpeed;
             else
                 rotation_ += rotSpeed;
         }
     }
-    else if (std::abs(angle) > 0.1f) {
+    else if (std::abs(angle) > 0.1f)
+    {
         timer_ += timer::frameTime();
         Vector2f direction(-std::sin(rotation_*M_PI/180), std::cos(rotation_*M_PI/180));
         Vector2f location(Vector2f(settings::C_MapXsize*0.5f, 0.f) + direction*180.f);
+
         const float shootSpeed(15.f/ships::getShips().size());
-        if (timer_ > shootSpeed) {
+        if (timer_ > shootSpeed)
+        {
             timer_ = 0.f;
             particles::spawn(particles::pCannonBall, location, direction);
             ++carrier->cannonShots_;
@@ -109,7 +116,6 @@ void Cannon::draw() const
         glTexCoord2i(1, 1); glVertex2f( 100.f, 200.f);
         glTexCoord2i(1, 0); glVertex2f( 100.f, 0.f);
     glEnd();
-
 
     glDisable(GL_TEXTURE_2D);
     glBindTexture(GL_TEXTURE_2D, 0);

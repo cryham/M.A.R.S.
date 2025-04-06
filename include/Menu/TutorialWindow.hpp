@@ -18,11 +18,15 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #pragma once
 
 #include "Interface/UiWindow.hpp"
+#include "Locales/locales.hpp"
+
 
 class TutorialWindow: public UiWindow
 {
     public:
+        static UiWindow* get(locales::LocaleType title, locales::LocaleType text, int index, bool info, bool next);
         static UiWindow* get(sf::String* text, sf::String* title, int index, bool info, bool next);
+
         void checkWidgets();
         void onShow()
         {   }
@@ -39,4 +43,3 @@ class TutorialWindow: public UiWindow
         static bool kOk_;
         static sf::String index_;
 };
-

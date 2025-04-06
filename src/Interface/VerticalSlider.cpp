@@ -27,12 +27,15 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include <SFML/OpenGL.hpp>
 #include <sstream>
 
-VerticalSlider::VerticalSlider (float* value, float minValue, float maxValue, Vector2f const& topLeft, int height):
-    UiElement(topLeft, 20, height),
-    value_(value),
-    minValue_(minValue),
-    maxValue_(maxValue)
+
+VerticalSlider::VerticalSlider (float* value, float minValue, float maxValue,
+        Vector2f const& topLeft, int height)
+    :UiElement(topLeft, 20, height)
+    ,value_(value)
+    ,minValue_(minValue)
+    ,maxValue_(maxValue)
 {   }
+
 
 void VerticalSlider::mouseLeft(bool down)
 {
@@ -44,16 +47,22 @@ void VerticalSlider::mouseMoved(Vector2f const& position)
 {
     UiElement::mouseMoved(position);
 
-    if (pressed_ && focused_) {
-        *value_ = (position.y_+(0.5f*(height_ - 10))/(maxValue_ - minValue_)-getTopLeft().y_-5)*(maxValue_ - minValue_)/(height_ - 10) + minValue_;
-        if (*value_ < minValue_) *value_ = minValue_;
-        if (*value_ > maxValue_) *value_ = maxValue_;
+    if (pressed_ && focused_)
+    {
+        *value_ = (position.y_ + (0.5f*(height_ - 10)) / (maxValue_ - minValue_) -
+            getTopLeft().y_-5) * (maxValue_ - minValue_) / (height_ - 10) + minValue_;
+
+        if (*value_ < minValue_)
+            *value_ = minValue_;
+        if (*value_ > maxValue_)
+            *value_ = maxValue_;
     }
 }
 
 void VerticalSlider::keyEvent(bool down, Key const& key)
 {
-    if (down) {
+    if (down) 
+    {
         if (key.navi_ == Key::nLeft && *value_ > minValue_)
             --(*value_);
         else if (key.navi_ == Key::nRight && *value_ < maxValue_)
@@ -61,6 +70,7 @@ void VerticalSlider::keyEvent(bool down, Key const& key)
     }
 }
 
+//  draw
 void VerticalSlider::draw() const
 {
     UiElement::draw();
@@ -72,7 +82,7 @@ void VerticalSlider::draw() const
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     // draw line
     // Hover effect
-    Color3f((getColor3f(1, 1, 1)*(1-hoveredFadeTime_) +
+    Color3f((getColor3f(1, 1, 1) * (1-hoveredFadeTime_) +
         hoveredFadeTime_ * getColor3f(0.8f, 0.9f, 1.f)) * (0.7f+focusedFadeTime_*0.3f)).gl4f(0.7f);
 
     glLineWidth(2);
@@ -82,7 +92,8 @@ void VerticalSlider::draw() const
     glEnd();
 
     // Hover effect
-    Vector2f sliderPosition(10*mirror + origin.x_, (height_-10)*(*value_- minValue_)/(maxValue_ - minValue_) + origin.y_+5);
+    Vector2f sliderPosition(10*mirror + origin.x_,
+        (height_-10) * (*value_- minValue_) / (maxValue_ - minValue_) + origin.y_+5);
 
     glEnable(GL_TEXTURE_2D);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -91,18 +102,12 @@ void VerticalSlider::draw() const
 
     int x(0), y(0);
 
-    if (hovered_ && pressed_) {
-        x = 3;
-        y = 2;
-    }
-    else if (hovered_){
-        x = 3;
-        y = 1;
-    }
-    else {
-        x = 3;
-        y = 0;
-    }
+    if (hovered_ && pressed_)
+    {   x = 3;  y = 2;  }
+    else if (hovered_)
+    {   x = 3;  y = 1;  }
+    else
+    {   x = 3;  y = 0;  }
 
     setColor3f(1.f, 1.f, 1.f);
     glBegin(GL_QUADS);
@@ -115,4 +120,3 @@ void VerticalSlider::draw() const
     glDisable(GL_TEXTURE_2D);
     glBindTexture(GL_TEXTURE_2D, 0);
 }
-

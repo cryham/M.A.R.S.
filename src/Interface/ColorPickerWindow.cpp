@@ -26,12 +26,13 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include <SFML/OpenGL.hpp>
 
-ColorPickerWindow::ColorPickerWindow (ColorPicker* parent, Color3f* color):
-    UiWindow(190, 185),
-    parent_(parent),
-    color_(color),
-    Ok_(new Button(locales::getLocale(locales::Ok), NULL, &kOk_, Vector2f(110, 155), 70, 20)),
-    kOk_(false)
+
+ColorPickerWindow::ColorPickerWindow (ColorPicker* parent, Color3f* color)
+    :UiWindow(190, 185)
+    ,parent_(parent)
+    ,color_(color)
+    ,Ok_(new Button(locales::getLocale(locales::Ok), NULL, &kOk_, Vector2f(110, 155), 70, 20))
+    ,kOk_(false)
 {
     addWidget(Ok_);
 }
@@ -49,8 +50,13 @@ void ColorPickerWindow::draw() const
     // update color according to mouse
     Vector2f mouse = window::PixelToCoord(window::getMousePosition());
     int x(mouse.x_), y(mouse.y_);
-    if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && x>origin.x_ && x<origin.x_+190 && y>origin.y_ && y<origin.y_+150) {
-        if (x>origin.x_+140) {
+
+    if (sf::Mouse::isButtonPressed(sf::Mouse::Left) &&
+        x > origin.x_ && x < origin.x_+190 &&
+        y > origin.y_ && y < origin.y_+150)
+    {
+        if (x > origin.x_+140)
+        {
             float offset(y-origin.y_-10.f);
             if (offset > 119.9f) offset = 119.9f;
             if (offset < 0) offset = 0;
@@ -134,9 +140,8 @@ void ColorPickerWindow::draw() const
 
 void ColorPickerWindow::checkWidgets()
 {
-    if (kOk_) {
-        kOk_ = false;
+    if (kOk_)
+    {   kOk_ = false;
         menus::hideWindow();
     }
 }
-

@@ -68,20 +68,20 @@ void Ball::update()
                 fmod(rotation_+= rotateSpeed_*time*30, 360);
                 rotateSpeed_ -= rotateSpeed_*time*0.2;
 
-                if (location_.x_ < radius_) {
-                    location_.x_ = radius_;
+                if (location_.x_ < radius_)
+                {   location_.x_ = radius_;
                     velocity_.x_ = -velocity_.x_*0.6;
                 }
-                if (location_.x_ > settings::C_MapXsize - radius_) {
-                    location_.x_ = settings::C_MapXsize - radius_;
+                if (location_.x_ > settings::C_MapXsize - radius_)
+                {   location_.x_ = settings::C_MapXsize - radius_;
                     velocity_.x_ = -velocity_.x_*0.6;
                 }
-                if (location_.y_ < radius_) {
-                    location_.y_ = radius_;
+                if (location_.y_ < radius_)
+                {   location_.y_ = radius_;
                     velocity_.y_ = -velocity_.y_*0.6;
                 }
-                if (location_.y_ > settings::C_MapYsize - radius_) {
-                    location_.y_ = settings::C_MapYsize - radius_;
+                if (location_.y_ > settings::C_MapYsize - radius_)
+                {   location_.y_ = settings::C_MapYsize - radius_;
                     velocity_.y_ = -velocity_.y_*0.6;
                 }
             }
@@ -97,8 +97,8 @@ void Ball::update()
                         particles::spawn(particles::pSmoke, location_+Vector2f::randDirLen()*radius_, velocity_);
                 }
             }
-        }
-        else {
+        }else
+        {
             velocity_ = Vector2f();
             frozen_ -= timer::frameTime()*3.f;
 
@@ -143,8 +143,8 @@ void Ball::draw() const
             glTexCoord2f(0, 0); glVertex2f( drawRadius, -drawRadius);
         glEnd();
 
-        if (heatTimer_ > 0) {
-            // hotness
+        if (heatTimer_ > 0)
+        {   // hotness
             glColor4f(1,1,1, 0.05*heatTimer_);
             glBegin(GL_QUADS);
                 glTexCoord2f(0, 0.5f); glVertex2f(-drawRadius, -drawRadius);
@@ -197,9 +197,8 @@ void Ball::onCollision(SpaceObject* with, Vector2f const& location,
 
         case spaceObjects::oShip:
             particles::spawnMultiple(1, particles::pSpark, location, direction, velocity_, Color3f(0.3f, 0.3f, 0.3f));
-            if (strength > 50) {
+            if (strength > 50)
                 sound::playSound(sound::ShipBallCollide, location, (strength-50)/3);
-            }
             break;
 
         case spaceObjects::oPlanet:
@@ -284,12 +283,14 @@ void Ball::explode()
 {
     sound::playSound(sound::BallExplode, location_, 100.f);
     physics::causeShockWave(damageSource(), location_, 50.f, 300.f, 3.f);
+    
     particles::spawnMultiple(5 , particles::pFragment, location_, location_, location_, Color3f(0.3f, 0.3f, 0.3f));
     particles::spawnMultiple(70, particles::pDust, location_);
     particles::spawnMultiple(20, particles::pExplode, location_);
     particles::spawnMultiple(8, particles::pBurningFragment, location_);
     particles::spawnMultiple(1, particles::pMiniFlame, location_);
     postFX::   onExplosion();
+    
     location_ = respawnLocation_;
     rotation_ = respawnRotation_;
     velocity_ = Vector2f();

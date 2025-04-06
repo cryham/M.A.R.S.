@@ -43,6 +43,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include <cmath>
 #include <sstream>
 
+
 Ship::Ship(Vector2f const& location, float rotation, Player* owner)
     : MobileSpaceObject(spaceObjects::oShip, location, settings::C_ShipRadius, 10.f)
     ,owner_(owner)
@@ -90,11 +91,13 @@ Ship::Ship(Vector2f const& location, float rotation, Player* owner)
     {   currentWeapon_  = weapons:: create(weapons::wAFK47, this);
         currentSpecial_ = specials::create(specials::sHeal, this);
     }
-
     owner->ship_ = this;
     damageSource_ = owner_;
 }
 
+
+//  update
+//--------------------------------------------------------------------------------------------------------------------------------------------
 void Ship::update()
 {
     float time = timer::frameTime();
@@ -146,28 +149,36 @@ void Ship::update()
                     if (up_ > 5 && getFuel() > 0.f)
                     {   fuel_ -= time*0.03f * up_;
                         acceleration = faceDirection * 10.f * up_ * boost_ / 100.f * slower;
-                        particles::spawnTimed(1.5f/settings::C_globalParticleCount*up_, particles::pFuel, location_- faceDirection*radius_, faceDirection, velocity_);
-                        particles::spawnTimed(0.1f/settings::C_globalParticleCount*up_, particles::pHeatJet, location_- faceDirection*radius_*1.5f, faceDirection, velocity_);
+                        particles::spawnTimed(1.5f/settings::C_globalParticleCount*up_, particles::pFuel,
+                            location_- faceDirection*radius_, faceDirection, velocity_);
+                        particles::spawnTimed(0.1f/settings::C_globalParticleCount*up_, particles::pHeatJet,
+                            location_- faceDirection*radius_*1.5f, faceDirection, velocity_);
                     }else
                     if (down_ > 5 && getFuel() > 0.f)
                     {   fuel_ -= time*0.02f * down_;
                         acceleration = faceDirection * -7.f * down_  * boost_ / 100.f * slower;
-                        particles::spawnTimed(1.5f/settings::C_globalParticleCount*up_, particles::pFuel, location_- faceDirection*radius_, faceDirection, velocity_);
-                        particles::spawnTimed(0.1f/settings::C_globalParticleCount*up_, particles::pHeatJet, location_- faceDirection*radius_*1.5f, sideDirection, velocity_);
+                        particles::spawnTimed(1.5f/settings::C_globalParticleCount*up_, particles::pFuel,
+                            location_- faceDirection*radius_, faceDirection, velocity_);
+                        particles::spawnTimed(0.1f/settings::C_globalParticleCount*up_, particles::pHeatJet,
+                            location_- faceDirection*radius_*1.5f, sideDirection, velocity_);
                     }
 
                     //  accelerate sideways
                     if (right_ > 5 && getFuel() > 0.f)
                     {   fuel_ -= time*0.02f * right_;
                         acceleration = sideDirection * 10.f * right_ * boost_ / 100.f;
-                        particles::spawnTimed(1.5f/settings::C_globalParticleCount*up_, particles::pFuel, location_- sideDirection*radius_, sideDirection, velocity_);
-                        particles::spawnTimed(0.1f/settings::C_globalParticleCount*up_, particles::pHeatJet, location_- sideDirection*radius_*1.5f, sideDirection, velocity_);
+                        particles::spawnTimed(1.5f/settings::C_globalParticleCount*up_, particles::pFuel,
+                            location_- sideDirection*radius_, sideDirection, velocity_);
+                        particles::spawnTimed(0.1f/settings::C_globalParticleCount*up_, particles::pHeatJet,
+                            location_- sideDirection*radius_*1.5f, sideDirection, velocity_);
                     }else
                     if (left_ > 5 && getFuel() > 0.f)
                     {   fuel_ -= time*0.02f * left_;
                         acceleration = sideDirection * -10.f * left_ * boost_ / 100.f;
-                        particles::spawnTimed(1.5f/settings::C_globalParticleCount*up_, particles::pFuel, location_+ sideDirection*radius_, sideDirection, velocity_);
-                        particles::spawnTimed(0.1f/settings::C_globalParticleCount*up_, particles::pHeatJet, location_+ sideDirection*radius_*1.5f, sideDirection, velocity_);
+                        particles::spawnTimed(1.5f/settings::C_globalParticleCount*up_, particles::pFuel,
+                            location_+ sideDirection*radius_, sideDirection, velocity_);
+                        particles::spawnTimed(0.1f/settings::C_globalParticleCount*up_, particles::pHeatJet,
+                            location_+ sideDirection*radius_*1.5f, sideDirection, velocity_);
                     }
                 }else
                 {
@@ -186,15 +197,19 @@ void Ship::update()
                     if (up_ > 5 && getFuel() > 0.f)
                     {   fuel_ -= time*0.005f * up_;
                         acceleration = faceDirection * 5.f * up_;
-                        particles::spawnTimed(1.5f/settings::C_globalParticleCount*up_, particles::pFuel, location_-faceDirection*radius_, faceDirection, velocity_);
-                        particles::spawnTimed(0.1f/settings::C_globalParticleCount*up_, particles::pHeatJet, location_-faceDirection*radius_*1.5f, faceDirection, velocity_);
+                        particles::spawnTimed(1.5f/settings::C_globalParticleCount*up_, particles::pFuel,
+                            location_-faceDirection*radius_, faceDirection, velocity_);
+                        particles::spawnTimed(0.1f/settings::C_globalParticleCount*up_, particles::pHeatJet,
+                            location_-faceDirection*radius_*1.5f, faceDirection, velocity_);
                     }else
                     if (down_ > 5 && getFuel() > 0.f)
                     {   // backward
                         fuel_ -= time*0.005f * down_;
                         acceleration = faceDirection * -3.f * down_;
-                        particles::spawnTimed(1.5f/settings::C_globalParticleCount*up_, particles::pFuel, location_-faceDirection*radius_, faceDirection, velocity_);
-                        particles::spawnTimed(0.1f/settings::C_globalParticleCount*up_, particles::pHeatJet, location_-faceDirection*radius_*1.5f, faceDirection, velocity_);
+                        particles::spawnTimed(1.5f/settings::C_globalParticleCount*up_, particles::pFuel,
+                            location_-faceDirection*radius_, faceDirection, velocity_);
+                        particles::spawnTimed(0.1f/settings::C_globalParticleCount*up_, particles::pHeatJet,
+                            location_-faceDirection*radius_*1.5f, faceDirection, velocity_);
                     }
                     else
                     {
@@ -267,20 +282,20 @@ void Ship::update()
                 else
                     physics::collide(this, STATICS);
 
-                if (location_.x_ < radius_) {
-                    location_.x_ = radius_;
+                if (location_.x_ < radius_)
+                {   location_.x_ = radius_;
                     velocity_.x_ = 0.f;
                 }
-                if (location_.x_ > settings::C_MapXsize - radius_) {
-                    location_.x_ = settings::C_MapXsize - radius_;
+                if (location_.x_ > settings::C_MapXsize - radius_)
+                {   location_.x_ = settings::C_MapXsize - radius_;
                     velocity_.x_ = 0.f;
                 }
-                if (location_.y_ < radius_) {
-                    location_.y_ = radius_;
+                if (location_.y_ < radius_)
+                {   location_.y_ = radius_;
                     velocity_.y_ = 0.f;
                 }
-                if (location_.y_ > settings::C_MapYsize - radius_) {
-                    location_.y_ = settings::C_MapYsize - radius_;
+                if (location_.y_ > settings::C_MapYsize - radius_)
+                {   location_.y_ = settings::C_MapYsize - radius_;
                     velocity_.y_ = 0.f;
                 }
             }else
@@ -305,10 +320,8 @@ void Ship::update()
                         damageCheckTimer_ = 1.f;
                 }
             }
-
             // check for death
             if (getLife() <= 0) explode();
-
         }
     }else
     {
@@ -317,6 +330,8 @@ void Ship::update()
     }
 }
 
+//  draw
+//--------------------------------------------------------------------------------------------------------------------------------------------
 void Ship::draw() const
 {
     if (visible_)
@@ -412,6 +427,8 @@ void Ship::drawWeapon() const
      }
 }
 
+//  Collision
+//--------------------------------------------------------------------------------------------------------------------------------------------
 void Ship::onCollision(SpaceObject* with, Vector2f const& location,
                        Vector2f const& direction, Vector2f const& velocity)
 {
@@ -599,21 +616,21 @@ void Ship::onCollision(SpaceObject* with, Vector2f const& location,
     {
         // increase the amount done to weak bots
         // strong bots just take normal damage
-        if (damageSource_
-            && (damageSource_->controlType_ == controllers::cPlayer1 ||
-                damageSource_->controlType_ == controllers::cPlayer2)
-            && (owner_->controlType_ != controllers::cPlayer1 &&
-                owner_->controlType_ != controllers::cPlayer2)
-            && amount < life_)
+        if (damageSource_ &&
+            (damageSource_->controlType_ == controllers::cPlayer1 ||
+             damageSource_->controlType_ == controllers::cPlayer2) &&
+            (owner_->controlType_ != controllers::cPlayer1 &&
+             owner_->controlType_ != controllers::cPlayer2) &&
+            amount < life_)
         {
             amount *= (10.f - 0.09f*settings::C_iDumb);
         }
 
-        if ((damageSource_
-            && (damageSource_->controlType_ == controllers::cPlayer1 ||
-                damageSource_->controlType_ == controllers::cPlayer2))
-            || owner_->controlType_ == controllers::cPlayer1
-            || owner_->controlType_ == controllers::cPlayer2)
+        if ((damageSource_ &&
+            (damageSource_->controlType_ == controllers::cPlayer1 ||
+             damageSource_->controlType_ == controllers::cPlayer2)) ||
+            owner_->controlType_ == controllers::cPlayer1 ||
+            owner_->controlType_ == controllers::cPlayer2)
         {
             Vector2f direction;
 
@@ -627,11 +644,12 @@ void Ship::onCollision(SpaceObject* with, Vector2f const& location,
             life_ -= amount;
     }
 }
+//--------------------------------------------------------------------------------------------------------------------------------------------
 
 void Ship::onShockWave(Player* damageSource, float intensity)
 {
     if (frozen_ > 0)
-        frozen_-=10;
+        frozen_ -= 10;
     else
     {
         setDamageSource(damageSource);
@@ -653,7 +671,7 @@ void Ship::onShockWave(Player* damageSource, float intensity)
 
 void Ship::setDamageSource(Player* evilOne)
 {
-    if (frozen_<=0.f)
+    if (frozen_ <= 0.f)
     {
         damageSource_ = evilOne;
         damageSourceResetTimer_ = 1.8f;
@@ -783,7 +801,6 @@ void Ship::explode()
 
         announcer::announce(announcer::Praising);
     }
-
 }
 
 void Ship::respawn()

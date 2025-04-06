@@ -72,8 +72,8 @@ void Shocker::activate() const
 
         std::vector<Ship*> ships = ships::getShips();
 
-        if (ships.size() >= 2) {
-
+        if (ships.size() >= 2)
+        {
             for (auto& it :ships)
             {
                 if (it != parent_)

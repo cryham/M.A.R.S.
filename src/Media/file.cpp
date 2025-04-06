@@ -24,19 +24,22 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include <fribidi/fribidi.h>
 
-namespace file 
+
+namespace file
 {
-    bool load(std::string fileName, std::vector<sf::String>& strings) {
+    bool load(std::string fileName, std::vector<sf::String>& strings)
+    {
         // Open the file (contains UTF-8 encoded text)
         std::ifstream fileStream(fileName.c_str());
-        if (!fileStream.is_open()) {
+        if (!fileStream.is_open())
             return false;
-        }
-        else {
+        else
+        {
             std::string line;
             int lineCount(0);
             // Play with all the lines in the file
-            while (std::getline(fileStream, line, '\n')) {
+            while (std::getline(fileStream, line, '\n'))
+            {
                 ++ lineCount;
 
                 // ignore empty lines
@@ -76,4 +79,3 @@ namespace file
         return true;
     }
 }
-

@@ -19,8 +19,9 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "Menu/menus.hpp"
 
-RadioGroup::RadioGroup ():
-    UiElement(Vector2f(), 0, 0)
+
+RadioGroup::RadioGroup ()
+    :UiElement(Vector2f(), 0, 0)
 {   }
 
 RadioGroup::~RadioGroup()
@@ -28,6 +29,7 @@ RadioGroup::~RadioGroup()
     for (auto& it : radioButtons_)
         delete it;
 }
+
 
 void RadioGroup::mouseMoved(Vector2f const& position)
 {
@@ -47,22 +49,27 @@ void RadioGroup::keyEvent(bool down, Key const& key)
         focusedButton_->keyEvent(down, key);
 }
 
+
 bool RadioGroup::tabNext()
 {
-    if (radioButtons_.size() > 0) {
-        if (focusedButton_) {
+    if (radioButtons_.size() > 0)
+    {
+        if (focusedButton_)
+        {
             int i(0);
-            while (i<radioButtons_.size() && radioButtons_[i] != focusedButton_) ++i;
+            while (i < radioButtons_.size() && radioButtons_[i] != focusedButton_)
+                ++i;
             ++i;
 
-            if (i<radioButtons_.size()) {
+            if (i < radioButtons_.size())
+            {
                 menus::clearFocus();
                 focusedButton_ = radioButtons_[i];
                 focusedButton_->setFocus(focusedButton_, false);
                 return false;
             }
-        }
-        else {
+        }else 
+        {
             menus::clearFocus();
             focusedButton_ = radioButtons_[0];
             focusedButton_->setFocus(focusedButton_, false);
@@ -74,20 +81,24 @@ bool RadioGroup::tabNext()
 
 bool RadioGroup::tabPrevious()
 {
-   if (radioButtons_.size() > 0) {
-        if (focusedButton_) {
+   if (radioButtons_.size() > 0)
+   {
+        if (focusedButton_)
+        {
             int i(radioButtons_.size()-1);
-            while (i>=0 && radioButtons_[i] != focusedButton_) --i;
+            while (i >= 0 && radioButtons_[i] != focusedButton_)
+                --i;
             --i;
 
-            if (i>=0) {
+            if (i >= 0)
+            {
                 menus::clearFocus();
                 focusedButton_ = radioButtons_[i];
                 focusedButton_->setFocus(focusedButton_, false);
                 return false;
             }
-        }
-        else {
+        }else
+        {
             menus::clearFocus();
             focusedButton_ = radioButtons_[radioButtons_.size()-1];
             focusedButton_->setFocus(focusedButton_, false);
@@ -97,14 +108,16 @@ bool RadioGroup::tabPrevious()
     return true;
 }
 
+
 void RadioGroup::setFocus(UiElement* toBeFocused, bool isPrevious)
 {
     UiElement::setFocus(this, isPrevious);
     RadioButton* toFocus = dynamic_cast<RadioButton*>(toBeFocused);
-    if (toFocus) {
+    if (toFocus)
         focusedButton_ = toFocus;
-    }
-    else if (!focusedButton_) {
+    else
+    if (!focusedButton_)
+    {
         if (isPrevious)
             tabPrevious();
         else

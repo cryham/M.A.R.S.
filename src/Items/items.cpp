@@ -100,8 +100,8 @@ namespace items
         {
             static float spawnTimer(1.f);
             spawnTimer -= timer::frameTime();
-            if (spawnTimer <= 0.f) {
-                spawnPowerUp();
+            if (spawnTimer <= 0.f)
+            {   spawnPowerUp();
                 spawnTimer = randomizer::random(0.5f, 1.5f) * ((101-settings::C_powerUpRate) * 0.23f + 1.5f);
             }
         }

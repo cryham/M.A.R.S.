@@ -25,15 +25,24 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include <SFML/OpenGL.hpp>
 
-Button::Button (sf::String* text, sf::String* toolTip, bool* key, Vector2f const& topLeft, int width, int height, int align, sf::Font* font):
-    UiElement(topLeft, width, height),
-    key_(key),
-    toolTip_(toolTip)
+
+Button::Button (sf::String* text, sf::String* toolTip, bool* key,
+        Vector2f const& topLeft, int width, int height, int align, sf::Font* font)
+    :UiElement(topLeft, width, height)
+    ,key_(key)
+    ,toolTip_(toolTip)
 {
-    switch (align) {
-        case TEXT_ALIGN_LEFT:  label_ = new Label(text, align, Vector2f(4, 2),          12.f, getColor3f(0.75f,0.75f,0.75f), true, font);  break;
-        case TEXT_ALIGN_RIGHT: label_ = new Label(text, align, Vector2f(width-4, 2),    12.f, getColor3f(0.75f,0.75f,0.75f), true, font);  break;
-        default:               label_ = new Label(text, align, Vector2f(width*0.5f, 2), 12.f, getColor3f(0.75f,0.75f,0.75f), true, font);
+    switch (align)
+    {
+        case TEXT_ALIGN_LEFT: 
+            label_ = new Label(text, align, Vector2f(4, 2),
+                12.f, getColor3f(0.75f,0.75f,0.75f), true, font);  break;
+        case TEXT_ALIGN_RIGHT:
+            label_ = new Label(text, align, Vector2f(width-4, 2),
+                12.f, getColor3f(0.75f,0.75f,0.75f), true, font);  break;
+        default:              
+            label_ = new Label(text, align, Vector2f(width*0.5f, 2),
+                12.f, getColor3f(0.75f,0.75f,0.75f), true, font);
     }
     label_->setParent(this);
 }
@@ -54,7 +63,8 @@ void Button::mouseMoved(Vector2f const& position)
 void Button::mouseLeft(bool down)
 {
     UiElement::mouseLeft(down);
-    if (!pressed_ && hovered_ && focused_) {
+    if (!pressed_ && hovered_ && focused_)
+    {
         *key_ = true;
         hovered_ = false;
         toolTip::show(NULL);
@@ -64,9 +74,11 @@ void Button::mouseLeft(bool down)
 
 void Button::keyEvent(bool down, Key const& key)
 {
-    if (key.navi_ == Key::nConfirm) {
+    if (key.navi_ == Key::nConfirm)
+    {
         pressed_ = down;
-        if (!pressed_) {
+        if (!pressed_)
+        {
             *key_ = true;
             hovered_ = false;
             toolTip::show(NULL);
@@ -108,7 +120,8 @@ void Button::draw () const
         glVertex2f(width() + origin.x_, height_ + origin.y_);
         glVertex2f(origin.x_, height_ + origin.y_);
 
-    if (pressed_ && (hovered_ || focused_)) {
+    if (pressed_ && (hovered_ || focused_))
+    {
         // bottom glow
         setColor4f(0.25,0.4,0.5,0.0);
         glVertex2f(origin.x_,origin.y_);
@@ -117,7 +130,8 @@ void Button::draw () const
         glVertex2f(origin.x_+width(),origin.y_+height_);
         glVertex2f(origin.x_,origin.y_+height_);
     }
-    else if (hovered_) {
+    else if (hovered_)
+    {
         setColor4f(0.25,0.4,0.5,0.0);
         glVertex2f(origin.x_,height_*0.5f + origin.y_);
         glVertex2f(origin.x_+width(),height_*0.5f + origin.y_);

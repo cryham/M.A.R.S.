@@ -28,6 +28,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include <SFML/Graphics.hpp>
 
+
 void Blast::draw(float alpha) const
 {
     glBlendFunc(GL_SRC_ALPHA, GL_ONE);
@@ -81,7 +82,8 @@ void Blast::draw(float alpha) const
 
 void Blast::activate() const
 {
-    if (parent_->fragStars_ > 0  && timer_ <= 0.f) {
+    if (parent_->fragStars_ > 0  && timer_ <= 0.f)
+    {
         radius_ = radius();
         parent_->fragStars_ = 0;
         physics::causeShockWave(parent_->getOwner(), parent_->location(), 1000.f, radius_*0.8f, 0.f);

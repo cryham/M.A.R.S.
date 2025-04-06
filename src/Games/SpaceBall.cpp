@@ -25,10 +25,10 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Players/players.hpp"
 #include "Teams/teams.hpp"
 
-SpaceBall::SpaceBall():
-    Game(games::gSpaceBall)
-{
 
+SpaceBall::SpaceBall()
+    :Game(games::gSpaceBall)
+{
     settings::C_EnabledWeapons  = settings::C_EnabledWeaponsByUser;
     settings::C_EnabledSpecials = settings::C_EnabledSpecialsByUser;
 
@@ -37,42 +37,45 @@ SpaceBall::SpaceBall():
     Team* myTeamL = NULL;
     Team* myTeamR = NULL;
 
-    if (settings::C_playerIteamL) {
+    if (settings::C_playerIteamL)
+    {
         myTeamL = new SBTeam(settings::C_playerITeamColor);
         players::addPlayer(myTeamL, controllers::cPlayer1);
     }
-    else if (settings::C_playerIteamR) {
+    else if (settings::C_playerIteamR)
+    {
         myTeamR = new SBTeam(settings::C_playerITeamColor);
         players::addPlayer(myTeamR, controllers::cPlayer1);
     }
 
-    if (settings::C_playerIIteamL) {
+    if (settings::C_playerIIteamL)
+    {
         if (!myTeamL) myTeamL = new SBTeam(settings::C_playerIITeamColor);
         players::addPlayer(myTeamL, controllers::cPlayer2);
     }
-    else if (settings::C_playerIIteamR) {
+    else if (settings::C_playerIIteamR)
+    {
         if (!myTeamR) myTeamR = new SBTeam(settings::C_playerIITeamColor);
         players::addPlayer(myTeamR, controllers::cPlayer2);
     }
 
-    if (!myTeamR && !myTeamL) {
+    if (!myTeamR && !myTeamL)
+    {
         Color3f rand = Color3f::random();
         myTeamL = new SBTeam(rand.inverted());
         myTeamR = new SBTeam(rand);
 
     }
-    else if (!myTeamL) {
+    else if (!myTeamL)
         myTeamL = new SBTeam(myTeamR->color().inverted());
-    }
-    else if (!myTeamR) {
+    else if (!myTeamR)
         myTeamR = new SBTeam(myTeamL->color().inverted());
-    }
 
     teams::addTeam(myTeamL);
     teams::addTeam(myTeamR);
 
-    for (int i=0; i<settings::C_botsLeft;  ++i)                       players::addPlayer(myTeamL, controllers::cBot);
-    for (int i=0; i<settings::C_botsRight;  ++i)                      players::addPlayer(myTeamR, controllers::cBot);
+    for (int i=0; i < settings::C_botsLeft;  ++i)  players::addPlayer(myTeamL, controllers::cBot);
+    for (int i=0; i < settings::C_botsRight; ++i)  players::addPlayer(myTeamR, controllers::cBot);
 
     Home* homeL = spaceObjects::addHome(HOME_LEFT, settings::C_pointLimitSB, myTeamL->color());
     Home* homeR = spaceObjects::addHome(HOME_RIGHT, settings::C_pointLimitSB, myTeamR->color());
@@ -88,9 +91,11 @@ SpaceBall::SpaceBall():
     zones::createRaster(4, 3);
 }
 
+
 void SpaceBall::draw() const
 {
-    if (settings::C_drawZones) zones::draw();
+    if (settings::C_drawZones)
+        zones::draw();
     Game::draw();
 }
 
@@ -111,4 +116,3 @@ void SpaceBall::restart()
     zones::detectTacticalZones();
     zones::createRaster(4, 3);
 }
-

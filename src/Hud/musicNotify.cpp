@@ -28,6 +28,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include <taglib/fileref.h>
 #include <taglib/tag.h>
 
+
 namespace musicNotify
 {
     namespace
@@ -43,11 +44,11 @@ namespace musicNotify
 
     }
 
+
     void draw()
     {
         if (timer_ > 0.f)
         {
-
             float alpha(1.f);
             if (timer_ > 4.f)
                 alpha = 5 - timer_;
@@ -65,7 +66,7 @@ namespace musicNotify
             float byLineLenght(0.f);
             if (artist_ != "" && album_ != "") byLineLenght = artistLength + albumLength + byLength + fromLength + spaceLength;
             else if (artist_ != "")            byLineLenght = artistLength + byLength;
-            else if (album_ != "")             byLineLenght = albumLength  + fromLength ;
+            else if (album_ != "")             byLineLenght = albumLength  + fromLength;
 
             const float titleLenght(text::getCharacterPos(title_, title_.getSize(), 20.f, TEXT_ALIGN_LEFT));
 
@@ -102,29 +103,32 @@ namespace musicNotify
             glBegin(GL_TRIANGLE_FAN);
                 glVertex2f(position.x_, position.y_);
 
-                for (int i=0; i<=360; i+=30) {
+                for (int i=0; i <= 360; i += 30)
+                {
                     Vector2f cornerPosition;
-                    if (i == 90) {
+                    if (i == 90)
+                    {
                         glVertex2f(position.x_, position.y_-cornerRadius);
                         glEnd();
                         glBegin(GL_TRIANGLE_FAN);
                         glVertex2f(position.x_+width, position.y_);
                     }
-                    else if (i == 180) {
+                    else if (i == 180) 
+                    {
                         glVertex2f(position.x_+width-cornerRadius*mirror, position.y_);
                         glEnd();
                         glBegin(GL_TRIANGLE_FAN);
                         glVertex2f(position.x_+width, position.y_+height);
                     }
-                    else if (i == 270) {
+                    else if (i == 270)
+                    {
                         glVertex2f(position.x_+width, position.y_+height+cornerRadius);
                         glEnd();
                         glBegin(GL_TRIANGLE_FAN);
                         glVertex2f(position.x_, position.y_+height);
                     }
-                    else if (i == 360) {
+                    else if (i == 360)
                         glVertex2f(position.x_+cornerRadius*mirror, position.y_+height);
-                    }
 
                     if (i < 90)         cornerPosition = position;
                     else if (i < 180)   cornerPosition = position + Vector2f(width, 0.f);
@@ -132,7 +136,8 @@ namespace musicNotify
                     else                cornerPosition = position + Vector2f(0.f, height);
 
                     float rad = i*M_PI/180;
-                    glVertex2f(cornerPosition.x_ + std::cos(rad)*cornerRadius*mirror, cornerPosition.y_-std::sin(rad)*cornerRadius);
+                    glVertex2f(cornerPosition.x_ + std::cos(rad)*cornerRadius*mirror,
+                               cornerPosition.y_ - std::sin(rad)*cornerRadius);
                 }
             glEnd();
 
@@ -143,7 +148,8 @@ namespace musicNotify
             glColor4f(1.0,0.4,0.8,alpha);
             glBegin(GL_LINE_LOOP);
 
-                for (int i=0; i<360; i+=30) {
+                for (int i=0; i < 360; i += 30)
+                {
                     Vector2f cornerPosition;
                     if (i == 0)         glVertex2f(position.x_+cornerRadius*mirror, position.y_+height);
                     else if (i == 90)   glVertex2f(position.x_, position.y_-cornerRadius);
@@ -166,19 +172,30 @@ namespace musicNotify
 
             if (artist_ != "" && album_ != "")
             {
-                text::drawScreenText(*by_, position + Vector2f(mirror*( -artistLength - spaceLength - albumLength - fromLength - 5), 28), 12.f, TEXT_ALIGN_RIGHT, Color3f(0.7f, 0.7f, 0.7f)*alpha);
-                text::drawScreenText(artist_, position + Vector2f(mirror*( -spaceLength - albumLength - fromLength -5), 28), 12.f, TEXT_ALIGN_RIGHT, Color3f(1.f, 0.5f, 0.9f)*alpha);
-                text::drawScreenText(" ", position + Vector2f(mirror*( -albumLength - fromLength -5), 28), 12.f, TEXT_ALIGN_RIGHT, Color3f(0.7f, 0.7f, 0.7f)*alpha);
-                text::drawScreenText(*from_, position + Vector2f(mirror*( -albumLength -5), 28), 12.f, TEXT_ALIGN_RIGHT, Color3f(0.7f, 0.7f, 0.7f)*alpha);
-                text::drawScreenText(album_, position + Vector2f(mirror*(-5), 28), 12.f, TEXT_ALIGN_RIGHT, Color3f(1.f, 0.5f, 0.9f)*alpha);
+                text::drawScreenText(*by_, position + Vector2f(mirror*( -artistLength - spaceLength - albumLength - fromLength - 5), 28),
+                    12.f, TEXT_ALIGN_RIGHT, Color3f(0.7f, 0.7f, 0.7f)*alpha);
+                text::drawScreenText(artist_, position + Vector2f(mirror*( -spaceLength - albumLength - fromLength -5), 28),
+                    12.f, TEXT_ALIGN_RIGHT, Color3f(1.f, 0.5f, 0.9f)*alpha);
+                text::drawScreenText(" ", position + Vector2f(mirror*( -albumLength - fromLength -5), 28),
+                    12.f, TEXT_ALIGN_RIGHT, Color3f(0.7f, 0.7f, 0.7f)*alpha);
+                text::drawScreenText(*from_, position + Vector2f(mirror*( -albumLength -5), 28),
+                    12.f, TEXT_ALIGN_RIGHT, Color3f(0.7f, 0.7f, 0.7f)*alpha);
+                text::drawScreenText(album_, position + Vector2f(mirror*(-5), 28),
+                    12.f, TEXT_ALIGN_RIGHT, Color3f(1.f, 0.5f, 0.9f)*alpha);
             }
-            else if (artist_ != "") {
-                text::drawScreenText(*by_, position + Vector2f(mirror*( -artistLength - 5), 28), 12.f, TEXT_ALIGN_RIGHT, Color3f(0.7f, 0.7f, 0.7f)*alpha);
-                text::drawScreenText(artist_, position + Vector2f(mirror*(-5), 28), 12.f, TEXT_ALIGN_RIGHT, Color3f(1.f, 0.5f, 0.9f)*alpha);
+            else if (artist_ != "")
+            {
+                text::drawScreenText(*by_, position + Vector2f(mirror*( -artistLength - 5), 28),
+                    12.f, TEXT_ALIGN_RIGHT, Color3f(0.7f, 0.7f, 0.7f)*alpha);
+                text::drawScreenText(artist_, position + Vector2f(mirror*(-5), 28),
+                    12.f, TEXT_ALIGN_RIGHT, Color3f(1.f, 0.5f, 0.9f)*alpha);
             }
-            else if (album_ != "") {
-                text::drawScreenText(*from_, position + Vector2f(mirror*( -albumLength -5), 28), 12.f, TEXT_ALIGN_RIGHT, Color3f(0.7f, 0.7f, 0.7f)*alpha);
-                text::drawScreenText(album_, position + Vector2f(mirror*(-5), 28), 12.f, TEXT_ALIGN_RIGHT, Color3f(1.f, 0.5f, 0.9f)*alpha);
+            else if (album_ != "")
+            {
+                text::drawScreenText(*from_, position + Vector2f(mirror*( -albumLength -5), 28),
+                    12.f, TEXT_ALIGN_RIGHT, Color3f(0.7f, 0.7f, 0.7f)*alpha);
+                text::drawScreenText(album_, position + Vector2f(mirror*(-5), 28),
+                    12.f, TEXT_ALIGN_RIGHT, Color3f(1.f, 0.5f, 0.9f)*alpha);
             }
         }
     }
@@ -199,9 +216,11 @@ namespace musicNotify
         TagLib::Tag *tag(ref.tag());
 
         sf::String title(tag->title().toWString());
+        if (title != "")
+            title_ = title;
+        else
+            title_ = fileName;
 
-        if (title != "") title_ = title;
-        else             title_ = fileName;
         artist_ = tag->artist().toWString();
         album_  = tag->album().toWString();
 

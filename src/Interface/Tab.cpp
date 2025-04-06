@@ -98,9 +98,11 @@ void Tab::keyEvent(bool down, Key const& key)
         focusedWidget_->keyEvent(down, key);
 }
 
+
 bool Tab::tabNext()
 {
-    if (!focusedWidget_ && widgets_.size() > 0) {
+    if (!focusedWidget_ && widgets_.size() > 0)
+    {
         int i(0);
         while (i < widgets_.size() && !widgets_[i]->isTabable())
             ++i;
@@ -182,6 +184,7 @@ void Tab::textEntered(sf::Uint32 keyCode)
         focusedWidget_->textEntered(keyCode);
 }
 
+//  draw
 void Tab::draw () const
 {
     int mirror(locales::getCurrentLocale().LTR_ ? 1 : -1);
@@ -243,6 +246,7 @@ void Tab::draw () const
         for (auto& it : widgets_)
             it->draw();
 }
+
 
 void Tab::setFocus(UiElement* toBeFocused, bool isPrevious)
 {

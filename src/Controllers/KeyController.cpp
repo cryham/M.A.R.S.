@@ -29,7 +29,8 @@ KeyController::KeyController(Player* slave):
 
 void KeyController::update() const
 {
-    if (type_ == controllers::cPlayer1) {
+    if (type_ == controllers::cPlayer1)
+    {
         slaveUp   (window::isKeyDown(settings::C_playerIup));
         slaveDown (window::isKeyDown(settings::C_playerIdown));
         slaveBoost(window::isKeyDown(settings::C_playerIboost));
@@ -40,8 +41,8 @@ void KeyController::update() const
         slaveFire (window::isKeyDown(settings::C_playerIfire));
         slaveSpecial (window::isKeyDown(settings::C_playerISpecialKey));
     }
-
-    else if (type_ == controllers::cPlayer2) {
+    else if (type_ == controllers::cPlayer2)
+    {
         slaveUp   (window::isKeyDown(settings::C_playerIIup));
         slaveDown (window::isKeyDown(settings::C_playerIIdown));
         slaveBoost(window::isKeyDown(settings::C_playerIIboost));
@@ -56,7 +57,8 @@ void KeyController::update() const
 
 void KeyController::update(Key const& key) const
 {
-    if (type_ == controllers::cPlayer1 && key.strength_ == 100) {
+    if (type_ == controllers::cPlayer1 && key.strength_ == 100)
+    {
         if      (key == settings::C_playerIup)    slaveUp();
         else if (key == settings::C_playerIdown)  slaveDown();
         else if (key == settings::C_playerIboost) slaveBoost();
@@ -70,8 +72,8 @@ void KeyController::update(Key const& key) const
         else if (key == settings::C_playerIprev)  slavePrev();
         else if (key == settings::C_playerInext)  slaveNext();
     }
-
-    else if (type_ == controllers::cPlayer2 && key.strength_ == 100) {
+    else if (type_ == controllers::cPlayer2 && key.strength_ == 100)
+    {
         if      (key == settings::C_playerIIup)    slaveUp();
         else if (key == settings::C_playerIIdown)  slaveDown();
         else if (key == settings::C_playerIIboost) slaveBoost();
@@ -90,12 +92,13 @@ void KeyController::update(Key const& key) const
 
 void KeyController::evaluate()
 {
-    if (std::max(100 - ship()->getLife(), 100 - ship()->getFuel()) > 30) {
+    if (std::max(100 - ship()->getLife(), 100 - ship()->getFuel()) > 30)
+    {
         slave_->team()->addJob(Job(Job::jHeal, std::max(100 - ship()->getLife(), 100 - ship()->getFuel()), ship()));
         slave_->team()->addJob(Job(Job::jHeal, std::max(100 - ship()->getLife(), 100 - ship()->getFuel()), ship()));
     }
-
-    if (ship()->frozen_ > 0) {
+    if (ship()->frozen_ > 0)
+    {
         slave_->team()->addJob(Job(Job::jUnfreeze, 90, ship()));
         slave_->team()->addJob(Job(Job::jUnfreeze, 90, ship()));
         slave_->team()->addJob(Job(Job::jUnfreeze, 90, ship()));

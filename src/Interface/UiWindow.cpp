@@ -39,6 +39,7 @@ UiWindow::~UiWindow()
         delete it;
 }
 
+
 void UiWindow::mouseMoved(Vector2f const& position)
 {
     for (auto& it : widgets_)
@@ -63,13 +64,17 @@ void UiWindow::keyEvent(bool down, Key const& key)
         focusedWidget_->keyEvent(down, key);
 }
 
+
 bool UiWindow::tabNext()
 {
-    if (focusedWidget_->tabNext()) {
+    if (focusedWidget_->tabNext())
+    {
         int i(0);
-        while ( widgets_[i] != focusedWidget_) i = (i+1)%widgets_.size();
+        while (widgets_[i] != focusedWidget_)
+            i = (i+1)%widgets_.size();
         i = (i+1)%widgets_.size();
-        while (!widgets_[i]->isTabable())      i = (i+1)%widgets_.size();
+        while (!widgets_[i]->isTabable())
+            i = (i+1)%widgets_.size();
 
         menus::clearFocus();
         focusedWidget_ = widgets_[i];
@@ -80,11 +85,14 @@ bool UiWindow::tabNext()
 
 bool UiWindow::tabPrevious()
 {
-    if (focusedWidget_->tabPrevious()) {
+    if (focusedWidget_->tabPrevious())
+    {
         int i(0);
-        while ( widgets_[i] != focusedWidget_) i = (i-1 + widgets_.size())%widgets_.size();
+        while (widgets_[i] != focusedWidget_)
+            i = (i-1 + widgets_.size())%widgets_.size();
         i = (i-1 + widgets_.size())%widgets_.size();
-        while (!widgets_[i]->isTabable())      i = (i-1 + widgets_.size())%widgets_.size();
+        while (!widgets_[i]->isTabable())
+            i = (i-1 + widgets_.size())%widgets_.size();
 
         menus::clearFocus();
         focusedWidget_ = widgets_[i];
@@ -99,10 +107,10 @@ void UiWindow::textEntered(sf::Uint32 keyCode)
         focusedWidget_->textEntered(keyCode);
 }
 
+//  draw
 void UiWindow::draw () const
 {
-
-    if (!topMost_)
+    if (!topMost_)  // draws only one, current
         return;
 
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -125,8 +133,8 @@ void UiWindow::draw () const
         glVertex2f(origin.x_-10,origin.y_-10);
         glVertex2f(origin.x_+width_+10,origin.y_-10);
         setColor4f(1.0,1.0,1.0,0.02);
-        glVertex2f(origin.x_+width_+10,origin.y_+height_/4);
-        glVertex2f(origin.x_-10,origin.y_+height_/3);
+        glVertex2f(origin.x_+width_+10,origin.y_ + height_/4.f);
+        glVertex2f(origin.x_-10,origin.y_ + height_/3.f);
     glEnd();
 
     glLineWidth(2.f);
@@ -138,7 +146,7 @@ void UiWindow::draw () const
         glVertex2f(origin.x_+width_+10,origin.y_+height_+10);
     glEnd();
 
-    setColor3f(1.f, 1.f, 1.f);
+    setColor4f(1.f, 1.f, 1.f, 1.f);  // alpha
     glEnable(GL_TEXTURE_2D);
 
     float offset(0.f);
@@ -200,6 +208,7 @@ void UiWindow::draw () const
         it->draw();
 }
 
+
 void UiWindow::setFocus(UiElement* toBeFocused, bool isPrevious)
 {
     UiElement::setFocus(this, isPrevious);
@@ -217,8 +226,9 @@ void UiWindow::addWidget(UiElement* toBeAdded)
 {
     toBeAdded->setParent(this);
     widgets_.push_back(toBeAdded);
-    if (!focusedWidget_) {
-        focusedWidget_ = toBeAdded;
+    
+    if (!focusedWidget_)
+    {   focusedWidget_ = toBeAdded;
         focusedWidget_->setFocus(focusedWidget_, false);
     }
 }
@@ -233,14 +243,13 @@ Vector2f UiWindow::getTopLeft() const
     Vector2f viewPort = window::getViewPort();
     Vector2f origin;
 
-    if (locales::getCurrentLocale().LTR_) {
+    if (locales::getCurrentLocale().LTR_)
+    {
         origin.x_ = topLeft_.x_ + (viewPort.x_ - width_)/2;
         origin.y_ = topLeft_.y_ + (viewPort.y_ - height_)/2;
-    }
-    else {
-        origin.x_ = topLeft_.x_ + (viewPort.x_ + width_)/2;
+    }else
+    {   origin.x_ = topLeft_.x_ + (viewPort.x_ + width_)/2;
         origin.y_ = topLeft_.y_ + (viewPort.y_ - height_)/2;
     }
-
     return origin;
 }

@@ -127,7 +127,8 @@ void KeyEdit::draw() const
         glVertex2f(width() + origin.x_, height_ + origin.y_-2);
         glVertex2f(origin.x_+labelWidth_*mirror, height_ + origin.y_-2);
 
-        if (!pressed_) {
+        if (!pressed_)
+        {
             // glossy top
             setColor4f(1.0,1.0,1.0,0.2);
             glVertex2f(origin.x_+labelWidth_*mirror, origin.y_+2);

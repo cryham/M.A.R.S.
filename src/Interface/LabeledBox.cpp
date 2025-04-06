@@ -22,12 +22,15 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include <SFML/OpenGL.hpp>
 
-LabeledBox::LabeledBox (sf::String* text, Vector2f const& topLeft, int width, int height):
-    UiElement(topLeft, width, height),
-    label_(NULL)
+
+LabeledBox::LabeledBox (sf::String* text, Vector2f const& topLeft, int width, int height)
+    :UiElement(topLeft, width, height)
+    ,label_(NULL)
 {
-    if (text) {
-        label_ = new Label(text, TEXT_ALIGN_LEFT, Vector2f(5, 5), 12.f, getColor3f(0.5f, 0.9f, 1.f), false);
+    if (text)
+    {
+        label_ = new Label(text, TEXT_ALIGN_LEFT, Vector2f(5, 5),
+            12.f, getColor3f(0.5f, 0.9f, 1.f), false);
         label_->setParent(this);
     }
 }
@@ -38,6 +41,7 @@ LabeledBox::~LabeledBox ()
         delete label_;
 }
 
+//  draw
 void LabeledBox::draw() const
 {
     UiElement::draw();
@@ -74,5 +78,3 @@ void LabeledBox::draw() const
     if (label_)
         label_->draw();
 }
-
-

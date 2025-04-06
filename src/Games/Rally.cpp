@@ -29,8 +29,9 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "TrailEffects/Trail.hpp"
 #include "System/randomizer.hpp"
 
-Rally::Rally():
-    Game(games::gRally)
+
+Rally::Rally()
+    :Game(games::gRally)
 {
     settings::C_EnabledWeapons  = settings::C_EnabledWeaponsByUser;
     settings::C_EnabledSpecials = settings::C_EnabledSpecialsByUser;
@@ -42,7 +43,8 @@ Rally::Rally():
     if (settings::C_playerIIteamL | settings::C_playerIIteamR)
         players::addPlayer (teams::addTeam(new DMTeam(settings::C_playerIITeamColor)), controllers::cPlayer2);
 
-    for (int i=0; i<settings::C_botsDeath; ++i) {
+    for (int i=0; i < settings::C_botsDeath; ++i)
+    {
         Team* newTeam = teams::addTeam(new DMTeam());
         Color3f color(newTeam->color());
         color.h(newTeam->color().h()+10*randomizer::random(-5, 5));
@@ -67,7 +69,8 @@ Rally::~Rally()
 
 void Rally::draw() const
 {
-    if (settings::C_drawZones) zones::draw();
+    if (settings::C_drawZones)
+        zones::draw();
     track_->draw();
     Game::draw();
 }

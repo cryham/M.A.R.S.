@@ -58,7 +58,8 @@ void MiniAmmoFlubba::update()
 
     lifeTime_ += time;
 
-    if (lifeTime_ > totalLifeTime_) {
+    if (lifeTime_ > totalLifeTime_)
+    {
         particles::spawnMultiple(2, particles::pMud, location_, Vector2f(), Vector2f(), color_);
         sound::playSound(sound::BlubPop, location_);
     }

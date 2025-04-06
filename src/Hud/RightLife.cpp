@@ -27,19 +27,20 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include <sstream>
 
+
 void RightLife::draw() const
 {
-
     Player const* player(NULL);
 
-    if ((settings::C_playerIteamL && settings::C_playerIIteamL)
-        | (settings::C_playerIteamR && settings::C_playerIIteamR))  player = players::getPlayerI();
+    if ((settings::C_playerIteamL && settings::C_playerIIteamL) |
+        (settings::C_playerIteamR && settings::C_playerIIteamR))    player = players::getPlayerI();
     else if (settings::C_playerIteamL && settings::C_playerIIteamR) player = players::getPlayerII();
     else if (settings::C_playerIIteamL && settings::C_playerIteamR) player = players::getPlayerI();
     else if (settings::C_playerIteamR)                              player = players::getPlayerI();
     else if (settings::C_playerIIteamR)                             player = players::getPlayerII();
 
-    if (player) {
+    if (player)
+    {
         Color3f color = player->color();
         color.v(1.f);
         color.s(0.3f);
@@ -47,7 +48,8 @@ void RightLife::draw() const
 
         std::stringstream sstr;
         int first(teams::getFirstPoints());
-        if (player->team()->points() == first) {
+        if (player->team()->points() == first)
+        {
             int second(teams::getSecondPoints());
             sstr << player->name().toAnsiString() << " (" << player->team()->points() << "/ +" << first-second << ")";
         }
@@ -72,8 +74,10 @@ void RightLife::draw() const
         glEnd();
 
         // draw caps
-        if (life > 0) {
-            if (life == 100.f) {
+        if (life > 0)
+        {
+            if (life == 100.f)
+            {
                 glBegin(GL_QUADS);
                     glVertex2i(port.x_ - 179, port.y_-47);
                     glVertex2i(port.x_ - 184, port.y_-43);
@@ -100,8 +104,10 @@ void RightLife::draw() const
         glEnd();
 
         // draw caps
-        if (fuel > 0) {
-            if (fuel == 100.f) {
+        if (fuel > 0)
+        {
+            if (fuel == 100.f)
+            {
                 glBegin(GL_QUADS);
                     glVertex2i(port.x_ - 179, port.y_-23);
                     glVertex2i(port.x_ - 184, port.y_-18);

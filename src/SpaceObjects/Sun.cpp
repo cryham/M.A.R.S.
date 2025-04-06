@@ -22,9 +22,11 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Particles/particles.hpp"
 #include "System/randomizer.hpp"
 
-Sun::Sun(Vector2f const& location, float radius):
-         SpaceObject(spaceObjects::oSun,location, radius, radius*50),
-         eruptionTimer_(0) {
+
+Sun::Sun(Vector2f const& location, float radius)
+    :SpaceObject(spaceObjects::oSun,location, radius, radius*50)
+    ,eruptionTimer_(0)
+{
     physics::addStaticObject(this);
     physics::addGravitySource(this);
 }
@@ -73,7 +75,9 @@ void Sun::onCollision(SpaceObject* with, Vector2f const& location,
     if (with->type() != spaceObjects::oFuel && with->type() != spaceObjects::oAmmoBurner  && strength > 50)
         particles::spawnMultiple(5, particles::pMud, location, direction, velocity, Color3f(1.0f, 0.9f, 0.2f));
 
-    if (((with->type() == spaceObjects::oShip) | (with->type() == spaceObjects::oBall)) && (strength > 50)) {
+    if (((with->type() == spaceObjects::oShip) |
+         (with->type() == spaceObjects::oBall)) && (strength > 50))
+    {
         Vector2f direction = location - location_;
         Vector2f eruptionLocation = location_ + direction * 0.9;
         particles::spawnMultiple(strength*0.1, particles::pEruption, eruptionLocation, direction, direction*strength*0.00005);

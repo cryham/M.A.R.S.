@@ -71,9 +71,9 @@ void BotController::draw()
         /*const float    maxAngle     (ship()->currentWeapon_->maxAngle());
         const float    shipRotation (ship()->rotation_*M_PI/180.f);
         const Vector2f shipDirection(Vector2f(std::cos(shipRotation), std::sin(shipRotation)));
-        if (ship()->currentWeapon_->getType() == weapons::wInsta) {
+        if (ship()->currentWeapon_->getType() == weapons::wInsta)
             slaveFire(AmmoInsta::hitsAny(ship()->location() + shipDirection*ship()->radius(), shipDirection, slave_->team()));
-        }*/
+        */
 
         // draw Jobs
         if (settings::C_drawBotJobs)

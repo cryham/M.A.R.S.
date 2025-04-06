@@ -20,10 +20,13 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "System/timer.hpp"
 #include "Media/sound.hpp"
 
+
 std::list<AmmoAFK47*> AmmoAFK47::activeParticles_;
 
-AmmoAFK47::AmmoAFK47(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity, Color3f const& color, Player* damageSource):
-         Particle<AmmoAFK47>(spaceObjects::oAmmoAFK47, location, 1.f, 0.3f, 2.5f)
+
+AmmoAFK47::AmmoAFK47(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,
+        Color3f const& color, Player* damageSource)
+    :Particle<AmmoAFK47>(spaceObjects::oAmmoAFK47, location, 1.f, 0.3f, 2.5f)
 {
     setDamageSource(damageSource);
     Vector2f distortion(Vector2f::randDir());
@@ -45,13 +48,17 @@ void AmmoAFK47::update()
 
 void AmmoAFK47::draw() const
 {
-    glColor3f(1.f, 1.f, 1.f);
+    glColor4f(1.f, 1.f, 1.f, 1.f);
 
     Vector2f direction(velocity_*0.016f);
     Vector2f normDirection(direction.y_, -1.f*direction.x_);
     normDirection *= 0.1f;
 
-    const Vector2f topLeft(location_ + direction + normDirection), topRight(location_ + direction - normDirection), bottomLeft(location_ - 3*direction + normDirection), bottomRight(location_ - 3*direction - normDirection);
+    const Vector2f
+        topLeft(location_ + direction + normDirection),
+        topRight(location_ + direction - normDirection),
+        bottomLeft(location_ - 3*direction + normDirection),
+        bottomRight(location_ - 3*direction - normDirection);
 
     const int posX = 0;
     const int posY = 2;
@@ -62,12 +69,14 @@ void AmmoAFK47::draw() const
 }
 
 void AmmoAFK47::onCollision(SpaceObject* with, Vector2f const& location,
-                        Vector2f const& direction, Vector2f const& velocity) {
+                        Vector2f const& direction, Vector2f const& velocity)
+{
     float strength = (velocity-velocity_).length();
 
-    if (strength > 50.f) {
-
-        switch (with->type()) {
+    if (strength > 50.f)
+    {
+        switch (with->type())
+        {
             case spaceObjects::oShip:
                 sound::playSound(sound::LaserCollide, location, (strength-50)/3);
                 break;

@@ -23,6 +23,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "SpaceObjects/Home.hpp"
 #include "System/randomizer.hpp"
 
+
 void BotController::charge()
 {
     Vector2f direction = ship()->location() - slave_->team()->home()->location();
@@ -43,7 +44,8 @@ void BotController::land()
 
 void BotController::switchWeapon()
 {
-    if (weaponChangeTimer_ <= 0.f) {
+    if (weaponChangeTimer_ <= 0.f)
+    {
         slaveFire();
         slaveLeft();
         slaveFire();
@@ -57,7 +59,8 @@ void BotController::switchWeapon()
 
 void BotController::switchSpecial()
 {
-    if (specialChangeTimer_ <= 0.f) {
+    if (specialChangeTimer_ <= 0.f)
+    {
         slaveSpecial();
         slaveLeft();
         slaveSpecial();

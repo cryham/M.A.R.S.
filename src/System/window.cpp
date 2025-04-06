@@ -186,8 +186,7 @@ namespace window
         }
     }
 
-    // "public" methodes /////////////////////////////////////////////////
-
+    // public methods
     bool open()
     {
         if (settings::load() && locales::load())
@@ -405,34 +404,32 @@ namespace window
 
         #ifdef __linux__
             mkdir((settings::C_configPath + "screenshots/").c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
-            if (shot.saveToFile(settings::C_configPath + "screenshots/" + filename.str())) {
-                std::cout << "Saved screenshot to " << settings::C_configPath << "screenshots/" << filename.str() << "." << std::endl;
+            if (shot.saveToFile(settings::C_configPath + "screenshots/" + filename.str()))
+            {   std::cout << "Saved screenshot to " << settings::C_configPath << "screenshots/" << filename.str() << "." << std::endl;
                 hud::displayMessage(*locales::getLocale(locales::SavedScreenshot));
-            } else {
+            }else
                 std::cout << "Failed saving screenshot to " << settings::C_configPath << "screenshots/" << filename.str() << "." << std::endl;
-            }
         #endif
 
         #ifdef __APPLE__
             mkdir((settings::C_configPath + "screenshots/").c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
-            if (shot.saveToFile(settings::C_configPath + "screenshots/" + filename.str())) {
-                std::cout << "Saved screenshot to " << settings::C_configPath << "screenshots/" << filename.str() << "." << std::endl;
+            if (shot.saveToFile(settings::C_configPath + "screenshots/" + filename.str()))
+            {   std::cout << "Saved screenshot to " << settings::C_configPath << "screenshots/" << filename.str() << "." << std::endl;
                 hud::displayMessage(*locales::getLocale(locales::SavedScreenshot));
-            } else {
+            }else
                 std::cout << "Failed saving screenshot to " << settings::C_configPath << "screenshots/" << filename.str() << "." << std::endl;
-            }
         #endif
 
         #if defined(__WIN32__) || defined(_WIN32)
             CreateDirectory((settings::C_configPath + "screenshots/").c_str(), NULL);
-            if (shot.saveToFile(settings::C_configPath + "screenshots/" + filename.str())) {
-                std::cout << "Saved screenshot to " << settings::C_configPath << "screenshots/" << filename.str() << "." << std::endl;
+            if (shot.saveToFile(settings::C_configPath + "screenshots/" + filename.str()))
+            {   std::cout << "Saved screenshot to " << settings::C_configPath << "screenshots/" << filename.str() << "." << std::endl;
                 hud::displayMessage(*locales::getLocale(locales::SavedScreenshot));
-            } else {
+            }else
                 std::cout << "Failed saving screenshot to " << settings::C_configPath << "screenshots/" << filename.str() << "." << std::endl;
-            }
         #endif
     }
+
 
     void showCursor(bool show)
     {

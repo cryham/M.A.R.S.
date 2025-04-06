@@ -63,6 +63,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "TrailEffects/trailEffects.hpp"
 
+
 namespace particles 
 {
     void update()
@@ -327,22 +328,23 @@ namespace particles
         Smoke::         shockWave(location, strength, radius);
         Dust::          shockWave(location, strength, radius);
         AmmoFlubba::    shockWave(location, strength, radius);
-        MiniAmmoFlubba::    shockWave(location, strength, radius);
+        MiniAmmoFlubba::shockWave(location, strength, radius);
         MiniFlameSmoke::shockWave(location, strength, radius);
     }
 
-    int count() {
+    int count()
+    {
         return trailEffects::count() + Fuel::count() + Mud::count() + Smoke::count() + Eruption::count()
-                + AmmoAFK47::count() + AmmoROFLE::count() + Dust::count() + Explode::count()
-                + BurningFragment::count() + FragmentFlame::count() + AmmoShotgun::count()
-                + MiniFlame::count() + AmmoFlubba::count() + MiniAmmoFlubba::count()
-                + CannonBall::count() + Spark::count() + Fragment::count() + AmmoBurner::count()
-                + AmmoH2OMG::count() + Heat::count() + HeatJet::count() + ShockWave::count()
-                + HeatBurner::count() + MiniFlameSmoke::count() + AmmoRocket::count()+ PowerUpCollect::count()
-                + AmmoFist::count() + Number::count() + CrushedIce::count() + AmmoInsta::count() + Star::count()
+            + AmmoAFK47::count() + AmmoROFLE::count() + Dust::count() + Explode::count()
+            + BurningFragment::count() + FragmentFlame::count() + AmmoShotgun::count()
+            + MiniFlame::count() + AmmoFlubba::count() + MiniAmmoFlubba::count()
+            + CannonBall::count() + Spark::count() + Fragment::count() + AmmoBurner::count()
+            + AmmoH2OMG::count() + Heat::count() + HeatJet::count() + ShockWave::count()
+            + HeatBurner::count() + MiniFlameSmoke::count() + AmmoRocket::count()+ PowerUpCollect::count()
+            + AmmoFist::count() + Number::count() + CrushedIce::count() + AmmoInsta::count() + Star::count()
 
-                + AmmoAFK85::count() + AmmoFlamer2::count() + AmmoPlasma::count() +
-                + AmmoRifle2::count() + AmmoShotgun2::count() + AmmoH2OStorm::count() + AmmoMiniRocket::count();
+            + AmmoAFK85::count() + AmmoFlamer2::count() + AmmoPlasma::count() +
+            + AmmoRifle2::count() + AmmoShotgun2::count() + AmmoH2OStorm::count() + AmmoMiniRocket::count();
     }
 
     void clear()

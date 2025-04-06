@@ -21,11 +21,14 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "System/settings.hpp"
 #include "System/randomizer.hpp"
 
+
 std::list<Explode*> Explode::activeParticles_;
 
-Explode::Explode(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity, Color3f const& color, Player* damageSource):
-           Particle<Explode>(spaceObjects::oExplode, location, 4, 0, randomizer::random(0.4f, 0.8f)) {
 
+Explode::Explode(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,
+        Color3f const& color, Player* damageSource)
+    :Particle<Explode>(spaceObjects::oExplode, location, 4, 0, randomizer::random(0.4f, 0.8f)) 
+{
     velocity_ = Vector2f::randDir()*200*randomizer::random(0.5f, 2.f);
 
     color_.h(50.f);
@@ -61,4 +64,3 @@ void Explode::draw() const
     glTexCoord2f((posX+2)*0.125f, (posY+2)*0.125f); glVertex2f(location_.x_+radius_, location_.y_+radius_);
     glTexCoord2f((posX+2)*0.125f, posY*0.125f);     glVertex2f(location_.x_+radius_, location_.y_-radius_);
 }
-

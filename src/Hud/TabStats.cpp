@@ -82,7 +82,8 @@ void TabStats::update()
 void TabStats::draw() const
 {
     float scale = UiElement::scale_;
-    if (visible_ && !menus::visible()) {
+    if (visible_ && !menus::visible())
+    {
         int mirror(locales::getCurrentLocale().LTR_ ? 1 : -1);
         // get height of list
         int height;

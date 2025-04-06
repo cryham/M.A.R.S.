@@ -63,6 +63,7 @@ ComboBox::~ComboBox ()
     delete dropBox_;
 }
 
+
 void ComboBox::mouseMoved(Vector2f const& position)
 {
     UiElement::mouseMoved(position);
@@ -74,15 +75,20 @@ void ComboBox::mouseMoved(Vector2f const& position)
 
 void ComboBox::mouseWheelMoved(Vector2f const& position, int delta)
 {
-    if (hovered_ && values_.size() > 1) {
+    if (hovered_ && values_.size() > 1)
+    {
         int i(0);
-        for (i=0; i<values_.size(); ++i) {
+        for (i=0; i<values_.size(); ++i)
+        {
             if (values_[i] == (*currentValue_))
                 break;
         }
-        i-=delta;
-        if      (i<0)               i=0;
-        else if (i>=values_.size()) i=values_.size()-1;
+        i -= delta;
+        if (i < 0)
+            i = 0;
+        else
+        if (i >= values_.size())
+            i = values_.size()-1;
         (*currentValue_) = values_[i];
     }
 }
@@ -90,7 +96,8 @@ void ComboBox::mouseWheelMoved(Vector2f const& position, int delta)
 void ComboBox::mouseLeft(bool down)
 {
     UiElement::mouseLeft(hovered_ && down);
-    if (!pressed_ && hovered_ && focused_) {
+    if (!pressed_ && hovered_ && focused_)
+    {
         hovered_ = false;
         sound::playSound(sound::Click);
         menus::showWindow(dropBox_);
@@ -111,6 +118,7 @@ void ComboBox::keyEvent(bool down, Key const& key)
     }
 }
 
+//  draw
 void ComboBox::draw() const
 {
     UiElement::draw();
@@ -133,6 +141,7 @@ void ComboBox::draw() const
         glVertex2f(boxBegin*0.5f+width()*0.5f + origin.x_*0.5f, origin.y_);
         glVertex2f(boxBegin*0.5f+width()*0.5f + origin.x_*0.5f, height_ + origin.y_);
         glVertex2f(boxBegin*0.5f+width()*0.5f + origin.x_*0.5f, origin.y_);
+
         if (isTopMost())   setColor4f(0.1*focusedFadeTime_,0.2*focusedFadeTime_,0.3*focusedFadeTime_,0.8);
         else               setColor4f(0.0,0.0,0.0,0.8);
         glVertex2f(width() + origin.x_, origin.y_);
@@ -146,7 +155,8 @@ void ComboBox::draw() const
         glVertex2f(width() + origin.x_, height_ + origin.y_);
         glVertex2f(boxBegin, height_ + origin.y_);
 
-    if (pressed_ && hovered_) {
+    if (pressed_ && hovered_)
+    {
         // bottom glow
         setColor4f(0.25,0.4,0.5,0.0);
         glVertex2f(boxBegin,origin.y_);
@@ -155,7 +165,8 @@ void ComboBox::draw() const
         glVertex2f(origin.x_+width(),origin.y_+height_);
         glVertex2f(boxBegin,origin.y_+height_);
     }
-    else if (hovered_) {
+    else if (hovered_)
+    {
         setColor4f(0.25,0.4,0.5,0.0);
         glVertex2f(boxBegin,height_*0.5f + origin.y_);
         glVertex2f(origin.x_+width(),height_*0.5f + origin.y_);
@@ -222,6 +233,7 @@ void ComboBox::draw() const
     // draw Label
     label_->draw();
 }
+
 
 void ComboBox::setFocus (UiElement* toBeFocused, bool isPrevious)
 {

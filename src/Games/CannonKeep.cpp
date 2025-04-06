@@ -26,8 +26,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Teams/teams.hpp"
 #include "SpaceObjects/spaceObjects.hpp"
 
-CannonKeep::CannonKeep():
-    Game(games::gCannonKeep)
+CannonKeep::CannonKeep()
+    :Game(games::gCannonKeep)
 {
     settings::C_EnabledWeapons  = settings::C_EnabledWeaponsByUser;
     settings::C_EnabledSpecials = settings::C_EnabledSpecialsByUser;
@@ -37,36 +37,39 @@ CannonKeep::CannonKeep():
     Team* myTeamL = NULL;
     Team* myTeamR = NULL;
 
-    if (settings::C_playerIteamL) {
+    if (settings::C_playerIteamL)
+    {
         myTeamL = new CKTeam(settings::C_playerITeamColor);
         players::addPlayer(myTeamL, controllers::cPlayer1);
     }
-    else if (settings::C_playerIteamR) {
+    else if (settings::C_playerIteamR)
+    {
         myTeamR = new CKTeam(settings::C_playerITeamColor);
         players::addPlayer(myTeamR, controllers::cPlayer1);
     }
 
-    if (settings::C_playerIIteamL) {
+    if (settings::C_playerIIteamL)
+    {
         if (!myTeamL) myTeamL = new CKTeam(settings::C_playerIITeamColor);
         players::addPlayer(myTeamL, controllers::cPlayer2);
     }
-    else if (settings::C_playerIIteamR) {
+    else if (settings::C_playerIIteamR)
+    {
         if (!myTeamR) myTeamR = new CKTeam(settings::C_playerIITeamColor);
         players::addPlayer(myTeamR, controllers::cPlayer2);
     }
 
-    if (!myTeamR && !myTeamL) {
+    if (!myTeamR && !myTeamL)
+    {
         Color3f rand = Color3f::random();
         myTeamL = new CKTeam(rand.inverted());
         myTeamR = new CKTeam(rand);
 
     }
-    else if (!myTeamL) {
+    else if (!myTeamL)
         myTeamL = new CKTeam(myTeamR->color().inverted());
-    }
-    else if (!myTeamR) {
+    else if (!myTeamR)
         myTeamR = new CKTeam(myTeamL->color().inverted());
-    }
 
     teams::addTeam(myTeamL);
     teams::addTeam(myTeamR);

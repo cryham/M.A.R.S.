@@ -50,8 +50,8 @@ void Bolt::draw() const
             glColor4f(1.f,1.f,1.f,1.f);
 
             flickerTimer_ -= timer::frameTime();
-            if (flickerTimer_ <= 0.f) {
-                flickerTimer_ = randomizer::random(0.05f, 0.2f);
+            if (flickerTimer_ <= 0.f)
+            {   flickerTimer_ = randomizer::random(0.05f, 0.2f);
                 boltImage_ = randomizer::random(0,3);
             }
 

@@ -21,12 +21,13 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include <SFML/OpenGL.hpp>
 
 
-TextBox::TextBox(sf::String* text, Vector2f const& topLeft, int width, int height, Color3f const& color)
-    :UiElement(topLeft, width, height),
-    color_(color),
-    slider_(NULL),
-    position_(0),
-    scrollSpeed_(0.f)
+TextBox::TextBox(sf::String* text,
+        Vector2f const& topLeft, int width, int height, Color3f const& color)
+    :UiElement(topLeft, width, height)
+    ,color_(color)
+    ,slider_(NULL)
+    ,position_(0)
+    ,scrollSpeed_(0.f)
 {
     sf::String wholeText = *text;
     sf::String word;
@@ -83,7 +84,7 @@ TextBox::TextBox(sf::String* text, Vector2f const& topLeft, int width, int heigh
     // create single labels
     line = "";
     int top(0);
-    for (unsigned int i=0; i<wholeText.getSize(); ++i)
+    for (unsigned int i=0; i < wholeText.getSize(); ++i)
     {
         if (wholeText[i] == '\n')
         {
@@ -119,9 +120,12 @@ void TextBox::mouseMoved(Vector2f const& position)
 
 void TextBox::mouseWheelMoved(Vector2f const& position, int delta)
 {
-    if (hovered_ && slider_) {
-        if (delta > 0) scrollSpeed_ = -200.f;
-        else           scrollSpeed_ =  200.f;
+    if (hovered_ && slider_)
+    {
+        if (delta > 0)
+            scrollSpeed_ = -200.f;
+        else
+            scrollSpeed_ =  200.f;
     }
 }
 

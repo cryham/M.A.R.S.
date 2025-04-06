@@ -25,6 +25,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include <vector>
 #include <cmath>
 
+
 namespace physics
 {
     namespace
@@ -34,6 +35,9 @@ namespace physics
         std::vector<SpaceObject*>       gravitySources_;
     }
 
+
+    //  collide
+    //--------------------------------------------------------------------------------------------------------------------------------------------
     void collide (MobileSpaceObject* object, int with)
     {
         // collision with planets
@@ -155,10 +159,10 @@ namespace physics
             }
         }
         // collision with particles
-        if (with & PARTICLES) {
+        if (with & PARTICLES)
             particles::collideWith(object);
-        }
     }
+    //--------------------------------------------------------------------------------------------------------------------------------------------
 
     Vector2f attract (MobileSpaceObject* attracted)
     {

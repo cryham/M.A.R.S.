@@ -89,17 +89,23 @@ void Slider::mouseMoved(Vector2f const& position)
 
 void Slider::mouseWheelMoved(Vector2f const& position, int delta)
 {
-    if (hovered_) {
+    if (hovered_)
+    {
         *value_ += delta;
-        if (*value_ < minValue_) *value_ = minValue_;
-        else if (*value_ > maxValue_) *value_ = maxValue_;
+        if (*value_ < minValue_)
+            *value_ = minValue_;
+        else
+        if (*value_ > maxValue_)
+            *value_ = maxValue_;
     }
 }
 
 void Slider::keyEvent(bool down, Key const& key)
 {
-    if (down) {
-        if (locales::getCurrentLocale().LTR_) {
+    if (down)
+    {
+        if (locales::getCurrentLocale().LTR_)
+        {
             if (key.navi_ == Key::nLeft)
                 *value_ -= step_;
             else if (key.navi_ == Key::nRight && *value_ < maxValue_)
@@ -112,12 +118,14 @@ void Slider::keyEvent(bool down, Key const& key)
                 *value_ -= step_;
         }
 
-        if (*value_ < minValue_) *value_ = minValue_;
-        if (*value_ > maxValue_) *value_ = maxValue_;
+        if (*value_ < minValue_)
+            *value_ = minValue_;
+        if (*value_ > maxValue_)
+            *value_ = maxValue_;
     }
 }
 
-
+//  draw
 void Slider::draw() const
 {
     UiElement::draw();
@@ -198,6 +206,7 @@ void Slider::draw() const
     // draw Label
     label_->draw();
 }
+
 
 void Slider::setFocus (UiElement* toBeFocused, bool isPrevious)
 {

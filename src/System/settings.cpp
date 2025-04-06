@@ -94,9 +94,9 @@ namespace settings
     Key         C_audioPreviousKey =        Key(sf::Keyboard::F7);
     Key         C_statisticsKey =           Key(sf::Keyboard::Tab);
 
-    std::string C_configPath =              "";
-    std::string C_dataPath =                "";
-    std::string C_screenShotFormat =        "jpg";
+    string      C_configPath =              "";
+    string      C_dataPath =                "";
+    string      C_screenShotFormat =        "jpg";
 
     //  map setup
     int         C_MapMinPlanets      = 1;  // 1
@@ -183,30 +183,30 @@ namespace settings
     //--------------------------------------------------------------------------------------------------------------------------------------------
 
     //  bool
-    void readBool(std::istringstream& iss, std::string inputLine, bool& val)
+    void readBool(istringstream& iss, string inputLine, bool& val)
     {
-        std::string s;  iss >> s;
+        string s;  iss >> s;
         if (s == "true")   val = true;
         else
         if (s == "false")  val = false;
         else
-            std::cout << s << " is a bad value for " << inputLine << ". Use true or false instead.\n";
+            cout << s << " is a bad value for " << inputLine << ". Use true or false instead.\n";
     }
 
-    std::string strBool(bool val)
+    string strBool(bool val)
     {
         return val ? "true" : "false";
     }
 
     //  int
-    void readInt(std::istringstream& iss, int& val, int intMin, int intMax)
+    void readInt(istringstream& iss, int& val, int intMin, int intMax)
     {
         int value;
         iss >> value;
         val = clamp(value, intMin, intMax);
     }
 
-    void readInt(std::istringstream& iss, int& val)
+    void readInt(istringstream& iss, int& val)
     {
         int value;
         iss >> value;
@@ -214,7 +214,7 @@ namespace settings
     }
 
     //  string
-    void readString(std::istringstream& iss, sf::String& val, int len)
+    void readString(istringstream& iss, sf::String& val, int len)
     {
         sf::String tmp;
         sf::Uint32 character(0);
@@ -228,7 +228,7 @@ namespace settings
         val = tmp;
     }
 
-    void strMax(std::ofstream& outStream, const sf::String& str, int maxLen)
+    void strMax(ofstream& outStream, const sf::String& str, int maxLen)
     {
         int i = 0;
         while (i < maxLen && i < str.getSize())
@@ -236,20 +236,20 @@ namespace settings
             outStream << str[i] << " ";
             ++i;
         }
-        outStream << "0" << std::endl;
+        outStream << "0" << endl;
     }
 
     //  color
-    void readColor(std::istringstream& iss, Color3f& clr)
+    void readColor(istringstream& iss, Color3f& clr)
     {
         float r,g,b;
         iss >> r >> g >> b;
         clr = Color3f(r,g,b);
     }
 
-    void strColor(std::ofstream& outStream, const Color3f& clr)
+    void strColor(ofstream& outStream, const Color3f& clr)
     {
-        outStream <<  clr.r() << " "<< clr.g() << " " << clr.b() << std::endl;
+        outStream <<  clr.r() << " "<< clr.g() << " " << clr.b() << endl;
     }
 
 
@@ -257,117 +257,114 @@ namespace settings
     //--------------------------------------------------------------------------------------------------------------------------------------------
     bool save()
     {
-        std::ofstream outStream((C_configPath + "mars.cfg").c_str());
-
-        if (outStream)
+        ofstream oss((C_configPath + "mars.cfg").c_str());
+        if (oss)
         {
-            outStream << "// mars config file" << std::endl;
-            outStream << "// nearly all these options can be changed with the in-game menu, too." << std::endl << std::endl;
+            oss << "// mars config file" << endl;
+            oss << "// nearly all these options can be changed with the in-game menu, too." << endl << endl;
 
-            outStream << "[soundVolume] "           << C_soundVolume << std::endl;
-            outStream << "[announcerVolume] "       << C_announcerVolume << std::endl;
-            outStream << "[musicVolume] "           << C_musicVolume << std::endl;
-            outStream << "[globalParticleCount] "   << C_globalParticleCount << std::endl;
-            outStream << "[globalParticleLifeTime] "<< C_globalParticleLifeTime << std::endl;
+            oss << "[soundVolume] "           << C_soundVolume << endl;
+            oss << "[announcerVolume] "       << C_announcerVolume << endl;
+            oss << "[musicVolume] "           << C_musicVolume << endl;
+            oss << "[globalParticleCount] "   << C_globalParticleCount << endl;
+            oss << "[globalParticleLifeTime] "<< C_globalParticleLifeTime << endl;
             
-            outStream << "[showFPS] "               << strBool(C_showFPS) << std::endl;
-            outStream << "[showParticleCount] "     << strBool(C_showParticleCount) << std::endl;
-            outStream << "[showLatency] "           << strBool(C_showLatency) << std::endl;
-            outStream << "[fullScreen] "            << strBool(C_fullScreen) << std::endl;
-            outStream << "[vsync] "                 << strBool(C_vsync) << std::endl;
+            oss << "[showFPS] "               << strBool(C_showFPS) << endl;
+            oss << "[showParticleCount] "     << strBool(C_showParticleCount) << endl;
+            oss << "[showLatency] "           << strBool(C_showLatency) << endl;
+            oss << "[fullScreen] "            << strBool(C_fullScreen) << endl;
+            oss << "[vsync] "                 << strBool(C_vsync) << endl;
             
-            outStream << "[drawAIPath] "            << strBool(C_drawAIPath) << std::endl;
-            outStream << "[iDumb] "                 << C_iDumb << std::endl;
-            outStream << "[adaptiveParticleCount] " << strBool(C_adaptiveParticleCount) << std::endl;
-            outStream << "[drawBotJobs] "           << strBool(C_drawBotJobs) << std::endl;
-            outStream << "[drawZones] "             << strBool(C_drawZones) << std::endl;
+            oss << "[drawAIPath] "            << strBool(C_drawAIPath) << endl;
+            oss << "[iDumb] "                 << C_iDumb << endl;
+            oss << "[adaptiveParticleCount] " << strBool(C_adaptiveParticleCount) << endl;
+            oss << "[drawBotJobs] "           << strBool(C_drawBotJobs) << endl;
+            oss << "[drawZones] "             << strBool(C_drawZones) << endl;
             
-            outStream << "[botsLeft] "              << C_botsLeft << std::endl;
-            outStream << "[botsRight] "             << C_botsRight << std::endl;
-            outStream << "[botsDeath] "             << C_botsDeath << std::endl;
-            outStream << "[pointLimitSB] "          << C_pointLimitSB << std::endl;
-            outStream << "[pointLimitCK] "          << C_pointLimitCK << std::endl;
-            outStream << "[pointLimitDM] "          << C_pointLimitDM << std::endl;
-            outStream << "[pointLimitTDM] "         << C_pointLimitTDM << std::endl;
+            oss << "[botsLeft] "              << C_botsLeft << endl;
+            oss << "[botsRight] "             << C_botsRight << endl;
+            oss << "[botsDeath] "             << C_botsDeath << endl;
+            oss << "[pointLimitSB] "          << C_pointLimitSB << endl;
+            oss << "[pointLimitCK] "          << C_pointLimitCK << endl;
+            oss << "[pointLimitDM] "          << C_pointLimitDM << endl;
+            oss << "[pointLimitTDM] "         << C_pointLimitTDM << endl;
             
-            outStream << "[powerUpRate] "           << C_powerUpRate << std::endl;
-            outStream << "[slowMoKickIn] "          << C_slowMoKickIn << std::endl;
-            outStream << "[gameSpeed] "             << C_gameSpeed << std::endl;
+            oss << "[powerUpRate] "           << C_powerUpRate << endl;
+            oss << "[slowMoKickIn] "          << C_slowMoKickIn << endl;
+            oss << "[gameSpeed] "             << C_gameSpeed << endl;
             
-            outStream << "[playerIName] ";          strMax(outStream, C_playerIName, 12);
+            oss << "[playerIName] ";          strMax(oss, C_playerIName, 12);
 
-            outStream << "[playerIKeys] "           <<  C_playerIup << " " << C_playerIright << " " << C_playerIleft << " "
+            oss << "[playerIKeys] "           <<  C_playerIup << " " << C_playerIright << " " << C_playerIleft << " "
                 << C_playerIfire << " " << C_playerISpecialKey << " "
-                << C_playerIdown << " " << C_playerIboost << " " << C_playerIprev << " " << C_playerInext << std::endl;
+                << C_playerIdown << " " << C_playerIboost << " " << C_playerIprev << " " << C_playerInext << endl;
             
-            outStream << "[playerIColor] ";         strColor(outStream, C_playerIColor);
-            outStream << "[playerITeamColor] ";     strColor(outStream, C_playerITeamColor);
-            outStream << "[playerITeamL] "          << strBool(C_playerIteamL) << std::endl;
-            outStream << "[playerITeamR] "          << strBool(C_playerIteamR) << std::endl;
-            outStream << "[playerIShip] "           <<  C_playerIShip << std::endl;
-            outStream << "[playerIWeapon] "         <<  C_playerIWeapon << std::endl;
-            outStream << "[playerISpecial] "        <<  C_playerISpecial << std::endl;
+            oss << "[playerIColor] ";         strColor(oss, C_playerIColor);
+            oss << "[playerITeamColor] ";     strColor(oss, C_playerITeamColor);
+            oss << "[playerITeamL] "          << strBool(C_playerIteamL) << endl;
+            oss << "[playerITeamR] "          << strBool(C_playerIteamR) << endl;
+            oss << "[playerIShip] "           <<  C_playerIShip << endl;
+            oss << "[playerIWeapon] "         <<  C_playerIWeapon << endl;
+            oss << "[playerISpecial] "        <<  C_playerISpecial << endl;
             
-            outStream << "[playerIIName] ";         strMax(outStream, C_playerIIName, 12);
-            outStream << "[playerIIKeys] "          <<  C_playerIIup << " "<< C_playerIIright << " " << C_playerIIleft << " "
+            oss << "[playerIIName] ";         strMax(oss, C_playerIIName, 12);
+            oss << "[playerIIKeys] "          <<  C_playerIIup << " "<< C_playerIIright << " " << C_playerIIleft << " "
                 << C_playerIIfire << " " << C_playerIISpecialKey << " "
-                << C_playerIIdown << " " << C_playerIIboost << " " << C_playerIIprev << " " << C_playerIInext << std::endl;
+                << C_playerIIdown << " " << C_playerIIboost << " " << C_playerIIprev << " " << C_playerIInext << endl;
 
-            outStream << "[playerIIColor] ";        strColor(outStream, C_playerIIColor);
-            outStream << "[playerIITeamColor] ";    strColor(outStream, C_playerIITeamColor);
-            outStream << "[playerIITeamL] "         << strBool(C_playerIIteamL) << std::endl;
-            outStream << "[playerIITeamR] "         << strBool(C_playerIIteamR) << std::endl;
-            outStream << "[playerIIShip] "          <<  C_playerIIShip << std::endl;
-            outStream << "[playerIIWeapon] "        <<  C_playerIIWeapon << std::endl;
-            outStream << "[playerIISpecial] "       <<  C_playerIISpecial << std::endl;
+            oss << "[playerIIColor] ";        strColor(oss, C_playerIIColor);
+            oss << "[playerIITeamColor] ";    strColor(oss, C_playerIITeamColor);
+            oss << "[playerIITeamL] "         << strBool(C_playerIIteamL) << endl;
+            oss << "[playerIITeamR] "         << strBool(C_playerIIteamR) << endl;
+            oss << "[playerIIShip] "          <<  C_playerIIShip << endl;
+            oss << "[playerIIWeapon] "        <<  C_playerIIWeapon << endl;
+            oss << "[playerIISpecial] "       <<  C_playerIISpecial << endl;
             
-            outStream << "[connectIP] "             <<  C_ip.toAnsiString() << std::endl;
-            outStream << "[connectPort] "           <<  C_port.toAnsiString() << std::endl;
-            outStream << "[networkTeamRed] "        << strBool(C_networkPlayerI) << std::endl;
+            oss << "[connectIP] "             <<  C_ip.toAnsiString() << endl;
+            oss << "[connectPort] "           <<  C_port.toAnsiString() << endl;
+            oss << "[networkTeamRed] "        << strBool(C_networkPlayerI) << endl;
             
-            outStream << "[showInfoHide] "          << strBool(C_showInfoHide) << std::endl;
-            outStream << "[showInfoSB] "            << strBool(C_showInfoSB) << std::endl;
-            outStream << "[showInfoDM] "            << strBool(C_showInfoDM) << std::endl;
-            outStream << "[showInfoTDM] "           << strBool(C_showInfoTDM) << std::endl;
-            outStream << "[showInfoCK] "            << strBool(C_showInfoCK) << std::endl;
+            oss << "[showInfoHide] "          << strBool(C_showInfoHide) << endl;
+            oss << "[showInfoSB] "            << strBool(C_showInfoSB) << endl;
+            oss << "[showInfoDM] "            << strBool(C_showInfoDM) << endl;
+            oss << "[showInfoTDM] "           << strBool(C_showInfoTDM) << endl;
+            oss << "[showInfoCK] "            << strBool(C_showInfoCK) << endl;
             
-            outStream << "[showSelectLanguage] "    << strBool(C_showSelectLanguage) << std::endl;
-            outStream << "[showToolTips] "          << strBool(C_showToolTips) << std::endl;
-            outStream << "[languageID] "            <<  C_languageID << std::endl;
-            outStream << "[highStarResolution] "    << strBool(C_StarsHigh) << std::endl;
-            outStream << "[starField] "             <<  C_StarField << std::endl;
+            oss << "[showSelectLanguage] "    << strBool(C_showSelectLanguage) << endl;
+            oss << "[showToolTips] "          << strBool(C_showToolTips) << endl;
+            oss << "[languageID] "            <<  C_languageID << endl;
+            oss << "[highStarResolution] "    << strBool(C_StarsHigh) << endl;
+            oss << "[starField] "             <<  C_StarField << endl;
             
-            outStream << "[shaders] "               << strBool(C_shaders) << std::endl;
-            outStream << "[resolutionX] "           << C_resX << std::endl;
-            outStream << "[resolutionY] "           << C_resY << std::endl;
-            outStream << "[colorDepth] "            << C_colorDepth << std::endl;
+            oss << "[shaders] "               << strBool(C_shaders) << endl;
+            oss << "[resolutionX] "           << C_resX << endl;
+            oss << "[resolutionY] "           << C_resY << endl;
+            oss << "[colorDepth] "            << C_colorDepth << endl;
             
-            outStream << "[audioRandom] "           << strBool(C_audioRandom) << std::endl;
-            outStream << "[audioNextKey] "          << C_audioNextKey << std::endl;
-            outStream << "[audioPreviousKey] "      << C_audioPreviousKey << std::endl;
-            outStream << "[screenShotKey] "         << C_screenShotKey << std::endl;
-            outStream << "[statisticsKey] "         << C_statisticsKey << std::endl;
-            outStream << "[screenShotFormat] "      << C_screenShotFormat << std::endl;
+            oss << "[audioRandom] "           << strBool(C_audioRandom) << endl;
+            oss << "[audioNextKey] "          << C_audioNextKey << endl;
+            oss << "[audioPreviousKey] "      << C_audioPreviousKey << endl;
+            oss << "[screenShotKey] "         << C_screenShotKey << endl;
+            oss << "[statisticsKey] "         << C_statisticsKey << endl;
+            oss << "[screenShotFormat] "      << C_screenShotFormat << endl;
             
-            outStream << "[enabledWeapons] "        << C_EnabledWeaponsByUser << std::endl;
-            outStream << "[enabledSpecials] "       << C_EnabledSpecialsByUser << std::endl;
+            oss << "[enabledWeapons] "        << C_EnabledWeaponsByUser << endl;
+            oss << "[enabledSpecials] "       << C_EnabledSpecialsByUser << endl;
 
-            outStream << "[MapXsize] "              << C_MapXsize << std::endl;
-            outStream << "[MapYsize] "              << C_MapYsize << std::endl;
-            outStream << "[MapMinPlanets] "         << C_MapMinPlanets << std::endl;
-            outStream << "[MapMaxPlanets] "         << C_MapMaxPlanets << std::endl;
-            outStream << "[MapMinPlanetsSize] "     << C_MapMinPlanetsSize << std::endl;
-            outStream << "[MapMaxPlanetsSize] "     << C_MapMaxPlanetsSize << std::endl;
-            outStream << "[MapMinPlanetGap] "       << C_MapMinPlanetGap << std::endl;
-            outStream << "[MapHomeRadius] "         << C_MapHomeRadius << std::endl;
-            outStream << "[ShipRadius] "            << C_ShipRadius << std::endl;
+            oss << "[MapXsize] "              << C_MapXsize << endl;
+            oss << "[MapYsize] "              << C_MapYsize << endl;
+            oss << "[MapMinPlanets] "         << C_MapMinPlanets << endl;
+            oss << "[MapMaxPlanets] "         << C_MapMaxPlanets << endl;
+            oss << "[MapMinPlanetsSize] "     << C_MapMinPlanetsSize << endl;
+            oss << "[MapMaxPlanetsSize] "     << C_MapMaxPlanetsSize << endl;
+            oss << "[MapMinPlanetGap] "       << C_MapMinPlanetGap << endl;
+            oss << "[MapHomeRadius] "         << C_MapHomeRadius << endl;
+            oss << "[ShipRadius] "            << C_ShipRadius << endl;
 
-            outStream.close();
+            oss.close();
             return true;
-        }
-        else
-        {
-            std::cout << "Faild to save configuration file " << C_configPath << "mars.cfg!" << std::endl;
+        }else
+        {   cout << "Faild to save configuration file " << C_configPath << "mars.cfg!" << endl;
             return false;
         }
     }
@@ -378,7 +375,7 @@ namespace settings
     {
         // check whether application directory in the home diretory exists, if not create it
         #ifdef __linux__
-            std::string home(getenv("HOME"));
+            string home(getenv("HOME"));
             if (*home.rbegin() != '/') home += '/';
             mkdir((home + ".marsshooter/").c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
         #endif
@@ -386,12 +383,12 @@ namespace settings
         #if defined(__WIN32__) || defined(_WIN32)
             TCHAR szAppData[MAX_PATH];
             SHGetFolderPath(NULL, CSIDL_APPDATA, NULL, 0, szAppData);
-            std::string home(szAppData);
+            string home(szAppData);
             CreateDirectory((home + "/.marsshooter/").c_str(), NULL);
         #endif
 
         #ifdef __APPLE__
-            std::string home(getenv("HOME"));
+            string home(getenv("HOME"));
             if (*home.rbegin() != '/') home += '/';
             mkdir((home + "Library/Preferences/mars/").c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
         #endif
@@ -400,16 +397,16 @@ namespace settings
         if (C_configPath == "")
         {
             bool success(false);
-            std::cout << "Searching for configuration file... " << std::flush;
+            cout << "Searching for configuration file... " << flush;
             C_configPath = "./";
 
             #ifdef __linux__
-                std::string home(getenv("HOME"));
+                string home(getenv("HOME"));
                 if (*home.rbegin() != '/') home += '/';
 
-                if (std::ifstream((C_configPath + "mars.cfg").c_str()))
+                if (ifstream((C_configPath + "mars.cfg").c_str()))
                     success = true;
-                else if (std::ifstream((home + ".marsshooter/mars.cfg").c_str()))
+                else if (ifstream((home + ".marsshooter/mars.cfg").c_str()))
                 {
                     C_configPath =      home + ".marsshooter/";
                     success = true;
@@ -420,11 +417,11 @@ namespace settings
             #if defined(__WIN32__) || defined(_WIN32)
                 TCHAR szAppData[MAX_PATH];
                 SHGetFolderPath(NULL, CSIDL_APPDATA, NULL, 0, szAppData);
-                std::string home(szAppData);
+                string home(szAppData);
 
-                if (std::ifstream((C_configPath + "mars.cfg").c_str()))
+                if (ifstream((C_configPath + "mars.cfg").c_str()))
                     success = true;
-                else if (std::ifstream((home + "/.marsshooter/mars.cfg").c_str()))
+                else if (ifstream((home + "/.marsshooter/mars.cfg").c_str()))
                 {
                     C_configPath =      home + "/.marsshooter/";
                     success = true;
@@ -433,10 +430,10 @@ namespace settings
             #endif
 
             #ifdef __APPLE__
-                std::string home(getenv("HOME"));
+                string home(getenv("HOME"));
                 if (*home.rbegin() != '/') home += '/';
 
-                if (std::ifstream((home + "Library/Preferences/mars/mars.cfg").c_str()))
+                if (ifstream((home + "Library/Preferences/mars/mars.cfg").c_str()))
                 {
                     C_configPath =      home + "Library/Preferences/mars/";
                     success = true;
@@ -444,189 +441,186 @@ namespace settings
                     C_configPath =      home + "Library/Preferences/mars/";
             #endif
 
-            if (success) std::cout << "Found " << C_configPath << "mars.cfg"  << std::endl;
-            else         std::cout << "Found nothing. Will create a new one." << std::endl;
+            if (success) cout << "Found " << C_configPath << "mars.cfg"  << endl;
+            else         cout << "Found nothing. Will create a new one." << endl;
         }
 
         // search for data files
         if (C_dataPath == "")
         {
             bool success(false);
-            std::cout << "Searching for data files... " << std::flush;
+            cout << "Searching for data files... " << flush;
             C_dataPath = "./data/";
 
             #ifdef __linux__
-                if (std::ifstream((C_dataPath + "locales/English.txt").c_str()))
+                if (ifstream((C_dataPath + "locales/English.txt").c_str()))
                     success = true;
-                else if (std::ifstream("/usr/share/marsshooter/locales/English.txt")) {
-                    C_dataPath = "/usr/share/marsshooter/";
+                else if (ifstream("/usr/share/marsshooter/locales/English.txt"))
+                {   C_dataPath = "/usr/share/marsshooter/";
                     success = true;
-                } else if (std::ifstream("/usr/share/games/marsshooter/locales/English.txt")) {
-                    C_dataPath = "/usr/share/games/marsshooter/";
+                }else if (ifstream("/usr/share/games/marsshooter/locales/English.txt"))
+                {   C_dataPath = "/usr/share/games/marsshooter/";
                     success = true;
-                } else if (std::ifstream("/usr/local/share/games/marsshooter/locales/English.txt")) {
-                    C_dataPath = "/usr/local/share/games/marsshooter/";
+                }else if (ifstream("/usr/local/share/games/marsshooter/locales/English.txt"))
+                {   C_dataPath = "/usr/local/share/games/marsshooter/";
                     success = true;
-                } else if (std::ifstream("/usr/local/share/marsshooter/locales/English.txt")) {
-                    C_dataPath = "/usr/local/share/marsshooter/";
+                }else if (ifstream("/usr/local/share/marsshooter/locales/English.txt"))
+                {   C_dataPath = "/usr/local/share/marsshooter/";
                     success = true;
-                } else if (std::ifstream("/usr/local/games/marsshooter/locales/English.txt")) {
-                    C_dataPath = "/usr/local/games/marsshooter/";
+                }else if (ifstream("/usr/local/games/marsshooter/locales/English.txt"))
+                {   C_dataPath = "/usr/local/games/marsshooter/";
                     success = true;
                 }
             #endif
 
             #if defined(__WIN32__) || defined(_WIN32)
-                if (std::ifstream((C_dataPath + "locales/English.txt").c_str()))
+                if (ifstream((C_dataPath + "locales/English.txt").c_str()))
                     success = true;
             #endif
 
             #ifdef __APPLE__
-                if (std::ifstream("../Resources/data/locales/English.txt")) {
+                if (ifstream("../Resources/data/locales/English.txt")) {
                     C_dataPath = "../Resources/data/";
                     success = true;
                 }
             #endif
 
             if (success)
-                std::cout << "Found " << C_dataPath << std::endl;
+                cout << "Found " << C_dataPath << endl;
             else
-            {   std::cout << "Found nothing. Aborting." << std::endl;
+            {   cout << "Found nothing. Aborting." << endl;
                 return false;
             }
         }
 
         //  read lines
-        std::vector<sf::String> lines;
+        vector<sf::String> lines;
         if (file::load(C_configPath + "mars.cfg", lines))
         {
             for (auto& it : lines)
             {
-                std::istringstream iss (it.toAnsiString());
-                std::string inputLine;
-                iss >> inputLine;
+                istringstream iss (it.toAnsiString());
+                string line;
+                iss >> line;
                 
-                if      (inputLine == "[soundVolume]")            readInt(iss, C_soundVolume, 0, 100);
-                else if (inputLine == "[announcerVolume]")        readInt(iss, C_announcerVolume, 0, 100);
-                else if (inputLine == "[musicVolume]")            readInt(iss, C_musicVolume, 0, 100);
+                if      (line == "[soundVolume]")            readInt(iss, C_soundVolume, 0, 100);
+                else if (line == "[announcerVolume]")        readInt(iss, C_announcerVolume, 0, 100);
+                else if (line == "[musicVolume]")            readInt(iss, C_musicVolume, 0, 100);
                 
-                else if (inputLine == "[globalParticleCount]")    readInt(iss, C_globalParticleCount, 10, 300);
-                else if (inputLine == "[globalParticleLifeTime]") readInt(iss, C_globalParticleLifeTime, 10, 300);
+                else if (line == "[globalParticleCount]")    readInt(iss, C_globalParticleCount, 10, 300);
+                else if (line == "[globalParticleLifeTime]") readInt(iss, C_globalParticleLifeTime, 10, 300);
                 
-                else if (inputLine == "[showFPS]")                readBool(iss, inputLine, C_showFPS);
-                else if (inputLine == "[showParticleCount]")      readBool(iss, inputLine, C_showParticleCount);
-                else if (inputLine == "[showLatency]")            readBool(iss, inputLine, C_showLatency);
+                else if (line == "[showFPS]")                readBool(iss, line, C_showFPS);
+                else if (line == "[showParticleCount]")      readBool(iss, line, C_showParticleCount);
+                else if (line == "[showLatency]")            readBool(iss, line, C_showLatency);
                 
-                else if (inputLine == "[fullScreen]")             readBool(iss, inputLine, C_fullScreen);
-                else if (inputLine == "[vsync]")                  readBool(iss, inputLine, C_vsync);
+                else if (line == "[fullScreen]")             readBool(iss, line, C_fullScreen);
+                else if (line == "[vsync]")                  readBool(iss, line, C_vsync);
                 
-                else if (inputLine == "[drawAIPath]")             readBool(iss, inputLine, C_drawAIPath);
-                else if (inputLine == "[iDumb]")                  readInt(iss, C_iDumb, 0, 100);
+                else if (line == "[drawAIPath]")             readBool(iss, line, C_drawAIPath);
+                else if (line == "[iDumb]")                  readInt(iss, C_iDumb, 0, 100);
 
-                else if (inputLine == "[adaptiveParticleCount]")  readBool(iss, inputLine, C_adaptiveParticleCount);
-                else if (inputLine == "[drawBotJobs]")            readBool(iss, inputLine, C_drawBotJobs);
-                else if (inputLine == "[drawZones]")              readBool(iss, inputLine, C_drawZones);
+                else if (line == "[adaptiveParticleCount]")  readBool(iss, line, C_adaptiveParticleCount);
+                else if (line == "[drawBotJobs]")            readBool(iss, line, C_drawBotJobs);
+                else if (line == "[drawZones]")              readBool(iss, line, C_drawZones);
                 
-                else if (inputLine == "[botsLeft]")               readInt(iss, C_botsLeft, 0, 20);
-                else if (inputLine == "[botsRight]")              readInt(iss, C_botsRight, 0, 20);
-                else if (inputLine == "[botsDeath]")              readInt(iss, C_botsDeath, 0, 50);
-                else if (inputLine == "[pointLimitSB]")           readInt(iss, C_pointLimitSB, 1, 100);
-                else if (inputLine == "[pointLimitCK]")           readInt(iss, C_pointLimitCK, 1, 100);
-                else if (inputLine == "[pointLimitDM]")           readInt(iss, C_pointLimitDM, 1, 100);
-                else if (inputLine == "[pointLimitTDM]")          readInt(iss, C_pointLimitTDM,1, 100);
+                else if (line == "[botsLeft]")               readInt(iss, C_botsLeft, 0, 20);
+                else if (line == "[botsRight]")              readInt(iss, C_botsRight, 0, 20);
+                else if (line == "[botsDeath]")              readInt(iss, C_botsDeath, 0, 50);
+                else if (line == "[pointLimitSB]")           readInt(iss, C_pointLimitSB, 1, 100);
+                else if (line == "[pointLimitCK]")           readInt(iss, C_pointLimitCK, 1, 100);
+                else if (line == "[pointLimitDM]")           readInt(iss, C_pointLimitDM, 1, 100);
+                else if (line == "[pointLimitTDM]")          readInt(iss, C_pointLimitTDM,1, 100);
 
-                else if (inputLine == "[powerUpRate]")            readInt(iss, C_powerUpRate, 0, 100);
-                else if (inputLine == "[slowMoKickIn]")           readInt(iss, C_slowMoKickIn, 0, 100);
-                else if (inputLine == "[gameSpeed]")              readInt(iss, C_gameSpeed, 50, 200);
+                else if (line == "[powerUpRate]")            readInt(iss, C_powerUpRate, 0, 100);
+                else if (line == "[slowMoKickIn]")           readInt(iss, C_slowMoKickIn, 0, 100);
+                else if (line == "[gameSpeed]")              readInt(iss, C_gameSpeed, 50, 200);
 
-                else if (inputLine == "[playerIName]")            readString(iss, C_playerIName, 12);
-                else if (inputLine == "[playerIIName]")           readString(iss, C_playerIIName, 12);
-                else if (inputLine == "[playerIKeys]") {
+                else if (line == "[playerIName]")            readString(iss, C_playerIName, 12);
+                else if (line == "[playerIIName]")           readString(iss, C_playerIIName, 12);
+                else if (line == "[playerIKeys]") {
                     iss >> C_playerIup >> C_playerIright >> C_playerIleft >> C_playerIfire >> C_playerISpecialKey;
                     iss >> C_playerIdown >> C_playerIboost >> C_playerIprev >> C_playerInext;
                 }
-                else if (inputLine == "[playerIIKeys]") {
+                else if (line == "[playerIIKeys]") {
                     iss >> C_playerIIup >> C_playerIIright >> C_playerIIleft >> C_playerIIfire >> C_playerIISpecialKey;
                     iss >> C_playerIIdown >> C_playerIIboost >> C_playerIIprev >> C_playerIInext;
                 }
-                else if (inputLine == "[playerIColor]")       readColor(iss, C_playerIColor);
-                else if (inputLine == "[playerIIColor]")      readColor(iss, C_playerIIColor);
-                else if (inputLine == "[playerITeamColor]")   readColor(iss, C_playerITeamColor);
-                else if (inputLine == "[playerIITeamColor]")  readColor(iss, C_playerIITeamColor);
-                else if (inputLine == "[playerITeamL]")       readBool(iss, inputLine, C_playerIteamL);
-                else if (inputLine == "[playerITeamR]")       readBool(iss, inputLine, C_playerIteamR);
-                else if (inputLine == "[playerIShip]")        iss >> C_playerIShip;
-                else if (inputLine == "[playerIIShip]")       iss >> C_playerIIShip;
+                else if (line == "[playerIColor]")       readColor(iss, C_playerIColor);
+                else if (line == "[playerIIColor]")      readColor(iss, C_playerIIColor);
+                else if (line == "[playerITeamColor]")   readColor(iss, C_playerITeamColor);
+                else if (line == "[playerIITeamColor]")  readColor(iss, C_playerIITeamColor);
+                else if (line == "[playerITeamL]")       readBool(iss, line, C_playerIteamL);
+                else if (line == "[playerITeamR]")       readBool(iss, line, C_playerIteamR);
+                else if (line == "[playerIShip]")        iss >> C_playerIShip;
+                else if (line == "[playerIIShip]")       iss >> C_playerIIShip;
 
-                else if (inputLine == "[playerIWeapon]") {    int tmp;  iss >> tmp;
+                else if (line == "[playerIWeapon]") {    int tmp;  iss >> tmp;
                     if (tmp == weapons::wInsta)
                         tmp = weapons::wAFK47;
                     C_playerIWeapon = static_cast<weapons::WeaponType>(tmp);
                 }
-                else if (inputLine == "[playerISpecial]") {   int tmp;  iss >> tmp;
+                else if (line == "[playerISpecial]") {   int tmp;  iss >> tmp;
                     C_playerISpecial = static_cast<specials::SpecialType>(tmp);
                 }
-                else if (inputLine == "[playerIIWeapon]") {   int tmp;  iss >> tmp;
+                else if (line == "[playerIIWeapon]") {   int tmp;  iss >> tmp;
                     if (tmp == weapons::wInsta)
                         tmp = weapons::wAFK47;
                     C_playerIIWeapon = static_cast<weapons::WeaponType>(tmp);
                 }
-                else if (inputLine == "[playerIISpecial]") {  int tmp;  iss >> tmp;
+                else if (line == "[playerIISpecial]") {  int tmp;  iss >> tmp;
                     C_playerIISpecial = static_cast<specials::SpecialType>(tmp);
                 }
 
-                else if (inputLine == "[playerIITeamL]")       readBool(iss, inputLine, C_playerIIteamL);
-                else if (inputLine == "[playerIITeamR]")       readBool(iss, inputLine, C_playerIIteamR);
+                else if (line == "[playerIITeamL]")       readBool(iss, line, C_playerIIteamL);
+                else if (line == "[playerIITeamR]")       readBool(iss, line, C_playerIIteamR);
                 
-                else if (inputLine == "[connectIP]") {         std::string tmp;  iss >> tmp;  C_ip = sf::String(tmp);    }
-                else if (inputLine == "[connectPort]") {       std::string tmp;  iss >> tmp;  C_port = sf::String(tmp);  }
-                else if (inputLine == "[languageID]")          readInt(iss, C_languageID);
+                else if (line == "[connectIP]") {         string tmp;  iss >> tmp;  C_ip = sf::String(tmp);    }
+                else if (line == "[connectPort]") {       string tmp;  iss >> tmp;  C_port = sf::String(tmp);  }
+                else if (line == "[languageID]")          readInt(iss, C_languageID);
 
-                else if (inputLine == "[networkTeamRed]")      readBool(iss, inputLine, C_networkPlayerI);
-                else if (inputLine == "[showInfoHide]")        readBool(iss, inputLine, C_showInfoHide);
-                else if (inputLine == "[showInfoSB]")          readBool(iss, inputLine, C_showInfoSB);
-                else if (inputLine == "[showInfoDM]")          readBool(iss, inputLine, C_showInfoDM);
-                else if (inputLine == "[showInfoTDM]")         readBool(iss, inputLine, C_showInfoTDM);
-                else if (inputLine == "[showInfoCK]")          readBool(iss, inputLine, C_showInfoCK);
-                else if (inputLine == "[showToolTips]")        readBool(iss, inputLine, C_showToolTips);
-                else if (inputLine == "[highStarResolution]")  readBool(iss, inputLine, C_StarsHigh);
+                else if (line == "[networkTeamRed]")      readBool(iss, line, C_networkPlayerI);
+                else if (line == "[showInfoHide]")        readBool(iss, line, C_showInfoHide);
+                else if (line == "[showInfoSB]")          readBool(iss, line, C_showInfoSB);
+                else if (line == "[showInfoDM]")          readBool(iss, line, C_showInfoDM);
+                else if (line == "[showInfoTDM]")         readBool(iss, line, C_showInfoTDM);
+                else if (line == "[showInfoCK]")          readBool(iss, line, C_showInfoCK);
+                else if (line == "[showToolTips]")        readBool(iss, line, C_showToolTips);
+                else if (line == "[highStarResolution]")  readBool(iss, line, C_StarsHigh);
 
-                else if (inputLine == "[starField]")           readInt(iss, C_StarField);
-                else if (inputLine == "[showSelectLanguage]")  readBool(iss, inputLine, C_showSelectLanguage);
-                else if (inputLine == "[shaders]")             readBool(iss, inputLine, C_shaders);
-                else if (inputLine == "[resolutionX]")         readInt(iss, C_resX);
-                else if (inputLine == "[resolutionY]")         readInt(iss, C_resY);
-                else if (inputLine == "[colorDepth]")          readInt(iss, C_colorDepth);
+                else if (line == "[starField]")           readInt(iss, C_StarField);
+                else if (line == "[showSelectLanguage]")  readBool(iss, line, C_showSelectLanguage);
+                else if (line == "[shaders]")             readBool(iss, line, C_shaders);
+                else if (line == "[resolutionX]")         readInt(iss, C_resX);
+                else if (line == "[resolutionY]")         readInt(iss, C_resY);
+                else if (line == "[colorDepth]")          readInt(iss, C_colorDepth);
                 
-                else if (inputLine == "[audioRandom]")         readBool(iss, inputLine, C_audioRandom);
-                else if (inputLine == "[audioNextKey]")        iss >> C_audioNextKey;
-                else if (inputLine == "[audioPreviousKey]")    iss >> C_audioPreviousKey;
-                else if (inputLine == "[screenShotKey]")       iss >> C_screenShotKey;
-                else if (inputLine == "[statisticsKey]")       iss >> C_statisticsKey;
-                else if (inputLine == "[screenShotFormat]")    iss >> C_screenShotFormat;
+                else if (line == "[audioRandom]")         readBool(iss, line, C_audioRandom);
+                else if (line == "[audioNextKey]")        iss >> C_audioNextKey;
+                else if (line == "[audioPreviousKey]")    iss >> C_audioPreviousKey;
+                else if (line == "[screenShotKey]")       iss >> C_screenShotKey;
+                else if (line == "[statisticsKey]")       iss >> C_statisticsKey;
+                else if (line == "[screenShotFormat]")    iss >> C_screenShotFormat;
 
-                else if (inputLine == "[enabledWeapons]"){     iss >> C_EnabledWeaponsByUser;   C_EnabledWeapons = C_EnabledWeaponsByUser;    }
-                else if (inputLine == "[enabledSpecials]") {   iss >> C_EnabledSpecialsByUser;  C_EnabledSpecials = C_EnabledSpecialsByUser;  }
+                else if (line == "[enabledWeapons]"){     iss >> C_EnabledWeaponsByUser;   C_EnabledWeapons = C_EnabledWeaponsByUser;    }
+                else if (line == "[enabledSpecials]") {   iss >> C_EnabledSpecialsByUser;  C_EnabledSpecials = C_EnabledSpecialsByUser;  }
 
-                else if (inputLine == "[MapXsize]")            iss >> C_MapXsize;
-                else if (inputLine == "[MapYsize]")            iss >> C_MapYsize;
-                else if (inputLine == "[MapMinPlanets]")       iss >> C_MapMinPlanets;
-                else if (inputLine == "[MapMaxPlanets]")       iss >> C_MapMaxPlanets;
-                else if (inputLine == "[MapMinPlanetsSize]")   iss >> C_MapMinPlanetsSize;
-                else if (inputLine == "[MapMaxPlanetsSize]")   iss >> C_MapMaxPlanetsSize;
-                else if (inputLine == "[MapMinPlanetGap]")     iss >> C_MapMinPlanetGap;
-                else if (inputLine == "[MapHomeRadius]")       iss >> C_MapHomeRadius;
-                else if (inputLine == "[ShipRadius]")          iss >> C_ShipRadius;
-
+                else if (line == "[MapXsize]")            iss >> C_MapXsize;
+                else if (line == "[MapYsize]")            iss >> C_MapYsize;
+                else if (line == "[MapMinPlanets]")       iss >> C_MapMinPlanets;
+                else if (line == "[MapMaxPlanets]")       iss >> C_MapMaxPlanets;
+                else if (line == "[MapMinPlanetsSize]")   iss >> C_MapMinPlanetsSize;
+                else if (line == "[MapMaxPlanetsSize]")   iss >> C_MapMaxPlanetsSize;
+                else if (line == "[MapMinPlanetGap]")     iss >> C_MapMinPlanetGap;
+                else if (line == "[MapHomeRadius]")       iss >> C_MapHomeRadius;
+                else if (line == "[ShipRadius]")          iss >> C_ShipRadius;
                 else
-                    std::cout << inputLine << " is a bad option in " << C_configPath << "mars.cfg!\n";
+                    cout << line << " is a bad option in " << C_configPath << "mars.cfg!\n";
             }
-        }
-        else 
-        {
+        }else 
             if (save())
-                std::cout << "Created " << C_configPath << "mars.cfg, using default settings.\n";
-        }
+                cout << "Created " << C_configPath << "mars.cfg, using default settings.\n";
+
         return true;
     }
 }

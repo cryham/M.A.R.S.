@@ -133,7 +133,7 @@ void Ship::update()
         {
             if (frozen_ <= 0)
             {
-                const float rot = 0.25f; //0.3f;  settings::turnSpeed
+                const float rot = settings::C_ShipTurnSpeed / 100.f;  /// 0.25f; //0.3f;  //new
                 float angleRad = rotation_ * M_PI / 180.f;
                 Vector2f faceDirection(std::cos(angleRad), std::sin(angleRad));
                 Vector2f sideDirection(std::cos(angleRad + M_PI_2), std::sin(angleRad + M_PI_2));
@@ -200,7 +200,7 @@ void Ship::update()
                     {
                         acceleration = Vector2f();
                         if (getFuel() < maxFuel_)
-                            fuel_ += time*0.5f;  /// fuel regen  settings::fuelRegen 
+                            fuel_ += time * settings::C_FuelRegen / 100.f;  /// 0.5  //new
                         else
                             fuel_ = maxFuel_;
                     }
@@ -245,11 +245,12 @@ void Ship::update()
                     }
                 }else
                 {
-                    //if (settings::regeneration
-                    life_ += time*maxLife_*0.01;  /// 0.06 life regeneration
-                    if (life_ > maxLife_)
-                        life_ = maxLife_;
-
+                    if (settings::C_Regeneration > 0)  /// 0.06 life regeneration  //new
+                    {
+                        life_ += time * maxLife_ * settings::C_Regeneration / 1000.f;
+                        if (life_ > maxLife_)
+                            life_ = maxLife_;
+                    }
                     docked_ = false;
                     weaponChange_ = false;
                     specialChange_ = false;
@@ -398,7 +399,7 @@ void Ship::drawWeapon() const
             (ghostTimer_ > 0.f ? ghostTimer_*(0.2f*std::sin(timer::totalTime()*8.f + 1.5f*M_PI)+0.4f) + 1.f-ghostTimer_ : 1.f));
 
         // draw special
-        currentSpecial_->draw(alpha * 0.7f);  // 0.2 settings::glow
+        currentSpecial_->draw(alpha * settings::C_GlowAlpha / 100.f);  /// 0.7 0.2  //new
 
         glLoadIdentity();
         glTranslatef(location_.x_, location_.y_, 0.f);
@@ -544,7 +545,7 @@ void Ship::onCollision(SpaceObject* with, Vector2f const& location,
             waitForOtherDamage = 0.15f;
             if (frozen_ <= 0) velocity_ += velocity*0.03f*timer::frameTime();
             // chance to spawn smoke
-            if (randomizer::random(0.f, 100.f)/settings::C_globalParticleCount < 0.01f)
+            if (randomizer::random(0.f, 100.f) / settings::C_globalParticleCount < 0.01f)
                 particles::spawn(particles::pSmoke, location, velocity);
             setDamageSource(with->damageSource());
             unfreeze = 0.05f;
@@ -592,7 +593,7 @@ void Ship::onCollision(SpaceObject* with, Vector2f const& location,
         }
     }
 
-    amount *= 0.5f;  // damage scale  settings::damageScale
+    amount *= settings::C_DamageScale / 100.f;  /// 0.5f;  //new
 
     if (attackable())
     {
@@ -736,11 +737,12 @@ void Ship::explode()
     visible_ = false;
     life_ = 0.f;
     fuel_ = 0.f;
-    if (games::type() == games::gGraveItation)
+    /*if (games::type() == games::gGraveItation)
         respawnTimer_ = 2.f;
     else
-        respawnTimer_ = 5.f;
-    respawnTimer_ = 2.f;  // respawn settings::respawnDelay
+        respawnTimer_ = 5.f;*/
+    respawnTimer_ = settings::C_RespawnDelay / 10.f;  /// 2.f;  //new
+    
     frozen_ = 0.f;
     currentSpecial_->stop();
 

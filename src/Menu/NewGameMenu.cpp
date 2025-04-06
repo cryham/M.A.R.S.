@@ -83,14 +83,15 @@ UiWindow* NewGameMenu::get()
 			Vector2f(375,320), 90, 20));
 
         //  bottom buttons
+        int y2 = 268, y2w = 212;
         instance_->addWidget(new Button(locales::getLocale(locales::Info), NULL, &kInfo_,
-			Vector2f(20-4,278), 90, 20));
+			Vector2f(20-4,y2), 90, 20));
         instance_->addWidget(new Button(locales::getLocale(locales::MapOptions), NULL, &kMapOptions_,
-			Vector2f(250-4,278), 120, 20));
+			Vector2f(250-4,y2), 120, 20));
         instance_->addWidget(new Button(locales::getLocale(locales::GameOptions), NULL, &kGameOptions_,
-			Vector2f(380-4,278), 120, 20));
+			Vector2f(380-4,y2), 120, 20));
 
-        TabList* tabList    = new TabList(Vector2f(10,55), 560, 220);
+        TabList* tabList    = new TabList(Vector2f(10,75), 560, 220);
         tabSpaceBall_       = new Tab(new sf::String("SpaceBall"), 90,  &tSB_);
         tabDeathMatch_      = new Tab(new sf::String("DeathMatch"), 100, &tDM_);
         tabTeamDeathMatch_  = new Tab(new sf::String("Team-DeathMatch"), 120, &tTDM_);
@@ -132,14 +133,8 @@ UiWindow* NewGameMenu::get()
         tabSpaceBall_->addWidget(new Slider(locales::Pointlimit, locales::ttPointLimitTeam,
 			&settings::C_pointLimitSB, 1, 20, 1,
 			Vector2f(20,150), 520, 270, true));
-        tabSpaceBall_->addWidget(new Slider(locales::iDumb, locales::ttBotStrength,
-			&settings::C_iDumb, 0, 100, 5,
-			Vector2f(20,170), 520, 270, true));
-        tabSpaceBall_->addWidget(new Slider(locales::PowerUpRate, locales::ttPowerUpRate,
-			&settings::C_powerUpRate, 0, 100, 5,
-			Vector2f(20,190), 520, 270, true));
         tabSpaceBall_->addWidget(new Button(locales::getLocale(locales::WeaponOptions), NULL, &kWeaponOptions_,
-			Vector2f(110,235), 120, 20));
+			Vector2f(110,y2w), 120, 20));
 
         //  Death Match  ----
         tabDeathMatch_->addWidget(new LabeledBox(locales::getLocale(locales::PlayerOptions),
@@ -157,14 +152,8 @@ UiWindow* NewGameMenu::get()
         tabDeathMatch_->addWidget(new Slider(locales::Fraglimit, locales::ttPointLimitTeam,
 			&settings::C_pointLimitDM, 1, 400, 1,
 			Vector2f(20,150), 520, 270, true));
-        tabDeathMatch_->addWidget(new Slider(locales::iDumb, locales::ttBotStrength,
-			&settings::C_iDumb, 0, 100, 5,
-			Vector2f(20,170), 520, 270, true));
-        tabDeathMatch_->addWidget(new Slider(locales::PowerUpRate, locales::ttPowerUpRate,
-			&settings::C_powerUpRate, 0, 100, 5,
-			Vector2f(20,190), 520, 270, true));
         tabDeathMatch_->addWidget(new Button(locales::getLocale(locales::WeaponOptions), NULL, &kWeaponOptions_,
-			Vector2f(110,235), 120, 20));
+			Vector2f(110,y2w), 120, 20));
 
         //  Team Death Match  ----
         tabTeamDeathMatch_->addWidget(new LabeledBox(locales::getLocale(locales::LeftTeam),
@@ -199,14 +188,8 @@ UiWindow* NewGameMenu::get()
         tabTeamDeathMatch_->addWidget(new Slider(locales::Fraglimit, locales::ttPointLimitTeam,
 			&settings::C_pointLimitTDM, 1, 400, 1,
 			Vector2f(20,150), 520, 270, true));
-        tabTeamDeathMatch_->addWidget(new Slider(locales::iDumb, locales::ttBotStrength,
-			&settings::C_iDumb, 0, 100, 5,
-			Vector2f(20,170), 520, 270, true));
-        tabTeamDeathMatch_->addWidget(new Slider(locales::PowerUpRate, locales::ttPowerUpRate,
-			&settings::C_powerUpRate, 0, 100, 5,
-			Vector2f(20,190), 520, 270, true));
         tabTeamDeathMatch_->addWidget(new Button(locales::getLocale(locales::WeaponOptions), NULL, &kWeaponOptions_,
-			Vector2f(110,235), 120, 20));
+			Vector2f(110,y2w), 120, 20));
 
         //  Cannon Keep  ----
         tabCannonKeep_->addWidget(new LabeledBox(locales::getLocale(locales::LeftTeam),
@@ -241,14 +224,8 @@ UiWindow* NewGameMenu::get()
         tabCannonKeep_->addWidget(new Slider(locales::Pointlimit, locales::ttPointLimitTeam,
 			&settings::C_pointLimitCK, 1, 50, 1,
 			Vector2f(20,150), 520, 270, true));
-        tabCannonKeep_->addWidget(new Slider(locales::iDumb, locales::ttBotStrength,
-			&settings::C_iDumb, 0, 100, 5,
-			Vector2f(20,170), 520, 270, true));
-        tabCannonKeep_->addWidget(new Slider(locales::PowerUpRate, locales::ttPowerUpRate,
-			&settings::C_powerUpRate, 0, 100, 5,
-			Vector2f(20,190), 520, 270, true));
         tabCannonKeep_->addWidget(new Button(locales::getLocale(locales::WeaponOptions), NULL, &kWeaponOptions_,
-			Vector2f(110,235), 120, 20));
+			Vector2f(110,y2w), 120, 20));
 
         //  Grave Itation  ----
         tabGraveItation_->addWidget(new LabeledBox(locales::getLocale(locales::LeftTeam),
@@ -282,9 +259,6 @@ UiWindow* NewGameMenu::get()
         tabGraveItation_->addWidget(new Slider(locales::Fraglimit, locales::ttPointLimitTeam,
 			&settings::C_pointLimitTDM, 1, 100, 1,
 			Vector2f(20,150), 520, 270, true));
-        tabGraveItation_->addWidget(new Slider(locales::iDumb, locales::ttBotStrength,
-			&settings::C_iDumb, 0, 100, 5,
-			Vector2f(20,170), 520, 270, true));
 
         //  Rally  (not done)  ----
         tabRally_->addWidget(new LabeledBox(locales::getLocale(locales::PlayerOptions),
@@ -302,14 +276,8 @@ UiWindow* NewGameMenu::get()
         tabRally_->addWidget(new Slider(locales::Fraglimit, locales::ttPointLimitTeam,
 			&settings::C_pointLimitDM, 1, 100, 1,
 			Vector2f(20,150), 520, 270, true));
-        tabRally_->addWidget(new Slider(locales::iDumb, locales::ttBotStrength,
-			&settings::C_iDumb, 0, 100, 5,
-			Vector2f(20,170), 520, 270, true));
-        tabRally_->addWidget(new Slider(locales::PowerUpRate, locales::ttPowerUpRate,
-			&settings::C_powerUpRate, 0, 100, 5,
-			Vector2f(20,190), 520, 270, true));
         tabRally_->addWidget(new Button(locales::getLocale(locales::WeaponOptions), NULL, &kWeaponOptions_,
-			Vector2f(110,235), 120, 20));
+			Vector2f(110,y2w), 120, 20));
 
 
         tabList->addTab(tabSpaceBall_);

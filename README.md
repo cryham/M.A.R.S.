@@ -11,8 +11,11 @@ This is my fork with many changes:
      AFK-85, Plasma, H2OStorm, Flamer2, Shotgun2, MiniRockets, Rifle2
    - **Map Options**, with sliders for:  
      min,max count of space objects (planets, stars, black holes) and their radius range, minimal gap between, etc
+   - **Game options** with sliders:
+     - Damage scale, Respawn delay, Life and fuel regeneration
+     - Ship turn speed, ship glow factor
+   - more possible bots, more kills to end game
    - Ship thrusters now blue
-   - ToDo: more game options in Gui on sliders: more bots, more kills to end game, regeneration
    - ToDo: turrets, near team homes, or any middle, destroyable, respawned
 - Gui
   - bigger Gui, font, ToDo: scale slider

@@ -19,15 +19,15 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "Weapons/Weapon.hpp"
 
-/// Weapon: H2OStorm.
-/// A long distance gun, which fires some icy cubes.
+/// Weapon: H2O-Storm.
+/// A long distance heavy wind storm.
 
 class H2OStorm: public Weapon
 {
     public:
         /// Ctor which constructs the weapon.
         H2OStorm(Ship* parent):
-              Weapon(weapons::wH2OStorm, parent, sf::String("H2O-Storm"))
+              Weapon(weapons::wH2OStorm, parent, sf::String("H2o-Storm"))
         {   }
 
         /// Spawns some particles.

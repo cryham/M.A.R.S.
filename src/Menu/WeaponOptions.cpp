@@ -93,7 +93,7 @@ UiWindow* WeaponOptions::get()
 			Vector2f(x-10, y-30), w, 210));
         instance_->addWidget(new Checkbox(new sf::String("AFK-85"), NULL, &kAFK2_, 
 			Vector2f(x,y), w));  y += yadd;
-        instance_->addWidget(new Checkbox(new sf::String("WT-Flamer2"), NULL, &kFlamer2_, 
+        instance_->addWidget(new Checkbox(new sf::String("Flamer2"), NULL, &kFlamer2_, 
 			Vector2f(x,y), w));  y += yadd;
         instance_->addWidget(new Checkbox(new sf::String("Plasma"), NULL, &kPlasma_, 
 			Vector2f(x,y), w));  y += yadd;
@@ -103,7 +103,7 @@ UiWindow* WeaponOptions::get()
 			Vector2f(x,y), w));  y += yadd;
         instance_->addWidget(new Checkbox(new sf::String("Rifle2"), NULL, &kRifle2_, 
 			Vector2f(x,y), w));  y += yadd;
-        instance_->addWidget(new Checkbox(new sf::String("H2OStorm"), NULL, &kH2OStorm_, 
+        instance_->addWidget(new Checkbox(new sf::String("H2o-Storm"), NULL, &kH2OStorm_, 
 			Vector2f(x,y), w));  y += yadd;
         //  special
         x += 150;  y = 80;

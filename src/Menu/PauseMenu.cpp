@@ -44,7 +44,7 @@ UiWindow* PauseMenu::get()
 {
     if (instance_ == NULL)
     {
-        instance_ = new PauseMenu(180, 190);
+        instance_ = new PauseMenu(180, 210);
         float y = 10, yadd = 30, w = 160;
         // instance_->addWidget(new Button(locales::getLocale(locales::Continue),     NULL, &kResume_,
         //  Vector2f(10,y), w, 20));  y += yadd;

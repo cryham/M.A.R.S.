@@ -163,7 +163,7 @@ void MapOptions::checkWidgets()
 
         settings::C_MapXsize   = 1440;
         settings::C_MapYsize   = 810;
-        settings::C_MapYaspect = 1000 * 1440 / 810;
+        // settings::C_MapYaspect = 1000 * 1440 / 810;
     }
 
     if (kOk_)

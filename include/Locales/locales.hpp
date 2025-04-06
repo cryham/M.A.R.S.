@@ -102,6 +102,9 @@ namespace locales
         MapSize, MapXsize, MapYsize, ShipRadius,
         MapSize0,MapSize1,MapSize2,MapSize3,MapSize4,MapSize5,MapSize6,
         Defaults,
+        //  Game
+        ShipTurnSpeed, DamageScale, Regeneration, FuelRegen,
+        RespawnDelay, GlowAlpha,
 
         COUNT  /// amount of entries in the enum
     };

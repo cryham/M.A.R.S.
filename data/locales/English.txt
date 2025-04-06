@@ -407,5 +407,12 @@
 294 Big
 295 Large
 296 Huge
-
 297 Reset Defaults
+
+//  Game
+298 Ship turn speed
+299 Damage scale
+300 Regeneration
+301 Fuel regeneration
+302 Respawn delay
+303 Ship glow

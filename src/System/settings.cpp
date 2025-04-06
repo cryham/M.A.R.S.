@@ -99,18 +99,25 @@ namespace settings
     string      C_screenShotFormat =        "jpg";
 
     //  map setup
-    int         C_MapMinPlanets      = 1;  // 1
-    int         C_MapMaxPlanets      = 4;  // 4
-    int         C_MapMinPlanetsSize  = 50;  // 50
-    int         C_MapMaxPlanetsSize  = 120;  // 120
+    int         C_MapMinPlanets      = 1;
+    int         C_MapMaxPlanets      = 4;
+    int         C_MapMinPlanetsSize  = 50;
+    int         C_MapMaxPlanetsSize  = 120;
 
-    int         C_MapMinPlanetGap    = 150;  // 150
+    int         C_MapMinPlanetGap    = 150;
     int         C_MapHomeRadius      = 100;
 
-    int         C_ShipRadius         = 18;  // 18.f
-    int         C_MapXsize           = 1440; // 1440
-    int         C_MapYsize           = 810;  // 810
-    int         C_MapYaspect         = 1000 * 1440 / 810;  // / 1000 = 1
+    int         C_ShipRadius         = 18;
+    int         C_MapXsize           = 1440;
+    int         C_MapYsize           = 810;
+    // int         C_MapYaspect         = 1000 * 1440 / 810;  // / 1000 = 1
+
+    int         C_ShipTurnSpeed = 25;
+    int         C_DamageScale   = 50;
+    int         C_Regeneration  = 60;
+    int         C_FuelRegen     = 50;
+    int         C_RespawnDelay  = 20;
+    int         C_GlowAlpha     = 20;
 
     //  weapons
     int         C_EnabledWeapons =          weapons::wNoWeapon-1;  // all
@@ -361,6 +368,13 @@ namespace settings
             oss << "[MapHomeRadius] "         << C_MapHomeRadius << endl;
             oss << "[ShipRadius] "            << C_ShipRadius << endl;
 
+            oss << "[ShipTurnSpeed] "         << C_ShipTurnSpeed << endl;
+            oss << "[DamageScale] "           << C_DamageScale << endl;
+            oss << "[Regeneration] "          << C_Regeneration << endl;
+            oss << "[FuelRegen] "             << C_FuelRegen << endl;
+            oss << "[RespawnDelay] "          << C_RespawnDelay << endl;
+            oss << "[GlowAlpha] "             << C_GlowAlpha << endl;
+
             oss.close();
             return true;
         }else
@@ -494,6 +508,7 @@ namespace settings
         }
 
         //  read lines
+        //--------------------------------------------------------------------------------------------------------------------------------------------
         vector<sf::String> lines;
         if (file::load(C_configPath + "mars.cfg", lines))
         {
@@ -614,6 +629,13 @@ namespace settings
                 else if (line == "[MapMinPlanetGap]")     iss >> C_MapMinPlanetGap;
                 else if (line == "[MapHomeRadius]")       iss >> C_MapHomeRadius;
                 else if (line == "[ShipRadius]")          iss >> C_ShipRadius;
+
+                else if (line == "[ShipTurnSpeed]")       iss >> C_ShipTurnSpeed;
+                else if (line == "[DamageScale]")         iss >> C_DamageScale;
+                else if (line == "[Regeneration]")        iss >> C_Regeneration;
+                else if (line == "[FuelRegen]")           iss >> C_FuelRegen;
+                else if (line == "[RespawnDelay]")        iss >> C_RespawnDelay;
+                else if (line == "[GlowAlpha]")           iss >> C_GlowAlpha;
                 else
                     cout << line << " is a bad option in " << C_configPath << "mars.cfg!\n";
             }

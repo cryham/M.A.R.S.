@@ -24,6 +24,7 @@ class GameOptions: public UiWindow
 {
     public:
         static UiWindow* get();
+
         void checkWidgets();
         void onShow();
 
@@ -36,7 +37,5 @@ class GameOptions: public UiWindow
 
         static UiWindow* instance_;
 
-        static bool kOk_;
-
-        static int        soundVolume_;
+        static bool kOk_, kDefaults_;
 };

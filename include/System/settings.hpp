@@ -100,7 +100,7 @@ namespace settings
     extern int            C_EnabledSpecialsByUser;
     ///@}
 
-    /// \name Map settings
+    /// \name Map settings new
     ///@{
     extern int            C_MapMinPlanets;
     extern int            C_MapMaxPlanets;
@@ -113,7 +113,17 @@ namespace settings
     extern int            C_ShipRadius;
     extern int            C_MapXsize;
     extern int            C_MapYsize;
-    extern int            C_MapYaspect;
+    // extern int            C_MapYaspect;
+    ///@}
+
+    /// \name Game settings new
+    ///@{
+    extern int            C_ShipTurnSpeed;
+    extern int            C_DamageScale;
+    extern int            C_Regeneration;
+    extern int            C_FuelRegen;
+    extern int            C_RespawnDelay;
+    extern int            C_GlowAlpha;
     ///@}
 
     /// \name Player settings
@@ -170,8 +180,7 @@ namespace settings
 
     /// \name Network settings
     ///@{
-    extern sf::String    C_ip;
-    extern sf::String    C_port;
+    extern sf::String     C_ip;
+    extern sf::String     C_port;
     ///@}
 };
-

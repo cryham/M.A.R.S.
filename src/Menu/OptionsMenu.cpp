@@ -135,18 +135,6 @@ UiWindow* OptionsMenu::get()
        
         //  Graphics
         y = 30;
-        tabGraphics->addWidget(new LabeledBox(locales::getLocale(locales::WindowSettings),
-            Vector2f(10, y), 560, 110));  y += yadd*3/2;
-        tabGraphics->addWidget(new Checkbox(locales::Fullscreen, locales::ttFullscreen,
-            &fullscreen_,
-            Vector2f(20,y), 150));  y += yadd;
-        tabGraphics->addWidget(new Checkbox(locales::VerticalSynchronisation, locales::ttVerticalSynchronisation,
-            &vsync_,
-            Vector2f(20,y), 150));  y += yadd;
-        tabGraphics->addWidget(new Checkbox(locales::Shaders, locales::ttShaders,
-            &shaders_,
-            Vector2f(20,y), 150));  y += yadd;
-        
         std::vector<sf::VideoMode> modes = sf::VideoMode::getFullscreenModes();
         std::vector<sf::String> resolutions;
         std::vector<sf::String> colorDepths;
@@ -175,10 +163,21 @@ UiWindow* OptionsMenu::get()
         std::vector<sf::String> off;
         off.push_back(*locales::getLocale(locales::SlowMoOff));
 
+        tabGraphics->addWidget(new LabeledBox(locales::getLocale(locales::WindowSettings),
+            Vector2f(10, y), 560, 110));  y += yadd*3/2;
         tabGraphics->addWidget(new ComboBox(locales::Resolution, locales::ttResolution,
             &resolution_, resolutions,
             Vector2f(20,y), 540, 240));  y += yadd;
-        
+        tabGraphics->addWidget(new Checkbox(locales::Fullscreen, locales::ttFullscreen,
+            &fullscreen_,
+            Vector2f(20,y), 150));  y += yadd;
+        tabGraphics->addWidget(new Checkbox(locales::VerticalSynchronisation, locales::ttVerticalSynchronisation,
+            &vsync_,
+            Vector2f(20,y), 150));  y += yadd;
+        tabGraphics->addWidget(new Checkbox(locales::Shaders, locales::ttShaders,
+            &shaders_,
+            Vector2f(20,y), 150));  y += yadd*2;
+
         tabGraphics->addWidget(new LabeledBox(locales::getLocale(locales::GameSettings),
             Vector2f(10,y), 560, 90));  y += yadd*3/2;
         tabGraphics->addWidget(new Checkbox(locales::StarsHigh, locales::ttStarsHigh,
@@ -229,7 +228,7 @@ UiWindow* OptionsMenu::get()
             Vector2f(20,y), 540, 240, true, off));  y += yadd;
         tabGameplay->addWidget(new Slider(locales::GameSpeed, locales::ttGameSpeed,
             &settings::C_gameSpeed, 50, 200, 5,
-            Vector2f(20,y), 540, 240, true));  y += yadd;
+            Vector2f(20,y), 540, 240, true));  y += yadd*2;
         
         tabGameplay->addWidget(new LabeledBox(locales::getLocale(locales::DebuggingInformation),
             Vector2f(10,y), 560, 90));  y += yadd*3/2;

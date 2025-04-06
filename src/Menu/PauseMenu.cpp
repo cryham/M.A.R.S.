@@ -24,6 +24,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Menu/NewGameConfirm.hpp"
 #include "Menu/OptionsMenu.hpp"
 #include "Menu/MapOptions.hpp"
+#include "Menu/GameOptions.hpp"
 #include "Menu/InfoHide.hpp"
 #include "System/settings.hpp"
 #include "Locales/locales.hpp"
@@ -34,6 +35,7 @@ bool PauseMenu::kResume_(false);
 bool PauseMenu::kNew_(false);
 bool PauseMenu::kOptions_(false);
 bool PauseMenu::kMapOptions_(false);
+bool PauseMenu::kGameOptions_(false);
 bool PauseMenu::kToMainMenu_(false);
 bool PauseMenu::kHide_(false);
 
@@ -42,7 +44,7 @@ UiWindow* PauseMenu::get()
 {
     if (instance_ == NULL)
     {
-        instance_ = new PauseMenu(180, 170);
+        instance_ = new PauseMenu(180, 190);
         float y = 10, yadd = 30, w = 160;
         // instance_->addWidget(new Button(locales::getLocale(locales::Continue),     NULL, &kResume_,
         //  Vector2f(10,y), w, 20));  y += yadd;
@@ -51,7 +53,10 @@ UiWindow* PauseMenu::get()
         instance_->addWidget(new Button(locales::getLocale(locales::Options),         NULL, &kOptions_,
             Vector2f(10,y), w, 20));  y += yadd;
         instance_->addWidget(new Button(locales::getLocale(locales::MapOptions),      NULL, &kMapOptions_,
+            Vector2f(10,y), w, 20));  y += yadd;
+        instance_->addWidget(new Button(locales::getLocale(locales::GameOptions),      NULL, &kGameOptions_,
             Vector2f(10,y), w, 20));  y += yadd*3/2;
+        
         instance_->addWidget(new Button(locales::getLocale(locales::HideMenu),        NULL, &kHide_,
             Vector2f(10,y), w, 20));  y += yadd;
         instance_->addWidget(new Button(locales::getLocale(locales::QuitCurrentGame), NULL, &kToMainMenu_,
@@ -73,6 +78,10 @@ void PauseMenu::checkWidgets()
     else if (kMapOptions_)
     {   kMapOptions_ = false;
         menus::showWindow(MapOptions::get());
+    }
+    else if (kGameOptions_)
+    {   kGameOptions_ = false;
+        menus::showWindow(GameOptions::get());
     }
     else if (kResume_)
     {   kResume_ = false;

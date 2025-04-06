@@ -19,10 +19,12 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "Interface/UiWindow.hpp"
 
+
 class PauseMenu: public UiWindow
 {
     public:
         static UiWindow* get();
+
         void checkWidgets();
         void onShow()
         {   }
@@ -36,6 +38,7 @@ class PauseMenu: public UiWindow
 
         static UiWindow* instance_;
 
-        static bool kResume_, kNew_, kOptions_, kMapOptions_, kToMainMenu_, kHide_;
+        static bool kResume_, kNew_,
+            kOptions_, kMapOptions_, kGameOptions_,
+            kToMainMenu_, kHide_;
 };
-

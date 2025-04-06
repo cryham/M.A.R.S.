@@ -1,4 +1,4 @@
-/* NewGameMenu.hpp
+/* GameOptions.hpp
 
 Copyright (c) 2010 - 2011 by Felix Lauer and Simon Schneegans
 
@@ -19,31 +19,24 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "Interface/UiWindow.hpp"
 
-class Tab;
 
-
-class NewGameMenu: public UiWindow
+class GameOptions: public UiWindow
 {
     public:
         static UiWindow* get();
-
         void checkWidgets();
         void onShow();
 
         static void reset();
 
     private:
-        NewGameMenu(int width, int height): UiWindow(width, height)
+        GameOptions(int width, int height): UiWindow(width, height)
         {   }
-        NewGameMenu(NewGameMenu const& copy);
+        GameOptions(GameOptions const& copy);
 
         static UiWindow* instance_;
 
-        static bool kStart_, kInfo_, kCancel_, playerI_, playerII_,
-                    tSB_, tDM_, tTDM_, tCK_, tGI_, tRLY_,
-                    kWeaponOptions_, kMapOptions_, kGameOptions_;
+        static bool kOk_;
 
-        static Tab *tabSpaceBall_, *tabDeathMatch_, *tabTeamDeathMatch_,
-                   *tabCannonKeep_, *tabGraveItation_, *tabRally_;
+        static int        soundVolume_;
 };
-

@@ -25,6 +25,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include <SFML/OpenGL.hpp>
 
+
 void CountDown::draw() const
 {
     glEnable(GL_TEXTURE_2D);

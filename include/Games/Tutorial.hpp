@@ -22,6 +22,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 class Home;
 class Player;
 
+
 /// Game: Tutorial.
 /// This is the tutorial which, in fact,  is a special game.
 
@@ -66,4 +67,3 @@ class Tutorial: public Game
         bool dead_, life_, fuel_, name_;
         ///@}
 };
-

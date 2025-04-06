@@ -22,6 +22,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 class Player;
 class Ship;
 
+
 class CannonControl
 {
     public:

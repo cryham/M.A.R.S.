@@ -23,6 +23,7 @@ class Color3f;
 class ColorPicker;
 class Button;
 
+
 class ColorPickerWindow: public UiWindow
 {
     public:

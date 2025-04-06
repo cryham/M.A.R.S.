@@ -22,6 +22,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include <vector>
 
+
 class VerticalSlider: public UiElement
 {
     public:

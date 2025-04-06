@@ -19,6 +19,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "Games/Game.hpp"
 
+
 /// Game: GraveItation (GI).
 /// InstaGib with one instantly killing weapon.
 

@@ -19,6 +19,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "Games/games.hpp"
 
+
 /// Base class for all games.
 /// Provides some basic methods.
 

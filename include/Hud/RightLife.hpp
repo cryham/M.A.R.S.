@@ -19,6 +19,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "Hud/HudElement.hpp"
 
+
 class RightLife: public HudElement
 {
     public:

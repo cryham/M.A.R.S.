@@ -23,6 +23,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 class Sun;
 
+
 /// A heat texture on a Sun.
 /// Very decorative.
 

@@ -19,6 +19,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "Games/Game.hpp"
 
+
 /// Game: CannonKeep (CK).
 /// A funny game, where both teams aim on keeping the control of
 /// gigantic weapon of mass destruction in order to smash the

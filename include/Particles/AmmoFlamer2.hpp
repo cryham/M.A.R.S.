@@ -21,6 +21,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "System/Color3f.hpp"
 
+
 class AmmoFlamer2: public Particle<AmmoFlamer2>
 {
     public:

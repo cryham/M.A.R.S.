@@ -22,6 +22,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 class Label;
 
+
 class LabeledBox: public UiElement
 {
     public:

@@ -24,6 +24,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #define PORT_EDIT  1
 #define IP_EDIT    2
 
+
 class TextEdit: public UiElement
 {
     public:

@@ -33,6 +33,7 @@ class Ice: public DecoObject
         Ice(Object* object): object_(object)
         {   }
 
+        //  draw
         void draw() const
         {
             if (object_->visible_ && object_->frozen_ > 0.f)

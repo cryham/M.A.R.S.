@@ -30,6 +30,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include <SFML/OpenGL.hpp>
 #include <sstream>
 
+
 void GamePoints::draw() const
 {
     if (timer_ > 0.f)

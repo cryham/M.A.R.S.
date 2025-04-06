@@ -23,11 +23,13 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include <SFML/System.hpp>
 
+
 class PUFuel: public PowerUp
 {
     public:
         PUFuel(Vector2f const& location):
-            PowerUp(items::puFuel, location, 15.f, randomizer::random(8.f, 12.f), 3, 1, Color3f(1.f, 1.f, 0.2f)){}
+            PowerUp(items::puFuel, location,
+                15.f, randomizer::random(8.f, 12.f), 3, 1, Color3f(1.f, 1.f, 0.2f)){}
 
         void draw() const;
 

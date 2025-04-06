@@ -23,6 +23,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 class RadioGroup;
 
+
 class RadioButton: public UiElement
 {
     public:
@@ -36,7 +37,7 @@ class RadioButton: public UiElement
 
         void draw() const;
 
-        void setFocus  (UiElement* toBeFocused, bool isPrevious);
+        void setFocus(UiElement* toBeFocused, bool isPrevious);
         void clearFocus();
 
         friend class RadioGroup;

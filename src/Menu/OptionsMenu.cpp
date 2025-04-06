@@ -99,7 +99,7 @@ UiWindow* OptionsMenu::get()
             Vector2f(20, y), 540, 240));  y += yadd*3/2;
 
         tabInterface->addWidget(new Slider(locales::Scale, locales::ttScale,
-            &settings::C_globalParticleCount, 1, 300, 15,
+            &UiElement::scale_, 1, 300, 15,
             Vector2f(20,y), 540, 240, true));  y += yadd;
         tabInterface->addWidget(new Checkbox(locales::NoConfirmations, locales::ttNoConfirmations,
             &settings::C_noConfirmations,

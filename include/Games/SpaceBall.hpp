@@ -19,6 +19,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "Games/Game.hpp"
 
+
 /// Game: SpaceBall (SB).
 /// The original M.A.R.S. GameType. A little bit like soccer: Each team tries to destroy
 /// the opponents home planet by dropping a huge ball on it.

@@ -19,10 +19,11 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "Games/Game.hpp"
 
+class Track;
+
+
 /// Game: Rally (RLY).
 /// Be the first to reach a goal.
-
-class Track;
 
 class Rally: public Game
 {

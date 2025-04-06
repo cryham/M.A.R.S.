@@ -21,12 +21,14 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "System/settings.hpp"
 #include "System/randomizer.hpp"
 
+
 std::list<ShockWave*> ShockWave::activeParticles_;
 
-ShockWave::ShockWave(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity, Color3f const& color, Player* damageSource):
-           Particle<ShockWave>(spaceObjects::oShockWave, location, 4, 0, randomizer::random(0.6f, 1.f))
-{
-}
+
+ShockWave::ShockWave(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,
+        Color3f const& color, Player* damageSource)
+    :Particle<ShockWave>(spaceObjects::oShockWave, location, 4, 0, randomizer::random(0.6f, 1.f))
+{   }
 
 void ShockWave::update()
 {

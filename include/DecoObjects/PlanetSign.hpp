@@ -23,6 +23,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 class Planet;
 
+
 /// A random sign on a Planet.
 /// Very decorative.
 
@@ -32,7 +33,6 @@ class PlanetSign: public DecoObject
         /// Creates a randomly positioned Sign on the target Planet.
         PlanetSign(Planet* planet);
 
-        /// Draws the sign.
         void draw() const;
 
     private:

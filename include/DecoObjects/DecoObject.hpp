@@ -27,6 +27,5 @@ class DecoObject
     public:
         virtual ~DecoObject()
         {   }
-        /// Draws the DecoObject.
         virtual void draw() const = 0;
 };

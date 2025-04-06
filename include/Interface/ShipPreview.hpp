@@ -20,6 +20,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Interface/UiElement.hpp"
 #include "System/Color3f.hpp"
 
+
 class ShipPreview: public UiElement
 {
     public:

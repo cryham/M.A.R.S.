@@ -20,10 +20,13 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "System/timer.hpp"
 #include "Media/sound.hpp"
 
+
 std::list<AmmoAFK85*> AmmoAFK85::activeParticles_;
 
-AmmoAFK85::AmmoAFK85(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity, Color3f const& color, Player* damageSource):
-         Particle<AmmoAFK85>(spaceObjects::oAmmoAFK85, location, 1.f, 0.3f, 2.5f)
+
+AmmoAFK85::AmmoAFK85(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,
+        Color3f const& color, Player* damageSource)
+    :Particle<AmmoAFK85>(spaceObjects::oAmmoAFK85, location, 1.f, 0.3f, 2.5f)
 {
     setDamageSource(damageSource);
     Vector2f distortion(Vector2f::randDir());
@@ -45,7 +48,7 @@ void AmmoAFK85::update()
 
 void AmmoAFK85::draw() const
 {
-    glColor3f(0.8f, 0.6f, 1.f);  // todo: team's color
+    glColor4f(0.8f, 0.6f, 1.f, 1.f);  // todo: team's color
 
     Vector2f direction(velocity_*0.016f);
     Vector2f normDirection(direction.y_, -1.f*direction.x_);

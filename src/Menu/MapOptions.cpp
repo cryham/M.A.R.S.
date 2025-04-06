@@ -113,13 +113,41 @@ void MapOptions::checkWidgets()
 
             switch (i)
             {
-            case 0:  settings::C_MapXsize = 600;  break;
-            case 1:  settings::C_MapXsize = 900;  break;
-            case 2:  settings::C_MapXsize = 1440;  break;  // default
-            case 3:  settings::C_MapXsize = 2000;  break;
-            case 4:  settings::C_MapXsize = 4000;  break;
-            case 5:  settings::C_MapXsize = 6000;  break;
-            case 6:  settings::C_MapXsize = 12000;  break;
+            case 0:  settings::C_MapXsize = 600;   // tiny
+                settings::C_MapMinPlanets     = 0;    settings::C_MapMaxPlanets     = 1;
+                settings::C_MapMinPlanetsSize = 10;   settings::C_MapMaxPlanetsSize = 30;
+                settings::C_MapMinPlanetGap   = 150;  settings::C_MapHomeRadius     = 50;  settings::C_ShipRadius = 10;
+                break;
+            case 1:  settings::C_MapXsize = 1000;  // small
+                settings::C_MapMinPlanets     = 0;    settings::C_MapMaxPlanets     = 2;
+                settings::C_MapMinPlanetsSize = 20;   settings::C_MapMaxPlanetsSize = 60;
+                settings::C_MapMinPlanetGap   = 150;  settings::C_MapHomeRadius     = 75;  settings::C_ShipRadius = 14;
+                break;
+            case 2:  settings::C_MapXsize = 1440;  // medium  default
+                settings::C_MapMinPlanets     = 1;    settings::C_MapMaxPlanets     = 4;
+                settings::C_MapMinPlanetsSize = 50;   settings::C_MapMaxPlanetsSize = 120;
+                settings::C_MapMinPlanetGap   = 150;  settings::C_MapHomeRadius     = 100;  settings::C_ShipRadius = 18;
+                break;
+            case 3:  settings::C_MapXsize = 2000;  // normal
+                settings::C_MapMinPlanets     = 1;    settings::C_MapMaxPlanets     = 6;
+                settings::C_MapMinPlanetsSize = 60;   settings::C_MapMaxPlanetsSize = 120;
+                settings::C_MapMinPlanetGap   = 150;  settings::C_MapHomeRadius     = 150;  settings::C_ShipRadius = 18;
+                break;
+            case 4:  settings::C_MapXsize = 3000;  // big
+                settings::C_MapMinPlanets     = 2;    settings::C_MapMaxPlanets     = 8;
+                settings::C_MapMinPlanetsSize = 90;   settings::C_MapMaxPlanetsSize = 200;
+                settings::C_MapMinPlanetGap   = 150;  settings::C_MapHomeRadius     = 300;  settings::C_ShipRadius = 22;
+                break;
+            case 5:  settings::C_MapXsize = 5000;  // large
+                settings::C_MapMinPlanets     = 3;    settings::C_MapMaxPlanets     = 8;
+                settings::C_MapMinPlanetsSize = 120;  settings::C_MapMaxPlanetsSize = 500;
+                settings::C_MapMinPlanetGap   = 150;  settings::C_MapHomeRadius     = 500;  settings::C_ShipRadius = 30;
+                break;
+            case 6:  settings::C_MapXsize = 9000;  // huge
+                settings::C_MapMinPlanets     = 4;    settings::C_MapMaxPlanets     = 8;
+                settings::C_MapMinPlanetsSize = 150;  settings::C_MapMaxPlanetsSize = 900;
+                settings::C_MapMinPlanetGap   = 250;  settings::C_MapHomeRadius     = 900;  settings::C_ShipRadius = 50;
+                break;
             }
             float aspY = 910.f / 1440.f;
             // float aspY = 810.f / 1440.f;  // org?

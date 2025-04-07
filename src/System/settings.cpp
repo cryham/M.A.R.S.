@@ -16,9 +16,9 @@ You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "System/settings.hpp"
-
 #include "Media/file.hpp"
 #include "Shaders/postFX.hpp"
+#include "Interface/UiElement.hpp"
 #include "defines.hpp"
 
 #include <sys/stat.h>
@@ -81,6 +81,7 @@ namespace settings
     bool        C_showToolTips =            true;
 
     bool        C_noConfirmations =         true;
+    int         C_UIscale =                 100;
 
     int         C_languageID =              0;
     int         C_resX =                    INITIAL_WINDOW_X;
@@ -374,6 +375,7 @@ namespace settings
             oss << "[FuelRegen] "             << C_FuelRegen << endl;
             oss << "[RespawnDelay] "          << C_RespawnDelay << endl;
             oss << "[GlowAlpha] "             << C_GlowAlpha << endl;
+            oss << "[UIScale] "               << UiElement::scale_ << endl;
 
             oss.close();
             return true;
@@ -493,8 +495,8 @@ namespace settings
             #endif
 
             #ifdef __APPLE__
-                if (ifstream("../Resources/data/locales/English.txt")) {
-                    C_dataPath = "../Resources/data/";
+                if (ifstream("../Resources/data/locales/English.txt"))
+                {   C_dataPath = "../Resources/data/";
                     success = true;
                 }
             #endif
@@ -541,11 +543,11 @@ namespace settings
                 
                 else if (line == "[botsLeft]")               readInt(iss, C_botsLeft, 0, 20);
                 else if (line == "[botsRight]")              readInt(iss, C_botsRight, 0, 20);
-                else if (line == "[botsDeath]")              readInt(iss, C_botsDeath, 0, 50);
+                else if (line == "[botsDeath]")              readInt(iss, C_botsDeath, 0, 80);
                 else if (line == "[pointLimitSB]")           readInt(iss, C_pointLimitSB, 1, 100);
                 else if (line == "[pointLimitCK]")           readInt(iss, C_pointLimitCK, 1, 100);
-                else if (line == "[pointLimitDM]")           readInt(iss, C_pointLimitDM, 1, 100);
-                else if (line == "[pointLimitTDM]")          readInt(iss, C_pointLimitTDM,1, 100);
+                else if (line == "[pointLimitDM]")           readInt(iss, C_pointLimitDM, 1, 400);
+                else if (line == "[pointLimitTDM]")          readInt(iss, C_pointLimitTDM,1, 400);
 
                 else if (line == "[powerUpRate]")            readInt(iss, C_powerUpRate, 0, 100);
                 else if (line == "[slowMoKickIn]")           readInt(iss, C_slowMoKickIn, 0, 100);
@@ -636,6 +638,7 @@ namespace settings
                 else if (line == "[FuelRegen]")           iss >> C_FuelRegen;
                 else if (line == "[RespawnDelay]")        iss >> C_RespawnDelay;
                 else if (line == "[GlowAlpha]")           iss >> C_GlowAlpha;
+                else if (line == "[UIScale]")             iss >> UiElement::scale_;
                 else
                     cout << line << " is a bad option in " << C_configPath << "mars.cfg!\n";
             }

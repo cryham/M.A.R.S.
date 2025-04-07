@@ -23,7 +23,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 TextBox::TextBox(sf::String* text,
         Vector2f const& topLeft, int width, int height, Color3f const& color)
-    :UiElement(topLeft, width, height)
+    :UiElement(topLeft, 1.25f * width / scale_, height)
     ,color_(color)
     ,slider_(NULL)
     ,position_(0)
@@ -35,19 +35,19 @@ TextBox::TextBox(sf::String* text,
     int lastSpace(0);
 
     // search for "\n" and replace them with '\n'
-    for (unsigned int i=0; i<wholeText.getSize()-1; ++i)
+    for (unsigned int i=0; i < wholeText.getSize()-1; ++i)
         if (wholeText[i] == '\\' && wholeText[i+1] == 'n')
         {   wholeText[i]  = ' ';
             wholeText[++i]= '\n';
         }
 
     // remove doubled spaces
-    for (unsigned int i=0; i<wholeText.getSize()-1; ++i)
+    for (unsigned int i=0; i < wholeText.getSize()-1; ++i)
         if (wholeText[i] == ' ' && wholeText[i+1] == ' ')
             wholeText.erase(i--, 1);
 
     // break lines
-    for (unsigned int i=0; i<wholeText.getSize(); ++i)
+    for (unsigned int i=0; i < wholeText.getSize(); ++i)
     {
         if (wholeText[i] == '\n')
         {
@@ -91,14 +91,16 @@ TextBox::TextBox(sf::String* text,
             texts_.push_back(new sf::String(line));
             line = "";
         }else
-                line += wholeText[i];
+            line += wholeText[i];
     }
     if (line != "")
         texts_.push_back(new sf::String(line));
 
     if (texts_.size()*15.f > height_)
     {
-        slider_ = new VerticalSlider(&position_, 0, texts_.size()*15.f-height, Vector2f(width_-12, 0), height_);
+        slider_ = new VerticalSlider(&position_, 0,
+            texts_.size()*15.f-height,
+            Vector2f(width_-12, 0), height_ / scale_);
         slider_->setParent(this);
     }
 }
@@ -185,7 +187,7 @@ void TextBox::draw () const
 
         if (alpha > 0)
             text::drawScreenText(*it, origin+Vector2f(0, top), 12.f, TEXT_ALIGN_LEFT, color_, alpha);
-        top += 15.f;
+        top += 15.f * scale_;
     }
 
     if (slider_)

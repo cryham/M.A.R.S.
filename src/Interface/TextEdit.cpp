@@ -27,6 +27,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include <SFML/OpenGL.hpp>
 #include <iostream>
 
+
 TextEdit::TextEdit (sf::String* text, sf::String* value, sf::String fallBack,
         Vector2f const& topLeft, int width, int labelWidth, int type, int maxLength)
     : UiElement(topLeft, width, 20)
@@ -39,7 +40,7 @@ TextEdit::TextEdit (sf::String* text, sf::String* value, sf::String fallBack,
     , type_(type)
     , labelWidth_(labelWidth)
 {
-         if (type == 1)  maxLength_ = 5;
+    if      (type == 1)  maxLength_ = 5;
     else if (type == 2)  maxLength_ = 15;
 
     if (text)
@@ -176,6 +177,7 @@ void TextEdit::textEntered(sf::Uint32 keyCode)
     }
 }
 
+//  draw
 void TextEdit::draw() const
 {
     UiElement::draw();

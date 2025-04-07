@@ -1,6 +1,10 @@
 name: CI
 
-on: [push, pull_request, workflow_dispatch]
+on:
+  push:
+    branches: [ "master", "ch-fork" ]
+  pull_request:
+    branches: [ "master", "ch-fork" ]
 
 jobs:
   build:

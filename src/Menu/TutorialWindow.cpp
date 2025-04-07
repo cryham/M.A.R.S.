@@ -33,6 +33,11 @@ bool TutorialWindow::kOk_(false);
 sf::String TutorialWindow::index_("1/1");
 
 
+UiWindow* TutorialWindow::get(locales::LocaleType title, locales::LocaleType text, int index, bool info, bool next)
+{
+    return get(locales::getLocale(title), locales::getLocale(text), index, info, next);
+}
+
 UiWindow* TutorialWindow::get(sf::String* title, sf::String* text, int index, bool info, bool next)
 {
     reset();

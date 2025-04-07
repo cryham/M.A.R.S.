@@ -25,21 +25,24 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include <sstream>
 #include <iostream>
 
+using namespace std;
+
+
 namespace locales
 {
     namespace
     {
-        std::vector<Locale>     locales_;
-        std::vector<sf::String> localeStrings_(COUNT, "Error");
+        vector<Locale>     locales_;
+        vector<sf::String> localeStrings_(COUNT, "Error");
 
-        bool load(std::string const& fileName)
+        bool load(string const& fileName)
         {
-            std::vector<sf::String> lines;
+            vector<sf::String> lines;
             if (file::load(fileName, lines))
             {
                 for (auto& it : lines)
                 {
-                    std::stringstream sstr(it.toAnsiString());
+                    stringstream sstr(it.toAnsiString());
                     int id;
                     sstr >> id;
                     if (id < COUNT && it.getSize() > 4)
@@ -59,7 +62,8 @@ namespace locales
                                     ++j;
                                     if (j == tmp.getSize())
                                     {
-                                        std::cout << "Error parsing " << fileName << ": At ID " << id << " the macro " << macro.toAnsiString() << " misses a trailing '}' !" << std::endl;
+                                        cout << "Error parsing " << fileName << ": At ID " << id <<
+                                            " the macro " << macro.toAnsiString() << " misses a trailing '}' !" << endl;
                                         break;
                                     }
                                 }
@@ -81,7 +85,8 @@ namespace locales
                                 else if (macro == "CONFIG_PATH")         tmp.insert(i, settings::C_configPath);
                                 else if (macro == "STATISTICS_KEY")      tmp.insert(i, generateName::key(settings::C_statisticsKey));
                                 else
-                                    std::cout << "Error parsing " << fileName << ": At ID " << id << " is an unknown macro " << macro.toAnsiString() << "!" << std::endl;
+                                    cout << "Error parsing " << fileName << ": At ID " << id <<
+                                        " is an unknown macro " << macro.toAnsiString() << "!" << endl;
                             }
                         }
 
@@ -94,7 +99,7 @@ namespace locales
             }
             else
             {
-                std::cout << "Failed to open locale " << fileName << "! Interface will be messed up with errors...\n";
+                cout << "Failed to open locale " << fileName << "! Interface will be messed up with errors...\n";
                 return false;
             }
         }
@@ -102,7 +107,7 @@ namespace locales
 
     bool load()
     {
-        std::vector<sf::String> lines;
+        vector<sf::String> lines;
         if (file::load(settings::C_dataPath + "locales/locales.conf", lines))
         {
             locales_.clear();
@@ -112,7 +117,8 @@ namespace locales
             {
                 if (it.toAnsiString()[0] == '[')
                 {
-                    if (!first) {
+                    if (!first)
+                    {
                         locales_.push_back(newLocale);
                         newLocale = Locale();
                     }
@@ -123,8 +129,8 @@ namespace locales
                     first = false;
                 }else
                 {
-                    std::stringstream sstr(std::string(it.toAnsiString()));
-                    std::string flag;
+                    stringstream sstr(string(it.toAnsiString()));
+                    string flag;
                     sstr >> flag;
 
                     sf::String arg(it);
@@ -136,12 +142,12 @@ namespace locales
                         newLocale.font_ = arg;
                     else if (flag == "author:")
                         newLocale.author_ = "By " + arg;
-                    else if (flag == "direction:") {
+                    else if (flag == "direction:")
+                    {
                         if (arg == "RTL") newLocale.LTR_ = false;
                         else              newLocale.LTR_ = true;
-                    }
-                    else
-                        std::cout << "Unrecognized flag \"" << flag << "\" in " << settings::C_dataPath + "locales/locales.conf !" << std::endl;
+                    }else
+                        cout << "Unrecognized flag \"" << flag << "\" in " << settings::C_dataPath + "locales/locales.conf !" << endl;
                 }
             }
 
@@ -155,24 +161,25 @@ namespace locales
             {
                 if (!load (settings::C_dataPath + "locales/"+locales_[settings::C_languageID].fileName_))
                 {
-                    std::cout << "Failed to load " << settings::C_dataPath << "locales/" << locales_[settings::C_languageID].fileName_.toAnsiString() << "! Falling back to English..." << std::endl;
+                    cout << "Failed to load " << settings::C_dataPath << "locales/" <<
+                        locales_[settings::C_languageID].fileName_.toAnsiString() << "! Falling back to English..." << endl;
                     settings::C_languageID = 0;
                 }
             }else
             {
-                std::cout << "Specified language in mars.conf doesn't match any in locales.conf! Falling back to English..." << std::endl;
+                cout << "Specified language in mars.conf doesn't match any in locales.conf! Falling back to English..." << endl;
                 settings::C_languageID = 0;
             }
             return true;
         }
         else
         {
-            std::cout << "Not found! Aborting..." << std::endl;
+            cout << "Not found! Aborting..." << endl;
             return false;
         }
     }
 
-    std::vector<Locale>const& getLocales()
+    vector<Locale>const& getLocales()
     {
         return locales_;
     }

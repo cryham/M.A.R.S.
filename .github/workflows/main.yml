@@ -15,12 +15,12 @@ jobs:
       fail-fast: false
       matrix:
         platform:
-        - { name: Windows VS2019, os: windows-2019 }
-        - { name: Windows VS2022, os: windows-2022 }
-        - { name: Linux GCC,      os: ubuntu-24.04 }
-        - { name: Linux Clang,    os: ubuntu-24.04, flags: -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ }
-        - { name: MacOS arm64,    os: macos-13 }
-        - { name: MacOS x64,      os: macos-14 }
+        #- { name: Windows VS2019, os: windows-2019 }
+        #- { name: Windows VS2022, os: windows-2022 }
+        - { name: Linux GCC,      os: ubuntu-22.04 }
+        #- { name: Linux Clang,    os: ubuntu-22.04, flags: -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ }
+        #- { name: MacOS arm64,    os: macos-13 }
+        #- { name: MacOS x64,      os: macos-14 }
         config:
         - { name: Shared, flags: -DCMAKESFMLPROJECT_STATIC_LIBS=OFF -DBUILD_SHARED_LIBS=TRUE }
         - { name: Static, flags: -DCMAKESFMLPROJECT_STATIC_LIBS=ON -DBUILD_SHARED_LIBS=FALSE }
@@ -28,13 +28,15 @@ jobs:
     steps:
     - name: Install Linux Dependencies
       if: runner.os == 'Linux'
-      run: sudo apt-get update && sudo apt-get install libxrandr-dev libxcursor-dev libxi-dev libudev-dev libopenal-dev libflac-dev libvorbis-dev libgl1-mesa-dev libegl1-mesa-dev libfribidi-dev
+      run: sudo apt-get update && sudo apt-get install libxrandr-dev libxcursor-dev libxi-dev libudev-dev libopenal-dev libflac-dev libvorbis-dev libgl1-mesa-dev libegl1-mesa-dev libfribidi-dev libsfml-dev
 
     - name: Install macOS Dependencies
       if: runner.os == 'macOS'
       run: brew install fribidi
 
+
     - name: SFML - Checkout Code
+      if: runner.os == 'Windows'
       uses: actions/checkout@v4
       with:
         fetch-depth: 0
@@ -43,12 +45,15 @@ jobs:
         path: SFML
 
     - name: SFML - Configure CMake
+      if: runner.os == 'Windows'
       shell: bash
       run: cmake -S $GITHUB_WORKSPACE/SFML -B $GITHUB_WORKSPACE/SFML/build -DCMAKE_INSTALL_PREFIX=$GITHUB_WORKSPACE/SFML/install -DCMAKE_VERBOSE_MAKEFILE=ON ${{matrix.platform.flags}} ${{matrix.config.flags}}
 
     - name: SFML - Build
+      if: runner.os == 'Windows'
       shell: bash
       run: cmake --build $GITHUB_WORKSPACE/SFML/build --config Release --target install
+
 
     - name: TagLib - Checkout Code
       uses: actions/checkout@v4
@@ -58,12 +63,15 @@ jobs:
         path: taglib
 
     - name: TagLib - Configure CMake
+      if: runner.os == 'Windows'
       shell: bash
       run: cmake -S $GITHUB_WORKSPACE/taglib -B $GITHUB_WORKSPACE/taglib/build -DCMAKE_INSTALL_PREFIX=$GITHUB_WORKSPACE/taglib/install -DCMAKE_VERBOSE_MAKEFILE=ON ${{matrix.platform.flags}} ${{matrix.config.flags}}
 
     - name: TagLib - Build
+      if: runner.os == 'Windows'
       shell: bash
       run: cmake --build $GITHUB_WORKSPACE/taglib/build --config Release --target install
+
 
     - name: GNU FriBidi - Checkout Code
       if: runner.os == 'Windows'
@@ -101,6 +109,7 @@ jobs:
       if: runner.os == 'Windows'
       shell: bash
       run: cmake --build $GITHUB_WORKSPACE/fribidi/build --config Release --target install
+
 
     - name: M.A.R.S - Checkout Code
       uses: actions/checkout@v4

@@ -65,7 +65,7 @@ void MiniFlame::update()
 
 void MiniFlame::draw() const
 {
-    color_.gl3f();
+    color_.gl4f();
     const int posX = 5;
     const int posY = 0;
     glTexCoord2f(posX*0.125f,     posY*0.125f);     glVertex2f(location_.x_-radius_, location_.y_-radius_);

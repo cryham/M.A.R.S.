@@ -166,7 +166,7 @@ void AmmoRocket::update()
 
 void AmmoRocket::draw() const
 {
-    glColor3f(1.f, 1.f, 1.f);
+    glColor4f(1.f, 1.f, 1.f, 1.f);
 
     Vector2f direction(velocity_.normalize()*10.f);
     Vector2f normDirection(direction.y_, -1.f*direction.x_);

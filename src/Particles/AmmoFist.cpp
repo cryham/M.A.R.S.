@@ -21,10 +21,13 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Media/sound.hpp"
 #include "Players/Player.hpp"
 
+
 std::list<AmmoFist*> AmmoFist::activeParticles_;
 
-AmmoFist::AmmoFist(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity, Color3f const& color, Player* damageSource):
-         Particle<AmmoFist>(spaceObjects::oAmmoFist, location, 20.f, 25.0f, 0.1f)
+
+AmmoFist::AmmoFist(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,
+        Color3f const& color, Player* damageSource)
+    :Particle<AmmoFist>(spaceObjects::oAmmoFist, location, 20.f, 25.0f, 0.1f)
 {
     setDamageSource(damageSource);
 }
@@ -50,9 +53,10 @@ void AmmoFist::update()
     }
 }
 
+//  draw
 void AmmoFist::draw() const
 {
-    glColor3f(1, 1, 1);
+    glColor4f(1, 1, 1, 1);
     const int posX = 0;
     const int posY = 1;
     glTexCoord2f(posX*0.125f,     posY*0.125f);     glVertex2f(location_.x_-radius_, location_.y_-radius_);

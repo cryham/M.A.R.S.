@@ -94,7 +94,7 @@ void CannonBall::update()
 
 void CannonBall::draw() const
 {
-    glColor3f(1.0f, 1.0f, 1.0f);
+    glColor4f(1.0f, 1.0f, 1.0f, 1.f);
     const int posX = 5;
     const int posY = 2;
     glTexCoord2f(posX*0.125f,     posY*0.125f);     glVertex2f(location_.x_-radius_, location_.y_-radius_);

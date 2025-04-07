@@ -20,7 +20,9 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "System/timer.hpp"
 #include "System/randomizer.hpp"
 
+
 std::list<Eruption*> Eruption::activeParticles_;
+
 
 Eruption::Eruption(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity, Color3f const& color, Player* damageSource):
          Particle<Eruption>(spaceObjects::oEruption, location, 1.f, 0.f, randomizer::random(1.0f, 2.5f)),
@@ -46,7 +48,7 @@ void Eruption::update()
 
 void Eruption::draw() const
 {
-    color_.gl3f();
+    color_.gl4f();
     const int posX = 0;
     const int posY = 1;
     glTexCoord2f(posX*0.125f,     posY*0.125f);     glVertex2f(location_.x_-radius_, location_.y_-radius_);

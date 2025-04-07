@@ -51,7 +51,7 @@ void PowerUpCollect::update()
 
 void PowerUpCollect::draw() const
 {
-    color_.gl3f();
+    color_.gl4f();
     glTexCoord2f(texX_*0.15625f,     texY_*0.15625f);     glVertex2f(location_.x_-radius_, location_.y_-radius_);
     glTexCoord2f(texX_*0.15625f,     (texY_+1)*0.15625f); glVertex2f(location_.x_-radius_, location_.y_+radius_);
     glTexCoord2f((texX_+1)*0.15625f, (texY_+1)*0.15625f); glVertex2f(location_.x_+radius_, location_.y_+radius_);

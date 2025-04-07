@@ -22,7 +22,9 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "TrailEffects/trailEffects.hpp"
 #include "System/randomizer.hpp"
 
+
 std::list<AmmoShotgun2*> AmmoShotgun2::activeParticles_;
+
 
 AmmoShotgun2::AmmoShotgun2(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity, Color3f const& color, Player* damageSource):
          Particle<AmmoShotgun2>(spaceObjects::oAmmoShotgun2, location, 2.5f, 0.5f, randomizer::random(0.3f, 0.7f)),
@@ -57,7 +59,7 @@ void AmmoShotgun2::update()
 
 void AmmoShotgun2::draw() const
 {
-    color_.gl3f();
+    color_.gl4f();
     const int posX = 0;
     const int posY = 1;
     glTexCoord2f(posX*0.125f,     posY*0.125f);     glVertex2f(location_.x_-radius_, location_.y_-radius_);

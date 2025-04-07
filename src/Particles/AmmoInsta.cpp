@@ -83,7 +83,7 @@ void AmmoInsta::update()
 
 void AmmoInsta::draw() const
 {
-    color_.gl3f();
+    color_.gl4f();
 
     Vector2f direction(velocity_*0.015f);
     Vector2f normDirection(direction.y_, -1.f*direction.x_);

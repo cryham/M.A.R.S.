@@ -30,10 +30,11 @@ class Particle: public MobileSpaceObject
 {
     public:
         /// Base ctor of a Particle.
-        Particle(spaceObjects::ObjectType const& type, Vector2f const& location, float radius, float mass, float totalLifeTime):
-                 MobileSpaceObject(type, location, radius, mass),
-                 totalLifeTime_(totalLifeTime),
-                 lifeTime_(0)
+        Particle(spaceObjects::ObjectType const& type, Vector2f const& location,
+                float radius, float mass, float totalLifeTime)
+            :MobileSpaceObject(type, location, radius, mass)
+            ,totalLifeTime_(totalLifeTime)
+            ,lifeTime_(0)
         {   }
 
         /// Calling this function will make the particle disappear in the next frame.
@@ -82,9 +83,12 @@ class Particle: public MobileSpaceObject
                 it->draw();
         }
 
-        static void spawn(Vector2f const& location, Vector2f const& direction, Vector2f const& sourceVelocity, Color3f const& color, Player* damageSource)
+        static void spawn(Vector2f const& location,
+            Vector2f const& direction, Vector2f const& sourcevel,
+            Color3f const& color, Player* damageSource)
         {
-            Derived::activeParticles_.push_back(new Derived(location, direction, sourceVelocity, color, damageSource));
+            Derived::activeParticles_.push_back(new Derived(
+                location, direction, sourcevel, color, damageSource));
         }
 
         static void collideWith(MobileSpaceObject* object)
@@ -110,9 +114,9 @@ class Particle: public MobileSpaceObject
                     // if objects are moving
                     if (source->velocity().lengthSquare() > 0)
                     {
-                        const Vector2f velocitySourceNorm  ( source->velocity().normalize());
-                        const Vector2f velocitySourceOrtho (-velocitySourceNorm.y_, velocitySourceNorm.x_);
-                        const Vector2f centerDist          ( velocitySourceOrtho * ((source->location() - target->location())*velocitySourceOrtho));
+                        const Vector2f velSourceNorm = source->velocity().normalize();
+                        const Vector2f velSourceOrtho(-velSourceNorm.y_, velSourceNorm.x_);
+                        const Vector2f centerDist    = velSourceOrtho * ((source->location() - target->location())*velSourceOrtho);
 
                         // if path of object crosses target object
                         if (centerDist.lengthSquare() < minDistSquared)
@@ -121,40 +125,47 @@ class Particle: public MobileSpaceObject
                             const Vector2f chordMidPoint     = target->location() + centerDist;
 
                             // if path of object has intersected with target within the last frame
-                            if ( ((source->location() - target->location()).lengthSquare() < minDistSquared)
-                              || ((lastFrameLocation - target->location()).lengthSquare() < minDistSquared)
-                              || ((chordMidPoint - source->location()) * (chordMidPoint - lastFrameLocation) < 0.f))
+                            if ((source->location() - target->location()).lengthSquare() < minDistSquared ||
+                                (lastFrameLocation - target->location()).lengthSquare() < minDistSquared ||
+                                (chordMidPoint - source->location()) * (chordMidPoint - lastFrameLocation) < 0.f)
                             {
                                 if (source->velocity() * (target->location() - lastFrameLocation) > 0)
                                 {
                                     const Vector2f impactLocation  ((source->location() + target->location())*0.5f);
                                     const Vector2f impactDirection ((target->location() - source->location()).normalize());
 
-                                    // calculate velocity of objects in direction of impact before collision
-                                    const Vector2f velocitySourceBefore = impactDirection * (source->velocity() * impactDirection);
-                                    const Vector2f velocityTargetBefore = impactDirection * (target->velocity() * impactDirection);
+                                    // calculate vel of objects in direction of impact before collision
+                                    const Vector2f velSourceBefore = impactDirection * (source->velocity() * impactDirection);
+                                    const Vector2f velTargetBefore = impactDirection * (target->velocity() * impactDirection);
 
-                                    // calculate velocity of objects in direction of impact after collision
-                                    const Vector2f velocitySourceAfter = (velocitySourceBefore*source->mass() + velocityTargetBefore*target->mass() - (velocitySourceBefore - velocityTargetBefore)*target->mass()) / (source->mass() + target->mass());
-                                    const Vector2f velocityTargetAfter = (velocitySourceBefore*source->mass() + velocityTargetBefore*target->mass() - (velocityTargetBefore - velocitySourceBefore)*source->mass()) / (source->mass() + target->mass());
+                                    // calculate vel of objects in direction of impact after collision
+                                    const Vector2f velSourceAfter =
+                                        (velSourceBefore * source->mass() + velTargetBefore * target->mass() -
+                                            (velSourceBefore - velTargetBefore)*target->mass())
+                                        / (source->mass() + target->mass());
+                                    const Vector2f velTargetAfter =
+                                        (velSourceBefore * source->mass() + velTargetBefore * target->mass() -
+                                            (velTargetBefore - velSourceBefore)*source->mass())
+                                        / (source->mass() + target->mass());
 
                                     // calculate collision result
-                                    target->onCollision(source, impactLocation, impactDirection, velocitySourceBefore);
-                                    source->onCollision(target, impactLocation, impactDirection, velocityTargetBefore);
+                                    target->onCollision(source, impactLocation, impactDirection, velSourceBefore);
+                                    source->onCollision(target, impactLocation, impactDirection, velTargetBefore);
 
-                                    // add to orthongonal speed component of initial velocity
+                                    // add to orthongonal speed component of initial vel
                                     // special case: Collision with rofle bullets is not physically correct, for improved gameplay
-                                    if ((source->type() == spaceObjects::oAmmoROFLE) | (target->type() == spaceObjects::oAmmoROFLE))
-                                        target-> velocity() += (0.05f*source->velocity()*source->mass() + (velocityTargetAfter - velocityTargetBefore) * 0.6);
+                                    if (source->type() == spaceObjects::oAmmoROFLE || target->type() == spaceObjects::oAmmoROFLE)
+                                        target-> velocity() +=
+                                            (0.05f * source->velocity()*source->mass() + (velTargetAfter - velTargetBefore) * 0.6);
                                     else
-                                    if (((source->type() == spaceObjects::oAmmoRocket) | (target->type() == spaceObjects::oAmmoRocket)) &&
-                                        ((source->type() != spaceObjects::oAmmoFist) | (target->type() != spaceObjects::oAmmoFist)))
+                                    if ((source->type() == spaceObjects::oAmmoRocket || target->type() == spaceObjects::oAmmoRocket) &&
+                                        (source->type() != spaceObjects::oAmmoFist || target->type() != spaceObjects::oAmmoFist))
                                     {
-                                        source->velocity() += (velocitySourceAfter - velocitySourceBefore) * 0.8;
-                                        target->velocity() += (velocityTargetAfter - velocityTargetBefore) * 0.1;
+                                        source->velocity() += (velSourceAfter - velSourceBefore) * 0.8;
+                                        target->velocity() += (velTargetAfter - velTargetBefore) * 0.1;
                                     }else
-                                    {   source->velocity() += (velocitySourceAfter - velocitySourceBefore) * 0.8;
-                                        target->velocity() += (velocityTargetAfter - velocityTargetBefore) * 0.8;
+                                    {   source->velocity() += (velSourceAfter - velSourceBefore) * 0.8;
+                                        target->velocity() += (velTargetAfter - velTargetBefore) * 0.8;
                                     }
                                 }
                             }
@@ -171,4 +182,3 @@ class Particle: public MobileSpaceObject
         /// Stores the actual life time of the particle.
         float lifeTime_;
 };
-

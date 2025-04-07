@@ -146,7 +146,7 @@ void UiWindow::draw () const
         glVertex2f(origin.x_+width_+10,origin.y_+height_+10);
     glEnd();
 
-    setColor4f(1.f, 1.f, 1.f, 1.f);  // alpha
+    setColor4f(1.f, 1.f, 1.f, 0.7f);  // alpha
     glEnable(GL_TEXTURE_2D);
 
     float offset(0.f);

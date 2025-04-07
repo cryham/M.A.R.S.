@@ -22,10 +22,13 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "TrailEffects/trailEffects.hpp"
 #include "defines.hpp"
 
+
 std::list<AmmoROFLE*> AmmoROFLE::activeParticles_;
 
-AmmoROFLE::AmmoROFLE(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity, Color3f const& color, Player* damageSource):
-         Particle<AmmoROFLE>(spaceObjects::oAmmoROFLE, location, 1.f, 3.0f, 3.0f)
+
+AmmoROFLE::AmmoROFLE(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,
+        Color3f const& color, Player* damageSource)
+    :Particle<AmmoROFLE>(spaceObjects::oAmmoROFLE, location, 1.f, 3.0f, 3.0f)
 {
     setDamageSource(damageSource);
     velocity_ = direction*1300.f;
@@ -58,7 +61,7 @@ void AmmoROFLE::update()
 
 void AmmoROFLE::draw() const
 {
-    glColor3f(1.f, 1.f, 1.f);
+    glColor4f(1.f, 1.f, 1.f, 1.f);
 
     Vector2f direction(velocity_*0.025f);
     Vector2f normDirection(direction.y_, -1.f*direction.x_);

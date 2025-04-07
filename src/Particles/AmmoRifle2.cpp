@@ -22,7 +22,9 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "TrailEffects/trailEffects.hpp"
 #include "defines.hpp"
 
+
 std::list<AmmoRifle2*> AmmoRifle2::activeParticles_;
+
 
 AmmoRifle2::AmmoRifle2(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity, Color3f const& color, Player* damageSource):
          Particle<AmmoRifle2>(spaceObjects::oAmmoRifle2, location, 1.f, 1.0f, 3.0f)
@@ -56,9 +58,10 @@ void AmmoRifle2::update()
         killMe();
 }
 
+//  draw
 void AmmoRifle2::draw() const
 {
-    glColor3f(0.5f, 1.f, 1.f);
+    glColor4f(0.5f, 1.f, 1.f, 1.f);
 
     Vector2f direction(velocity_*0.025f);
     Vector2f normDirection(direction.y_, -1.f*direction.x_);
@@ -102,7 +105,6 @@ void AmmoRifle2::onCollision(SpaceObject* with, Vector2f const& location,
             default:;
         }
     }
-
     if (with->type() != spaceObjects::oAmmoFlubba && with->type() != spaceObjects::oAmmoH2OMG && with->type() != spaceObjects::oMiniAmmoFlubba)
         killMe();
 }

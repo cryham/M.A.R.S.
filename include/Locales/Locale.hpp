@@ -19,6 +19,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include <SFML/System.hpp>
 
+
 struct Locale
 {
     Locale():
@@ -36,4 +37,3 @@ struct Locale
     sf::String author_;
     bool       LTR_;
 };
-

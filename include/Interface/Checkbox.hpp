@@ -45,4 +45,3 @@ class Checkbox: public UiElement
         Label* label_;
         sf::String* toolTip_;
 };
-

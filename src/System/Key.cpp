@@ -19,6 +19,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>.*/
 
 #include "System/window.hpp"
 
+
 Key::Key(sf::Keyboard::Key code):
     type_(kKeyBoard),
     navi_(nNone),

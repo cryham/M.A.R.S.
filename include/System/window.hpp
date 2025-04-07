@@ -23,6 +23,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include <SFML/Graphics.hpp>
 
+
 /// A namespace handling the main window of the game.
 
 namespace window 
@@ -40,6 +41,7 @@ namespace window
     /// Should be called once at the end.
     void close();
 
+
     /// Starts the main game loop.
     /// Should be called, when the window is opened a game is created.
     void mainLoop();
@@ -55,6 +57,7 @@ namespace window
 
     /// Draws a SFML drawable in the window.
     void draw(sf::Drawable const& toBeDrawn, sf::RenderStates const& states, sf::Shader* shader = NULL);
+
 
     int isKeyDown(Key const& key);
 
@@ -75,4 +78,3 @@ namespace window
     /// In pixels.
     Vector2f const& getViewPort();
 }
-

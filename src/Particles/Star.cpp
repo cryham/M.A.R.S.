@@ -59,8 +59,8 @@ void Star::update(float time)
         radius_   += time*depth_*0.4f;
 
         alpha_ = radius_/16.f-0.5f;
-        if (alpha_ > 1.f) alpha_ = 1.f;
-        if (alpha_ < 0.f) alpha_ = 0.f;
+        if (alpha_ > 1.f)  alpha_ = 1.f;
+        if (alpha_ < 0.f)  alpha_ = 0.f;
     }
 }
 

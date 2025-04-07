@@ -19,6 +19,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "SpaceObjects/SpaceObject.hpp"
 
+
 class Sun: public SpaceObject
 {
     public:

@@ -19,6 +19,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "Specials/Special.hpp"
 
+
 /// Special: Heal.
 /// A healing wave.
 
@@ -42,4 +43,3 @@ class Heal: public Special
     private:
         mutable float radius_;
 };
-

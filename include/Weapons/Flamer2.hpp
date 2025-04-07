@@ -19,6 +19,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "Weapons/Weapon.hpp"
 
+
 /// Weapon: Flamer2.
 /// A short distance weapon, which burns nearby enemies.
 
@@ -45,4 +46,3 @@ class Flamer2: public Weapon
         /// Returns the maximum angle from which this weapon should be used.
         float maxAngle()   const;
 };
-

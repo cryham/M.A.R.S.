@@ -19,6 +19,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "Teams/Team.hpp"
 
+
 class CKTeam: public Team
 {
     public:
@@ -35,4 +36,3 @@ class CKTeam: public Team
 
         std::vector<Vector2f> powerUpLocations_;
 };
-

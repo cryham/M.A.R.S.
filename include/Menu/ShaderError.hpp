@@ -19,10 +19,12 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "Interface/UiWindow.hpp"
 
+
 class ShaderError: public UiWindow
 {
     public:
         static UiWindow* get();
+
         void checkWidgets();
         void onShow()
         {   }

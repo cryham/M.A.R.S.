@@ -19,6 +19,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "Teams/Team.hpp"
 
+
 class TDMTeam: public Team
 {
     public:
@@ -34,4 +35,3 @@ class TDMTeam: public Team
 
         std::vector<Vector2f> powerUpLocations_;
 };
-

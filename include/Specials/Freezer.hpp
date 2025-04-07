@@ -19,6 +19,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "Specials/Special.hpp"
 
+
 /// Special: Freezer.
 /// A Freezing wave.
 
@@ -42,4 +43,3 @@ class Freezer: public Special
     private:
         mutable float radius_;
 };
-

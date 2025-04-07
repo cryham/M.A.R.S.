@@ -20,6 +20,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "SpaceObjects/MobileSpaceObject.hpp"
 #include "Players/Player.hpp"
 
+
 class Ball: public MobileSpaceObject
 {
     public:

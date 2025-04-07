@@ -19,6 +19,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "Zones/Zone.hpp"
 
+
 /// Zone: HomeZone.
 /// A large round Zone around the HomePlanet.
 
@@ -40,4 +41,3 @@ class HomeZone: public Zone
         Vector2f location_;
         int homeSide_;
 };
-

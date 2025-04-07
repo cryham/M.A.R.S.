@@ -19,6 +19,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "Zones/Zone.hpp"
 
+
 /// Zone: TacticalZone.
 /// A round Zone.
 
@@ -59,5 +60,3 @@ class TacticalZone: public Zone
         bool covered_;
         float  shipCount_;
 };
-
-

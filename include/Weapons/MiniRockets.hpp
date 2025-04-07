@@ -19,6 +19,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "Weapons/Weapon.hpp"
 
+
 /// Weapon: ROCK'n'LOL.
 /// A rocket launcher which aims at nearby enemies.
 
@@ -46,4 +47,3 @@ class MiniRockets: public Weapon
         /// Returns the maximum angle from which this weapon should be used.
         float maxAngle()   const;
 };
-

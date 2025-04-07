@@ -19,6 +19,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "Weapons/Weapon.hpp"
 
+
 /// Weapon: NoWeapon.
 
 class NoWeapon: public Weapon
@@ -47,4 +48,3 @@ class NoWeapon: public Weapon
         float maxAngle() const
         {  return 0.f;  }
 };
-

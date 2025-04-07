@@ -19,6 +19,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "Zones/Zone.hpp"
 
+
 /// Zone: RasterZone.
 /// A square shaped zone.
 
@@ -51,4 +52,3 @@ class RasterZone: public Zone
         Vector2f bottomLeft_, topRight_;
         bool covered_;
 };
-

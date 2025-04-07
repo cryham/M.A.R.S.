@@ -22,6 +22,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include <list>
 
+
 /// Special: Shocker.
 /// Fires shocking bolts.
 
@@ -45,4 +46,3 @@ class Shocker: public Special
         mutable std::list<Ship*> targets_;
         mutable Ball* ballTarget_;
 };
-

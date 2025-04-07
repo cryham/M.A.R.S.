@@ -27,6 +27,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 class Player;
 class PowerUp;
 
+
 class Ship: public MobileSpaceObject
 {
     public:

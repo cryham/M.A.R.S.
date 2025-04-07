@@ -24,6 +24,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 class ComboBox;
 
+
 class DropDownWindow: public UiWindow
 {
     public:

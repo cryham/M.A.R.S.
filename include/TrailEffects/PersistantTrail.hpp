@@ -25,10 +25,12 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 class SpaceObject;
 
+
 class PersistantTrail: public Trail
 {
     public:
-        PersistantTrail(SpaceObject* target, float timeStep, float duration, float width,
+        PersistantTrail(SpaceObject* target,
+            float timeStep, float duration, float width,
             Color3f const& color);
 
         void update();

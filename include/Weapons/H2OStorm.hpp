@@ -19,6 +19,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "Weapons/Weapon.hpp"
 
+
 /// Weapon: H2O-Storm.
 /// A long distance heavy wind storm.
 
@@ -45,5 +46,3 @@ class H2OStorm: public Weapon
         /// Returns the maximum angle from which this weapon should be used.
         float maxAngle()   const;
 };
-
-

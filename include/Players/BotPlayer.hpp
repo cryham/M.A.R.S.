@@ -22,6 +22,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 class BotController;
 class Team;
 
+
 class BotPlayer: public Player
 {
     public:

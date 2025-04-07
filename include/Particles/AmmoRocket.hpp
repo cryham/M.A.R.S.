@@ -24,6 +24,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 class Ship;
 class Ball;
 
+
 class AmmoRocket: public Particle<AmmoRocket>
 {
     public:

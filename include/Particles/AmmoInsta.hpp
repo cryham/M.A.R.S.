@@ -22,6 +22,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 class Trail;
 class Team;
 
+
 class AmmoInsta: public Particle<AmmoInsta>
 {
     public:

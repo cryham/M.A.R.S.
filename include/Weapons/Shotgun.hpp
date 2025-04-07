@@ -19,6 +19,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "Weapons/Weapon.hpp"
 
+
 /// Weapon: Shotgun.
 /// A short distance gun, which fires some particles in multiple direction.
 
@@ -45,4 +46,3 @@ class Shotgun: public Weapon
         /// Returns the maximum angle from which this weapon should be used.
         float maxAngle()   const;
 };
-

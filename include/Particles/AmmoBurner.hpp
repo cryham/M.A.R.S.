@@ -18,7 +18,6 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #pragma once
 
 #include "Particles/Particle.hpp"
-
 #include "System/Color3f.hpp"
 
 

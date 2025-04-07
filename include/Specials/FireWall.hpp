@@ -19,6 +19,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "Specials/Special.hpp"
 
+
 /// Special: FireWall.
 /// A fire wave.
 
@@ -42,4 +43,3 @@ class FireWall: public Special
     private:
         mutable float burnTimer_;
 };
-

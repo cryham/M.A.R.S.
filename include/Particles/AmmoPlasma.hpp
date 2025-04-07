@@ -19,6 +19,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "Particles/Particle.hpp"
 
+
 class AmmoPlasma: public Particle<AmmoPlasma>
 {
     public:

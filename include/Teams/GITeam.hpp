@@ -19,6 +19,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "Teams/Team.hpp"
 
+
 class GITeam: public Team
 {
     public:
@@ -31,4 +32,3 @@ class GITeam: public Team
 
         void checkEnemies();
 };
-

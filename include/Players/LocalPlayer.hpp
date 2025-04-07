@@ -22,6 +22,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 class Team;
 class KeyController;
 
+
 class LocalPlayer: public Player
 {
     public:

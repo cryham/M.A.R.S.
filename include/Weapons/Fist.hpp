@@ -19,6 +19,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "Weapons/Weapon.hpp"
 
+
 /// Weapon: Fist.
 /// A short distance gun, which pwnes nearby enemies
 
@@ -49,4 +50,3 @@ class Fist: public Weapon
     private:
         mutable float position_;
 };
-

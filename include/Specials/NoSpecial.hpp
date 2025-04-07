@@ -19,6 +19,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "Specials/Special.hpp"
 
+
 /// Special: NoSpecial.
 /// Nothing at all...
 
@@ -40,4 +41,3 @@ class NoSpecial: public Special
         /// Draws the special.
         void draw(float alpha) const;
 };
-

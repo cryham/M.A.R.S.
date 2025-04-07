@@ -22,6 +22,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include <float.h>
 
+
 class Home: public SpaceObject
 {
     public:

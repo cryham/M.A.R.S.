@@ -19,6 +19,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "Zone.hpp"
 
+
 /// Zone: TutorialZone.
 /// A very large Zone, covering half the screen.
 
@@ -41,5 +42,3 @@ class TeamZone: public Zone
     private:
         int homeSide_;
 };
-
-

@@ -24,6 +24,7 @@ class MapOptions: public UiWindow
 {
     public:
         static UiWindow* get();
+
         void checkWidgets();
         void onShow();
 

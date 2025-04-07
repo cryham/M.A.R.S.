@@ -19,6 +19,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "Weapons/Weapon.hpp"
 
+
 /// Weapon: Flubba.
 /// A short distance gun, populates the screen with ugly green bubbles.
 
@@ -45,4 +46,3 @@ class Flubba: public Weapon
         /// Returns the maximum angle from which this weapon should be used.
         float maxAngle()   const;
 };
-

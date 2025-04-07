@@ -19,6 +19,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "Particles/Particle.hpp"
 
+
 class AmmoRifle2: public Particle<AmmoRifle2>
 {
     public:

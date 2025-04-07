@@ -19,10 +19,12 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "Interface/UiWindow.hpp"
 
+
 class OptionsMenu: public UiWindow
 {
     public:
         static UiWindow* get();
+
         void checkWidgets();
         void onShow();
 
@@ -37,8 +39,8 @@ class OptionsMenu: public UiWindow
 
         static bool kOk_;
 
-        static bool       fullscreen_, vsync_, shaders_;
+        static bool  fullscreen_, vsync_, shaders_;
         static sf::String resolution_, colorDepth_, format_;
-        static int        soundVolume_, musicVolume_, announcerVolume_, starfield_;
+        static int   soundVolume_, musicVolume_, announcerVolume_, starfield_;
+        static int   UIscale_;
 };
-

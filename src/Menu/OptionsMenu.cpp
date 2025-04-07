@@ -18,6 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Menu/OptionsMenu.hpp"
 
 #include "Media/text.hpp"
+#include "Interface/UiElement.hpp"
 #include "Interface/UiWindow.hpp"
 #include "Interface/Button.hpp"
 #include "Interface/Slider.hpp"
@@ -70,13 +71,14 @@ sf::String OptionsMenu::format_("");
 int  OptionsMenu::soundVolume_(0);
 int  OptionsMenu::musicVolume_(0);
 int  OptionsMenu::announcerVolume_(0);
+int  OptionsMenu::UIscale_(100);
 
 
 UiWindow* OptionsMenu::get()
 {
     if (instance_ == NULL)
     {
-        instance_ = new OptionsMenu(700, 430);
+        instance_ = new OptionsMenu(700, 390);
 
         instance_->addWidget(new Button(locales::getLocale(locales::Ok), NULL, &kOk_,
             Vector2f(500,360), 90, 20));
@@ -99,7 +101,7 @@ UiWindow* OptionsMenu::get()
             Vector2f(20, y), 540, 240));  y += yadd*3/2;
 
         tabInterface->addWidget(new Slider(locales::Scale, locales::ttScale,
-            &UiElement::scale_, 1, 300, 15,
+            &UIscale_, 80, 400, 10,
             Vector2f(20,y), 540, 240, true));  y += yadd;
         tabInterface->addWidget(new Checkbox(locales::NoConfirmations, locales::ttNoConfirmations,
             &settings::C_noConfirmations,
@@ -397,6 +399,16 @@ void OptionsMenu::checkWidgets()
     }
     if (announcerVolume_ != settings::C_announcerVolume)
         settings::C_announcerVolume = announcerVolume_;
+
+    if (UIscale_ != scale_ * 100.f)
+    {
+        scale_ = UIscale_ / 100.f;
+        settings::save();
+        menus::hideWindow();
+        // menus::reload();
+        OptionsMenu::reset();
+        menus::showWindow(OptionsMenu::get());
+    }
 }
 
 
@@ -409,12 +421,13 @@ void OptionsMenu::onShow()
     musicVolume_     = settings::C_musicVolume;
     announcerVolume_ = settings::C_announcerVolume;
     starfield_       = settings::C_StarField;
+    UIscale_         = scale_ * 100.f;
 
-    if      (settings::C_screenShotFormat == "bmp") format_ = "BITMAP (*.bmp)";
-    else if (settings::C_screenShotFormat == "gif") format_ = "GIF (*.gif)";
-    else if (settings::C_screenShotFormat == "tga") format_ = "TARGA (*.tga)";
-    else if (settings::C_screenShotFormat == "png") format_ = "PNG(*.png)";
-    else if (settings::C_screenShotFormat == "jpg") format_ = "JPEG (*.jpg)";
+    if      (settings::C_screenShotFormat == "bmp")  format_ = "BITMAP (*.bmp)";
+    else if (settings::C_screenShotFormat == "gif")  format_ = "GIF (*.gif)";
+    else if (settings::C_screenShotFormat == "tga")  format_ = "TARGA (*.tga)";
+    else if (settings::C_screenShotFormat == "png")  format_ = "PNG(*.png)";
+    else if (settings::C_screenShotFormat == "jpg")  format_ = "JPEG (*.jpg)";
 
     sf::VideoMode mode(settings::C_resX, settings::C_resY);
     std::vector<sf::VideoMode> modes = sf::VideoMode::getFullscreenModes();

@@ -18,10 +18,12 @@ This is my fork with many changes:
    - Ship thrusters now blue
    - ToDo: turrets, near team homes, or any middle, destroyable, respawned
 - Gui
-  - bigger Gui, font, ToDo: scale slider
+  - Scale slider for whole Gui in Options
+  - bigger Gui, font
   - color Skyblue, not Pink-Red
-  - fast fadein/out, no game countdown
+  - fast fade in/out, no game countdown
   - option for no confirmation dialogs
+  - no logo, planet signs
 
 
 M.A.R.S

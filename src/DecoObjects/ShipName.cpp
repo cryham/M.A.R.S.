@@ -25,6 +25,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include <sstream>
 
+
 void ShipName::draw() const
 {
     if (ship_->visible_)

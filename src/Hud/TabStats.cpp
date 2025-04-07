@@ -79,6 +79,7 @@ void TabStats::update()
     }
 }
 
+//  draw
 void TabStats::draw() const
 {
     float scale = UiElement::scale_;

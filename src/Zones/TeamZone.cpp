@@ -20,6 +20,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "defines.hpp"
 #include "System/settings.hpp"
 
+
 bool TeamZone::isInside(SpaceObject const& toBeChecked) const
 {
     switch (homeSide_)

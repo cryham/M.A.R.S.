@@ -23,6 +23,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include <SFML/OpenGL.hpp>
 
+
 FloatingTrail::FloatingTrail(SpaceObject* target, float timeStep, float duration, float width, Color3f const& color):
     Trail(target),
     points_(duration/timeStep),

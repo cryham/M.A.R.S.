@@ -58,6 +58,7 @@ void CannonControl::update()
     }
 }
 
+//  draw
 void CannonControl::draw() const
 {
     if (!collected_)

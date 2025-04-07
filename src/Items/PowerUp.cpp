@@ -101,6 +101,7 @@ void PowerUp::update()
     }
 }
 
+//  draw
 void PowerUp::draw() const
 {
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);

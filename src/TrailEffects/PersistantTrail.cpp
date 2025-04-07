@@ -24,6 +24,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include <SFML/OpenGL.hpp>
 
+
 PersistantTrail::PersistantTrail(SpaceObject* target, float timeStep, float duration, float width, Color3f const& color):
     Trail(target),
     points_(),
@@ -52,6 +53,7 @@ void PersistantTrail::update()
         alpha_ -= timer::frameTime()/duration_;
 }
 
+//  draw
 void PersistantTrail::draw() const
 {
     if (points_.size() > 1)

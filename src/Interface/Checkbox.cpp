@@ -80,7 +80,7 @@ void Checkbox::keyEvent(bool down, Key const& key)
     }
 }
 
-
+//  draw
 void Checkbox::draw() const
 {
     Vector2f origin = getTopLeft();

@@ -23,6 +23,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include <SFML/OpenGL.hpp>
 
+
 ShipPreview::ShipPreview (Color3f* color, Color3f* teamColor, int* graphic, Vector2f const& topLeft):
     UiElement(topLeft, 20, 20),
     color_(color),
@@ -97,4 +98,3 @@ void ShipPreview::draw() const
     glPopMatrix();
     glPopAttrib();
 }
-

@@ -27,6 +27,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include <cmath>
 
+
 HomeZone::HomeZone(Vector2f const& location) :
     radius_(450.f),
     location_(location)

@@ -59,6 +59,7 @@ void AmmoH2OMG::update()
         particles::spawnMultiple(2, particles::pMud, location_, Vector2f(), Vector2f(), color_);
 }
 
+//  draw
 void AmmoH2OMG::draw() const
 {
     color_.gl4f(1.0f);

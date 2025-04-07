@@ -46,6 +46,7 @@ void AmmoAFK47::update()
     lifeTime_ += time;
 }
 
+//  draw
 void AmmoAFK47::draw() const
 {
     glColor4f(1.f, 1.f, 1.f, 1.f);

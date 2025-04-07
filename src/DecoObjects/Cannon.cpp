@@ -86,6 +86,7 @@ void Cannon::update()
     }
 }
 
+//  draw
 void Cannon::draw() const
 {
     glPushMatrix();

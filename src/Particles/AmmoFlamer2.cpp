@@ -74,6 +74,7 @@ void AmmoFlamer2::update()
             ball->onCollision(this, location_, velocity_, velocity_);
 }
 
+//  draw
 void AmmoFlamer2::draw() const
 {
     color_.gl4f(0.15f);

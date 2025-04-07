@@ -69,6 +69,7 @@ void AmmoFlubba::update()
     }
 }
 
+//  draw
 void AmmoFlubba::draw() const
 {
     color_.gl4f(0.8f);

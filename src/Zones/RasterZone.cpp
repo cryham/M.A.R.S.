@@ -50,6 +50,7 @@ void RasterZone::update()
         }
 }
 
+//  draw
 void RasterZone::draw() const
 {
     glBlendFunc(GL_SRC_ALPHA, GL_ONE);

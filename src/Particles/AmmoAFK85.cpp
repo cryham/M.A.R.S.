@@ -46,6 +46,7 @@ void AmmoAFK85::update()
     lifeTime_ += time;
 }
 
+//  draw
 void AmmoAFK85::draw() const
 {
     glColor4f(0.8f, 0.6f, 1.f, 1.f);  // todo: team's color

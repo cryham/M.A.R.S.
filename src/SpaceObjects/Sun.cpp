@@ -48,6 +48,7 @@ void Sun::update()
     }
 }
 
+//  draw
 void Sun::draw() const
 {
     glEnable(GL_TEXTURE_2D);

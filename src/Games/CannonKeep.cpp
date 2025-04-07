@@ -26,6 +26,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Teams/teams.hpp"
 #include "SpaceObjects/spaceObjects.hpp"
 
+
 CannonKeep::CannonKeep()
     :Game(games::gCannonKeep)
 {

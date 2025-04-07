@@ -74,6 +74,7 @@ void TacticalZone::update()
         covered_ = false;
 }
 
+//  draw
 void TacticalZone::draw() const
 {
     glColor4f(0.f, 0.f, 0.f, 0.f);

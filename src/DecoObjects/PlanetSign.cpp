@@ -20,6 +20,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "SpaceObjects/Planet.hpp"
 #include "System/randomizer.hpp"
 
+
 PlanetSign::PlanetSign(Planet* planet):
     texture_(texture::Sign1),
     rotation_(0.f),

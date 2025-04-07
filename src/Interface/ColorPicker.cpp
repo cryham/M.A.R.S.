@@ -30,6 +30,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include <SFML/OpenGL.hpp>
 #include <iostream>
 
+
 ColorPicker::ColorPicker (sf::String* text, Color3f* value, Vector2f const& topLeft, int width, int labelWidth):
     UiElement(topLeft, width, 16),
     colorWindow_(NULL),
@@ -48,6 +49,7 @@ ColorPicker::~ColorPicker ()
     delete label_;
     delete colorWindow_;
 }
+
 
 void ColorPicker::mouseMoved(Vector2f const& position)
 {
@@ -80,6 +82,7 @@ void ColorPicker::keyEvent(bool down, Key const& key)
     }
 }
 
+//  draw
 void ColorPicker::draw() const
 {
     UiElement::draw();
@@ -171,4 +174,3 @@ void ColorPicker::clearFocus()
     UiElement::clearFocus();
     label_->clearFocus();
 }
-

@@ -28,6 +28,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include <cmath>
 
+
 TutorialZone::TutorialZone(Vector2f const& location, float radius) :
     radius_(radius),
     location_(location)

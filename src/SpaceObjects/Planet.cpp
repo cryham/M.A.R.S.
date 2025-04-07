@@ -21,6 +21,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "System/randomizer.hpp"
 #include "DecoObjects/decoObjects.hpp"
 
+
 Planet::Planet(Vector2f const& location, float radius):
                SpaceObject(spaceObjects::oPlanet, location, radius, radius*100),
                texture_(texture::randomPlanet()),

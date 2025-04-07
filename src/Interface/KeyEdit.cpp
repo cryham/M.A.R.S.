@@ -98,7 +98,6 @@ void KeyEdit::keyEvent(bool down, Key const& key)
     }
 }
 
-
 //  draw
 void KeyEdit::draw() const
 {

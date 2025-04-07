@@ -72,6 +72,7 @@ Game::~Game()
     timer::resetSlowMotion();
 }
 
+
 void Game::update()
 {
     announcer::update();
@@ -118,6 +119,7 @@ void Game::update()
         startTime_ += timer::frameTime();
 }
 
+//  draw
 void Game::draw() const
 {
     if (settings::C_StarField)

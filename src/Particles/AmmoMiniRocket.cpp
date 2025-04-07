@@ -165,6 +165,7 @@ void AmmoMiniRocket::update()
     }
 }
 
+//  draw
 void AmmoMiniRocket::draw() const
 {
     glColor4f(0.3f, 0.4f, 0.3f, 0.3f);

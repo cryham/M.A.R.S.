@@ -20,6 +20,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "SpaceObjects/Sun.hpp"
 #include "System/timer.hpp"
 
+
 SunHeat::SunHeat(Sun* sun):
     location_(sun->location()),
     radius_(sun->radius())

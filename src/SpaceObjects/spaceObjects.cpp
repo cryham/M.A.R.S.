@@ -136,8 +136,8 @@ namespace spaceObjects
     Home* addHome(int where, int life, Color3f const& color)
     {
         Vector2f position;
-        float    radius(100.f);  // settings::C_MapHomeRadius
-        float    mass(radius*150.f);
+        float    radius = settings::C_MapHomeRadius;
+        float    mass = radius * 150.f;
 
         switch (where)
         {

@@ -260,11 +260,11 @@ UiWindow* OptionsMenu::get()
         tabPlayer1->addWidget(new KeyEdit(locales::getLocale(locales::Fire),      NULL, &settings::C_playerIfire,
             Vector2f(20,y), 540, 240));  y += yadd;
 
-        tabPlayer1->addWidget(new KeyEdit(locales::getLocale(locales::SpecialKey),       NULL, &settings::C_playerISpecialKey,
+        tabPlayer1->addWidget(new KeyEdit(locales::getLocale(locales::SpecialKey),  NULL, &settings::C_playerISpecialKey,
             Vector2f(20,y), 540, 240));  y += yadd;
-        tabPlayer1->addWidget(new KeyEdit(locales::getLocale(locales::AudioPreviousKey), NULL, &settings::C_playerIprev,
+        tabPlayer1->addWidget(new KeyEdit(locales::getLocale(locales::PrevWeapon),  NULL, &settings::C_playerIprev,
             Vector2f(20,y), 540, 240));  y += yadd;
-        tabPlayer1->addWidget(new KeyEdit(locales::getLocale(locales::AudioNextKey),     NULL, &settings::C_playerInext,
+        tabPlayer1->addWidget(new KeyEdit(locales::getLocale(locales::NextWeapon),  NULL, &settings::C_playerInext,
             Vector2f(20,y), 540, 240));  y += yadd;
 
         tabPlayer1->addWidget(new LabeledBox(locales::getLocale(locales::ShipSettings),
@@ -298,11 +298,11 @@ UiWindow* OptionsMenu::get()
         tabPlayer2->addWidget(new KeyEdit(locales::getLocale(locales::Fire),      NULL, &settings::C_playerIIfire,
             Vector2f(20,y), 540, 240));  y += yadd;
 
-        tabPlayer2->addWidget(new KeyEdit(locales::getLocale(locales::SpecialKey),       NULL, &settings::C_playerIISpecialKey,
+        tabPlayer2->addWidget(new KeyEdit(locales::getLocale(locales::SpecialKey),  NULL, &settings::C_playerIISpecialKey,
             Vector2f(20,y), 540, 240));  y += yadd;
-        tabPlayer2->addWidget(new KeyEdit(locales::getLocale(locales::AudioPreviousKey), NULL, &settings::C_playerIIprev,
+        tabPlayer2->addWidget(new KeyEdit(locales::getLocale(locales::PrevWeapon),  NULL, &settings::C_playerIIprev,
             Vector2f(20,y), 540, 240));  y += yadd;
-        tabPlayer2->addWidget(new KeyEdit(locales::getLocale(locales::AudioNextKey),     NULL, &settings::C_playerIInext,
+        tabPlayer2->addWidget(new KeyEdit(locales::getLocale(locales::NextWeapon),  NULL, &settings::C_playerIInext,
             Vector2f(20,y), 540, 240));  y += yadd;
 
         tabPlayer2->addWidget(new LabeledBox(locales::getLocale(locales::ShipSettings),

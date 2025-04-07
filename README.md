@@ -10,7 +10,9 @@ This is my fork with many changes:
    - 7 new **Weapons** - fast, excessive:  
      AFK-85, Plasma, H2OStorm, Flamer2, Shotgun2, MiniRockets, Rifle2
    - **Map Options**, with sliders for:  
-     min,max count of space objects (planets, stars, black holes) and their radius range, minimal gap between, etc
+     - min,max count of space objects (planets, stars, black holes)
+     - and their radius range, minimal gap between
+     - ship radius, home planet radius
    - **Game options** with sliders:
      - Damage scale, Respawn delay, Life and fuel regeneration
      - Ship turn speed, ship glow factor

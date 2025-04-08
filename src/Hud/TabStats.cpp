@@ -87,11 +87,15 @@ void TabStats::draw() const
     {
         int mirror(locales::getCurrentLocale().LTR_ ? 1 : -1);
         // get height of list
-        int height;
+        int height, h = 70;
         if (games::type() == games::gDeathMatch || games::type() == games::gRally)
-            height = ships::getShips().size()*12*scale + teamMap_.size()*2 + 95;
+            height = ships::getShips().size()*12 + teamMap_.size()*2 + h;
         else
-            height = ships::getShips().size()*12*scale + teamMap_.size()*20 + 95;
+            height = ships::getShips().size()*12 + teamMap_.size()*20 + h;
+        
+        height *= scale;
+        if (height > settings::C_resY -h*2)
+            height = settings::C_resY -h*2;
 
         // Compute the width:
         // Points, Frags, TeamKills, Suicides

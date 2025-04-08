@@ -53,7 +53,7 @@ void BurningFragment::update()
 
     location_ += velocity_*time + acceleration*time*time*2;
     velocity_ += acceleration*time*2 + velocity_*-time;
-    borders();
+    // borders();
 
     if (timer1_ > 0)
         timer1_ -= time;

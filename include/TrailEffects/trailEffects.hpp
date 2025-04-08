@@ -22,6 +22,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 class SpaceObject;
 class Trail;
 
+
 namespace trailEffects 
 {
     void update();
@@ -36,5 +37,3 @@ namespace trailEffects
 
     void clear();
 }
-
-

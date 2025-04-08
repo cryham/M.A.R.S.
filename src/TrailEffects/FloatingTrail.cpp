@@ -17,6 +17,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "TrailEffects/FloatingTrail.hpp"
 
+#include "System/Vector2f.hpp"
+#include "System/settings.hpp"
 #include "System/timer.hpp"
 #include "Media/texture.hpp"
 #include "SpaceObjects/SpaceObject.hpp"
@@ -69,25 +71,38 @@ void FloatingTrail::draw() const
         glBlendFunc(GL_SRC_ALPHA, GL_ONE);
         glBegin(GL_QUAD_STRIP);
 
-        for (int i=length_; i>0; --i)
+        int lenMax = 100; //settings::C_resY * 3/4;
+        bool oldMax = false, oldMax2 = false;
+
+        for (int i = length_; i > 0; --i)
         {
-            if (!target_ && i==1)
+            int index((frontIndex_-i + points_.size())%points_.size());
+
+            float len = lenMax;
+            if (i > 1)
+            {
+                int nextIndex((frontIndex_-i+1 + points_.size())%points_.size());
+                Vector2f v = points_[nextIndex] - points_[index];
+                len = v.length();
+                if (len != 0.f)
+                    toNext = v / len * width_;
+            }
+
+            if (!target_ && i==1 || len > lenMax || oldMax)
                 color_.gl4f(0.f);
             else
                 color_.gl4f(static_cast<float>(length_ - i)/length_);
 
-            int index((frontIndex_-i + points_.size())%points_.size());
+            oldMax2 = oldMax;
+            oldMax = len > lenMax;
 
-            if (i > 1)
+            // if (len < lenMax)
             {
-                int nextIndex((frontIndex_-i+1 + points_.size())%points_.size());
-                toNext = (points_[nextIndex] - points_[index]).normalize()*width_;
+                glTexCoord2f((posX + 0.5)*0.125f,     posY*0.125f);
+                    glVertex2f(points_[index].x_ + toNext.y_, points_[index].y_ - toNext.x_);
+                glTexCoord2f((posX + 0.5)*0.125f, (posY+1)*0.125f);
+                    glVertex2f(points_[index].x_ - toNext.y_, points_[index].y_ + toNext.x_);
             }
-
-            glTexCoord2f((posX + 0.5)*0.125f,     posY*0.125f);
-                glVertex2f(points_[index].x_ + toNext.y_, points_[index].y_ - toNext.x_);
-            glTexCoord2f((posX + 0.5)*0.125f, (posY+1)*0.125f);
-                glVertex2f(points_[index].x_ - toNext.y_, points_[index].y_ + toNext.x_);
         }
 
         if (target_)

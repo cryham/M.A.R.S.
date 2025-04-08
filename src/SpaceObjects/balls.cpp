@@ -18,6 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "SpaceObjects/balls.hpp"
 
 #include "SpaceObjects/Home.hpp"
+#include "System/Vector2f.hpp"
 
 namespace balls
 {
@@ -30,7 +31,7 @@ namespace balls
     void addBall(Vector2f const& location)
     {
         // temporary list of all homes
-        std::vector<Home*>const& homes = spaceObjects::getHomes();
+        const auto& homes = spaceObjects::getHomes();
 
         if (homes.size() >= 2 && location == Vector2f(0,0))
         {

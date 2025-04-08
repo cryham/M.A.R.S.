@@ -31,6 +31,9 @@ class MobileSpaceObject: public SpaceObject
         Vector2f& velocity()
         {  return velocity_;  }
 
+        //  cyclic borders
+        void borders();
+
     protected:
         Vector2f velocity_;
         float acceleration_;

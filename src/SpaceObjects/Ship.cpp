@@ -81,7 +81,7 @@ Ship::Ship(Vector2f const& location, float rotation, Player* owner)
         currentWeapon_  = weapons:: create(settings::C_playerIWeapon, this);
         currentSpecial_ = specials::create(settings::C_playerISpecial, this);
     }
-    else if  (owner_->controlType_ == controllers::cPlayer2)
+    else if (owner_->controlType_ == controllers::cPlayer2)
     {
         decoObjects::addHighlight(this);
         currentWeapon_  = weapons:: create(settings::C_playerIIWeapon, this);
@@ -184,9 +184,9 @@ void Ship::update()
                 {
                     //  turn
                     if (right_ > 5)
-                        fmod(rotation_+= rotateSpeed_*time *rot * slower* right_, 360.f);
+                        fmod(rotation_+= rotateSpeed_ *time *rot *slower * right_, 360.f);
                     if (left_  > 5)
-                        fmod(rotation_-= rotateSpeed_*time *rot * slower* left_, 360.f);
+                        fmod(rotation_-= rotateSpeed_ *time *rot *slower * left_, 360.f);
 
                     if (right_ == 0 && left_ == 0)
                         rotateSpeed_ = 1.0;
@@ -282,21 +282,28 @@ void Ship::update()
                 else
                     physics::collide(this, STATICS);
 
-                if (location_.x_ < radius_)
-                {   location_.x_ = radius_;
-                    velocity_.x_ = 0.f;
+                borders();
+                if (!settings::C_CyclicBorderX)
+                {
+                    if (location_.x_ < radius_)
+                    {   location_.x_ = radius_;
+                        velocity_.x_ = 0.f;
+                    }
+                    if (location_.x_ > settings::C_MapXsize - radius_)
+                    {   location_.x_ = settings::C_MapXsize - radius_;
+                        velocity_.x_ = 0.f;
+                    }
                 }
-                if (location_.x_ > settings::C_MapXsize - radius_)
-                {   location_.x_ = settings::C_MapXsize - radius_;
-                    velocity_.x_ = 0.f;
-                }
-                if (location_.y_ < radius_)
-                {   location_.y_ = radius_;
-                    velocity_.y_ = 0.f;
-                }
-                if (location_.y_ > settings::C_MapYsize - radius_)
-                {   location_.y_ = settings::C_MapYsize - radius_;
-                    velocity_.y_ = 0.f;
+                if (!settings::C_CyclicBorderY)
+                {
+                    if (location_.y_ < radius_)
+                    {   location_.y_ = radius_;
+                        velocity_.y_ = 0.f;
+                    }
+                    if (location_.y_ > settings::C_MapYsize - radius_)
+                    {   location_.y_ = settings::C_MapYsize - radius_;
+                        velocity_.y_ = 0.f;
+                    }
                 }
             }else
             {

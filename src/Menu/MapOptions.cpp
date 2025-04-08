@@ -23,6 +23,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Interface/Button.hpp"
 #include "Interface/LabeledBox.hpp"
 #include "Interface/Checkbox.hpp"
+#include "Interface/Label.hpp"
 #include "System/settings.hpp"
 #include "System/window.hpp"
 #include "Menu/menus.hpp"
@@ -40,21 +41,21 @@ UiWindow* MapOptions::get()
 {
     if (instance_ == NULL)
     {
-        int w = 630;
-        instance_ = new MapOptions(w+20, 400);
+        int w = 630, h = 430;
+        instance_ = new MapOptions(w+20, h);
         // instance_->addWidget(new Line(Vector2f(10, 35), Vector2f(310, 35)));
 
         instance_->addWidget(new Button(locales::getLocale(locales::Ok), NULL, &kOk_,
-            Vector2f(350,370), 90, 20));
+            Vector2f(350, h-20), 90, 20));
         instance_->addWidget(new Button(locales::getLocale(locales::Defaults), NULL, &kDefaults_,
-            Vector2f(210,370), 130, 20));
+            Vector2f(210, h-20), 130, 20));
 
         int y = 10, yadd = 20;
         instance_->addWidget(new Label(locales::getLocale(locales::MapOptions), TEXT_ALIGN_LEFT,
             Vector2f(10,y), 20.f, getColor3f(0.5f, 0.9f, 1.f), false));  y += yadd;
 
         instance_->addWidget(new LabeledBox(locales::getLocale(locales::SpaceObjects),
-            Vector2f(10, y), 100, 210));  y += yadd*3/2;
+            Vector2f(10, y), 100, 210));  y += yadd;
         instance_->addWidget(new Slider(locales::getLocale(locales::MinPlanets), NULL,
             &settings::C_MapMinPlanets, 0, 30, 1,
             Vector2f(20,y), w, 240, true));  y += yadd;
@@ -68,18 +69,26 @@ UiWindow* MapOptions::get()
             &settings::C_MapMaxPlanetsSize, 1, 900, 1,
             Vector2f(20,y), w, 240, true));  y += yadd*3/2;
 
-        instance_->addWidget(new Slider(locales::getLocale(locales::MinPlanetGap), NULL,
+        instance_->addWidget(new Slider(locales::getLocale(locales::MinPlanetGap), NULL,  // gap
             &settings::C_MapMinPlanetGap, 0, 900, 1,
             Vector2f(20,y), w, 240, true));  y += yadd;
-        instance_->addWidget(new Slider(locales::getLocale(locales::MapHomeRadius), NULL,
-            &settings::C_MapHomeRadius, 1, 900, 1,
-            Vector2f(20,y), w, 240, true));  y += yadd*3/2;
 
-        instance_->addWidget(new Slider(locales::getLocale(locales::ShipRadius), NULL,
+        // instance_->addWidget(new LabeledBox(locales::getLocale(locales::SpaceObjects),
+        //     Vector2f(10, y), 100, 210));  y += yadd;
+        instance_->addWidget(new Slider(locales::getLocale(locales::MapHomeRadius), NULL,  // home
+            &settings::C_MapHomeRadius, 1, 900, 1,
+            Vector2f(20,y), w, 240, true));  y += yadd;
+        instance_->addWidget(new Slider(locales::getLocale(locales::GravityScale), NULL,  // gravity
+            &settings::C_GravityScale, 5, 300, 10,
+            Vector2f(20,y), w, 240, true));  y += yadd;
+        instance_->addWidget(new Slider(locales::getLocale(locales::ShipRadius), NULL,  // ship
             &settings::C_ShipRadius, 5, 60, 10,
+            Vector2f(20,y), w*2/3, 240, true));  y += yadd;
+        instance_->addWidget(new Slider(locales::getLocale(locales::BallRadius), NULL,  // ball
+            &settings::C_BallRadius, 5, 60, 10,
             Vector2f(20,y), w*2/3, 240, true));  y += yadd*3/2;
 
-        //  map Size buttons
+        //  map Size buttons  ----
         instance_->addWidget(new LabeledBox(locales::getLocale(locales::MapSize),
             Vector2f(10, y), 100, 210));  y += yadd*3/2;
         
@@ -89,14 +98,24 @@ UiWindow* MapOptions::get()
                 &kMapSize_[i],  Vector2f(20 + i*90,y), 80, 20));
         y += yadd*3/2;
         
-        //  map Size
+        //  map Size  ----
         instance_->addWidget(new Slider(locales::getLocale(locales::MapXsize), NULL,
             &settings::C_MapXsize, 10, 23000, 10,
             Vector2f(20,y), w, 240, true));  y += yadd;
         instance_->addWidget(new Slider(locales::getLocale(locales::MapYsize), NULL,
             &settings::C_MapYsize, 10, 23000, 10,
             Vector2f(20,y), w, 240, true));  y += yadd;
-        // C_MapYaspect ..
+        // C_MapYaspect..
+        
+        //  borders
+        instance_->addWidget(new Label(locales::getLocale(locales::CyclicBorders),
+            TEXT_ALIGN_LEFT, Vector2f(10, y)));  //y += yadd;
+        instance_->addWidget(new Checkbox(locales::getLocale(locales::Horizontal), NULL,
+            &settings::C_CyclicBorderX,
+            Vector2f(w/3,y), w/2));  //y += yadd;
+        instance_->addWidget(new Checkbox(locales::getLocale(locales::Vertical), NULL,
+            &settings::C_CyclicBorderY,
+            Vector2f(2*w/3,y), w/3));  y += yadd;
     }
     return instance_;
 }

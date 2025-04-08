@@ -1,27 +1,28 @@
 ## CryHam's Fork
 
-This is my fork with many changes:
+This is my fork with many new features and changes:
 - Gameplay
    - New **keys** for player ship:  
      - *Backwards* accelerate
-     - *Boost* - holding does faster acceleration
+     - *Boost* - holding does accelerate faster
        and with left/right goes *sideways* instead of turning
-     - Next, previous weapon change, at any time
+     - Next, previous *weapon change*, at any time
    - 7 new **Weapons** - fast, excessive:  
      AFK-85, Plasma, H2OStorm, Flamer2, Shotgun2, MiniRockets, Rifle2
-   - **Map Options**, with sliders for:  
+   - **Map Options** window, with sliders for:  
      - min,max count of space objects (planets, stars, black holes)
-     - and their radius range, minimal gap between
-     - ship radius, home planet radius
-   - **Game options** with sliders:
-     - Damage scale, Respawn delay, Life and fuel regeneration
+     - and their radius range, also minimal gap between
+     - radius of: ships, home planets, ball
+     - *Cyclic borders*, gravity scale
+   - **Game options** window with sliders:
+     - Damage scale, Respawn delay, Life and fuel *regeneration*
      - Ship turn speed, ship glow factor
    - more possible bots, more kills to end game
    - Ship thrusters now blue
    - ToDo: turrets, near team homes, or any middle, destroyable, respawned
 - Gui
   - Scale slider for whole Gui in Options
-  - bigger Gui, font
+  - bigger Gui, font, by default
   - color Skyblue, not Pink-Red
   - fast fade in/out, no game countdown
   - option for no confirmation dialogs

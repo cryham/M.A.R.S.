@@ -20,6 +20,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "SpaceObjects/SpaceObject.hpp"
 #include "SpaceObjects/MobileSpaceObject.hpp"
 #include "Particles/particles.hpp"
+#include "System/settings.hpp"
 #include "System/timer.hpp"
 
 #include <vector>
@@ -101,8 +102,8 @@ namespace physics
                             const Vector2f chordMidPoint     = target->location_ + centerDist;
 
                             // if path of object has intersected with target within the last frame
-                            if ( ((source->location_ - target->location_             ).lengthSquare() < minDistSquared)
-                              || ((lastFrameLocation - target->location_             ).lengthSquare() < minDistSquared)
+                            if ( ((source->location_ - target->location_).lengthSquare() < minDistSquared)
+                              || ((lastFrameLocation - target->location_).lengthSquare() < minDistSquared)
                               || ((chordMidPoint - source->location_)*(chordMidPoint - lastFrameLocation) < 0.f))
                             {
                                 if (source->velocity()*(target->location_ - lastFrameLocation) > 0)
@@ -173,7 +174,7 @@ namespace physics
             if (distanceSquared > 100.f)
                 totalAcceleration += (it->location_ - attracted->location_) * it->mass_ / distanceSquared;
         }
-        return totalAcceleration;
+        return totalAcceleration * settings::C_GravityScale / 100.f;
     }
 
     void causeShockWave(Player* damageSource, Vector2f const& location, float strength, float radius, float damage)

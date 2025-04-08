@@ -114,7 +114,8 @@ namespace settings
     extern int            C_ShipRadius;
     extern int            C_MapXsize;
     extern int            C_MapYsize;
-    // extern int            C_MapYaspect;
+    // extern int         C_MapYaspect;
+    extern int            C_BallRadius;
     ///@}
 
     /// \name Game settings new
@@ -125,6 +126,10 @@ namespace settings
     extern int            C_FuelRegen;
     extern int            C_RespawnDelay;
     extern int            C_GlowAlpha;
+
+    extern bool           C_CyclicBorderX;
+    extern bool           C_CyclicBorderY;
+    extern int            C_GravityScale;
     ///@}
 
     /// \name Player settings

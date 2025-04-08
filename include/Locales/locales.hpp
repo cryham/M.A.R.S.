@@ -100,12 +100,15 @@ namespace locales
         MapOptions, SpaceObjects,
         MinPlanets, MaxPlanets, MinPlanetsSize, MaxPlanetsSize,
         MinPlanetGap, MapHomeRadius,
-        MapSize, MapXsize, MapYsize, ShipRadius,
+        MapSize, MapXsize, MapYsize, ShipRadius, BallRadius,
+        CyclicBorders, Horizontal, Vertical,
+        
         MapSize0,MapSize1,MapSize2,MapSize3,MapSize4,MapSize5,MapSize6,
         Defaults,
         //  Game
         ShipTurnSpeed, DamageScale, Regeneration, FuelRegen,
         RespawnDelay, GlowAlpha,
+        GravityScale,
 
         COUNT  /// amount of entries in the enum
     };

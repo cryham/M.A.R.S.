@@ -21,7 +21,9 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "System/settings.hpp"
 #include "System/randomizer.hpp"
 
+
 std::list<HeatJet*> HeatJet::activeParticles_;
+
 
 HeatJet::HeatJet(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity, Color3f const& color, Player* damageSource):
            Particle<HeatJet>(spaceObjects::oHeatJet, location, 1.f, 0.f, randomizer::random(0.5f, 1.0f))
@@ -39,6 +41,7 @@ void HeatJet::update()
     radius_ = lifeTime_*30 + 1;
 
     location_ += velocity_*time;
+    borders();
 
     lifeTime_ += time;
 }

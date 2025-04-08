@@ -23,7 +23,9 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "SpaceObjects/Ship.hpp"
 #include "System/randomizer.hpp"
 
+
 std::list<HeatBurner*> HeatBurner::activeParticles_;
+
 
 HeatBurner::HeatBurner(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity, Color3f const& color, Player* damageSource):
            Particle<HeatBurner>(spaceObjects::oHeatBurner, location, 1.f, 0.f, randomizer::random(0.4f, 0.5f))
@@ -42,6 +44,7 @@ void HeatBurner::update()
 
     location_ += velocity_*time;
     velocity_ += velocity_*(-2.f)*time;
+    borders();
 
     lifeTime_ += time;
 }

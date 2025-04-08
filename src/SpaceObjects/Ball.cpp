@@ -28,19 +28,22 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include <cmath>
 
-Ball::Ball(Vector2f const& location):
-           MobileSpaceObject(spaceObjects::oBall, location, 15.f, 7.f),
-           rotation_(0),
-           rotateSpeed_(0.f),
-           frozen_(0.f),
-           sticky_(true),
-           visible_(true),
-           respawnLocation_(location),
-           respawnRotation_(0),
-           heatTimer_(0.f),
-           smokeTimer_(0.f),
-           respawnTimer_(0.f),
-           lastShooter_(NULL)
+
+Ball::Ball(Vector2f const& location)
+    :MobileSpaceObject(spaceObjects::oBall, location,
+        settings::C_BallRadius, settings::C_BallRadius / 2.f),
+        // 15.f, 7.f),
+    rotation_(0),
+    rotateSpeed_(0.f),
+    frozen_(0.f),
+    sticky_(true),
+    visible_(true),
+    respawnLocation_(location),
+    respawnRotation_(0),
+    heatTimer_(0.f),
+    smokeTimer_(0.f),
+    respawnTimer_(0.f),
+    lastShooter_(NULL)
 {
     physics::addMobileObject(this);
 }
@@ -68,21 +71,28 @@ void Ball::update()
                 fmod(rotation_+= rotateSpeed_*time*30, 360);
                 rotateSpeed_ -= rotateSpeed_*time*0.2;
 
-                if (location_.x_ < radius_)
-                {   location_.x_ = radius_;
-                    velocity_.x_ = -velocity_.x_*0.6;
+                borders();
+                if (!settings::C_CyclicBorderX)
+                {
+                    if (location_.x_ < radius_)
+                    {   location_.x_ = radius_;
+                        velocity_.x_ = -velocity_.x_*0.6;
+                    }
+                    if (location_.x_ > settings::C_MapXsize - radius_)
+                    {   location_.x_ = settings::C_MapXsize - radius_;
+                        velocity_.x_ = -velocity_.x_*0.6;
+                    }
                 }
-                if (location_.x_ > settings::C_MapXsize - radius_)
-                {   location_.x_ = settings::C_MapXsize - radius_;
-                    velocity_.x_ = -velocity_.x_*0.6;
-                }
-                if (location_.y_ < radius_)
-                {   location_.y_ = radius_;
-                    velocity_.y_ = -velocity_.y_*0.6;
-                }
-                if (location_.y_ > settings::C_MapYsize - radius_)
-                {   location_.y_ = settings::C_MapYsize - radius_;
-                    velocity_.y_ = -velocity_.y_*0.6;
+                if (!settings::C_CyclicBorderY)
+                {
+                    if (location_.y_ < radius_)
+                    {   location_.y_ = radius_;
+                        velocity_.y_ = -velocity_.y_*0.6;
+                    }
+                    if (location_.y_ > settings::C_MapYsize - radius_)
+                    {   location_.y_ = settings::C_MapYsize - radius_;
+                        velocity_.y_ = -velocity_.y_*0.6;
+                    }
                 }
             }
 

@@ -111,7 +111,8 @@ namespace settings
     int         C_ShipRadius         = 18;
     int         C_MapXsize           = 1440;
     int         C_MapYsize           = 810;
-    // int         C_MapYaspect         = 1000 * 1440 / 810;  // / 1000 = 1
+    // int      C_MapYaspect         = 1000 * 1440 / 810;  // / 1000 = 1
+    int         C_BallRadius         = 15;
 
     int         C_ShipTurnSpeed = 25;
     int         C_DamageScale   = 50;
@@ -119,6 +120,10 @@ namespace settings
     int         C_FuelRegen     = 50;
     int         C_RespawnDelay  = 20;
     int         C_GlowAlpha     = 20;
+
+    bool        C_CyclicBorderX = true;
+    bool        C_CyclicBorderY = true;
+    int         C_GravityScale  = 100;
 
     //  weapons
     int         C_EnabledWeapons =          weapons::wNoWeapon-1;  // all
@@ -288,7 +293,7 @@ namespace settings
             oss << "[adaptiveParticleCount] " << strBool(C_adaptiveParticleCount) << endl;
             oss << "[drawBotJobs] "           << strBool(C_drawBotJobs) << endl;
             oss << "[drawZones] "             << strBool(C_drawZones) << endl;
-            
+            //  points
             oss << "[botsLeft] "              << C_botsLeft << endl;
             oss << "[botsRight] "             << C_botsRight << endl;
             oss << "[botsDeath] "             << C_botsDeath << endl;
@@ -300,9 +305,8 @@ namespace settings
             oss << "[powerUpRate] "           << C_powerUpRate << endl;
             oss << "[slowMoKickIn] "          << C_slowMoKickIn << endl;
             oss << "[gameSpeed] "             << C_gameSpeed << endl;
-            
+            //----  players
             oss << "[playerIName] ";          strMax(oss, C_playerIName, 12);
-
             oss << "[playerIKeys] "           <<  C_playerIup << " " << C_playerIright << " " << C_playerIleft << " "
                 << C_playerIfire << " " << C_playerISpecialKey << " "
                 << C_playerIdown << " " << C_playerIboost << " " << C_playerIprev << " " << C_playerInext << endl;
@@ -327,11 +331,11 @@ namespace settings
             oss << "[playerIIShip] "          <<  C_playerIIShip << endl;
             oss << "[playerIIWeapon] "        <<  C_playerIIWeapon << endl;
             oss << "[playerIISpecial] "       <<  C_playerIISpecial << endl;
-            
-            oss << "[connectIP] "             <<  C_ip.toAnsiString() << endl;
-            oss << "[connectPort] "           <<  C_port.toAnsiString() << endl;
+            //----
+            oss << "[connectIP] "             << C_ip.toAnsiString() << endl;
+            oss << "[connectPort] "           << C_port.toAnsiString() << endl;
             oss << "[networkTeamRed] "        << strBool(C_networkPlayerI) << endl;
-            
+            //  show
             oss << "[showInfoHide] "          << strBool(C_showInfoHide) << endl;
             oss << "[showInfoSB] "            << strBool(C_showInfoSB) << endl;
             oss << "[showInfoDM] "            << strBool(C_showInfoDM) << endl;
@@ -340,9 +344,9 @@ namespace settings
             
             oss << "[showSelectLanguage] "    << strBool(C_showSelectLanguage) << endl;
             oss << "[showToolTips] "          << strBool(C_showToolTips) << endl;
-            oss << "[languageID] "            <<  C_languageID << endl;
+            oss << "[languageID] "            << C_languageID << endl;
             oss << "[highStarResolution] "    << strBool(C_StarsHigh) << endl;
-            oss << "[starField] "             <<  C_StarField << endl;
+            oss << "[starField] "             << C_StarField << endl;
             
             oss << "[shaders] "               << strBool(C_shaders) << endl;
             oss << "[resolutionX] "           << C_resX << endl;
@@ -358,7 +362,7 @@ namespace settings
             
             oss << "[enabledWeapons] "        << C_EnabledWeaponsByUser << endl;
             oss << "[enabledSpecials] "       << C_EnabledSpecialsByUser << endl;
-
+            //  map
             oss << "[MapXsize] "              << C_MapXsize << endl;
             oss << "[MapYsize] "              << C_MapYsize << endl;
             oss << "[MapMinPlanets] "         << C_MapMinPlanets << endl;
@@ -366,9 +370,15 @@ namespace settings
             oss << "[MapMinPlanetsSize] "     << C_MapMinPlanetsSize << endl;
             oss << "[MapMaxPlanetsSize] "     << C_MapMaxPlanetsSize << endl;
             oss << "[MapMinPlanetGap] "       << C_MapMinPlanetGap << endl;
+
             oss << "[MapHomeRadius] "         << C_MapHomeRadius << endl;
             oss << "[ShipRadius] "            << C_ShipRadius << endl;
+            oss << "[BallRadius] "            << C_BallRadius << endl;
 
+            oss << "[CyclicBorderX] "         << strBool(C_CyclicBorderX) << endl;
+            oss << "[CyclicBorderY] "         << strBool(C_CyclicBorderY) << endl;
+            oss << "[GravityScale] "          << C_GravityScale << endl;
+            //  game
             oss << "[ShipTurnSpeed] "         << C_ShipTurnSpeed << endl;
             oss << "[DamageScale] "           << C_DamageScale << endl;
             oss << "[Regeneration] "          << C_Regeneration << endl;
@@ -540,7 +550,7 @@ namespace settings
                 else if (line == "[adaptiveParticleCount]")  readBool(iss, line, C_adaptiveParticleCount);
                 else if (line == "[drawBotJobs]")            readBool(iss, line, C_drawBotJobs);
                 else if (line == "[drawZones]")              readBool(iss, line, C_drawZones);
-                
+                //  points
                 else if (line == "[botsLeft]")               readInt(iss, C_botsLeft, 0, 20);
                 else if (line == "[botsRight]")              readInt(iss, C_botsRight, 0, 20);
                 else if (line == "[botsDeath]")              readInt(iss, C_botsDeath, 0, 80);
@@ -552,7 +562,7 @@ namespace settings
                 else if (line == "[powerUpRate]")            readInt(iss, C_powerUpRate, 0, 100);
                 else if (line == "[slowMoKickIn]")           readInt(iss, C_slowMoKickIn, 0, 100);
                 else if (line == "[gameSpeed]")              readInt(iss, C_gameSpeed, 50, 200);
-
+                //----  players
                 else if (line == "[playerIName]")            readString(iss, C_playerIName, 12);
                 else if (line == "[playerIIName]")           readString(iss, C_playerIIName, 12);
                 else if (line == "[playerIKeys]") {
@@ -591,11 +601,11 @@ namespace settings
 
                 else if (line == "[playerIITeamL]")       readBool(iss, line, C_playerIIteamL);
                 else if (line == "[playerIITeamR]")       readBool(iss, line, C_playerIIteamR);
-                
+                //----
                 else if (line == "[connectIP]") {         string tmp;  iss >> tmp;  C_ip = sf::String(tmp);    }
                 else if (line == "[connectPort]") {       string tmp;  iss >> tmp;  C_port = sf::String(tmp);  }
                 else if (line == "[languageID]")          readInt(iss, C_languageID);
-
+                //  show
                 else if (line == "[networkTeamRed]")      readBool(iss, line, C_networkPlayerI);
                 else if (line == "[showInfoHide]")        readBool(iss, line, C_showInfoHide);
                 else if (line == "[showInfoSB]")          readBool(iss, line, C_showInfoSB);
@@ -621,7 +631,7 @@ namespace settings
 
                 else if (line == "[enabledWeapons]"){     iss >> C_EnabledWeaponsByUser;   C_EnabledWeapons = C_EnabledWeaponsByUser;    }
                 else if (line == "[enabledSpecials]") {   iss >> C_EnabledSpecialsByUser;  C_EnabledSpecials = C_EnabledSpecialsByUser;  }
-
+                //  map
                 else if (line == "[MapXsize]")            iss >> C_MapXsize;
                 else if (line == "[MapYsize]")            iss >> C_MapYsize;
                 else if (line == "[MapMinPlanets]")       iss >> C_MapMinPlanets;
@@ -629,9 +639,15 @@ namespace settings
                 else if (line == "[MapMinPlanetsSize]")   iss >> C_MapMinPlanetsSize;
                 else if (line == "[MapMaxPlanetsSize]")   iss >> C_MapMaxPlanetsSize;
                 else if (line == "[MapMinPlanetGap]")     iss >> C_MapMinPlanetGap;
+
                 else if (line == "[MapHomeRadius]")       iss >> C_MapHomeRadius;
                 else if (line == "[ShipRadius]")          iss >> C_ShipRadius;
+                else if (line == "[BallRadius]")          iss >> C_BallRadius;
 
+                else if (line == "[CyclicBorderX]")       readBool(iss, line, C_CyclicBorderX);
+                else if (line == "[CyclicBorderY]")       readBool(iss, line, C_CyclicBorderY);
+                else if (line == "[GravityScale]")        iss >> C_GravityScale;
+                //  game
                 else if (line == "[ShipTurnSpeed]")       iss >> C_ShipTurnSpeed;
                 else if (line == "[DamageScale]")         iss >> C_DamageScale;
                 else if (line == "[Regeneration]")        iss >> C_Regeneration;

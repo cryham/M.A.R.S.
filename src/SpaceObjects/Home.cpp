@@ -103,8 +103,8 @@ void Home::createShips(std::vector<Player*>& inhabitants) const
     {
         // 1. homeplanet is covered by left screen edge
         float angle = std::acos(-location_.x_/radius_);
-        float deltaAngle = 2*angle/(inhabitants.size()+1);
-        angle = ((inhabitants.size()+1)%2)*deltaAngle/2;
+        float deltaAngle = 2 * angle/(inhabitants.size()+1);
+        angle = ((inhabitants.size()+1) % 2) * deltaAngle/2;
         int shipCounter = 0;
 
         for (auto& it : inhabitants)
@@ -121,8 +121,8 @@ void Home::createShips(std::vector<Player*>& inhabitants) const
     {
         // 2. homeplanet is covered by right screen edge
         float angle = std::acos((location_.x_ - settings::C_MapXsize)/radius_);
-        float deltaAngle = 2*angle/(inhabitants.size()+1);
-        angle = ((inhabitants.size()+1)%2)*deltaAngle/2;
+        float deltaAngle = 2 * angle/(inhabitants.size()+1);
+        angle = ((inhabitants.size()+1) % 2) * deltaAngle/2;
         int shipCounter = 0;
 
         for (auto& it : inhabitants)
@@ -130,14 +130,14 @@ void Home::createShips(std::vector<Player*>& inhabitants) const
             // calc location of ship
             angle += deltaAngle*shipCounter*std::pow(-1.0, shipCounter);
             Vector2f location = Vector2f(-std::cos(angle), std::sin(angle)) * (radius_+16)+location_;
-            float    rotation = 180-angle*180/M_PI;
+            float    rotation = 180 - angle*180/M_PI;
             ships::addShip(location, rotation, it);
             ++shipCounter;
         }
     }else
     {
         // 3. homeplanet is entirely visible
-        float deltaAngle = 2*M_PI/(inhabitants.size());
+        float deltaAngle = 2*M_PI / (inhabitants.size());
         float angle = 0;
 
         for (auto& it : inhabitants)

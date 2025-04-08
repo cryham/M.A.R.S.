@@ -133,10 +133,10 @@ void TabStats::draw() const
         glLineWidth(2.f);
         glBegin(GL_LINE_LOOP);
             glColor4f(0.5f, 0.5f, 0.5f, 0.8f);
-            glVertex2f(topLeft.x_-10*mirror,topLeft.y_+height+10);
-            glVertex2f(topLeft.x_-10*mirror,topLeft.y_-10);
-            glVertex2f(topLeft.x_+width+10*mirror,topLeft.y_-10);
-            glVertex2f(topLeft.x_+width+10*mirror,topLeft.y_+height+10);
+            glVertex2f(topLeft.x_-10*mirror, topLeft.y_+height+10);
+            glVertex2f(topLeft.x_-10*mirror, topLeft.y_-10);
+            glVertex2f(topLeft.x_+width+10*mirror, topLeft.y_-10);
+            glVertex2f(topLeft.x_+width+10*mirror, topLeft.y_+height+10);
         glEnd();
 
         glColor3f(1.f, 1.f, 1.f);
@@ -225,12 +225,12 @@ void TabStats::draw() const
         glBlendFunc(GL_SRC_ALPHA, GL_ONE);
         glLineWidth(2.f);
 
-        glBegin(GL_LINES);
+        /*glBegin(GL_LINES);
             glColor4f(0.5f, 0.8f, 1.0f, 1.0f);
-            glVertex2f(topLeft.x_+10*mirror, topLeft.y_+35);
+            glVertex2f(topLeft.x_ + 10*mirror, topLeft.y_ +35*UiElement::scale_);
             glColor4f(0.5f, 0.8f, 1.0f, 0.0f);
-            glVertex2f(topLeft.x_+width-10*mirror, topLeft.y_+35);
-        glEnd();
+            glVertex2f(topLeft.x_ + width -10*mirror, topLeft.y_ +35*UiElement::scale_);
+        glEnd();*/
 
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 

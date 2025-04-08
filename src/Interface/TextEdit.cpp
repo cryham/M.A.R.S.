@@ -38,7 +38,7 @@ TextEdit::TextEdit (sf::String* text, sf::String* value, sf::String fallBack,
     , cursorPos_(value->getSize())
     , cursorTimer_(0)
     , type_(type)
-    , labelWidth_(labelWidth)
+    , labelWidth_(labelWidth * scale_)
 {
     if      (type == 1)  maxLength_ = 5;
     else if (type == 2)  maxLength_ = 15;

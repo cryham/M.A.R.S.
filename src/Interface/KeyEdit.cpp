@@ -42,7 +42,7 @@ KeyEdit::KeyEdit (sf::String* text, sf::String* toolTip,
     :UiElement(topLeft, width, 20)
     ,value_(value)
     ,toolTip_(toolTip)
-    ,labelWidth_(labelWidth)
+    ,labelWidth_(labelWidth * scale_)
 {
     label_ = new Label(text, TEXT_ALIGN_LEFT, Vector2f(0,0));
     label_->setParent(this);

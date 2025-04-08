@@ -32,7 +32,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 LanguageButton::LanguageButton (sf::String* text, Vector2f const& topLeft, int width, int labelWidth)
     :UiElement(topLeft, width, 16)
-    ,labelWidth_(labelWidth)
+    ,labelWidth_(labelWidth * scale_)
 {
     label_ = new Label(text, TEXT_ALIGN_LEFT, Vector2f(0,0));
     label_->setParent(this);

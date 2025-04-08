@@ -46,7 +46,7 @@ ComboBox::ComboBox (sf::String* text, sf::String* toolTip,
     :UiElement(topLeft, width, 16)
     ,dropBox_(NULL)
     ,values_(values)
-    ,labelWidth_(labelWidth)
+    ,labelWidth_(labelWidth * scale_)
     ,currentValue_(value)
     ,opened_(false)
     ,toolTip_(toolTip)

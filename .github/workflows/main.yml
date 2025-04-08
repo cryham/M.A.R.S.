@@ -28,13 +28,14 @@ jobs:
     steps:
     - name: Install Linux Dependencies
       if: runner.os == 'Linux'
-      run: sudo apt-get update && sudo apt-get install libxrandr-dev libxcursor-dev libxi-dev libudev-dev libopenal-dev libflac-dev libvorbis-dev libgl1-mesa-dev libegl1-mesa-dev libfribidi-dev libsfml-dev
+      run: sudo apt-get update && sudo apt-get install libxrandr-dev libxcursor-dev libxi-dev libudev-dev libopenal-dev libflac-dev libvorbis-dev libgl1-mesa-dev libegl1-mesa-dev libfribidi-dev libsfml-dev libtag1-dev
 
     - name: Install macOS Dependencies
       if: runner.os == 'macOS'
       run: brew install fribidi
 
 
+    # SFML
     - name: SFML - Checkout Code
       if: runner.os == 'Windows'
       uses: actions/checkout@v4
@@ -55,7 +56,9 @@ jobs:
       run: cmake --build $GITHUB_WORKSPACE/SFML/build --config Release --target install
 
 
+    # TagLib
     - name: TagLib - Checkout Code
+      if: runner.os == 'Windows'
       uses: actions/checkout@v4
       with:
         fetch-depth: 0
@@ -73,6 +76,7 @@ jobs:
       run: cmake --build $GITHUB_WORKSPACE/taglib/build --config Release --target install
 
 
+    # FriBidi
     - name: GNU FriBidi - Checkout Code
       if: runner.os == 'Windows'
       uses: actions/checkout@v4
@@ -111,6 +115,7 @@ jobs:
       run: cmake --build $GITHUB_WORKSPACE/fribidi/build --config Release --target install
 
 
+    # M.A.R.S  ----
     - name: M.A.R.S - Checkout Code
       uses: actions/checkout@v4
 

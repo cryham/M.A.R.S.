@@ -77,7 +77,9 @@ namespace settings
     extern bool           C_showToolTips;
 
     extern bool           C_noConfirmations;
-    extern int            C_UIscale;
+    // extern int            C_UIscale;  UiElement::scale_
+    extern bool           C_LogoSigns;
+    extern int            C_CountDown;
 
     extern int            C_languageID;
     extern int            C_resX;

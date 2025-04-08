@@ -27,6 +27,9 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 void Evil::draw() const
 {
+    if (!settings::C_LogoSigns)
+        return;
+
     glPushMatrix();
     glLoadIdentity();
 

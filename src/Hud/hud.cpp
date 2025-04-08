@@ -17,6 +17,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "Hud/hud.hpp"
 
+#include "System/settings.hpp"
 #include "System/window.hpp"
 #include "SpaceObjects/ships.hpp"
 #include "SpaceObjects/Home.hpp"
@@ -82,10 +83,13 @@ namespace hud
     {
         particles::drawNumbers();
 
-        /*if (games::type() == games::gMenu)
-            logo_->draw();
-        else if (games::elapsedTime() < 6.f && games::type() != games::gTutorial)
-            countDown_->draw();*/
+        if (settings::C_LogoSigns)
+            if (games::type() == games::gMenu)
+                logo_->draw();
+
+        if (games::type() != games::gMenu &&
+            games::type() != games::gTutorial)
+            countDown_->draw();
 
         gameStats_->draw();
 

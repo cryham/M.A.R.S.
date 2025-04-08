@@ -16,17 +16,18 @@ This is my fork with many new features and changes:
      - *Cyclic borders*, gravity scale
    - **Game options** window with sliders:
      - Damage scale, Respawn delay, Life and fuel *regeneration*
-     - Ship turn speed, ship glow factor
+     - Ship turn speed, ship glow amount
    - more possible bots, more kills to end game
    - Ship thrusters now blue
    - ToDo: turrets, near team homes, or any middle, destroyable, respawned
-- Gui
-  - Scale slider for whole Gui in Options
+- **Gui**
+  - **Scale** slider for whole Gui in Options
   - bigger Gui, font, by default
-  - color Skyblue, not Pink-Red
-  - fast fade in/out, no game countdown
+  - color Skyblue, not Pink-Red, transparent, single window
   - option for no confirmation dialogs
-  - no logo, planet signs
+  - options for no logo, signs
+  - countdown seconds, 0 will disable
+  - fast fade in/out
 
 
 M.A.R.S

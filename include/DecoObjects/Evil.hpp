@@ -20,7 +20,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "DecoObjects/DecoObject.hpp"
 
 
-/// A very evil sign
+/// A very evil sign, in Cannon Keep game
 
 class Evil: public DecoObject
 {

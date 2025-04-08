@@ -382,44 +382,46 @@
 275 Scales the UI size
 276 No confirmations
 277 No dialog confirmations for game or menu quit
+278 Show game logo and signs
+279 Count down seconds
 
 //  Map
-278 Map Options
-279 Space Objects
+280 Map Options
+281 Space Objects
 
-280 Min count
-281 Max count
-282 Min radius
-283 Max radius
+282 Min count
+283 Max count
+284 Min radius
+285 Max radius
 
-284 Min Gap
-285 Home planet radius
+286 Min Gap
+287 Home planet radius
 
-286 Map Size
-287 Map Width
-288 Map Height
-289 Ship radius
-290 Ball radius
+288 Map Size
+289 Map Width
+290 Map Height
+291 Ship radius
+292 Ball radius
 
-291 Cyclic borders
-292 Horizontal
-293 Vertical
+293 Cyclic borders
+294 Horizontal
+295 Vertical
 
-294 Tiny
-295 Small
-296 Medium
-297 Normal
-298 Big
-299 Large
-300 Huge
-301 Reset Defaults
+296 Tiny
+297 Small
+298 Medium
+299 Normal
+300 Big
+301 Large
+302 Huge
+303 Reset Defaults
 
 //  Game
-302 Ship turn speed
-303 Damage scale
-304 Regeneration
-305 Fuel regeneration
-306 Respawn delay
-307 Ship glow
+304 Ship turn speed
+305 Damage scale
+306 Regeneration
+307 Fuel regeneration
+308 Respawn delay
+309 Ship glow
 
-308 Gravity scale
+310 Gravity scale

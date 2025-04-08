@@ -21,6 +21,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "System/window.hpp"
 #include "Games/games.hpp"
 #include "System/timer.hpp"
+#include "System/settings.hpp"
 #include "Media/sound.hpp"
 
 #include <SFML/OpenGL.hpp>
@@ -28,32 +29,37 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 void CountDown::draw() const
 {
+    if (settings::C_CountDown == 0)
+        return;
     glEnable(GL_TEXTURE_2D);
 
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-    float time = games::elapsedTime();
+    float counts = settings::C_CountDown;
+    float time = games::elapsedTime() / counts * 6.f;
+    
     if (time < 1.f)
         glBindTexture(GL_TEXTURE_2D, texture::getTexture(texture::CountDown4));
     else if (time < 2.f)
-    {   if (time - timer::frameTime() <= 1.f) sound::playSound(sound::Countdown);
+    {   if (time - timer::frameTime() <= 1.f)  sound::playSound(sound::Countdown);
         glBindTexture(GL_TEXTURE_2D, texture::getTexture(texture::CountDown3));
     }
     else if (time < 3.f)
-    {   if (time - timer::frameTime() <= 2.f) sound::playSound(sound::Countdown);
+    {   if (time - timer::frameTime() <= 2.f)  sound::playSound(sound::Countdown);
         glBindTexture(GL_TEXTURE_2D, texture::getTexture(texture::CountDown2));
     }
     else if (time < 4.f)
-    {   if (time - timer::frameTime() <= 3.f) sound::playSound(sound::Countdown);
+    {   if (time - timer::frameTime() <= 3.f)  sound::playSound(sound::Countdown);
         glBindTexture(GL_TEXTURE_2D, texture::getTexture(texture::CountDown1));
     }else
-    {   if (time - timer::frameTime() <= 4.f) sound::playSound(sound::Start);
+    {   if (time - timer::frameTime() <= 4.f)  sound::playSound(sound::Start);
         glBindTexture(GL_TEXTURE_2D, texture::getTexture(texture::CountDown0));
     }
 
     float mid(window::getViewPort().x_/2.f);
     float top(0.f);
-    if (time > 5.f) top = 800.f*std::pow(time - 5.25f, 2) - 50.f;
+    if (time > 5.f)
+        top = 800.f*std::pow(time - 5.25f, 2) - 50.f;
 
     if (time-timer::frameTime() < 5.f && time >= 5.f)
         sound::playSound(sound::Swish);

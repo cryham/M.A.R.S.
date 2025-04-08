@@ -81,7 +81,9 @@ namespace settings
     bool        C_showToolTips =            true;
 
     bool        C_noConfirmations =         true;
-    int         C_UIscale =                 100;
+    // int         C_UIscale =                 100;  // UiElement::scale_
+    bool        C_LogoSigns =               true;
+    int         C_CountDown =               3;
 
     int         C_languageID =              0;
     int         C_resX =                    INITIAL_WINDOW_X;
@@ -341,25 +343,33 @@ namespace settings
             oss << "[showInfoDM] "            << strBool(C_showInfoDM) << endl;
             oss << "[showInfoTDM] "           << strBool(C_showInfoTDM) << endl;
             oss << "[showInfoCK] "            << strBool(C_showInfoCK) << endl;
-            
+
+            //  UI
+            oss << "[languageID] "            << C_languageID << endl;
             oss << "[showSelectLanguage] "    << strBool(C_showSelectLanguage) << endl;
             oss << "[showToolTips] "          << strBool(C_showToolTips) << endl;
-            oss << "[languageID] "            << C_languageID << endl;
+            //  UI new
+            oss << "[NoConfirmations] "       << strBool(C_noConfirmations) << endl;
+            oss << "[UIScale] "               << UiElement::scale_ << endl;
+            oss << "[C_LogoSigns] "           << strBool(C_LogoSigns) << endl;
+            oss << "[C_CountDown] "           << C_CountDown << endl;
+
             oss << "[highStarResolution] "    << strBool(C_StarsHigh) << endl;
             oss << "[starField] "             << C_StarField << endl;
-            
+            //  screen
             oss << "[shaders] "               << strBool(C_shaders) << endl;
             oss << "[resolutionX] "           << C_resX << endl;
             oss << "[resolutionY] "           << C_resY << endl;
             oss << "[colorDepth] "            << C_colorDepth << endl;
-            
+            //  audio
             oss << "[audioRandom] "           << strBool(C_audioRandom) << endl;
             oss << "[audioNextKey] "          << C_audioNextKey << endl;
             oss << "[audioPreviousKey] "      << C_audioPreviousKey << endl;
+            //  keys
             oss << "[screenShotKey] "         << C_screenShotKey << endl;
             oss << "[statisticsKey] "         << C_statisticsKey << endl;
             oss << "[screenShotFormat] "      << C_screenShotFormat << endl;
-            
+            //  weapons
             oss << "[enabledWeapons] "        << C_EnabledWeaponsByUser << endl;
             oss << "[enabledSpecials] "       << C_EnabledSpecialsByUser << endl;
             //  map
@@ -385,7 +395,6 @@ namespace settings
             oss << "[FuelRegen] "             << C_FuelRegen << endl;
             oss << "[RespawnDelay] "          << C_RespawnDelay << endl;
             oss << "[GlowAlpha] "             << C_GlowAlpha << endl;
-            oss << "[UIScale] "               << UiElement::scale_ << endl;
 
             oss.close();
             return true;
@@ -604,31 +613,39 @@ namespace settings
                 //----
                 else if (line == "[connectIP]") {         string tmp;  iss >> tmp;  C_ip = sf::String(tmp);    }
                 else if (line == "[connectPort]") {       string tmp;  iss >> tmp;  C_port = sf::String(tmp);  }
-                else if (line == "[languageID]")          readInt(iss, C_languageID);
-                //  show
                 else if (line == "[networkTeamRed]")      readBool(iss, line, C_networkPlayerI);
+                //  show
                 else if (line == "[showInfoHide]")        readBool(iss, line, C_showInfoHide);
                 else if (line == "[showInfoSB]")          readBool(iss, line, C_showInfoSB);
                 else if (line == "[showInfoDM]")          readBool(iss, line, C_showInfoDM);
                 else if (line == "[showInfoTDM]")         readBool(iss, line, C_showInfoTDM);
                 else if (line == "[showInfoCK]")          readBool(iss, line, C_showInfoCK);
-                else if (line == "[showToolTips]")        readBool(iss, line, C_showToolTips);
-                else if (line == "[highStarResolution]")  readBool(iss, line, C_StarsHigh);
-
-                else if (line == "[starField]")           readInt(iss, C_StarField);
+                //  UI
+                else if (line == "[languageID]")          readInt(iss, C_languageID);
                 else if (line == "[showSelectLanguage]")  readBool(iss, line, C_showSelectLanguage);
+                else if (line == "[showToolTips]")        readBool(iss, line, C_showToolTips);
+                //  UI new
+                else if (line == "[NoConfirmations]")     readBool(iss, line, C_noConfirmations);
+                else if (line == "[UIScale]")             iss >> UiElement::scale_;
+                else if (line == "[C_LogoSigns]")         readBool(iss, line, C_LogoSigns);
+                else if (line == "[C_CountDown]")         readInt(iss, C_CountDown);
+
+                else if (line == "[highStarResolution]")  readBool(iss, line, C_StarsHigh);
+                else if (line == "[starField]")           readInt(iss, C_StarField);
+                //  screen
                 else if (line == "[shaders]")             readBool(iss, line, C_shaders);
                 else if (line == "[resolutionX]")         readInt(iss, C_resX);
                 else if (line == "[resolutionY]")         readInt(iss, C_resY);
                 else if (line == "[colorDepth]")          readInt(iss, C_colorDepth);
-                
+                //  audio
                 else if (line == "[audioRandom]")         readBool(iss, line, C_audioRandom);
                 else if (line == "[audioNextKey]")        iss >> C_audioNextKey;
                 else if (line == "[audioPreviousKey]")    iss >> C_audioPreviousKey;
+                //  keys
                 else if (line == "[screenShotKey]")       iss >> C_screenShotKey;
                 else if (line == "[statisticsKey]")       iss >> C_statisticsKey;
                 else if (line == "[screenShotFormat]")    iss >> C_screenShotFormat;
-
+                //  weapons
                 else if (line == "[enabledWeapons]"){     iss >> C_EnabledWeaponsByUser;   C_EnabledWeapons = C_EnabledWeaponsByUser;    }
                 else if (line == "[enabledSpecials]") {   iss >> C_EnabledSpecialsByUser;  C_EnabledSpecials = C_EnabledSpecialsByUser;  }
                 //  map
@@ -654,7 +671,6 @@ namespace settings
                 else if (line == "[FuelRegen]")           iss >> C_FuelRegen;
                 else if (line == "[RespawnDelay]")        iss >> C_RespawnDelay;
                 else if (line == "[GlowAlpha]")           iss >> C_GlowAlpha;
-                else if (line == "[UIScale]")             iss >> UiElement::scale_;
                 else
                     cout << line << " is a bad option in " << C_configPath << "mars.cfg!\n";
             }

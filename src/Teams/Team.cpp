@@ -25,6 +25,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Controllers/KeyController.hpp"
 #include "Games/games.hpp"
 #include "Controllers/BotController.hpp"
+#include "System/settings.hpp"
 #include <set>
 
 
@@ -107,7 +108,7 @@ void Team::evaluate()
 {
     jobMap_.clear();
 
-    if (botControllers_.size() > 0 && games::elapsedTime() > 1.f)
+    if (botControllers_.size() > 0 && games::elapsedTime() > settings::C_CountDown)
     {
         createJobs();
 

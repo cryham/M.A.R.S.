@@ -95,7 +95,7 @@ namespace locales
         GameSpeed, ttGameSpeed,
         //  cryham new
         AccelerateBack, Boost, NextWeapon, PrevWeapon,
-        Scale, ttScale, NoConfirmations, ttNoConfirmations,
+        Scale, ttScale, NoConfirmations, ttNoConfirmations, LogoSigns, CountDown,
         //  Map
         MapOptions, SpaceObjects,
         MinPlanets, MaxPlanets, MinPlanetsSize, MaxPlanetsSize,

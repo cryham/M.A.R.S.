@@ -132,7 +132,7 @@ void Ship::update()
                 physics::addMobileObject(this);
         }
 
-        if ((games::elapsedTime() > 1.f) || (games::type() == games::gTutorial))
+        if (games::elapsedTime() > settings::C_CountDown || games::type() == games::gTutorial)
         {
             if (frozen_ <= 0)
             {

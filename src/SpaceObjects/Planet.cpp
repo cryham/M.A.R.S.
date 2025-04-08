@@ -20,6 +20,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Particles/particles.hpp"
 #include "System/randomizer.hpp"
 #include "DecoObjects/decoObjects.hpp"
+#include "System/settings.hpp"
 
 
 Planet::Planet(Vector2f const& location, float radius):
@@ -30,8 +31,9 @@ Planet::Planet(Vector2f const& location, float radius):
     physics::addStaticObject(this);
     physics::addGravitySource(this);
 
-    // if (randomizer::random(0, 2) == 0)  // settings::logo
-    //     decoObjects::addPlanetSign(this);
+    if (settings::C_LogoSigns)
+        if (randomizer::random(0, 2) == 0)
+            decoObjects::addPlanetSign(this);
 }
 
 void Planet::draw() const

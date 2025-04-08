@@ -55,6 +55,7 @@ void AmmoFlubba::update()
 
     location_ += velocity_*time + acceleration*time*time;
     velocity_ += acceleration*time - 2.5f*velocity_*time;
+    borders();
 
     lifeTime_ += time;
 

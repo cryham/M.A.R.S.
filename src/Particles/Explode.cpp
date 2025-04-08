@@ -50,6 +50,7 @@ void Explode::update()
 
     location_ += velocity_*time;
     velocity_ += velocity_*(-6.f)*time;
+    // borders();
 
     lifeTime_ += time;
 }

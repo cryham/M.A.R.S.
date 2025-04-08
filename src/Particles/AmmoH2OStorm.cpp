@@ -25,6 +25,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 std::list<AmmoH2OStorm*> AmmoH2OStorm::activeParticles_;
 
+
 AmmoH2OStorm::AmmoH2OStorm(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity, Color3f const& color, Player* damageSource):
          Particle<AmmoH2OStorm>(spaceObjects::oAmmoH2OStorm, location, 8.f /*R*/, 0.4f /*mass*/, randomizer::random(9.f, 11.f) /*life*/)
 {
@@ -51,6 +52,7 @@ void AmmoH2OStorm::update()
 
     location_ += velocity_*time + acceleration*time*time*5.f;
     velocity_ += acceleration*time*7.f;
+    borders();
 
     lifeTime_ += time;
 

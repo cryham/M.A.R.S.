@@ -52,6 +52,7 @@ void AmmoShotgun::update()
 
     location_ += velocity_*time + acceleration*time*time;
     velocity_ += acceleration*time - velocity_*time;
+    borders();
 
     color_.v(-1.f/totalLifeTime_*lifeTime_+1.f);
 

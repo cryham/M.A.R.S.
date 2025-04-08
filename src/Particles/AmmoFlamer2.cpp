@@ -58,6 +58,7 @@ void AmmoFlamer2::update()
     location_ += velocity_*time;
     velocity_ += velocity_*(-0.14f)*time;
     velocity_ += (0.2f + time*0.02f ) * Vector2f(randomizer::random(-1.f, 1.f), randomizer::random(-1.f, 1.f));
+    borders();
 
     lifeTime_ += time;
 

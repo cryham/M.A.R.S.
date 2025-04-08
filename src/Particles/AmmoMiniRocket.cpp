@@ -100,6 +100,7 @@ void AmmoMiniRocket::update()
 
         location_ += velocity_ * time;
         velocity_ += acceleration_ * faceDirection * time;
+        borders();
         // todo clamp max vel..
 
         particles::spawnTimed(80.f/settings::C_globalParticleCount, particles::pFuel, location_-faceDirection*radius_*2.3f, faceDirection, velocity_);

@@ -45,6 +45,7 @@ void PowerUpCollect::update()
 
     location_ += velocity_*time + acceleration*time*time*3;
     velocity_ += acceleration*time*3 + velocity_*-2*time;
+    // borders();
 
     lifeTime_ += time;
 }

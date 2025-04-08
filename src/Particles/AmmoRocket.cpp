@@ -95,6 +95,7 @@ void AmmoRocket::update()
         }
 
         location_ += velocity_*time;
+        borders();
 
         Vector2f const faceDirection(velocity_.normalize());
 

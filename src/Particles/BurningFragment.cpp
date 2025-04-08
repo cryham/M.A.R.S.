@@ -23,7 +23,9 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "TrailEffects/trailEffects.hpp"
 #include "System/randomizer.hpp"
 
+
 std::list<BurningFragment*> BurningFragment::activeParticles_;
+
 
 BurningFragment::BurningFragment(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity, Color3f const& color, Player* damageSource):
          Particle<BurningFragment>(spaceObjects::oBurningFragment, location, 1.f, 0, randomizer::random(4.5f, 5.5f)),
@@ -51,6 +53,7 @@ void BurningFragment::update()
 
     location_ += velocity_*time + acceleration*time*time*2;
     velocity_ += acceleration*time*2 + velocity_*-time;
+    borders();
 
     if (timer1_ > 0)
         timer1_ -= time;

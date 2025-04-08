@@ -56,6 +56,7 @@ void AmmoBurner::update()
 
     location_ += velocity_*time;
     velocity_ += velocity_*(-4.f)*time;
+    borders();
 
     lifeTime_ += time;
 

@@ -42,6 +42,7 @@ void Eruption::update()
 
     location_ += velocity_*time + acceleration*0.5*time*time;
     velocity_ += acceleration*0.5*time + velocity_*-2.f*time;
+    // borders();
 
     lifeTime_ += time;
 }

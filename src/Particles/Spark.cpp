@@ -20,7 +20,9 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "System/timer.hpp"
 #include "System/randomizer.hpp"
 
+
 std::list<Spark*> Spark::activeParticles_;
+
 
 Spark::Spark(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity, Color3f const& color, Player* damageSource):
          Particle<Spark>(spaceObjects::oSpark, location, 1, 0, randomizer::random(0.3f, 0.4f)),
@@ -41,6 +43,7 @@ void Spark::update()
 
     location_ += velocity_*time;
     velocity_ -= velocity_*time;
+    // borders();
 
     lifeTime_ += time;
 }

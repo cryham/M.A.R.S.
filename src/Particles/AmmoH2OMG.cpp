@@ -52,6 +52,7 @@ void AmmoH2OMG::update()
 
     location_ += velocity_*time + acceleration*time*time*5.f;
     velocity_ += acceleration*time*5.f;
+    borders();
 
     lifeTime_ += time;
 

@@ -40,6 +40,7 @@ void CannonBall::update()
 {
     float time = timer::frameTime();
     location_ += velocity_*time;
+    // borders();
 
     if (timer1_ > 0)
         timer1_ -= time;

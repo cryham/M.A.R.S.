@@ -22,7 +22,9 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Particles/particles.hpp"
 #include "System/randomizer.hpp"
 
+
 std::list<MiniFlame*> MiniFlame::activeParticles_;
+
 
 MiniFlame::MiniFlame(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity, Color3f const& color, Player* damageSource):
            Particle<MiniFlame>(spaceObjects::oMiniFlame, location+Vector2f::randDir(), 1.f, 0.f, randomizer::random(0.8f, 2.0f))
@@ -50,16 +52,15 @@ void MiniFlame::update()
     }
 
     location_ += Vector2f::randDirLen()*0.3f;
+    // borders();
 
     if (timer_ > 0.f)
         timer_ -= time;
     else
-    {
-        timer_ = 1.f;
+    {   timer_ = 1.f;
         particles::spawn(particles::pMiniFlameSmoke, location_, velocity_);
         particles::spawn(particles::pHeat, location_, velocity_);
     }
-
     lifeTime_ += time;
 }
 

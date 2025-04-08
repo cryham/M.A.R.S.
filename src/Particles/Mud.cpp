@@ -20,7 +20,9 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "System/timer.hpp"
 #include "System/randomizer.hpp"
 
+
 std::list<Mud*> Mud::activeParticles_;
+
 
 Mud::Mud(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity, Color3f const& color, Player* damageSource):
          Particle<Mud>(spaceObjects::oMud, location, 1.f, 0.f, randomizer::random(0.6f, 0.8f)),
@@ -40,6 +42,7 @@ void Mud::update()
 
     location_ += velocity_*time + acceleration*time*time*5;
     velocity_ += acceleration*time*5 + velocity_*-2*time;
+    // borders();
 
     lifeTime_ += time;
 }

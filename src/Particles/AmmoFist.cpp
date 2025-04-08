@@ -46,6 +46,7 @@ void AmmoFist::update()
         radius_   = lifeTime_*250.f + 1.f;
 
         location_ += dir*position*damageSource_->ship()->radius()*(position+1);
+        borders();  //?
 
         physics::collide(this, MOBILES | STATICS);
 

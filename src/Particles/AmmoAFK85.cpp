@@ -17,6 +17,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "Particles/AmmoAFK85.hpp"
 
+#include "SpaceObjects/physics.hpp"
 #include "System/timer.hpp"
 #include "Media/sound.hpp"
 
@@ -42,6 +43,7 @@ void AmmoAFK85::update()
 
     location_ += velocity_*time + acceleration*time*time;
     velocity_ += acceleration*time;
+    borders();
 
     lifeTime_ += time;
 }

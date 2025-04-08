@@ -51,6 +51,7 @@ void FragmentFlame::update()
 
     location_ += velocity_*time;
     velocity_ += velocity_*(-10.f)*time;
+    // borders();
 
     lifeTime_ += time;
 }

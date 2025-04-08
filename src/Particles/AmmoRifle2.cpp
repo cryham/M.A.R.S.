@@ -50,6 +50,7 @@ void AmmoRifle2::update()
     {
         physics::collide(this, STATICS | MOBILES);
         location_ += velocity_*time;
+        borders();
         lifeTime_ += time;
     }
 

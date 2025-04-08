@@ -44,6 +44,7 @@ void CrushedIce::update()
 
     location_ += velocity_*time + acceleration*time*time;
     velocity_ += acceleration*time;
+    borders();
 
     lifeTime_ += time;
 }

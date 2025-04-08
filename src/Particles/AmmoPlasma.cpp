@@ -57,6 +57,7 @@ void AmmoPlasma::update()
 
     location_ += velocity_*time + acceleration*time*time;
     velocity_ += acceleration*time + 0.1f*velocity_*time;
+    borders();
 
     lifeTime_ += time;
 

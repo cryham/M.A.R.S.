@@ -42,6 +42,7 @@ void Fragment::update()
 
     location_ += velocity_*time + acceleration*time*time*2.f;
     velocity_ += acceleration*time*2.f;
+    // borders();
 
     color_.v(-1.f/totalLifeTime_*lifeTime_+1.f);
 

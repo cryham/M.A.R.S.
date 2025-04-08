@@ -56,7 +56,8 @@ void ShipName::draw() const
             Color3f color(1.0f, 0.5f, 0.7f);
 
             std::stringstream sstr;
-            for (int i=0; i<ship_->fragStars_; ++i)
+            int stars = std::min(6, ship_->fragStars_);  // max stars
+            for (int i=0; i < stars; ++i)
                 sstr << "*";
             if (ship_->docked_)
                 text::drawSpaceText(sf::String(sstr.str()),

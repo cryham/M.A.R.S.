@@ -41,7 +41,7 @@ UiWindow* InfoGIP::get()
             Vector2f(220,270), 90, 20));
         
         instance_->addWidget(new Label(new sf::String("Grave-Itation Pit"), TEXT_ALIGN_LEFT,
-            Vector2f(10,10), 20.f, getColor3f(0.5f, 0.9f, 1.f), false));
+            Vector2f(10,0), 20.f, getColor3f(0.5f, 0.9f, 1.f), false));
         instance_->addWidget(new Label(locales::getLocale(locales::Info), TEXT_ALIGN_RIGHT,
             Vector2f(310,18), 12.f, getColor3f(0.5f, 0.9f, 1.f), false));
         

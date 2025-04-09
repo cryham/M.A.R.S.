@@ -52,7 +52,7 @@ UiWindow* MapOptions::get()
 
         int y = 10, yadd = 20;
         instance_->addWidget(new Label(locales::getLocale(locales::MapOptions), TEXT_ALIGN_LEFT,
-            Vector2f(10,y), 20.f, getColor3f(0.5f, 0.9f, 1.f), false));  y += yadd;
+            Vector2f(10,0), 20.f, getColor3f(0.5f, 0.9f, 1.f), false));  y += yadd;
 
         instance_->addWidget(new LabeledBox(locales::getLocale(locales::SpaceObjects),
             Vector2f(10, y), 100, 210));  y += yadd;

@@ -40,7 +40,7 @@ UiWindow* About::get()
         instance_->addWidget(new Button(locales::getLocale(locales::Close), NULL, &kClose_,
             Vector2f(320,300), 90, 20));
         instance_->addWidget(new Label(new sf::String("M.A.R.S."), TEXT_ALIGN_LEFT,
-            Vector2f(10,10), 20.f, getColor3f(0.5f, 0.9f, 1.f), false));
+            Vector2f(10,0), 20.f, getColor3f(0.5f, 0.9f, 1.f), false));
         instance_->addWidget(new Label(&marsName_, TEXT_ALIGN_RIGHT,
             Vector2f(410,18), 12.f, getColor3f(0.5f, 0.9f, 1.f), false));
 

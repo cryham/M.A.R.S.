@@ -48,7 +48,7 @@ UiWindow* GameOptions::get()
         
         int y = 10, yadd = 20, w = 540;
         instance_->addWidget(new Label(locales::getLocale(locales::GameOptions), TEXT_ALIGN_LEFT,
-            Vector2f(10,y), 20.f, getColor3f(0.5f, 0.9f, 1.f), false));  y += yadd*2;
+            Vector2f(10,0), 20.f, getColor3f(0.5f, 0.9f, 1.f), false));  y += yadd*2;
 
         // instance_->addWidget(new LabeledBox(locales::getLocale(locales::SpaceObjects),
         //    Vector2f(10, y), 100, 210));  y += yadd*3/2;

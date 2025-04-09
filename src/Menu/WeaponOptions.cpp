@@ -64,7 +64,7 @@ UiWindow* WeaponOptions::get()
         instance_->addWidget(new Button(locales::getLocale(locales::Ok), NULL, &kOk_, 
 			Vector2f(250,270), 90, 20));
         instance_->addWidget(new Label(locales::getLocale(locales::WeaponOptions), TEXT_ALIGN_LEFT, 
-			Vector2f(10,10), 20.f, getColor3f(0.5f, 0.9f, 1.f), false));
+			Vector2f(10,0), 20.f, getColor3f(0.5f, 0.9f, 1.f), false));
         // instance_->addWidget(new Line(Vector2f(10, 35), Vector2f(310, 35)));
 
         //  weapons

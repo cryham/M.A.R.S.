@@ -1,4 +1,4 @@
-/* Plasma.cpp
+/* Pulse.cpp
 
 Copyright (c) 2010 - 2011 by Felix Lauer and Simon Schneegans
 
@@ -15,7 +15,7 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-#include "Weapons/Plasma.hpp"
+#include "Weapons/Pulse.hpp"
 
 #include "SpaceObjects/Ship.hpp"
 #include "Particles/particles.hpp"
@@ -26,44 +26,44 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include <SFML/Graphics.hpp>
 
 
-void Plasma::draw(float alpha) const
+void Pulse::draw(float alpha) const
 {
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    glColor3f(0.2f, 1.f, 1.f);
+    glColor3f(0.5f, 0.5f, 1.f);
     const int posX = 0;
     const int posY = 29;
     glBegin(GL_QUADS);
-        glTexCoord2f(posX*0.125f,     posY*0.03125f);    glVertex2f(0,      parent_->radius()*0.4f);
-        glTexCoord2f(posX*0.125f,    (posY+1)*0.03125f); glVertex2f(0, -1.f*parent_->radius()*0.4f);
-        glTexCoord2f((posX+1)*0.125f,(posY+1)*0.03125f); glVertex2f(parent_->radius()*3.f, -1.f*parent_->radius()*0.4f);
-        glTexCoord2f((posX+1)*0.125f, posY*0.03125f);    glVertex2f(parent_->radius()*3.f,      parent_->radius()*0.4f);
+        glTexCoord2f(posX*0.125f,     posY*0.03125f);    glVertex2f(0,      parent_->radius()*1.5f);
+        glTexCoord2f(posX*0.125f,    (posY+1)*0.03125f); glVertex2f(0, -1.f*parent_->radius()*1.5f);
+        glTexCoord2f((posX+1)*0.125f,(posY+1)*0.03125f); glVertex2f(parent_->radius()*3.f, -1.f*parent_->radius()*1.5f);
+        glTexCoord2f((posX+1)*0.125f, posY*0.03125f);    glVertex2f(parent_->radius()*3.f,      parent_->radius()*1.5f);
     glEnd();
 }
 
-void Plasma::fire() const
+void Pulse::fire() const
 {
     float time = timer::totalTime();
-    if (time - timer_ <= 0.1f) return;
+    if (time - timer_ <= 0.2f) return;
     timer_ = time;
     float angleRad = parent_->rotation()*M_PI / 180.f;
     Vector2f faceDirection(std::cos(angleRad), std::sin(angleRad));
 
-    particles::spawn(particles::pAmmoPlasma, parent_->location() + faceDirection*parent_->radius(), faceDirection, parent_->velocity(), Color3f(), parent_->getOwner());
+    particles::spawn(particles::pAmmoPulse, parent_->location() + faceDirection*parent_->radius(), faceDirection, parent_->velocity(), Color3f(), parent_->getOwner());
     parent_->velocity() -= faceDirection*10.f;
     sound::playSound(sound::Blub, parent_->location());
 }
 
-float Plasma::maxDistance() const
+float Pulse::maxDistance() const
 {
     return 200.f;
 }
 
-float Plasma::minDistance() const
+float Pulse::minDistance() const
 {
     return 20.f;
 }
 
-float Plasma::maxAngle() const
+float Pulse::maxAngle() const
 {
     return 70.f;
 }

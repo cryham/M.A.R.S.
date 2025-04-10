@@ -44,7 +44,7 @@ namespace spaceObjects
         oHeatJet, oShockWave, oHeatBurner, oMiniFlameSmoke,
 
         oAmmoRocket, oPowerUpCollect, oAmmoFist,
-        oNumber, oAmmoInsta, oStar,
+        oNumber, oAmmoInsta, oStar, oTurret,
 
         oAmmoAFK85, oAmmoRifle2, oAmmoShotgun2,
         oAmmoPlasma, oAmmoFlamer2, oAmmoH2OStorm, oAmmoMiniRocket, 

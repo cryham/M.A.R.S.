@@ -48,6 +48,7 @@ class Player
         friend class Controller;
         friend class TabStats;
         friend class Cannon;
+        friend class Turret;
 
     private:
         Ship* ship_;

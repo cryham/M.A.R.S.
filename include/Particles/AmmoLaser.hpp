@@ -1,4 +1,4 @@
-/* AmmoPlasma.hpp
+/* AmmoLaser.hpp
 
 Copyright (c) 2010 - 2011 by Felix Lauer and Simon Schneegans
 
@@ -18,14 +18,15 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #pragma once
 
 #include "Particles/Particle.hpp"
+#include "TrailEffects/trailEffects.hpp"
 
 
-class AmmoPlasma: public Particle<AmmoPlasma>
+class AmmoLaser: public Particle<AmmoLaser>
 {
     public:
-        AmmoPlasma(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,
+        AmmoLaser(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,
             Color3f const& color, Player* damageSource);
-        ~AmmoPlasma();
+        ~AmmoLaser();
 
         void update();
         void draw() const;
@@ -33,11 +34,11 @@ class AmmoPlasma: public Particle<AmmoPlasma>
         void onCollision(SpaceObject* with, Vector2f const& location,
                          Vector2f const& direction, Vector2f const& velocity);
 
-        static void shockWave(Vector2f const& location, float strength, float radius);
-
-        friend class Particle<AmmoPlasma>;
+        friend class Particle<AmmoLaser>;
 
     private:
-        Color3f color_;
-        static std::list<AmmoPlasma*> activeParticles_;
+        Trail* trail_;
+        const static int steps_ = 16;
+        Vector2f pos_[steps_];
+        static std::list<AmmoLaser*> activeParticles_;
 };

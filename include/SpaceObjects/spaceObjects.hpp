@@ -48,6 +48,9 @@ namespace spaceObjects
 
         oAmmoAFK85, oAmmoRifle2, oAmmoShotgun2,
         oAmmoPlasma, oAmmoFlamer2, oAmmoH2OStorm, oAmmoMiniRocket, 
+
+        oAmmoPulse, oAmmoCloud, oAmmoFreezers, oAmmoLaser, oAmmoLightning,
+        oAmmoMinigun, oAmmoGauss, oAmmoGrenades, oAmmoSeekers,
     };
 
     void update();

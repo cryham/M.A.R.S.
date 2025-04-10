@@ -223,6 +223,15 @@ void Ball::onCollision(SpaceObject* with, Vector2f const& location,
             unfreeze = 10.f;
             break;
 
+        //  Ammo new 2
+        case spaceObjects::oAmmoCloud:  // OO
+        case spaceObjects::oAmmoPulse:  // ))
+            if (heatTimer_ < 20.f)  heatTimer_ += 0.01f;
+            velocity_ += velocity * 0.3f*timer::frameTime();
+            unfreeze = 1.f;
+            break;
+        
+        //  Ammo
         case spaceObjects::oAmmoAFK85:
         case spaceObjects::oAmmoAFK47:
             particles::spawnMultiple(1, particles::pSpark, location,
@@ -231,7 +240,14 @@ void Ball::onCollision(SpaceObject* with, Vector2f const& location,
             unfreeze = 1.f;
             break;
 
-        case spaceObjects::oAmmoRifle2:
+        case spaceObjects::oAmmoLaser:  // ___
+            velocity_ += velocity * 0.3f*timer::frameTime();
+        case spaceObjects::oAmmoRifle2:  // --
+            particles::spawnMultiple(10, particles::pSpark, location,
+                dynamic_cast<MobileSpaceObject*>(with)->velocity()*0.02f,
+                velocity_, Color3f(0.5f, 0.3f, 0.3f));
+            unfreeze = 10.f;
+            break;
         case spaceObjects::oAmmoROFLE:
             particles::spawnMultiple(10, particles::pSpark, location,
                 dynamic_cast<MobileSpaceObject*>(with)->velocity()*0.5f,
@@ -239,7 +255,8 @@ void Ball::onCollision(SpaceObject* with, Vector2f const& location,
             unfreeze = 10.f;
             break;
 
-        case spaceObjects::oAmmoShotgun2:
+        case spaceObjects::oAmmoMinigun:  // ...
+        case spaceObjects::oAmmoShotgun2:  // <<
         case spaceObjects::oAmmoShotgun:
             particles::spawnMultiple(1, particles::pSpark, location,
                 dynamic_cast<MobileSpaceObject*>(with)->velocity()*0.7f,

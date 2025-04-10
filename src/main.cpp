@@ -88,7 +88,8 @@ int main(int argc, char* argv[])
     {
         games:: start(games::gMenu);
 
-        std::cout << "Happy Gaming..." << std::endl;
+        if (settings::C_LogoSigns)
+            std::cout << "Happy Gaming..." << std::endl;
 
         window::mainLoop();
     }

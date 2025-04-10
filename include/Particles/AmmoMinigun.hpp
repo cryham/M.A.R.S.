@@ -1,4 +1,4 @@
-/* AmmoPlasma.hpp
+/* AmmoMinigun.hpp
 
 Copyright (c) 2010 - 2011 by Felix Lauer and Simon Schneegans
 
@@ -18,14 +18,15 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #pragma once
 
 #include "Particles/Particle.hpp"
+#include "System/Color3f.hpp"
 
 
-class AmmoPlasma: public Particle<AmmoPlasma>
+class AmmoMinigun: public Particle<AmmoMinigun>
 {
     public:
-        AmmoPlasma(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,
+        AmmoMinigun(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,
             Color3f const& color, Player* damageSource);
-        ~AmmoPlasma();
+        ~AmmoMinigun();
 
         void update();
         void draw() const;
@@ -33,11 +34,10 @@ class AmmoPlasma: public Particle<AmmoPlasma>
         void onCollision(SpaceObject* with, Vector2f const& location,
                          Vector2f const& direction, Vector2f const& velocity);
 
-        static void shockWave(Vector2f const& location, float strength, float radius);
-
-        friend class Particle<AmmoPlasma>;
+        friend class Particle<AmmoMinigun>;
 
     private:
+        bool trail_;
         Color3f color_;
-        static std::list<AmmoPlasma*> activeParticles_;
+        static std::list<AmmoMinigun*> activeParticles_;
 };

@@ -1,4 +1,4 @@
-/* AmmoPlasma.hpp
+/* AmmoCloud.hpp
 
 Copyright (c) 2010 - 2011 by Felix Lauer and Simon Schneegans
 
@@ -20,12 +20,12 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Particles/Particle.hpp"
 
 
-class AmmoPlasma: public Particle<AmmoPlasma>
+class AmmoCloud: public Particle<AmmoCloud>
 {
     public:
-        AmmoPlasma(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,
+        AmmoCloud(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,
             Color3f const& color, Player* damageSource);
-        ~AmmoPlasma();
+        ~AmmoCloud();
 
         void update();
         void draw() const;
@@ -35,9 +35,10 @@ class AmmoPlasma: public Particle<AmmoPlasma>
 
         static void shockWave(Vector2f const& location, float strength, float radius);
 
-        friend class Particle<AmmoPlasma>;
+        friend class Particle<AmmoCloud>;
 
     private:
+        float spawnTime_;
         Color3f color_;
-        static std::list<AmmoPlasma*> activeParticles_;
+        static std::list<AmmoCloud*> activeParticles_;
 };

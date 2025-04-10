@@ -37,6 +37,68 @@ namespace physics
     }
 
 
+    //  overlap
+    //--------------------------------------------------------------------------------------------------------------------------------------------
+    void overlap (MobileSpaceObject* object, int with)
+    {
+        // collision with ships and balls
+        if (with & MOBILES)
+        {
+            // check for collision with each mobile object
+            for (auto& it : mobileObjects_)
+            {
+                // don't check for self collision
+                if (it != object)
+                {
+                    // get faster object
+                    MobileSpaceObject *source, *target;
+                    if (object->velocity() > it->velocity())
+                    {
+                        source = object;
+                        target = it;
+                    }else
+                    {   source = it;
+                        target = object;
+                    }
+
+                    const float minDistSquared = std::pow(object->radius_ + it->radius_, 2);
+                    // if objects are moving
+                    if (source->velocity().lengthSquare() > 0)
+                    {
+                        const Vector2f velocitySourceNorm  ( source->velocity().normalize());
+                        const Vector2f velocitySourceOrtho (-velocitySourceNorm.y_, velocitySourceNorm.x_);
+                        const Vector2f centerDist          ( velocitySourceOrtho * ((source->location_ - target->location_)*velocitySourceOrtho));
+
+                        // if path of object crosses target object
+                        if (centerDist.lengthSquare() < minDistSquared)
+                        {
+                            const Vector2f lastFrameLocation = source->location_ - source->velocity()*timer::frameTime()*0.6f;
+                            const Vector2f chordMidPoint     = target->location_ + centerDist;
+
+                            // if path of object has intersected with target within the last frame
+                            if ( ((source->location_ - target->location_).lengthSquare() < minDistSquared)
+                              || ((lastFrameLocation - target->location_).lengthSquare() < minDistSquared)
+                              || ((chordMidPoint - source->location_)*(chordMidPoint - lastFrameLocation) < 0.f))
+                            {
+                                if (source->velocity()*(target->location_ - lastFrameLocation) > 0)
+                                {
+                                    const Vector2f moveOutDist (velocitySourceNorm * std::sqrt(minDistSquared - centerDist.lengthSquare()));
+                                    // source->location_ = chordMidPoint - moveOutDist;
+
+                                    const Vector2f impactLocation  ((source->location_ + target->location_)*0.5f);
+                                    const Vector2f impactDirection ((target->location_ - source->location_).normalize());
+
+                                    target->onCollision(source, impactLocation, impactDirection, source->velocity());
+                                    source->onCollision(target, impactLocation, impactDirection, source->velocity());
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     //  collide
     //--------------------------------------------------------------------------------------------------------------------------------------------
     void collide (MobileSpaceObject* object, int with)

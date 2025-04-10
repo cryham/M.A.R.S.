@@ -34,6 +34,7 @@ class Player;
 
 namespace physics 
 {
+    void     overlap        (MobileSpaceObject* source, int with);
     void     collide        (MobileSpaceObject* source, int with);
     Vector2f attract        (MobileSpaceObject* attracted);
     void     borders        (MobileSpaceObject* source);

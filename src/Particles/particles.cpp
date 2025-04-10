@@ -61,6 +61,17 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Particles/AmmoH2OStorm.hpp"
 #include "Particles/AmmoMiniRocket.hpp"
 
+#include "Particles/AmmoPulse.hpp"
+#include "Particles/AmmoCloud.hpp"
+#include "Particles/AmmoFreezers.hpp"
+#include "Particles/AmmoLaser.hpp"
+#include "Particles/AmmoLightning.hpp"
+
+#include "Particles/AmmoMinigun.hpp"
+#include "Particles/AmmoGauss.hpp"
+#include "Particles/AmmoGrenades.hpp"
+#include "Particles/AmmoSeekers.hpp"
+
 #include "TrailEffects/trailEffects.hpp"
 
 
@@ -99,7 +110,7 @@ namespace particles
         CrushedIce::       updateAll();
         AmmoInsta::        updateAll();
         Star::             updateAll();
-
+        //  new
         AmmoAFK85::        updateAll();
         AmmoFlamer2::      updateAll();
         AmmoPlasma::       updateAll();
@@ -107,6 +118,17 @@ namespace particles
         AmmoShotgun2::     updateAll();
         AmmoH2OStorm::     updateAll();
         AmmoMiniRocket::   updateAll();
+        //  new 2
+        AmmoPulse::        updateAll();
+        AmmoCloud::        updateAll();
+        AmmoFreezers::     updateAll();
+        AmmoLaser::        updateAll();
+        AmmoLightning::    updateAll();
+
+        AmmoMinigun::      updateAll();
+        AmmoGauss::        updateAll();
+        AmmoGrenades::     updateAll();
+        AmmoSeekers::      updateAll();
     }
 
     void drawStars()
@@ -143,7 +165,7 @@ namespace particles
             BurningFragment::  drawAll();
             AmmoInsta::        drawAll();
             FragmentFlame::    drawAll();
-
+            //  new
             AmmoAFK85::        drawAll();
             AmmoFlamer2::      drawAll();
             AmmoPlasma::       drawAll();
@@ -151,6 +173,17 @@ namespace particles
             AmmoShotgun2::     drawAll();
             AmmoH2OStorm::     drawAll();
             AmmoMiniRocket::   drawAll();
+            //  new 2
+            AmmoPulse::        drawAll();
+            AmmoCloud::        drawAll();
+            AmmoFreezers::     drawAll();
+            AmmoLaser::        drawAll();
+            AmmoLightning::    drawAll();
+
+            AmmoMinigun::      drawAll();
+            AmmoGauss::        drawAll();
+            AmmoGrenades::     drawAll();
+            AmmoSeekers::      drawAll();
         glEnd();
 
         glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
@@ -240,6 +273,7 @@ namespace particles
     {
         switch (type)
         {
+            //  new
             case pAmmoAFK85:        AmmoAFK85::        spawn(location, direction, velocity, color, damageSource); break;
             case pAmmoFlamer2:      AmmoFlamer2::      spawn(location, direction, velocity, color, damageSource); break;
             case pAmmoPlasma:       AmmoPlasma::       spawn(location, direction, velocity, color, damageSource); break;
@@ -247,18 +281,30 @@ namespace particles
             case pAmmoShotgun2:     AmmoShotgun2::     spawn(location, direction, velocity, color, damageSource); break;
             case pAmmoH2OStorm:     AmmoH2OStorm::     spawn(location, direction, velocity, color, damageSource); break;
             case pAmmoMiniRocket:   AmmoMiniRocket::   spawn(location, direction, velocity, color, damageSource); break;
+            //  new 2
+            case pAmmoPulse:        AmmoPulse::        spawn(location, direction, velocity, color, damageSource); break;
+            case pAmmoCloud:        AmmoCloud::        spawn(location, direction, velocity, color, damageSource); break;
+            case pAmmoFreezers:     AmmoFreezers::     spawn(location, direction, velocity, color, damageSource); break;
+            case pAmmoLaser:        AmmoLaser::        spawn(location, direction, velocity, color, damageSource); break;
+            case pAmmoLightning:    AmmoLightning::    spawn(location, direction, velocity, color, damageSource); break;
 
+            case pAmmoMinigun:      AmmoMinigun::      spawn(location, direction, velocity, color, damageSource); break;
+            case pAmmoGauss:        AmmoGauss::        spawn(location, direction, velocity, color, damageSource); break;
+            case pAmmoGrenades:     AmmoGrenades::     spawn(location, direction, velocity, color, damageSource); break;
+            case pAmmoSeekers:      AmmoSeekers::      spawn(location, direction, velocity, color, damageSource); break;
+            //  org
             case pAmmoAFK47:        AmmoAFK47::        spawn(location, direction, velocity, color, damageSource); break;
             case pAmmoBurner:       AmmoBurner::       spawn(location, direction, velocity, color, damageSource); break;
+            case pAmmoH2OMG:        AmmoH2OMG::        spawn(location, direction, velocity, color, damageSource); break;
+            case pAmmoShotgun:      AmmoShotgun::      spawn(location, direction, velocity, color, damageSource); break;
             case pAmmoFlubba:       AmmoFlubba::       spawn(location, direction, velocity, color, damageSource); break;
-
+            case pAmmoROFLE:        AmmoROFLE::        spawn(location, direction, velocity, color, damageSource); break;
+            
+            //  common
             case pFuel:             Fuel::             spawn(location, direction, velocity, color, damageSource); break;
             case pMud:              Mud::              spawn(location, direction, velocity, color, damageSource); break;
             case pSmoke:            Smoke::            spawn(location, direction, velocity, color, damageSource); break;
             case pEruption:         Eruption::         spawn(location, direction, velocity, color, damageSource); break;
-
-            case pAmmoROFLE:        AmmoROFLE::        spawn(location, direction, velocity, color, damageSource); break;
-            case pAmmoShotgun:      AmmoShotgun::      spawn(location, direction, velocity, color, damageSource); break;
 
             case pDust:             Dust::             spawn(location, direction, velocity, color, damageSource); break;
             case pExplode:          Explode::          spawn(location, direction, velocity, color, damageSource); break;
@@ -272,15 +318,14 @@ namespace particles
             case pSpark:            Spark::            spawn(location, direction, velocity, color, damageSource); break;
             case pFragment:         Fragment::         spawn(location, direction, velocity, color, damageSource); break;
 
-            case pAmmoH2OMG:        AmmoH2OMG::        spawn(location, direction, velocity, color, damageSource); break;
             case pHeat:             Heat::             spawn(location, direction, velocity, color, damageSource); break;
             case pHeatJet:          HeatJet::          spawn(location, direction, velocity, color, damageSource); break;
             case pShockWave:        ShockWave::        spawn(location, direction, velocity, color, damageSource); break;
             case pHeatBurner:       HeatBurner::       spawn(location, direction, velocity, color, damageSource); break;
             case pMiniFlameSmoke:   MiniFlameSmoke::   spawn(location, direction, velocity, color, damageSource); break;
 
-            case pAmmoRocket:       AmmoRocket::       spawn(location, direction, velocity, color, damageSource); break;
             case pPowerUpCollect:   PowerUpCollect::   spawn(location, direction, velocity, color, damageSource); break;
+            case pAmmoRocket:       AmmoRocket::       spawn(location, direction, velocity, color, damageSource); break;
             case pAmmoFist:         AmmoFist::         spawn(location, direction, velocity, color, damageSource); break;
             case pNumber:           Number::           spawn(location, direction, velocity, color, damageSource); break;
 
@@ -313,7 +358,7 @@ namespace particles
         AmmoFist::collideWith(target);
         AmmoBurner::collideWith(target);
         AmmoFlubba::collideWith(target);
-
+        //  new
         AmmoAFK85::collideWith(target);
         AmmoFlamer2::collideWith(target);
         AmmoPlasma::collideWith(target);
@@ -321,6 +366,17 @@ namespace particles
         AmmoShotgun2::collideWith(target);
         AmmoH2OStorm::collideWith(target);
         AmmoMiniRocket::collideWith(target);
+        //  new 2
+        AmmoPulse::collideWith(target);
+        AmmoCloud::collideWith(target);
+        AmmoFreezers::collideWith(target);
+        AmmoLaser::collideWith(target);
+        AmmoLightning::collideWith(target);
+
+        AmmoMinigun::collideWith(target);
+        AmmoGauss::collideWith(target);
+        AmmoGrenades::collideWith(target);
+        AmmoSeekers::collideWith(target);
     }
 
     void shockWave(Vector2f const& location, float strength, float radius)
@@ -342,22 +398,29 @@ namespace particles
             + AmmoH2OMG::count() + Heat::count() + HeatJet::count() + ShockWave::count()
             + HeatBurner::count() + MiniFlameSmoke::count() + AmmoRocket::count()+ PowerUpCollect::count()
             + AmmoFist::count() + Number::count() + CrushedIce::count() + AmmoInsta::count() + Star::count()
-
+            //  new
             + AmmoAFK85::count() + AmmoFlamer2::count() + AmmoPlasma::count() +
-            + AmmoRifle2::count() + AmmoShotgun2::count() + AmmoH2OStorm::count() + AmmoMiniRocket::count();
+            + AmmoRifle2::count() + AmmoShotgun2::count() + AmmoH2OStorm::count() + AmmoMiniRocket::count()
+            //  new 2
+            + AmmoPulse::count() + AmmoCloud::count() + AmmoFreezers::count()
+            + AmmoLaser::count() + AmmoLightning::count()
+            + AmmoMinigun::count() + AmmoGauss::count() + AmmoGrenades::count() + AmmoSeekers::count();
     }
 
     void clear()
     {
+        //  org
         AmmoAFK47::        clear();
         AmmoBurner::       clear();
         AmmoFlubba::       clear();
+        AmmoROFLE::        clear();
+        AmmoShotgun::      clear();
+        AmmoH2OMG::        clear();
+        //  common
         Fuel::             clear();
         Mud::              clear();
         Smoke::            clear();
         Eruption::         clear();
-        AmmoROFLE::        clear();
-        AmmoShotgun::      clear();
         Dust::             clear();
         Explode::          clear();
         BurningFragment::  clear();
@@ -367,7 +430,6 @@ namespace particles
         CannonBall::       clear();
         Spark::            clear();
         Fragment::         clear();
-        AmmoH2OMG::        clear();
         Heat::             clear();
         HeatJet::          clear();
         ShockWave::        clear();
@@ -380,7 +442,7 @@ namespace particles
         CrushedIce::       clear();
         AmmoInsta::        clear();
         Star::             clear();
-
+        //  new
         AmmoAFK85::        clear();
         AmmoFlamer2::      clear();
         AmmoPlasma::       clear();
@@ -388,5 +450,16 @@ namespace particles
         AmmoShotgun2::     clear();
         AmmoH2OStorm::     clear();
         AmmoMiniRocket::   clear();
+        //  new 2
+        AmmoPulse::       clear();
+        AmmoCloud::       clear();
+        AmmoFreezers::    clear();
+        AmmoLaser::       clear();
+        AmmoLightning::   clear();
+
+        AmmoMinigun::     clear();
+        AmmoGauss::       clear();
+        AmmoGrenades::    clear();
+        AmmoSeekers::     clear();
     }
 }

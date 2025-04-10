@@ -78,6 +78,17 @@ namespace particles
         pAmmoFlamer2,       ///< Spawned by the Flamer2.
         pAmmoH2OStorm,      ///< Spawned by the H2OStorm.
         pAmmoMiniRocket,    ///< Spawned by the MiniRockets.
+
+        pAmmoPulse,
+        pAmmoCloud,
+        pAmmoFreezers,
+        pAmmoLaser,
+        pAmmoLightning,
+
+        pAmmoMinigun,
+        pAmmoGauss,
+        pAmmoGrenades,
+        pAmmoSeekers,
     };
 
     /// Updates all particles.

@@ -25,15 +25,16 @@ namespace weapons
 {
     enum WeaponType
 	{
-        wInsta = 0,
-        wAFK47, wBurner, wFist, wFlubba,  // original
+        wInsta = 0,  // original 8+1
+        wAFK47, wBurner, wFist, wFlubba,
         wShotgun, wRocketLauncher, wROFLE, wH2OMG,
-                     
-        wShotgun2, wPlasma, wMiniRockets, wFlamer2,  // cryham excessive, modded originals
+        //  cryham 7 excessive
+        wShotgun2, wPlasma, wMiniRockets, wFlamer2,
         wAFK85, wRifle2, wH2OStorm,
-        // wCloud, wFreezers, wGauss,  // cryham new todo
-        // wGrenades, wLaser, wLightning, wMinigun, wPulse, wSeekers,
-        All  // All count  or  no weapon
+        //  cryham 9 new todo
+        wPulse, wCloud, wFreezers, wLaser, wLightning,
+        wMinigun, wGauss, wGrenades, wSeekers,
+        All  // All count  or  no weapon  25
     };
 
     Weapon* create    (WeaponType type, Ship* parent);

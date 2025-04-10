@@ -36,6 +36,17 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Weapons/MiniRockets.hpp"
 #include "Weapons/Shotgun2.hpp"
 
+#include "Weapons/Pulse.hpp"
+#include "Weapons/Cloud.hpp"
+#include "Weapons/Freezers.hpp"
+#include "Weapons/Laser.hpp"
+#include "Weapons/Lightning.hpp"
+
+#include "Weapons/Minigun.hpp"
+#include "Weapons/Gauss.hpp"
+#include "Weapons/Grenades.hpp"
+#include "Weapons/Seekers.hpp"
+
 #include "SpaceObjects/Ship.hpp"
 #include "Players/Player.hpp"
 #include "System/settings.hpp"
@@ -99,11 +110,18 @@ namespace weapons
             case wMiniRockets:  return new MiniRockets(parent);
             case wShotgun2:     return new Shotgun2(parent);
 
-            // cryham  new todo..
-            // case wMinigun:      return new Minigun(parent);
-            // case wGrenades:     return new Grenades(parent);
-            // case wLaser:        return new Laser(parent);
-            // case wLightning:    return new Lightning(parent);
+            // cryham  new
+            case wPulse:        return new Pulse(parent);
+            case wCloud:        return new Cloud(parent);
+            case wFreezers:     return new Freezers(parent);
+            case wLaser:        return new Laser(parent);
+            case wLightning:    return new Lightning(parent);
+
+            case wMinigun:      return new Minigun(parent);
+            case wGauss:        return new Gauss(parent);
+            case wGrenades:     return new Grenades(parent);
+            case wSeekers:      return new Seekers(parent);
+
             default:            return new NoWeapon(parent);
         }
     }

@@ -22,6 +22,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Interface/Button.hpp"
 #include "Interface/LabeledBox.hpp"
 #include "Interface/Checkbox.hpp"
+#include "Specials/specials.hpp"
 #include "System/window.hpp"
 #include "Menu/menus.hpp"
 #include "Locales/locales.hpp"
@@ -32,28 +33,8 @@ UiWindow* WeaponOptions::instance_(NULL);
 bool WeaponOptions::kOk_(false);
 
 
-bool WeaponOptions::kAFK_(false);
-bool WeaponOptions::kBurner_(false);
-bool WeaponOptions::kFist_(false);
-bool WeaponOptions::kFlubba_(false);
-bool WeaponOptions::kShotgun_(false);
-bool WeaponOptions::kRocket_(false);
-bool WeaponOptions::kRofle_(false);
-bool WeaponOptions::kH2OMG_(false);
-
-bool WeaponOptions::kAFK2_(false);
-bool WeaponOptions::kFlamer2_(false);
-bool WeaponOptions::kPlasma_(false);
-bool WeaponOptions::kShotgun2_(false);
-bool WeaponOptions::kMiniRockets_(false);
-bool WeaponOptions::kRifle2_(false);
-bool WeaponOptions::kH2OStorm_(false);
-
-bool WeaponOptions::kShocker_(false);
-bool WeaponOptions::kFreeze_(false);
-bool WeaponOptions::kHeal_(false);
-bool WeaponOptions::kBlast_(false);
-bool WeaponOptions::kFireWall_(false);
+bool WeaponOptions::kWeapon[weapons::All] = {false,};
+bool WeaponOptions::kSpecial[specials::All] = {false,};
 
 
 UiWindow* WeaponOptions::get()
@@ -71,53 +52,53 @@ UiWindow* WeaponOptions::get()
         int x = 20, y = 80, yadd = 20, w = 100;
         instance_->addWidget(new LabeledBox(locales::getLocale(locales::Weapons), 
 			Vector2f(x-10, y-30), w, 210));
-        instance_->addWidget(new Checkbox(new sf::String("AFK-47"), NULL, &kAFK_, 
+        instance_->addWidget(new Checkbox(new sf::String("AFK-47"), NULL, &kWeapon[weapons::wAFK47],
 			Vector2f(x,y), w));  y += yadd;
-        instance_->addWidget(new Checkbox(new sf::String("WT-FLAMER"), NULL, &kBurner_, 
+        instance_->addWidget(new Checkbox(new sf::String("WT-FLAMER"), NULL, &kWeapon[weapons::wBurner],
 			Vector2f(x,y), w));  y += yadd;
-        instance_->addWidget(new Checkbox(new sf::String("FIST OF ALI"), NULL, &kFist_, 
+        instance_->addWidget(new Checkbox(new sf::String("FIST OF ALI"), NULL, &kWeapon[weapons::wFist],
 			Vector2f(x,y), w));  y += yadd;
-        instance_->addWidget(new Checkbox(new sf::String("FLUBBA"), NULL, &kFlubba_, 
+        instance_->addWidget(new Checkbox(new sf::String("FLUBBA"), NULL, &kWeapon[weapons::wFlubba],
 			Vector2f(x,y), w));  y += yadd;
-        instance_->addWidget(new Checkbox(new sf::String("SHOTGUN"), NULL, &kShotgun_, 
+        instance_->addWidget(new Checkbox(new sf::String("SHOTGUN"), NULL, &kWeapon[weapons::wShotgun],
 			Vector2f(x,y), w));  y += yadd;
-        instance_->addWidget(new Checkbox(new sf::String("ROCK'n'LOL"), NULL, &kRocket_, 
+        instance_->addWidget(new Checkbox(new sf::String("ROCK'n'LOL"), NULL, &kWeapon[weapons::wRocketLauncher],
 			Vector2f(x,y), w));  y += yadd;
-        instance_->addWidget(new Checkbox(new sf::String("ROFLE"), NULL, &kRofle_, 
+        instance_->addWidget(new Checkbox(new sf::String("ROFLE"), NULL, &kWeapon[weapons::wROFLE],
 			Vector2f(x,y), w));  y += yadd;
-        instance_->addWidget(new Checkbox(new sf::String("H2-OMG"), NULL, &kH2OMG_, 
+        instance_->addWidget(new Checkbox(new sf::String("H2-OMG"), NULL, &kWeapon[weapons::wH2OMG],
 			Vector2f(x,y), w));  y += yadd;
         //  weapons2
         x += 150;  y = 80;
         instance_->addWidget(new LabeledBox(locales::getLocale(locales::Weapons), 
 			Vector2f(x-10, y-30), w, 210));
-        instance_->addWidget(new Checkbox(new sf::String("AFK-85"), NULL, &kAFK2_, 
+        instance_->addWidget(new Checkbox(new sf::String("AFK-85"), NULL, &kWeapon[weapons::wAFK85],
 			Vector2f(x,y), w));  y += yadd;
-        instance_->addWidget(new Checkbox(new sf::String("Flamer2"), NULL, &kFlamer2_, 
+        instance_->addWidget(new Checkbox(new sf::String("Flamer2"), NULL, &kWeapon[weapons::wFlamer2],
 			Vector2f(x,y), w));  y += yadd;
-        instance_->addWidget(new Checkbox(new sf::String("Plasma"), NULL, &kPlasma_, 
+        instance_->addWidget(new Checkbox(new sf::String("Plasma"), NULL, &kWeapon[weapons::wPlasma],
 			Vector2f(x,y), w));  y += yadd;
-        instance_->addWidget(new Checkbox(new sf::String("Shotgun2"), NULL, &kShotgun2_, 
+        instance_->addWidget(new Checkbox(new sf::String("Shotgun2"), NULL, &kWeapon[weapons::wShotgun2],
 			Vector2f(x,y), w));  y += yadd;
-        instance_->addWidget(new Checkbox(new sf::String("MiniRockets"), NULL, &kMiniRockets_, 
+        instance_->addWidget(new Checkbox(new sf::String("MiniRockets"), NULL, &kWeapon[weapons::wMiniRockets],
 			Vector2f(x,y), w));  y += yadd;
-        instance_->addWidget(new Checkbox(new sf::String("Rifle2"), NULL, &kRifle2_, 
+        instance_->addWidget(new Checkbox(new sf::String("Rifle2"), NULL, &kWeapon[weapons::wRifle2],
 			Vector2f(x,y), w));  y += yadd;
-        instance_->addWidget(new Checkbox(new sf::String("H2o-Storm"), NULL, &kH2OStorm_, 
+        instance_->addWidget(new Checkbox(new sf::String("H2o-Storm"), NULL, &kWeapon[weapons::wH2OStorm],
 			Vector2f(x,y), w));  y += yadd;
         //  special
         x += 150;  y = 80;
         instance_->addWidget(new LabeledBox(locales::getLocale(locales::Specials), 
 			Vector2f(x-10, y-30), w, 210));
-        instance_->addWidget(new Checkbox(new sf::String("FREEZER"), NULL, &kFreeze_, 
+        instance_->addWidget(new Checkbox(new sf::String("FREEZER"), NULL, &kSpecial[specials::sFreeze],
 			Vector2f(x,y), w));  y += yadd;
-        instance_->addWidget(new Checkbox(new sf::String("HEAL"), NULL, &kHeal_, 
+        instance_->addWidget(new Checkbox(new sf::String("HEAL"), NULL, &kSpecial[specials::sHeal],
 			Vector2f(x,y), w));  y += yadd;
-        instance_->addWidget(new Checkbox(new sf::String("BLAST"), NULL, &kBlast_, 
+        instance_->addWidget(new Checkbox(new sf::String("BLAST"), NULL, &kSpecial[specials::sBlast],
 			Vector2f(x,y), w));  y += yadd;
-        instance_->addWidget(new Checkbox(new sf::String("FIRE WALL"), NULL, &kFireWall_, 
+        instance_->addWidget(new Checkbox(new sf::String("FIRE WALL"), NULL, &kSpecial[specials::sFireWall],
 			Vector2f(x,y), w));  y += yadd;
-        instance_->addWidget(new Checkbox(new sf::String("SHOCKER"), NULL, &kShocker_, 
+        instance_->addWidget(new Checkbox(new sf::String("SHOCKER"), NULL, &kSpecial[specials::sShocker],
 			Vector2f(x,y), w));  y += yadd;
     }
     return instance_;
@@ -126,29 +107,11 @@ UiWindow* WeaponOptions::get()
 
 void WeaponOptions::onShow()
 {
-    int en = settings::C_EnabledWeaponsByUser;
-    kAFK_      = en & weapons::wAFK47;
-    kBurner_   = en & weapons::wBurner;
-    kFist_     = en & weapons::wFist;
-    kFlubba_   = en & weapons::wFlubba;
-    kShotgun_  = en & weapons::wShotgun;
-    kRocket_   = en & weapons::wRocketLauncher;
-    kRofle_    = en & weapons::wROFLE;
-    kH2OMG_    = en & weapons::wH2OMG;
+    for (int i=0; i < weapons::All; ++i)
+        kWeapon[i] = settings::C_EnabledWeaponsByUser[i];
 
-    kAFK2_     = en & weapons::wAFK85;
-    kFlamer2_  = en & weapons::wFlamer2;
-    kPlasma_   = en & weapons::wPlasma;
-    kShotgun2_ = en & weapons::wShotgun2;
-    kMiniRockets_ = en & weapons::wMiniRockets;
-    kRifle2_   = en & weapons::wRifle2;
-    kH2OStorm_ = en & weapons::wH2OStorm;
-
-    kFreeze_   = settings::C_EnabledSpecialsByUser & specials::sFreeze;
-    kHeal_     = settings::C_EnabledSpecialsByUser & specials::sHeal;
-    kBlast_    = settings::C_EnabledSpecialsByUser & specials::sBlast;
-    kFireWall_ = settings::C_EnabledSpecialsByUser & specials::sFireWall;
-    kShocker_  = settings::C_EnabledSpecialsByUser & specials::sShocker;
+    for (int i=0; i < specials::All; ++i)
+        kSpecial[i] = settings::C_EnabledSpecialsByUser[i];
 }
 
 void WeaponOptions::checkWidgets()
@@ -156,24 +119,11 @@ void WeaponOptions::checkWidgets()
     if (kOk_)
     {   kOk_ = false;
 
-        settings::C_EnabledWeaponsByUser  =
-            (kAFK_ ? weapons::wAFK47:0) | (kBurner_ ? weapons::wBurner:0) | (kFist_ ? weapons::wFist:0) |
-            (kFlubba_ ? weapons::wFlubba:0) | (kShotgun_ ? weapons::wShotgun:0) |
-            (kRocket_ ? weapons::wRocketLauncher:0) | (kRofle_ ? weapons::wROFLE:0) | (kH2OMG_ ? weapons::wH2OMG:0) |
-            // new
-            (kAFK2_ ? weapons::wAFK85:0) | (kFlamer2_ ? weapons::wFlamer2:0) |
-            (kPlasma_ ? weapons::wPlasma:0) | (kShotgun2_ ? weapons::wShotgun2:0) |
-            (kMiniRockets_ ? weapons::wMiniRockets:0) | (kRifle2_ ? weapons::wRifle2:0) | (kH2OStorm_ ? weapons::wH2OStorm:0);
+        for (int i=0; i < weapons::All; ++i)
+            settings::C_EnabledWeaponsByUser[i] = kWeapon[i];
 
-        settings::C_EnabledSpecialsByUser =
-            (kFreeze_ ? specials::sFreeze:0) | (kHeal_ ? specials::sHeal:0) | (kBlast_ ? specials::sBlast:0) |
-            (kFireWall_? specials::sFireWall:0) | (kShocker_? specials::sShocker:0);
-
-        if (settings::C_EnabledWeaponsByUser == 0)
-            settings::C_EnabledWeaponsByUser = weapons::wNoWeapon;
-
-        if (settings::C_EnabledSpecialsByUser == 0)
-            settings::C_EnabledSpecialsByUser = specials::sNoSpecial;
+        for (int i=0; i < specials::All; ++i)
+            settings::C_EnabledSpecialsByUser[i] = kSpecial[i];
 
         menus::hideWindow();
     }

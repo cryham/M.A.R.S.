@@ -33,8 +33,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 Rally::Rally()
     :Game(games::gRally)
 {
-    settings::C_EnabledWeapons  = settings::C_EnabledWeaponsByUser;
-    settings::C_EnabledSpecials = settings::C_EnabledSpecialsByUser;
+    copyFromUser();
 
     music::play();
 

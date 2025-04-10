@@ -20,18 +20,20 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 class Weapon;
 class Ship;
 
+
 namespace weapons 
 {
     enum WeaponType
 	{
-        wInsta = 1<<0,
-        wAFK47 = 1<<1, wBurner = 1<<2, wFist = 1<<3, wFlubba = 1<<4,  // original
-        wShotgun = 1<<5, wRocketLauncher = 1<<6, wROFLE = 1<<7, wH2OMG = 1<<8,
+        wInsta = 0,
+        wAFK47, wBurner, wFist, wFlubba,  // original
+        wShotgun, wRocketLauncher, wROFLE, wH2OMG,
                      
-        wShotgun2 = 1<<9, wPlasma = 1<<10, wMiniRockets = 1<<11, wFlamer2 = 1<<12,  // cryham excessive, modded originals
-        wAFK85 = 1<<13, wRifle2 = 1<<14, wH2OStorm = 1<<15,
-        // wMinigun = 1<<16, wGrenades = 1<<17, wLaser = 1<<18, wLightning = 1<<19,  // cryham new todo
-        wNoWeapon = 1<<20
+        wShotgun2, wPlasma, wMiniRockets, wFlamer2,  // cryham excessive, modded originals
+        wAFK85, wRifle2, wH2OStorm,
+        // wCloud, wFreezers, wGauss,  // cryham new todo
+        // wGrenades, wLaser, wLightning, wMinigun, wPulse, wSeekers,
+        All  // All count  or  no weapon
     };
 
     Weapon* create    (WeaponType type, Ship* parent);

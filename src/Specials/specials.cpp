@@ -27,23 +27,39 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Players/Player.hpp"
 #include "System/settings.hpp"
 
+
 namespace specials 
 {
+    SpecialType getNext(SpecialType type, bool add1st = true, int add = 1)
+    {
+        int next = type, cnt = 0;
+        auto check = [&next]()
+        {
+            if (next >= specials::All)
+                next = 0;
+            if (next < 0)
+                next = specials::All-1;
+        };
+        if (add1st)
+            next += add;
+        check();
+
+        while (cnt < specials::All && !settings::C_EnabledSpecials[next])
+        {
+            next += add;
+            check();
+            ++cnt;
+        }
+        return (SpecialType)next;
+    }
 
     Special* create(SpecialType type, Ship* parent)
     {
-        int i(1), tmpType(type);
-        while (i < sNoSpecial && !(settings::C_EnabledSpecials & tmpType))
-        {
-            i *= 2;
-            if ((tmpType*=2) > sNoSpecial)
-                tmpType = 1;
-        }
-        type = static_cast<SpecialType>(tmpType);
+        type = getNext(type, false, 1);  // ensure enabled
 
-        if  (parent->getOwner()->type() == controllers::cPlayer1 && type != sNoSpecial)
+        if  (parent->getOwner()->type() == controllers::cPlayer1 && type != specials::All)
             settings::C_playerISpecial = type;
-        else if  (parent->getOwner()->type()  == controllers::cPlayer2 && type != sNoSpecial)
+        else if  (parent->getOwner()->type()  == controllers::cPlayer2 && type != specials::All)
             settings::C_playerIISpecial = type;
 
         switch (type)
@@ -59,29 +75,13 @@ namespace specials
 
     Special* createNext(SpecialType type, Ship* parent)
     {
-        int next(type == sNoSpecial ? 1 : type*2), i(1);
-
-        while (i < sNoSpecial && !(settings::C_EnabledSpecials & next))
-        {
-            i *= 2;
-            if ((next*=2) > sNoSpecial)
-                next = 1;
-        }
-        return create(static_cast<SpecialType>(next), parent);
+        SpecialType next = getNext(type, 1);
+        return create(next, parent);
     }
 
     Special* createPrev(SpecialType type, Ship* parent)
     {
-        int next(type == 1 ? sNoSpecial : type*0.5), i(1);
-
-        while (i < sNoSpecial && !(settings::C_EnabledSpecials & next))
-        {
-            i *= 2;
-            if ((next/=2) < 1)
-                next = sNoSpecial;
-        }
-        return create(static_cast<SpecialType>(next), parent);
+        SpecialType next = getNext(type, -1);
+        return create(next, parent);
     }
-
 }
-

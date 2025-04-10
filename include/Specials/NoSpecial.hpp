@@ -28,7 +28,7 @@ class NoSpecial: public Special
     public:
         /// Ctor which constructs the special.
         NoSpecial(Ship* parent):
-              Special(specials::sNoSpecial, parent, sf::String("Nothing"))
+              Special(specials::All, parent, sf::String("Nothing"))
         {   }
 
         /// Does nothing.

@@ -28,7 +28,7 @@ class Plasma: public Weapon
     public:
         /// Ctor which constructs the weapon.
         Plasma(Ship* parent):
-              Weapon(weapons::wPlasma, parent, sf::String("PLASMA"))
+              Weapon(weapons::wPlasma, parent, sf::String("Plasma"))
         {   }
 
         /// Spawns some particles.

@@ -26,6 +26,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Players/players.hpp"
 #include "Teams/Team.hpp"
 #include "Hud/hud.hpp"
+#include "Weapons/weapons.hpp"
 #include "Zones/zones.hpp"
 #include "DecoObjects/decoObjects.hpp"
 #include "Items/items.hpp"
@@ -157,6 +158,24 @@ void Game::restart()
     hud::displayPoints(false);
     timer::resetSlowMotion();
     ended_ = false;
+}
+
+void Game::clear()
+{
+    for (int i=0; i < weapons::All; ++i)
+        settings::C_EnabledWeapons[i] = false;
+    for (int i=0; i < specials::All; ++i)
+        settings::C_EnabledSpecials[i] = false;
+}
+
+void Game::copyFromUser()
+{
+    for (int i=0; i < weapons::All; ++i)
+        settings::C_EnabledWeapons[i] = settings::C_EnabledWeaponsByUser[i];
+    
+    settings::C_EnabledWeapons[weapons::wInsta] = false;
+    for (int i=0; i < specials::All; ++i)
+        settings::C_EnabledSpecials[i] = settings::C_EnabledSpecialsByUser[i];
 }
 
 games::GameType Game::type() const

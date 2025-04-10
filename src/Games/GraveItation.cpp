@@ -28,8 +28,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 GraveItation::GraveItation()
     :Game(games::gGraveItation)
 {
-    settings::C_EnabledWeapons  = weapons::wInsta;
-    settings::C_EnabledSpecials = specials::sNoSpecial;
+    clear();
+    settings::C_EnabledWeapons[weapons::wInsta] = true;
 
     music::play();
 
@@ -49,12 +49,14 @@ GraveItation::GraveItation()
 
     if (settings::C_playerIIteamL)
     {
-        if (!myTeamL) myTeamL = new GITeam(settings::C_playerIITeamColor);
+        if (!myTeamL)
+            myTeamL = new GITeam(settings::C_playerIITeamColor);
         players::addPlayer(myTeamL, controllers::cPlayer2);
     }
     else if (settings::C_playerIIteamR)
     {
-        if (!myTeamR) myTeamR = new GITeam(settings::C_playerIITeamColor);
+        if (!myTeamR)
+            myTeamR = new GITeam(settings::C_playerIITeamColor);
         players::addPlayer(myTeamR, controllers::cPlayer2);
     }
 

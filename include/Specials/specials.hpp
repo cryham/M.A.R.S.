@@ -20,12 +20,13 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 class Special;
 class Ship;
 
+
 namespace specials 
 {
     enum SpecialType
     {
-        sFreeze=1, sHeal=2, sBlast=4, sFireWall=8, sShocker=16,
-        sNoSpecial=32
+        sFreeze=0, sHeal, sBlast, sFireWall, sShocker,
+        All  // All count  or  no special
     };
 
     Special* create    (SpecialType type, Ship* parent);

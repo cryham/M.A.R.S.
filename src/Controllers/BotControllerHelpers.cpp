@@ -73,8 +73,8 @@ bool BotController::turnTo(Vector2f const& location)
     Vector2f aimDirection_ = location - ship()->location();
     float angle = aimDirection_.y_*std::cos(shipRotation)-aimDirection_.x_*std::sin(shipRotation);
     
-    if (angle > 0) slaveRight(100);
-    else           slaveLeft (100);
+    if (angle > 0)  slaveRight(100);
+    else            slaveLeft (100);
     return std::abs(angle) < 1.f;
 }
 

@@ -31,8 +31,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 MenuGame::MenuGame()
     :Game(games::gMenu)
 {
-    settings::C_EnabledWeapons  = weapons::wInsta;
-    settings::C_EnabledSpecials = specials::sNoSpecial;
+    clear();
+    settings::C_EnabledWeapons[weapons::wInsta] = true;
 
     music::play(settings::C_dataPath + "audio/menu.ogg");
 

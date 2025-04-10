@@ -30,9 +30,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 DeathMatch::DeathMatch()
     :Game(games::gDeathMatch)
 {
-    settings::C_EnabledWeapons  = settings::C_EnabledWeaponsByUser;
-    settings::C_EnabledSpecials = settings::C_EnabledSpecialsByUser;
-
+    copyFromUser();
+    
     music::play();
 
     if (settings::C_playerIteamL  | settings::C_playerIteamR)

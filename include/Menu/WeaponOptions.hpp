@@ -18,6 +18,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #pragma once
 
 #include "Interface/UiWindow.hpp"
+#include "Weapons/weapons.hpp"
+#include "Specials/specials.hpp"
 
 
 class WeaponOptions: public UiWindow
@@ -40,9 +42,7 @@ class WeaponOptions: public UiWindow
         static UiWindow* instance_;
 
         static bool kOk_;
-        static bool kAFK_, kBurner_, kFist_, kFlubba_, kShotgun_, kRocket_, kRofle_, kH2OMG_;
-        static bool kAFK2_, kFlamer2_, kPlasma_, kShotgun2_, kMiniRockets_, kRifle2_, kH2OStorm_;
 
-        static bool kFreeze_, kHeal_, kBlast_, kFireWall_, kShocker_;
+        static bool kWeapon[weapons::All];
+        static bool kSpecial[specials::All];
 };
-

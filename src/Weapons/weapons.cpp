@@ -40,25 +40,44 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Players/Player.hpp"
 #include "System/settings.hpp"
 
+
 namespace weapons 
 {
+    WeaponType getNext(WeaponType type, bool add1st = true, int add = 1)
+    {
+        int next = type, cnt = 0;
+        auto check = [&next]()
+        {
+            if (next >= weapons::All)
+                next = 0;
+            if (next < 0)
+                next = weapons::All-1;
+        };
+        if (add1st)
+            next += add;
+        check();
+
+        while (cnt < weapons::All && !settings::C_EnabledWeapons[next])
+        {
+            next += add;
+            check();
+            ++cnt;
+        }
+        return (WeaponType)next;
+    }
 
     Weapon* create(WeaponType type, Ship* parent)
     {
-        int i(1), tmpType(type);
-        while (i < wNoWeapon && !(settings::C_EnabledWeapons & tmpType))
+        type = getNext(type, false, 1);  // ensure enabled
+
+        if (parent)
         {
-            i *= 2;
-            if ((tmpType*=2) > wNoWeapon)
-                tmpType = 1;
+            if (parent->getOwner()->type() == controllers::cPlayer1 && type != weapons::All && type != wInsta)
+                settings::C_playerIWeapon = type;
+            else
+            if (parent->getOwner()->type() == controllers::cPlayer2 && type != weapons::All && type != wInsta)
+                settings::C_playerIIWeapon = type;
         }
-        type = static_cast<WeaponType>(tmpType);
-
-        if  (parent->getOwner()->type()  == controllers::cPlayer1 && type != wNoWeapon && type != wInsta)
-            settings::C_playerIWeapon = type;
-        else if  (parent->getOwner()->type()  == controllers::cPlayer2 && type != wNoWeapon && type != wInsta)
-            settings::C_playerIIWeapon = type;
-
         switch (type)
         {
             case wAFK47:           return new AFK47(parent);
@@ -80,34 +99,24 @@ namespace weapons
             case wMiniRockets:  return new MiniRockets(parent);
             case wShotgun2:     return new Shotgun2(parent);
 
+            // cryham  new todo..
+            // case wMinigun:      return new Minigun(parent);
+            // case wGrenades:     return new Grenades(parent);
+            // case wLaser:        return new Laser(parent);
+            // case wLightning:    return new Lightning(parent);
             default:            return new NoWeapon(parent);
         }
     }
 
     Weapon* createNext(WeaponType type, Ship* parent)
     {
-        int next(type == wNoWeapon ? 1 : type*2), i(1);
-
-        while (i < wNoWeapon && !(settings::C_EnabledWeapons & next))
-        {
-            i *= 2;
-            if ((next*=2) > wNoWeapon)
-                next = 1;
-        }
-        return create(static_cast<WeaponType>(next), parent);
+        WeaponType next = getNext(type, true, 1);
+        return create(next, parent);
     }
 
     Weapon* createPrev(WeaponType type, Ship* parent)
     {
-        int next(type == 1 ? wNoWeapon : type*0.5), i(1);
-
-        while (i < wNoWeapon && !(settings::C_EnabledWeapons & next))
-        {
-            i *= 2;
-            if ((next/=2) < 1)
-                next = wNoWeapon;
-        }
-        return create(static_cast<WeaponType>(next), parent);
+        WeaponType next = getNext(type, true, -1);
+        return create(next, parent);
     }
-
 }

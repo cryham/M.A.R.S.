@@ -21,6 +21,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Weapons/Weapon.hpp"
 #include "Specials/Special.hpp"
 #include "System/Key.hpp"
+#include "Weapons/weapons.hpp"
 
 #include <SFML/Graphics.hpp>
 #include <string>
@@ -97,10 +98,10 @@ namespace settings
     extern std::string    C_dataPath;
     extern std::string    C_screenShotFormat;
     
-    extern int            C_EnabledWeapons;
-    extern int            C_EnabledSpecials;
-    extern int            C_EnabledWeaponsByUser;
-    extern int            C_EnabledSpecialsByUser;
+    extern bool           C_EnabledWeapons[weapons::All];
+    extern bool           C_EnabledWeaponsByUser[weapons::All];
+    extern bool           C_EnabledSpecials[specials::All];
+    extern bool           C_EnabledSpecialsByUser[specials::All];
     ///@}
 
     /// \name Map settings new

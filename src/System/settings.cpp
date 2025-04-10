@@ -19,8 +19,11 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Media/file.hpp"
 #include "Shaders/postFX.hpp"
 #include "Interface/UiElement.hpp"
+#include "Specials/specials.hpp"
+#include "Weapons/weapons.hpp"
 #include "defines.hpp"
 
+#include <string>
 #include <sys/stat.h>
 
 #include <fstream>
@@ -128,10 +131,10 @@ namespace settings
     int         C_GravityScale  = 100;
 
     //  weapons
-    int         C_EnabledWeapons =          weapons::wNoWeapon-1;  // all
-    int         C_EnabledSpecials =         specials::sNoSpecial-1;
-    int         C_EnabledWeaponsByUser =    C_EnabledWeapons;
-    int         C_EnabledSpecialsByUser =   C_EnabledSpecials;
+    bool        C_EnabledWeapons[weapons::All] = {true,};
+    bool        C_EnabledWeaponsByUser[weapons::All] = {true,};
+    bool        C_EnabledSpecials[specials::All] =  {true,};
+    bool        C_EnabledSpecialsByUser[specials::All] = {true,};
 
 
     //  player settings ----- adjustable via options menu
@@ -370,8 +373,11 @@ namespace settings
             oss << "[statisticsKey] "         << C_statisticsKey << endl;
             oss << "[screenShotFormat] "      << C_screenShotFormat << endl;
             //  weapons
-            oss << "[enabledWeapons] "        << C_EnabledWeaponsByUser << endl;
-            oss << "[enabledSpecials] "       << C_EnabledSpecialsByUser << endl;
+            for (int i=0; i < weapons::All; ++i)
+                oss << "[enabledWeapons"<< i <<"] "  << strBool(C_EnabledWeaponsByUser[i]) << endl;
+
+            for (int i=0; i < specials::All; ++i)
+                oss << "[enabledSpecials"<< i <<"] " << strBool(C_EnabledSpecialsByUser[i]) << endl;
             //  map
             oss << "[MapXsize] "              << C_MapXsize << endl;
             oss << "[MapYsize] "              << C_MapYsize << endl;
@@ -533,12 +539,37 @@ namespace settings
         vector<sf::String> lines;
         if (file::load(C_configPath + "mars.cfg", lines))
         {
+            // clear();  //..
             for (auto& it : lines)
             {
                 istringstream iss (it.toAnsiString());
                 string line;
                 iss >> line;
-                
+
+                bool found = false;
+                for (int i=0; i < weapons::All; ++i)
+                {
+                    stringstream ss;
+                    ss << "[enabledWeapons" << i << "]";
+                    if (line == ss.str())
+                    {
+                        readBool(iss, line, C_EnabledWeaponsByUser[i]);   C_EnabledWeapons[i] = C_EnabledWeaponsByUser[i];
+                        found = true;
+                    }
+                }
+                if (found)  continue;
+                for (int i=0; i < specials::All; ++i)
+                {
+                    stringstream ss;
+                    ss << "[enabledSpecials" << i << "]";
+                    if (line == ss.str())
+                    {
+                        readBool(iss, line, C_EnabledSpecialsByUser[i]);   C_EnabledSpecials[i] = C_EnabledSpecialsByUser[i];
+                        found = true;
+                    }
+                }
+                if (found)  continue;
+
                 if      (line == "[soundVolume]")            readInt(iss, C_soundVolume, 0, 100);
                 else if (line == "[announcerVolume]")        readInt(iss, C_announcerVolume, 0, 100);
                 else if (line == "[musicVolume]")            readInt(iss, C_musicVolume, 0, 100);
@@ -645,9 +676,7 @@ namespace settings
                 else if (line == "[screenShotKey]")       iss >> C_screenShotKey;
                 else if (line == "[statisticsKey]")       iss >> C_statisticsKey;
                 else if (line == "[screenShotFormat]")    iss >> C_screenShotFormat;
-                //  weapons
-                else if (line == "[enabledWeapons]"){     iss >> C_EnabledWeaponsByUser;   C_EnabledWeapons = C_EnabledWeaponsByUser;    }
-                else if (line == "[enabledSpecials]") {   iss >> C_EnabledSpecialsByUser;  C_EnabledSpecials = C_EnabledSpecialsByUser;  }
+                //  weapons  above
                 //  map
                 else if (line == "[MapXsize]")            iss >> C_MapXsize;
                 else if (line == "[MapYsize]")            iss >> C_MapYsize;

@@ -18,6 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #pragma once
 
 #include "Weapons/Weapon.hpp"
+#include "Weapons/weapons.hpp"
 
 
 /// Weapon: NoWeapon.
@@ -27,7 +28,7 @@ class NoWeapon: public Weapon
     public:
         /// Ctor which constructs the weapon.
         NoWeapon(Ship* parent):
-              Weapon(weapons::wNoWeapon, parent, sf::String("Nothing"))
+              Weapon(weapons::All, parent, sf::String("Nothing"))
         {   }
 
         void fire() const

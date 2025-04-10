@@ -52,8 +52,13 @@ Tutorial::Tutorial()
     ,fuel_(false)
     ,name_(false)
 {
-    settings::C_EnabledWeapons  = weapons::wAFK47 | weapons::wShotgun | weapons::wROFLE;
-    settings::C_EnabledSpecials = specials::sFreeze | specials::sHeal | specials::sBlast;
+    clear();
+    settings::C_EnabledWeapons[weapons::wAFK47] = true;
+    settings::C_EnabledWeapons[weapons::wShotgun] = true;
+    settings::C_EnabledWeapons[weapons::wROFLE] = true;
+    settings::C_EnabledSpecials[specials::sFreeze] = true;
+    settings::C_EnabledSpecials[specials::sHeal] = true;
+    settings::C_EnabledSpecials[specials::sBlast] = true;
 
     settings::C_iDumb = 0;
 

@@ -29,8 +29,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 SpaceBall::SpaceBall()
     :Game(games::gSpaceBall)
 {
-    settings::C_EnabledWeapons  = settings::C_EnabledWeaponsByUser;
-    settings::C_EnabledSpecials = settings::C_EnabledSpecialsByUser;
+    copyFromUser();
 
     music::play();
 
@@ -50,12 +49,14 @@ SpaceBall::SpaceBall()
 
     if (settings::C_playerIIteamL)
     {
-        if (!myTeamL) myTeamL = new SBTeam(settings::C_playerIITeamColor);
+        if (!myTeamL)
+            myTeamL = new SBTeam(settings::C_playerIITeamColor);
         players::addPlayer(myTeamL, controllers::cPlayer2);
     }
     else if (settings::C_playerIIteamR)
     {
-        if (!myTeamR) myTeamR = new SBTeam(settings::C_playerIITeamColor);
+        if (!myTeamR)
+            myTeamR = new SBTeam(settings::C_playerIITeamColor);
         players::addPlayer(myTeamR, controllers::cPlayer2);
     }
 

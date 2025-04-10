@@ -60,6 +60,10 @@ class Game
 
         bool ended() const;
 
+        //  copy weapons and specials from ByUser
+        void copyFromUser();
+        void clear();
+
     private:
         games::GameType type_;
         float           startTime_;

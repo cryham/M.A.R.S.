@@ -153,6 +153,8 @@ namespace settings
 
     extern bool           C_playerIteamL;
     extern bool           C_playerIteamR;
+    extern bool           C_playerImouseAim;
+
     extern int            C_playerIShip;
     extern weapons::WeaponType   C_playerIWeapon;
     extern specials::SpecialType C_playerISpecial;
@@ -173,6 +175,8 @@ namespace settings
 
     extern bool           C_playerIIteamL;
     extern bool           C_playerIIteamR;
+    extern bool           C_playerIImouseAim;
+
     extern int            C_playerIIShip;
     extern weapons::WeaponType   C_playerIIWeapon;
     extern specials::SpecialType C_playerIISpecial;

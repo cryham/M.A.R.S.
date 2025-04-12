@@ -39,9 +39,24 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "SpaceObjects/Home.hpp"
 #include "defines.hpp"
 #include "System/randomizer.hpp"
+#include "System/window.hpp"
 
 #include <cmath>
 #include <sstream>
+
+using namespace std;
+
+
+static float GetAngle(float x, float y)
+{
+	if (x == 0.f && y == 0.f)
+		return 0.f;
+
+	if (y == 0.f)
+		return (x < 0.f) ? M_PI : 0.f;
+	else
+		return (y < 0.f) ? atan2f(-y, x) : (2.f * M_PI - atan2f(y, x));
+}
 
 
 Ship::Ship(Vector2f const& location, float rotation, Player* owner)
@@ -73,26 +88,31 @@ Ship::Ship(Vector2f const& location, float rotation, Player* owner)
     ,damageDirection_(0.f, 0.f)
     ,collisionCount_(0)
 {
-    decoObjects::addName(this);
-
     if (owner_->controlType_ == controllers::cPlayer1)
     {
         decoObjects::addHighlight(this);
         currentWeapon_  = weapons:: create(settings::C_playerIWeapon, this);
         currentSpecial_ = specials::create(settings::C_playerISpecial, this);
+        // if (settings::)
+            decoObjects::addName(this);
     }
     else if (owner_->controlType_ == controllers::cPlayer2)
     {
         decoObjects::addHighlight(this);
         currentWeapon_  = weapons:: create(settings::C_playerIIWeapon, this);
         currentSpecial_ = specials::create(settings::C_playerIISpecial, this);
+        //if (settings::)
+            decoObjects::addName(this);
     }
     else
     {   currentWeapon_  = weapons:: create(weapons::random(), this);
         currentSpecial_ = specials::create(specials::sHeal, this);
+        //if (settings::)
+        // decoObjects::addName(this);
     }
     owner->ship_ = this;
     damageSource_ = owner_;
+    // window::ungrab();
 }
 
 
@@ -134,51 +154,133 @@ void Ship::update()
 
         if (games::elapsedTime() > settings::C_CountDown || games::type() == games::gTutorial)
         {
+            const float par = settings::C_globalParticleCount;
             if (frozen_ <= 0)
             {
                 const float rot = settings::C_ShipTurnSpeed / 100.f;  /// 0.25f; //0.3f;  //new
                 float angleRad = rotation_ * M_PI / 180.f;
-                Vector2f faceDirection(std::cos(angleRad), std::sin(angleRad));
-                Vector2f sideDirection(std::cos(angleRad + M_PI_2), std::sin(angleRad + M_PI_2));
+
+                Vector2f dir(std::cos(angleRad), std::sin(angleRad));
+                Vector2f dirBack( std::cos(angleRad + M_PI), std::sin(angleRad + M_PI));
+                Vector2f dirRight(std::cos(angleRad + M_PI_2), std::sin(angleRad + M_PI_2));
+                Vector2f dirLeft( std::cos(angleRad - M_PI_2), std::sin(angleRad - M_PI_2));
+
                 Vector2f acceleration;
                 float slower = collectedPowerUps_[items::puReverse] ? 0.33f : 1.f;
+                float boostMul = 1.f + boost_ / 100.f;
 
+                //  mouse turn  ------------  new
+                if (owner_->controlType_ == controllers::cPlayer1 && settings::C_playerImouseAim ||
+                    owner_->controlType_ == controllers::cPlayer2 && settings::C_playerIImouseAim)
+                {
+                    //  get angle to mouse pointer
+                    Vector2f p = window::getMousePosition(), w = window::getWindowSize();
+                    float sx = location_.x_ / settings::C_MapXsize * w.x_;
+                    float sy = location_.y_ / settings::C_MapYsize * w.y_;
+                    float angle = GetAngle(p.x_ - sx, -p.y_ + sy) * 180.f/M_PI;
+                    // cout << " shp: " << location_.x_ << " " << location_.y_
+                    //     << " m " << p.x_ << " " << p.y_ << " rot " << rotation_ //* 180.f/M_PI
+                    //     << " a " << a * 180.f/M_PI << endl;
+                    
+                    //  turn
+                #if 1  // immediate meh
+                    rotation_ = angle;
+                #else  // todo: speed ..
+                    float diff = fabs(rotation_ - angle) * 10.f;
+                    if (diff > 100.f)  diff = 100.f;
+                    int rot_left_  = angle < rotation_ ? diff : 0.f;
+                    int rot_right_ = angle > rotation_ ? diff : 0.f;
+                    //  turn
+                    // rotateSpeed_ = 1.f;
+                    if (rot_right_ > 5)
+                        fmod(rotation_+= rotateSpeed_ *time *rot *slower * rot_right_, 360.f);
+                    if (rot_left_  > 5)
+                        fmod(rotation_-= rotateSpeed_ *time *rot *slower * rot_left_, 360.f);
+
+                    if (rot_right_ == 0 && rot_left_ == 0)
+                        rotateSpeed_ = 1.0;
+                    else if (rotateSpeed_ < 13.f)
+                        rotateSpeed_ += time*40.f;
+                #endif
+
+                    //  accelerate sideways
+                    if (right_ > 5 && getFuel() > 0.f)
+                    {   fuel_ -= time*0.01f * right_;
+                        float amt = right_ * boostMul;
+                        acceleration = dirRight * 5.f * amt;
+                        particles::spawnTimed(1.5f / par * amt, particles::pFuel,
+                            location_ - dirRight*radius_, dirRight, velocity_);
+                        particles::spawnTimed(0.1f / par * amt, particles::pHeatJet,
+                            location_ - dirRight*radius_*1.5f, dirRight, velocity_);
+                    }else
+                    if (left_ > 5 && getFuel() > 0.f)
+                    {   fuel_ -= time*0.01f * left_;
+                        float amt = left_ * boostMul;
+                        acceleration = dirLeft * 5.f * amt;
+                        particles::spawnTimed(1.5f / par * amt, particles::pFuel,
+                            location_ - dirLeft*radius_, dirLeft, velocity_);
+                        particles::spawnTimed(0.1f / par * amt, particles::pHeatJet,
+                            location_ - dirLeft*radius_*1.5f, dirLeft, velocity_);
+                    }
+
+                    //  accelerate
+                    if (up_ > 5 && getFuel() > 0.f)
+                    {   fuel_ -= time*0.005f * up_;
+                        float amt = up_ * boostMul;
+                        acceleration = dir * 5.f * amt;
+                        particles::spawnTimed(1.5f / par * amt, particles::pFuel,
+                            location_ - dir*radius_, dir, velocity_);
+                        particles::spawnTimed(0.1f / par * amt, particles::pHeatJet,
+                            location_ - dir*radius_*1.5f, dir, velocity_);
+                    }else
+                    if (down_ > 5 && getFuel() > 0.f)
+                    {   // backward
+                        fuel_ -= time*0.005f * down_;
+                        float amt = down_ * boostMul;
+                        acceleration = dir * -3.f * amt;
+                        particles::spawnTimed(1.5f / par * amt, particles::pFuel,
+                            location_ - dirBack*radius_, dirBack, velocity_);
+                        particles::spawnTimed(0.1f / par * amt, particles::pHeatJet,
+                            location_ - dirBack*radius_*1.5f, dirBack, velocity_);
+                    }
+                }
+                else    // turn by keys  ------------
                 if (boost_ > 15)
                 {
                     //  boost accelerate
                     if (up_ > 5 && getFuel() > 0.f)
                     {   fuel_ -= time*0.03f * up_;
-                        acceleration = faceDirection * 10.f * up_ * boost_ / 100.f * slower;
-                        particles::spawnTimed(1.5f/settings::C_globalParticleCount*up_, particles::pFuel,
-                            location_- faceDirection*radius_, faceDirection, velocity_);
-                        particles::spawnTimed(0.1f/settings::C_globalParticleCount*up_, particles::pHeatJet,
-                            location_- faceDirection*radius_*1.5f, faceDirection, velocity_);
+                        acceleration = dir * 10.f * up_ * boost_ / 100.f * slower;
+                        particles::spawnTimed(1.5f / par * up_, particles::pFuel,
+                            location_ - dir*radius_, dir, velocity_);
+                        particles::spawnTimed(0.1f / par * up_, particles::pHeatJet,
+                            location_ - dir*radius_*1.5f, dir, velocity_);
                     }else
                     if (down_ > 5 && getFuel() > 0.f)
                     {   fuel_ -= time*0.02f * down_;
-                        acceleration = faceDirection * -7.f * down_  * boost_ / 100.f * slower;
-                        particles::spawnTimed(1.5f/settings::C_globalParticleCount*up_, particles::pFuel,
-                            location_- faceDirection*radius_, faceDirection, velocity_);
-                        particles::spawnTimed(0.1f/settings::C_globalParticleCount*up_, particles::pHeatJet,
-                            location_- faceDirection*radius_*1.5f, sideDirection, velocity_);
+                        acceleration = dir * -7.f * down_  * boost_ / 100.f * slower;
+                        particles::spawnTimed(1.5f / par * down_, particles::pFuel,
+                            location_ - dir*radius_, dir, velocity_);
+                        particles::spawnTimed(0.1f / par * down_, particles::pHeatJet,
+                            location_ - dir*radius_*1.5f, dir, velocity_);
                     }
 
                     //  accelerate sideways
                     if (right_ > 5 && getFuel() > 0.f)
-                    {   fuel_ -= time*0.02f * right_;
-                        acceleration = sideDirection * 10.f * right_ * boost_ / 100.f;
-                        particles::spawnTimed(1.5f/settings::C_globalParticleCount*up_, particles::pFuel,
-                            location_- sideDirection*radius_, sideDirection, velocity_);
-                        particles::spawnTimed(0.1f/settings::C_globalParticleCount*up_, particles::pHeatJet,
-                            location_- sideDirection*radius_*1.5f, sideDirection, velocity_);
+                    {   fuel_ -= time*0.02f * right_;  // * 10.f
+                        acceleration = dirRight * 5.f * right_ * boost_ / 100.f;
+                        particles::spawnTimed(1.5f / par * right_, particles::pFuel,
+                            location_ - dirRight*radius_, dirRight, velocity_);
+                        particles::spawnTimed(0.1f / par * right_, particles::pHeatJet,
+                            location_ - dirRight*radius_*1.5f, dirRight, velocity_);
                     }else
                     if (left_ > 5 && getFuel() > 0.f)
                     {   fuel_ -= time*0.02f * left_;
-                        acceleration = sideDirection * -10.f * left_ * boost_ / 100.f;
-                        particles::spawnTimed(1.5f/settings::C_globalParticleCount*up_, particles::pFuel,
-                            location_+ sideDirection*radius_, sideDirection, velocity_);
-                        particles::spawnTimed(0.1f/settings::C_globalParticleCount*up_, particles::pHeatJet,
-                            location_+ sideDirection*radius_*1.5f, sideDirection, velocity_);
+                        acceleration = dirLeft * 5.f * left_ * boost_ / 100.f;
+                        particles::spawnTimed(1.5f / par * left_, particles::pFuel,
+                            location_ - dirLeft*radius_, dirLeft, velocity_);
+                        particles::spawnTimed(0.1f / par * left_, particles::pHeatJet,
+                            location_ - dirLeft*radius_*1.5f, dirLeft, velocity_);
                     }
                 }else
                 {
@@ -196,30 +298,25 @@ void Ship::update()
                     //  accelerate
                     if (up_ > 5 && getFuel() > 0.f)
                     {   fuel_ -= time*0.005f * up_;
-                        acceleration = faceDirection * 5.f * up_;
-                        particles::spawnTimed(1.5f/settings::C_globalParticleCount*up_, particles::pFuel,
-                            location_-faceDirection*radius_, faceDirection, velocity_);
-                        particles::spawnTimed(0.1f/settings::C_globalParticleCount*up_, particles::pHeatJet,
-                            location_-faceDirection*radius_*1.5f, faceDirection, velocity_);
+                        acceleration = dir * 5.f * up_;
+                        particles::spawnTimed(1.5f / par * up_, particles::pFuel,
+                            location_-dir*radius_, dir, velocity_);
+                        particles::spawnTimed(0.1f / par * up_, particles::pHeatJet,
+                            location_-dir*radius_*1.5f, dir, velocity_);
                     }else
                     if (down_ > 5 && getFuel() > 0.f)
                     {   // backward
                         fuel_ -= time*0.005f * down_;
-                        acceleration = faceDirection * -3.f * down_;
-                        particles::spawnTimed(1.5f/settings::C_globalParticleCount*up_, particles::pFuel,
-                            location_-faceDirection*radius_, faceDirection, velocity_);
-                        particles::spawnTimed(0.1f/settings::C_globalParticleCount*up_, particles::pHeatJet,
-                            location_-faceDirection*radius_*1.5f, faceDirection, velocity_);
-                    }
-                    else
-                    {
-                        acceleration = Vector2f();
-                        if (getFuel() < maxFuel_)
-                            fuel_ += time * settings::C_FuelRegen / 100.f;  /// 0.5  //new
-                        else
-                            fuel_ = maxFuel_;
+                        acceleration = dir * -3.f * down_;
+                        particles::spawnTimed(1.5f / par * down_, particles::pFuel,
+                            location_ - dir*radius_, dir, velocity_);
+                        particles::spawnTimed(0.1f / par * down_, particles::pHeatJet,
+                            location_ - dir*radius_*1.5f, dir, velocity_);
                     }
                 }
+                fuel_ += time * settings::C_FuelRegen / 100.f;  /// 0.5  //new
+                if (fuel_ > maxFuel_)
+                    fuel_ = maxFuel_;
 
                 // movement
                 // check if docked
@@ -228,7 +325,7 @@ void Ship::update()
                 bool closeToHome(toHome.lengthSquare() < std::pow(home->radius() + radius_ + 0.1f, 2.f));
 
                 if (up_ < 10 && velocity_.lengthSquare() < 13000.f &&
-                    closeToHome && ((faceDirection + toHome.normalize()).lengthSquare() < 0.26f))
+                    closeToHome && ((dir + toHome.normalize()).lengthSquare() < 0.26f))
                 {
                     docked_ = true;
                     velocity_ = Vector2f();

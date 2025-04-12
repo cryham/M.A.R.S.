@@ -37,6 +37,7 @@ namespace weapons
         All  // All count  or  no weapon  25
     };
 
+    WeaponType random();
     Weapon* create    (WeaponType type, Ship* parent);
     Weapon* createNext(WeaponType type, Ship* parent);
     Weapon* createPrev(WeaponType type, Ship* parent);

@@ -35,4 +35,3 @@ class ShipName: public DecoObject
     private:
         Ship* ship_;
 };
-

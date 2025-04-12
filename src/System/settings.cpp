@@ -157,6 +157,7 @@ namespace settings
     bool          C_playerIteamL =          false;
     bool          C_playerIteamR =          true;
     int           C_playerIShip =           0;
+    bool          C_playerImouseAim =       true;
 
     weapons::WeaponType   C_playerIWeapon =  weapons::wAFK47;
     specials::SpecialType C_playerISpecial = specials::sHeal;
@@ -180,6 +181,7 @@ namespace settings
     bool          C_playerIIteamL =         true;
     bool          C_playerIIteamR =         false;
     int           C_playerIIShip =          0;
+    bool          C_playerIImouseAim =      false;
 
     weapons::WeaponType   C_playerIIWeapon =  weapons::wAFK47;
     specials::SpecialType C_playerIISpecial = specials::sHeal;
@@ -310,7 +312,7 @@ namespace settings
             oss << "[powerUpRate] "           << C_powerUpRate << endl;
             oss << "[slowMoKickIn] "          << C_slowMoKickIn << endl;
             oss << "[gameSpeed] "             << C_gameSpeed << endl;
-            //----  players
+            //----  player I
             oss << "[playerIName] ";          strMax(oss, C_playerIName, 12);
             oss << "[playerIKeys] "           <<  C_playerIup << " " << C_playerIright << " " << C_playerIleft << " "
                 << C_playerIfire << " " << C_playerISpecialKey << " "
@@ -320,10 +322,12 @@ namespace settings
             oss << "[playerITeamColor] ";     strColor(oss, C_playerITeamColor);
             oss << "[playerITeamL] "          << strBool(C_playerIteamL) << endl;
             oss << "[playerITeamR] "          << strBool(C_playerIteamR) << endl;
+            
             oss << "[playerIShip] "           <<  C_playerIShip << endl;
             oss << "[playerIWeapon] "         <<  C_playerIWeapon << endl;
             oss << "[playerISpecial] "        <<  C_playerISpecial << endl;
-            
+            oss << "[playerImouseAim] "       << strBool(C_playerImouseAim) << endl;
+            //  player II
             oss << "[playerIIName] ";         strMax(oss, C_playerIIName, 12);
             oss << "[playerIIKeys] "          <<  C_playerIIup << " "<< C_playerIIright << " " << C_playerIIleft << " "
                 << C_playerIIfire << " " << C_playerIISpecialKey << " "
@@ -333,9 +337,11 @@ namespace settings
             oss << "[playerIITeamColor] ";    strColor(oss, C_playerIITeamColor);
             oss << "[playerIITeamL] "         << strBool(C_playerIIteamL) << endl;
             oss << "[playerIITeamR] "         << strBool(C_playerIIteamR) << endl;
+            
             oss << "[playerIIShip] "          <<  C_playerIIShip << endl;
             oss << "[playerIIWeapon] "        <<  C_playerIIWeapon << endl;
             oss << "[playerIISpecial] "       <<  C_playerIISpecial << endl;
+            oss << "[playerIImouseAim] "      << strBool(C_playerIImouseAim) << endl;
             //----
             oss << "[connectIP] "             << C_ip.toAnsiString() << endl;
             oss << "[connectPort] "           << C_port.toAnsiString() << endl;
@@ -617,6 +623,7 @@ namespace settings
                 else if (line == "[playerIIColor]")      readColor(iss, C_playerIIColor);
                 else if (line == "[playerITeamColor]")   readColor(iss, C_playerITeamColor);
                 else if (line == "[playerIITeamColor]")  readColor(iss, C_playerIITeamColor);
+                
                 else if (line == "[playerITeamL]")       readBool(iss, line, C_playerIteamL);
                 else if (line == "[playerITeamR]")       readBool(iss, line, C_playerIteamR);
                 else if (line == "[playerIShip]")        iss >> C_playerIShip;
@@ -638,6 +645,8 @@ namespace settings
                 else if (line == "[playerIISpecial]") {  int tmp;  iss >> tmp;
                     C_playerIISpecial = static_cast<specials::SpecialType>(tmp);
                 }
+                else if (line == "[playerImouseAim]")     readBool(iss, line, C_playerImouseAim);
+                else if (line == "[playerIImouseAim]")    readBool(iss, line, C_playerIImouseAim);
 
                 else if (line == "[playerIITeamL]")       readBool(iss, line, C_playerIIteamL);
                 else if (line == "[playerIITeamR]")       readBool(iss, line, C_playerIIteamR);

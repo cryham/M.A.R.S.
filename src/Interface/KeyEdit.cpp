@@ -17,6 +17,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "Interface/KeyEdit.hpp"
 
+#include "System/Color3f.hpp"
 #include "System/settings.hpp"
 #include "Media/text.hpp"
 #include "Locales/locales.hpp"
@@ -30,21 +31,21 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 KeyEdit::KeyEdit (locales::LocaleType text, locales::LocaleType toolTip,
         Key* value,
-        Vector2f const& topLeft, int width, int labelWidth)
+        Vector2f const& topLeft, int width, int labelWidth, Color3f color)
     :KeyEdit(locales::getLocale(text), locales::getLocale(toolTip),
         value,
-        topLeft, width, labelWidth)
+        topLeft, width, labelWidth, color)
 {   }
 
 KeyEdit::KeyEdit (sf::String* text, sf::String* toolTip,
         Key* value,
-        Vector2f const& topLeft, int width, int labelWidth)
+        Vector2f const& topLeft, int width, int labelWidth, Color3f color)
     :UiElement(topLeft, width, 20)
     ,value_(value)
     ,toolTip_(toolTip)
     ,labelWidth_(labelWidth * scale_)
 {
-    label_ = new Label(text, TEXT_ALIGN_LEFT, Vector2f(0,0));
+    label_ = new Label(text, TEXT_ALIGN_LEFT, Vector2f(0,0), 12.f, color);
     label_->setParent(this);
 }
 

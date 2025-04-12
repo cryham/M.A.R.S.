@@ -109,6 +109,7 @@ namespace locales
         ShipTurnSpeed, DamageScale, Regeneration, FuelRegen,
         RespawnDelay, GlowAlpha,
         GravityScale,
+        MouseRotationAim, ttMouseRotationAim,
 
         COUNT  /// amount of entries in the enum
     };

@@ -88,7 +88,7 @@ Ship::Ship(Vector2f const& location, float rotation, Player* owner)
         currentSpecial_ = specials::create(settings::C_playerIISpecial, this);
     }
     else
-    {   currentWeapon_  = weapons:: create(weapons::wAFK47, this);
+    {   currentWeapon_  = weapons:: create(weapons::random(), this);
         currentSpecial_ = specials::create(specials::sHeal, this);
     }
     owner->ship_ = this;
@@ -115,7 +115,7 @@ void Ship::update()
             float damage(damageByLocalPlayer_*20.f);
             if (std::abs(damage) >= 1.f)
             {
-                particles::spawn(particles::pNumber, location_+Vector2f(0.f, -20.f),
+                particles::spawn(particles::pNumber, location_ + Vector2f(0.f, -20.f),
                     Vector2f(damage, 20.f + std::abs(damage)*0.02f), (damageDirection_/collisionCount_+velocity_)*0.5f);
                 damageDirection_ = Vector2f();
                 damageByLocalPlayer_ = 0;
@@ -224,7 +224,7 @@ void Ship::update()
                 // movement
                 // check if docked
                 Home const* home = owner_->team()->home();
-                Vector2f toHome = home->location()-location_;
+                Vector2f toHome = home->location() - location_;
                 bool closeToHome(toHome.lengthSquare() < std::pow(home->radius() + radius_ + 0.1f, 2.f));
 
                 if (up_ < 10 && velocity_.lengthSquare() < 13000.f &&
@@ -328,12 +328,12 @@ void Ship::update()
                 }
             }
             // check for death
-            if (getLife() <= 0) explode();
+            if (getLife() <= 0)  explode();
         }
     }else
     {
         respawnTimer_ -= time;
-        if (respawnTimer_ < 0) respawn();
+        if (respawnTimer_ < 0)  respawn();
     }
 }
 
@@ -516,7 +516,7 @@ void Ship::onCollision(SpaceObject* with, Vector2f const& location,
             unfreeze = 20.f;
             break;
 
-        case spaceObjects::oAmmoShotgun2:  // <
+        case spaceObjects::oAmmoShotgun2:  // <<
             amount = strength*0.0007f;
             waitForOtherDamage = 0.1f;
             setDamageSource(with->damageSource());

@@ -50,10 +50,22 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "SpaceObjects/Ship.hpp"
 #include "Players/Player.hpp"
 #include "System/settings.hpp"
+#include <cstdlib>
 
 
 namespace weapons 
 {
+    WeaponType random()
+    {
+        int next = 0, cnt = 0;
+        do
+        {   next = rand() % weapons::All;
+            ++cnt;
+        }
+        while (cnt < weapons::All && !settings::C_EnabledWeapons[next]);
+        return (WeaponType)next;
+    }
+
     WeaponType getNext(WeaponType type, bool add1st = true, int add = 1)
     {
         int next = type, cnt = 0;

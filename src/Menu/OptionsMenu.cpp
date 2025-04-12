@@ -81,18 +81,22 @@ UiWindow* OptionsMenu::get()
     {
         instance_ = new OptionsMenu(700, 390);
 
-        instance_->addWidget(new Button(locales::getLocale(locales::Ok), NULL, &kOk_,
+        instance_->addWidget(new Button(locales::getLocale(locales::Ok), "", &kOk_,
             Vector2f(500,360), 90, 20));
         instance_->addWidget(new Label(locales::getLocale(locales::Options), TEXT_ALIGN_LEFT,
             Vector2f(10,0), 20.f, getColor3f(0.5f, 0.9f, 1.f), false));
 
         TabList* tabList  = new TabList(Vector2f(10,55), 580, 270);
         Tab* tabInterface = new Tab(locales::getLocale(locales::Interface), 90);
-        Tab* tabGameplay  = new Tab(locales::getLocale(locales::Gameplay), 90);
         Tab* tabGraphics  = new Tab(locales::getLocale(locales::Display), 80);
+        Tab* tabGameplay  = new Tab(locales::getLocale(locales::Gameplay), 90);
+        Tab* tabView      = new Tab(locales::getLocale(locales::View), 80);
         Tab* tabAudio     = new Tab(locales::getLocale(locales::Audio), 80);
-        Tab* tabPlayer1   = new Tab(&settings::C_playerIName, 100);
-        Tab* tabPlayer2   = new Tab(&settings::C_playerIIName, 100);
+        
+        Tab* tabShips     = new Tab(locales::getLocale(locales::ShipName), 80);  //ShipSettings
+        Tab* tabPlayer1   = new Tab(settings::C_playerIName, 100);
+        Tab* tabPlayer2   = new Tab(settings::C_playerIIName, 100);
+
 
         //  Interface GUI  ----
         int y = 30, yadd = 20, xTxt = 240;
@@ -103,7 +107,8 @@ UiWindow* OptionsMenu::get()
 
         tabInterface->addWidget(new Slider(locales::Scale, locales::ttScale,
             &UIscale_, 80, 400, 10,
-            Vector2f(20,y), 540, xTxt, true));  y += yadd;
+            Vector2f(20,y), 540, xTxt, true));  y += yadd*3/2;
+        
         tabInterface->addWidget(new Checkbox(locales::ShowToolTips, locales::ttShowToolTips,
             &settings::C_showToolTips,
             Vector2f(20,y), 140));  y += yadd;
@@ -112,10 +117,7 @@ UiWindow* OptionsMenu::get()
             Vector2f(20,y), 140));  y += yadd;
         tabInterface->addWidget(new Checkbox(locales::LogoSigns, locales::ttNoConfirmations,
             &settings::C_LogoSigns,
-            Vector2f(20,y), 140));  y += yadd;
-        tabInterface->addWidget(new Slider(locales::CountDown, locales::ttNoConfirmations,
-            &settings::C_CountDown, 0, 6, 1,
-            Vector2f(20,y), 540, xTxt, true));  y += yadd*3/2;
+            Vector2f(20,y), 140));  y += yadd*3/2;
 
         std::vector<sf::String> fileFormats;
             fileFormats.push_back("BITMAP (*.bmp)");
@@ -133,16 +135,7 @@ UiWindow* OptionsMenu::get()
             &settings::C_statisticsKey,
             Vector2f(20,y), 540, xTxt));  y += yadd*2;
 
-        //  debug
-        tabInterface->addWidget(new LabeledBox(locales::getLocale(locales::GameInformation),
-            Vector2f(10, y), 560, 90));  y += yadd*3/2;
-        tabInterface->addWidget(new Checkbox(locales::FramesPerSecond, locales::ttFramesPerSecond,
-            &settings::C_showFPS,
-            Vector2f(20,y), 140));  y += yadd;
-        tabInterface->addWidget(new Checkbox(locales::ParticleCount, locales::ttParticleCount,
-            &settings::C_showParticleCount,
-            Vector2f(20,y), 140));  y += yadd;
-       
+
         //  Graphics  ----
         y = 30;
         std::vector<sf::VideoMode> modes = sf::VideoMode::getFullscreenModes();
@@ -171,7 +164,7 @@ UiWindow* OptionsMenu::get()
             }
         }
         std::vector<sf::String> off;
-        off.push_back(*locales::getLocale(locales::SlowMoOff));
+        off.push_back(locales::getLocale(locales::SlowMoOff));
 
         //  screen
         tabGraphics->addWidget(new LabeledBox(locales::getLocale(locales::WindowSettings),
@@ -185,9 +178,13 @@ UiWindow* OptionsMenu::get()
         tabGraphics->addWidget(new Checkbox(locales::VerticalSynchronisation, locales::ttVerticalSynchronisation,
             &vsync_,
             Vector2f(20,y), 150));  y += yadd;
+
         tabGraphics->addWidget(new Checkbox(locales::Shaders, locales::ttShaders,
             &shaders_,
-            Vector2f(20,y), 150));  y += yadd*2;
+            Vector2f(20,y), 150));
+        tabGraphics->addWidget(new Checkbox(locales::getLocale(locales::Flashes), "",
+            &settings::C_Flashes,
+            Vector2f(xTxt,y), 150));  y += yadd*2;
 
         tabGraphics->addWidget(new LabeledBox(locales::getLocale(locales::GameSettings),
             Vector2f(10,y), 560, 90));  y += yadd*3/2;
@@ -205,6 +202,43 @@ UiWindow* OptionsMenu::get()
         tabGraphics->addWidget(new Slider(locales::ParticleLifetime, locales::ttParticleLifetime,
             &settings::C_globalParticleLifeTime, 1, 300, 15,
             Vector2f(20,y), 540, xTxt, true));  y += yadd;
+
+
+        //  Gameplay  ----
+        y = 30.f;
+        tabGameplay->addWidget(new LabeledBox(locales::getLocale(locales::SpecialEffects),
+            Vector2f(10,y), 560, 90));  y += yadd*3/2;
+        tabGameplay->addWidget(new Slider(locales::GameSpeed, locales::ttGameSpeed,
+            &settings::C_gameSpeed, 50, 200, 5,
+            Vector2f(20,y), 540, xTxt, true));  y += yadd*3/2;
+        
+        tabGameplay->addWidget(new Slider(locales::getLocale(locales::CountDown), "",
+            &settings::C_CountDown, 0, 6, 1,
+            Vector2f(20,y), 540, xTxt, true));  y += yadd;
+        tabGameplay->addWidget(new Slider(locales::SlowMoKickIn, locales::ttSlowMoKickIn,
+            &settings::C_slowMoKickIn, 0, 10, 1,
+            Vector2f(20,y), 540, xTxt, true, off));  y += yadd;
+
+        //  View debug  ----
+        y = 30.f;
+        tabView->addWidget(new LabeledBox(locales::getLocale(locales::GameInformation),
+            Vector2f(10, y), 560, 90));  y += yadd*3/2;
+        tabView->addWidget(new Checkbox(locales::FramesPerSecond, locales::ttFramesPerSecond,
+            &settings::C_showFPS,
+            Vector2f(20,y), 140));  y += yadd;
+        tabView->addWidget(new Checkbox(locales::ParticleCount, locales::ttParticleCount,
+            &settings::C_showParticleCount,
+            Vector2f(20,y), 140));  y += yadd*2;
+
+        tabView->addWidget(new LabeledBox(locales::getLocale(locales::DebuggingInformation),
+            Vector2f(10,y), 560, 90));  y += yadd*3/2;
+        tabView->addWidget(new Checkbox(locales::AIJobs, locales::ttBotsOrientation, &settings::C_drawBotJobs,
+            Vector2f(20,y), 140));  y += yadd;
+        tabView->addWidget(new Checkbox(locales::Zones, locales::ttZones, &settings::C_drawZones,
+            Vector2f(20,y), 140));  y += yadd;
+        tabView->addWidget(new Checkbox(locales::AIPaths, locales::ttAIPaths, &settings::C_drawAIPath,
+            Vector2f(20,y), 140));  y += yadd;
+
 
         //  Audio  ----
         y = 30.f;
@@ -232,114 +266,100 @@ UiWindow* OptionsMenu::get()
             &settings::C_audioPreviousKey,
             Vector2f(20,y), 540, xTxt));  y += yadd;
 
-        //  Gameplay  ----
+
+        //  Ships  ----
         y = 30.f;
-        tabGameplay->addWidget(new LabeledBox(locales::getLocale(locales::SpecialEffects),
-            Vector2f(10,y), 560, 90));  y += yadd*3/2;
-        tabGameplay->addWidget(new Slider(locales::SlowMoKickIn, locales::ttSlowMoKickIn,
-            &settings::C_slowMoKickIn, 0, 10, 1,
-            Vector2f(20,y), 540, xTxt, true, off));  y += yadd;
-        tabGameplay->addWidget(new Slider(locales::GameSpeed, locales::ttGameSpeed,
-            &settings::C_gameSpeed, 50, 200, 5,
-            Vector2f(20,y), 540, xTxt, true));  y += yadd*2;
-        
-        tabGameplay->addWidget(new LabeledBox(locales::getLocale(locales::DebuggingInformation),
-            Vector2f(10,y), 560, 90));  y += yadd*3/2;
-        tabGameplay->addWidget(new Checkbox(locales::AIJobs, locales::ttBotsOrientation, &settings::C_drawBotJobs,
-            Vector2f(20,y), 140));  y += yadd;
-        tabGameplay->addWidget(new Checkbox(locales::Zones, locales::ttZones, &settings::C_drawZones,
-            Vector2f(20,y), 140));  y += yadd;
-        tabGameplay->addWidget(new Checkbox(locales::AIPaths, locales::ttAIPaths, &settings::C_drawAIPath,
-            Vector2f(20,y), 140));  y += yadd;
+        tabShips->addWidget(new LabeledBox(locales::getLocale(locales::ShipSettings),
+            Vector2f(10,y), 560, 90));  y += yadd;
+        tabShips->addWidget(new ShipPreview(
+            &settings::C_playerIColor, &settings::C_playerITeamColor, &settings::C_playerIShip,
+            Vector2f(510,y)));  //y += yadd;
+        tabShips->addWidget(new Slider(locales::getLocale(locales::ShipName), "",
+            &settings::C_playerIShip, 0, SHIP_GRAPHICS_COUNT, 1,
+            Vector2f(20,y), 410, xTxt, true, generateName::shipNames()));  y += yadd;
+        tabShips->addWidget(new ColorPicker(locales::getLocale(locales::PlayerColor), &settings::C_playerIColor,
+            Vector2f(20,y), 410, xTxt));  y += yadd;
+        tabShips->addWidget(new ColorPicker(locales::getLocale(locales::TeamColor), &settings::C_playerITeamColor,
+            Vector2f(20,y), 410, xTxt));  y += yadd;
+
+        tabShips->addWidget(new LabeledBox(locales::getLocale(locales::ShipSettings),
+            Vector2f(10, y), 560, 90));  y += yadd;
+        tabShips->addWidget(new ShipPreview(
+            &settings::C_playerIIColor, &settings::C_playerIITeamColor, &settings::C_playerIIShip,
+            Vector2f(510,y)));  //y += yadd;
+        tabShips->addWidget(new Slider(locales::getLocale(locales::ShipName), "",
+            &settings::C_playerIIShip, 0, SHIP_GRAPHICS_COUNT, 1,
+            Vector2f(20,y), 410, xTxt, true, generateName::shipNames()));  y += yadd;
+        tabShips->addWidget(new ColorPicker(locales::getLocale(locales::PlayerColor), &settings::C_playerIIColor,
+            Vector2f(20,y), 410, xTxt));  y += yadd;
+        tabShips->addWidget(new ColorPicker(locales::getLocale(locales::TeamColor), &settings::C_playerIITeamColor,
+            Vector2f(20,y), 410, xTxt));  y += yadd;
 
 
         //  Player I keys  ----
         y = 30.f;
-        tabPlayer1->addWidget(new TextEdit(locales::getLocale(locales::Name), &settings::C_playerIName, "PlayerI",
+        tabPlayer1->addWidget(new TextEdit(locales::getLocale(locales::Name), settings::C_playerIName, "PlayerI",
             Vector2f(20,y), 540, xTxt, TEXT_EDIT, 12));  y += yadd*3/2;
 
-        tabPlayer1->addWidget(new KeyEdit(locales::getLocale(locales::Accelerate),     NULL, &settings::C_playerIup,
+        tabPlayer1->addWidget(new KeyEdit(locales::getLocale(locales::Accelerate),     "", &settings::C_playerIup,
             Vector2f(20,y), 540, xTxt, Color3f(0.5f, 0.76f, 1.f)));  y += yadd;
-        tabPlayer1->addWidget(new KeyEdit(locales::getLocale(locales::AccelerateBack), NULL, &settings::C_playerIdown,
+        tabPlayer1->addWidget(new KeyEdit(locales::getLocale(locales::AccelerateBack), "", &settings::C_playerIdown,
             Vector2f(20,y), 540, xTxt));  y += yadd;
-        tabPlayer1->addWidget(new KeyEdit(locales::getLocale(locales::Boost),          NULL, &settings::C_playerIboost,
+        tabPlayer1->addWidget(new KeyEdit(locales::getLocale(locales::Boost),          "", &settings::C_playerIboost,
             Vector2f(20,y), 540, xTxt));  y += yadd;
         
         tabPlayer1->addWidget(new Checkbox(locales::MouseRotationAim, locales::ttMouseRotationAim, &settings::C_playerImouseAim,
             Vector2f(20,y), 140));  y += yadd;
-        tabPlayer1->addWidget(new KeyEdit(locales::getLocale(locales::TurnLeft),  NULL, &settings::C_playerIleft,
+        tabPlayer1->addWidget(new KeyEdit(locales::getLocale(locales::TurnLeft),  "", &settings::C_playerIleft,
             Vector2f(20,y), 540, xTxt, Color3f(1.f, 1.f, 0.8f)));  y += yadd;
-        tabPlayer1->addWidget(new KeyEdit(locales::getLocale(locales::TurnRight), NULL, &settings::C_playerIright,
+        tabPlayer1->addWidget(new KeyEdit(locales::getLocale(locales::TurnRight), "", &settings::C_playerIright,
             Vector2f(20,y), 540, xTxt));  y += yadd*3/2;
 
-        tabPlayer1->addWidget(new KeyEdit(locales::getLocale(locales::Fire),      NULL, &settings::C_playerIfire,
+        tabPlayer1->addWidget(new KeyEdit(locales::getLocale(locales::Fire),        "", &settings::C_playerIfire,
             Vector2f(20,y), 540, xTxt, Color3f(1.f, 0.8f, 0.6f)));  y += yadd;
-        tabPlayer1->addWidget(new KeyEdit(locales::getLocale(locales::SpecialKey),  NULL, &settings::C_playerISpecialKey,
+        tabPlayer1->addWidget(new KeyEdit(locales::getLocale(locales::SpecialKey),  "", &settings::C_playerISpecialKey,
             Vector2f(20,y), 540, xTxt));  y += yadd;
-        tabPlayer1->addWidget(new KeyEdit(locales::getLocale(locales::PrevWeapon),  NULL, &settings::C_playerIprev,
+        tabPlayer1->addWidget(new KeyEdit(locales::getLocale(locales::PrevWeapon),  "", &settings::C_playerIprev,
             Vector2f(20,y), 540, xTxt));  y += yadd;
-        tabPlayer1->addWidget(new KeyEdit(locales::getLocale(locales::NextWeapon),  NULL, &settings::C_playerInext,
+        tabPlayer1->addWidget(new KeyEdit(locales::getLocale(locales::NextWeapon),  "", &settings::C_playerInext,
             Vector2f(20,y), 540, xTxt));  y += yadd;
-
-        tabPlayer1->addWidget(new LabeledBox(locales::getLocale(locales::ShipSettings),
-            Vector2f(10,y), 560, 90));  y += yadd;
-        tabPlayer1->addWidget(new ShipPreview(
-            &settings::C_playerIColor, &settings::C_playerITeamColor, &settings::C_playerIShip,
-            Vector2f(510,y)));  //y += yadd;
-        tabPlayer1->addWidget(new Slider(locales::getLocale(locales::ShipName), NULL,
-            &settings::C_playerIShip, 0, SHIP_GRAPHICS_COUNT, 1,
-            Vector2f(20,y), 410, xTxt, true, generateName::shipNames()));  y += yadd;
-        tabPlayer1->addWidget(new ColorPicker(locales::getLocale(locales::PlayerColor), &settings::C_playerIColor,
-            Vector2f(20,y), 410, xTxt));  y += yadd;
-        tabPlayer1->addWidget(new ColorPicker(locales::getLocale(locales::TeamColor), &settings::C_playerITeamColor,
-            Vector2f(20,y), 410, xTxt));  y += yadd;
 
         //  Player II keys  ----
         y = 30.f;
-        tabPlayer2->addWidget(new TextEdit(locales::getLocale(locales::Name), &settings::C_playerIIName, "PlayerII",
+        tabPlayer2->addWidget(new TextEdit(locales::getLocale(locales::Name), settings::C_playerIIName, "PlayerII",
             Vector2f(20,y), 540, xTxt, TEXT_EDIT, 12));  y += yadd*3/2;
 
-        tabPlayer2->addWidget(new KeyEdit(locales::getLocale(locales::Accelerate),     NULL, &settings::C_playerIIup,
+        tabPlayer2->addWidget(new KeyEdit(locales::getLocale(locales::Accelerate),     "", &settings::C_playerIIup,
             Vector2f(20,y), 540, xTxt, Color3f(0.5f, 0.76f, 1.f)));  y += yadd;
-        tabPlayer2->addWidget(new KeyEdit(locales::getLocale(locales::AccelerateBack), NULL, &settings::C_playerIIdown,
+        tabPlayer2->addWidget(new KeyEdit(locales::getLocale(locales::AccelerateBack), "", &settings::C_playerIIdown,
             Vector2f(20,y), 540, xTxt));  y += yadd;
-        tabPlayer2->addWidget(new KeyEdit(locales::getLocale(locales::Boost),          NULL, &settings::C_playerIIboost,
+        tabPlayer2->addWidget(new KeyEdit(locales::getLocale(locales::Boost),          "", &settings::C_playerIIboost,
             Vector2f(20,y), 540, xTxt));  y += yadd;
         
         tabPlayer2->addWidget(new Checkbox(locales::MouseRotationAim, locales::ttMouseRotationAim, &settings::C_playerIImouseAim,
             Vector2f(20,y), 140));  y += yadd;
-        tabPlayer2->addWidget(new KeyEdit(locales::getLocale(locales::TurnLeft),  NULL, &settings::C_playerIIleft,
+        tabPlayer2->addWidget(new KeyEdit(locales::getLocale(locales::TurnLeft),  "", &settings::C_playerIIleft,
             Vector2f(20,y), 540, xTxt, Color3f(1.f, 1.f, 0.8f)));  y += yadd;
-        tabPlayer2->addWidget(new KeyEdit(locales::getLocale(locales::TurnRight), NULL, &settings::C_playerIIright,
+        tabPlayer2->addWidget(new KeyEdit(locales::getLocale(locales::TurnRight), "", &settings::C_playerIIright,
             Vector2f(20,y), 540, xTxt));  y += yadd*3/2;
 
-        tabPlayer2->addWidget(new KeyEdit(locales::getLocale(locales::Fire),      NULL, &settings::C_playerIIfire,
+        tabPlayer2->addWidget(new KeyEdit(locales::getLocale(locales::Fire),        "", &settings::C_playerIIfire,
             Vector2f(20,y), 540, xTxt, Color3f(1.f, 0.8f, 0.6f)));  y += yadd;
-        tabPlayer2->addWidget(new KeyEdit(locales::getLocale(locales::SpecialKey),  NULL, &settings::C_playerIISpecialKey,
+        tabPlayer2->addWidget(new KeyEdit(locales::getLocale(locales::SpecialKey),  "", &settings::C_playerIISpecialKey,
             Vector2f(20,y), 540, xTxt));  y += yadd;
-        tabPlayer2->addWidget(new KeyEdit(locales::getLocale(locales::PrevWeapon),  NULL, &settings::C_playerIIprev,
+        tabPlayer2->addWidget(new KeyEdit(locales::getLocale(locales::PrevWeapon),  "", &settings::C_playerIIprev,
             Vector2f(20,y), 540, xTxt));  y += yadd;
-        tabPlayer2->addWidget(new KeyEdit(locales::getLocale(locales::NextWeapon),  NULL, &settings::C_playerIInext,
+        tabPlayer2->addWidget(new KeyEdit(locales::getLocale(locales::NextWeapon),  "", &settings::C_playerIInext,
             Vector2f(20,y), 540, xTxt));  y += yadd;
-
-        tabPlayer2->addWidget(new LabeledBox(locales::getLocale(locales::ShipSettings),
-            Vector2f(10, y), 560, 90));  y += yadd;
-        tabPlayer2->addWidget(new ShipPreview(
-            &settings::C_playerIIColor, &settings::C_playerIITeamColor, &settings::C_playerIIShip,
-            Vector2f(510,y)));  //y += yadd;
-        tabPlayer2->addWidget(new Slider(locales::getLocale(locales::ShipName), NULL,
-            &settings::C_playerIIShip, 0, SHIP_GRAPHICS_COUNT, 1,
-            Vector2f(20,y), 410, xTxt, true, generateName::shipNames()));  y += yadd;
-        tabPlayer2->addWidget(new ColorPicker(locales::getLocale(locales::PlayerColor), &settings::C_playerIIColor,
-            Vector2f(20,y), 410, xTxt));  y += yadd;
-        tabPlayer2->addWidget(new ColorPicker(locales::getLocale(locales::TeamColor), &settings::C_playerIITeamColor,
-            Vector2f(20,y), 410, xTxt));  y += yadd;
 
 
         tabList->addTab(tabInterface);
         tabList->addTab(tabGraphics);
         tabList->addTab(tabAudio);
         tabList->addTab(tabGameplay);
+        tabList->addTab(tabView);
+
+        tabList->addTab(tabShips);
         tabList->addTab(tabPlayer2);
         tabList->addTab(tabPlayer1);
         instance_->addWidget(tabList);

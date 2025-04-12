@@ -427,3 +427,5 @@
 310 Gravity scale
 311 Mouse rotation and aim
 312 If selected you can rotate your ship and aim to mouse cursor. For one player only.
+313 View
+314 Flashes

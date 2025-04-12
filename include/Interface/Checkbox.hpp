@@ -25,7 +25,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 class Checkbox: public UiElement
 {
     public:
-        Checkbox (sf::String* text, sf::String* toolTip,
+        Checkbox (const sf::String& text, const sf::String& toolTip,
             bool* value, Vector2f const& topLeft, int width);
         Checkbox (locales::LocaleType text, locales::LocaleType toolTip,
             bool* value, Vector2f const& topLeft, int width);
@@ -43,5 +43,5 @@ class Checkbox: public UiElement
     private:
         bool* value_;
         Label* label_;
-        sf::String* toolTip_;
+        sf::String toolTip_;
 };

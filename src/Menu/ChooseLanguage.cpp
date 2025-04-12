@@ -48,7 +48,7 @@ UiWindow* ChooseLanguage::get()
             bool* key = new bool(false);
             languageKeyMap_.insert(std::make_pair(it->second, key));
 
-            Button* newButton(new Button(new sf::String(it->first), new sf::String(localeList[it->second].author_), key,
+            Button* newButton(new Button(it->first, localeList[it->second].author_, key,
                 Vector2f(10, top), 200, 20, TEXT_ALIGN_CENTER, font::getFont(it->second)));
             instance_->addWidget(newButton);
 
@@ -60,11 +60,11 @@ UiWindow* ChooseLanguage::get()
             top += 24;
         }
 
-        instance_->addWidget(new Button(locales::getLocale(locales::Cancel), NULL, &kCancel_,
+        instance_->addWidget(new Button(locales::getLocale(locales::Cancel), "", &kCancel_,
             Vector2f(120,top+30), 90, 20));
-        instance_->addWidget(new Label(new sf::String("Select Language"), TEXT_ALIGN_LEFT,
+        instance_->addWidget(new Label("Select Language", TEXT_ALIGN_LEFT,
             Vector2f(10,0),  20.f, getColor3f(0.5f, 0.9f, 1.f), false));
-        instance_->addWidget(new Label(new sf::String("* Incomplete"), TEXT_ALIGN_LEFT,
+        instance_->addWidget(new Label("* Incomplete", TEXT_ALIGN_LEFT,
             Vector2f(10,top+10), 12.f, getColor3f(0.5f, 0.9f, 1.f), false));
         // instance_->addWidget(new Line(Vector2f(10, 35), Vector2f(210, 35)));
     }

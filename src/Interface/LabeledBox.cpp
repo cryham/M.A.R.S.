@@ -23,11 +23,11 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include <SFML/OpenGL.hpp>
 
 
-LabeledBox::LabeledBox (sf::String* text, Vector2f const& topLeft, int width, int height)
+LabeledBox::LabeledBox (const sf::String& text, Vector2f const& topLeft, int width, int height)
     :UiElement(topLeft, width, height)
     ,label_(NULL)
 {
-    if (text)
+    if (!text.isEmpty())
     {
         label_ = new Label(text, TEXT_ALIGN_LEFT, Vector2f(5, 5),
             12.f, getColor3f(0.5f, 0.9f, 1.f), false);

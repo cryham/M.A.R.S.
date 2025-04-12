@@ -27,7 +27,7 @@ class RadioGroup;
 class RadioButton: public UiElement
 {
     public:
-        RadioButton(sf::String* text, sf::String* toolTip, bool* value,
+        RadioButton(const sf::String& text, const sf::String& toolTip, bool* value,
             Vector2f const& topLeft, int width, bool offSwitchable = false);
         ~RadioButton();
 
@@ -46,5 +46,5 @@ class RadioButton: public UiElement
         bool* value_;
         Label* label_;
         bool offSwitchable_;
-        sf::String* toolTip_;
+        sf::String toolTip_;
 };

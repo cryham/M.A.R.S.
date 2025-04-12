@@ -37,11 +37,11 @@ UiWindow* About::get()
     if (instance_ == NULL) 
     {
         instance_ = new About(620, 330);
-        instance_->addWidget(new Button(locales::getLocale(locales::Close), NULL, &kClose_,
+        instance_->addWidget(new Button(locales::getLocale(locales::Close), "", &kClose_,
             Vector2f(320,300), 90, 20));
-        instance_->addWidget(new Label(new sf::String("M.A.R.S."), TEXT_ALIGN_LEFT,
+        instance_->addWidget(new Label("M.A.R.S.", TEXT_ALIGN_LEFT,
             Vector2f(10,0), 20.f, getColor3f(0.5f, 0.9f, 1.f), false));
-        instance_->addWidget(new Label(&marsName_, TEXT_ALIGN_RIGHT,
+        instance_->addWidget(new Label(marsName_, TEXT_ALIGN_RIGHT,
             Vector2f(410,18), 12.f, getColor3f(0.5f, 0.9f, 1.f), false));
 
         TabList* tabs = new TabList(Vector2f(10,70), 400, 250);

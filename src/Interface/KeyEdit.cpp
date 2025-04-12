@@ -37,7 +37,7 @@ KeyEdit::KeyEdit (locales::LocaleType text, locales::LocaleType toolTip,
         topLeft, width, labelWidth, color)
 {   }
 
-KeyEdit::KeyEdit (sf::String* text, sf::String* toolTip,
+KeyEdit::KeyEdit (const sf::String& text, const sf::String& toolTip,
         Key* value,
         Vector2f const& topLeft, int width, int labelWidth, Color3f color)
     :UiElement(topLeft, width, 20)
@@ -60,7 +60,7 @@ void KeyEdit::mouseMoved(Vector2f const& position)
     UiElement::mouseMoved(position);
     label_->mouseMoved(position);
 
-    if (hovered_ && toolTip_)
+    if (hovered_ && !toolTip_.isEmpty())
         toolTip::show(toolTip_);
 }
 

@@ -23,6 +23,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include <SFML/Audio.hpp>
 
+
 /// A namespace for playing sound effects.
 /// It is possible to choose which sound to play,
 /// it's volume and where to play it (for stereo effects).

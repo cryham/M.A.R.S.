@@ -28,7 +28,7 @@ class KeyEdit: public UiElement
         KeyEdit (locales::LocaleType text, locales::LocaleType toolTip,
             Key* value,
             Vector2f const& topLeft, int width, int labelWidth, Color3f color = {0.7f,0.7f,0.7f});
-        KeyEdit (sf::String* text, sf::String* toolTip,
+        KeyEdit (const sf::String& text, const sf::String& toolTip,
             Key* value,
             Vector2f const& topLeft, int width, int labelWidth, Color3f color = {0.7f,0.7f,0.7f});
         ~KeyEdit ();
@@ -45,6 +45,6 @@ class KeyEdit: public UiElement
     private:
         Key* value_;
         Label* label_;
-        sf::String* toolTip_;
+        sf::String toolTip_;
         int labelWidth_;
 };

@@ -26,7 +26,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include <SFML/OpenGL.hpp>
 
 
-Button::Button (sf::String* text, sf::String* toolTip, bool* key,
+Button::Button (const sf::String& text, const sf::String& toolTip, bool* key,
         Vector2f const& topLeft, int width, int height, int align, sf::Font* font)
     :UiElement(topLeft, width, height)
     ,key_(key)
@@ -56,7 +56,7 @@ void Button::mouseMoved(Vector2f const& position)
 {
     UiElement::mouseMoved(position);
     label_->mouseMoved(position);
-    if (hovered_ && toolTip_)
+    if (hovered_ && !toolTip_.isEmpty())
         toolTip::show(toolTip_);
 }
 
@@ -67,7 +67,7 @@ void Button::mouseLeft(bool down)
     {
         *key_ = true;
         hovered_ = false;
-        toolTip::show(NULL);
+        toolTip::show("");
         sound::playSound(sound::Click);
     }
 }
@@ -81,7 +81,7 @@ void Button::keyEvent(bool down, Key const& key)
         {
             *key_ = true;
             hovered_ = false;
-            toolTip::show(NULL);
+            toolTip::show("");
             sound::playSound(sound::Click);
         }
     }

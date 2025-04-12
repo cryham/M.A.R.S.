@@ -32,7 +32,7 @@ class Slider: public UiElement
             Vector2f const& topLeft, int width, int labelWidth = 185,
             bool showValue = false,
             std::vector<sf::String> const& sliderNames = std::vector<sf::String>() );
-        Slider (sf::String* text, sf::String* toolTip,
+        Slider (const sf::String& text, const sf::String& toolTip,
             int* value, int minValue, int maxValue, int step,
             Vector2f const& topLeft, int width, int labelWidth = 185,
             bool showValue = false,
@@ -56,5 +56,5 @@ class Slider: public UiElement
         int labelWidth_;
         bool showValue_;
         std::vector<sf::String> sliderNames_;
-        sf::String* toolTip_;
+        sf::String toolTip_;
 };

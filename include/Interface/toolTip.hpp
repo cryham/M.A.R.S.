@@ -28,7 +28,7 @@ namespace toolTip
 
     void mouseMoved(Vector2f const& position);
 
-    void show(sf::String* text);
+    void show(const sf::String& text);
 }
 
 

@@ -26,7 +26,7 @@ class Label;
 class LabeledBox: public UiElement
 {
     public:
-        LabeledBox(sf::String* text, Vector2f const& topLeft, int width, int height);
+        LabeledBox(const sf::String& text, Vector2f const& topLeft, int width, int height);
 
         ~LabeledBox();
 

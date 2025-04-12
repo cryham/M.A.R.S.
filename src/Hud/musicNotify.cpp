@@ -39,8 +39,8 @@ namespace musicNotify
         sf::String artist_;
         sf::String album_;
 
-        sf::String* by_;
-        sf::String* from_;
+        sf::String by_;
+        sf::String from_;
 
     }
 
@@ -59,8 +59,8 @@ namespace musicNotify
 
             const float artistLength(text::getCharacterPos(artist_, artist_.getSize(), 12.f, TEXT_ALIGN_LEFT));
             const float albumLength(text::getCharacterPos(album_, album_.getSize(), 12.f, TEXT_ALIGN_LEFT));
-            const float fromLength(text::getCharacterPos(*from_, from_->getSize(), 12.f, TEXT_ALIGN_LEFT));
-            const float byLength(text::getCharacterPos(*by_, by_->getSize(), 12.f, TEXT_ALIGN_LEFT));
+            const float fromLength(text::getCharacterPos(from_, from_.getSize(), 12.f, TEXT_ALIGN_LEFT));
+            const float byLength(text::getCharacterPos(by_, by_.getSize(), 12.f, TEXT_ALIGN_LEFT));
             const float spaceLength(text::getCharacterPos(" ", 1, 12.f, TEXT_ALIGN_LEFT));
             
             float byLineLenght(0.f);
@@ -172,27 +172,27 @@ namespace musicNotify
 
             if (artist_ != "" && album_ != "")
             {
-                text::drawScreenText(*by_, position + Vector2f(mirror*( -artistLength - spaceLength - albumLength - fromLength - 5), 28),
+                text::drawScreenText(by_, position + Vector2f(mirror*( -artistLength - spaceLength - albumLength - fromLength - 5), 28),
                     12.f, TEXT_ALIGN_RIGHT, Color3f(0.7f, 0.7f, 0.7f)*alpha);
                 text::drawScreenText(artist_, position + Vector2f(mirror*( -spaceLength - albumLength - fromLength -5), 28),
                     12.f, TEXT_ALIGN_RIGHT, Color3f(1.f, 0.5f, 0.9f)*alpha);
                 text::drawScreenText(" ", position + Vector2f(mirror*( -albumLength - fromLength -5), 28),
                     12.f, TEXT_ALIGN_RIGHT, Color3f(0.7f, 0.7f, 0.7f)*alpha);
-                text::drawScreenText(*from_, position + Vector2f(mirror*( -albumLength -5), 28),
+                text::drawScreenText(from_, position + Vector2f(mirror*( -albumLength -5), 28),
                     12.f, TEXT_ALIGN_RIGHT, Color3f(0.7f, 0.7f, 0.7f)*alpha);
                 text::drawScreenText(album_, position + Vector2f(mirror*(-5), 28),
                     12.f, TEXT_ALIGN_RIGHT, Color3f(1.f, 0.5f, 0.9f)*alpha);
             }
             else if (artist_ != "")
             {
-                text::drawScreenText(*by_, position + Vector2f(mirror*( -artistLength - 5), 28),
+                text::drawScreenText(by_, position + Vector2f(mirror*( -artistLength - 5), 28),
                     12.f, TEXT_ALIGN_RIGHT, Color3f(0.7f, 0.7f, 0.7f)*alpha);
                 text::drawScreenText(artist_, position + Vector2f(mirror*(-5), 28),
                     12.f, TEXT_ALIGN_RIGHT, Color3f(1.f, 0.5f, 0.9f)*alpha);
             }
             else if (album_ != "")
             {
-                text::drawScreenText(*from_, position + Vector2f(mirror*( -albumLength -5), 28),
+                text::drawScreenText(from_, position + Vector2f(mirror*( -albumLength -5), 28),
                     12.f, TEXT_ALIGN_RIGHT, Color3f(0.7f, 0.7f, 0.7f)*alpha);
                 text::drawScreenText(album_, position + Vector2f(mirror*(-5), 28),
                     12.f, TEXT_ALIGN_RIGHT, Color3f(1.f, 0.5f, 0.9f)*alpha);

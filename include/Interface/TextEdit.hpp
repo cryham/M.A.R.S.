@@ -28,7 +28,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 class TextEdit: public UiElement
 {
     public:
-        TextEdit (sf::String* text, sf::String* value, sf::String fallBack,
+        TextEdit (const sf::String& text, sf::String& value, const sf::String& fallBack,
             Vector2f const& topLeft, int width, int labelWidth, int type, int maxLength=0);
         ~TextEdit ();
 
@@ -43,7 +43,7 @@ class TextEdit: public UiElement
         void clearFocus();
 
     private:
-        sf::String* value_, fallBack_;
+        sf::String value_, fallBack_;
         Label* label_;
         unsigned maxLength_;
         unsigned cursorPos_;

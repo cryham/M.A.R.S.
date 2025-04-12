@@ -41,9 +41,9 @@ UiWindow* GameOptions::get()
     if (instance_ == NULL)
     {
         instance_ = new GameOptions(650, 400);
-        instance_->addWidget(new Button(locales::getLocale(locales::Ok), NULL, &kOk_,
+        instance_->addWidget(new Button(locales::getLocale(locales::Ok), "", &kOk_,
             Vector2f(350,370), 90, 20));
-        instance_->addWidget(new Button(locales::getLocale(locales::Defaults), NULL, &kDefaults_,
+        instance_->addWidget(new Button(locales::getLocale(locales::Defaults), "", &kDefaults_,
             Vector2f(210,370), 130, 20));
         
         int y = 10, yadd = 20, w = 540;
@@ -60,24 +60,24 @@ UiWindow* GameOptions::get()
 			&settings::C_powerUpRate, 0, 100, 5,
 			Vector2f(20,y), w, 240, true));  y += yadd*3/2;
 
-        instance_->addWidget(new Slider(locales::getLocale(locales::ShipTurnSpeed), NULL,
+        instance_->addWidget(new Slider(locales::getLocale(locales::ShipTurnSpeed), "",
            &settings::C_ShipTurnSpeed, 1, 60, 1,
            Vector2f(20,y), w, 240, true));  y += yadd;
-        instance_->addWidget(new Slider(locales::getLocale(locales::GlowAlpha), NULL,
+        instance_->addWidget(new Slider(locales::getLocale(locales::GlowAlpha), "",
            &settings::C_GlowAlpha, 0, 150, 1,
            Vector2f(20,y), w, 240, true));  y += yadd*3/2;
 
-        instance_->addWidget(new Slider(locales::getLocale(locales::DamageScale), NULL,
+        instance_->addWidget(new Slider(locales::getLocale(locales::DamageScale), "",
            &settings::C_DamageScale, 0, 200, 1,
            Vector2f(20,y), w, 240, true));  y += yadd;
-        instance_->addWidget(new Slider(locales::getLocale(locales::RespawnDelay), NULL,
+        instance_->addWidget(new Slider(locales::getLocale(locales::RespawnDelay), "",
            &settings::C_RespawnDelay, 0, 80, 1,
            Vector2f(20,y), w, 240, true));  y += yadd*3/2;
 
-        instance_->addWidget(new Slider(locales::getLocale(locales::Regeneration), NULL,
+        instance_->addWidget(new Slider(locales::getLocale(locales::Regeneration), "",
            &settings::C_Regeneration, 0, 150, 1,
            Vector2f(20,y), w, 240, true));  y += yadd;
-        instance_->addWidget(new Slider(locales::getLocale(locales::FuelRegen), NULL,
+        instance_->addWidget(new Slider(locales::getLocale(locales::FuelRegen), "",
            &settings::C_FuelRegen, 0, 150, 1,
            Vector2f(20,y), w, 240, true));  y += yadd;
     }

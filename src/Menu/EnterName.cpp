@@ -38,9 +38,9 @@ UiWindow* EnterName::get()
     if (instance_ == NULL)
     {   instance_ = new EnterName(320, 160);
 
-        instance_->addWidget(new TextEdit(NULL, &settings::C_playerIName, "PlayerI",
+        instance_->addWidget(new TextEdit("", settings::C_playerIName, "PlayerI",
             Vector2f(10,85), 300, 0, TEXT_EDIT, 12));
-        instance_->addWidget(new Button(locales::getLocale(locales::Ok), NULL, &kOk_,
+        instance_->addWidget(new Button(locales::getLocale(locales::Ok), "", &kOk_,
             Vector2f(220,130), 90, 20));
         instance_->addWidget(new Label(locales::getLocale(locales::PleaseEnterName), TEXT_ALIGN_LEFT,
             Vector2f(10,0), 20.f, getColor3f(0.5f, 0.9f, 1.f), false));

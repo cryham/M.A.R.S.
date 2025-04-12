@@ -25,7 +25,7 @@ class TutorialWindow: public UiWindow
 {
     public:
         static UiWindow* get(locales::LocaleType title, locales::LocaleType text, int index, bool info, bool next);
-        static UiWindow* get(sf::String* text, sf::String* title, int index, bool info, bool next);
+        static UiWindow* get(const sf::String& text, const sf::String& title, int index, bool info, bool next);
 
         void checkWidgets();
         void onShow()

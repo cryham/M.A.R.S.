@@ -39,7 +39,7 @@ Slider::Slider (locales::LocaleType text, locales::LocaleType toolTip,
         showValue, sliderNames)
 {   }
 
-Slider::Slider (sf::String* text, sf::String* toolTip,
+Slider::Slider (const sf::String& text, const sf::String& toolTip,
         int* value, int minValue, int maxValue, int step,
         Vector2f const& topLeft, int width, int labelWidth,
         bool showValue, std::vector<sf::String> const& sliderNames)
@@ -83,7 +83,7 @@ void Slider::mouseMoved(Vector2f const& position)
     }
     label_->mouseMoved(position);
 
-    if (hovered_ && toolTip_)
+    if (hovered_ && !toolTip_.isEmpty())
         toolTip::show(toolTip_);
 }
 

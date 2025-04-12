@@ -27,7 +27,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include <SFML/OpenGL.hpp>
 
 
-RadioButton::RadioButton (sf::String* text, sf::String* toolTip, bool* value,
+RadioButton::RadioButton (const sf::String& text, const sf::String& toolTip, bool* value,
         Vector2f const& topLeft, int width,bool offSwitchable)
     :UiElement(topLeft, width, 20)
     ,value_(value)
@@ -49,7 +49,7 @@ void RadioButton::mouseMoved(Vector2f const& position)
     UiElement::mouseMoved(position);
     label_->mouseMoved(position);
 
-    if (hovered_ && toolTip_)
+    if (hovered_ && !toolTip_.isEmpty())
         toolTip::show(toolTip_);
 }
 

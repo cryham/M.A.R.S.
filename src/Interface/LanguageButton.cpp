@@ -30,7 +30,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include <iostream>
 
 
-LanguageButton::LanguageButton (sf::String* text, Vector2f const& topLeft, int width, int labelWidth)
+LanguageButton::LanguageButton (const sf::String& text, Vector2f const& topLeft, int width, int labelWidth)
     :UiElement(topLeft, width, 16)
     ,labelWidth_(labelWidth * scale_)
 {

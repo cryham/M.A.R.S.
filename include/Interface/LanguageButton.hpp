@@ -26,7 +26,7 @@ class UiWindow;
 class LanguageButton: public UiElement
 {
     public:
-        LanguageButton (sf::String* text, Vector2f const& topLeft, int width, int labelWidth=185);
+        LanguageButton (const sf::String& text, Vector2f const& topLeft, int width, int labelWidth=185);
         ~LanguageButton ();
 
         void mouseMoved(Vector2f const& position);
@@ -40,7 +40,7 @@ class LanguageButton: public UiElement
         void clearFocus();
 
     private:
-        sf::String* currentValue_;
+        sf::String currentValue_;
         Label* label_;
         int labelWidth_;
         bool opened_;

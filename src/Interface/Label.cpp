@@ -21,7 +21,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include <SFML/OpenGL.hpp>
 
 
-Label::Label (sf::String* text, int textAlign,
+Label::Label (const sf::String& text, int textAlign,
         Vector2f const& topLeft, float fontSize, Color3f color, bool interactive, sf::Font* font)
     :UiElement(topLeft, 10, 10)
     ,text_(text)
@@ -56,12 +56,12 @@ void Label::draw() const
         
         if (parent_->isFocused())
         {
-            sf::String tmp("[ " + (*text_) + " ]");
+            sf::String tmp("[ " + text_ + " ]");
             text::drawScreenText(tmp, position, fontSize_, textAlign_, color, 1.f, font_);
         }else
-            text::drawScreenText(*text_, position, fontSize_, textAlign_, color, 1.f, font_);
+            text::drawScreenText(text_, position, fontSize_, textAlign_, color, 1.f, font_);
     }else
-        text::drawScreenText(*text_, position, fontSize_, textAlign_, color_, 1.f, font_);
+        text::drawScreenText(text_, position, fontSize_, textAlign_, color_, 1.f, font_);
 }
 
 void Label::setFocus(UiElement* toBeFocused, bool isPrevious)

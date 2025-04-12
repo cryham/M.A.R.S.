@@ -40,13 +40,13 @@ UiWindow* EndMenu::get()
     if (instance_ == NULL)
     {   instance_ = new EndMenu(180, 130);
     
-        instance_->addWidget(new Button(locales::getLocale(locales::RestartGame),     NULL, &kNew_,
+        instance_->addWidget(new Button(locales::getLocale(locales::RestartGame),     "", &kNew_,
             Vector2f(10,10), 160, 20));
-        instance_->addWidget(new Button(locales::getLocale(locales::Options),         NULL, &kOptions_,
+        instance_->addWidget(new Button(locales::getLocale(locales::Options),         "", &kOptions_,
             Vector2f(10,40), 160, 20));
-        instance_->addWidget(new Button(locales::getLocale(locales::HideMenu),        NULL, &kHide_,
+        instance_->addWidget(new Button(locales::getLocale(locales::HideMenu),        "", &kHide_,
             Vector2f(10,70), 160, 20));
-        instance_->addWidget(new Button(locales::getLocale(locales::QuitCurrentGame), NULL, &kToMainMenu_,
+        instance_->addWidget(new Button(locales::getLocale(locales::QuitCurrentGame), "", &kToMainMenu_,
             Vector2f(10,100), 160, 20));
     }
     return instance_;

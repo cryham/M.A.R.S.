@@ -24,7 +24,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include <SFML/OpenGL.hpp>
 
 
-Tab::Tab (sf::String* name, int width, bool* activated)
+Tab::Tab (const sf::String& name, int width, bool* activated)
     :UiElement(Vector2f() * 1.f/scale_, width * 1.f/scale_, 20)
     ,focusedWidget_(NULL)
     ,name_(name)

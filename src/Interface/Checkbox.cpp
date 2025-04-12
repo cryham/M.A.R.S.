@@ -33,7 +33,7 @@ Checkbox::Checkbox (locales::LocaleType text, locales::LocaleType toolTip,
         value, topLeft, width)
 {   }
 
-Checkbox::Checkbox (sf::String* text, sf::String* toolTip, bool* value, Vector2f const& topLeft, int width):
+Checkbox::Checkbox (const sf::String& text, const sf::String& toolTip, bool* value, Vector2f const& topLeft, int width):
     UiElement(topLeft, width, 20),
     value_(value),
     toolTip_(toolTip)
@@ -53,7 +53,7 @@ void Checkbox::mouseMoved(Vector2f const& position)
     UiElement::mouseMoved(position);
     label_->mouseMoved(position);
 
-    if (hovered_ && toolTip_)
+    if (hovered_ && !toolTip_.isEmpty())
         toolTip::show(toolTip_);
 }
 

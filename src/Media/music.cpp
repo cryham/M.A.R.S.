@@ -161,7 +161,7 @@ namespace music
         if (settings::C_musicVolume > 0)
         {
             stop();
-            hud::displayMessage(*locales::getLocale(locales::NextTrackNotify));
+            hud::displayMessage(locales::getLocale(locales::NextTrackNotify));
         }
     }
 
@@ -170,7 +170,7 @@ namespace music
         if (!playList_.empty() && settings::C_musicVolume > 0)
         {
             stop();
-            hud::displayMessage(*locales::getLocale(locales::PreviousTrackNotify));
+            hud::displayMessage(locales::getLocale(locales::PreviousTrackNotify));
 
             if (playList_.size() > 1)
                 playList_.pop_back();

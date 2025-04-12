@@ -38,7 +38,7 @@ namespace toolTip
 {
     namespace
 	{
-        sf::String*             currentLocale_(NULL);
+        sf::String              currentLocale_;
         std::vector<sf::String> lines_;
         int                     width_(300);
         float                   timer_(-5.f);
@@ -47,7 +47,7 @@ namespace toolTip
 
         void create()
         {
-            sf::String wholeText = *currentLocale_;
+            sf::String wholeText = currentLocale_;
             sf::String word;
             sf::String line;
             int lastSpace(0);
@@ -235,7 +235,7 @@ namespace toolTip
 
     void draw()
     {
-        if (currentLocale_ && lines_.size() > 0)
+        if (!currentLocale_.isEmpty() && lines_.size() > 0)
         {
             float alpha(0.f);
             float time(timer::realFrameTime()*1.3f);
@@ -293,19 +293,19 @@ namespace toolTip
         }
     }
 
-    void show(sf::String* text)
+    void show(const sf::String& text)
     {
         if (text != currentLocale_ && state_ != FADE_OUT)
         {
             currentLocale_ = text;
-            if (currentLocale_)
+            if (!currentLocale_.isEmpty())
             {
                 create();
                 if (state_ == FADE_OUT)
                     state_ = VISIBLE;
             }
         }
-        if (currentLocale_)
+        if (!currentLocale_.isEmpty())
         {
             if (state_ == INVISIBLE)
             {   state_ = WAITING;

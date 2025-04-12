@@ -110,6 +110,7 @@ namespace locales
         RespawnDelay, GlowAlpha,
         GravityScale,
         MouseRotationAim, ttMouseRotationAim,
+        View, Flashes,
 
         COUNT  /// amount of entries in the enum
     };
@@ -121,7 +122,7 @@ namespace locales
     std::vector<Locale> const& getLocales();
 
     /// Returns a string accordind to the current locale.
-    sf::String*                getLocale(LocaleType);
+    const sf::String&          getLocale(LocaleType);
 
     Locale const&              getCurrentLocale();
     void                       setCurrentLocale();

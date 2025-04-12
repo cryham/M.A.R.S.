@@ -21,7 +21,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include <SFML/OpenGL.hpp>
 
 
-TextBox::TextBox(sf::String* text,
+TextBox::TextBox(const sf::String& text,
         Vector2f const& topLeft, int width, int height, Color3f const& color)
     :UiElement(topLeft, 1.25f * width / scale_, height)
     ,color_(color)
@@ -29,7 +29,7 @@ TextBox::TextBox(sf::String* text,
     ,position_(0)
     ,scrollSpeed_(0.f)
 {
-    sf::String wholeText = *text;
+    sf::String wholeText = text;
     sf::String word;
     sf::String line;
     int lastSpace(0);
@@ -88,13 +88,13 @@ TextBox::TextBox(sf::String* text,
     {
         if (wholeText[i] == '\n')
         {
-            texts_.push_back(new sf::String(line));
+            texts_.push_back(line);
             line = "";
         }else
             line += wholeText[i];
     }
     if (line != "")
-        texts_.push_back(new sf::String(line));
+        texts_.push_back(line);
 
     if (texts_.size()*15.f > height_)
     {
@@ -107,8 +107,6 @@ TextBox::TextBox(sf::String* text,
 
 TextBox::~TextBox()
 {
-    for (auto& it : texts_)
-        delete it;
     if (slider_)
         delete slider_;
 }
@@ -186,7 +184,7 @@ void TextBox::draw () const
             alpha = 0;
 
         if (alpha > 0)
-            text::drawScreenText(*it, origin+Vector2f(0, top), 12.f, TEXT_ALIGN_LEFT, color_, alpha);
+            text::drawScreenText(it, origin+Vector2f(0, top), 12.f, TEXT_ALIGN_LEFT, color_, alpha);
         top += 15.f * scale_;
     }
 

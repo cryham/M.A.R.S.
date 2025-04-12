@@ -41,9 +41,9 @@ UiWindow* NewGameConfirm::get()
     if (instance_ == NULL)
     {
         instance_ = new NewGameConfirm(280, 80);
-        instance_->addWidget(new Button(locales::getLocale(locales::Ok), NULL, &kOk_,
+        instance_->addWidget(new Button(locales::getLocale(locales::Ok), "", &kOk_,
             Vector2f(180,50), 90, 20));
-        instance_->addWidget(new Button(locales::getLocale(locales::Cancel), NULL, &kCancel_,
+        instance_->addWidget(new Button(locales::getLocale(locales::Cancel), "", &kCancel_,
             Vector2f(80,50), 90, 20));
         instance_->addWidget(new Label(locales::getLocale(locales::QuitCurrentGameText), TEXT_ALIGN_LEFT,
             Vector2f(10,8), 12.f, getColor3f(0.7f, 0.7f, 0.7f), false));

@@ -27,7 +27,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 class TextBox: public UiElement
 {
     public:
-        TextBox (sf::String* text,
+        TextBox (const sf::String& text,
             Vector2f const& topLeft, int width, int height,
             Color3f const& color = Color3f(0.7f, 0.7f, 0.7f));
         ~TextBox();
@@ -43,7 +43,7 @@ class TextBox: public UiElement
 
     private:
         Color3f color_;
-        std::vector<sf::String*> texts_;
+        std::vector<sf::String> texts_;
         VerticalSlider* slider_;
         mutable float position_;
         mutable float scrollSpeed_;

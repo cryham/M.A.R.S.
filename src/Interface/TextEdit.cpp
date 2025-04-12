@@ -28,14 +28,14 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include <iostream>
 
 
-TextEdit::TextEdit (sf::String* text, sf::String* value, sf::String fallBack,
+TextEdit::TextEdit (const sf::String& text, sf::String& value, const sf::String& fallBack,
         Vector2f const& topLeft, int width, int labelWidth, int type, int maxLength)
     : UiElement(topLeft, width, 20)
     , value_(value)
     , fallBack_(fallBack)
     , label_(NULL)
     , maxLength_(maxLength)
-    , cursorPos_(value->getSize())
+    , cursorPos_(value.getSize())
     , cursorTimer_(0)
     , type_(type)
     , labelWidth_(labelWidth * scale_)
@@ -43,7 +43,7 @@ TextEdit::TextEdit (sf::String* text, sf::String* value, sf::String fallBack,
     if      (type == 1)  maxLength_ = 5;
     else if (type == 2)  maxLength_ = 15;
 
-    if (text)
+    if (!text.isEmpty())
     {
         label_ = new Label(text, TEXT_ALIGN_LEFT, Vector2f(0,0));
         label_->setParent(this);
@@ -67,9 +67,9 @@ void TextEdit::mouseMoved(Vector2f const& position)
         cursorTimer_ = 0;
         int mirror(locales::getCurrentLocale().LTR_ ? 1 : -1);
 
-        while (text::getCharacterPos(*value_, cursorPos_, 12.f, TEXT_ALIGN_CENTER) +
+        while (text::getCharacterPos(value_, cursorPos_, 12.f, TEXT_ALIGN_CENTER) +
                 2*mirror + getTopLeft().x_ +(width()+labelWidth_*mirror)/2
-            < window::getMousePosition().x_ - 3 && cursorPos_ < value_->getSize())
+            < window::getMousePosition().x_ - 3 && cursorPos_ < value_.getSize())
             ++cursorPos_;
     }
 }
@@ -90,9 +90,9 @@ void TextEdit::mouseLeft(bool down)
         cursorTimer_ = 0;
         int mirror(locales::getCurrentLocale().LTR_ ? 1 : -1);
 
-        while (text::getCharacterPos(*value_, cursorPos_, 12.f, TEXT_ALIGN_CENTER) +
+        while (text::getCharacterPos(value_, cursorPos_, 12.f, TEXT_ALIGN_CENTER) +
                 2*mirror + getTopLeft().x_ +(width()+labelWidth_*mirror)/2
-            < window::getMousePosition().x_ - 3 && cursorPos_ < value_->getSize())
+            < window::getMousePosition().x_ - 3 && cursorPos_ < value_.getSize())
             ++cursorPos_;
     }
 }
@@ -108,14 +108,14 @@ void TextEdit::keyEvent(bool down, Key const& key)
                 // backspace
                 if (key.code_.keyBoard_ == sf::Keyboard::BackSpace && cursorPos_ > 0)
                 {
-                    value_->erase(cursorPos_-1, 1);
+                    value_.erase(cursorPos_-1, 1);
                     --cursorPos_;
                     cursorTimer_ = 0;
                 }
                 // delete
-                else if (key.code_.keyBoard_ == sf::Keyboard::Delete && cursorPos_ < value_->getSize())
+                else if (key.code_.keyBoard_ == sf::Keyboard::Delete && cursorPos_ < value_.getSize())
                 {
-                    value_->erase(cursorPos_, 1);
+                    value_.erase(cursorPos_, 1);
                 }
                 // move cursor
                 else if (key.code_.keyBoard_ == sf::Keyboard::Left && cursorPos_ > 0)
@@ -123,7 +123,7 @@ void TextEdit::keyEvent(bool down, Key const& key)
                     --cursorPos_;
                     cursorTimer_ = 0;
                 }
-                else if (key.code_.keyBoard_ == sf::Keyboard::Right && cursorPos_ < value_->getSize())
+                else if (key.code_.keyBoard_ == sf::Keyboard::Right && cursorPos_ < value_.getSize())
                 {
                     ++cursorPos_;
                     cursorTimer_ = 0;
@@ -131,8 +131,9 @@ void TextEdit::keyEvent(bool down, Key const& key)
                 else if (key.navi_ == Key::nAbort || key.code_.keyBoard_ == sf::Keyboard::Up ||
                         key.code_.keyBoard_ == sf::Keyboard::Down || key.navi_ == Key::nConfirm)
                 {
-                    if (*value_ == "")
-                        *value_ = fallBack_;
+                    if (value_.isEmpty())
+                        value_ = fallBack_;
+
                     menus::unFixKeyboard();
                     pressed_ = false;
                 }
@@ -151,25 +152,25 @@ void TextEdit::textEntered(sf::Uint32 keyCode)
     if (pressed_)
     {
         if (type_ == TEXT_EDIT)
-        {   if (value_->getSize() < maxLength_ && keyCode != 8 && keyCode != 13 && keyCode != 32 && keyCode != 127)
+        {   if (value_.getSize() < maxLength_ && keyCode != 8 && keyCode != 13 && keyCode != 32 && keyCode != 127)
             {
-                value_->insert(cursorPos_, keyCode);
+                value_.insert(cursorPos_, keyCode);
                 ++cursorPos_;
                 cursorTimer_ = 0;
             }
         }
         else if (type_ == IP_EDIT)
-        {   if (((keyCode > 47 && keyCode < 58) || keyCode == 46) && value_->getSize() < maxLength_)
+        {   if (((keyCode > 47 && keyCode < 58) || keyCode == 46) && value_.getSize() < maxLength_)
             {
-                value_->insert(cursorPos_, keyCode);
+                value_.insert(cursorPos_, keyCode);
                 ++cursorPos_;
                 cursorTimer_ = 0;
             }
         }
         else if (type_ == PORT_EDIT)
-        {   if (value_->getSize() < maxLength_)
+        {   if (value_.getSize() < maxLength_)
             {
-                value_->insert(cursorPos_, keyCode);
+                value_.insert(cursorPos_, keyCode);
                 ++cursorPos_;
                 cursorTimer_ = 0;
             }
@@ -247,21 +248,21 @@ void TextEdit::draw() const
         highlight*(Color3f(1.f, 0.6f, 0.8f) * (1-hoveredFadeTime_) + Color3f(1, 1, 1) * hoveredFadeTime_));
 
     if (pressed_)
-        text::drawScreenText(*value_, origin +
+        text::drawScreenText(value_, origin +
             Vector2f((width()+labelWidth_*mirror)/2,1) + Vector2f(1,1), 12.f, TEXT_ALIGN_CENTER, color);
     else
-        text::drawScreenText(*value_, origin +
+        text::drawScreenText(value_, origin +
             Vector2f((width()+labelWidth_*mirror)/2,1), 12.f, TEXT_ALIGN_CENTER, color);
 
     // draw cursor
     if (pressed_ && cursorTimer_ < 30)
     {
-        int pos = text::getCharacterPos(*value_, cursorPos_, 12.f, TEXT_ALIGN_CENTER) + 2;
+        int pos = text::getCharacterPos(value_, cursorPos_ * scale_, 12.f, TEXT_ALIGN_CENTER) + 2;
         setColor4f(0.8,0.9,1.0,0.5);
         glLineWidth(0.5f);
         glBegin(GL_LINES);
-            glVertex2f(origin.x_ + pos +(width()+labelWidth_*mirror)/2, origin.y_+3);
-            glVertex2f(origin.x_ + pos +(width()+labelWidth_*mirror)/2, origin.y_+height_-3);
+            glVertex2f(origin.x_ + pos + (width() + labelWidth_*mirror) / 2, origin.y_+3);
+            glVertex2f(origin.x_ + pos + (width() + labelWidth_*mirror) / 2, origin.y_+height_-3);
         glEnd();
     }
 
@@ -281,8 +282,9 @@ void TextEdit::clearFocus()
 {
     UiElement::clearFocus();
     pressed_ = false;
-    if (*value_ == "")
-        *value_ = fallBack_;
+    if (value_.isEmpty())
+        value_ = fallBack_;
+
     menus::unFixKeyboard();
     if (label_)
         label_->clearFocus();

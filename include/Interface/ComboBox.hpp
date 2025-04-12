@@ -30,7 +30,7 @@ class ComboBox: public UiElement
         ComboBox (locales::LocaleType text, locales::LocaleType toolTip,
             sf::String* value, std::vector<sf::String> const& values,
             Vector2f const& topLeft, int width, int labelWidth = 185);
-        ComboBox (sf::String* text, sf::String* toolTip,
+        ComboBox (const sf::String& text, const sf::String& toolTip,
             sf::String* value, std::vector<sf::String> const& values,
             Vector2f const& topLeft, int width, int labelWidth = 185);
         ~ComboBox ();
@@ -55,5 +55,5 @@ class ComboBox: public UiElement
         Label* label_;
         int labelWidth_;
         bool opened_;
-        sf::String* toolTip_;
+        sf::String toolTip_;
 };

@@ -184,9 +184,9 @@ namespace locales
         return locales_;
     }
 
-    sf::String* getLocale(LocaleType type)
+    const sf::String& getLocale(LocaleType type)
     {
-        return &localeStrings_[type];
+        return localeStrings_[type];
     }
 
     Locale const& getCurrentLocale()

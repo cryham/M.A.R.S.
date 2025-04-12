@@ -48,19 +48,19 @@ UiWindow* MainMenu::get()
         float y = 10, w = 180 * scale_, h = 20, yadd = h + 10;
         
         instance_ = new MainMenu(w + 20, 190, Vector2f(0.f, 50.f));
-        instance_->addWidget(new Button(locales::getLocale(locales::StartLocalGame), NULL, &kStartLocal_,
+        instance_->addWidget(new Button(locales::getLocale(locales::StartLocalGame), "", &kStartLocal_,
             Vector2f(10,y), w, h));  y += yadd;
-        instance_->addWidget(new Button(locales::getLocale(locales::StartTutorial),  NULL, &kStartTut_,
+        instance_->addWidget(new Button(locales::getLocale(locales::StartTutorial),  "", &kStartTut_,
             Vector2f(10,y), w, h));  y += yadd*3/2;
-        // instance_->addWidget(new Button(locales::getLocale(locales::StartNetworkGame), NULL, &kStartMulti_,
+        // instance_->addWidget(new Button(locales::getLocale(locales::StartNetworkGame), "", &kStartMulti_,
         //    Vector2f(10,y), w, h));  y += yadd;
-        // instance_->addWidget(new Button(locales::getLocale(locales::JoinNetworkGame),  NULL, &kJoinMulti_,
+        // instance_->addWidget(new Button(locales::getLocale(locales::JoinNetworkGame),  "", &kJoinMulti_,
         //    Vector2f(10,y), w, h));  y += yadd;
-        instance_->addWidget(new Button(locales::getLocale(locales::Options),        NULL, &kOptions_,
+        instance_->addWidget(new Button(locales::getLocale(locales::Options),        "", &kOptions_,
             Vector2f(10,y), w, h));  y += yadd*3/2;
-        instance_->addWidget(new Button(locales::getLocale(locales::About),          NULL, &kAbout_,
+        instance_->addWidget(new Button(locales::getLocale(locales::About),          "", &kAbout_,
             Vector2f(10,y), w, h));  y += yadd;
-        instance_->addWidget(new Button(locales::getLocale(locales::Quit),           NULL, &kExit_,
+        instance_->addWidget(new Button(locales::getLocale(locales::Quit),           "", &kExit_,
             Vector2f(10,y), w, h));  y += yadd;
     }
     return instance_;

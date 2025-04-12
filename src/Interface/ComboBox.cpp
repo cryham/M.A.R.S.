@@ -40,7 +40,7 @@ ComboBox::ComboBox (locales::LocaleType text, locales::LocaleType toolTip,
         topLeft, width, labelWidth)
 {   }
 
-ComboBox::ComboBox (sf::String* text, sf::String* toolTip,
+ComboBox::ComboBox (const sf::String& text, const sf::String& toolTip,
         sf::String* value, std::vector<sf::String> const& values,
         Vector2f const& topLeft, int width, int labelWidth)
     :UiElement(topLeft, width, 16)
@@ -69,7 +69,7 @@ void ComboBox::mouseMoved(Vector2f const& position)
     UiElement::mouseMoved(position);
     label_->mouseMoved(position);
 
-    if (hovered_ && toolTip_)
+    if (hovered_ && !toolTip_.isEmpty())
         toolTip::show(toolTip_);
 }
 

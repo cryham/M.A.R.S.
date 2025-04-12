@@ -39,14 +39,15 @@ void Freezer::draw(float alpha) const
     // draw glow
     parent_->getOwner()->team()->color().brightened().gl4f(0.8f*alpha);;
 
+    const float r = parent_->radius();
     const int posX = 2;
     const int posY = 0;
 
     glBegin(GL_QUADS);
-        glTexCoord2f( posX*0.25f,    posY*0.25f);    glVertex2f(-parent_->radius()*4,-parent_->radius()*4);
-        glTexCoord2f( posX*0.25f,   (posY+1)*0.25f); glVertex2f(-parent_->radius()*4, parent_->radius()*4);
-        glTexCoord2f((posX+1)*0.25f,(posY+1)*0.25f); glVertex2f( parent_->radius()*4, parent_->radius()*4);
-        glTexCoord2f((posX+1)*0.25f, posY*0.25f);    glVertex2f( parent_->radius()*4,-parent_->radius()*4);
+        glTexCoord2f( posX*0.25f,    posY*0.25f);    glVertex2f(-r*4,-r*4);
+        glTexCoord2f( posX*0.25f,   (posY+1)*0.25f); glVertex2f(-r*4, r*4);
+        glTexCoord2f((posX+1)*0.25f,(posY+1)*0.25f); glVertex2f( r*4, r*4);
+        glTexCoord2f((posX+1)*0.25f, posY*0.25f);    glVertex2f( r*4,-r*4);
     glEnd();
 
     if (timer_ > 0.f)

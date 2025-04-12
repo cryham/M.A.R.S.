@@ -42,12 +42,13 @@ void Shocker::draw(float alpha) const
     const int posY = 1;
 
     float scale(4 + std::sin(timer::totalTime()*6)*0.3f);
+    const float r = parent_->radius();
 
     glBegin(GL_QUADS);
-        glTexCoord2f( posX*0.25f,    posY*0.25f);    glVertex2f(-parent_->radius()*scale,-parent_->radius()*scale);
-        glTexCoord2f( posX*0.25f,   (posY+1)*0.25f); glVertex2f(-parent_->radius()*scale, parent_->radius()*scale);
-        glTexCoord2f((posX+1)*0.25f,(posY+1)*0.25f); glVertex2f( parent_->radius()*scale, parent_->radius()*scale);
-        glTexCoord2f((posX+1)*0.25f, posY*0.25f);    glVertex2f( parent_->radius()*scale,-parent_->radius()*scale);
+        glTexCoord2f( posX*0.25f,    posY*0.25f);    glVertex2f(-r*scale,-r*scale);
+        glTexCoord2f( posX*0.25f,   (posY+1)*0.25f); glVertex2f(-r*scale, r*scale);
+        glTexCoord2f((posX+1)*0.25f,(posY+1)*0.25f); glVertex2f( r*scale, r*scale);
+        glTexCoord2f((posX+1)*0.25f, posY*0.25f);    glVertex2f( r*scale,-r*scale);
     glEnd();
 
     if (timer_ > 0.f)

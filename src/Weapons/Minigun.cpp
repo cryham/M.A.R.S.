@@ -28,14 +28,16 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 void Minigun::draw(float alpha) const
 {
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    glColor4f(1.0f, 1.0f, 1.0f, alpha);
+    glColor4f(1.0f, 1.0f, 0.5f, alpha);
+
+    const float r = parent_->radius();
     const int posX = 1;
     const int posY = 31;
     glBegin(GL_QUADS);  // 1/8 / 4
-        glTexCoord2f(posX*0.125f,     posY*0.03125f);    glVertex2f(0,      parent_->radius()*0.3f);
-        glTexCoord2f(posX*0.125f,    (posY+1)*0.03125f); glVertex2f(0, -1.f*parent_->radius()*0.3f);
-        glTexCoord2f((posX+1)*0.125f,(posY+1)*0.03125f); glVertex2f(parent_->radius()*3.f, -1.f*parent_->radius()*0.3f);
-        glTexCoord2f((posX+1)*0.125f, posY*0.03125f);    glVertex2f(parent_->radius()*3.f,      parent_->radius()*0.3f);
+        glTexCoord2f(posX*0.125f,     posY*0.03125f);    glVertex2f(0,      r* 0.3f);
+        glTexCoord2f(posX*0.125f,    (posY+1)*0.03125f); glVertex2f(0,      r*-0.3f);
+        glTexCoord2f((posX+1)*0.125f,(posY+1)*0.03125f); glVertex2f(r*6.f,  r*-0.3f);
+        glTexCoord2f((posX+1)*0.125f, posY*0.03125f);    glVertex2f(r*6.f,  r* 0.3f);
     glEnd();
 }
 
@@ -57,9 +59,10 @@ void Minigun::fire() const
     }
 }
 
+
 float Minigun::maxDistance() const
 {
-    return 300.f;
+    return 2300.f;
 }
 
 float Minigun::minDistance() const
@@ -69,5 +72,5 @@ float Minigun::minDistance() const
 
 float Minigun::maxAngle() const
 {
-    return 20.f;
+    return 10.f;
 }

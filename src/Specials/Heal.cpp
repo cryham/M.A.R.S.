@@ -37,15 +37,15 @@ void Heal::draw(float alpha) const
     alpha *= 0.6 + std::sin(timer::totalTime()*6)*0.1f;
     parent_->getOwner()->team()->color().brightened().gl4f(alpha);
 
-
+    const float r = parent_->radius();
     const int posX = 1;
     const int posY = 0;
 
     glBegin(GL_QUADS);
-        glTexCoord2f( posX*0.25f,    posY*0.25f);    glVertex2f(-parent_->radius()*4,-parent_->radius()*4);
-        glTexCoord2f( posX*0.25f,   (posY+1)*0.25f); glVertex2f(-parent_->radius()*4, parent_->radius()*4);
-        glTexCoord2f((posX+1)*0.25f,(posY+1)*0.25f); glVertex2f( parent_->radius()*4, parent_->radius()*4);
-        glTexCoord2f((posX+1)*0.25f, posY*0.25f);    glVertex2f( parent_->radius()*4,-parent_->radius()*4);
+        glTexCoord2f( posX*0.25f,    posY*0.25f);    glVertex2f(-r*4,-r*4);
+        glTexCoord2f( posX*0.25f,   (posY+1)*0.25f); glVertex2f(-r*4, r*4);
+        glTexCoord2f((posX+1)*0.25f,(posY+1)*0.25f); glVertex2f( r*4, r*4);
+        glTexCoord2f((posX+1)*0.25f, posY*0.25f);    glVertex2f( r*4,-r*4);
     glEnd();
 
     if (timer_ > 0.f)

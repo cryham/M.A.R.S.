@@ -29,13 +29,15 @@ void Burner::draw(float alpha) const
 {
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glColor4f(1.0f, 1.0f, 1.0f, alpha);
+
+    const float r = parent_->radius();
     const int posX = 0;
     const int posY = 30;
     glBegin(GL_QUADS);
-        glTexCoord2f(posX*0.125f,     posY*0.03125f);    glVertex2f(0,      parent_->radius()*0.3f);
-        glTexCoord2f(posX*0.125f,    (posY+1)*0.03125f); glVertex2f(0, -1.f*parent_->radius()*0.3f);
-        glTexCoord2f((posX+1)*0.125f,(posY+1)*0.03125f); glVertex2f(parent_->radius()*3.f, -1.f*parent_->radius()*0.3f);
-        glTexCoord2f((posX+1)*0.125f, posY*0.03125f);    glVertex2f(parent_->radius()*3.f,      parent_->radius()*0.3f);
+        glTexCoord2f(posX*0.125f,     posY*0.03125f);    glVertex2f(0,      r*0.3f);
+        glTexCoord2f(posX*0.125f,    (posY+1)*0.03125f); glVertex2f(0, -1.f*r*0.3f);
+        glTexCoord2f((posX+1)*0.125f,(posY+1)*0.03125f); glVertex2f(r*3.f, -1.f*r*0.3f);
+        glTexCoord2f((posX+1)*0.125f, posY*0.03125f);    glVertex2f(r*3.f,      r*0.3f);
     glEnd();
 }
 
@@ -46,15 +48,19 @@ void Burner::fire() const
     {
         timer_ = time;
         float angleRad = parent_->rotation()*M_PI / 180.f;
-        Vector2f faceDirection(std::cos(angleRad), std::sin(angleRad));
+        Vector2f dir(std::cos(angleRad), std::sin(angleRad));
+
         for (int i=0; i < 20; ++i)
         {
-            particles::spawn(particles::pAmmoBurner, parent_->location() + faceDirection*parent_->radius()*1.5f, faceDirection, parent_->velocity(), Color3f(), parent_->getOwner());
-            particles::spawn(particles::pHeatBurner, parent_->location() + faceDirection*parent_->radius()*1.5f, faceDirection, parent_->velocity());
+            particles::spawn(particles::pAmmoBurner, parent_->location() + dir*parent_->radius()*1.5f, dir,
+                parent_->velocity(), Color3f(), parent_->getOwner());
+            particles::spawn(particles::pHeatBurner, parent_->location() + dir*parent_->radius()*1.5f, dir,
+                parent_->velocity());
         }
-        parent_->velocity() -= faceDirection*10.f;
+        parent_->velocity() -= dir*10.f;
     }
 }
+
 
 float Burner::maxDistance() const
 {

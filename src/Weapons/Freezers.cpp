@@ -29,14 +29,16 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 void Freezers::draw(float alpha) const
 {
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    glColor3f(0.2f, 1.f, 0.f);
+    glColor3f(0.2f, 1.f, 0.6f);
+
+    const float r = parent_->radius();
     const int posX = 0;
     const int posY = 29;
     glBegin(GL_QUADS);
-        glTexCoord2f(posX*0.125f,     posY*0.03125f);    glVertex2f(0,      parent_->radius()*0.4f);
-        glTexCoord2f(posX*0.125f,    (posY+1)*0.03125f); glVertex2f(0, -1.f*parent_->radius()*0.4f);
-        glTexCoord2f((posX+1)*0.125f,(posY+1)*0.03125f); glVertex2f(parent_->radius()*3.f, -1.f*parent_->radius()*0.4f);
-        glTexCoord2f((posX+1)*0.125f, posY*0.03125f);    glVertex2f(parent_->radius()*3.f,      parent_->radius()*0.4f);
+        glTexCoord2f(posX*0.125f,     posY*0.03125f);    glVertex2f(0,     r* 0.4f);
+        glTexCoord2f(posX*0.125f,    (posY+1)*0.03125f); glVertex2f(0,     r*-0.4f);
+        glTexCoord2f((posX+1)*0.125f,(posY+1)*0.03125f); glVertex2f(r*3.f, r*-0.4f);
+        glTexCoord2f((posX+1)*0.125f, posY*0.03125f);    glVertex2f(r*3.f, r* 0.4f);
     glEnd();
 }
 
@@ -46,16 +48,19 @@ void Freezers::fire() const
     if (time - timer_ <= 0.2f) return;
     timer_ = time;
     float angleRad = parent_->rotation()*M_PI / 180.f;
-    Vector2f faceDirection(std::cos(angleRad), std::sin(angleRad));
+    Vector2f dir(std::cos(angleRad), std::sin(angleRad));
 
-    particles::spawn(particles::pAmmoFreezers, parent_->location() + faceDirection*parent_->radius(), faceDirection, parent_->velocity(), Color3f(), parent_->getOwner());
-    parent_->velocity() -= faceDirection*10.f;
+    particles::spawn(particles::pAmmoFreezers, parent_->location() + dir*parent_->radius(),
+        dir, parent_->velocity(), Color3f(), parent_->getOwner());
+    
+    // parent_->velocity() -= dir * 10.f;
     sound::playSound(sound::Blub, parent_->location());
 }
 
+
 float Freezers::maxDistance() const
 {
-    return 200.f;
+    return 600.f;
 }
 
 float Freezers::minDistance() const
@@ -65,5 +70,5 @@ float Freezers::minDistance() const
 
 float Freezers::maxAngle() const
 {
-    return 70.f;
+    return 50.f;
 }

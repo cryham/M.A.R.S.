@@ -36,16 +36,16 @@ void Blast::draw(float alpha) const
     // draw glow
     parent_->getOwner()->team()->color().brightened().gl4f(0.8f*alpha);
 
+    float scale(4 + std::sin(timer::totalTime()*6)*0.3f);
+    const float r = parent_->radius();
     const int posX = 0;
     const int posY = 0;
 
-    float scale(4 + std::sin(timer::totalTime()*6)*0.3f);
-
     glBegin(GL_QUADS);
-        glTexCoord2f( posX*0.25f,    posY*0.25f);    glVertex2f(-parent_->radius()*scale,-parent_->radius()*scale);
-        glTexCoord2f( posX*0.25f,   (posY+1)*0.25f); glVertex2f(-parent_->radius()*scale, parent_->radius()*scale);
-        glTexCoord2f((posX+1)*0.25f,(posY+1)*0.25f); glVertex2f( parent_->radius()*scale, parent_->radius()*scale);
-        glTexCoord2f((posX+1)*0.25f, posY*0.25f);    glVertex2f( parent_->radius()*scale,-parent_->radius()*scale);
+        glTexCoord2f( posX*0.25f,    posY*0.25f);    glVertex2f(-r*scale,-r*scale);
+        glTexCoord2f( posX*0.25f,   (posY+1)*0.25f); glVertex2f(-r*scale, r*scale);
+        glTexCoord2f((posX+1)*0.25f,(posY+1)*0.25f); glVertex2f( r*scale, r*scale);
+        glTexCoord2f((posX+1)*0.25f, posY*0.25f);    glVertex2f( r*scale,-r*scale);
     glEnd();
 
     // draw effect
@@ -93,5 +93,6 @@ void Blast::activate() const
 
 float Blast::radius() const
 {
-    return (parent_->fragStars_ > 0 ? parent_->fragStars_*150.f+150.f : 0.f);
+    return parent_->fragStars_ > 0 ?
+        parent_->fragStars_ * 150.f + 150.f : 0.f;
 }

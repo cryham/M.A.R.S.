@@ -31,13 +31,15 @@ void Insta::draw(float alpha) const
 {
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     parent_->getOwner()->team()->color().brightened().gl4f(alpha);
+
+    const float r = parent_->radius();
     const int posX = 2;
     const int posY = 31;
     glBegin(GL_QUADS);
-        glTexCoord2f(posX*0.125f,     posY*0.03125f);    glVertex2f(0,      parent_->radius()*0.2f);
-        glTexCoord2f(posX*0.125f,    (posY+1)*0.03125f); glVertex2f(0, -1.f*parent_->radius()*0.2f);
-        glTexCoord2f((posX+1)*0.125f,(posY+1)*0.03125f); glVertex2f(parent_->radius()*4.5f, -1.f*parent_->radius()*0.2f);
-        glTexCoord2f((posX+1)*0.125f, posY*0.03125f);    glVertex2f(parent_->radius()*4.5f,      parent_->radius()*0.2f);
+        glTexCoord2f(posX*0.125f,     posY*0.03125f);    glVertex2f(0,      r* 0.2f);
+        glTexCoord2f(posX*0.125f,    (posY+1)*0.03125f); glVertex2f(0,      r*-0.2f);
+        glTexCoord2f((posX+1)*0.125f,(posY+1)*0.03125f); glVertex2f(r*4.5f, r*-0.2f);
+        glTexCoord2f((posX+1)*0.125f, posY*0.03125f);    glVertex2f(r*4.5f, r* 0.2f);
     glEnd();
 }
 
@@ -48,9 +50,12 @@ void Insta::fire() const
     {   timer_ = time;
     
         float angleRad = parent_->rotation()*M_PI / 180;
-        Vector2f faceDirection(std::cos(angleRad), std::sin(angleRad));
+        Vector2f dir(std::cos(angleRad), std::sin(angleRad));
         Color3f tmp = parent_->getOwner()->team()->color().brightened();
-        particles::spawn(particles::pAmmoInsta, parent_->location() + faceDirection*parent_->radius(), faceDirection, parent_->velocity(), tmp, parent_->getOwner());
+        
+        particles::spawn(particles::pAmmoInsta, parent_->location() + dir*parent_->radius(), dir,
+            parent_->velocity(), tmp, parent_->getOwner());
+        
         sound::playSound(sound::Sniper, parent_->location());
     }
 }

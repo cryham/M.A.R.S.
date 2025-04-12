@@ -51,6 +51,7 @@ namespace sound
         {
             if (!initialized_)
                 init_();
+            
             // check if sound is already loaded
             if (sounds_[sound] != NULL)
             {

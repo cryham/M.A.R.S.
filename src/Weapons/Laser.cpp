@@ -28,15 +28,17 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 void Laser::draw(float alpha) const
 {
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    glColor4f(1.0, 0.6, 0.2, 1.f); //alpha);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE);
+    glColor4f(1.0, 1.2, 0.2, 1.f); //alpha);
+
+    const float r = parent_->radius();
     const int posX = 0;
     const int posY = 31;
     glBegin(GL_QUADS);
-        glTexCoord2f(posX*0.125f,     posY*0.03125f);    glVertex2f(0,      parent_->radius()*0.2f);
-        glTexCoord2f(posX*0.125f,    (posY+1)*0.03125f); glVertex2f(0, -1.f*parent_->radius()*0.2f);
-        glTexCoord2f((posX+1)*0.125f,(posY+1)*0.03125f); glVertex2f(parent_->radius()*9.f, -1.f*parent_->radius()*0.2f);
-        glTexCoord2f((posX+1)*0.125f, posY*0.03125f);    glVertex2f(parent_->radius()*9.f,      parent_->radius()*0.2f);
+        glTexCoord2f(posX*0.125f,     posY*0.03125f);    glVertex2f(0,     r* 0.2f);
+        glTexCoord2f(posX*0.125f,    (posY+1)*0.03125f); glVertex2f(0,     r*-0.2f);
+        glTexCoord2f((posX+1)*0.125f,(posY+1)*0.03125f); glVertex2f(r*9.f, r*-0.2f);
+        glTexCoord2f((posX+1)*0.125f, posY*0.03125f);    glVertex2f(r*9.f, r* 0.2f);
     glEnd();
 }
 
@@ -47,15 +49,18 @@ void Laser::fire() const
         return;
     timer_ = time;
     float angleRad = parent_->rotation()*M_PI / 180;
-    Vector2f faceDirection(std::cos(angleRad), std::sin(angleRad));
+    Vector2f dir(std::cos(angleRad), std::sin(angleRad));
 
-    particles::spawn(particles::pAmmoLaser, parent_->location() + faceDirection*parent_->radius(), faceDirection, parent_->velocity(), Color3f(), parent_->getOwner());
+    particles::spawn(particles::pAmmoLaser, parent_->location() + dir*parent_->radius(), dir,
+        parent_->velocity(), Color3f(), parent_->getOwner());
+    
     //sound::playSound(sound::Check, parent_->location());
 }
 
+
 float Laser::maxDistance() const
 {
-    return FLT_MAX;
+    return 1500.f;
 }
 
 float Laser::minDistance() const

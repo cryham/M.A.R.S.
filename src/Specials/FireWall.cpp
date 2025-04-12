@@ -1,5 +1,6 @@
 /* FireWall.cpp
 
+Copyright (c) 2025 Crystal Hammer
 Copyright (c) 2010 - 2011 by Felix Lauer and Simon Schneegans
 
 This program is free software: you can redistribute it and/or modify it
@@ -34,18 +35,18 @@ void FireWall::draw(float alpha) const
     glBlendFunc(GL_SRC_ALPHA, GL_ONE);
 
     // draw glow
-    parent_->getOwner()->team()->color().brightened().gl4f(0.8f*alpha);
+    parent_->getOwner()->team()->color().brightened().gl4f(0.8f * alpha);
 
+    float scale(4 + std::sin(timer::totalTime() * 6) * 0.3f);
+    const float r = parent_->radius();
     const int posX = 3;
     const int posY = 0;
 
-    float scale(4 + std::sin(timer::totalTime()*6)*0.3f);
-
     glBegin(GL_QUADS);
-        glTexCoord2f( posX*0.25f,    posY*0.25f);    glVertex2f(-parent_->radius()*scale,-parent_->radius()*scale);
-        glTexCoord2f( posX*0.25f,   (posY+1)*0.25f); glVertex2f(-parent_->radius()*scale, parent_->radius()*scale);
-        glTexCoord2f((posX+1)*0.25f,(posY+1)*0.25f); glVertex2f( parent_->radius()*scale, parent_->radius()*scale);
-        glTexCoord2f((posX+1)*0.25f, posY*0.25f);    glVertex2f( parent_->radius()*scale,-parent_->radius()*scale);
+        glTexCoord2f( posX*0.25f,    posY*0.25f);    glVertex2f(-r*scale,-r*scale);
+        glTexCoord2f( posX*0.25f,   (posY+1)*0.25f); glVertex2f(-r*scale, r*scale);
+        glTexCoord2f((posX+1)*0.25f,(posY+1)*0.25f); glVertex2f( r*scale, r*scale);
+        glTexCoord2f((posX+1)*0.25f, posY*0.25f);    glVertex2f( r*scale,-r*scale);
     glEnd();
 
     // draw effect
@@ -61,12 +62,16 @@ void FireWall::draw(float alpha) const
             {   burnTimer_ = timer_;
 
                 Vector2f dir(std::cos(timer::totalTime()*3), std::sin(timer::totalTime()*3));
-                for (int i=0; i<20; ++i)
+                for (int i=0; i < 20; ++i)
                 {
-                    particles::spawn(particles::pAmmoBurner, parent_->location_+Vector2f( dir.x_,  dir.y_)*parent_->radius()*1.25f, Vector2f( dir.x_,  dir.y_), parent_->velocity(), Color3f(), parent_->getOwner());
-                    particles::spawn(particles::pAmmoBurner, parent_->location_+Vector2f(-dir.x_, -dir.y_)*parent_->radius()*1.25f, Vector2f(-dir.x_, -dir.y_), parent_->velocity(), Color3f(), parent_->getOwner());
-                    particles::spawn(particles::pAmmoBurner, parent_->location_+Vector2f( dir.y_, -dir.x_)*parent_->radius()*1.25f, Vector2f( dir.y_, -dir.x_), parent_->velocity(), Color3f(), parent_->getOwner());
-                    particles::spawn(particles::pAmmoBurner, parent_->location_+Vector2f(-dir.y_,  dir.x_)*parent_->radius()*1.25f, Vector2f(-dir.y_,  dir.x_), parent_->velocity(), Color3f(), parent_->getOwner());
+                    particles::spawn(particles::pAmmoBurner, parent_->location_+Vector2f( dir.x_,  dir.y_)*r*1.25f, Vector2f( dir.x_,  dir.y_),
+                        parent_->velocity(), Color3f(), parent_->getOwner());
+                    particles::spawn(particles::pAmmoBurner, parent_->location_+Vector2f(-dir.x_, -dir.y_)*r*1.25f, Vector2f(-dir.x_, -dir.y_),
+                        parent_->velocity(), Color3f(), parent_->getOwner());
+                    particles::spawn(particles::pAmmoBurner, parent_->location_+Vector2f( dir.y_, -dir.x_)*r*1.25f, Vector2f( dir.y_, -dir.x_),
+                        parent_->velocity(), Color3f(), parent_->getOwner());
+                    particles::spawn(particles::pAmmoBurner, parent_->location_+Vector2f(-dir.y_,  dir.x_)*r*1.25f, Vector2f(-dir.y_,  dir.x_),
+                        parent_->velocity(), Color3f(), parent_->getOwner());
                 }
             }
         }
@@ -77,7 +82,7 @@ void FireWall::activate() const
 {
     if (parent_->fragStars_ > 0 && timer_ <= 0.f)
     {
-        timer_ = parent_->fragStars_*1.5f;
+        timer_ = parent_->fragStars_ * 1.5f;
         burnTimer_ = timer_;
         parent_->fragStars_ = 0;
 
@@ -88,5 +93,5 @@ void FireWall::activate() const
 
 float FireWall::radius() const
 {
-    return (parent_->fragStars_ > 0 ? 250.f : 0.f);
+    return parent_->fragStars_ > 0 ? 250.f : 0.f;
 }

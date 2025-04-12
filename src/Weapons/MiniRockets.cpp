@@ -1,5 +1,6 @@
 /* MiniRockets.cpp
 
+Copyright (c) 2025 Crystal Hammer
 Copyright (c) 2010 - 2011 by Felix Lauer and Simon Schneegans
 
 This program is free software: you can redistribute it and/or modify it
@@ -28,14 +29,22 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 void MiniRockets::draw(float alpha) const
 {
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    glColor4f(1.0f, 1.0f, 1.0f, alpha);
+    glColor4f(0.5f, 0.75f, 1.0f, 1.f);
+    
+    const float r = parent_->radius();
     const int posX = 0;
     const int posY = 30;
     glBegin(GL_QUADS);
-        glTexCoord2f(posX*0.125f,     posY*0.03125f);    glVertex2f(0,      parent_->radius()*0.5f);
-        glTexCoord2f(posX*0.125f,    (posY+1)*0.03125f); glVertex2f(0, -1.f*parent_->radius()*0.5f);
-        glTexCoord2f((posX+1)*0.125f,(posY+1)*0.03125f); glVertex2f(parent_->radius()*2.f, -1.f*parent_->radius()*0.5f);
-        glTexCoord2f((posX+1)*0.125f, posY*0.03125f);    glVertex2f(parent_->radius()*2.f,      parent_->radius()*0.5f);
+        glTexCoord2f(posX*0.125f,     posY*0.03125f);    glVertex2f(0,     r*-0.5f);
+        glTexCoord2f(posX*0.125f,    (posY+1)*0.03125f); glVertex2f(0,     r*-0.8f);
+        glTexCoord2f((posX+1)*0.125f,(posY+1)*0.03125f); glVertex2f(r*3.f, r*-0.8f);
+        glTexCoord2f((posX+1)*0.125f, posY*0.03125f);    glVertex2f(r*3.f, r*-0.5f);
+    glEnd();
+    glBegin(GL_QUADS);
+        glTexCoord2f(posX*0.125f,     posY*0.03125f);    glVertex2f(0,     r*0.8f);
+        glTexCoord2f(posX*0.125f,    (posY+1)*0.03125f); glVertex2f(0,     r*0.5f);
+        glTexCoord2f((posX+1)*0.125f,(posY+1)*0.03125f); glVertex2f(r*3.f, r*0.5f);
+        glTexCoord2f((posX+1)*0.125f, posY*0.03125f);    glVertex2f(r*3.f, r*0.8f);
     glEnd();
 }
 
@@ -46,14 +55,15 @@ void MiniRockets::fire() const
     {   timer_ = time;
 
         float angleRad = parent_->rotation()*M_PI / 180.f;
-        Vector2f faceDirection(std::cos(angleRad), std::sin(angleRad));
-        Vector2f sideDirection(std::cos(angleRad + M_PI_2), std::sin(angleRad + M_PI_2));
+        Vector2f dir(std::cos(angleRad), std::sin(angleRad));
+        Vector2f side(std::cos(angleRad + M_PI_2), std::sin(angleRad + M_PI_2));
 
         particles::spawn(particles::pAmmoMiniRocket,
-            parent_->location() + 3.f * faceDirection * parent_->radius() + sideDirection * parent_->radius() * (side_ ? -0.8f : 0.8f),
-            faceDirection, parent_->velocity(), Color3f(), parent_->getOwner());
-        // particles::spawnMultiple(4.f, particles::pDust,  parent_->location() + faceDirection*parent_->radius(), parent_->velocity() + faceDirection*4.f);
-        // parent_->velocity() -= faceDirection*400.f;
+            parent_->location() + 3.f * dir * parent_->radius() +
+                                        side * parent_->radius() * (side_ ? -0.8f : 0.8f),
+            dir, parent_->velocity(), Color3f(), parent_->getOwner());
+
+        // parent_->velocity() -= faceDirection * 100.f;
         sound::playSound(sound::Swish, parent_->location());
         ++side_;
         if (side_ >= 2)
@@ -61,9 +71,10 @@ void MiniRockets::fire() const
     }
 }
 
+
 float MiniRockets::maxDistance() const
 {
-    return 500.f;
+    return 1500.f;
 }
 
 float MiniRockets::minDistance() const

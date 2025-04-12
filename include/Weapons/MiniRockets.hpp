@@ -20,8 +20,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Weapons/Weapon.hpp"
 
 
-/// Weapon: ROCK'n'LOL.
-/// A rocket launcher which aims at nearby enemies.
+/// Weapon: Mini Rockets.
+/// Twin mini rocket launchers, accelerating, blue.
 
 class MiniRockets: public Weapon
 {

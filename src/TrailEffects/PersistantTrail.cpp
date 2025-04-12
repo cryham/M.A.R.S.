@@ -73,10 +73,8 @@ void PersistantTrail::draw() const
             if (target_)
             {
                 color_.gl4f(0);
-                glTexCoord2f((posX + points_.size()%2)*0.125f,     posY*0.125f);
-                    glVertex2f(target_->location().x_ + toNext.y_, target_->location().y_ - toNext.x_);
-                glTexCoord2f((posX + points_.size()%2)*0.125f, (posY+1)*0.125f);
-                    glVertex2f(target_->location().x_ - toNext.y_, target_->location().y_ + toNext.x_);
+                uv8(posX + points_.size()%2, posY);    glVertex2f(target_->location().x_ + toNext.y_, target_->location().y_ - toNext.x_);
+                uv8(posX + points_.size()%2, posY+1);  glVertex2f(target_->location().x_ - toNext.y_, target_->location().y_ + toNext.x_);
             }
 
             for (int i=points_.size()-1; i>=0; --i)
@@ -91,10 +89,8 @@ void PersistantTrail::draw() const
                 if (i > 1)
                     toNext = (points_[i-1] - points_[i]).normalize()*width_;
 
-                glTexCoord2f((posX + 0.5)*0.125f,     posY*0.125f);
-                    glVertex2f(points_[i].x_ + toNext.y_, points_[i].y_ - toNext.x_);
-                glTexCoord2f((posX + 0.5)*0.125f, (posY+1)*0.125f);
-                    glVertex2f(points_[i].x_ - toNext.y_, points_[i].y_ + toNext.x_);
+                uv8(posX + 0.5, posY);    glVertex2f(points_[i].x_ + toNext.y_, points_[i].y_ - toNext.x_);
+                uv8(posX + 0.5, posY+1);  glVertex2f(points_[i].x_ - toNext.y_, points_[i].y_ + toNext.x_);
             }
 
         glEnd();

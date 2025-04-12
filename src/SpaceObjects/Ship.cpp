@@ -483,6 +483,26 @@ void Ship::onCollision(SpaceObject* with, Vector2f const& location,
             unfreeze = 10.f;
             break;
 
+        //  Ammo new2
+        case spaceObjects::oAmmoCloud:  // OO
+        case spaceObjects::oAmmoPulse:  // ))
+            amount = strength*0.001f;
+            waitForOtherDamage = 0.1f;
+            setDamageSource(with->damageSource());
+            // particles::spawnMultiple(1, particles::pMud, location,
+            //     dynamic_cast<MobileSpaceObject*>(with)->velocity() * 0.7f, velocity_, owner_->color());
+            unfreeze = 0.1f;
+            break;
+
+        case spaceObjects::oAmmoMinigun:  // ...
+            amount = strength*0.001f;
+            waitForOtherDamage = 0.1f;
+            setDamageSource(with->damageSource());
+            // particles::spawnMultiple(2, particles::pSpark, location,
+            //     dynamic_cast<MobileSpaceObject*>(with)->velocity() * 0.7f, velocity_, owner_->color());
+            unfreeze = 0.1f;
+            break;
+
         //  Ammo
         case spaceObjects::oAmmoAFK85:  // =
             amount = strength*0.0023f;
@@ -501,11 +521,19 @@ void Ship::onCollision(SpaceObject* with, Vector2f const& location,
             unfreeze = 0.1f;
             break;
 
+        case spaceObjects::oAmmoLaser:  // ___
+            amount = strength*0.003f;
+            waitForOtherDamage = 0.1f;
+            setDamageSource(with->damageSource());
+            particles::spawnMultiple(1, particles::pSpark, location,
+                dynamic_cast<MobileSpaceObject*>(with)->velocity() * 0.05f, velocity_, owner_->color());
+            unfreeze = 20.f;
+            break;
         case spaceObjects::oAmmoRifle2:  // --
             amount = strength*0.006f;
             setDamageSource(with->damageSource());
             particles::spawnMultiple(20, particles::pSpark, location,
-                dynamic_cast<MobileSpaceObject*>(with)->velocity() * 0.5f, velocity_, owner_->color());
+                dynamic_cast<MobileSpaceObject*>(with)->velocity() * 0.05f, velocity_, owner_->color());
             unfreeze = 20.f;
             break;
         case spaceObjects::oAmmoROFLE:

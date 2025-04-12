@@ -51,8 +51,8 @@ void HeatJet::draw() const
     glColor4f(1.f, 1.f, 1.f, 1.f - lifeTime_/totalLifeTime_);
     const int posX = 3;
     const int posY = 1;
-    glTexCoord2f(posX*0.125f,     posY*0.125f);     glVertex2f(location_.x_-radius_, location_.y_-radius_);
-    glTexCoord2f(posX*0.125f,     (posY+2)*0.125f); glVertex2f(location_.x_-radius_, location_.y_+radius_);
-    glTexCoord2f((posX+2)*0.125f, (posY+2)*0.125f); glVertex2f(location_.x_+radius_, location_.y_+radius_);
-    glTexCoord2f((posX+2)*0.125f, posY*0.125f);     glVertex2f(location_.x_+radius_, location_.y_-radius_);
+    uv8(posX, posY);      glVertex2f(location_.x_-radius_, location_.y_-radius_);
+    uv8(posX,   posY+2);  glVertex2f(location_.x_-radius_, location_.y_+radius_);
+    uv8(posX+2, posY+2);  glVertex2f(location_.x_+radius_, location_.y_+radius_);
+    uv8(posX+2, posY);    glVertex2f(location_.x_+radius_, location_.y_-radius_);
 }

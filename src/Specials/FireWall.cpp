@@ -28,6 +28,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include <SFML/Graphics.hpp>
 
+
 void FireWall::draw(float alpha) const
 {
     glBlendFunc(GL_SRC_ALPHA, GL_ONE);

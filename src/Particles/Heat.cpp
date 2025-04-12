@@ -21,7 +21,9 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "System/settings.hpp"
 #include "System/randomizer.hpp"
 
+
 std::list<Heat*> Heat::activeParticles_;
+
 
 Heat::Heat(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity, Color3f const& color, Player* damageSource):
            Particle<Heat>(spaceObjects::oHeat, location+Vector2f::randDirLen()*2.f, 4, 0, randomizer::random(0.8f, 2.0f)*settings::C_globalParticleLifeTime/100.f)
@@ -47,8 +49,8 @@ void Heat::draw() const
     glColor4f(1.f, 1.f, 1.f, 1.f - lifeTime_/totalLifeTime_);
     const int posX = 3;
     const int posY = 1;
-    glTexCoord2f(posX*0.125f,     posY*0.125f);     glVertex2f(location_.x_-radius_, location_.y_-radius_);
-    glTexCoord2f(posX*0.125f,     (posY+2)*0.125f); glVertex2f(location_.x_-radius_, location_.y_+radius_);
-    glTexCoord2f((posX+2)*0.125f, (posY+2)*0.125f); glVertex2f(location_.x_+radius_, location_.y_+radius_);
-    glTexCoord2f((posX+2)*0.125f, posY*0.125f);     glVertex2f(location_.x_+radius_, location_.y_-radius_);
+    uv8(posX, posY);      glVertex2f(location_.x_-radius_, location_.y_-radius_);
+    uv8(posX,   posY+2);  glVertex2f(location_.x_-radius_, location_.y_+radius_);
+    uv8(posX+2, posY+2);  glVertex2f(location_.x_+radius_, location_.y_+radius_);
+    uv8(posX+2, posY);    glVertex2f(location_.x_+radius_, location_.y_-radius_);
 }

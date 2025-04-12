@@ -55,10 +55,10 @@ void Dust::draw() const
     color_.gl4f(-0.3/totalLifeTime_*lifeTime_+0.3);
     const int posX = 1;
     const int posY = 0;
-    glTexCoord2f(posX*0.125f,     posY*0.125f);     glVertex2f(location_.x_-radius_, location_.y_-radius_);
-    glTexCoord2f(posX*0.125f,     (posY+1)*0.125f); glVertex2f(location_.x_-radius_, location_.y_+radius_);
-    glTexCoord2f((posX+1)*0.125f, (posY+1)*0.125f); glVertex2f(location_.x_+radius_, location_.y_+radius_);
-    glTexCoord2f((posX+1)*0.125f, posY*0.125f);     glVertex2f(location_.x_+radius_, location_.y_-radius_);
+    uv8(posX, posY);      glVertex2f(location_.x_-radius_, location_.y_-radius_);
+    uv8(posX, posY+1);    glVertex2f(location_.x_-radius_, location_.y_+radius_);
+    uv8(posX+1, posY+1);  glVertex2f(location_.x_+radius_, location_.y_+radius_);
+    uv8(posX+1, posY);    glVertex2f(location_.x_+radius_, location_.y_-radius_);
 }
 
 void Dust::shockWave(Vector2f const& location, float strength, float radius)

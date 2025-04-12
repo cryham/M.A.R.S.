@@ -26,9 +26,10 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 std::list<AmmoShotgun2*> AmmoShotgun2::activeParticles_;
 
 
-AmmoShotgun2::AmmoShotgun2(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity, Color3f const& color, Player* damageSource):
-         Particle<AmmoShotgun2>(spaceObjects::oAmmoShotgun2, location, 2.5f, 0.5f, randomizer::random(0.3f, 0.7f)),
-         color_(1.f, 0.4f, 0.3f)
+AmmoShotgun2::AmmoShotgun2(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,
+            Color3f const& color, Player* damageSource)
+    :Particle<AmmoShotgun2>(spaceObjects::oAmmoShotgun2, location, 2.5f, 0.5f, randomizer::random(0.3f, 0.7f))
+    ,color_(1.f, 0.4f, 0.3f)
 {
     setDamageSource(damageSource);
     velocity_ = direction*1000.f + Vector2f::randDirLen()*400.f;
@@ -63,10 +64,10 @@ void AmmoShotgun2::draw() const
     color_.gl4f();
     const int posX = 0;
     const int posY = 1;
-    glTexCoord2f(posX*0.125f,     posY*0.125f);     glVertex2f(location_.x_-radius_, location_.y_-radius_);
-    glTexCoord2f(posX*0.125f,     (posY+1)*0.125f); glVertex2f(location_.x_-radius_, location_.y_+radius_);
-    glTexCoord2f((posX+1)*0.125f, (posY+1)*0.125f); glVertex2f(location_.x_+radius_, location_.y_+radius_);
-    glTexCoord2f((posX+1)*0.125f, posY*0.125f);     glVertex2f(location_.x_+radius_, location_.y_-radius_);
+    uv8(posX, posY);      glVertex2f(location_.x_-radius_, location_.y_-radius_);
+    uv8(posX, posY+1);    glVertex2f(location_.x_-radius_, location_.y_+radius_);
+    uv8(posX+1, posY+1);  glVertex2f(location_.x_+radius_, location_.y_+radius_);
+    uv8(posX+1, posY);    glVertex2f(location_.x_+radius_, location_.y_-radius_);
 }
 
 void AmmoShotgun2::onCollision(SpaceObject* with, Vector2f const& location,

@@ -98,8 +98,8 @@ void CannonBall::draw() const
     glColor4f(1.0f, 1.0f, 1.0f, 1.f);
     const int posX = 5;
     const int posY = 2;
-    glTexCoord2f(posX*0.125f,     posY*0.125f);     glVertex2f(location_.x_-radius_, location_.y_-radius_);
-    glTexCoord2f(posX*0.125f,     (posY+3)*0.125f); glVertex2f(location_.x_-radius_, location_.y_+radius_);
-    glTexCoord2f((posX+3)*0.125f, (posY+3)*0.125f); glVertex2f(location_.x_+radius_, location_.y_+radius_);
-    glTexCoord2f((posX+3)*0.125f, posY*0.125f);     glVertex2f(location_.x_+radius_, location_.y_-radius_);
+    uv8(posX, posY);      glVertex2f(location_.x_-radius_, location_.y_-radius_);
+    uv8(posX,   posY+3);  glVertex2f(location_.x_-radius_, location_.y_+radius_);
+    uv8(posX+3, posY+3);  glVertex2f(location_.x_+radius_, location_.y_+radius_);
+    uv8(posX+3, posY);    glVertex2f(location_.x_+radius_, location_.y_-radius_);
 }

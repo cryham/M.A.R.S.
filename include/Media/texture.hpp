@@ -21,6 +21,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include <SFML/OpenGL.hpp>
 
+
 /// A namespace for texture handling.
 /// When asked for a reference to a texture, this namespace will load the
 /// texture from file. Additionally it stores the overall colors of the
@@ -55,4 +56,3 @@ namespace texture
     /// Returns the overall color of a planet texture.
     Color3f const getMudColor(TextureType planetTexture);
 }
-

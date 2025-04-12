@@ -28,6 +28,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include <SFML/Graphics.hpp>
 
+
 void Fist::draw(float alpha) const
 {
     if (!menus::visible() || games::type() == games::gMenu)

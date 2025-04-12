@@ -179,10 +179,10 @@ void AmmoRocket::draw() const
 
     const int posX = 0;
     const int posY = (static_cast<int>(lifeTime_*3.f) % 2) * 2 + 3;
-    glTexCoord2f(posX*0.125f,    (posY+2)*0.125f); glVertex2f(topLeft.x_, topLeft.y_);
-    glTexCoord2f((posX+4)*0.125f,(posY+2)*0.125f); glVertex2f(bottomLeft.x_, bottomLeft.y_);
-    glTexCoord2f((posX+4)*0.125f, posY*0.125f);    glVertex2f(bottomRight.x_, bottomRight.y_);
-    glTexCoord2f(posX*0.125f,     posY*0.125f);    glVertex2f(topRight.x_, topRight.y_);
+    uv8(posX,   posY+2);  glVertex2f(topLeft.x_, topLeft.y_);
+    uv8(posX+4, posY+2);  glVertex2f(bottomLeft.x_, bottomLeft.y_);
+    uv8(posX+4, posY);    glVertex2f(bottomRight.x_, bottomRight.y_);
+    uv8(posX,   posY);    glVertex2f(topRight.x_, topRight.y_);
 
     MobileSpaceObject* target(NULL);
     if (ballTarget_)
@@ -198,10 +198,10 @@ void AmmoRocket::draw() const
         float const size = std::sin(lifeTime_*5.f)*4.f + 26.f;
         Vector2f const loc(target->location());
 
-        glTexCoord2f(posX*0.125f,    (posY+3)*0.125f);  glVertex2f(loc.x_ - size, loc.y_ - size);
-        glTexCoord2f((posX+3)*0.125f,(posY+3)*0.125f);  glVertex2f(loc.x_ + size, loc.y_ - size);
-        glTexCoord2f((posX+3)*0.125f, posY*0.125f);     glVertex2f(loc.x_ + size, loc.y_ + size);
-        glTexCoord2f(posX*0.125f,     posY*0.125f);     glVertex2f(loc.x_ - size, loc.y_ + size);
+        uv8(posX,   posY+3);  glVertex2f(loc.x_ - size, loc.y_ - size);
+        uv8(posX+3, posY+3);  glVertex2f(loc.x_ + size, loc.y_ - size);
+        uv8(posX+3, posY);    glVertex2f(loc.x_ + size, loc.y_ + size);
+        uv8(posX,   posY);    glVertex2f(loc.x_ - size, loc.y_ + size);
     }
 }
 

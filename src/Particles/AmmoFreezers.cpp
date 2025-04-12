@@ -76,10 +76,10 @@ void AmmoFreezers::draw() const
     color_.gl4f(0.6f);
     // const int posX = 3, posY = 0;
     const int posX = 0, posY = 1;
-    glTexCoord2f(posX*0.125f,     posY*0.125f);     glVertex2f(location_.x_-radius_, location_.y_-radius_);
-    glTexCoord2f(posX*0.125f,     (posY+1)*0.125f); glVertex2f(location_.x_-radius_, location_.y_+radius_);
-    glTexCoord2f((posX+1)*0.125f, (posY+1)*0.125f); glVertex2f(location_.x_+radius_, location_.y_+radius_);
-    glTexCoord2f((posX+1)*0.125f, posY*0.125f);     glVertex2f(location_.x_+radius_, location_.y_-radius_);
+    uv8(posX, posY);      glVertex2f(location_.x_-radius_, location_.y_-radius_);
+    uv8(posX, posY+1);    glVertex2f(location_.x_-radius_, location_.y_+radius_);
+    uv8(posX+1, posY+1);  glVertex2f(location_.x_+radius_, location_.y_+radius_);
+    uv8(posX+1, posY);    glVertex2f(location_.x_+radius_, location_.y_-radius_);
 }
 
 void AmmoFreezers::onCollision(SpaceObject* with, Vector2f const& location,

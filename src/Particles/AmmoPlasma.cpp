@@ -17,6 +17,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "Particles/AmmoPlasma.hpp"
 
+#include "SpaceObjects/spaceObjects.hpp"
 #include "System/timer.hpp"
 #include "System/settings.hpp"
 #include "Particles/particles.hpp"
@@ -52,7 +53,7 @@ void AmmoPlasma::update()
 {
     float time = timer::frameTime();
 
-    physics::collide(this, STATICS | MOBILES | PARTICLES);
+    physics::collide(this, STATICS | MOBILES);  // | PARTICLES);
     Vector2f acceleration = physics::attract(this)*0.8f;
 
     location_ += velocity_*time + acceleration*time*time;
@@ -85,7 +86,7 @@ void AmmoPlasma::draw() const
 void AmmoPlasma::onCollision(SpaceObject* with, Vector2f const& location,
                         Vector2f const& direction, Vector2f const& velocity)
 {
-    if (!isDead() && with->type() != spaceObjects::oAmmoPlasma /*&& with->type() != spaceObjects::oMiniAmmoPlasma*/)
+    if (!isDead() && with->type() >= spaceObjects::oPlanet && with->type() <= spaceObjects::oBall)
     {
         sound::playSound(sound::BlubCollide, location_);
         killMe();

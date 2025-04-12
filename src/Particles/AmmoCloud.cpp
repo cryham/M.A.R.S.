@@ -28,7 +28,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 std::list<AmmoCloud*> AmmoCloud::activeParticles_;
 
 
-AmmoCloud::AmmoCloud(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity, Color3f const& color, Player* damageSource)
+AmmoCloud::AmmoCloud(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,
+        Color3f const& color, Player* damageSource)
     :Particle<AmmoCloud>(spaceObjects::oAmmoCloud, location, randomizer::random(19.f, 25.f), 0.01f, randomizer::random(2.f, 4.f))
 {
     setDamageSource(damageSource);

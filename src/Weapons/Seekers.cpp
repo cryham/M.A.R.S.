@@ -28,35 +28,35 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 void Seekers::draw(float alpha) const
 {
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    glColor4f(1.0f, 1.0f, 1.0f, alpha);
+    glColor4f(0.6f, 1.0f, 0.2f, alpha);
 
     const float r = parent_->radius();
     const int posX = 0;
     const int posY = 30;
     glBegin(GL_QUADS);
-        glTexCoord2f(posX*0.125f,     posY*0.03125f);    glVertex2f(0,     r* 0.5f);
-        glTexCoord2f(posX*0.125f,    (posY+1)*0.03125f); glVertex2f(0,     r*-0.5f);
-        glTexCoord2f((posX+1)*0.125f,(posY+1)*0.03125f); glVertex2f(r*2.f, r*-0.5f);
-        glTexCoord2f((posX+1)*0.125f, posY*0.03125f);    glVertex2f(r*2.f, r* 0.5f);
+        glTexCoord2f(posX*0.125f,     posY*0.03125f);    glVertex2f(0,     r* 0.7f);
+        glTexCoord2f(posX*0.125f,    (posY+1)*0.03125f); glVertex2f(0,     r*-0.7f);
+        glTexCoord2f((posX+1)*0.125f,(posY+1)*0.03125f); glVertex2f(r*3.f, r*-0.7f);
+        glTexCoord2f((posX+1)*0.125f, posY*0.03125f);    glVertex2f(r*3.f, r* 0.7f);
     glEnd();
 }
 
 void Seekers::fire() const
 {
     float time = timer::totalTime();
-    if (time - timer_ > 0.2f)
+    if (time - timer_ > 0.4f)
     {   timer_ = time;
 
         float angleRad = parent_->rotation()*M_PI / 180.f;
         Vector2f dir(std::cos(angleRad), std::sin(angleRad));
 
-        particles::spawn(particles::pAmmoRocket, parent_->location() + dir*parent_->radius(),
+        particles::spawn(particles::pAmmoSeekers, parent_->location() + dir*parent_->radius(),
             dir, parent_->velocity(), Color3f(), parent_->getOwner());
         particles::spawnMultiple(10.f, particles::pDust,  parent_->location() + dir*parent_->radius(),
             parent_->velocity());
 
         // parent_->velocity() -= faceDirection * 40.f;
-        sound::playSound(sound::Pump, parent_->location());
+        sound::playSound(sound::Swish, parent_->location());
     }
 }
 

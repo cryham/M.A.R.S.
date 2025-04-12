@@ -17,6 +17,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "Particles/AmmoFlubba.hpp"
 
+#include "SpaceObjects/spaceObjects.hpp"
 #include "System/timer.hpp"
 #include "System/settings.hpp"
 #include "Particles/particles.hpp"
@@ -86,6 +87,8 @@ void AmmoFlubba::onCollision(SpaceObject* with, Vector2f const& location,
                         Vector2f const& direction, Vector2f const& velocity)
 {
     if (!isDead() &&
+        with->type() != spaceObjects::oAmmoCloud &&
+        with->type() != spaceObjects::oAmmoPlasma &&
         with->type() != spaceObjects::oAmmoFlubba &&
         with->type() != spaceObjects::oMiniAmmoFlubba)
     {

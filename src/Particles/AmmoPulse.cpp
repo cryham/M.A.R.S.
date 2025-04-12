@@ -32,7 +32,7 @@ AmmoPulse::AmmoPulse(Vector2f const& location, Vector2f const& direction, Vector
     :Particle<AmmoPulse>(spaceObjects::oAmmoPulse, location, randomizer::random(19.f, 25.f), 0.01f, randomizer::random(2.f, 4.f))
 {
     setDamageSource(damageSource);
-    velocity_ = velocity + direction*500;
+    velocity_ = velocity + direction * 500;
     acceleration_ = 600.0f;
     location_ += velocity_*timer::frameTime()*1.2f;
 

@@ -50,76 +50,56 @@ UiWindow* WeaponOptions::get()
 			Vector2f(10,0), 20.f, getColor3f(0.5f, 0.9f, 1.f), false));
         // instance_->addWidget(new Line(Vector2f(10, 35), Vector2f(310, 35)));
 
-        //  weapons  original
         int x = 20, yTop = 60, y = yTop, yLabel = y-30, yadd = 20, w = 100;
+
+        auto addCheck = [&](const char* text, int wpn, int add = 2)
+        {
+            instance_->addWidget(new Checkbox(text, "", &kWeapon[wpn],
+                Vector2f(x,y), w, weapons::colors[wpn]));  y += yadd * add/2;
+        };
+
+        //  weapons  original
         instance_->addWidget(new LabeledBox(locales::getLocale(locales::Weapons),
         	Vector2f(x-10, yLabel), w, 210));
-        instance_->addWidget(new Checkbox("AFK-47",      "", &kWeapon[weapons::wAFK47],
-            Vector2f(x,y), w, Color3f(0.4, 0.5, 0.9)));  y += yadd;
-        instance_->addWidget(new Checkbox("WT-FLAMER",   "", &kWeapon[weapons::wBurner],
-            Vector2f(x,y), w, Color3f(0.8, 0.4, 0.1)));  y += yadd;
-        instance_->addWidget(new Checkbox("FLUBBA",      "", &kWeapon[weapons::wFlubba],
-            Vector2f(x,y), w, Color3f(0.2, 0.8, 0.1)));  y += yadd*3/2;
 
-        instance_->addWidget(new Checkbox("FIST OF ALI", "", &kWeapon[weapons::wFist],
-            Vector2f(x,y), w, Color3f(0.4, 0.9, 0.6)));  y += yadd;
-        instance_->addWidget(new Checkbox("SHOTGUN",     "", &kWeapon[weapons::wShotgun],
-            Vector2f(x,y), w, Color3f(0.8, 0.8, 0.3)));  y += yadd;
-        instance_->addWidget(new Checkbox("ROCK'n'LOL",  "", &kWeapon[weapons::wRocketLauncher],
-            Vector2f(x,y), w, Color3f(0.8, 0.4, 0.2)));  y += yadd;
-        instance_->addWidget(new Checkbox("ROFLE",       "", &kWeapon[weapons::wROFLE],
-            Vector2f(x,y), w, Color3f(0.8, 0.2, 0.2)));  y += yadd*3/2;
+        addCheck("AFK-47",      weapons::wAFK47);
+        addCheck("WT-FLAMER",   weapons::wBurner);
+        addCheck("FLUBBA",      weapons::wFlubba, 3);
 
-        instance_->addWidget(new Checkbox("H2-OMG",      "", &kWeapon[weapons::wH2OMG],
-            Vector2f(x,y), w, Color3f(0.4, 0.5, 0.9)));  y += yadd;
+        addCheck("FIST OF ALI",weapons::wFist);
+        addCheck("SHOTGUN",    weapons::wShotgun);
+        addCheck("ROCK'n'LOL", weapons::wRocketLauncher);
+        addCheck("ROFLE",      weapons::wROFLE, 3);
+
+        addCheck("H2-OMG",     weapons::wH2OMG);
         
         //  weapons 2
         x += 150;  y = yTop;
-        // instance_->addWidget(new LabeledBox(locales::getLocale(locales::Weapons),
-            // Vector2f(x-10, ylab), w, Color3f(0.2, 0.5, 1.0), 210));
-        instance_->addWidget(new Checkbox("AFK-85",      "", &kWeapon[weapons::wAFK85],
-            Vector2f(x,y), w, Color3f(0.6, 0.6, 1.0)));  y += yadd;
-        instance_->addWidget(new Checkbox("Flamer2",     "", &kWeapon[weapons::wFlamer2],
-            Vector2f(x,y), w, Color3f(1.0, 0.7, 0.2)));  y += yadd*3/2;
+        addCheck("AFK-85",     weapons::wAFK85);
+        addCheck("Flamer2",    weapons::wFlamer2, 3);
 
-        instance_->addWidget(new Checkbox("Shotgun2",    "", &kWeapon[weapons::wShotgun2],
-            Vector2f(x,y), w, Color3f(0.8, 0.5, 1.0)));  y += yadd;
-        instance_->addWidget(new Checkbox("MiniRockets", "", &kWeapon[weapons::wMiniRockets],
-            Vector2f(x,y), w, Color3f(0.2, 0.5, 1.0)));  y += yadd;
-        instance_->addWidget(new Checkbox("Rifle2",      "", &kWeapon[weapons::wRifle2],
-            Vector2f(x,y), w, Color3f(0.9, 0.2, 0.3)));  y += yadd*3/2;
+        addCheck("Shotgun2",   weapons::wShotgun2);
+        addCheck("MiniRockets",weapons::wMiniRockets);
+        addCheck("Rifle2",     weapons::wRifle2, 3);
 
-        instance_->addWidget(new Checkbox("H2o-Storm",   "", &kWeapon[weapons::wH2OStorm],
-            Vector2f(x,y), w, Color3f(0.4, 0.65, 1.0)));  y += yadd;
-        instance_->addWidget(new Checkbox("Plasma",      "", &kWeapon[weapons::wPlasma],
-            Vector2f(x,y), w, Color3f(0.5, 0.9, 0.9)));  y += yadd;
+        addCheck("H2o-Storm",  weapons::wH2OStorm);
+        addCheck("Plasma",     weapons::wPlasma);
         
         //  weapons 3
         x += 150;  y = yTop;
-        // instance_->addWidget(new LabeledBox(locales::getLocale(locales::Weapons),
-            // Vector2f(x-10, ylab), w, 210));
-        instance_->addWidget(new Checkbox("Pulse",      "", &kWeapon[weapons::wPulse],
-            Vector2f(x,y), w, Color3f(1.0, 0.5, 0.8)));  y += yadd;
-        instance_->addWidget(new Checkbox("Cloud",      "", &kWeapon[weapons::wCloud],
-            Vector2f(x,y), w, Color3f(0.6, 0.6, 1.0)));  y += yadd;
-        instance_->addWidget(new Checkbox("Freezers",   "", &kWeapon[weapons::wFreezers],
-            Vector2f(x,y), w, Color3f(0.2, 0.7, 0.9)));  y += yadd;
-        instance_->addWidget(new Checkbox("Lightning",  "", &kWeapon[weapons::wLightning],
-            Vector2f(x,y), w, Color3f(0.6, 0.8, 1.0)));  y += yadd*3/2;
+        addCheck("Pulse",     weapons::wPulse);
+        addCheck("Cloud",     weapons::wCloud);
+        addCheck("Freezers",  weapons::wFreezers);
+        addCheck("Lightning", weapons::wLightning, 3);
 
-        instance_->addWidget(new Checkbox("Laser",      "", &kWeapon[weapons::wLaser],
-            Vector2f(x,y), w, Color3f(1.0, 0.5, 0.0)));  y += yadd;
-        instance_->addWidget(new Checkbox("Minigun",    "", &kWeapon[weapons::wMinigun],
-            Vector2f(x,y), w, Color3f(1.0, 1.0, 0.3)));  y += yadd;
-        instance_->addWidget(new Checkbox("Gauss",      "", &kWeapon[weapons::wGauss],
-            Vector2f(x,y), w, Color3f(0.8, 0.2, 0.2)));  y += yadd*3/2;
+        addCheck("Laser",     weapons::wLaser);
+        addCheck("Minigun",   weapons::wMinigun);
+        addCheck("Gauss",     weapons::wGauss, 3);
 
-        instance_->addWidget(new Checkbox("Grenades",   "", &kWeapon[weapons::wGrenades],
-            Vector2f(x,y), w, Color3f(0.4, 0.5, 0.6)));  y += yadd;
-        instance_->addWidget(new Checkbox("Seekers",    "", &kWeapon[weapons::wSeekers],
-            Vector2f(x,y), w, Color3f(0.7, 0.8, 0.6)));  y += yadd;
+        addCheck("Grenades",  weapons::wGrenades);
+        addCheck("Seekers",   weapons::wSeekers);
         
-        //  specials
+        //  specials  ----
         x += 150;  y = yTop;
         instance_->addWidget(new LabeledBox(locales::getLocale(locales::Specials), 
 			Vector2f(x-10, yLabel), w, 210));

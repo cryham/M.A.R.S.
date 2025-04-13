@@ -35,8 +35,9 @@ AmmoGrenades::AmmoGrenades(
     :Particle<AmmoGrenades>(spaceObjects::oAmmoGrenades, location, 8.f, 1.0f, randomizer::random(1.0f, 1.2f))
 {
     setDamageSource(damageSource);
-    velocity_ = velocity + direction * 900;
-    location_ += velocity_*timer::frameTime()*1.2f;
+    velocity_ = velocity + direction * 900 +
+        velocity.length() * direction * 1.f;  // throw dist-
+    location_ += velocity_ * timer::frameTime()*1.2f;
 
     radius_ = randomizer::random(6.f, 7.f);
 
@@ -90,12 +91,11 @@ void AmmoGrenades::update()
 void AmmoGrenades::draw() const
 {
     color_.gl4f(1.f);
-    const int posX = 4;
-    const int posY = 0;
-    uv8(posX, posY);      glVertex2f(location_.x_-radius_, location_.y_-radius_);
-    uv8(posX, posY+1);    glVertex2f(location_.x_-radius_, location_.y_+radius_);
-    uv8(posX+1, posY+1);  glVertex2f(location_.x_+radius_, location_.y_+radius_);
-    uv8(posX+1, posY);    glVertex2f(location_.x_+radius_, location_.y_-radius_);
+    const int u = 4, v = 0;
+    uv8(u, v);      glVertex2f(location_.x_-radius_, location_.y_-radius_);
+    uv8(u, v+1);    glVertex2f(location_.x_-radius_, location_.y_+radius_);
+    uv8(u+1, v+1);  glVertex2f(location_.x_+radius_, location_.y_+radius_);
+    uv8(u+1, v);    glVertex2f(location_.x_+radius_, location_.y_-radius_);
 }
 
 void AmmoGrenades::onCollision(SpaceObject* with, Vector2f const& location,

@@ -43,7 +43,7 @@ void Seekers::draw(float alpha) const
 void Seekers::fire() const
 {
     float time = timer::totalTime();
-    if (time - timer_ > 0.4f)
+    if (time - timer_ > 0.2f)
     {   timer_ = time;
 
         float angleRad = parent_->rotation()*M_PI / 180.f;

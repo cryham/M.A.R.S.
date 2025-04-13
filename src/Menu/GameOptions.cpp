@@ -61,12 +61,12 @@ UiWindow* GameOptions::get()
 			&settings::C_powerUpRate, 0, 100, 5,
 			Vector2f(20,y), w, 240, true));  y += yadd*3/2;
 
-        instance_->addWidget(new Slider(locales::getLocale(locales::ShipTurnSpeed), "",
-           &settings::C_ShipTurnSpeed, 1, 60, 1,
-           Vector2f(20,y), w, 240, true));  y += yadd;
-        instance_->addWidget(new Slider(locales::getLocale(locales::GlowAlpha), "",
-           &settings::C_GlowAlpha, 0, 150, 1,
-           Vector2f(20,y), w, 240, true));  y += yadd*3/2;
+        // instance_->addWidget(new Slider(locales::getLocale(locales::ShipTurnSpeed), "",
+        //    &settings::C_ShipTurnSpeed, 1, 60, 1,
+        //    Vector2f(20,y), w, 240, true));  y += yadd;
+        // instance_->addWidget(new Slider(locales::getLocale(locales::GlowAlpha), "",
+        //    &settings::C_GlowAlpha, 0, 150, 1,
+        //    Vector2f(20,y), w, 240, true));  y += yadd*3/2;
 
         instance_->addWidget(new Slider(locales::getLocale(locales::DamageScale), "",
            &settings::C_DamageScale, 0, 200, 1,

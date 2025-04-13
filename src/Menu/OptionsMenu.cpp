@@ -270,8 +270,8 @@ UiWindow* OptionsMenu::get()
 
         //  Ships  ----
         y = 30.f;
-        tabShips->addWidget(new LabeledBox(locales::getLocale(locales::ShipSettings),
-            Vector2f(10,y), 560, 90));  y += yadd;
+        tabShips->addWidget(new LabeledBox(settings::C_playerIName,
+            Vector2f(10,y), 560, 90));  y += yadd*3/2;
         tabShips->addWidget(new ShipPreview(
             &settings::C_playerIColor, &settings::C_playerITeamColor, &settings::C_playerIShip,
             Vector2f(510,y)));  //y += yadd;
@@ -283,8 +283,8 @@ UiWindow* OptionsMenu::get()
         tabShips->addWidget(new ColorPicker(locales::getLocale(locales::TeamColor), &settings::C_playerITeamColor,
             Vector2f(20,y), 410, xTxt));  y += yadd;
 
-        tabShips->addWidget(new LabeledBox(locales::getLocale(locales::ShipSettings),
-            Vector2f(10, y), 560, 90));  y += yadd;
+        tabShips->addWidget(new LabeledBox(settings::C_playerIIName,
+            Vector2f(10, y), 560, 90));  y += yadd*3/2;
         tabShips->addWidget(new ShipPreview(
             &settings::C_playerIIColor, &settings::C_playerIITeamColor, &settings::C_playerIIShip,
             Vector2f(510,y)));  //y += yadd;
@@ -294,7 +294,16 @@ UiWindow* OptionsMenu::get()
         tabShips->addWidget(new ColorPicker(locales::getLocale(locales::PlayerColor), &settings::C_playerIIColor,
             Vector2f(20,y), 410, xTxt));  y += yadd;
         tabShips->addWidget(new ColorPicker(locales::getLocale(locales::TeamColor), &settings::C_playerIITeamColor,
-            Vector2f(20,y), 410, xTxt));  y += yadd;
+            Vector2f(20,y), 410, xTxt));  y += yadd*3/2;
+
+        tabShips->addWidget(new LabeledBox(locales::getLocale(locales::GameOptions),
+            Vector2f(10, y), 560, 90));  y += yadd*3/2;
+        tabShips->addWidget(new Slider(locales::getLocale(locales::ShipTurnSpeed), "",
+           &settings::C_ShipTurnSpeed, 1, 60, 1,
+           Vector2f(20,y), 540, 240, true));  y += yadd;
+        tabShips->addWidget(new Slider(locales::getLocale(locales::GlowAlpha), "",
+           &settings::C_GlowAlpha, 0, 150, 1,
+           Vector2f(20,y), 540, 240, true));  y += yadd*3/2;
 
 
         //  Player I keys  ----

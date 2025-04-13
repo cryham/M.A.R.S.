@@ -1,5 +1,6 @@
 /* Ship.cpp
 
+Copyright (c) 2025 Crystal Hammer
 Copyright (c) 2010 - 2011 by Felix Lauer and Simon Schneegans
 
 This program is free software: you can redistribute it and/or modify it
@@ -580,14 +581,17 @@ void Ship::onCollision(SpaceObject* with, Vector2f const& location,
             unfreeze = 10.f;
             break;
 
-        //  Ammo new2
-        case spaceObjects::oAmmoCloud:  // OO
+
+        //  clouds
         case spaceObjects::oAmmoPulse:  // ))
+            amount = strength*0.0001f;
+            waitForOtherDamage = 0.2f;
+            setDamageSource(with->damageSource());
+            unfreeze = 0.1f;
+        case spaceObjects::oAmmoCloud:  // OO
             amount = strength*0.001f;
             waitForOtherDamage = 0.1f;
             setDamageSource(with->damageSource());
-            // particles::spawnMultiple(1, particles::pMud, location,
-            //     dynamic_cast<MobileSpaceObject*>(with)->velocity() * 0.7f, velocity_, owner_->color());
             unfreeze = 0.1f;
             break;
 
@@ -600,7 +604,7 @@ void Ship::onCollision(SpaceObject* with, Vector2f const& location,
             unfreeze = 0.1f;
             break;
 
-        //  Ammo
+        //  afk
         case spaceObjects::oAmmoAFK85:  // =
             amount = strength*0.0023f;
             waitForOtherDamage = 0.15f;
@@ -618,13 +622,22 @@ void Ship::onCollision(SpaceObject* with, Vector2f const& location,
             unfreeze = 0.1f;
             break;
 
+        //  rifles  ---
+        case spaceObjects::oAmmoGauss:  // --.
+            amount = strength*0.0007f;
+            waitForOtherDamage = 0.2f;
+            setDamageSource(with->damageSource());
+            particles::spawnMultiple(10, particles::pSpark, location,
+                dynamic_cast<MobileSpaceObject*>(with)->velocity() * 0.0005f, velocity_*0.001f, owner_->color());
+            unfreeze = 20.f;
+            break;
         case spaceObjects::oAmmoLaser:  // ___
             amount = strength*0.003f;
             waitForOtherDamage = 0.1f;
             setDamageSource(with->damageSource());
             particles::spawnMultiple(1, particles::pSpark, location,
                 dynamic_cast<MobileSpaceObject*>(with)->velocity() * 0.05f, velocity_, owner_->color());
-            unfreeze = 20.f;
+            unfreeze = 30.f;
             break;
         case spaceObjects::oAmmoRifle2:  // --
             amount = strength*0.006f;
@@ -641,6 +654,7 @@ void Ship::onCollision(SpaceObject* with, Vector2f const& location,
             unfreeze = 20.f;
             break;
 
+        //  shotgun  <
         case spaceObjects::oAmmoShotgun2:  // <<
             amount = strength*0.0007f;
             waitForOtherDamage = 0.1f;
@@ -658,17 +672,32 @@ void Ship::onCollision(SpaceObject* with, Vector2f const& location,
             unfreeze = 0.1f;
             break;
 
+        //  freezers
+        case spaceObjects::oAmmoFreezers:  // :*
+            amount = randomizer::random(3.f, 4.f);
+            setDamageSource(with->damageSource());
+            unfreeze = 4.f;
+            break;
+        //  plasma
         case spaceObjects::oAmmoPlasma:  // o
             amount = randomizer::random(5.f, 6.f);
             setDamageSource(with->damageSource());
             unfreeze = 4.f;
             break;
+        
+        //  flubba  o.
         case spaceObjects::oAmmoFlubba:
             amount = randomizer::random(2.5f, 3.f);
             setDamageSource(with->damageSource());
             unfreeze = 4.f;
             break;
+        case spaceObjects::oMiniAmmoFlubba:
+            amount = randomizer::random(0.7f, 1.f);
+            waitForOtherDamage = 0.3f;
+            setDamageSource(with->damageSource());
+            break;
 
+        //  H2o
         case spaceObjects::oAmmoH2OStorm:  // *
             amount = strength*0.002f;
             waitForOtherDamage = 0.15f;
@@ -682,12 +711,7 @@ void Ship::onCollision(SpaceObject* with, Vector2f const& location,
             unfreeze = 0.1f;
             break;
 
-        case spaceObjects::oMiniAmmoFlubba:
-            amount = randomizer::random(0.7f, 1.f);
-            waitForOtherDamage = 0.3f;
-            setDamageSource(with->damageSource());
-            break;
-
+        //  Flame  ~~
         case spaceObjects::oAmmoFlamer2:
         case spaceObjects::oAmmoBurner:
             amount = timer::frameTime();
@@ -700,6 +724,12 @@ void Ship::onCollision(SpaceObject* with, Vector2f const& location,
             unfreeze = 0.05f;
             break;
 
+        //  rockets  - =
+        case spaceObjects::oAmmoSeekers:
+            amount = 3.f;
+            setDamageSource(with->damageSource());
+            unfreeze = 5.f;
+            break;
         case spaceObjects::oAmmoMiniRocket:
             amount = 20.f;
             setDamageSource(with->damageSource());
@@ -711,12 +741,8 @@ void Ship::onCollision(SpaceObject* with, Vector2f const& location,
             unfreeze = 10.f;
             break;
 
-        case spaceObjects::oCannonBall:
-            amount = life_;
-            setDamageSource(owner_);
-            unfreeze = frozen_;
-            break;
 
+        //  big  -o
         case spaceObjects::oAmmoFist:
             amount = 25.f+randomizer::random(-3.f, 3.f);
             setDamageSource(with->damageSource());
@@ -726,6 +752,12 @@ void Ship::onCollision(SpaceObject* with, Vector2f const& location,
         case spaceObjects::oAmmoInsta:
             amount = life_ / 8.f;
             setDamageSource(with->damageSource());
+            break;
+
+        case spaceObjects::oCannonBall:
+            amount = life_;
+            setDamageSource(owner_);
+            unfreeze = frozen_;
             break;
 
         default:;

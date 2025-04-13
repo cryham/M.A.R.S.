@@ -119,10 +119,12 @@ namespace toolTip
             }
         }
 
+        //  draw
         void drawToolTip(float alpha)
         {
-            int height(lines_.size()*15+10);
-            int width(10);
+            float scale = UiElement::scale_;
+            int height = scale * (lines_.size() * 15 + 10);
+            int width = 10;
 
             for (auto& it : lines_)
             {
@@ -130,32 +132,30 @@ namespace toolTip
                 if (tmp > width)
                     width = tmp;
             }
-
             int mirror(locales::getCurrentLocale().LTR_ ? -1 : 1);
-
-            const float cornerRadius(3.f);
-
-            width *= -mirror;
+            width *= -mirror * scale;
 
 
-            // draw background
+            const float r(3.f);  // cornerRadius
+
+            //  draw background
             glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
             glColor4f(0.0,0.0,0.0, alpha/1.25f);
             glBegin(GL_QUADS);
-                glVertex2f(position_.x_,position_.y_+height+cornerRadius);
-                glVertex2f(position_.x_,position_.y_-cornerRadius);
-                glVertex2f(position_.x_+width,position_.y_-cornerRadius);
-                glVertex2f(position_.x_+width,position_.y_+height+cornerRadius);
+                glVertex2f(position_.x_, position_.y_ + height + r);
+                glVertex2f(position_.x_, position_.y_ - r);
+                glVertex2f(position_.x_ + width, position_.y_ - r);
+                glVertex2f(position_.x_ + width, position_.y_ + height + r);
 
-                glVertex2f(position_.x_+width,position_.y_);
-                glVertex2f(position_.x_+width-cornerRadius*mirror,position_.y_);
-                glVertex2f(position_.x_+width-cornerRadius*mirror,position_.y_+height);
-                glVertex2f(position_.x_+width,position_.y_+height);
+                glVertex2f(position_.x_ + width, position_.y_);
+                glVertex2f(position_.x_ + width - r*mirror, position_.y_);
+                glVertex2f(position_.x_ + width - r*mirror, position_.y_ + height);
+                glVertex2f(position_.x_ + width, position_.y_ + height);
 
-                glVertex2f(position_.x_,position_.y_);
-                glVertex2f(position_.x_+cornerRadius*mirror,position_.y_);
-                glVertex2f(position_.x_+cornerRadius*mirror,position_.y_+height);
-                glVertex2f(position_.x_,position_.y_+height);
+                glVertex2f(position_.x_, position_.y_);
+                glVertex2f(position_.x_ + r*mirror, position_.y_);
+                glVertex2f(position_.x_ + r*mirror, position_.y_ + height);
+                glVertex2f(position_.x_, position_.y_ + height);
             glEnd();
 
             glBegin(GL_TRIANGLE_FAN);
@@ -163,40 +163,40 @@ namespace toolTip
 
                 for (int i = 0; i <= 360; i += 30)
                 {
-                    Vector2f cornerPosition;
                     if (i == 90)
-                    {   glVertex2f(position_.x_, position_.y_-cornerRadius);
+                    {   glVertex2f(position_.x_, position_.y_ - r);
                         glEnd();
                         glBegin(GL_TRIANGLE_FAN);
-                        glVertex2f(position_.x_+width, position_.y_);
+                        glVertex2f(position_.x_ + width, position_.y_);
                     }
                     else if (i == 180)
-                    {   glVertex2f(position_.x_+width-cornerRadius*mirror, position_.y_);
+                    {   glVertex2f(position_.x_ + width - r*mirror, position_.y_);
                         glEnd();
                         glBegin(GL_TRIANGLE_FAN);
-                        glVertex2f(position_.x_+width, position_.y_+height);
+                        glVertex2f(position_.x_ + width, position_.y_ + height);
                     }
                     else if (i == 270)
-                    {   glVertex2f(position_.x_+width, position_.y_+height+cornerRadius);
+                    {   glVertex2f(position_.x_ + width, position_.y_ + height + r);
                         glEnd();
                         glBegin(GL_TRIANGLE_FAN);
-                        glVertex2f(position_.x_, position_.y_+height);
+                        glVertex2f(position_.x_, position_.y_ + height);
                     }
                     else if (i == 360)
-                        glVertex2f(position_.x_+cornerRadius*mirror, position_.y_+height);
+                        glVertex2f(position_.x_ + r*mirror, position_.y_ + height);
 
-                    if (i < 90)         cornerPosition = position_;
-                    else if (i < 180)   cornerPosition = position_ + Vector2f(width, 0.f);
-                    else if (i < 270)   cornerPosition = position_ + Vector2f(width, height);
-                    else                cornerPosition = position_ + Vector2f(0.f, height);
+                    Vector2f pos;  //  cornerPosition
+                    if (i < 90)         pos = position_;
+                    else if (i < 180)   pos = position_ + Vector2f(width, 0.f);
+                    else if (i < 270)   pos = position_ + Vector2f(width, height);
+                    else                pos = position_ + Vector2f(0.f, height);
 
                     float rad = i*M_PI/180;
-                    glVertex2f(cornerPosition.x_ + std::cos(rad)*cornerRadius*mirror,
-                               cornerPosition.y_ - std::sin(rad)*cornerRadius);
+                    glVertex2f(pos.x_ + std::cos(rad)*r*mirror,
+                               pos.y_ - std::sin(rad)*r);
                 }
             glEnd();
 
-            // draw border
+            //  draw border
             glBlendFunc(GL_SRC_ALPHA, GL_ONE);
             glLineWidth(1.f);
 
@@ -205,30 +205,30 @@ namespace toolTip
 
                 for (int i = 0; i < 360; i += 30)
                 {
-                    Vector2f cornerPosition;
-                    if (i == 0)         glVertex2f(position_.x_+cornerRadius*mirror, position_.y_+height);
-                    else if (i == 90)   glVertex2f(position_.x_, position_.y_-cornerRadius);
-                    else if (i == 180)  glVertex2f(position_.x_+width-cornerRadius*mirror, position_.y_);
-                    else if (i == 270)  glVertex2f(position_.x_+width, position_.y_+height+cornerRadius);
+                    if (i == 0)         glVertex2f(position_.x_ + r*mirror, position_.y_ + height);
+                    else if (i == 90)   glVertex2f(position_.x_, position_.y_ - r);
+                    else if (i == 180)  glVertex2f(position_.x_ + width - r*mirror, position_.y_);
+                    else if (i == 270)  glVertex2f(position_.x_ + width, position_.y_ + height + r);
 
-
-                    if (i < 90)         cornerPosition = position_;
-                    else if (i < 180)   cornerPosition = position_ + Vector2f(width, 0.f);
-                    else if (i < 270)   cornerPosition = position_ + Vector2f(width, height);
-                    else                cornerPosition = position_ + Vector2f(0.f, height);
+                    Vector2f pos;  //  cornerPosition
+                    if (i < 90)         pos = position_;
+                    else if (i < 180)   pos = position_ + Vector2f(width, 0.f);
+                    else if (i < 270)   pos = position_ + Vector2f(width, height);
+                    else                pos = position_ + Vector2f(0.f, height);
 
                     float rad = i*M_PI/180;
-                    glVertex2f(cornerPosition.x_ + std::cos(rad)*cornerRadius*mirror, cornerPosition.y_-std::sin(rad)*cornerRadius);
+                    glVertex2f(pos.x_ + std::cos(rad) * r*mirror,
+                               pos.y_ - std::sin(rad) * r);
                 }
             glEnd();
 
-            // draw text
-            int top(5);
+            //  draw text
+            int top = 5;
             for (auto& it : lines_)
             {
-                text::drawScreenText(it, position_ + Vector2f(-5*mirror, top),
+                text::drawScreenText(it, position_ + Vector2f(-5 * mirror, top),
                     12.f, TEXT_ALIGN_LEFT, Color3f(0.7f, 0.7f, 0.7f)*alpha);
-                top += 15;
+                top += 15 * scale;
             }
         }
     }
@@ -274,6 +274,7 @@ namespace toolTip
                 drawToolTip(alpha);
         }
     }
+
 
     void mouseMoved(Vector2f const& position)
     {

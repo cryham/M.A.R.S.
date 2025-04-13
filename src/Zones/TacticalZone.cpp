@@ -38,7 +38,7 @@ TacticalZone::TacticalZone(Vector2f const& location, float radius) :
     covered_(false),
     shipCount_(0)
 {
-    if (location_.x_ < settings::C_MapXsize*0.5f)
+    if (location_.x_ < settings::iMapXsize*0.5f)
         homeSide_ = 0;
     else
         homeSide_ = 1;
@@ -98,9 +98,9 @@ Vector2f TacticalZone::getRandomPoint() const
     {
         randomPoint = Vector2f(location_ + Vector2f::randDir()*(radius_ - 20.f));
         if (randomPoint.x_ > 0.f &&
-            randomPoint.x_ < settings::C_MapXsize &&
+            randomPoint.x_ < settings::iMapXsize &&
             randomPoint.y_ > 0.f &&
-            randomPoint.y_ < settings::C_MapYsize)
+            randomPoint.y_ < settings::iMapYsize)
         {
             bool fits = true;
             for (const auto& it : spaceObjects::getObjects())

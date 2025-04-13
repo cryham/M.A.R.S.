@@ -33,7 +33,7 @@ bool ToMainConfirm::kCancel_(false);
 
 UiWindow* ToMainConfirm::get()
 {
-    if (settings::C_noConfirmations)
+    if (settings::bNoConfirmations)
     {
         games::start(games::gMenu);
         music::fadeOut();

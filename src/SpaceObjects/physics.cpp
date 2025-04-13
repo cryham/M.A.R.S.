@@ -237,7 +237,7 @@ namespace physics
             if (distanceSquared > 100.f)
                 totalAcceleration += (it->location_ - attracted->location_) * it->mass_ / distanceSquared;
         }
-        return totalAcceleration * settings::C_GravityScale / 100.f;
+        return totalAcceleration * settings::iGravityScale / 100.f;
     }
 
     void causeShockWave(Player* damageSource, Vector2f const& location, float strength, float radius, float damage)

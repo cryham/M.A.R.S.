@@ -51,7 +51,7 @@ UiWindow* InfoSB::get()
         instance_->addWidget(new TextBox(locales::getLocale(locales::InfoSB),
             Vector2f(10, 80), 300, 160));
         instance_->addWidget(new Checkbox(locales::getLocale(locales::ShowAgainButton), "",
-            &settings::C_showInfoSB,
+            &settings::bShowInfoSB,
             Vector2f(10,270), 170));
     }
     return instance_;
@@ -69,7 +69,7 @@ void InfoSB::checkWidgets()
 
 void InfoSB::onShow()
 {
-    settings::C_showInfoSB = false;
+    settings::bShowInfoSB = false;
 }
 
 void InfoSB::reset()

@@ -93,7 +93,7 @@ void PauseMenu::checkWidgets()
     }
     else if (kHide_)
     {   kHide_ = false;
-        if (settings::C_showInfoHide)
+        if (settings::bShowInfoHide)
             menus::showWindow(InfoHide::get());
         else
             menus::hideMenu();

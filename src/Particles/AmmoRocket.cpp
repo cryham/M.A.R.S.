@@ -97,17 +97,16 @@ void AmmoRocket::update()
         location_ += velocity_*time;
         borders();
 
-        Vector2f const faceDirection(velocity_.normalize());
+        Vector2f const dir(velocity_.normalize());
 
-        particles::spawnTimed(80.f/settings::C_globalParticleCount, particles::pFuel, location_-faceDirection*radius_*2.3f, faceDirection, velocity_);
-        particles::spawnTimed(5.f/settings::C_globalParticleCount, particles::pHeatJet, location_-faceDirection*radius_*3.f, faceDirection, velocity_);
+        particles::spawnTimed(80.f/settings::iParticleCount, particles::pFuel, location_-dir*radius_*2.3f, dir, velocity_);
+        particles::spawnTimed(5.f/settings::iParticleCount, particles::pHeatJet, location_-dir*radius_*3.f, dir, velocity_);
 
         lifeTime_ += time;
         timer_ -= time;
 
         if (timer_ < 0.f)
-        {
-            timer_ = 0.5f;
+        {   timer_ = 0.5f;
 
             ballTarget_ = NULL;
             shipTarget_ = NULL;

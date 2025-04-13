@@ -339,14 +339,14 @@ namespace particles
     void spawnMultiple(float amount, ParticleType const& type, Vector2f const& location,
                        Vector2f const& direction, Vector2f const& velocity, Color3f const& color, Player* damageSource)
     {
-        for (int i = 0; i <= (amount * settings::C_globalParticleCount)/10; ++i)
+        for (int i = 0; i <= (amount * settings::iParticleCount)/10; ++i)
             spawn(type, location, direction, velocity, color, damageSource);
     }
 
     void spawnTimed(float amount, ParticleType const& type, Vector2f const& location,
                        Vector2f const& direction, Vector2f const& velocity, Color3f const& color, Player* damageSource)
     {
-        for (int i = 0; i <= (amount * settings::C_globalParticleCount)*timer::frameTime(); ++i)
+        for (int i = 0; i <= (amount * settings::iParticleCount)*timer::frameTime(); ++i)
             spawn(type, location, direction, velocity, color, damageSource);
     }
 

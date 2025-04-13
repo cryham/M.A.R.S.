@@ -32,17 +32,17 @@ MenuGame::MenuGame()
     :Game(games::gMenu)
 {
     clear();
-    settings::C_EnabledWeapons[weapons::wInsta] = true;
+    settings::bEnabledWeapons[weapons::wInsta] = true;
 
-    music::play(settings::C_dataPath + "audio/menu.ogg");
+    music::play(settings::sDataPath + "audio/menu.ogg");
 
     Color3f rand = Color3f::random();
 
     Team* myTeamL = teams::addTeam(new GITeam(rand));
     Team* myTeamR = teams::addTeam(new GITeam(rand.inverted()));
 
-    for (int i=0; i<4; ++i)  players::addPlayer(myTeamL, controllers::cBot);
-    for (int i=0; i<4; ++i)  players::addPlayer(myTeamR, controllers::cBot);
+    for (int i=0; i < 4; ++i)  players::addPlayer(myTeamL, controllers::cBot);
+    for (int i=0; i < 4; ++i)  players::addPlayer(myTeamR, controllers::cBot);
 
     Home* homeL = spaceObjects::addHome(HOME_LEFT, 100, myTeamL->color());
     Home* homeR = spaceObjects::addHome(HOME_RIGHT, 100, myTeamR->color());
@@ -52,10 +52,10 @@ MenuGame::MenuGame()
 
     menus::showMain();
 
-    if (settings::C_showSelectLanguage)
+    if (settings::bShowSelectLanguage)
     {
         menus::showWindow(ChooseLanguage::get());
-        settings::C_showSelectLanguage = false;
+        settings::bShowSelectLanguage = false;
     }
 
     spaceObjects::populateSpace(40.f, 5.f, 2);

@@ -62,13 +62,13 @@ void BurningFragment::update()
     if (timer1_ > 0)
         timer1_ -= time;
     else
-    {   timer1_ = lifeTime_*4.f/settings::C_globalParticleCount;
+    {   timer1_ = lifeTime_*4.f/settings::iParticleCount;
         particles::spawn(particles::pSmoke, location_, velocity_);
     }
     if (timer2_ > 0)
         timer2_ -= time;
     else
-    {   timer2_ = lifeTime_/settings::C_globalParticleCount;
+    {   timer2_ = lifeTime_/settings::iParticleCount;
         particles::spawn(particles::pFragmentFlame, location_, Vector2f(), velocity_);
     }
     lifeTime_ += time;

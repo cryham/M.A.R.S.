@@ -72,9 +72,9 @@ void AmmoMiniRocket::update()
         borders();
         // todo clamp max vel..
 
-        particles::spawnTimed(80.f/settings::C_globalParticleCount, particles::pFuel,
+        particles::spawnTimed(80.f/settings::iParticleCount, particles::pFuel,
             location_ - dir*radius_ * 2.3f, dir, velocity_);
-        particles::spawnTimed(5.f/settings::C_globalParticleCount, particles::pHeatJet,
+        particles::spawnTimed(5.f/settings::iParticleCount, particles::pHeatJet,
             location_ - dir*radius_ * 3.f, dir, velocity_);
 
         lifeTime_ += time;

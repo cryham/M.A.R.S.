@@ -55,8 +55,8 @@ void AmmoRifle2::update()
         lifeTime_ += time;
     }
 
-    if (location_.x_ < -100 || location_.x_ > settings::C_MapXsize + 100 ||
-        location_.y_ < -100 || location_.y_ > settings::C_MapYsize + 100)
+    if (location_.x_ < -100 || location_.x_ > settings::iMapXsize + 100 ||
+        location_.y_ < -100 || location_.y_ > settings::iMapYsize + 100)
         killMe();
 }
 

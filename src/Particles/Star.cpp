@@ -47,10 +47,10 @@ void Star::update()
 
 void Star::update(float time)
 {
-    if (location_.x_ < -radius_ || location_.x_ > settings::C_MapXsize + radius_ ||
-        location_.y_ < -radius_ || location_.y_ > settings::C_MapYsize + radius_)
+    if (location_.x_ < -radius_ || location_.x_ > settings::iMapXsize + radius_ ||
+        location_.y_ < -radius_ || location_.y_ > settings::iMapYsize + radius_)
     {
-        spawn(Vector2f(settings::C_MapXsize*0.5f, settings::C_MapYsize*0.5f), Vector2f(), Vector2f(), Color3f(), NULL);
+        spawn(Vector2f(settings::iMapXsize*0.5f, settings::iMapYsize*0.5f), Vector2f(), Vector2f(), Color3f(), NULL);
         killMe();
     }else
     {
@@ -79,8 +79,8 @@ void Star::init()
         delete it;
     activeParticles_.clear();
 
-    for (int i=0; i < settings::C_StarField; ++i)
-        spawn(Vector2f(settings::C_MapXsize*0.5f, settings::C_MapYsize*0.5f), Vector2f(), Vector2f(), Color3f(), NULL);
+    for (int i=0; i < settings::iStarField; ++i)
+        spawn(Vector2f(settings::iMapXsize*0.5f, settings::iMapYsize*0.5f), Vector2f(), Vector2f(), Color3f(), NULL);
 
     for (auto& it : activeParticles_)
         it->update(randomizer::random(0.f, 100.f));

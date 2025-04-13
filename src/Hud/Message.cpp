@@ -24,7 +24,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 Message::Message(sf::String const& message, Color3f const& color):
     text_(message),
     color_(color),
-    location_(settings::C_MapXsize*0.5f, 200),
+    location_(settings::iMapXsize*0.5f, 200),
     timer_(0.f),
     alpha_(1.f),
     speed_(0.f)

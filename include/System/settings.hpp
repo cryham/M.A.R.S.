@@ -43,158 +43,172 @@ namespace settings
 
     /// \name Game settings
     ///@{
-    extern int            C_soundVolume;
-    extern int            C_announcerVolume;
-    extern int            C_musicVolume;
-    extern bool           C_showFPS;
-    extern bool           C_showLatency;
-    extern bool           C_showParticleCount;
-    extern bool           C_fullScreen;
-    extern bool           C_vsync;
-
-    extern bool           C_StarsHigh;
-    extern int            C_StarField;
-    extern int            C_globalParticleCount;
-    extern bool           C_adaptiveParticleCount;
-    extern int            C_globalParticleLifeTime;
-
-    extern int            C_botsLeft;
-    extern int            C_botsRight;
-    extern int            C_botsDeath;
-    extern int            C_pointLimitSB;
-    extern int            C_pointLimitCK;
-    extern int            C_pointLimitDM;
-    extern int            C_pointLimitTDM;
-    extern int            C_powerUpRate;
-    extern int            C_slowMoKickIn;
-    extern int            C_gameSpeed;
-
-    extern bool           C_showInfoHide;
-    extern bool           C_showInfoSB;
-    extern bool           C_showInfoDM;
-    extern bool           C_showInfoTDM;
-    extern bool           C_showInfoCK;
-    extern bool           C_showSelectLanguage;
-    extern bool           C_showToolTips;
-
-    extern bool           C_noConfirmations;
-    // extern int            C_UIscale;  UiElement::scale_
-    extern bool           C_LogoSigns;
-    extern int            C_CountDown;
-
-    extern int            C_languageID;
-    extern int            C_resX;
-    extern int            C_resY;
-    extern int            C_colorDepth;
-    extern bool           C_shaders;
-    extern bool           C_Flashes;
-    extern Key            C_screenShotKey;
-
-    extern bool           C_audioRandom;
-    extern Key            C_audioNextKey;
-    extern Key            C_audioPreviousKey;
-
-    extern Key            C_statisticsKey;
-    extern std::string    C_configPath;
-    extern std::string    C_dataPath;
-    extern std::string    C_screenShotFormat;
+    extern int            iSoundVolume;
+    extern int            iAnnouncerVolume;
+    extern int            iMusicVolume;
     
-    extern bool           C_EnabledWeapons[weapons::All];
-    extern bool           C_EnabledWeaponsByUser[weapons::All];
-    extern bool           C_EnabledSpecials[specials::All];
-    extern bool           C_EnabledSpecialsByUser[specials::All];
+    extern bool           bShowFPS;
+    extern bool           bShowParticleCount;
+
+    extern bool           bFullScreen;
+    extern bool           bVSync;
+
+    extern bool           bStarsHigh;
+    extern int            iStarField;
+    extern int            iParticleCount;
+    extern bool           bAdaptiveParticleCount;
+    extern int            iParticleLifeTime;
+
+    extern int            iBotsLeft;
+    extern int            iBotsRight;
+    extern int            iBotsDeath;
+    extern int            iPointLimitSB;
+    extern int            iPointLimitCK;
+    extern int            iPointLimitDM;
+    extern int            iPointLimitTDM;
+
+    extern int            iPowerUpRate;
+    extern int            iSlowMoKickIn;
+    extern int            iGameSpeed;
+
+    extern bool           bShowInfoHide;
+    extern bool           bShowInfoSB;
+    extern bool           bShowInfoDM;
+    extern bool           bShowInfoTDM;
+    extern bool           bShowInfoCK;
+
+    extern bool           bShowSelectLanguage;
+    extern int            iLanguageID;
+
+    extern bool           bShowToolTips;
+    extern bool           bNoConfirmations;
+    // extern int         iUIscale;  UiElement::scale_
+    extern bool           bLogoSigns;
+    extern int            iCountDown;
+
+    extern int            iResX;
+    extern int            iResY;
+    extern int            iColorDepth;
+    extern bool           bShaders;
+    extern bool           bFlashes;
+    extern Key            keyScreenShot;
+
+    extern bool           bAudioRandom;
+    extern Key            keyAudioNext;
+    extern Key            keyAudioPrev;
+
+    extern Key            keyStatistics;
+    extern std::string    sConfigPath;
+    extern std::string    sDataPath;
+    extern std::string    sScreenShotFormat;
+    
+    extern bool           bEnabledWeapons[weapons::All];
+    extern bool           bEnabledWeaponsByUser[weapons::All];
+    extern bool           bEnabledSpecials[specials::All];
+    extern bool           bEnabledSpecialsByUser[specials::All];
     ///@}
 
     /// \name Map settings new
     ///@{
-    extern int            C_MapMinPlanets;
-    extern int            C_MapMaxPlanets;
-    extern int            C_MapMinPlanetsSize;
-    extern int            C_MapMaxPlanetsSize;
+    extern int            iMapMinPlanets;
+    extern int            iMapMaxPlanets;
+    extern int            iMapMinPlanetsSize;
+    extern int            iMapMaxPlanetsSize;
+    
+    extern int            iMapBlackHoles;
+    extern int            iMapSuns;
 
-    extern int            C_MapMinPlanetGap;
-    extern int            C_MapHomeRadius;
+    extern int            iMapMinPlanetGap;
+    extern int            iMapHomeRadius;
 
-    extern int            C_ShipRadius;
-    extern int            C_MapXsize;
-    extern int            C_MapYsize;
-    // extern int         C_MapYaspect;
-    extern int            C_BallRadius;
+    extern int            iMapXsize;
+    extern int            iMapYsize;
+    // extern int         iMapYaspect;
+
+    extern int            iShipRadius;
+    extern int            iBallRadius;
     ///@}
 
     /// \name Game settings new
     ///@{
-    extern int            C_ShipTurnSpeed;
-    extern int            C_DamageScale;
-    extern int            C_Regeneration;
-    extern int            C_FuelRegen;
-    extern int            C_RespawnDelay;
-    extern int            C_GlowAlpha;
+    extern int            iShipTurnSpeed;
+    extern int            iDamageScale;
 
-    extern bool           C_CyclicBorderX;
-    extern bool           C_CyclicBorderY;
-    extern int            C_GravityScale;
+    extern int            iRegeneration;
+    extern int            iFuelRegen;
+
+    extern int            iRespawnDelay;
+    extern int            iGlowAlpha;
+
+    extern bool           bCyclicBorderX;
+    extern bool           bCyclicBorderY;
+    extern int            iGravityScale;
     ///@}
 
     /// \name Player settings
     ///@{
-    extern sf::String     C_playerIName;
-    extern Color3f        C_playerIColor;
-    extern Color3f        C_playerITeamColor;
-    extern Key            C_playerIup;
-    extern Key            C_playerIdown;
-    extern Key            C_playerIboost;
+    extern sf::String     sPlayer1Name;
+    extern Color3f        clr1Player;
+    extern Color3f        clr1Team;
+    
+    extern Key            key1up;
+    extern Key            key1down;
+    extern Key            key1boost;
 
-    extern Key            C_playerIleft;
-    extern Key            C_playerIright;
-    extern Key            C_playerIfire;
-    extern Key            C_playerISpecialKey;
-    extern Key            C_playerIprev;
-    extern Key            C_playerInext;
+    extern Key            key1left;
+    extern Key            key1right;
+    
+    extern Key            key1fire;
+    extern Key            key1SpecialKey;
+    extern Key            key1prev;
+    extern Key            key1next;
 
-    extern bool           C_playerIteamL;
-    extern bool           C_playerIteamR;
-    extern bool           C_playerImouseAim;
+    extern bool           bPlayer1teamL;
+    extern bool           bPlayer1teamR;
+    extern bool           bPlayer1mouseAim;
 
-    extern int            C_playerIShip;
-    extern weapons::WeaponType   C_playerIWeapon;
-    extern specials::SpecialType C_playerISpecial;
+    extern int            iPlayer1Ship;
+    extern weapons::WeaponType   player1Weapon;
+    extern specials::SpecialType player1Special;
 
-    extern sf::String     C_playerIIName;
-    extern Color3f        C_playerIIColor;
-    extern Color3f        C_playerIITeamColor;
-    extern Key            C_playerIIup;
-    extern Key            C_playerIIdown;
-    extern Key            C_playerIIboost;
+    extern sf::String     sPlayer2Name;
+    extern Color3f        clr2Player;
+    extern Color3f        clr2Team;
+    
+    extern Key            key2up;
+    extern Key            key2down;
+    extern Key            key2boost;
 
-    extern Key            C_playerIIleft;
-    extern Key            C_playerIIright;
-    extern Key            C_playerIIfire;
-    extern Key            C_playerIISpecialKey;
-    extern Key            C_playerIIprev;
-    extern Key            C_playerIInext;
+    extern Key            key2left;
+    extern Key            key2right;
+    
+    extern Key            key2fire;
+    extern Key            key2SpecialKey;
+    extern Key            key2prev;
+    extern Key            key2next;
 
-    extern bool           C_playerIIteamL;
-    extern bool           C_playerIIteamR;
-    extern bool           C_playerIImouseAim;
+    extern bool           bPlayer2teamL;
+    extern bool           bPlayer2teamR;
+    extern bool           bPlayer2mouseAim;
 
-    extern int            C_playerIIShip;
-    extern weapons::WeaponType   C_playerIIWeapon;
-    extern specials::SpecialType C_playerIISpecial;
-    extern bool           C_networkPlayerI;
+    extern int            iPlayer2Ship;
+    extern weapons::WeaponType   player2Weapon;
+    extern specials::SpecialType player2Special;
     ///@}
 
     /// \name AI settings
     ///@{
-    extern bool           C_drawBotJobs;
-    extern bool           C_drawAIPath;
-    extern int            C_iDumb;
-    extern bool           C_drawZones;
+    extern int            iBotsDifficulty;
+    extern bool           bDrawBotJobs;
+    extern bool           bDrawAIPath;
+    extern bool           bDrawZones;
     ///@}
 
-    /// \name Network settings
+    /// \name Network settings unused
     ///@{
-    extern sf::String     C_ip;
-    extern sf::String     C_port;
+    // extern sf::String     sIP;
+    // extern sf::String     sPort;
+    // extern bool           bNetworkPlayerI;
+    // extern bool           bShowLatency;
     ///@}
 };

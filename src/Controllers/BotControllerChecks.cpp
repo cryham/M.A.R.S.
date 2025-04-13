@@ -178,7 +178,7 @@ void BotController::checkCloseEnemies()
             aggroGain -= distance;
             if (aggroGain < 0.f)
                 aggroGain = 0.f;
-            aggroGain *= settings::C_iDumb*0.01f;
+            aggroGain *= settings::iBotsDifficulty*0.01f;
             aggroTable_[it] += aggroGain;
         }
     }

@@ -69,21 +69,21 @@ namespace locales
                                 }
                                 tmp.erase(i, j-i+1);
 
-                                if      (macro == "PLAYER1_KEY_UP")      tmp.insert(i, generateName::key(settings::C_playerIup));
-                                else if (macro == "PLAYER2_KEY_UP")      tmp.insert(i, generateName::key(settings::C_playerIIup));
-                                else if (macro == "PLAYER1_KEY_RIGHT")   tmp.insert(i, generateName::key(settings::C_playerIright));
-                                else if (macro == "PLAYER2_KEY_RIGHT")   tmp.insert(i, generateName::key(settings::C_playerIIright));
-                                else if (macro == "PLAYER1_KEY_LEFT")    tmp.insert(i, generateName::key(settings::C_playerIleft));
-                                else if (macro == "PLAYER2_KEY_LEFT")    tmp.insert(i, generateName::key(settings::C_playerIIleft));
-                                else if (macro == "PLAYER1_KEY_FIRE")    tmp.insert(i, generateName::key(settings::C_playerIfire));
-                                else if (macro == "PLAYER2_KEY_FIRE")    tmp.insert(i, generateName::key(settings::C_playerIIfire));
-                                else if (macro == "PLAYER1_KEY_SPECIAL") tmp.insert(i, generateName::key(settings::C_playerISpecialKey));
-                                else if (macro == "PLAYER2_KEY_SPECIAL") tmp.insert(i, generateName::key(settings::C_playerIISpecialKey));
-                                else if (macro == "PLAYER1_NAME")        tmp.insert(i, settings::C_playerIName);
-                                else if (macro == "PLAYER2_NAME")        tmp.insert(i, settings::C_playerIIName);
-                                else if (macro == "DATA_PATH")           tmp.insert(i, settings::C_dataPath);
-                                else if (macro == "CONFIG_PATH")         tmp.insert(i, settings::C_configPath);
-                                else if (macro == "STATISTICS_KEY")      tmp.insert(i, generateName::key(settings::C_statisticsKey));
+                                if      (macro == "PLAYER1_KEY_UP")      tmp.insert(i, generateName::key(settings::key1up));
+                                else if (macro == "PLAYER2_KEY_UP")      tmp.insert(i, generateName::key(settings::key2up));
+                                else if (macro == "PLAYER1_KEY_RIGHT")   tmp.insert(i, generateName::key(settings::key1right));
+                                else if (macro == "PLAYER2_KEY_RIGHT")   tmp.insert(i, generateName::key(settings::key2right));
+                                else if (macro == "PLAYER1_KEY_LEFT")    tmp.insert(i, generateName::key(settings::key1left));
+                                else if (macro == "PLAYER2_KEY_LEFT")    tmp.insert(i, generateName::key(settings::key2left));
+                                else if (macro == "PLAYER1_KEY_FIRE")    tmp.insert(i, generateName::key(settings::key1fire));
+                                else if (macro == "PLAYER2_KEY_FIRE")    tmp.insert(i, generateName::key(settings::key2fire));
+                                else if (macro == "PLAYER1_KEY_SPECIAL") tmp.insert(i, generateName::key(settings::key1SpecialKey));
+                                else if (macro == "PLAYER2_KEY_SPECIAL") tmp.insert(i, generateName::key(settings::key2SpecialKey));
+                                else if (macro == "PLAYER1_NAME")        tmp.insert(i, settings::sPlayer1Name);
+                                else if (macro == "PLAYER2_NAME")        tmp.insert(i, settings::sPlayer2Name);
+                                else if (macro == "DATA_PATH")           tmp.insert(i, settings::sDataPath);
+                                else if (macro == "CONFIG_PATH")         tmp.insert(i, settings::sConfigPath);
+                                else if (macro == "STATISTICS_KEY")      tmp.insert(i, generateName::key(settings::keyStatistics));
                                 else
                                     cout << "Error parsing " << fileName << ": At ID " << id <<
                                         " is an unknown macro " << macro.toAnsiString() << "!" << endl;
@@ -108,7 +108,7 @@ namespace locales
     bool load()
     {
         vector<sf::String> lines;
-        if (file::load(settings::C_dataPath + "locales/locales.conf", lines))
+        if (file::load(settings::sDataPath + "locales/locales.conf", lines))
         {
             locales_.clear();
             Locale newLocale;
@@ -147,7 +147,7 @@ namespace locales
                         if (arg == "RTL") newLocale.LTR_ = false;
                         else              newLocale.LTR_ = true;
                     }else
-                        cout << "Unrecognized flag \"" << flag << "\" in " << settings::C_dataPath + "locales/locales.conf !" << endl;
+                        cout << "Unrecognized flag \"" << flag << "\" in " << settings::sDataPath + "locales/locales.conf !" << endl;
                 }
             }
 
@@ -156,19 +156,19 @@ namespace locales
 
             bool loadSuccess(false);
 
-            load (settings::C_dataPath + "locales/English.txt");
-            if (settings::C_languageID < locales_.size())
+            load (settings::sDataPath + "locales/English.txt");
+            if (settings::iLanguageID < locales_.size())
             {
-                if (!load (settings::C_dataPath + "locales/"+locales_[settings::C_languageID].fileName_))
+                if (!load (settings::sDataPath + "locales/"+locales_[settings::iLanguageID].fileName_))
                 {
-                    cout << "Failed to load " << settings::C_dataPath << "locales/" <<
-                        locales_[settings::C_languageID].fileName_.toAnsiString() << "! Falling back to English..." << endl;
-                    settings::C_languageID = 0;
+                    cout << "Failed to load " << settings::sDataPath << "locales/" <<
+                        locales_[settings::iLanguageID].fileName_.toAnsiString() << "! Falling back to English..." << endl;
+                    settings::iLanguageID = 0;
                 }
             }else
             {
                 cout << "Specified language in mars.conf doesn't match any in locales.conf! Falling back to English..." << endl;
-                settings::C_languageID = 0;
+                settings::iLanguageID = 0;
             }
             return true;
         }
@@ -191,11 +191,11 @@ namespace locales
 
     Locale const& getCurrentLocale()
     {
-        return locales_[settings::C_languageID];
+        return locales_[settings::iLanguageID];
     }
 
     void setCurrentLocale()
     {
-        load(settings::C_dataPath + "locales/"+locales_[settings::C_languageID].fileName_);
+        load(settings::sDataPath + "locales/"+locales_[settings::iLanguageID].fileName_);
     }
 }

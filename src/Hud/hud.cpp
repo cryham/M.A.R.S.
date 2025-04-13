@@ -62,7 +62,7 @@ namespace hud
         if (games::type() == games::gMenu)
             logo_->update();
 
-        tabStats_->display(games::type() != games::gMenu && window::isKeyDown(settings::C_statisticsKey));
+        tabStats_->display(games::type() != games::gMenu && window::isKeyDown(settings::keyStatistics));
 
         auto it = messages_.begin();
         while (it != messages_.end())
@@ -83,7 +83,7 @@ namespace hud
     {
         particles::drawNumbers();
 
-        if (settings::C_LogoSigns)
+        if (settings::bLogoSigns)
             if (games::type() == games::gMenu)
                 logo_->draw();
 

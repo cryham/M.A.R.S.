@@ -31,7 +31,7 @@ Planet::Planet(Vector2f const& location, float radius):
     physics::addStaticObject(this);
     physics::addGravitySource(this);
 
-    if (settings::C_LogoSigns)
+    if (settings::bLogoSigns)
         if (randomizer::random(0, 2) == 0)
             decoObjects::addPlanetSign(this);
 }

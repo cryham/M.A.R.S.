@@ -35,12 +35,12 @@ void LeftLife::draw() const
 
     Player const* player(NULL);
 
-    if ((settings::C_playerIteamL && settings::C_playerIIteamL)
-         | (settings::C_playerIteamR && settings::C_playerIIteamR)) player = players::getPlayerII();
-    else if (settings::C_playerIteamL && settings::C_playerIIteamR) player = players::getPlayerI();
-    else if (settings::C_playerIIteamL && settings::C_playerIteamR) player = players::getPlayerII();
-    else if (settings::C_playerIteamL)                              player = players::getPlayerI();
-    else if (settings::C_playerIIteamL)                             player = players::getPlayerII();
+    if (settings::bPlayer1teamL && settings::bPlayer2teamL ||
+        settings::bPlayer1teamR && settings::bPlayer2teamR)       player = players::getPlayerII();
+    else if (settings::bPlayer1teamL && settings::bPlayer2teamR)  player = players::getPlayerI();
+    else if (settings::bPlayer2teamL && settings::bPlayer1teamR)  player = players::getPlayerII();
+    else if (settings::bPlayer1teamL)                             player = players::getPlayerI();
+    else if (settings::bPlayer2teamL)                             player = players::getPlayerII();
 
     if (player)
     {

@@ -106,11 +106,11 @@ namespace menus
 
     void keyEvent(bool down, Key const& key)
     {
-        if (down && key == settings::C_screenShotKey && !menus::keyboardFixed())
+        if (down && key == settings::keyScreenShot && !menus::keyboardFixed())
             window::screenShot();
-        else if (down && key == settings::C_audioNextKey && !menus::keyboardFixed())
+        else if (down && key == settings::keyAudioNext && !menus::keyboardFixed())
             music::next();
-        else if (down && key == settings::C_audioPreviousKey && !menus::keyboardFixed())
+        else if (down && key == settings::keyAudioPrev && !menus::keyboardFixed())
             music::previous();
 
         if (visible())

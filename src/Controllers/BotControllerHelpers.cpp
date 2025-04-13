@@ -119,10 +119,10 @@ Vector2f BotController::calcPath(Vector2f const& endPoint, bool avoidBall)
                             break;
                         }
                     }
-                    if (surfacePoint.x_<0.f || surfacePoint.x_ > settings::C_MapXsize)
+                    if (surfacePoint.x_ < 0.f || surfacePoint.x_ > settings::iMapXsize)
                         fits = false;
                 }
-                if (surfacePoint.x_>0.f && surfacePoint.x_ < settings::C_MapXsize)
+                if (surfacePoint.x_ > 0.f && surfacePoint.x_ < settings::iMapXsize)
                     return surfacePoint;
                 else
                     return obstacle->location() - toEndPoint*(obstacle->radius() + 20.f);

@@ -45,7 +45,7 @@ void CannonBall::update()
     if (timer1_ > 0)
         timer1_ -= time;
     else
-    {   timer1_ = 0.03f / settings::C_globalParticleCount;
+    {   timer1_ = 0.03f / settings::iParticleCount;
         for (int i=0; i < 20; ++i)
         {
             particles::spawn(particles::pSmoke, location_+Vector2f::randDirLen()*15.f, velocity_);
@@ -56,7 +56,7 @@ void CannonBall::update()
     if (timer2_ > 0)
         timer2_ -= time;
     else
-    {   timer2_ = 0.2f / settings::C_globalParticleCount;
+    {   timer2_ = 0.2f / settings::iParticleCount;
         particles::spawn(particles::pFragmentFlame, location_, Vector2f(20.f,0), velocity_);
     }
 

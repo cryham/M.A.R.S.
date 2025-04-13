@@ -121,10 +121,10 @@ UiWindow* WeaponOptions::get()
 void WeaponOptions::onShow()
 {
     for (int i=0; i < weapons::All; ++i)
-        kWeapon[i] = settings::C_EnabledWeaponsByUser[i];
+        kWeapon[i] = settings::bEnabledWeaponsByUser[i];
 
     for (int i=0; i < specials::All; ++i)
-        kSpecial[i] = settings::C_EnabledSpecialsByUser[i];
+        kSpecial[i] = settings::bEnabledSpecialsByUser[i];
 }
 
 void WeaponOptions::checkWidgets()
@@ -133,10 +133,10 @@ void WeaponOptions::checkWidgets()
     {   kOk_ = false;
 
         for (int i=0; i < weapons::All; ++i)
-            settings::C_EnabledWeaponsByUser[i] = kWeapon[i];
+            settings::bEnabledWeaponsByUser[i] = kWeapon[i];
 
         for (int i=0; i < specials::All; ++i)
-            settings::C_EnabledSpecialsByUser[i] = kSpecial[i];
+            settings::bEnabledSpecialsByUser[i] = kSpecial[i];
 
         menus::hideWindow();
     }

@@ -32,7 +32,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 Ball::Ball(Vector2f const& location)
     :MobileSpaceObject(spaceObjects::oBall, location,
-        settings::C_BallRadius, settings::C_BallRadius / 2.f),
+        settings::iBallRadius, settings::iBallRadius / 2.f),
         // 15.f, 7.f),
     rotation_(0),
     rotateSpeed_(0.f),
@@ -73,25 +73,25 @@ void Ball::update()
                 rotateSpeed_ -= rotateSpeed_*time*0.2;
 
                 borders();
-                if (!settings::C_CyclicBorderX)
+                if (!settings::bCyclicBorderX)
                 {
                     if (location_.x_ < radius_)
                     {   location_.x_ = radius_;
                         velocity_.x_ = -velocity_.x_*0.6;
                     }
-                    if (location_.x_ > settings::C_MapXsize - radius_)
-                    {   location_.x_ = settings::C_MapXsize - radius_;
+                    if (location_.x_ > settings::iMapXsize - radius_)
+                    {   location_.x_ = settings::iMapXsize - radius_;
                         velocity_.x_ = -velocity_.x_*0.6;
                     }
                 }
-                if (!settings::C_CyclicBorderY)
+                if (!settings::bCyclicBorderY)
                 {
                     if (location_.y_ < radius_)
                     {   location_.y_ = radius_;
                         velocity_.y_ = -velocity_.y_*0.6;
                     }
-                    if (location_.y_ > settings::C_MapYsize - radius_)
-                    {   location_.y_ = settings::C_MapYsize - radius_;
+                    if (location_.y_ > settings::iMapYsize - radius_)
+                    {   location_.y_ = settings::iMapYsize - radius_;
                         velocity_.y_ = -velocity_.y_*0.6;
                     }
                 }
@@ -103,7 +103,7 @@ void Ball::update()
                 if (smokeTimer_ > 0)
                     smokeTimer_ -= time;
                 else
-                {   smokeTimer_ = 0.3f/(settings::C_globalParticleCount*heatTimer_);
+                {   smokeTimer_ = 0.3f/(settings::iParticleCount*heatTimer_);
                     for (int i=0; i<5; ++i)
                         particles::spawn(particles::pSmoke, location_+Vector2f::randDirLen()*radius_, velocity_);
                 }

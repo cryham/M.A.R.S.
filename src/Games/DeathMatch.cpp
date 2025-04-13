@@ -34,12 +34,12 @@ DeathMatch::DeathMatch()
     
     music::play();
 
-    if (settings::C_playerIteamL  | settings::C_playerIteamR)
-        players::addPlayer (teams::addTeam(new DMTeam(settings::C_playerITeamColor)), controllers::cPlayer1);
-    if (settings::C_playerIIteamL | settings::C_playerIIteamR)
-        players::addPlayer (teams::addTeam(new DMTeam(settings::C_playerIITeamColor)), controllers::cPlayer2);
+    if (settings::bPlayer1teamL || settings::bPlayer1teamR)
+        players::addPlayer (teams::addTeam(new DMTeam(settings::clr1Team)), controllers::cPlayer1);
+    if (settings::bPlayer2teamL || settings::bPlayer2teamR)
+        players::addPlayer (teams::addTeam(new DMTeam(settings::clr2Team)), controllers::cPlayer2);
 
-    for (int i=0; i < settings::C_botsDeath; ++i)
+    for (int i=0; i < settings::iBotsDeath; ++i)
     {
         Team* newTeam = teams::addTeam(new DMTeam());
         Color3f color(newTeam->color());
@@ -58,7 +58,7 @@ DeathMatch::DeathMatch()
 
 void DeathMatch::draw() const
 {
-    if (settings::C_drawZones)
+    if (settings::bDrawZones)
         zones::draw();
     Game::draw();
 }

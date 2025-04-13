@@ -270,7 +270,7 @@ namespace toolTip
                 default:;
             }
 
-            if (settings::C_showToolTips && alpha > 0)
+            if (settings::bShowToolTips && alpha > 0)
                 drawToolTip(alpha);
         }
     }

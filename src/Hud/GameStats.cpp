@@ -31,9 +31,9 @@ void GameStats::draw() const
 {
     float top(20.f);
 
-    if (settings::C_showFPS)            top += 20.f;
-    if (settings::C_showParticleCount)  top += 20.f;
-    if (settings::C_showLatency)        top += 20.f;
+    if (settings::bShowFPS)            top += 20.f;
+    if (settings::bShowParticleCount)  top += 20.f;
+    // if (settings::bShowLatency)        top += 20.f;
 
     if (top > 20.f)
     {
@@ -87,7 +87,7 @@ void GameStats::draw() const
 
         top = 20.f;
 
-        if (settings::C_showFPS)
+        if (settings::bShowFPS)
         {
             std::stringstream sstr;
             sstr << /*"Fps: " <<*/ static_cast<int>(timer::fps() + 0.5f);
@@ -97,7 +97,7 @@ void GameStats::draw() const
                                       Color3f(0.9f, 0.4f, 0.4f) );
             top += 20.f;
         }
-        if (settings::C_showParticleCount)
+        if (settings::bShowParticleCount)
         {
             if (updateTimer_ > 0.f)
                 updateTimer_ -= timer::frameTime();
@@ -110,12 +110,12 @@ void GameStats::draw() const
             text::drawScreenText(sf::String(sstr.str()), Vector2f(10.f,top), 12.f, TEXT_ALIGN_LEFT, Color3f(0.7f, 0.7f, 0.7f));
             top += 20.f;
         }
-        if (settings::C_showLatency)
+        /*if (settings::bShowLatency)
         {
             std::stringstream sstr;
             sstr << "Latency: " << particles::count();
             text::drawScreenText(sf::String(sstr.str()), Vector2f(10.f,top), 12.f, TEXT_ALIGN_LEFT, Color3f(0.7f, 0.7f, 0.7f));
             top += 20.f;
-        }
+        }*/
     }
 }

@@ -49,14 +49,14 @@ namespace spaceObjects
             while (!newPlanetFits && ++tries < 500)
             {
                 // 100 is min distance between edge and planet
-                int randx = rand() % (settings::C_MapXsize - 2*(100 + radius)) + 100 + radius;
-                int randy = rand() % (settings::C_MapYsize  - 2*(100 + radius)) + 100 + radius;
+                int randx = rand() % (settings::iMapXsize - 2*(100 + radius)) + 100 + radius;
+                int randy = rand() % (settings::iMapYsize - 2*(100 + radius)) + 100 + radius;
                 Vector2f position(randx, randy);
 
                 // check for collisions with other objects
                 newPlanetFits = true;
                 for (const auto& it : objectList_)
-                    if ((it->location() - position).lengthSquare() < std::pow(it->radius() + radius + settings::C_MapMinPlanetGap, 2))
+                    if ((it->location() - position).lengthSquare() < std::pow(it->radius() + radius + settings::iMapMinPlanetGap, 2))
                         newPlanetFits = false;
                 
                 // check for collisions with balls
@@ -95,8 +95,8 @@ namespace spaceObjects
 
     int randomPlanetSize()
     {
-        // return rand() % (SPACEOBJECT_MAX_RADIUS - SPACEOBJECT_MIN_RADIUS) + SPACEOBJECT_MIN_RADIUS;
-        return rand() % (settings::C_MapMaxPlanetsSize - settings::C_MapMinPlanetsSize) + settings::C_MapMinPlanetsSize;
+        // return randomizer::random(settings::iMapMinPlanetsSize, settings::iMapMaxPlanetsSize);
+        return rand() % (settings::iMapMaxPlanetsSize - settings::iMapMinPlanetsSize) + settings::iMapMinPlanetsSize;
     }
 
     void addPlanet()
@@ -136,18 +136,18 @@ namespace spaceObjects
     Home* addHome(int where, int life, Color3f const& color)
     {
         Vector2f position;
-        float    radius = settings::C_MapHomeRadius;
+        float    radius = settings::iMapHomeRadius;
         float    mass = radius * 150.f;
 
         switch (where)
         {
-            case HOME_LEFT:  position = Vector2f(-50,  (rand() % (settings::C_MapYsize - 300)) + 150);  break;
-            case HOME_RIGHT: position = Vector2f(settings::C_MapXsize+50, (rand() % (settings::C_MapYsize - 300)) + 150);  break;
-            case HOME_RALLY: position = Vector2f(-150, (rand() % (settings::C_MapYsize - 300)) + 150);
+            case HOME_LEFT:  position = Vector2f(-50,  (rand() % (settings::iMapYsize - 300)) + 150);  break;
+            case HOME_RIGHT: position = Vector2f(settings::iMapXsize+50, (rand() % (settings::iMapYsize - 300)) + 150);  break;
+            case HOME_RALLY: position = Vector2f(-150, (rand() % (settings::iMapYsize - 300)) + 150);
                              radius   = 180.f;
                              mass     *= 0.8f;
                              break;
-            default:         position = possiblePlanetLocation(settings::C_MapHomeRadius, 100);
+            default:         position = possiblePlanetLocation(settings::iMapHomeRadius, 100);
         }
         return addHome(position, life, color, radius, mass);
     }
@@ -250,7 +250,7 @@ namespace spaceObjects
 
     void populateSpace(float holePercentage, float sunPercentage, int maxObjects)
     {
-        int count = randomizer::random(settings::C_MapMinPlanets, settings::C_MapMaxPlanets);
+        int count = randomizer::random(settings::iMapMinPlanets, settings::iMapMaxPlanets);
 
         while (--count >= 0)
         {
@@ -264,14 +264,10 @@ namespace spaceObjects
 
             switch (type)
             {
-                case 0:
-                    addBlackHole();  break;
-                case 1:
-                    addSun();  break;
-                default:
-                    addPlanet();
+                case 0:   addBlackHole();  break;
+                case 1:   addSun();  break;
+                default:  addPlanet();
             }
-
         }
     }
 }

@@ -28,5 +28,5 @@ BotPlayer::BotPlayer(std::pair<sf::String, int>const& nameStrength, Color3f cons
     ,graphic_(graphic)
 {
     controller_ = controllers::addBotController(this,
-        static_cast<float>(nameStrength.second + settings::C_iDumb)*0.005f);
+        static_cast<float>(nameStrength.second + settings::iBotsDifficulty)*0.005f);
 }

@@ -1,5 +1,6 @@
 /* window.cpp
 
+Copyright (c) 2025 Crystal Hammer
 Copyright (c) 2010 - 2011 by Felix Lauer and Simon Schneegans
 
 This program is free software: you can redistribute it and/or modify it
@@ -31,6 +32,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "defines.hpp"
 
 #include <SFML/OpenGL.hpp>
+#include <SFML/Window/ContextSettings.hpp>
+#include <SFML/Window/WindowStyle.hpp>
 #include <sstream>
 #include <time.h>
 #include <sys/stat.h>
@@ -51,25 +54,28 @@ namespace window
         sf::Sprite        fxImage_;
 
         Vector2f         viewPort_;
-        float            scale_x() {  return static_cast<float>(settings::C_resX) / settings::C_MapXsize;  }
-        float            scale_y() {  return static_cast<float>(settings::C_resY) / settings::C_MapYsize;  }
+        float            scale_x() {  return static_cast<float>(settings::iResX) / settings::iMapXsize;  }
+        float            scale_y() {  return static_cast<float>(settings::iResY) / settings::iMapYsize;  }
 
         float            joyButtonTimer_(0.f);
-        const float      ratio(static_cast<float>(settings::C_MapXsize) / static_cast<float>(settings::C_MapYsize));
+        const float      ratio(static_cast<float>(settings::iMapXsize) / static_cast<float>(settings::iMapYsize));
 
 
         void setViewPort()
         {
-            const int windowHeight(window_.getSize().y), windowWidth(window_.getSize().x);
+            const int windowHeight = window_.getSize().y, windowWidth = window_.getSize().x;
             sf::View view(sf::FloatRect(0,0, windowWidth, windowHeight));
-            if (static_cast<float>(windowWidth)/windowHeight > ratio)
+
+            if (static_cast<float>(windowWidth) / windowHeight > ratio)
             {
-                view.setViewport(sf::FloatRect((windowWidth-viewPort_.x_)*0.5f / windowWidth, 0, 1, 1));
-                glViewport((windowWidth-viewPort_.x_)*0.5f, 0, viewPort_.x_, viewPort_.y_);
+                view.setViewport(sf::FloatRect(
+                           (windowWidth - viewPort_.x_) * 0.5f / windowWidth, 0, 1, 1));
+                glViewport((windowWidth - viewPort_.x_) * 0.5f, 0, viewPort_.x_, viewPort_.y_);
             }else
             {
-                view.setViewport(sf::FloatRect(0, (windowHeight-viewPort_.y_)*0.5f / windowHeight, 1, 1));
-                glViewport(0, (windowHeight-viewPort_.y_)*0.5f, viewPort_.x_, viewPort_.y_);
+                view.setViewport(sf::FloatRect(
+                           0, (windowHeight - viewPort_.y_) * 0.5f / windowHeight, 1, 1));
+                glViewport(0, (windowHeight - viewPort_.y_) * 0.5f, viewPort_.x_, viewPort_.y_);
             }
             window_.setView(view);
         }
@@ -83,18 +89,18 @@ namespace window
             {
                 // scale_ = static_cast<float>(windowHeight)/settings::C_MapYsize;
                 viewPort_.y_ = windowHeight;
-                viewPort_.x_  = windowHeight * ratio;
+                viewPort_.x_ = windowHeight * ratio;
             }else
             {
                 // scale_ = static_cast<float>(windowWidth)/settings::C_MapXsize;
                 viewPort_.y_ = windowWidth / ratio;
-                viewPort_.x_  = windowWidth;
+                viewPort_.x_ = windowWidth;
             }
             // glClear(GL_COLOR_BUFFER_BIT);
 
             setViewPort();
 
-            if (settings::C_shaders)
+            if (settings::bShaders)
             {
                 backBuffer_.setActive(true);
                 backBuffer_.clear();
@@ -104,6 +110,8 @@ namespace window
             }
         }
 
+        //  update
+        //----------------------------------------------------------------------------------------------------------------------------------
         void update()
         {
             timer::update(clock_.restart().asSeconds());
@@ -219,21 +227,23 @@ namespace window
         }
     }
 
+    //  create
+    //----------------------------------------------------------------------------------------------------------------------------------
     void create()
     {
-        sf::VideoMode mode(settings::C_resX, settings::C_resY, settings::C_colorDepth);
+        sf::VideoMode mode(settings::iResX, settings::iResY, settings::iColorDepth);
 
-        if (settings::C_fullScreen && mode.isValid())
+        if (settings::bFullScreen && mode.isValid())
             window_.create(mode, "M.A.R.S. - a " + generateName::game(), sf::Style::Fullscreen);
         else
-            window_.create(mode, "M.A.R.S. - a " + generateName::game());
-        window_.setVerticalSyncEnabled(settings::C_vsync);
+            window_.create(mode, "M.A.R.S. - a " + generateName::game());    
+        window_.setVerticalSyncEnabled(settings::bVSync);
         //window_.SetFramerateLimit(15);
 
         #ifndef __APPLE__
             // apple uses bundle icon instead
             sf::Image icon;
-            icon.loadFromFile(settings::C_dataPath + "tex/icon.png");
+            icon.loadFromFile(settings::sDataPath + "tex/icon.png");
             window_.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
         #endif
 
@@ -247,7 +257,7 @@ namespace window
         glLoadIdentity();
 
         // Setup translation (according to left-upper corner)
-        glOrtho(0.f, settings::C_MapXsize, settings::C_MapYsize, 0.f, -1, 1);
+        glOrtho(0.f, settings::iMapXsize, settings::iMapYsize, 0.f, -1, 1);
 
 
         // probably improves performance...
@@ -273,7 +283,7 @@ namespace window
         glClearColor(0.f, 0.f, 0.f, 1.f);
         glClear(GL_COLOR_BUFFER_BIT);
 
-        if (settings::C_shaders)
+        if (settings::bShaders)
             backBuffer_.setActive(true);
 
         glMatrixMode(GL_PROJECTION);
@@ -286,14 +296,14 @@ namespace window
 
         glMatrixMode(GL_PROJECTION);
         glLoadIdentity();
-        glOrtho(0.f, settings::C_MapXsize, settings::C_MapYsize, 0.f, -1, 1);
+        glOrtho(0.f, settings::iMapXsize, settings::iMapYsize, 0.f, -1, 1);
         glMatrixMode(GL_MODELVIEW);
         glLoadIdentity();
     }
 
     void startDrawHUD()
     {
-        if (settings::C_shaders)
+        if (settings::bShaders)
         {
             backBuffer_.display();
 
@@ -404,15 +414,15 @@ namespace window
 
         std::stringstream filename;
         filename << "ScreenShot_" << timeinfo->tm_year << timeinfo->tm_mon << timeinfo->tm_mday
-            << timeinfo->tm_hour << timeinfo->tm_min << timeinfo->tm_sec << "." << settings::C_screenShotFormat;
+            << timeinfo->tm_hour << timeinfo->tm_min << timeinfo->tm_sec << "." << settings::sScreenShotFormat;
 
         #ifdef __linux__
-            mkdir((settings::C_configPath + "screenshots/").c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
-            if (shot.saveToFile(settings::C_configPath + "screenshots/" + filename.str()))
-            {   std::cout << "Saved screenshot to " << settings::C_configPath << "screenshots/" << filename.str() << "." << std::endl;
+            mkdir((settings::sConfigPath + "screenshots/").c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
+            if (shot.saveToFile(settings::sConfigPath + "screenshots/" + filename.str()))
+            {   std::cout << "Saved screenshot to " << settings::sConfigPath << "screenshots/" << filename.str() << "." << std::endl;
                 hud::displayMessage(locales::getLocale(locales::SavedScreenshot));
             }else
-                std::cout << "Failed saving screenshot to " << settings::C_configPath << "screenshots/" << filename.str() << "." << std::endl;
+                std::cout << "Failed saving screenshot to " << settings::sConfigPath << "screenshots/" << filename.str() << "." << std::endl;
         #endif
 
         #ifdef __APPLE__

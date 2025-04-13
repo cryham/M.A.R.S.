@@ -36,27 +36,27 @@ SpaceBall::SpaceBall()
     Team* myTeamL = NULL;
     Team* myTeamR = NULL;
 
-    if (settings::C_playerIteamL)
+    if (settings::bPlayer1teamL)
     {
-        myTeamL = new SBTeam(settings::C_playerITeamColor);
+        myTeamL = new SBTeam(settings::clr1Team);
         players::addPlayer(myTeamL, controllers::cPlayer1);
     }
-    else if (settings::C_playerIteamR)
+    else if (settings::bPlayer1teamR)
     {
-        myTeamR = new SBTeam(settings::C_playerITeamColor);
+        myTeamR = new SBTeam(settings::clr1Team);
         players::addPlayer(myTeamR, controllers::cPlayer1);
     }
 
-    if (settings::C_playerIIteamL)
+    if (settings::bPlayer2teamL)
     {
         if (!myTeamL)
-            myTeamL = new SBTeam(settings::C_playerIITeamColor);
+            myTeamL = new SBTeam(settings::clr2Team);
         players::addPlayer(myTeamL, controllers::cPlayer2);
     }
-    else if (settings::C_playerIIteamR)
+    else if (settings::bPlayer2teamR)
     {
         if (!myTeamR)
-            myTeamR = new SBTeam(settings::C_playerIITeamColor);
+            myTeamR = new SBTeam(settings::clr2Team);
         players::addPlayer(myTeamR, controllers::cPlayer2);
     }
 
@@ -75,11 +75,11 @@ SpaceBall::SpaceBall()
     teams::addTeam(myTeamL);
     teams::addTeam(myTeamR);
 
-    for (int i=0; i < settings::C_botsLeft;  ++i)  players::addPlayer(myTeamL, controllers::cBot);
-    for (int i=0; i < settings::C_botsRight; ++i)  players::addPlayer(myTeamR, controllers::cBot);
+    for (int i=0; i < settings::iBotsLeft;  ++i)  players::addPlayer(myTeamL, controllers::cBot);
+    for (int i=0; i < settings::iBotsRight; ++i)  players::addPlayer(myTeamR, controllers::cBot);
 
-    Home* homeL = spaceObjects::addHome(HOME_LEFT, settings::C_pointLimitSB, myTeamL->color());
-    Home* homeR = spaceObjects::addHome(HOME_RIGHT, settings::C_pointLimitSB, myTeamR->color());
+    Home* homeL = spaceObjects::addHome(HOME_LEFT, settings::iPointLimitSB, myTeamL->color());
+    Home* homeR = spaceObjects::addHome(HOME_RIGHT, settings::iPointLimitSB, myTeamR->color());
 
     teams::assignHomes(homeL, homeR);
     players::createShips();
@@ -95,7 +95,7 @@ SpaceBall::SpaceBall()
 
 void SpaceBall::draw() const
 {
-    if (settings::C_drawZones)
+    if (settings::bDrawZones)
         zones::draw();
     Game::draw();
 }
@@ -104,8 +104,8 @@ void SpaceBall::restart()
 {
     Game::restart();
 
-    Home* homeL = spaceObjects::addHome(HOME_LEFT, settings::C_pointLimitSB, teams::getTeamL()->color());
-    Home* homeR = spaceObjects::addHome(HOME_RIGHT, settings::C_pointLimitSB, teams::getTeamR()->color());
+    Home* homeL = spaceObjects::addHome(HOME_LEFT, settings::iPointLimitSB, teams::getTeamL()->color());
+    Home* homeR = spaceObjects::addHome(HOME_RIGHT, settings::iPointLimitSB, teams::getTeamR()->color());
 
     teams::assignHomes(homeL, homeR);
     players::createShips();

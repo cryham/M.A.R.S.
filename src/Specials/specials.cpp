@@ -44,7 +44,7 @@ namespace specials
             next += add;
         check();
 
-        while (cnt < specials::All && !settings::C_EnabledSpecials[next])
+        while (cnt < specials::All && !settings::bEnabledSpecials[next])
         {
             next += add;
             check();
@@ -58,9 +58,9 @@ namespace specials
         type = getNext(type, false, 1);  // ensure enabled
 
         if  (parent->getOwner()->type() == controllers::cPlayer1 && type != specials::All)
-            settings::C_playerISpecial = type;
+            settings::player1Special = type;
         else if  (parent->getOwner()->type()  == controllers::cPlayer2 && type != specials::All)
-            settings::C_playerIISpecial = type;
+            settings::player2Special = type;
 
         switch (type)
         {

@@ -32,7 +32,7 @@ HomeZone::HomeZone(Vector2f const& location) :
     radius_(450.f),
     location_(location)
 {
-    if (location_.x_ < settings::C_MapXsize*0.5f)
+    if (location_.x_ < settings::iMapXsize*0.5f)
         homeSide_ = 0;
     else
         homeSide_ = 1;

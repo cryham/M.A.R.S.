@@ -51,7 +51,7 @@ UiWindow* InfoTDM::get()
         instance_->addWidget(new TextBox(locales::getLocale(locales::InfoTDM),
             Vector2f(10, 80), 300, 160));
         instance_->addWidget(new Checkbox(locales::getLocale(locales::ShowAgainButton), "",
-            &settings::C_showInfoTDM,
+            &settings::bShowInfoTDM,
             Vector2f(10,270), 170));
     }
     return instance_;
@@ -69,7 +69,7 @@ void InfoTDM::checkWidgets()
 
 void InfoTDM::onShow()
 {
-    settings::C_showInfoTDM = false;
+    settings::bShowInfoTDM = false;
 }
 
 void InfoTDM::reset()

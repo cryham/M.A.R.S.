@@ -38,7 +38,7 @@ UiWindow* EnterName::get()
     if (instance_ == NULL)
     {   instance_ = new EnterName(320, 160);
 
-        instance_->addWidget(new TextEdit("", settings::C_playerIName, "PlayerI",
+        instance_->addWidget(new TextEdit("", settings::sPlayer1Name, "PlayerI",
             Vector2f(10,85), 300, 0, TEXT_EDIT, 12));
         instance_->addWidget(new Button(locales::getLocale(locales::Ok), "", &kOk_,
             Vector2f(220,130), 90, 20));
@@ -67,7 +67,7 @@ void EnterName::checkWidgets()
 
 void EnterName::onShow()
 {
-    settings::C_showInfoHide = false;
+    settings::bShowInfoHide = false;
 }
 
 void EnterName::reset()

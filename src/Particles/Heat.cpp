@@ -25,10 +25,11 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 std::list<Heat*> Heat::activeParticles_;
 
 
-Heat::Heat(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity, Color3f const& color, Player* damageSource):
-           Particle<Heat>(spaceObjects::oHeat, location+Vector2f::randDirLen()*2.f, 4, 0, randomizer::random(0.8f, 2.0f)*settings::C_globalParticleLifeTime/100.f)
-{
-}
+Heat::Heat(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,
+        Color3f const& color, Player* damageSource)
+    :Particle<Heat>(spaceObjects::oHeat, location+Vector2f::randDirLen()*2.f,
+        4, 0, randomizer::random(0.8f, 2.0f) * settings::iParticleLifeTime/100.f)
+{   }
 
 void Heat::update()
 {

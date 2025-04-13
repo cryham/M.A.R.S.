@@ -51,7 +51,7 @@ UiWindow* InfoCK::get()
         instance_->addWidget(new TextBox(locales::getLocale(locales::InfoCK),
             Vector2f(10,80), 300, 160));
         instance_->addWidget(new Checkbox(locales::getLocale(locales::ShowAgainButton), "",
-            &settings::C_showInfoCK,
+            &settings::bShowInfoCK,
             Vector2f(10,270), 170));
     }
     return instance_;
@@ -69,7 +69,7 @@ void InfoCK::checkWidgets()
 
 void InfoCK::onShow()
 {
-    settings::C_showInfoCK = false;
+    settings::bShowInfoCK = false;
 }
 
 void InfoCK::reset()

@@ -63,7 +63,7 @@ namespace weapons
         {   next = rand() % weapons::All;
             ++cnt;
         }
-        while (cnt < weapons::All && !settings::C_EnabledWeapons[next]);
+        while (cnt < weapons::All && !settings::bEnabledWeapons[next]);
         return (WeaponType)next;
     }
 
@@ -81,7 +81,7 @@ namespace weapons
             next += add;
         check();
 
-        while (cnt < weapons::All && !settings::C_EnabledWeapons[next])
+        while (cnt < weapons::All && !settings::bEnabledWeapons[next])
         {
             next += add;
             check();
@@ -99,10 +99,10 @@ namespace weapons
         if (parent)
         {
             if (parent->getOwner()->type() == controllers::cPlayer1 && type != weapons::All && type != wInsta)
-                settings::C_playerIWeapon = type;
+                settings::player1Weapon = type;
             else
             if (parent->getOwner()->type() == controllers::cPlayer2 && type != weapons::All && type != wInsta)
-                settings::C_playerIIWeapon = type;
+                settings::player2Weapon = type;
         }
         switch (type)
         {

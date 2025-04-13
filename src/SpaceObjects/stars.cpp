@@ -49,7 +49,7 @@ namespace stars
         glDisable(GL_BLEND);
         glEnable(GL_TEXTURE_2D);
 
-        if (settings::C_StarsHigh)
+        if (settings::bStarsHigh)
             switch (tex_)
             {
                 case 0: glBindTexture(GL_TEXTURE_2D, texture::getTexture(texture::Stars1_large)); break;
@@ -63,7 +63,7 @@ namespace stars
             }
 
         Vector2f const& viewport = window::getViewPort();
-        const float res          = settings::C_StarsHigh ? 1.f/2048.f : 1.f/1024.f;
+        const float res = settings::bStarsHigh ? 1.f/2048.f : 1.f/1024.f;
 
         glBegin(GL_QUADS);
             glColor3f(1.f, 1.0f, 1.0f);

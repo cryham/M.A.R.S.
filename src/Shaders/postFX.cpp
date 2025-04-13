@@ -19,6 +19,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "System/timer.hpp"
 #include "System/settings.hpp"
+#include "System/window.hpp"
 #include "Particles/particles.hpp"
 #include "DecoObjects/decoObjects.hpp"
 
@@ -38,7 +39,7 @@ namespace postFX
 
     void update()
     {
-        if (settings::C_shaders)
+        if (settings::bShaders)
         {
             bumpMap_.setActive(true);
             bumpMap_.clear(sf::Color(127, 0, 127));
@@ -52,13 +53,13 @@ namespace postFX
             {   flashTimer_ -= timer::frameTime();
 
                 if (flashTimer_ > 0.4f)
-                    exposure_ = (0.5f-flashTimer_)*5.f + 1.f;
+                    exposure_ = (0.5f - flashTimer_)*5.f + 1.f;
                 else if (flashTimer_ > 0)
-                    exposure_ = (flashTimer_*1.25f) + 1;
+                    exposure_ = flashTimer_ * 1.25f + 1;
                 else
                     exposure_ = 1.f;
             }
-            if (!settings::C_Flashes)  // disables
+            if (!settings::bFlashes)  // disables
                 exposure_ = 1.f;
             postFX_.setUniform("Exposure", exposure_);
         }
@@ -83,10 +84,10 @@ namespace postFX
     {
         if (supported())
         {
-            postFX_.loadFromFile(settings::C_dataPath + "shaders/bump.frag", sf::Shader::Fragment);
-            bumpMap_.create(settings::C_MapXsize*0.5f, settings::C_MapYsize*0.5f);
-            glViewport(0,0,settings::C_MapXsize*0.5f, settings::C_MapYsize*0.5f);
-            glOrtho(0, settings::C_MapXsize, settings::C_MapYsize, 0, -1, 1);
+            postFX_.loadFromFile(settings::sDataPath + "shaders/bump.frag", sf::Shader::Fragment);
+            bumpMap_.create(settings::iMapXsize*0.5f, settings::iMapYsize*0.5f);
+            glViewport(0,0,settings::iMapXsize*0.5f, settings::iMapYsize*0.5f);
+            glOrtho(0, settings::iMapXsize, settings::iMapYsize, 0, -1, 1);
             glEnable(GL_BLEND);
             glMatrixMode(GL_MODELVIEW);
             postFX_.setUniform("BumpMap", bumpMap_.getTexture());

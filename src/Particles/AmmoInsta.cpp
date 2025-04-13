@@ -79,8 +79,8 @@ void AmmoInsta::update()
             break;
     }
 
-    if (location_.x_ < -100 || location_.x_ > settings::C_MapXsize + 100 ||
-        location_.y_ < -100 || location_.y_ > settings::C_MapYsize + 100)
+    if (location_.x_ < -100 || location_.x_ > settings::iMapXsize + 100 ||
+        location_.y_ < -100 || location_.y_ > settings::iMapYsize + 100)
         killMe();
 }
 
@@ -143,12 +143,12 @@ int AmmoInsta::hitsAny(Vector2f const& location, Vector2f const& direction, Team
     //glLineWidth(3.f);
     //team->color().gl4f(0.4f);
 
-    float resolution(0.02f + 0.002f * (100 - settings::C_iDumb));
+    float resolution(0.02f + 0.002f * (100 - settings::iBotsDifficulty));
 
     Vector2f velocity(direction.normalize() * 800.f), from(location);
     from += velocity*timer::frameTime() * 1.2f;
 
-    for (int i=0; i < 10 + settings::C_iDumb * 0.9f; ++i)
+    for (int i=0; i < 10 + settings::iBotsDifficulty * 0.9f; ++i)
     {
         Vector2f acceleration;
         for (const auto& it : physics::getGravitySources())
@@ -170,7 +170,7 @@ int AmmoInsta::hitsAny(Vector2f const& location, Vector2f const& direction, Team
         {
             if (it->attackable())
             {
-                Vector2f shipLocation(it->location() + it->velocity()*resolution*i*0.01f*settings::C_iDumb);
+                Vector2f shipLocation(it->location() + it->velocity()*resolution*i*0.01f*settings::iBotsDifficulty);
                 Vector2f orthoDir(velocity.y_, -velocity.x_);
                 orthoDir = orthoDir.normalize()*it->radius();
                 Vector2f shipLeft(shipLocation-orthoDir), shipRight(shipLocation+orthoDir);
@@ -199,8 +199,8 @@ int AmmoInsta::hitsAny(Vector2f const& location, Vector2f const& direction, Team
             }
         }
 
-        if (to.x_ < -100 || to.x_ > settings::C_MapXsize + 100 ||
-            to.y_ < -100 || to.y_ > settings::C_MapYsize + 100)
+        if (to.x_ < -100 || to.x_ > settings::iMapXsize + 100 ||
+            to.y_ < -100 || to.y_ > settings::iMapYsize + 100)
             return 0;
 
         for (const auto& it : physics::getGravitySources())

@@ -107,8 +107,8 @@ void AmmoSeekers::update()
 
         Vector2f const dir(velocity_.normalize());
 
-        // particles::spawnTimed(80.f/settings::C_globalParticleCount, particles::pFuel, location_ - dir * radius_ * 2.3f, dir, velocity_);
-        particles::spawnTimed(5.f/settings::C_globalParticleCount, particles::pHeatJet, location_ - dir * radius_ * 3.f, dir, velocity_);
+        // particles::spawnTimed(80.f/settings::C_iParticleCount, particles::pFuel, location_ - dir * radius_ * 2.3f, dir, velocity_);
+        particles::spawnTimed(5.f/settings::iParticleCount, particles::pHeatJet, location_ - dir * radius_ * 3.f, dir, velocity_);
 
         lifeTime_ += time;
         timer_ -= time;

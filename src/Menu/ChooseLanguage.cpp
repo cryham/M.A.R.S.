@@ -87,7 +87,7 @@ void ChooseLanguage::checkWidgets()
         if (*(it.second))
         {   *(it.second) = false;
 
-            settings::C_languageID = it.first;
+            settings::iLanguageID = it.first;
             locales::load();
             menus::reload();
             settings::save();
@@ -113,12 +113,12 @@ void ChooseLanguage::next()
     get();
     for (auto it = sortedLocales_.begin(); it != sortedLocales_.end(); ++it)
     {
-        if (it->second == settings::C_languageID)
+        if (it->second == settings::iLanguageID)
         {
             ++it;
             if (it != --sortedLocales_.begin())
             {
-                settings::C_languageID = it->second;
+                settings::iLanguageID = it->second;
                 locales::load();
                 menus::reload();
             }
@@ -132,12 +132,12 @@ void ChooseLanguage::previous()
     get();
     for (auto it = sortedLocales_.begin(); it != sortedLocales_.end(); ++it)
     {
-        if (it->second == settings::C_languageID)
+        if (it->second == settings::iLanguageID)
         {
             --it;
             if (it != --sortedLocales_.begin()) 
             {
-                settings::C_languageID = it->second;
+                settings::iLanguageID = it->second;
                 locales::load();
                 menus::reload();
             }

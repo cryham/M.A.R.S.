@@ -35,25 +35,25 @@ TeamDeathMatch::TeamDeathMatch()
     Team* myTeamL = NULL;
     Team* myTeamR = NULL;
 
-    if (settings::C_playerIteamL)
+    if (settings::bPlayer1teamL)
     {
-        myTeamL = new TDMTeam(settings::C_playerITeamColor);
+        myTeamL = new TDMTeam(settings::clr1Team);
         players::addPlayer(myTeamL, controllers::cPlayer1);
     }
-    else if (settings::C_playerIteamR)
+    else if (settings::bPlayer1teamR)
     {
-        myTeamR = new TDMTeam(settings::C_playerITeamColor);
+        myTeamR = new TDMTeam(settings::clr1Team);
         players::addPlayer(myTeamR, controllers::cPlayer1);
     }
 
-    if (settings::C_playerIIteamL)
+    if (settings::bPlayer2teamL)
     {
-        if (!myTeamL) myTeamL = new TDMTeam(settings::C_playerIITeamColor);
+        if (!myTeamL) myTeamL = new TDMTeam(settings::clr2Team);
         players::addPlayer(myTeamL, controllers::cPlayer2);
     }
-    else if (settings::C_playerIIteamR)
+    else if (settings::bPlayer2teamR)
     {
-        if (!myTeamR) myTeamR = new TDMTeam(settings::C_playerIITeamColor);
+        if (!myTeamR) myTeamR = new TDMTeam(settings::clr2Team);
         players::addPlayer(myTeamR, controllers::cPlayer2);
     }
 
@@ -72,8 +72,8 @@ TeamDeathMatch::TeamDeathMatch()
     teams::addTeam(myTeamL);
     teams::addTeam(myTeamR);
 
-    for (int i=0; i < settings::C_botsLeft;  ++i)  players::addPlayer(myTeamL, controllers::cBot);
-    for (int i=0; i < settings::C_botsRight; ++i)  players::addPlayer(myTeamR, controllers::cBot);
+    for (int i=0; i < settings::iBotsLeft;  ++i)  players::addPlayer(myTeamL, controllers::cBot);
+    for (int i=0; i < settings::iBotsRight; ++i)  players::addPlayer(myTeamR, controllers::cBot);
 
     Home* homeL = spaceObjects::addHome(HOME_LEFT, 100, myTeamL->color());
     Home* homeR = spaceObjects::addHome(HOME_RIGHT, 100, myTeamR->color());
@@ -87,7 +87,7 @@ TeamDeathMatch::TeamDeathMatch()
 
 void TeamDeathMatch::draw() const
 {
-    if (settings::C_drawZones)
+    if (settings::bDrawZones)
         zones::draw();
     Game::draw();
 }

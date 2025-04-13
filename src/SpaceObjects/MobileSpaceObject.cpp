@@ -24,38 +24,20 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 //  cyclic borders
 void MobileSpaceObject::borders()
 {
-    if (settings::C_CyclicBorderX)
+    if (settings::bCyclicBorderX)
     {
         if (location_.x_ < 0.f)
-            location_.x_ += settings::C_MapXsize;
+            location_.x_ += settings::iMapXsize;
         
-        if (location_.x_ > settings::C_MapXsize)
-            location_.x_ -= settings::C_MapXsize;
+        if (location_.x_ > settings::iMapXsize)
+            location_.x_ -= settings::iMapXsize;
     }
-    if (settings::C_CyclicBorderY)
+    if (settings::bCyclicBorderY)
     {
         if (location_.y_ < 0.f)
-            location_.y_ += settings::C_MapYsize;
+            location_.y_ += settings::iMapYsize;
         
-        if (location_.y_ > settings::C_MapYsize)
-            location_.y_ -= settings::C_MapYsize;
+        if (location_.y_ > settings::iMapYsize)
+            location_.y_ -= settings::iMapYsize;
     }
-/*
-    if (settings::C_cyclicBorderX)
-    {
-        if (location_.x_ < radius_)
-            location_.x_ = settings::C_MapXsize - radius_;
-        
-        if (location_.x_ > settings::C_MapXsize - radius_)
-            location_.x_ = radius_;
-    }
-    if (settings::C_cyclicBorderY)
-    {
-        if (location_.y_ < radius_)
-            location_.y_ = settings::C_MapYsize - radius_;
-        
-        if (location_.y_ > settings::C_MapYsize - radius_)
-            location_.y_ = radius_;
-    }
-*/
 }

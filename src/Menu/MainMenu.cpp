@@ -83,7 +83,7 @@ void MainMenu::checkWidgets()
     else if (kStartLocal_)
     {   kStartLocal_ = false;
         menus::showWindow(NewGameMenu::get());
-        if (settings::C_showInfoSB)
+        if (settings::bShowInfoSB)
             menus::showWindow(InfoSB::get());
     }
     else if (kStartTut_)

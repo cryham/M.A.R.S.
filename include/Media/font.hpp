@@ -27,7 +27,7 @@ namespace font
 {
     /// Returns a const& to the SFML font.
     /// The returned font is based on the current locale.
-    sf::Font* getFont(int languageID = settings::C_languageID);
+    sf::Font* getFont(int languageID = settings::iLanguageID);
 }
 
 

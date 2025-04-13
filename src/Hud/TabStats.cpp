@@ -95,8 +95,8 @@ void TabStats::draw() const
             height = ships::getShips().size()*12 + teamMap_.size()*20 + h;
         
         height *= scale;
-        if (height > settings::C_resY -h*2)
-            height = settings::C_resY -h*2;
+        if (height > settings::iResY -h*2)
+            height = settings::iResY -h*2;
 
         // Compute the width:
         // Points, Frags, TeamKills, Suicides
@@ -207,18 +207,18 @@ void TabStats::draw() const
          switch (games::type())
          {
             case games::gSpaceBall:
-                pointlimit = settings::C_pointLimitSB;
+                pointlimit = settings::iPointLimitSB;
                 name       = locales::getLocale(locales::Pointlimit);
                 break;
             case games::gCannonKeep:
-                pointlimit = settings::C_pointLimitCK;
+                pointlimit = settings::iPointLimitCK;
                 name       = locales::getLocale(locales::Pointlimit);
                 break;
             case games::gDeathMatch:
-                pointlimit = settings::C_pointLimitDM;
+                pointlimit = settings::iPointLimitDM;
                 break;
             default:
-                pointlimit = settings::C_pointLimitTDM;
+                pointlimit = settings::iPointLimitTDM;
         }
 
         sstr.str("");

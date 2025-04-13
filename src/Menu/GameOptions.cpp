@@ -55,10 +55,10 @@ UiWindow* GameOptions::get()
         //    Vector2f(10, y), 100, 210));  y += yadd*3/2;
 
         instance_->addWidget(new Slider(locales::iDumb, locales::ttBotStrength,
-			&settings::C_iDumb, 0, 100, 5,
+			&settings::iBotsDifficulty, 0, 100, 5,
 			Vector2f(20,y), w, 240, true));  y += yadd;
         instance_->addWidget(new Slider(locales::PowerUpRate, locales::ttPowerUpRate,
-			&settings::C_powerUpRate, 0, 100, 5,
+			&settings::iPowerUpRate, 0, 100, 5,
 			Vector2f(20,y), w, 240, true));  y += yadd*3/2;
 
         // instance_->addWidget(new Slider(locales::getLocale(locales::ShipTurnSpeed), "",
@@ -69,17 +69,17 @@ UiWindow* GameOptions::get()
         //    Vector2f(20,y), w, 240, true));  y += yadd*3/2;
 
         instance_->addWidget(new Slider(locales::getLocale(locales::DamageScale), "",
-           &settings::C_DamageScale, 0, 200, 1,
+           &settings::iDamageScale, 0, 200, 1,
            Vector2f(20,y), w, 240, true));  y += yadd;
         instance_->addWidget(new Slider(locales::getLocale(locales::RespawnDelay), "",
-           &settings::C_RespawnDelay, 0, 80, 1,
+           &settings::iRespawnDelay, 0, 80, 1,
            Vector2f(20,y), w, 240, true));  y += yadd*3/2;
 
         instance_->addWidget(new Slider(locales::getLocale(locales::Regeneration), "",
-           &settings::C_Regeneration, 0, 150, 1,
+           &settings::iRegeneration, 0, 150, 1,
            Vector2f(20,y), w, 240, true));  y += yadd;
         instance_->addWidget(new Slider(locales::getLocale(locales::FuelRegen), "",
-           &settings::C_FuelRegen, 0, 150, 1,
+           &settings::iFuelRegen, 0, 150, 1,
            Vector2f(20,y), w, 240, true));  y += yadd;
     }
     return instance_;
@@ -90,12 +90,12 @@ void GameOptions::checkWidgets()
     if (kDefaults_)
     {   kDefaults_ = false;
         
-        settings::C_ShipTurnSpeed = 25;  // 25  30 original
-        settings::C_DamageScale   = 50;  // 50  100 org
-        settings::C_Regeneration  = 60;  // 60  0 org
-        settings::C_FuelRegen     = 50;  // 50  0 org
-        settings::C_RespawnDelay  = 20;  // 20 2 sec  50 org
-        settings::C_GlowAlpha     = 30;  // 30  100 org
+        settings::iShipTurnSpeed = 25;  // 25  30 original
+        settings::iDamageScale   = 50;  // 50  100 org
+        settings::iRegeneration  = 60;  // 60  0 org
+        settings::iFuelRegen     = 50;  // 50  0 org
+        settings::iRespawnDelay  = 20;  // 20 2 sec  50 org
+        settings::iGlowAlpha     = 30;  // 30  100 org
     }
     if (kOk_)
     {   kOk_ = false;

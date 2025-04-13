@@ -36,7 +36,7 @@ void BotController::draw()
         const Vector2f shipLocation = ship()->location_;
 
          // draw AI-Paths
-        if (settings::C_drawAIPath)
+        if (settings::bDrawAIPath)
         {
             glBlendFunc(GL_SRC_ALPHA, GL_ONE);
             glLineWidth(1);
@@ -76,7 +76,7 @@ void BotController::draw()
         */
 
         // draw Jobs
-        if (settings::C_drawBotJobs)
+        if (settings::bDrawBotJobs)
         {
             switch (currentJob_.type_)
             {

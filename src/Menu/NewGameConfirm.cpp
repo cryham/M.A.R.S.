@@ -33,7 +33,7 @@ bool NewGameConfirm::kCancel_(false);
 
 UiWindow* NewGameConfirm::get()
 {
-    if (settings::C_noConfirmations)
+    if (settings::bNoConfirmations)
     {
         games::restart();
         return 0;

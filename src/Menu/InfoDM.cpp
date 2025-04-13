@@ -51,7 +51,7 @@ UiWindow* InfoDM::get()
         instance_->addWidget(new TextBox(locales::getLocale(locales::InfoDM),
             Vector2f(10,80), 300, 160));
         instance_->addWidget(new Checkbox(locales::getLocale(locales::ShowAgainButton), "",
-            &settings::C_showInfoDM,
+            &settings::bShowInfoDM,
             Vector2f(10,270), 170));
     }
     return instance_;
@@ -69,7 +69,7 @@ void InfoDM::checkWidgets()
 
 void InfoDM::onShow()
 {
-    settings::C_showInfoDM = false;
+    settings::bShowInfoDM = false;
 }
 
 void InfoDM::reset()

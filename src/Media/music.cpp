@@ -46,9 +46,9 @@ namespace music
             // get files
             DIR *dp;
             struct dirent *dirp;
-            if ((dp = opendir((settings::C_dataPath + "/audio/music/").c_str())) == NULL)
+            if ((dp = opendir((settings::sDataPath + "/audio/music/").c_str())) == NULL)
             {
-                std::cout << "Error opening " << settings::C_dataPath << "/audio/music/" << std::endl;
+                std::cout << "Error opening " << settings::sDataPath << "/audio/music/" << std::endl;
             }
 
             while ((dirp = readdir(dp)) != NULL)
@@ -61,7 +61,7 @@ namespace music
 
             musicChannel_.setLoop(false);
             musicChannel_.setRelativeToListener(true);
-            sf::Listener::setPosition(settings::C_MapXsize*0.5f, 0.f, 300.f);
+            sf::Listener::setPosition(settings::iMapXsize*0.5f, 0.f, 300.f);
             setGlobalVolume();
             initialized_ = true;
         }
@@ -70,7 +70,7 @@ namespace music
 
     void update()
     {
-        if (settings::C_musicVolume > 0)
+        if (settings::iMusicVolume > 0)
         {
             if (!initialized_)
                 init();
@@ -79,13 +79,13 @@ namespace music
             {   fadeOutTimer_ -= timer::realFrameTime();
                 if (fadeOutTimer_ < 0.f)
                     fadeOutTimer_ = 0.f;
-                musicChannel_.setVolume(settings::C_musicVolume*fadeOutTimer_*2.5f);
+                musicChannel_.setVolume(settings::iMusicVolume * fadeOutTimer_*2.5f);
             }
 
             if (musicChannel_.getStatus() == sf::Music::Stopped && files_.size() > 0)
             {
                 if (games::type() == games::gMenu)
-                    play(settings::C_dataPath + "audio/menu.ogg");
+                    play(settings::sDataPath + "audio/menu.ogg");
                 else
                     play();
             }
@@ -98,9 +98,9 @@ namespace music
 
 
             if (games::type() != games::gMenu && games::type() != games::gTutorial
-                && window::isKeyDown(settings::C_statisticsKey))
+                && window::isKeyDown(settings::keyStatistics))
             {
-                musicNotify::show(settings::C_dataPath + "/audio/music/" + files_[playList_.back()]);
+                musicNotify::show(settings::sDataPath + "/audio/music/" + files_[playList_.back()]);
             }
         }
         else if (musicChannel_.getStatus() == sf::Music::Playing)
@@ -109,7 +109,7 @@ namespace music
 
     void play(std::string fileName)
     {
-        if (settings::C_musicVolume > 0)
+        if (settings::iMusicVolume > 0)
         {
             setGlobalVolume();
             musicChannel_.openFromFile(fileName);
@@ -120,7 +120,7 @@ namespace music
 
     void play()
     {
-        if (settings::C_musicVolume > 0)
+        if (settings::iMusicVolume > 0)
         {
             if (!initialized_) init();
 
@@ -130,7 +130,7 @@ namespace music
 
                 if (files_.size() > 1)
                 {
-                    if (settings::C_audioRandom)
+                    if (settings::bAudioRandom)
                     {
                         if (playList_.empty())
                             nextTrack = randomizer::random(0, static_cast<int>(files_.size()-1));
@@ -149,7 +149,7 @@ namespace music
 
                 playList_.push_back(nextTrack);
 
-                play(settings::C_dataPath + "/audio/music/" + files_[nextTrack]);
+                play(settings::sDataPath + "/audio/music/" + files_[nextTrack]);
             }
             else
                 stop();
@@ -158,7 +158,7 @@ namespace music
 
     void next()
     {
-        if (settings::C_musicVolume > 0)
+        if (settings::iMusicVolume > 0)
         {
             stop();
             hud::displayMessage(locales::getLocale(locales::NextTrackNotify));
@@ -167,7 +167,7 @@ namespace music
 
     void previous()
     {
-        if (!playList_.empty() && settings::C_musicVolume > 0)
+        if (!playList_.empty() && settings::iMusicVolume > 0)
         {
             stop();
             hud::displayMessage(locales::getLocale(locales::PreviousTrackNotify));
@@ -175,7 +175,7 @@ namespace music
             if (playList_.size() > 1)
                 playList_.pop_back();
 
-            play(settings::C_dataPath + "/audio/music/" + files_[playList_.back()]);
+            play(settings::sDataPath + "/audio/music/" + files_[playList_.back()]);
         }
     }
 
@@ -191,7 +191,7 @@ namespace music
 
     void setGlobalVolume()
     {
-        musicChannel_.setVolume(static_cast<float>(settings::C_musicVolume));
+        musicChannel_.setVolume(static_cast<float>(settings::iMusicVolume));
         fadeOutTimer_ = 0.f;
     }
 }

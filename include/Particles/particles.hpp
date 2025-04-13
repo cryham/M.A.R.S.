@@ -125,7 +125,7 @@ namespace particles
     /// Spawns multiple Particles.
     /// All the following parameters can be set, but some will be ignored, depending on the ParticleType.
     /// See the individual ctors of the particles for information on which parameters are neccessary!
-    /// \param amount       The amount of particles to be spawned. Scales with settings::C_globalParticleCount.
+    /// \param amount       The amount of particles to be spawned. Scales with settings::iParticleCount.
     /// \param type         The ParticleType of the particle to be spawned.
     /// \param location     The location of the source.
     /// \param direction    The direction in which the particle should be spawned.
@@ -138,7 +138,7 @@ namespace particles
     /// Spawns multiple Particles, based on frame time (if a frame took longer, more particles will be spawned).
     /// All the following parameters can be set, but some will be ignored, depending on the ParticleType.
     /// See the individual ctors of the particles for information on which parameters are neccessary!
-    /// \param amount       The amount of particles to be spawned. Scales with settings::C_globalParticleCount and the frame time.
+    /// \param amount       The amount of particles to be spawned. Scales with settings::iParticleCount and the frame time.
     /// \param type         The ParticleType of the particle to be spawned.
     /// \param location     The location of the source.
     /// \param direction    The direction in which the particle should be spawned.

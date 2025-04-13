@@ -45,7 +45,7 @@ namespace timer
     void update(float frameTime)
     {
         realFrameTime_ = frameTime;
-        frameTime *= settings::C_gameSpeed * 0.01;
+        frameTime *= settings::iGameSpeed * 0.01;
         // fps
         fpsTimer_  += frameTime;
         ++frameCount_;
@@ -76,7 +76,7 @@ namespace timer
         totalTime_     += frameTime_;
         realTotalTime_ += realFrameTime_;
 
-        if (settings::C_slowMoKickIn > 0)
+        if (settings::iSlowMoKickIn > 0)
         {
             // reset explosion counter
             if (exploCounterResetTimer_ > 0.f)
@@ -87,7 +87,7 @@ namespace timer
             }
 
             // enable slow motion, when enough ships exploded
-            if (exploCounter_ >= settings::C_slowMoKickIn && !menus::visible())
+            if (exploCounter_ >= settings::iSlowMoKickIn && !menus::visible())
             {
                 exploCounter_ = 0;
                 slowMoTimer_ = 5.f;

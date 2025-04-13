@@ -33,9 +33,9 @@ namespace controllers
 
     void update()
     {
-        if (keyControllers1_ != NULL && (settings::C_playerIteamL | settings::C_playerIteamR))
+        if (keyControllers1_ != NULL && (settings::bPlayer1teamL || settings::bPlayer1teamR))
             keyControllers1_->update();
-        if (keyControllers2_ != NULL && (settings::C_playerIIteamL | settings::C_playerIIteamR))
+        if (keyControllers2_ != NULL && (settings::bPlayer2teamL || settings::bPlayer2teamR))
             keyControllers2_->update();
 
         for (auto& it : botControllers_)
@@ -44,9 +44,9 @@ namespace controllers
 
     void singleKeyEvent(Key const& keyCode)
     {
-        if (keyControllers1_ != NULL && (settings::C_playerIteamL | settings::C_playerIteamR))
+        if (keyControllers1_ != NULL && (settings::bPlayer1teamL || settings::bPlayer1teamR))
             keyControllers1_->update(keyCode);
-        if (keyControllers2_ != NULL && (settings::C_playerIIteamL | settings::C_playerIIteamR))
+        if (keyControllers2_ != NULL && (settings::bPlayer2teamL || settings::bPlayer2teamR))
             keyControllers2_->update(keyCode);
     }
 

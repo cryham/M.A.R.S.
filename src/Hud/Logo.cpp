@@ -74,8 +74,8 @@ void Logo::draw() const
 
     int mid(window::getViewPort().x_/2);
     int height(0);
-    if (window::getViewPort().y_ < settings::C_MapYsize)
-        height = (window::getViewPort().y_ - settings::C_MapYsize)*0.3;
+    if (window::getViewPort().y_ < settings::iMapYsize)
+        height = (window::getViewPort().y_ - settings::iMapYsize)*0.3;
     // const int sx = 400, sy = 350;  // org
     const int sx = 200, sy = 175;  // half
     

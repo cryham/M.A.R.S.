@@ -108,7 +108,7 @@ void Team::evaluate()
 {
     jobMap_.clear();
 
-    if (botControllers_.size() > 0 && games::elapsedTime() > settings::C_CountDown)
+    if (botControllers_.size() > 0 && games::elapsedTime() > settings::iCountDown)
     {
         createJobs();
 

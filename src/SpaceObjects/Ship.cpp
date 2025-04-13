@@ -61,7 +61,7 @@ static float GetAngle(float x, float y)
 
 
 Ship::Ship(Vector2f const& location, float rotation, Player* owner)
-    : MobileSpaceObject(spaceObjects::oShip, location, settings::C_ShipRadius, 10.f)
+    : MobileSpaceObject(spaceObjects::oShip, location, settings::iShipRadius, 10.f)
     ,weaponChangeTime_(0.f)
     ,owner_(owner)
     ,rotation_(rotation)
@@ -93,16 +93,16 @@ Ship::Ship(Vector2f const& location, float rotation, Player* owner)
     if (owner_->controlType_ == controllers::cPlayer1)
     {
         decoObjects::addHighlight(this);
-        currentWeapon_  = weapons:: create(settings::C_playerIWeapon, this);
-        currentSpecial_ = specials::create(settings::C_playerISpecial, this);
+        currentWeapon_  = weapons:: create(settings::player1Weapon, this);
+        currentSpecial_ = specials::create(settings::player1Special, this);
         // if (settings::)
             decoObjects::addName(this);
     }
     else if (owner_->controlType_ == controllers::cPlayer2)
     {
         decoObjects::addHighlight(this);
-        currentWeapon_  = weapons:: create(settings::C_playerIIWeapon, this);
-        currentSpecial_ = specials::create(settings::C_playerIISpecial, this);
+        currentWeapon_  = weapons:: create(settings::player2Weapon, this);
+        currentSpecial_ = specials::create(settings::player2Special, this);
         //if (settings::)
             decoObjects::addName(this);
     }
@@ -159,12 +159,12 @@ void Ship::update()
                 physics::addMobileObject(this);
         }
 
-        if (games::elapsedTime() > settings::C_CountDown || games::type() == games::gTutorial)
+        if (games::elapsedTime() > settings::iCountDown || games::type() == games::gTutorial)
         {
-            const float par = settings::C_globalParticleCount;
+            const float par = settings::iParticleCount;
             if (frozen_ <= 0)
             {
-                const float rot = settings::C_ShipTurnSpeed / 100.f;  /// 0.25f; //0.3f;  //new
+                const float rot = settings::iShipTurnSpeed / 100.f;  /// 0.25f; //0.3f;  //new
                 float angleRad = rotation_ * M_PI / 180.f;
 
                 Vector2f dir( cos(angleRad), sin(angleRad));
@@ -177,14 +177,14 @@ void Ship::update()
                 float boostMul = 1.f + boost_ / 100.f;
 
                 //  mouse turn  ------------  new
-                if (owner_->controlType_ == controllers::cPlayer1 && settings::C_playerImouseAim ||
-                    owner_->controlType_ == controllers::cPlayer2 && settings::C_playerIImouseAim)
+                if (owner_->controlType_ == controllers::cPlayer1 && settings::bPlayer1mouseAim ||
+                    owner_->controlType_ == controllers::cPlayer2 && settings::bPlayer2mouseAim)
                 {
                     //  get angle to mouse pointer
-                    Vector2f p = window::getMousePosition(), w = window::getWindowSize();
-                    float sx = location_.x_ / settings::C_MapXsize * w.x_;
-                    float sy = location_.y_ / settings::C_MapYsize * w.y_;
-                    float angle = GetAngle(p.x_ - sx, -p.y_ + sy) * 180.f/M_PI;
+                    Vector2f mp = window::getMousePosition(), ws = window::getWindowSize();
+                    float sx = location_.x_ / settings::iMapXsize * ws.x_;
+                    float sy = location_.y_ / settings::iMapYsize * ws.y_;
+                    float angle = GetAngle(mp.x_ - sx, -mp.y_ + sy) * 180.f/M_PI;
                     // cout << " shp: " << location_.x_ << " " << location_.y_
                     //     << " m " << p.x_ << " " << p.y_ << " rot " << rotation_ //* 180.f/M_PI
                     //     << " a " << a * 180.f/M_PI << endl;
@@ -321,7 +321,7 @@ void Ship::update()
                             location_ - dir*radius_*1.5f, dir, velocity_);
                     }
                 }
-                fuel_ += time * settings::C_FuelRegen / 100.f;  /// 0.5  //new
+                fuel_ += time * settings::iFuelRegen / 100.f;  /// 0.5  //new
                 if (fuel_ > maxFuel_)
                     fuel_ = maxFuel_;
 
@@ -364,9 +364,9 @@ void Ship::update()
                     }
                 }else
                 {
-                    if (settings::C_Regeneration > 0)  /// 0.06 life regeneration  //new
+                    if (settings::iRegeneration > 0)  /// 0.06 life regeneration  //new
                     {
-                        life_ += time * maxLife_ * settings::C_Regeneration / 1000.f;
+                        life_ += time * maxLife_ * settings::iRegeneration / 1000.f;
                         if (life_ > maxLife_)
                             life_ = maxLife_;
                     }
@@ -387,25 +387,25 @@ void Ship::update()
                     physics::collide(this, STATICS);
 
                 borders();
-                if (!settings::C_CyclicBorderX)
+                if (!settings::bCyclicBorderX)
                 {
                     if (location_.x_ < radius_)
                     {   location_.x_ = radius_;
                         velocity_.x_ = 0.f;
                     }
-                    if (location_.x_ > settings::C_MapXsize - radius_)
-                    {   location_.x_ = settings::C_MapXsize - radius_;
+                    if (location_.x_ > settings::iMapXsize - radius_)
+                    {   location_.x_ = settings::iMapXsize - radius_;
                         velocity_.x_ = 0.f;
                     }
                 }
-                if (!settings::C_CyclicBorderY)
+                if (!settings::bCyclicBorderY)
                 {
                     if (location_.y_ < radius_)
                     {   location_.y_ = radius_;
                         velocity_.y_ = 0.f;
                     }
-                    if (location_.y_ > settings::C_MapYsize - radius_)
-                    {   location_.y_ = settings::C_MapYsize - radius_;
+                    if (location_.y_ > settings::iMapYsize - radius_)
+                    {   location_.y_ = settings::iMapYsize - radius_;
                         velocity_.y_ = 0.f;
                     }
                 }
@@ -525,7 +525,7 @@ void Ship::drawWeapon() const
             (ghostTimer_ > 0.f ? ghostTimer_*(0.2f * sin(timer::totalTime()*8.f + 1.5f*M_PI)+0.4f) + 1.f-ghostTimer_ : 1.f));
 
         // draw special
-        currentSpecial_->draw(alpha * settings::C_GlowAlpha / 100.f);  /// 0.7 0.2  //new
+        currentSpecial_->draw(alpha * settings::iGlowAlpha / 100.f);  /// 0.7 0.2  //new
 
         glLoadIdentity();
         glTranslatef(location_.x_, location_.y_, 0.f);
@@ -734,7 +734,7 @@ void Ship::onCollision(SpaceObject* with, Vector2f const& location,
             waitForOtherDamage = 0.15f;
             if (frozen_ <= 0) velocity_ += velocity*0.03f*timer::frameTime();
             // chance to spawn smoke
-            if (randomizer::random(0.f, 100.f) / settings::C_globalParticleCount < 0.01f)
+            if (randomizer::random(0.f, 100.f) / settings::iParticleCount < 0.01f)
                 particles::spawn(particles::pSmoke, location, velocity);
             setDamageSource(with->damageSource());
             unfreeze = 0.05f;
@@ -790,7 +790,7 @@ void Ship::onCollision(SpaceObject* with, Vector2f const& location,
         }
     }
 
-    amount *= settings::C_DamageScale / 100.f;  /// 0.5f;  //new
+    amount *= settings::iDamageScale / 100.f;  /// 0.5f;  //new
 
     if (attackable())
     {
@@ -803,7 +803,7 @@ void Ship::onCollision(SpaceObject* with, Vector2f const& location,
              owner_->controlType_ != controllers::cPlayer2) &&
             amount < life_)
         {
-            amount *= (10.f - 0.09f*settings::C_iDumb);
+            amount *= (10.f - 0.09f*settings::iBotsDifficulty);
         }
 
         if ((damageSource_ &&
@@ -835,7 +835,7 @@ void Ship::onShockWave(Player* damageSource, float intensity)
         setDamageSource(damageSource);
         if (!collectedPowerUps_[items::puShield])
         {
-            float damage(intensity*0.1f*(20.f + settings::C_iDumb));
+            float damage(intensity*0.1f*(20.f + settings::iBotsDifficulty));
             life_ -= damage;
             if ((damageSource_ &&
                 (damageSource_->controlType_ == controllers::cPlayer1 ||
@@ -945,7 +945,7 @@ void Ship::explode()
         respawnTimer_ = 2.f;
     else
         respawnTimer_ = 5.f;*/
-    respawnTimer_ = settings::C_RespawnDelay / 10.f;  /// 2.f;  //new
+    respawnTimer_ = settings::iRespawnDelay / 10.f;  /// 2.f;  //new
     
     frozen_ = 0.f;
     currentSpecial_->stop();

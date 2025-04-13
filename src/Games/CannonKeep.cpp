@@ -38,27 +38,27 @@ CannonKeep::CannonKeep()
     Team* myTeamL = NULL;
     Team* myTeamR = NULL;
 
-    if (settings::C_playerIteamL)
+    if (settings::bPlayer1teamL)
     {
-        myTeamL = new CKTeam(settings::C_playerITeamColor);
+        myTeamL = new CKTeam(settings::clr1Team);
         players::addPlayer(myTeamL, controllers::cPlayer1);
     }
-    else if (settings::C_playerIteamR)
+    else if (settings::bPlayer1teamR)
     {
-        myTeamR = new CKTeam(settings::C_playerITeamColor);
+        myTeamR = new CKTeam(settings::clr1Team);
         players::addPlayer(myTeamR, controllers::cPlayer1);
     }
 
-    if (settings::C_playerIIteamL)
+    if (settings::bPlayer2teamL)
     {
         if (!myTeamL)
-            myTeamL = new CKTeam(settings::C_playerIITeamColor);
+            myTeamL = new CKTeam(settings::clr2Team);
         players::addPlayer(myTeamL, controllers::cPlayer2);
     }
-    else if (settings::C_playerIIteamR)
+    else if (settings::bPlayer2teamR)
     {
         if (!myTeamR)
-            myTeamR = new CKTeam(settings::C_playerIITeamColor);
+            myTeamR = new CKTeam(settings::clr2Team);
         players::addPlayer(myTeamR, controllers::cPlayer2);
     }
 
@@ -77,11 +77,11 @@ CannonKeep::CannonKeep()
     teams::addTeam(myTeamL);
     teams::addTeam(myTeamR);
 
-    for (int i=0; i < settings::C_botsLeft;  ++i)  players::addPlayer(myTeamL, controllers::cBot);
-    for (int i=0; i < settings::C_botsRight; ++i)  players::addPlayer(myTeamR, controllers::cBot);
+    for (int i=0; i < settings::iBotsLeft;  ++i)  players::addPlayer(myTeamL, controllers::cBot);
+    for (int i=0; i < settings::iBotsRight; ++i)  players::addPlayer(myTeamR, controllers::cBot);
 
-    Home* homeL = spaceObjects::addHome(HOME_LEFT, settings::C_pointLimitCK, myTeamL->color());
-    Home* homeR = spaceObjects::addHome(HOME_RIGHT, settings::C_pointLimitCK, myTeamR->color());
+    Home* homeL = spaceObjects::addHome(HOME_LEFT, settings::iPointLimitCK, myTeamL->color());
+    Home* homeR = spaceObjects::addHome(HOME_RIGHT, settings::iPointLimitCK, myTeamR->color());
 
     teams::assignHomes(homeL, homeR);
     players::createShips();
@@ -94,7 +94,7 @@ CannonKeep::CannonKeep()
 
 void CannonKeep::draw() const
 {
-    if (settings::C_drawZones)
+    if (settings::bDrawZones)
         zones::draw();
     Game::draw();
 }
@@ -103,8 +103,8 @@ void CannonKeep::restart()
 {
     Game::restart();
 
-    Home* homeL = spaceObjects::addHome(HOME_LEFT, settings::C_pointLimitCK, teams::getTeamL()->color());
-    Home* homeR = spaceObjects::addHome(HOME_RIGHT, settings::C_pointLimitCK, teams::getTeamR()->color());
+    Home* homeL = spaceObjects::addHome(HOME_LEFT, settings::iPointLimitCK, teams::getTeamL()->color());
+    Home* homeR = spaceObjects::addHome(HOME_RIGHT, settings::iPointLimitCK, teams::getTeamR()->color());
 
     teams::assignHomes(homeL, homeR);
     players::createShips();
@@ -114,5 +114,3 @@ void CannonKeep::restart()
     spaceObjects::populateSpace(5.f, 10.f, 4);
     zones::createRaster(4,3);
 }
-
-

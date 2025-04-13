@@ -44,7 +44,7 @@ void Cannon::update()
     if (carrier && teams::getEnemy(carrier->team())->home()->getLife() > 0 &&
                                     carrier->team()->home()->getLife() > 0)
         toTarget = (teams::getEnemy(carrier->team())->home()->location() -
-                    Vector2f(settings::C_MapXsize*0.5f, 0.f)).normalize();
+                    Vector2f(settings::iMapXsize*0.5f, 0.f)).normalize();
     else
         toTarget = Vector2f(0.f, -1.f);
 
@@ -71,7 +71,7 @@ void Cannon::update()
     {
         timer_ += timer::frameTime();
         Vector2f direction(-std::sin(rotation_*M_PI/180), std::cos(rotation_*M_PI/180));
-        Vector2f location(Vector2f(settings::C_MapXsize*0.5f, 0.f) + direction*180.f);
+        Vector2f location(Vector2f(settings::iMapXsize*0.5f, 0.f) + direction*180.f);
 
         const float shootSpeed(15.f/ships::getShips().size());
         if (timer_ > shootSpeed)
@@ -98,7 +98,7 @@ void Cannon::draw() const
 
     glBindTexture(GL_TEXTURE_2D, texture::getTexture(texture::CannonSocket));
     glColor3f(1,1,1);
-    glTranslatef(settings::C_MapXsize*0.5f, 0.f, 0.f);
+    glTranslatef(settings::iMapXsize*0.5f, 0.f, 0.f);
 
     glBegin(GL_QUADS);
         glTexCoord2f(0.f, 0.f); glVertex2f(-100.f, 0.f);

@@ -98,7 +98,7 @@ void SBTeam::checkBall()
     {
         if (!ball->isVisible())
         {
-            int waitCount(settings::C_iDumb * (botControllers_.size()+1) / 200);
+            int waitCount(settings::iBotsDifficulty * (botControllers_.size()+1) / 200);
             for (int i=0; i < waitCount; ++i)
                 addJob(Job(Job::jWaitForBall, 5, ball));
         }else

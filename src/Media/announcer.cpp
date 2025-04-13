@@ -57,8 +57,8 @@ namespace announcer
                 {
                     // play sound
                     soundChannel_.setBuffer(*sounds_[sound]);
-                    soundChannel_.setVolume(static_cast<float>(settings::C_announcerVolume));
-                    soundChannel_.setPosition(settings::C_MapXsize*0.5f, 0.f, 0.f);
+                    soundChannel_.setVolume(static_cast<float>(settings::iAnnouncerVolume));
+                    soundChannel_.setPosition(settings::iMapXsize*0.5f, 0.f, 0.f);
                     soundChannel_.setAttenuation(0.f);
                     soundChannel_.play();
                 }
@@ -67,13 +67,13 @@ namespace announcer
                 // load it from file and...
                 switch (sound)
                 {
-                    case Bam:          loadSound_(sound, settings::C_dataPath + "audio/announcer/bam.wav");              break;
-                    case Impressive:   loadSound_(sound, settings::C_dataPath + "audio/announcer/impressive.wav");       break;
-                    case NiceOne:      loadSound_(sound, settings::C_dataPath + "audio/announcer/niceOne.wav");          break;
-                    case NotFunny:     loadSound_(sound, settings::C_dataPath + "audio/announcer/notFunny.wav");         break;
-                    case ThatWasGreat: loadSound_(sound, settings::C_dataPath + "audio/announcer/thatWasGreat.wav");     break;
-                    case WellDone:     loadSound_(sound, settings::C_dataPath + "audio/announcer/wellDone.wav");         break;
-                    case YouSuck:      loadSound_(sound, settings::C_dataPath + "audio/announcer/youSuck.wav");          break;
+                    case Bam:          loadSound_(sound, settings::sDataPath + "audio/announcer/bam.wav");              break;
+                    case Impressive:   loadSound_(sound, settings::sDataPath + "audio/announcer/impressive.wav");       break;
+                    case NiceOne:      loadSound_(sound, settings::sDataPath + "audio/announcer/niceOne.wav");          break;
+                    case NotFunny:     loadSound_(sound, settings::sDataPath + "audio/announcer/notFunny.wav");         break;
+                    case ThatWasGreat: loadSound_(sound, settings::sDataPath + "audio/announcer/thatWasGreat.wav");     break;
+                    case WellDone:     loadSound_(sound, settings::sDataPath + "audio/announcer/wellDone.wav");         break;
+                    case YouSuck:      loadSound_(sound, settings::sDataPath + "audio/announcer/youSuck.wav");          break;
                     case COUNT: std::cout << "COUNT is not a valid Soundtype..." << std::endl;
                 }
                 // ... play it afterwards
@@ -85,7 +85,7 @@ namespace announcer
 
     void update()
     {
-        if (settings::C_announcerVolume > 0)
+        if (settings::iAnnouncerVolume > 0)
         {
             float slowMoTime(timer::slowMoTime());
 
@@ -98,7 +98,7 @@ namespace announcer
 
     void announce (SoundMood mood)
     {
-        if (settings::C_announcerVolume > 0)
+        if (settings::iAnnouncerVolume > 0)
         {
             switch (mood)
             {

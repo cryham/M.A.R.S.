@@ -53,26 +53,26 @@ Tutorial::Tutorial()
     ,name_(false)
 {
     clear();
-    settings::C_EnabledWeapons[weapons::wAFK47] = true;
-    settings::C_EnabledWeapons[weapons::wShotgun] = true;
-    settings::C_EnabledWeapons[weapons::wROFLE] = true;
-    settings::C_EnabledSpecials[specials::sFreeze] = true;
-    settings::C_EnabledSpecials[specials::sHeal] = true;
-    settings::C_EnabledSpecials[specials::sBlast] = true;
+    settings::bEnabledWeapons[weapons::wAFK47] = true;
+    settings::bEnabledWeapons[weapons::wShotgun] = true;
+    settings::bEnabledWeapons[weapons::wROFLE] = true;
+    settings::bEnabledSpecials[specials::sFreeze] = true;
+    settings::bEnabledSpecials[specials::sHeal] = true;
+    settings::bEnabledSpecials[specials::sBlast] = true;
 
-    settings::C_iDumb = 0;
+    settings::iBotsDifficulty = 0;
 
-    music::play(settings::C_dataPath + "audio/tutorial.ogg");
+    music::play(settings::sDataPath + "audio/tutorial.ogg");
 
-    players::addPlayer (teams::addTeam(new DMTeam(settings::C_playerITeamColor)), controllers::cPlayer1);
-    settings::C_playerIIteamL = false;
-    settings::C_playerIIteamR = false;
-    settings::C_playerIteamL = false;
-    settings::C_playerIteamR = true;
-    teams::assignHomes(spaceObjects::addHome(Vector2f(settings::C_MapXsize+20, 450.f), 100, settings::C_playerITeamColor, 100, 15000));
+    players::addPlayer (teams::addTeam(new DMTeam(settings::clr1Team)), controllers::cPlayer1);
+    settings::bPlayer2teamL = false;
+    settings::bPlayer2teamR = false;
+    settings::bPlayer1teamL = false;
+    settings::bPlayer1teamR = true;
+    teams::assignHomes(spaceObjects::addHome(Vector2f(settings::iMapXsize+20, 450.f), 100, settings::clr1Team, 100, 15000));
     players::createShips();
 
-    evilHome_ = spaceObjects::addHome(Vector2f(-40.f, 550.f), 100, settings::C_playerITeamColor.inverted(), 100, 15000);
+    evilHome_ = spaceObjects::addHome(Vector2f(-40.f, 550.f), 100, settings::clr1Team.inverted(), 100, 15000);
 
     spaceObjects::addPlanet(Vector2f(680.f, 300.f), 150.f);
     spaceObjects::addPlanet(Vector2f(280.f, 650.f), 80.f);
@@ -117,7 +117,7 @@ void Tutorial::update()
     {
         case -1:
             if (!menus::visible())
-            {   if (settings::C_playerIName == "PlayerI")
+            {   if (settings::sPlayer1Name == "PlayerI")
                     menus::showWindow(EnterName::get());
                 ++state_;
             }   break;
@@ -158,7 +158,7 @@ void Tutorial::update()
         case 7:
             if (zones::updateTutZones())
             {   menus::showWindow(TutorialWindow::get(locales::Tut04, locales::TutText04, 4, false, false));
-                zones::addTutorialZone(Vector2f(settings::C_MapXsize+20, 450.f), 190.f);
+                zones::addTutorialZone(Vector2f(settings::iMapXsize+20, 450.f), 190.f);
                 ++state_;
             }   break;
         case 8:
@@ -193,7 +193,7 @@ void Tutorial::update()
         case 12:
             if (!menus::visible())
             {   menus::showWindow(TutorialWindow::get(locales::Tut08, locales::TutText08, 8, false, false));
-                zones::addTutorialZone(Vector2f(settings::C_MapXsize+20, 450.f), 190.f);
+                zones::addTutorialZone(Vector2f(settings::iMapXsize+20, 450.f), 190.f);
                 ++state_;
             }   break;
         case 13:
@@ -216,7 +216,7 @@ void Tutorial::update()
         case 16:
             if (timer::totalTime() > timer_ + 1.f)
             {   menus::showWindow(TutorialWindow::get(locales::Tut11, locales::TutText11, 11, false, false));
-                Team* evilTeam = teams::addTeam(new TutTeam( settings::C_playerITeamColor.inverted()));
+                Team* evilTeam = teams::addTeam(new TutTeam( settings::clr1Team.inverted()));
                 players::addPlayer(evilTeam, controllers::cBot);
                 evilTeam->setHome(evilHome_);
                 std::vector<Player*> evilPlayer(evilTeam->members());
@@ -235,7 +235,7 @@ void Tutorial::update()
             if (timer::totalTime() > timer_ + 1.f)
             {   evilPlayer1_->ship()->location_ = Vector2f(3000, 3000);
                 evilPlayer1_->ship()->respawnTimer_ = FLT_MAX;
-                zones::addTutorialZone(Vector2f(settings::C_MapXsize+20, 450.f), 190.f);
+                zones::addTutorialZone(Vector2f(settings::iMapXsize+20, 450.f), 190.f);
                 menus::showWindow(TutorialWindow::get(locales::Tut12, locales::TutText12, 12, false, true));
                 ++state_;
             }   break;
@@ -266,7 +266,7 @@ void Tutorial::update()
                     state_ += 2;
                 }else
                 {   menus::showWindow(TutorialWindow::get(locales::Tut23, locales::TutText23, 0, true, false));
-                    zones::addTutorialZone(Vector2f(settings::C_MapXsize+20, 450.f), 190.f);
+                    zones::addTutorialZone(Vector2f(settings::iMapXsize+20, 450.f), 190.f);
                     ++state_;
                 }
             }   break;
@@ -317,7 +317,7 @@ void Tutorial::update()
          case 28:
             if (timer::totalTime() > timer_ + 1.5f)
             {   menus::showWindow(TutorialWindow::get(locales::Tut27, locales::TutText27, 17, true, false));
-                zones::addTutorialZone(Vector2f(settings::C_MapXsize+20, 450.f), 190.f);
+                zones::addTutorialZone(Vector2f(settings::iMapXsize+20, 450.f), 190.f);
                 ++state_;
             }   break;
         case 29:
@@ -437,8 +437,8 @@ void Tutorial::restart()
     evilPlayer1_ = NULL;
     evilPlayer2_ = NULL;
 
-    players::addPlayer(teams::addTeam(new DMTeam(settings::C_playerITeamColor)), controllers::cPlayer1);
-    teams::assignHomes(spaceObjects::addHome(Vector2f(settings::C_MapXsize+20, 450.f), 100, settings::C_playerIColor, 100, 15000));
+    players::addPlayer(teams::addTeam(new DMTeam(settings::clr1Team)), controllers::cPlayer1);
+    teams::assignHomes(spaceObjects::addHome(Vector2f(settings::iMapXsize+20, 450.f), 100, settings::clr1Player, 100, 15000));
     players::createShips();
 
     evilHome_ = spaceObjects::addHome(Vector2f(-40.f, 550.f), 100, Color3f(0.5f, 0.f, 0.5f), 100, 15000);

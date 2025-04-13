@@ -57,35 +57,35 @@ UiWindow* MapOptions::get()
         instance_->addWidget(new LabeledBox(locales::getLocale(locales::SpaceObjects),
             Vector2f(10, y), 100, 210));  y += yadd;
         instance_->addWidget(new Slider(locales::getLocale(locales::MinPlanets), "",
-            &settings::C_MapMinPlanets, 0, 30, 1,
+            &settings::iMapMinPlanets, 0, 30, 1,
             Vector2f(20,y), w, 240, true));  y += yadd;
         instance_->addWidget(new Slider(locales::getLocale(locales::MaxPlanets), "",
-            &settings::C_MapMaxPlanets, 0, 30, 1,
+            &settings::iMapMaxPlanets, 0, 30, 1,
             Vector2f(20,y), w, 240, true));  y += yadd;
         instance_->addWidget(new Slider(locales::getLocale(locales::MinPlanetsSize), "",
-            &settings::C_MapMinPlanetsSize, 1, 300, 1,
+            &settings::iMapMinPlanetsSize, 1, 300, 1,
             Vector2f(20,y), w, 240, true));  y += yadd;
         instance_->addWidget(new Slider(locales::getLocale(locales::MaxPlanetsSize), "",
-            &settings::C_MapMaxPlanetsSize, 1, 900, 1,
+            &settings::iMapMaxPlanetsSize, 1, 900, 1,
             Vector2f(20,y), w, 240, true));  y += yadd*3/2;
 
         instance_->addWidget(new Slider(locales::getLocale(locales::MinPlanetGap), "",  // gap
-            &settings::C_MapMinPlanetGap, 0, 900, 1,
+            &settings::iMapMinPlanetGap, 0, 900, 1,
             Vector2f(20,y), w, 240, true));  y += yadd;
 
         // instance_->addWidget(new LabeledBox(locales::getLocale(locales::SpaceObjects),
         //     Vector2f(10, y), 100, 210));  y += yadd;
         instance_->addWidget(new Slider(locales::getLocale(locales::MapHomeRadius), "",  // home
-            &settings::C_MapHomeRadius, 1, 900, 1,
+            &settings::iMapHomeRadius, 1, 900, 1,
             Vector2f(20,y), w, 240, true));  y += yadd;
         instance_->addWidget(new Slider(locales::getLocale(locales::GravityScale), "",  // gravity
-            &settings::C_GravityScale, 5, 300, 10,
+            &settings::iGravityScale, 5, 300, 10,
             Vector2f(20,y), w, 240, true));  y += yadd;
         instance_->addWidget(new Slider(locales::getLocale(locales::ShipRadius), "",  // ship
-            &settings::C_ShipRadius, 5, 60, 10,
+            &settings::iShipRadius, 5, 60, 10,
             Vector2f(20,y), w*2/3, 240, true));  y += yadd;
         instance_->addWidget(new Slider(locales::getLocale(locales::BallRadius), "",  // ball
-            &settings::C_BallRadius, 5, 60, 10,
+            &settings::iBallRadius, 5, 60, 10,
             Vector2f(20,y), w*2/3, 240, true));  y += yadd*3/2;
 
         //  map Size buttons  ----
@@ -100,10 +100,10 @@ UiWindow* MapOptions::get()
         
         //  map Size  ----
         instance_->addWidget(new Slider(locales::getLocale(locales::MapXsize), "",
-            &settings::C_MapXsize, 10, 23000, 10,
+            &settings::iMapXsize, 10, 23000, 10,
             Vector2f(20,y), w, 240, true));  y += yadd;
         instance_->addWidget(new Slider(locales::getLocale(locales::MapYsize), "",
-            &settings::C_MapYsize, 10, 23000, 10,
+            &settings::iMapYsize, 10, 23000, 10,
             Vector2f(20,y), w, 240, true));  y += yadd;
         // C_MapYaspect..
         
@@ -111,10 +111,10 @@ UiWindow* MapOptions::get()
         instance_->addWidget(new Label(locales::getLocale(locales::CyclicBorders),
             TEXT_ALIGN_LEFT, Vector2f(10, y)));  //y += yadd;
         instance_->addWidget(new Checkbox(locales::getLocale(locales::Horizontal), "",
-            &settings::C_CyclicBorderX,
+            &settings::bCyclicBorderX,
             Vector2f(w/3,y), w/2));  //y += yadd;
         instance_->addWidget(new Checkbox(locales::getLocale(locales::Vertical), "",
-            &settings::C_CyclicBorderY,
+            &settings::bCyclicBorderY,
             Vector2f(2*w/3,y), w/3));  y += yadd;
     }
     return instance_;
@@ -132,57 +132,57 @@ void MapOptions::checkWidgets()
 
             switch (i)
             {
-            case 0:  settings::C_MapXsize = 600;   // tiny
-                settings::C_MapMinPlanets     = 0;    settings::C_MapMaxPlanets     = 1;
-                settings::C_MapMinPlanetsSize = 10;   settings::C_MapMaxPlanetsSize = 60;
-                settings::C_MapMinPlanetGap   = 30;   settings::C_MapHomeRadius     = 70;  settings::C_ShipRadius = 10;
+            case 0:  settings::iMapXsize = 600;   // tiny
+                settings::iMapMinPlanets     = 0;    settings::iMapMaxPlanets     = 1;
+                settings::iMapMinPlanetsSize = 10;   settings::iMapMaxPlanetsSize = 60;
+                settings::iMapMinPlanetGap   = 30;   settings::iMapHomeRadius     = 70;  settings::iShipRadius = 10;
                 break;
-            case 1:  settings::C_MapXsize = 1000;  // small
-                settings::C_MapMinPlanets     = 0;    settings::C_MapMaxPlanets     = 2;
-                settings::C_MapMinPlanetsSize = 20;   settings::C_MapMaxPlanetsSize = 80;
-                settings::C_MapMinPlanetGap   = 50;   settings::C_MapHomeRadius     = 80;  settings::C_ShipRadius = 14;
+            case 1:  settings::iMapXsize = 1000;  // small
+                settings::iMapMinPlanets     = 0;    settings::iMapMaxPlanets     = 2;
+                settings::iMapMinPlanetsSize = 20;   settings::iMapMaxPlanetsSize = 80;
+                settings::iMapMinPlanetGap   = 50;   settings::iMapHomeRadius     = 80;  settings::iShipRadius = 14;
                 break;
-            case 2:  settings::C_MapXsize = 1440;  // medium  default
-                settings::C_MapMinPlanets     = 1;    settings::C_MapMaxPlanets     = 4;
-                settings::C_MapMinPlanetsSize = 50;   settings::C_MapMaxPlanetsSize = 120;
-                settings::C_MapMinPlanetGap   = 150;  settings::C_MapHomeRadius     = 100;  settings::C_ShipRadius = 18;
+            case 2:  settings::iMapXsize = 1440;  // medium  default
+                settings::iMapMinPlanets     = 1;    settings::iMapMaxPlanets     = 4;
+                settings::iMapMinPlanetsSize = 50;   settings::iMapMaxPlanetsSize = 120;
+                settings::iMapMinPlanetGap   = 150;  settings::iMapHomeRadius     = 100;  settings::iShipRadius = 18;
                 break;
-            case 3:  settings::C_MapXsize = 2000;  // normal
-                settings::C_MapMinPlanets     = 1;    settings::C_MapMaxPlanets     = 5;
-                settings::C_MapMinPlanetsSize = 60;   settings::C_MapMaxPlanetsSize = 120;
-                settings::C_MapMinPlanetGap   = 150;  settings::C_MapHomeRadius     = 150;  settings::C_ShipRadius = 18;
+            case 3:  settings::iMapXsize = 2000;  // normal
+                settings::iMapMinPlanets     = 1;    settings::iMapMaxPlanets     = 5;
+                settings::iMapMinPlanetsSize = 60;   settings::iMapMaxPlanetsSize = 120;
+                settings::iMapMinPlanetGap   = 150;  settings::iMapHomeRadius     = 150;  settings::iShipRadius = 18;
                 break;
-            case 4:  settings::C_MapXsize = 3000;  // big
-                settings::C_MapMinPlanets     = 2;    settings::C_MapMaxPlanets     = 6;
-                settings::C_MapMinPlanetsSize = 90;   settings::C_MapMaxPlanetsSize = 200;
-                settings::C_MapMinPlanetGap   = 150;  settings::C_MapHomeRadius     = 250;  settings::C_ShipRadius = 22;
+            case 4:  settings::iMapXsize = 3000;  // big
+                settings::iMapMinPlanets     = 2;    settings::iMapMaxPlanets     = 6;
+                settings::iMapMinPlanetsSize = 90;   settings::iMapMaxPlanetsSize = 200;
+                settings::iMapMinPlanetGap   = 150;  settings::iMapHomeRadius     = 250;  settings::iShipRadius = 22;
                 break;
-            case 5:  settings::C_MapXsize = 5000;  // large
-                settings::C_MapMinPlanets     = 3;    settings::C_MapMaxPlanets     = 7;
-                settings::C_MapMinPlanetsSize = 120;  settings::C_MapMaxPlanetsSize = 500;
-                settings::C_MapMinPlanetGap   = 150;  settings::C_MapHomeRadius     = 400;  settings::C_ShipRadius = 30;
+            case 5:  settings::iMapXsize = 5000;  // large
+                settings::iMapMinPlanets     = 3;    settings::iMapMaxPlanets     = 7;
+                settings::iMapMinPlanetsSize = 120;  settings::iMapMaxPlanetsSize = 500;
+                settings::iMapMinPlanetGap   = 150;  settings::iMapHomeRadius     = 400;  settings::iShipRadius = 30;
                 break;
-            case 6:  settings::C_MapXsize = 9000;  // huge
-                settings::C_MapMinPlanets     = 4;    settings::C_MapMaxPlanets     = 8;
-                settings::C_MapMinPlanetsSize = 150;  settings::C_MapMaxPlanetsSize = 900;
-                settings::C_MapMinPlanetGap   = 250;  settings::C_MapHomeRadius     = 800;  settings::C_ShipRadius = 50;
+            case 6:  settings::iMapXsize = 9000;  // huge
+                settings::iMapMinPlanets     = 4;    settings::iMapMaxPlanets     = 8;
+                settings::iMapMinPlanetsSize = 150;  settings::iMapMaxPlanetsSize = 900;
+                settings::iMapMinPlanetGap   = 250;  settings::iMapHomeRadius     = 800;  settings::iShipRadius = 50;
                 break;
             }
-            float aspY = settings::C_resY / settings::C_resX;
-            // float aspY = 910.f / 1440.f;
+            //- float aspY = settings::iResY / settings::iResX;
+            float aspY = 910.f / 1440.f;
             // float aspY = 810.f / 1440.f;  // org?
-            settings::C_MapYsize = settings::C_MapXsize * aspY;
+            settings::iMapYsize = settings::iMapXsize * aspY;
         }
 
     if (kDefaults_)
     {   kDefaults_ = false;
 
-        settings::C_MapMinPlanets     = 1;    settings::C_MapMaxPlanets     = 4;
-        settings::C_MapMinPlanetsSize = 50;   settings::C_MapMaxPlanetsSize = 120;
-        settings::C_MapMinPlanetGap   = 150;  settings::C_MapHomeRadius     = 100;  settings::C_ShipRadius = 18;
+        settings::iMapMinPlanets     = 1;    settings::iMapMaxPlanets     = 4;
+        settings::iMapMinPlanetsSize = 50;   settings::iMapMaxPlanetsSize = 120;
+        settings::iMapMinPlanetGap   = 150;  settings::iMapHomeRadius     = 100;  settings::iShipRadius = 18;
 
-        settings::C_MapXsize   = 1440;
-        settings::C_MapYsize   = 810;
+        settings::iMapXsize   = 1440;
+        settings::iMapYsize   = 810;
         // settings::C_MapYaspect = 1000 * 1440 / 810;
     }
 

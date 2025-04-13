@@ -68,14 +68,14 @@ int main(int argc, char* argv[])
         else if (std::string(argv[i]) == "-cfg")
         {
             if (++i < argc)
-                settings::C_configPath = argv[i];
+                settings::sConfigPath = argv[i];
             else
                 std::cout << "Option \"-cfg\" expects a path to be provided following it.\n";
         }
         else if (std::string(argv[i]) == "-data")
         {
             if (++i < argc)
-                settings::C_dataPath = argv[i];
+                settings::sDataPath = argv[i];
             else
                 std::cout << "Option \"-data\" expects a path to be provided following it.\n";
         }
@@ -88,7 +88,7 @@ int main(int argc, char* argv[])
     {
         games:: start(games::gMenu);
 
-        if (settings::C_LogoSigns)
+        if (settings::bLogoSigns)
             std::cout << "Happy Gaming..." << std::endl;
 
         window::mainLoop();

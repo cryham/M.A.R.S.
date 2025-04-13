@@ -49,8 +49,8 @@ namespace items
             while (!newPowerUpFits && ++tries < 500)
             {
                 // 100 is min distance between edge and planet
-                int randx = rand() % (settings::C_MapXsize - 2*(50)) + 50;
-                int randy = rand() % (settings::C_MapYsize - 2*(50)) + 50 ;
+                int randx = rand() % (settings::iMapXsize - 2*50) + 50;
+                int randy = rand() % (settings::iMapYsize - 2*50) + 50;
                 position.x_ = randx;
                 position.y_ = randy;
 
@@ -96,13 +96,13 @@ namespace items
         if (cannonControl_)
             cannonControl_->update();
 
-        if (settings::C_powerUpRate > 0)
+        if (settings::iPowerUpRate > 0)
         {
             static float spawnTimer(1.f);
             spawnTimer -= timer::frameTime();
             if (spawnTimer <= 0.f)
             {   spawnPowerUp();
-                spawnTimer = randomizer::random(0.5f, 1.5f) * ((101-settings::C_powerUpRate) * 0.23f + 1.5f);
+                spawnTimer = randomizer::random(0.5f, 1.5f) * ((101-settings::iPowerUpRate) * 0.23f + 1.5f);
             }
         }
 

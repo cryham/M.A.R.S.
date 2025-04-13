@@ -51,7 +51,7 @@ UiWindow* InfoGIP::get()
         instance_->addWidget(new TextBox(locales::getLocale(locales::InfoGIP),
             Vector2f(10,80), 300, 160));
         instance_->addWidget(new Checkbox(locales::getLocale(locales::ShowAgainButton), "",
-            &settings::C_showInfoDM,
+            &settings::bShowInfoDM,
             Vector2f(10,270), 170));
     }
     return instance_;
@@ -69,7 +69,7 @@ void InfoGIP::checkWidgets()
 
 void InfoGIP::onShow()
 {
-    settings::C_showInfoDM = false;
+    settings::bShowInfoDM = false;
 }
 
 void InfoGIP::reset()

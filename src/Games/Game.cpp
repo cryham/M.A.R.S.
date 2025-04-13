@@ -46,11 +46,11 @@ Game::Game(games::GameType const& type):
 {
     switch (type_)
     {
-        case games::gSpaceBall:  pointLimit_ = settings::C_pointLimitSB;    break;
-        case games::gCannonKeep: pointLimit_ = settings::C_pointLimitCK;    break;
-        case games::gDeathMatch: pointLimit_ = settings::C_pointLimitDM;  break;
+        case games::gSpaceBall:  pointLimit_ = settings::iPointLimitSB;   break;
+        case games::gCannonKeep: pointLimit_ = settings::iPointLimitCK;   break;
+        case games::gDeathMatch: pointLimit_ = settings::iPointLimitDM;   break;
         case games::gMenu:       pointLimit_ = 9999999;                   break;
-        default:                 pointLimit_ = settings::C_pointLimitTDM;
+        default:                 pointLimit_ = settings::iPointLimitTDM;
     }
     hud::init();
     stars::init();
@@ -74,11 +74,13 @@ Game::~Game()
 }
 
 
+//  update
 void Game::update()
 {
     announcer::update();
     hud::update();
-    if ((!menus::visible()) || (type_ == games::gMenu))
+
+    if (!menus::visible() || type_ == games::gMenu)
     {
         spaceObjects::update();
         particles::update();
@@ -123,13 +125,16 @@ void Game::update()
 //  draw
 void Game::draw() const
 {
-    if (settings::C_StarField)
+    if (settings::iStarField)
         particles::drawStars();
+    
     particles::drawLower();
     trailEffects::draw();
+    
     controllers::draw();
     ships::draw();
     balls::draw();
+    
     spaceObjects::draw();
     particles::drawHigher();
     decoObjects::draw();
@@ -141,9 +146,11 @@ void Game::restart()
     items::clear();
     ships::clear();
     balls::clear();
+    
     physics::clear();
     particles::clear();
     spaceObjects::clear();
+    
     zones::clear();
     decoObjects::clear();
     trailEffects::clear();
@@ -160,23 +167,25 @@ void Game::restart()
     ended_ = false;
 }
 
+
 void Game::clear()
 {
     for (int i=0; i < weapons::All; ++i)
-        settings::C_EnabledWeapons[i] = false;
+        settings::bEnabledWeapons[i] = false;
     for (int i=0; i < specials::All; ++i)
-        settings::C_EnabledSpecials[i] = false;
+        settings::bEnabledSpecials[i] = false;
 }
 
 void Game::copyFromUser()
 {
     for (int i=0; i < weapons::All; ++i)
-        settings::C_EnabledWeapons[i] = settings::C_EnabledWeaponsByUser[i];
+        settings::bEnabledWeapons[i] = settings::bEnabledWeaponsByUser[i];
     
-    settings::C_EnabledWeapons[weapons::wInsta] = false;
+    settings::bEnabledWeapons[weapons::wInsta] = false;
     for (int i=0; i < specials::All; ++i)
-        settings::C_EnabledSpecials[i] = settings::C_EnabledSpecialsByUser[i];
+        settings::bEnabledSpecials[i] = settings::bEnabledSpecialsByUser[i];
 }
+
 
 games::GameType Game::type() const
 {

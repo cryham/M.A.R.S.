@@ -29,13 +29,13 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 void CountDown::draw() const
 {
-    if (settings::C_CountDown == 0)
+    if (settings::iCountDown == 0)
         return;
     glEnable(GL_TEXTURE_2D);
 
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-    float counts = settings::C_CountDown;
+    float counts = settings::iCountDown;
     float time = games::elapsedTime() / counts * 6.f;
     
     if (time < 1.f)

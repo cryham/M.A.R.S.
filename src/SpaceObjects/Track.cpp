@@ -97,15 +97,15 @@ void Track::findAnchors()
     if (randomizer::random(0,1)==1)
         addAnchor(Vector2f(40.f,40.f));
     if (randomizer::random(0,1)==1)
-        addAnchor(Vector2f(settings::C_MapXsize-40.f, 40.f));
+        addAnchor(Vector2f(settings::iMapXsize-40.f, 40.f));
     if (randomizer::random(0,1)==1)
-        addAnchor(Vector2f(settings::C_MapXsize-40.f, settings::C_MapYsize-40.f));
+        addAnchor(Vector2f(settings::iMapXsize-40.f, settings::iMapYsize-40.f));
     if (randomizer::random(0,1)==1)
-        addAnchor(Vector2f(40.f, settings::C_MapYsize-40.f));
+        addAnchor(Vector2f(40.f, settings::iMapYsize-40.f));
 
     int tries(0);
     while (anchors_.size() < 10 && ++tries<100)
-        addAnchor(Vector2f(randomizer::random(0, settings::C_MapXsize), randomizer::random(0, settings::C_MapYsize)));
+        addAnchor(Vector2f(randomizer::random(0, settings::iMapXsize), randomizer::random(0, settings::iMapYsize)));
 }
 
 void Track::addAnchor(Vector2f const& point)

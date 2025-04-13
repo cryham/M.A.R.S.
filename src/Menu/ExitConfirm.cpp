@@ -33,7 +33,7 @@ bool ExitConfirm::kCancel_(false);
 
 UiWindow* ExitConfirm::get()
 {
-    if (settings::C_noConfirmations)
+    if (settings::bNoConfirmations)
     {
         settings::save();
         window::close();

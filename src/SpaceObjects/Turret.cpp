@@ -47,7 +47,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 
 Turret::Turret(Vector2f const& location, float rotation, Player* owner)
-    : SpaceObject(spaceObjects::oTurret, location, settings::C_ShipRadius, 10.f)
+    : SpaceObject(spaceObjects::oTurret, location, settings::iShipRadius, 10.f)
     ,owner_(owner)
     ,rotation_(rotation)
     ,rotateSpeed_(1.f)
@@ -124,11 +124,11 @@ void Turret::update()
                 physics::addMobileObject(this);
         }*/
 
-        if (games::elapsedTime() > settings::C_CountDown || games::type() == games::gTutorial)
+        if (games::elapsedTime() > settings::iCountDown || games::type() == games::gTutorial)
         {
             if (frozen_ <= 0)
             {
-                const float rot = settings::C_ShipTurnSpeed / 100.f;
+                const float rot = settings::iShipTurnSpeed / 100.f;
                 float angleRad = rotation_ * M_PI / 180.f;
                 Vector2f faceDirection(std::cos(angleRad), std::sin(angleRad));
                 Vector2f sideDirection(std::cos(angleRad + M_PI_2), std::sin(angleRad + M_PI_2));
@@ -323,7 +323,7 @@ void Turret::drawWeapon() const
             (ghostTimer_ > 0.f ? ghostTimer_*(0.2f*std::sin(timer::totalTime()*8.f + 1.5f*M_PI)+0.4f) + 1.f-ghostTimer_ : 1.f));
 
         // draw special
-        currentSpecial_->draw(alpha * settings::C_GlowAlpha / 100.f);  /// 0.7 0.2  //new
+        currentSpecial_->draw(alpha * settings::iGlowAlpha / 100.f);  /// 0.7 0.2  //new
 
         glLoadIdentity();
         glTranslatef(location_.x_, location_.y_, 0.f);
@@ -458,7 +458,7 @@ void Turret::onCollision(SpaceObject* with, Vector2f const& location,
             waitForOtherDamage = 0.15f;
             // if (frozen_ <= 0) velocity_ += velocity*0.03f*timer::frameTime();
             // chance to spawn smoke
-            if (randomizer::random(0.f, 100.f) / settings::C_globalParticleCount < 0.01f)
+            if (randomizer::random(0.f, 100.f) / settings::iParticleCount < 0.01f)
                 particles::spawn(particles::pSmoke, location, velocity);
             setDamageSource(with->damageSource());
             unfreeze = 0.05f;
@@ -506,7 +506,7 @@ void Turret::onCollision(SpaceObject* with, Vector2f const& location,
         }
     }
 
-    amount *= settings::C_DamageScale / 100.f;  /// 0.5f;  //new
+    amount *= settings::iDamageScale / 100.f;  /// 0.5f;  //new
 
     /*if (attackable())
     {
@@ -551,7 +551,7 @@ void Turret::onShockWave(Player* damageSource, float intensity)
         setDamageSource(damageSource);
         if (!collectedPowerUps_[items::puShield])
         {
-            float damage(intensity*0.1f*(20.f + settings::C_iDumb));
+            float damage(intensity*0.1f*(20.f + settings::iBotsDifficulty));
             life_ -= damage;
             if ((damageSource_ && (damageSource_->controlType_ == controllers::cPlayer1 || damageSource_->controlType_ == controllers::cPlayer2))
                 || owner_->controlType_ == controllers::cPlayer1 ||  owner_->controlType_ == controllers::cPlayer2)
@@ -655,7 +655,7 @@ void Turret::explode()
         respawnTimer_ = 2.f;
     else
         respawnTimer_ = 5.f;*/
-    respawnTimer_ = settings::C_RespawnDelay / 10.f;  /// 2.f;  //new
+    respawnTimer_ = settings::iRespawnDelay / 10.f;  /// 2.f;  //new
 
     frozen_ = 0.f;
     currentSpecial_->stop();

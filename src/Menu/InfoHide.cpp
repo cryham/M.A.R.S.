@@ -48,7 +48,7 @@ UiWindow* InfoHide::get()
         instance_->addWidget(new TextBox(locales::getLocale(locales::HideMenuText),
             Vector2f(10, 50), 300, 110));
         instance_->addWidget(new Checkbox(locales::getLocale(locales::ShowAgainButton), "",
-            &settings::C_showInfoHide,
+            &settings::bShowInfoHide,
             Vector2f(10,170), 170));
     }
     return instance_;

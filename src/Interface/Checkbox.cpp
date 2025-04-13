@@ -113,10 +113,10 @@ void Checkbox::draw() const
 
     setColor3f(1.f, 1.f, 1.f);
     glBegin(GL_QUADS);
-        glTexCoord2f(x*0.25f, y*0.25f+0.25f);       glVertex2f(origin.x_-4.f*mirror, origin.y_+16.f);
-        glTexCoord2f(x*0.25f+0.25f, y*0.25f+0.25f); glVertex2f(origin.x_+12.f*mirror, origin.y_+16.f);
-        glTexCoord2f(x*0.25f+0.25f, y*0.25f);       glVertex2f(origin.x_+12.f*mirror, origin.y_-0.f);
-        glTexCoord2f(x*0.25f, y*0.25f);             glVertex2f(origin.x_-4.f*mirror, origin.y_-0.f);
+        glTexCoord2f(x*0.25f, y*0.25f+0.25f);       glVertex2f(origin.x_-4.f *mirror*scale_, origin.y_+16.f*scale_);
+        glTexCoord2f(x*0.25f+0.25f, y*0.25f+0.25f); glVertex2f(origin.x_+12.f*mirror*scale_, origin.y_+16.f*scale_);
+        glTexCoord2f(x*0.25f+0.25f, y*0.25f);       glVertex2f(origin.x_+12.f*mirror*scale_, origin.y_);
+        glTexCoord2f(x*0.25f, y*0.25f);             glVertex2f(origin.x_-4.f *mirror*scale_, origin.y_);
     glEnd();
 
     glDisable(GL_TEXTURE_2D);

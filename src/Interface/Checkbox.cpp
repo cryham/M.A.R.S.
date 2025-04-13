@@ -17,6 +17,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "Interface/Checkbox.hpp"
 
+#include "System/Color3f.hpp"
 #include "System/settings.hpp"
 #include "Media/sound.hpp"
 #include "Media/text.hpp"
@@ -27,18 +28,19 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include <SFML/OpenGL.hpp>
 
 
-Checkbox::Checkbox (locales::LocaleType text, locales::LocaleType toolTip,
-        bool* value, Vector2f const& topLeft, int width)
+Checkbox::Checkbox (locales::LocaleType text, locales::LocaleType toolTip, bool* value,
+        Vector2f const& topLeft, int width, Color3f color)
     :Checkbox(locales::getLocale(text), locales::getLocale(toolTip),
-        value, topLeft, width)
+        value, topLeft, width, color)
 {   }
 
-Checkbox::Checkbox (const sf::String& text, const sf::String& toolTip, bool* value, Vector2f const& topLeft, int width):
+Checkbox::Checkbox (const sf::String& text, const sf::String& toolTip, bool* value,
+        Vector2f const& topLeft, int width, Color3f color):
     UiElement(topLeft, width, 20),
     value_(value),
     toolTip_(toolTip)
 {
-    label_ = new Label(text, TEXT_ALIGN_LEFT, Vector2f(15,0));
+    label_ = new Label(text, TEXT_ALIGN_LEFT, Vector2f(15,0), 12.f, color);
     label_->setParent(this);
 }
 

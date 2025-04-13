@@ -166,12 +166,12 @@ void UiWindow::draw () const
         glTexCoord2f(96.f/512.f + offset, 96.f/512.f); glVertex2i(origin.x_-36+width_, origin.y_+36);
         glTexCoord2f(96.f/256.f + offset, 96.f/512.f); glVertex2i(origin.x_+60+width_, origin.y_+36);
         glTexCoord2f(96.f/256.f + offset, 0);          glVertex2i(origin.x_+60+width_, origin.y_-60);
-        // bottomleft
+        // btmL
         glTexCoord2f(0 + offset, 96.f/512.f);          glVertex2i(origin.x_-60, origin.y_-36+height_);
         glTexCoord2f(0 + offset, 96.f/256.f);          glVertex2i(origin.x_-60, origin.y_+60+height_);
         glTexCoord2f(96.f/512.f + offset, 96.f/256.f); glVertex2i(origin.x_+36, origin.y_+60+height_);
         glTexCoord2f(96.f/512.f + offset, 96.f/512.f); glVertex2i(origin.x_+36, origin.y_-36+height_);
-        // bottomRight
+        // btmR
         glTexCoord2f(96.f/512.f + offset, 96.f/512.f); glVertex2i(origin.x_-36+width_, origin.y_-36+height_);
         glTexCoord2f(96.f/512.f + offset, 96.f/256.f); glVertex2i(origin.x_-36+width_, origin.y_+60+height_);
         glTexCoord2f(96.f/256.f + offset, 96.f/256.f); glVertex2i(origin.x_+60+width_, origin.y_+60+height_);

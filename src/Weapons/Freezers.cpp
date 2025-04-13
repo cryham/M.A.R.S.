@@ -1,6 +1,6 @@
 /* Freezers.cpp
 
-Copyright (c) 2010 - 2011 by Felix Lauer and Simon Schneegans
+Copyright (c) 2025 Crystal Hammer
 
 This program is free software: you can redistribute it and/or modify it
 under the terms of the GNU General Public License as published by the Free
@@ -35,18 +35,20 @@ void Freezers::draw(float alpha) const
     const int posX = 0;
     const int posY = 29;
     glBegin(GL_QUADS);
-        glTexCoord2f(posX*0.125f,     posY*0.03125f);    glVertex2f(0,     r* 0.4f);
-        glTexCoord2f(posX*0.125f,    (posY+1)*0.03125f); glVertex2f(0,     r*-0.4f);
-        glTexCoord2f((posX+1)*0.125f,(posY+1)*0.03125f); glVertex2f(r*3.f, r*-0.4f);
-        glTexCoord2f((posX+1)*0.125f, posY*0.03125f);    glVertex2f(r*3.f, r* 0.4f);
+        glTexCoord2f(posX*0.125f,     posY*0.03125f);    glVertex2f(0,     r* 0.7f);
+        glTexCoord2f(posX*0.125f,    (posY+1)*0.03125f); glVertex2f(0,     r*-0.7f);
+        glTexCoord2f((posX+1)*0.125f,(posY+1)*0.03125f); glVertex2f(r*5.f, r*-0.7f);
+        glTexCoord2f((posX+1)*0.125f, posY*0.03125f);    glVertex2f(r*5.f, r* 0.7f);
     glEnd();
 }
 
 void Freezers::fire() const
 {
     float time = timer::totalTime();
-    if (time - timer_ <= 0.2f) return;
+    if (time - timer_ <= 0.05f)
+        return;
     timer_ = time;
+
     float angleRad = parent_->rotation()*M_PI / 180.f;
     Vector2f dir(std::cos(angleRad), std::sin(angleRad));
 

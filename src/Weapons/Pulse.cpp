@@ -29,16 +29,16 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 void Pulse::draw(float alpha) const
 {
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    glColor3f(1.f, 0.5f, 1.f);
+    glColor3f(1.f, 0.5f, 0.8f);
 
     const float r = parent_->radius();
     const int posX = 0;
     const int posY = 29;
     glBegin(GL_QUADS);
-        glTexCoord2f(posX*0.125f,     posY*0.03125f);    glVertex2f(0,     r* 1.4f);
-        glTexCoord2f(posX*0.125f,    (posY+1)*0.03125f); glVertex2f(0,     r*-1.4f);
-        glTexCoord2f((posX+1)*0.125f,(posY+1)*0.03125f); glVertex2f(r*4.f, r*-1.5f);
-        glTexCoord2f((posX+1)*0.125f, posY*0.03125f);    glVertex2f(r*4.f, r* 1.5f);
+        glTexCoord2f(posX*0.125f,     posY*0.03125f);    glVertex2f(0,     r* 1.6f);
+        glTexCoord2f(posX*0.125f,    (posY+1)*0.03125f); glVertex2f(0,     r*-1.6f);
+        glTexCoord2f((posX+1)*0.125f,(posY+1)*0.03125f); glVertex2f(r*2.f, r*-1.6f);
+        glTexCoord2f((posX+1)*0.125f, posY*0.03125f);    glVertex2f(r*2.f, r* 1.6f);
     glEnd();
 }
 

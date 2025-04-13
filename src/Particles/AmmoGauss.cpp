@@ -1,6 +1,6 @@
 /* AmmoGauss.cpp
 
-Copyright (c) 2010 - 2011 by Felix Lauer and Simon Schneegans
+Copyright (c) 2025 Crystal Hammer
 
 This program is free software: you can redistribute it and/or modify it
 under the terms of the GNU General Public License as published by the Free
@@ -19,6 +19,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "System/timer.hpp"
 #include "Media/sound.hpp"
+#include "TrailEffects/Trail.hpp"
 #include "TrailEffects/trailEffects.hpp"
 #include "defines.hpp"
 
@@ -26,14 +27,15 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 std::list<AmmoGauss*> AmmoGauss::activeParticles_;
 
 
-AmmoGauss::AmmoGauss(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity, Color3f const& color, Player* damageSource):
-         Particle<AmmoGauss>(spaceObjects::oAmmoGauss, location, 1.f, 0.001f, 3.0f)
+AmmoGauss::AmmoGauss(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,
+        Color3f const& color, Player* damageSource)
+    :Particle<AmmoGauss>(spaceObjects::oAmmoGauss, location, 1.f, 0.001f, 1.0f)
 {
     setDamageSource(damageSource);
     velocity_ = direction * 12100.f;
     location_ += velocity_*timer::frameTime()*1.2f;
 
-    // trailEffects::attach(this, 0.05, 1.f, 4.f, Color3f(0.3f, 0.1f, 0.2f), false);
+    // trail_ = trailEffects::attach(this, 0.05, 1.f, 4.f, Color3f(0.3f, 0.1f, 0.2f), false);
 }
 
 AmmoGauss::~AmmoGauss()
@@ -44,47 +46,47 @@ AmmoGauss::~AmmoGauss()
 
 void AmmoGauss::update()
 {
-    float time = timer::frameTime()*0.5f;
+    float time = timer::frameTime();
 
-    for (int i=0; i < 12; ++i)
+    for (int i=0; i < steps_; ++i)
     {
         physics::collide(this, STATICS | MOBILES);
-        location_ += velocity_*time;
+        location_ += velocity_ * time;
         borders();
         lifeTime_ += time;
-    }
 
-    if (location_.x_ < -100 || location_.x_ > settings::C_MapXsize + 100 ||
-        location_.y_ < -100 || location_.y_ > settings::C_MapYsize + 100)
-        killMe();
+        // if (i != steps_-1)
+        //     trail_->update();
+    }
 }
 
 //  draw
 void AmmoGauss::draw() const
 {
-    glColor4f(0.5f, 1.f, 1.f, 1.f);
+    glColor4f(0.8f, 1.f, 1.f, 1.f);
 
-    Vector2f direction(velocity_*0.025f);
-    Vector2f normDirection(direction.y_, -1.f*direction.x_);
-    normDirection *= 0.05f;
+    Vector2f dir(velocity_ * 0.0025f);
+    Vector2f side(dir.y_, -1.f*dir.x_);
+    side *= 0.5f;
 
-    const Vector2f topLeft(location_ + direction + normDirection),
-        topRight(location_ + direction - normDirection),
-        bottomLeft(location_ - 1*direction + normDirection),
-        bottomRight(location_ - 1*direction - normDirection);
+    const Vector2f topLeft(location_ + dir + side),
+        topRight(location_ + dir - side),
+        btmL(location_ - 1*dir + side),
+        btmR(location_ - 1*dir - side);
 
     const int posX = 0;
     const float posY = 2.5f;
     uv8(posX, posY);         glVertex2f(topLeft.x_, topLeft.y_);
-    uv8(posX, posY+0.5f);    glVertex2f(bottomLeft.x_, bottomLeft.y_);
-    uv8(posX+3, posY+0.5f);  glVertex2f(bottomRight.x_, bottomRight.y_);
+    uv8(posX, posY+0.5f);    glVertex2f(btmL.x_, btmL.y_);
+    uv8(posX+3, posY+0.5f);  glVertex2f(btmR.x_, btmR.y_);
     uv8(posX+3, posY);       glVertex2f(topRight.x_, topRight.y_);
 }
+
 
 void AmmoGauss::onCollision(SpaceObject* with, Vector2f const& location,
                         Vector2f const& direction, Vector2f const& velocity)
 {
-    /*float strength = (velocity-velocity_).length() / 10.f;
+    float strength = (velocity - velocity_).length() / 10.f;
 
     if (strength > 50.f)
     {
@@ -108,7 +110,9 @@ void AmmoGauss::onCollision(SpaceObject* with, Vector2f const& location,
 
             default:;
         }
-    }*/
-    if (with->type() != spaceObjects::oAmmoFlubba && with->type() != spaceObjects::oAmmoH2OMG && with->type() != spaceObjects::oMiniAmmoFlubba)
+    }
+    // if (with->type() != spaceObjects::oAmmoFlubba &&
+        // with->type() != spaceObjects::oAmmoH2OMG &&
+        // with->type() != spaceObjects::oMiniAmmoFlubba)
         killMe();
 }

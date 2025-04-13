@@ -1,6 +1,6 @@
 /* AmmoGauss.hpp
 
-Copyright (c) 2010 - 2011 by Felix Lauer and Simon Schneegans
+Copyright (c) 2025 Crystal Hammer
 
 This program is free software: you can redistribute it and/or modify it
 under the terms of the GNU General Public License as published by the Free
@@ -18,6 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #pragma once
 
 #include "Particles/Particle.hpp"
+#include "TrailEffects/trailEffects.hpp"
 
 
 class AmmoGauss: public Particle<AmmoGauss>
@@ -36,5 +37,7 @@ class AmmoGauss: public Particle<AmmoGauss>
         friend class Particle<AmmoGauss>;
 
     private:
+        Trail* trail_;
+        const static int steps_ = 16;
         static std::list<AmmoGauss*> activeParticles_;
 };

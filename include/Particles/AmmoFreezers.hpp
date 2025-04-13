@@ -1,6 +1,6 @@
 /* AmmoFreezers.hpp
 
-Copyright (c) 2010 - 2011 by Felix Lauer and Simon Schneegans
+Copyright (c) 2025 Crystal Hammer
 
 This program is free software: you can redistribute it and/or modify it
 under the terms of the GNU General Public License as published by the Free
@@ -33,11 +33,10 @@ class AmmoFreezers: public Particle<AmmoFreezers>
         void onCollision(SpaceObject* with, Vector2f const& location,
                          Vector2f const& direction, Vector2f const& velocity);
 
-        static void shockWave(Vector2f const& location, float strength, float radius);
-
         friend class Particle<AmmoFreezers>;
 
     private:
+        float spawnTime_;
         Color3f color_;
         static std::list<AmmoFreezers*> activeParticles_;
 };

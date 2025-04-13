@@ -87,6 +87,7 @@ namespace settings
     extern int            C_resY;
     extern int            C_colorDepth;
     extern bool           C_shaders;
+    extern bool           C_Flashes;
     extern Key            C_screenShotKey;
 
     extern bool           C_audioRandom;

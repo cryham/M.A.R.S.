@@ -1,5 +1,6 @@
 /* settings.cpp
 
+Copyright (c) 2025 Crystal Hammer
 Copyright (c) 2010 - 2011 by Felix Lauer and Simon Schneegans
 
 This program is free software: you can redistribute it and/or modify it
@@ -62,7 +63,7 @@ namespace settings
     int         C_globalParticleLifeTime =  100;
     bool        C_StarsHigh =               true;
     int         C_StarField =               500;
-
+    //  bots
     int         C_botsLeft =                4;
     int         C_botsRight =               4;
     int         C_botsDeath =               10;
@@ -89,12 +90,15 @@ namespace settings
     int         C_CountDown =               3;
 
     int         C_languageID =              0;
+    //  screen
     int         C_resX =                    INITIAL_WINDOW_X;
     int         C_resY =                    INITIAL_WINDOW_Y;
     int         C_colorDepth =              32;
+    //  post fx
     bool        C_shaders =                 false;
+    bool        C_Flashes =                 false;
     Key         C_screenShotKey =           Key(sf::Keyboard::F12);
-
+    //  audio
     bool        C_audioRandom =             true;
     Key         C_audioNextKey =            Key(sf::Keyboard::F8);
     Key         C_audioPreviousKey =        Key(sf::Keyboard::F7);
@@ -365,19 +369,23 @@ namespace settings
 
             oss << "[highStarResolution] "    << strBool(C_StarsHigh) << endl;
             oss << "[starField] "             << C_StarField << endl;
-            //  screen
+            
+            //  post fx
             oss << "[shaders] "               << strBool(C_shaders) << endl;
+            oss << "[postFXflashes] "         << strBool(C_Flashes) << endl;
+            //  screen
             oss << "[resolutionX] "           << C_resX << endl;
             oss << "[resolutionY] "           << C_resY << endl;
             oss << "[colorDepth] "            << C_colorDepth << endl;
-            //  audio
-            oss << "[audioRandom] "           << strBool(C_audioRandom) << endl;
-            oss << "[audioNextKey] "          << C_audioNextKey << endl;
-            oss << "[audioPreviousKey] "      << C_audioPreviousKey << endl;
             //  keys
             oss << "[screenShotKey] "         << C_screenShotKey << endl;
             oss << "[statisticsKey] "         << C_statisticsKey << endl;
             oss << "[screenShotFormat] "      << C_screenShotFormat << endl;
+            
+            //  audio
+            oss << "[audioRandom] "           << strBool(C_audioRandom) << endl;
+            oss << "[audioNextKey] "          << C_audioNextKey << endl;
+            oss << "[audioPreviousKey] "      << C_audioPreviousKey << endl;
             //  weapons
             for (int i=0; i < weapons::All; ++i)
                 oss << "[enabledWeapons"<< i <<"] "  << strBool(C_EnabledWeaponsByUser[i]) << endl;
@@ -672,19 +680,22 @@ namespace settings
 
                 else if (line == "[highStarResolution]")  readBool(iss, line, C_StarsHigh);
                 else if (line == "[starField]")           readInt(iss, C_StarField);
-                //  screen
+                
+                //  post fx
                 else if (line == "[shaders]")             readBool(iss, line, C_shaders);
+                else if (line == "[postFXflashes]")       readBool(iss, line, C_Flashes);
+                //  screen
                 else if (line == "[resolutionX]")         readInt(iss, C_resX);
                 else if (line == "[resolutionY]")         readInt(iss, C_resY);
                 else if (line == "[colorDepth]")          readInt(iss, C_colorDepth);
-                //  audio
-                else if (line == "[audioRandom]")         readBool(iss, line, C_audioRandom);
-                else if (line == "[audioNextKey]")        iss >> C_audioNextKey;
-                else if (line == "[audioPreviousKey]")    iss >> C_audioPreviousKey;
                 //  keys
                 else if (line == "[screenShotKey]")       iss >> C_screenShotKey;
                 else if (line == "[statisticsKey]")       iss >> C_statisticsKey;
                 else if (line == "[screenShotFormat]")    iss >> C_screenShotFormat;
+                //  audio
+                else if (line == "[audioRandom]")         readBool(iss, line, C_audioRandom);
+                else if (line == "[audioNextKey]")        iss >> C_audioNextKey;
+                else if (line == "[audioPreviousKey]")    iss >> C_audioPreviousKey;
                 //  weapons  above
                 //  map
                 else if (line == "[MapXsize]")            iss >> C_MapXsize;

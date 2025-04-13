@@ -58,6 +58,8 @@ namespace postFX
                 else
                     exposure_ = 1.f;
             }
+            if (!settings::C_Flashes)  // disables
+                exposure_ = 1.f;
             postFX_.setUniform("Exposure", exposure_);
         }
     }

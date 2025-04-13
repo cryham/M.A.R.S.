@@ -76,12 +76,15 @@ void Logo::draw() const
     int height(0);
     if (window::getViewPort().y_ < settings::C_MapYsize)
         height = (window::getViewPort().y_ - settings::C_MapYsize)*0.3;
+    // const int sx = 400, sy = 350;  // org
+    const int sx = 200, sy = 175;  // half
+    
     glBegin(GL_QUADS);
         glColor3f(1.0,1.0,1.0);
-        glTexCoord2f(0, 0 + offset);                   glVertex2f(mid-400, 0+height);
-        glTexCoord2f(0, 0.341796875f + offset);        glVertex2f(mid-400, 350+height);
-        glTexCoord2f(0.78125f, 0.341796875f + offset); glVertex2f(mid+400, 350+height);
-        glTexCoord2f(0.78125f, 0 + offset);            glVertex2f(mid+400, 0+height);
+        glTexCoord2f(0, 0 + offset);                   glVertex2f(mid-sx, height);
+        glTexCoord2f(0, 0.341796875f + offset);        glVertex2f(mid-sx, height+sy);
+        glTexCoord2f(0.78125f, 0.341796875f + offset); glVertex2f(mid+sx, height+sy);
+        glTexCoord2f(0.78125f, 0 + offset);            glVertex2f(mid+sx, height);
     glEnd();
     glDisable(GL_TEXTURE_2D);
     glBindTexture(GL_TEXTURE_2D, 0);

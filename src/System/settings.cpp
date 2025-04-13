@@ -46,15 +46,14 @@ inline int clamp(int x, int min, int max)
 
 namespace settings
 {
-    //  game settings
-    //  adjustable via options menu
+    //  game settings  adjustable via options menu
     //----------------------------------------------------------------------------------------------------------------------------------
     int         C_soundVolume =             30;
     int         C_announcerVolume =         0;
-    int         C_musicVolume =             60;
+    int         C_musicVolume =             30;
+
     bool        C_showFPS =                 false;
     bool        C_showParticleCount =       false;
-    bool        C_showLatency =             false;
     bool        C_fullScreen =              false;
     bool        C_vsync =                   true;
 
@@ -64,12 +63,12 @@ namespace settings
     bool        C_StarsHigh =               true;
     int         C_StarField =               500;
     //  bots
-    int         C_botsLeft =                4;
-    int         C_botsRight =               4;
+    int         C_botsLeft =                2;
+    int         C_botsRight =               2;
     int         C_botsDeath =               10;
     int         C_pointLimitSB =            10;
     int         C_pointLimitCK =            10;
-    int         C_pointLimitDM =            20;
+    int         C_pointLimitDM =            30;
     int         C_pointLimitTDM =           50;
 
     int         C_powerUpRate =             40;
@@ -84,8 +83,8 @@ namespace settings
     bool        C_showSelectLanguage =      true;
     bool        C_showToolTips =            true;
 
-    bool        C_noConfirmations =         true;
-    // int         C_UIscale =                 100;  // UiElement::scale_
+    bool        C_noConfirmations =         false;
+    // int         C_UIscale =                 150;  // UiElement::scale_
     bool        C_LogoSigns =               true;
     int         C_CountDown =               3;
 
@@ -124,14 +123,14 @@ namespace settings
     int         C_BallRadius         = 15;
 
     int         C_ShipTurnSpeed = 25;
-    int         C_DamageScale   = 50;
+    int         C_DamageScale   = 70;
     int         C_Regeneration  = 60;
-    int         C_FuelRegen     = 50;
+    int         C_FuelRegen     = 150;
     int         C_RespawnDelay  = 20;
-    int         C_GlowAlpha     = 20;
+    int         C_GlowAlpha     = 30;
 
-    bool        C_CyclicBorderX = true;
-    bool        C_CyclicBorderY = true;
+    bool        C_CyclicBorderX = false;
+    bool        C_CyclicBorderY = false;
     int         C_GravityScale  = 100;
 
     //  weapons
@@ -141,7 +140,7 @@ namespace settings
     bool        C_EnabledSpecialsByUser[specials::All] = {true,};
 
 
-    //  player settings ----- adjustable via options menu
+    //  player settings -----
     sf::String    C_playerIName =           "PlayerI";
     Color3f       C_playerIColor =          Color3f(1.f, 0.87f, 0.0125f);
     Color3f       C_playerITeamColor =      Color3f(0.94f, 0.24f, 1.f);
@@ -152,15 +151,15 @@ namespace settings
 
     Key           C_playerIleft =           Key(sf::Keyboard::Left);
     Key           C_playerIright =          Key(sf::Keyboard::Right);
-    Key           C_playerIfire =           Key(sf::Keyboard::RControl);
+    Key           C_playerIfire =           Key(sf::Keyboard::RShift);
 
-    Key           C_playerISpecialKey =     Key(sf::Keyboard::RShift);
-    Key           C_playerIprev =           Key(sf::Keyboard::Divide);
-    Key           C_playerInext =           Key(sf::Keyboard::Multiply);
+    Key           C_playerISpecialKey =     Key(sf::Keyboard::RControl);
+    Key           C_playerIprev =           Key(sf::Keyboard::PageUp);
+    Key           C_playerInext =           Key(sf::Keyboard::PageDown);
 
     bool          C_playerIteamL =          false;
     bool          C_playerIteamR =          true;
-    int           C_playerIShip =           0;
+    int           C_playerIShip =           4;
     bool          C_playerImouseAim =       true;
 
     weapons::WeaponType   C_playerIWeapon =  weapons::wAFK47;
@@ -176,31 +175,32 @@ namespace settings
 
     Key           C_playerIIleft =          Key(sf::Keyboard::A);
     Key           C_playerIIright =         Key(sf::Keyboard::D);
-    Key           C_playerIIfire =          Key(sf::Keyboard::LControl);
+    Key           C_playerIIfire =          Key(sf::Keyboard::LShift);
 
-    Key           C_playerIISpecialKey =    Key(sf::Keyboard::LShift);
+    Key           C_playerIISpecialKey =    Key(sf::Keyboard::LControl);
     Key           C_playerIIprev =          Key(sf::Keyboard::Num1);
     Key           C_playerIInext =          Key(sf::Keyboard::Num2);
 
     bool          C_playerIIteamL =         true;
     bool          C_playerIIteamR =         false;
-    int           C_playerIIShip =          0;
+    int           C_playerIIShip =          1;
     bool          C_playerIImouseAim =      false;
 
     weapons::WeaponType   C_playerIIWeapon =  weapons::wAFK47;
     specials::SpecialType C_playerIISpecial = specials::sHeal;
-    bool          C_networkPlayerI =        true;
 
 
-    //  ai settings ------ adjustable via options menu
+    //  ai settings ------
     bool        C_drawBotJobs =             false;
     bool        C_drawZones =               false;
     bool        C_drawAIPath =              false;
-    int         C_iDumb =                   70;
+    int         C_iDumb =                   30;
 
-    //  network settings ----- adjustable via options menu
+    //  network settings ----- unused
     sf::String C_ip =                      "192.168.0.1";
     sf::String C_port =                    "12345";
+    bool          C_networkPlayerI =        true;
+    bool          C_showLatency =           false;
 
 
     //  utility
@@ -210,16 +210,16 @@ namespace settings
     void readBool(istringstream& iss, string inputLine, bool& val)
     {
         string s;  iss >> s;
-        if (s == "true")   val = true;
+        if (s == "on")   val = true;
         else
-        if (s == "false")  val = false;
+        if (s == "off")  val = false;
         else
-            cout << s << " is a bad value for " << inputLine << ". Use true or false instead.\n";
+            cout << s << " is a bad value for " << inputLine << ". Use on or off instead.\n";
     }
 
     string strBool(bool val)
     {
-        return val ? "true" : "false";
+        return val ? "on" : "off";
     }
 
     //  int
@@ -287,134 +287,140 @@ namespace settings
             oss << "// mars config file" << endl;
             oss << "// nearly all these options can be changed with the in-game menu, too." << endl << endl;
 
-            oss << "[soundVolume] "           << C_soundVolume << endl;
-            oss << "[announcerVolume] "       << C_announcerVolume << endl;
-            oss << "[musicVolume] "           << C_musicVolume << endl;
-            oss << "[globalParticleCount] "   << C_globalParticleCount << endl;
-            oss << "[globalParticleLifeTime] "<< C_globalParticleLifeTime << endl;
+            //  ----
+            oss << "soundVolume "           << C_soundVolume << endl;
+            oss << "announcerVolume "       << C_announcerVolume << endl;
+            oss << "musicVolume "           << C_musicVolume << endl << endl;
+
+            oss << "globalParticleCount "   << C_globalParticleCount << endl;
+            oss << "globalParticleLifeTime "<< C_globalParticleLifeTime << endl << endl;
             
-            oss << "[showFPS] "               << strBool(C_showFPS) << endl;
-            oss << "[showParticleCount] "     << strBool(C_showParticleCount) << endl;
-            oss << "[showLatency] "           << strBool(C_showLatency) << endl;
-            oss << "[fullScreen] "            << strBool(C_fullScreen) << endl;
-            oss << "[vsync] "                 << strBool(C_vsync) << endl;
+            oss << "showFPS "               << strBool(C_showFPS) << endl;
+            oss << "showParticleCount "     << strBool(C_showParticleCount) << endl;
+            oss << "showLatency "           << strBool(C_showLatency) << endl << endl;
+
+            oss << "fullScreen "            << strBool(C_fullScreen) << endl;
+            oss << "vsync "                 << strBool(C_vsync) << endl << endl;
             
-            oss << "[drawAIPath] "            << strBool(C_drawAIPath) << endl;
-            oss << "[iDumb] "                 << C_iDumb << endl;
-            oss << "[adaptiveParticleCount] " << strBool(C_adaptiveParticleCount) << endl;
-            oss << "[drawBotJobs] "           << strBool(C_drawBotJobs) << endl;
-            oss << "[drawZones] "             << strBool(C_drawZones) << endl;
+            oss << "drawAIPath "            << strBool(C_drawAIPath) << endl;
+            oss << "iDumb "                 << C_iDumb << endl;
+            oss << "adaptiveParticleCount " << strBool(C_adaptiveParticleCount) << endl;
+            oss << "drawBotJobs "           << strBool(C_drawBotJobs) << endl;
+            oss << "drawZones "             << strBool(C_drawZones) << endl << endl;
             //  points
-            oss << "[botsLeft] "              << C_botsLeft << endl;
-            oss << "[botsRight] "             << C_botsRight << endl;
-            oss << "[botsDeath] "             << C_botsDeath << endl;
-            oss << "[pointLimitSB] "          << C_pointLimitSB << endl;
-            oss << "[pointLimitCK] "          << C_pointLimitCK << endl;
-            oss << "[pointLimitDM] "          << C_pointLimitDM << endl;
-            oss << "[pointLimitTDM] "         << C_pointLimitTDM << endl;
+            oss << "botsLeft "              << C_botsLeft << endl;
+            oss << "botsRight "             << C_botsRight << endl;
+            oss << "botsDeath "             << C_botsDeath << endl;
+            oss << "pointLimitSB "          << C_pointLimitSB << endl;
+            oss << "pointLimitCK "          << C_pointLimitCK << endl;
+            oss << "pointLimitDM "          << C_pointLimitDM << endl;
+            oss << "pointLimitTDM "         << C_pointLimitTDM << endl << endl;
             
-            oss << "[powerUpRate] "           << C_powerUpRate << endl;
-            oss << "[slowMoKickIn] "          << C_slowMoKickIn << endl;
-            oss << "[gameSpeed] "             << C_gameSpeed << endl;
+            oss << "powerUpRate "           << C_powerUpRate << endl;
+            oss << "slowMoKickIn "          << C_slowMoKickIn << endl;
+            oss << "gameSpeed "             << C_gameSpeed << endl << endl;
+
             //----  player I
-            oss << "[playerIName] ";          strMax(oss, C_playerIName, 12);
-            oss << "[playerIKeys] "           <<  C_playerIup << " " << C_playerIright << " " << C_playerIleft << " "
+            oss << "playerIName ";          strMax(oss, C_playerIName, 12);
+            oss << "playerIKeys "           <<  C_playerIup << " " << C_playerIright << " " << C_playerIleft << " "
                 << C_playerIfire << " " << C_playerISpecialKey << " "
                 << C_playerIdown << " " << C_playerIboost << " " << C_playerIprev << " " << C_playerInext << endl;
             
-            oss << "[playerIColor] ";         strColor(oss, C_playerIColor);
-            oss << "[playerITeamColor] ";     strColor(oss, C_playerITeamColor);
-            oss << "[playerITeamL] "          << strBool(C_playerIteamL) << endl;
-            oss << "[playerITeamR] "          << strBool(C_playerIteamR) << endl;
+            oss << "playerIColor ";         strColor(oss, C_playerIColor);
+            oss << "playerITeamColor ";     strColor(oss, C_playerITeamColor);
+            oss << "playerITeamL "          << strBool(C_playerIteamL) << endl;
+            oss << "playerITeamR "          << strBool(C_playerIteamR) << endl;
             
-            oss << "[playerIShip] "           <<  C_playerIShip << endl;
-            oss << "[playerIWeapon] "         <<  C_playerIWeapon << endl;
-            oss << "[playerISpecial] "        <<  C_playerISpecial << endl;
-            oss << "[playerImouseAim] "       << strBool(C_playerImouseAim) << endl;
-            //  player II
-            oss << "[playerIIName] ";         strMax(oss, C_playerIIName, 12);
-            oss << "[playerIIKeys] "          <<  C_playerIIup << " "<< C_playerIIright << " " << C_playerIIleft << " "
+            oss << "playerIShip "           <<  C_playerIShip << endl;
+            oss << "playerIWeapon "         <<  C_playerIWeapon << endl;
+            oss << "playerISpecial "        <<  C_playerISpecial << endl;
+            oss << "playerImouseAim "       << strBool(C_playerImouseAim) << endl << endl;
+            //----  player II
+            oss << "playerIIName ";         strMax(oss, C_playerIIName, 12);
+            oss << "playerIIKeys "          <<  C_playerIIup << " "<< C_playerIIright << " " << C_playerIIleft << " "
                 << C_playerIIfire << " " << C_playerIISpecialKey << " "
                 << C_playerIIdown << " " << C_playerIIboost << " " << C_playerIIprev << " " << C_playerIInext << endl;
 
-            oss << "[playerIIColor] ";        strColor(oss, C_playerIIColor);
-            oss << "[playerIITeamColor] ";    strColor(oss, C_playerIITeamColor);
-            oss << "[playerIITeamL] "         << strBool(C_playerIIteamL) << endl;
-            oss << "[playerIITeamR] "         << strBool(C_playerIIteamR) << endl;
+            oss << "playerIIColor ";        strColor(oss, C_playerIIColor);
+            oss << "playerIITeamColor ";    strColor(oss, C_playerIITeamColor);
+            oss << "playerIITeamL "         << strBool(C_playerIIteamL) << endl;
+            oss << "playerIITeamR "         << strBool(C_playerIIteamR) << endl;
             
-            oss << "[playerIIShip] "          <<  C_playerIIShip << endl;
-            oss << "[playerIIWeapon] "        <<  C_playerIIWeapon << endl;
-            oss << "[playerIISpecial] "       <<  C_playerIISpecial << endl;
-            oss << "[playerIImouseAim] "      << strBool(C_playerIImouseAim) << endl;
-            //----
-            oss << "[connectIP] "             << C_ip.toAnsiString() << endl;
-            oss << "[connectPort] "           << C_port.toAnsiString() << endl;
-            oss << "[networkTeamRed] "        << strBool(C_networkPlayerI) << endl;
+            oss << "playerIIShip "          <<  C_playerIIShip << endl;
+            oss << "playerIIWeapon "        <<  C_playerIIWeapon << endl;
+            oss << "playerIISpecial "       <<  C_playerIISpecial << endl;
+            oss << "playerIImouseAim "      << strBool(C_playerIImouseAim) << endl << endl;
+            
+            //  net unused
+            oss << "connectIP "             << C_ip.toAnsiString() << endl;
+            oss << "connectPort "           << C_port.toAnsiString() << endl;
+            oss << "networkTeamRed "        << strBool(C_networkPlayerI) << endl << endl;
             //  show
-            oss << "[showInfoHide] "          << strBool(C_showInfoHide) << endl;
-            oss << "[showInfoSB] "            << strBool(C_showInfoSB) << endl;
-            oss << "[showInfoDM] "            << strBool(C_showInfoDM) << endl;
-            oss << "[showInfoTDM] "           << strBool(C_showInfoTDM) << endl;
-            oss << "[showInfoCK] "            << strBool(C_showInfoCK) << endl;
+            oss << "showInfoHide "          << strBool(C_showInfoHide) << endl;
+            oss << "showInfoSB "            << strBool(C_showInfoSB) << endl;
+            oss << "showInfoDM "            << strBool(C_showInfoDM) << endl;
+            oss << "showInfoTDM "           << strBool(C_showInfoTDM) << endl;
+            oss << "showInfoCK "            << strBool(C_showInfoCK) << endl << endl;
 
-            //  UI
-            oss << "[languageID] "            << C_languageID << endl;
-            oss << "[showSelectLanguage] "    << strBool(C_showSelectLanguage) << endl;
-            oss << "[showToolTips] "          << strBool(C_showToolTips) << endl;
+            //  UI  ----
+            oss << "languageID "            << C_languageID << endl;
+            oss << "showSelectLanguage "    << strBool(C_showSelectLanguage) << endl << endl;
+            oss << "showToolTips "          << strBool(C_showToolTips) << endl;
             //  UI new
-            oss << "[NoConfirmations] "       << strBool(C_noConfirmations) << endl;
-            oss << "[UIScale] "               << UiElement::scale_ << endl;
-            oss << "[C_LogoSigns] "           << strBool(C_LogoSigns) << endl;
-            oss << "[C_CountDown] "           << C_CountDown << endl;
+            oss << "NoConfirmations "       << strBool(C_noConfirmations) << endl;
+            oss << "UIScale "               << UiElement::scale_ << endl;
+            oss << "LogoSigns "             << strBool(C_LogoSigns) << endl;
+            oss << "CountDown "             << C_CountDown << endl << endl;
 
-            oss << "[highStarResolution] "    << strBool(C_StarsHigh) << endl;
-            oss << "[starField] "             << C_StarField << endl;
+            oss << "highStarResolution "    << strBool(C_StarsHigh) << endl;
+            oss << "starField "             << C_StarField << endl << endl;
             
-            //  post fx
-            oss << "[shaders] "               << strBool(C_shaders) << endl;
-            oss << "[postFXflashes] "         << strBool(C_Flashes) << endl;
+            //  post fx  ----
+            oss << "shaders "               << strBool(C_shaders) << endl;
+            oss << "postFXflashes "         << strBool(C_Flashes) << endl << endl;
             //  screen
-            oss << "[resolutionX] "           << C_resX << endl;
-            oss << "[resolutionY] "           << C_resY << endl;
-            oss << "[colorDepth] "            << C_colorDepth << endl;
+            oss << "resolutionX "           << C_resX << endl;
+            oss << "resolutionY "           << C_resY << endl;
+            oss << "colorDepth "            << C_colorDepth << endl << endl;
             //  keys
-            oss << "[screenShotKey] "         << C_screenShotKey << endl;
-            oss << "[statisticsKey] "         << C_statisticsKey << endl;
-            oss << "[screenShotFormat] "      << C_screenShotFormat << endl;
+            oss << "screenShotKey "         << C_screenShotKey << endl;
+            oss << "statisticsKey "         << C_statisticsKey << endl;
+            oss << "screenShotFormat "      << C_screenShotFormat << endl << endl;
             
-            //  audio
-            oss << "[audioRandom] "           << strBool(C_audioRandom) << endl;
-            oss << "[audioNextKey] "          << C_audioNextKey << endl;
-            oss << "[audioPreviousKey] "      << C_audioPreviousKey << endl;
+            //  audio  ----
+            oss << "audioRandom "           << strBool(C_audioRandom) << endl;
+            oss << "audioNextKey "          << C_audioNextKey << endl;
+            oss << "audioPreviousKey "      << C_audioPreviousKey << endl << endl;
             //  weapons
             for (int i=0; i < weapons::All; ++i)
-                oss << "[enabledWeapons"<< i <<"] "  << strBool(C_EnabledWeaponsByUser[i]) << endl;
-
+                oss << "enabledWeapons"<< i <<" "  << strBool(C_EnabledWeaponsByUser[i]) << endl;
+            oss << endl;
             for (int i=0; i < specials::All; ++i)
-                oss << "[enabledSpecials"<< i <<"] " << strBool(C_EnabledSpecialsByUser[i]) << endl;
-            //  map
-            oss << "[MapXsize] "              << C_MapXsize << endl;
-            oss << "[MapYsize] "              << C_MapYsize << endl;
-            oss << "[MapMinPlanets] "         << C_MapMinPlanets << endl;
-            oss << "[MapMaxPlanets] "         << C_MapMaxPlanets << endl;
-            oss << "[MapMinPlanetsSize] "     << C_MapMinPlanetsSize << endl;
-            oss << "[MapMaxPlanetsSize] "     << C_MapMaxPlanetsSize << endl;
-            oss << "[MapMinPlanetGap] "       << C_MapMinPlanetGap << endl;
+                oss << "enabledSpecials"<< i <<" " << strBool(C_EnabledSpecialsByUser[i]) << endl;
+            oss << endl;
+            //  map  ----
+            oss << "MapXsize "              << C_MapXsize << endl;
+            oss << "MapYsize "              << C_MapYsize << endl;
+            oss << "MapMinPlanets "         << C_MapMinPlanets << endl;
+            oss << "MapMaxPlanets "         << C_MapMaxPlanets << endl;
+            oss << "MapMinPlanetsSize "     << C_MapMinPlanetsSize << endl;
+            oss << "MapMaxPlanetsSize "     << C_MapMaxPlanetsSize << endl;
+            oss << "MapMinPlanetGap "       << C_MapMinPlanetGap << endl << endl;
 
-            oss << "[MapHomeRadius] "         << C_MapHomeRadius << endl;
-            oss << "[ShipRadius] "            << C_ShipRadius << endl;
-            oss << "[BallRadius] "            << C_BallRadius << endl;
+            oss << "MapHomeRadius "         << C_MapHomeRadius << endl;
+            oss << "ShipRadius "            << C_ShipRadius << endl;
+            oss << "BallRadius "            << C_BallRadius << endl << endl;
 
-            oss << "[CyclicBorderX] "         << strBool(C_CyclicBorderX) << endl;
-            oss << "[CyclicBorderY] "         << strBool(C_CyclicBorderY) << endl;
-            oss << "[GravityScale] "          << C_GravityScale << endl;
+            oss << "CyclicBorderX "         << strBool(C_CyclicBorderX) << endl;
+            oss << "CyclicBorderY "         << strBool(C_CyclicBorderY) << endl;
+            oss << "GravityScale "          << C_GravityScale << endl << endl;
             //  game
-            oss << "[ShipTurnSpeed] "         << C_ShipTurnSpeed << endl;
-            oss << "[DamageScale] "           << C_DamageScale << endl;
-            oss << "[Regeneration] "          << C_Regeneration << endl;
-            oss << "[FuelRegen] "             << C_FuelRegen << endl;
-            oss << "[RespawnDelay] "          << C_RespawnDelay << endl;
-            oss << "[GlowAlpha] "             << C_GlowAlpha << endl;
+            oss << "ShipTurnSpeed "         << C_ShipTurnSpeed << endl;
+            oss << "DamageScale "           << C_DamageScale << endl;
+            oss << "Regeneration "          << C_Regeneration << endl;
+            oss << "FuelRegen "             << C_FuelRegen << endl << endl;
+            oss << "RespawnDelay "          << C_RespawnDelay << endl;
+            oss << "GlowAlpha "             << C_GlowAlpha << endl;
 
             oss.close();
             return true;
@@ -564,7 +570,7 @@ namespace settings
                 for (int i=0; i < weapons::All; ++i)
                 {
                     stringstream ss;
-                    ss << "[enabledWeapons" << i << "]";
+                    ss << "enabledWeapons" << i << "]";
                     if (line == ss.str())
                     {
                         readBool(iss, line, C_EnabledWeaponsByUser[i]);   C_EnabledWeapons[i] = C_EnabledWeaponsByUser[i];
@@ -575,7 +581,7 @@ namespace settings
                 for (int i=0; i < specials::All; ++i)
                 {
                     stringstream ss;
-                    ss << "[enabledSpecials" << i << "]";
+                    ss << "enabledSpecials" << i << "]";
                     if (line == ss.str())
                     {
                         readBool(iss, line, C_EnabledSpecialsByUser[i]);   C_EnabledSpecials[i] = C_EnabledSpecialsByUser[i];
@@ -584,142 +590,142 @@ namespace settings
                 }
                 if (found)  continue;
 
-                if      (line == "[soundVolume]")            readInt(iss, C_soundVolume, 0, 100);
-                else if (line == "[announcerVolume]")        readInt(iss, C_announcerVolume, 0, 100);
-                else if (line == "[musicVolume]")            readInt(iss, C_musicVolume, 0, 100);
+                if      (line == "soundVolume")            readInt(iss, C_soundVolume, 0, 100);
+                else if (line == "announcerVolume")        readInt(iss, C_announcerVolume, 0, 100);
+                else if (line == "musicVolume")            readInt(iss, C_musicVolume, 0, 100);
                 
-                else if (line == "[globalParticleCount]")    readInt(iss, C_globalParticleCount, 10, 300);
-                else if (line == "[globalParticleLifeTime]") readInt(iss, C_globalParticleLifeTime, 10, 300);
+                else if (line == "globalParticleCount")    readInt(iss, C_globalParticleCount, 10, 300);
+                else if (line == "globalParticleLifeTime") readInt(iss, C_globalParticleLifeTime, 10, 300);
                 
-                else if (line == "[showFPS]")                readBool(iss, line, C_showFPS);
-                else if (line == "[showParticleCount]")      readBool(iss, line, C_showParticleCount);
-                else if (line == "[showLatency]")            readBool(iss, line, C_showLatency);
+                else if (line == "showFPS")                readBool(iss, line, C_showFPS);
+                else if (line == "showParticleCount")      readBool(iss, line, C_showParticleCount);
+                else if (line == "showLatency")            readBool(iss, line, C_showLatency);
                 
-                else if (line == "[fullScreen]")             readBool(iss, line, C_fullScreen);
-                else if (line == "[vsync]")                  readBool(iss, line, C_vsync);
+                else if (line == "fullScreen")             readBool(iss, line, C_fullScreen);
+                else if (line == "vsync")                  readBool(iss, line, C_vsync);
                 
-                else if (line == "[drawAIPath]")             readBool(iss, line, C_drawAIPath);
-                else if (line == "[iDumb]")                  readInt(iss, C_iDumb, 0, 100);
+                else if (line == "drawAIPath")             readBool(iss, line, C_drawAIPath);
+                else if (line == "iDumb")                  readInt(iss, C_iDumb, 0, 100);
 
-                else if (line == "[adaptiveParticleCount]")  readBool(iss, line, C_adaptiveParticleCount);
-                else if (line == "[drawBotJobs]")            readBool(iss, line, C_drawBotJobs);
-                else if (line == "[drawZones]")              readBool(iss, line, C_drawZones);
+                else if (line == "adaptiveParticleCount")  readBool(iss, line, C_adaptiveParticleCount);
+                else if (line == "drawBotJobs")            readBool(iss, line, C_drawBotJobs);
+                else if (line == "drawZones")              readBool(iss, line, C_drawZones);
                 //  points
-                else if (line == "[botsLeft]")               readInt(iss, C_botsLeft, 0, 20);
-                else if (line == "[botsRight]")              readInt(iss, C_botsRight, 0, 20);
-                else if (line == "[botsDeath]")              readInt(iss, C_botsDeath, 0, 80);
-                else if (line == "[pointLimitSB]")           readInt(iss, C_pointLimitSB, 1, 100);
-                else if (line == "[pointLimitCK]")           readInt(iss, C_pointLimitCK, 1, 100);
-                else if (line == "[pointLimitDM]")           readInt(iss, C_pointLimitDM, 1, 400);
-                else if (line == "[pointLimitTDM]")          readInt(iss, C_pointLimitTDM,1, 400);
+                else if (line == "botsLeft")               readInt(iss, C_botsLeft, 0, 20);
+                else if (line == "botsRight")              readInt(iss, C_botsRight, 0, 20);
+                else if (line == "botsDeath")              readInt(iss, C_botsDeath, 0, 80);
+                else if (line == "pointLimitSB")           readInt(iss, C_pointLimitSB, 1, 100);
+                else if (line == "pointLimitCK")           readInt(iss, C_pointLimitCK, 1, 100);
+                else if (line == "pointLimitDM")           readInt(iss, C_pointLimitDM, 1, 400);
+                else if (line == "pointLimitTDM")          readInt(iss, C_pointLimitTDM,1, 400);
 
-                else if (line == "[powerUpRate]")            readInt(iss, C_powerUpRate, 0, 100);
-                else if (line == "[slowMoKickIn]")           readInt(iss, C_slowMoKickIn, 0, 100);
-                else if (line == "[gameSpeed]")              readInt(iss, C_gameSpeed, 50, 200);
+                else if (line == "powerUpRate")            readInt(iss, C_powerUpRate, 0, 100);
+                else if (line == "slowMoKickIn")           readInt(iss, C_slowMoKickIn, 0, 100);
+                else if (line == "gameSpeed")              readInt(iss, C_gameSpeed, 50, 200);
                 //----  players
-                else if (line == "[playerIName]")            readString(iss, C_playerIName, 12);
-                else if (line == "[playerIIName]")           readString(iss, C_playerIIName, 12);
-                else if (line == "[playerIKeys]") {
+                else if (line == "playerIName")            readString(iss, C_playerIName, 12);
+                else if (line == "playerIIName")           readString(iss, C_playerIIName, 12);
+                else if (line == "playerIKeys") {
                     iss >> C_playerIup >> C_playerIright >> C_playerIleft >> C_playerIfire >> C_playerISpecialKey;
                     iss >> C_playerIdown >> C_playerIboost >> C_playerIprev >> C_playerInext;
                 }
-                else if (line == "[playerIIKeys]") {
+                else if (line == "playerIIKeys") {
                     iss >> C_playerIIup >> C_playerIIright >> C_playerIIleft >> C_playerIIfire >> C_playerIISpecialKey;
                     iss >> C_playerIIdown >> C_playerIIboost >> C_playerIIprev >> C_playerIInext;
                 }
-                else if (line == "[playerIColor]")       readColor(iss, C_playerIColor);
-                else if (line == "[playerIIColor]")      readColor(iss, C_playerIIColor);
-                else if (line == "[playerITeamColor]")   readColor(iss, C_playerITeamColor);
-                else if (line == "[playerIITeamColor]")  readColor(iss, C_playerIITeamColor);
+                else if (line == "playerIColor")       readColor(iss, C_playerIColor);
+                else if (line == "playerIIColor")      readColor(iss, C_playerIIColor);
+                else if (line == "playerITeamColor")   readColor(iss, C_playerITeamColor);
+                else if (line == "playerIITeamColor")  readColor(iss, C_playerIITeamColor);
                 
-                else if (line == "[playerITeamL]")       readBool(iss, line, C_playerIteamL);
-                else if (line == "[playerITeamR]")       readBool(iss, line, C_playerIteamR);
-                else if (line == "[playerIShip]")        iss >> C_playerIShip;
-                else if (line == "[playerIIShip]")       iss >> C_playerIIShip;
+                else if (line == "playerITeamL")       readBool(iss, line, C_playerIteamL);
+                else if (line == "playerITeamR")       readBool(iss, line, C_playerIteamR);
+                else if (line == "playerIShip")        iss >> C_playerIShip;
+                else if (line == "playerIIShip")       iss >> C_playerIIShip;
 
-                else if (line == "[playerIWeapon]") {    int tmp;  iss >> tmp;
+                else if (line == "playerIWeapon") {    int tmp;  iss >> tmp;
                     if (tmp == weapons::wInsta)
                         tmp = weapons::wAFK47;
                     C_playerIWeapon = static_cast<weapons::WeaponType>(tmp);
                 }
-                else if (line == "[playerISpecial]") {   int tmp;  iss >> tmp;
+                else if (line == "playerISpecial") {   int tmp;  iss >> tmp;
                     C_playerISpecial = static_cast<specials::SpecialType>(tmp);
                 }
-                else if (line == "[playerIIWeapon]") {   int tmp;  iss >> tmp;
+                else if (line == "playerIIWeapon") {   int tmp;  iss >> tmp;
                     if (tmp == weapons::wInsta)
                         tmp = weapons::wAFK47;
                     C_playerIIWeapon = static_cast<weapons::WeaponType>(tmp);
                 }
-                else if (line == "[playerIISpecial]") {  int tmp;  iss >> tmp;
+                else if (line == "playerIISpecial") {  int tmp;  iss >> tmp;
                     C_playerIISpecial = static_cast<specials::SpecialType>(tmp);
                 }
-                else if (line == "[playerImouseAim]")     readBool(iss, line, C_playerImouseAim);
-                else if (line == "[playerIImouseAim]")    readBool(iss, line, C_playerIImouseAim);
+                else if (line == "playerImouseAim")     readBool(iss, line, C_playerImouseAim);
+                else if (line == "playerIImouseAim")    readBool(iss, line, C_playerIImouseAim);
 
-                else if (line == "[playerIITeamL]")       readBool(iss, line, C_playerIIteamL);
-                else if (line == "[playerIITeamR]")       readBool(iss, line, C_playerIIteamR);
+                else if (line == "playerIITeamL")       readBool(iss, line, C_playerIIteamL);
+                else if (line == "playerIITeamR")       readBool(iss, line, C_playerIIteamR);
                 //----
-                else if (line == "[connectIP]") {         string tmp;  iss >> tmp;  C_ip = sf::String(tmp);    }
-                else if (line == "[connectPort]") {       string tmp;  iss >> tmp;  C_port = sf::String(tmp);  }
-                else if (line == "[networkTeamRed]")      readBool(iss, line, C_networkPlayerI);
+                else if (line == "connectIP") {         string tmp;  iss >> tmp;  C_ip = sf::String(tmp);    }
+                else if (line == "connectPort") {       string tmp;  iss >> tmp;  C_port = sf::String(tmp);  }
+                else if (line == "networkTeamRed")      readBool(iss, line, C_networkPlayerI);
                 //  show
-                else if (line == "[showInfoHide]")        readBool(iss, line, C_showInfoHide);
-                else if (line == "[showInfoSB]")          readBool(iss, line, C_showInfoSB);
-                else if (line == "[showInfoDM]")          readBool(iss, line, C_showInfoDM);
-                else if (line == "[showInfoTDM]")         readBool(iss, line, C_showInfoTDM);
-                else if (line == "[showInfoCK]")          readBool(iss, line, C_showInfoCK);
+                else if (line == "showInfoHide")        readBool(iss, line, C_showInfoHide);
+                else if (line == "showInfoSB")          readBool(iss, line, C_showInfoSB);
+                else if (line == "showInfoDM")          readBool(iss, line, C_showInfoDM);
+                else if (line == "showInfoTDM")         readBool(iss, line, C_showInfoTDM);
+                else if (line == "showInfoCK")          readBool(iss, line, C_showInfoCK);
                 //  UI
-                else if (line == "[languageID]")          readInt(iss, C_languageID);
-                else if (line == "[showSelectLanguage]")  readBool(iss, line, C_showSelectLanguage);
-                else if (line == "[showToolTips]")        readBool(iss, line, C_showToolTips);
+                else if (line == "languageID")          readInt(iss, C_languageID);
+                else if (line == "showSelectLanguage")  readBool(iss, line, C_showSelectLanguage);
+                else if (line == "showToolTips")        readBool(iss, line, C_showToolTips);
                 //  UI new
-                else if (line == "[NoConfirmations]")     readBool(iss, line, C_noConfirmations);
-                else if (line == "[UIScale]")             iss >> UiElement::scale_;
-                else if (line == "[C_LogoSigns]")         readBool(iss, line, C_LogoSigns);
-                else if (line == "[C_CountDown]")         readInt(iss, C_CountDown);
+                else if (line == "NoConfirmations")     readBool(iss, line, C_noConfirmations);
+                else if (line == "UIScale")             iss >> UiElement::scale_;
+                else if (line == "LogoSigns")           readBool(iss, line, C_LogoSigns);
+                else if (line == "CountDown")           readInt(iss, C_CountDown);
 
-                else if (line == "[highStarResolution]")  readBool(iss, line, C_StarsHigh);
-                else if (line == "[starField]")           readInt(iss, C_StarField);
+                else if (line == "highStarResolution")  readBool(iss, line, C_StarsHigh);
+                else if (line == "starField")           readInt(iss, C_StarField);
                 
                 //  post fx
-                else if (line == "[shaders]")             readBool(iss, line, C_shaders);
-                else if (line == "[postFXflashes]")       readBool(iss, line, C_Flashes);
+                else if (line == "shaders")             readBool(iss, line, C_shaders);
+                else if (line == "postFXflashes")       readBool(iss, line, C_Flashes);
                 //  screen
-                else if (line == "[resolutionX]")         readInt(iss, C_resX);
-                else if (line == "[resolutionY]")         readInt(iss, C_resY);
-                else if (line == "[colorDepth]")          readInt(iss, C_colorDepth);
+                else if (line == "resolutionX")         readInt(iss, C_resX);
+                else if (line == "resolutionY")         readInt(iss, C_resY);
+                else if (line == "colorDepth")          readInt(iss, C_colorDepth);
                 //  keys
-                else if (line == "[screenShotKey]")       iss >> C_screenShotKey;
-                else if (line == "[statisticsKey]")       iss >> C_statisticsKey;
-                else if (line == "[screenShotFormat]")    iss >> C_screenShotFormat;
+                else if (line == "screenShotKey")       iss >> C_screenShotKey;
+                else if (line == "statisticsKey")       iss >> C_statisticsKey;
+                else if (line == "screenShotFormat")    iss >> C_screenShotFormat;
                 //  audio
-                else if (line == "[audioRandom]")         readBool(iss, line, C_audioRandom);
-                else if (line == "[audioNextKey]")        iss >> C_audioNextKey;
-                else if (line == "[audioPreviousKey]")    iss >> C_audioPreviousKey;
+                else if (line == "audioRandom")         readBool(iss, line, C_audioRandom);
+                else if (line == "audioNextKey")        iss >> C_audioNextKey;
+                else if (line == "audioPreviousKey")    iss >> C_audioPreviousKey;
                 //  weapons  above
                 //  map
-                else if (line == "[MapXsize]")            iss >> C_MapXsize;
-                else if (line == "[MapYsize]")            iss >> C_MapYsize;
-                else if (line == "[MapMinPlanets]")       iss >> C_MapMinPlanets;
-                else if (line == "[MapMaxPlanets]")       iss >> C_MapMaxPlanets;
-                else if (line == "[MapMinPlanetsSize]")   iss >> C_MapMinPlanetsSize;
-                else if (line == "[MapMaxPlanetsSize]")   iss >> C_MapMaxPlanetsSize;
-                else if (line == "[MapMinPlanetGap]")     iss >> C_MapMinPlanetGap;
+                else if (line == "MapXsize")            iss >> C_MapXsize;
+                else if (line == "MapYsize")            iss >> C_MapYsize;
+                else if (line == "MapMinPlanets")       iss >> C_MapMinPlanets;
+                else if (line == "MapMaxPlanets")       iss >> C_MapMaxPlanets;
+                else if (line == "MapMinPlanetsSize")   iss >> C_MapMinPlanetsSize;
+                else if (line == "MapMaxPlanetsSize")   iss >> C_MapMaxPlanetsSize;
+                else if (line == "MapMinPlanetGap")     iss >> C_MapMinPlanetGap;
 
-                else if (line == "[MapHomeRadius]")       iss >> C_MapHomeRadius;
-                else if (line == "[ShipRadius]")          iss >> C_ShipRadius;
-                else if (line == "[BallRadius]")          iss >> C_BallRadius;
+                else if (line == "MapHomeRadius")       iss >> C_MapHomeRadius;
+                else if (line == "ShipRadius")          iss >> C_ShipRadius;
+                else if (line == "BallRadius")          iss >> C_BallRadius;
 
-                else if (line == "[CyclicBorderX]")       readBool(iss, line, C_CyclicBorderX);
-                else if (line == "[CyclicBorderY]")       readBool(iss, line, C_CyclicBorderY);
-                else if (line == "[GravityScale]")        iss >> C_GravityScale;
+                else if (line == "CyclicBorderX")       readBool(iss, line, C_CyclicBorderX);
+                else if (line == "CyclicBorderY")       readBool(iss, line, C_CyclicBorderY);
+                else if (line == "GravityScale")        iss >> C_GravityScale;
                 //  game
-                else if (line == "[ShipTurnSpeed]")       iss >> C_ShipTurnSpeed;
-                else if (line == "[DamageScale]")         iss >> C_DamageScale;
-                else if (line == "[Regeneration]")        iss >> C_Regeneration;
-                else if (line == "[FuelRegen]")           iss >> C_FuelRegen;
-                else if (line == "[RespawnDelay]")        iss >> C_RespawnDelay;
-                else if (line == "[GlowAlpha]")           iss >> C_GlowAlpha;
+                else if (line == "ShipTurnSpeed")       iss >> C_ShipTurnSpeed;
+                else if (line == "DamageScale")         iss >> C_DamageScale;
+                else if (line == "Regeneration")        iss >> C_Regeneration;
+                else if (line == "FuelRegen")           iss >> C_FuelRegen;
+                else if (line == "RespawnDelay")        iss >> C_RespawnDelay;
+                else if (line == "GlowAlpha")           iss >> C_GlowAlpha;
                 else
                     cout << line << " is a bad option in " << C_configPath << "mars.cfg!\n";
             }

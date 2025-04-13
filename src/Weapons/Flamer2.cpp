@@ -54,6 +54,8 @@ void Flamer2::fire() const
         {
             particles::spawn(particles::pAmmoFlamer2, parent_->location() + dir*parent_->radius()*1.5f,
                 dir, parent_->velocity(), Color3f(), parent_->getOwner());
+            particles::spawn(particles::pHeatBurner, parent_->location() + dir*parent_->radius()*1.5f,
+                dir, parent_->velocity());
         }
         parent_->velocity() -= dir * 1.f;
     }
@@ -62,7 +64,7 @@ void Flamer2::fire() const
 
 float Flamer2::maxDistance() const
 {
-    return 200.f;
+    return 400.f;
 }
 
 float Flamer2::minDistance() const

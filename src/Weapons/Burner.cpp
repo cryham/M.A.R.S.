@@ -51,10 +51,10 @@ void Burner::fire() const
 
         for (int i=0; i < 20; ++i)
         {
-            particles::spawn(particles::pAmmoBurner, parent_->location() + dir*parent_->radius()*1.5f, dir,
-                parent_->velocity(), Color3f(), parent_->getOwner());
-            particles::spawn(particles::pHeatBurner, parent_->location() + dir*parent_->radius()*1.5f, dir,
-                parent_->velocity());
+            particles::spawn(particles::pAmmoBurner, parent_->location() + dir*parent_->radius()*1.5f,
+                dir, parent_->velocity(), Color3f(), parent_->getOwner());
+            particles::spawn(particles::pHeatBurner, parent_->location() + dir*parent_->radius()*1.5f,
+                dir, parent_->velocity());
         }
         parent_->velocity() -= dir*10.f;
     }

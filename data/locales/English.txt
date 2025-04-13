@@ -131,7 +131,7 @@
 
 // about
 
-057 This is a first attempt to create a game in OpenGL with SFML. It is a game for two players, flying with ships in a two-dimensional space setting, governed by the laws of gravity. \n\nHomepage: \nhttp://www.marsshooter.org\n\n© 2010-2011 Felix Lauer & Simon Schneegans
+057 This is a game for one or two players, flying with ships in a two-dimensional space setting, governed by the laws of gravity. \n\nCryHam's fork, version 0.8.0\nMore info in changelog.md\n\nHomepage: \nhttps://github.com/cryham/M.A.R.S./\n\n© 2012-2025 Crystal Hammer and contributors\n© 2010-2012 Felix Lauer & Simon Schneegans
 
 // license
 
@@ -141,7 +141,7 @@
 
 170 Credits
 171 Special Thanks to:
-172 Translations:\n Arabic: Majid\n Chinese: Wecing\n Czech: Mates\n Finnish: Paavo\n French: Ludovic\n German: Atto\n Hindi: Antriksh & Aakanksh\n Hungarian: Papp Bence\n Italian: Proch\n Polish: command_dos\n Portuguese: Vitor\n Russian: Drakmail\n Spanish: Gastón\n Swedish: Henrik\n\nCoding support:\n Werner and Deubeuliou\n\nTests and creative support:\n Heinrich, Martin, Bastian, Sandra, Diana.
+172 More in credits.txt\n\nTranslations:\n Arabic: Majid\n Chinese: Wecing\n Czech: Mates\n Finnish: Paavo\n French: Ludovic\n German: Atto\n Hindi: Antriksh & Aakanksh\n Hungarian: Papp Bence\n Italian: Proch\n Polish: command_dos\n Portuguese: Vitor\n Russian: Drakmail\n Spanish: Gastón\n Swedish: Henrik\n\nCoding support:\n Werner and Deubeuliou\n\nTests and creative support:\n Heinrich, Martin, Bastian, Sandra, Diana.
 
 // quit
 

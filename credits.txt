@@ -1,37 +1,37 @@
 
-*************************************
+---------------------------------
 M.A.R.S. - a ridiculous Shooter
 CryHam's fork, ver 0.8.0
-*************************************
+---------------------------------
 
-Credits:
-********
+Credits
+-------
 
-Textures:
- - all textures are created with Blender (http://www.blender.org)
-   and Gimp (http://www.gimp.org)
- - they are released under the Creative Commons Attribution 3.0
-   by (C) 2010 Simon Schneegans and Felix Lauer
-   (http://creativecommons.org/licenses/by/3.0/)
-   
-Sound Files:
- - some soundfiles are modified with Audacity       (http://audacity.sourceforge.net/)
- - Credits go to:
- - music by Obsidian Shell, CC-BY-SA 3.0          (http://www.obsidianshell.com/index.php )
- - interface-sounds, CC-AT 3.0, Recorded by Mike Koenig:
-   click.wav: http://soundbible.com/772-Button.html (first half)
-   check.wav: http://soundbible.com/772-Button.html (second half)
-   tab.wav:   http://soundbible.com/1726-Karate-Kid-Punch.html
- - all weapon sounds are public domain
- - announcer sounds are created with eSpeak         (http://espeak.sourceforge.net/)
-   
+Textures
+ - all textures are created with Blender  https://www.blender.org
+   and GIMP  https://www.gimp.org  and Krita  https://krita.org/
+ - they are released under the Creative Commons Attribution 3.0 by
+   (C) 2010 Simon Schneegans and Felix Lauer
+   https://creativecommons.org/licenses/by/3.0/
+ - new and modified particles by CryHam, same license
+
+Sound Files
+ - music by:  Obsidian Shell  CC-BY-SA 3.0  https://www.obsidianshell.com/index.php
+ - interface-sounds: CC-AT 3.0, Recorded by Mike Koenig:
+   click.wav  - https://soundbible.com/772-Button.html  first half
+   check.wav  - https://soundbible.com/772-Button.html  second half
+   tab.wav    - https://soundbible.com/1726-Karate-Kid-Punch.html
+ - all weapon sounds are: public domain CC0
+ - announcer sounds are created with eSpeak  https://espeak.sourceforge.net/
+ - some soundfiles are modified with Audacity  https://audacity.sourceforge.net/
+
 Fonts licenses:
- ae_AlMothnna-Bold.ttf:   GPL with font embedding exception
- Comfortaa-Regular.ttf:   OFL
- DejaVuSans.ttf:          Bitstream Vera and Public Domain
- gargi.ttf:               GPLv2+
- Waree.ttf:               GPLv2+ and Bitstream Vera
- wqy-microhei.ttc:        ASL 2.0 or GPLv3 with exceptions
+ - ae_AlMothnna-Bold.ttf - GPL with font embedding exception
+ - Comfortaa-Regular.ttf - OFL
+ - DejaVuSans.ttf        - Bitstream Vera and Public Domain
+ - gargi.ttf             - GPLv2+
+ - Waree.ttf             - GPLv2+ and Bitstream Vera
+ - wqy-microhei.ttc      - ASL 2.0 or GPLv3 with exceptions
 
 Translations
  - German: Sandra
@@ -48,4 +48,4 @@ Translations
  - Polish: command_dos
  - Czech: Mates
  - Hungarian: Papp Bence
- - Norwegian: Thomas (http://iglo.no)
+ - Norwegian: Thomas  https://iglo.no

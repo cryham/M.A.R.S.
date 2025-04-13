@@ -118,7 +118,7 @@ Ship::Ship(Vector2f const& location, float rotation, Player* owner)
 
 
 //  update
-//--------------------------------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------------------
 void Ship::update()
 {
     float time = timer::frameTime();
@@ -134,10 +134,10 @@ void Ship::update()
         if (damageCheckTimer_ <= 0.f)
         {
             float damage(damageByLocalPlayer_*20.f);
-            if (std::abs(damage) >= 1.f)
+            if (fabs(damage) >= 1.f)
             {
                 particles::spawn(particles::pNumber, location_ + Vector2f(0.f, -20.f),
-                    Vector2f(damage, 20.f + std::abs(damage)*0.02f), (damageDirection_/collisionCount_+velocity_)*0.5f);
+                    Vector2f(damage, 20.f + abs(damage)*0.02f), (damageDirection_/collisionCount_+velocity_)*0.5f);
                 damageDirection_ = Vector2f();
                 damageByLocalPlayer_ = 0;
                 collisionCount_ = 0;
@@ -161,10 +161,10 @@ void Ship::update()
                 const float rot = settings::C_ShipTurnSpeed / 100.f;  /// 0.25f; //0.3f;  //new
                 float angleRad = rotation_ * M_PI / 180.f;
 
-                Vector2f dir(std::cos(angleRad), std::sin(angleRad));
-                Vector2f dirBack( std::cos(angleRad + M_PI), std::sin(angleRad + M_PI));
-                Vector2f dirRight(std::cos(angleRad + M_PI_2), std::sin(angleRad + M_PI_2));
-                Vector2f dirLeft( std::cos(angleRad - M_PI_2), std::sin(angleRad - M_PI_2));
+                Vector2f dir( cos(angleRad), sin(angleRad));
+                Vector2f dirBack( cos(angleRad + M_PI), sin(angleRad + M_PI));
+                Vector2f dirRight(cos(angleRad + M_PI_2), sin(angleRad + M_PI_2));
+                Vector2f dirLeft( cos(angleRad - M_PI_2), sin(angleRad - M_PI_2));
 
                 Vector2f acceleration;
                 float slower = collectedPowerUps_[items::puReverse] ? 0.33f : 1.f;
@@ -323,7 +323,7 @@ void Ship::update()
                 // check if docked
                 Home const* home = owner_->team()->home();
                 Vector2f toHome = home->location() - location_;
-                bool closeToHome(toHome.lengthSquare() < std::pow(home->radius() + radius_ + 0.1f, 2.f));
+                bool closeToHome(toHome.lengthSquare() < pow(home->radius() + radius_ + 0.1f, 2.f));
 
                 if (up_ < 10 && velocity_.lengthSquare() < 13000.f &&
                     closeToHome && ((dir + toHome.normalize()).lengthSquare() < 0.26f))
@@ -436,7 +436,7 @@ void Ship::update()
 }
 
 //  draw
-//--------------------------------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------------------
 void Ship::draw() const
 {
     if (visible_)
@@ -449,11 +449,11 @@ void Ship::draw() const
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         glRotatef(rotation_, 0.f, 0.f, 1.f);
 
-        float x, y, alpha(ghostTimer_ == 1.f ? 0.2f*std::sin(timer::totalTime()*8.f + 1.5f*M_PI)+0.4f : 
-            (ghostTimer_ > 0.f ? ghostTimer_*(0.2f*std::sin(timer::totalTime()*8.f + 1.5f*M_PI)+0.4f) + 1.f-ghostTimer_ : 1.f));
+        float x, y, alpha(ghostTimer_ == 1.f ? 0.2f * sin(timer::totalTime()*8.f + 1.5f*M_PI)+0.4f : 
+            (ghostTimer_ > 0.f ? ghostTimer_* (0.2f * sin(timer::totalTime()*8.f + 1.5f*M_PI)+0.4f) + 1.f-ghostTimer_ : 1.f));
 
         x = static_cast<float>(owner_->graphic()%8)*0.125f;
-        y = static_cast<float>(std::floor(owner_->graphic()*0.125f))*0.375f;
+        y = static_cast<float>(floor(owner_->graphic()*0.125f))*0.375f;
 
         glColor4f(1.f, 1.f, 1.f, alpha);
         glBegin(GL_QUADS);
@@ -515,8 +515,8 @@ void Ship::drawWeapon() const
         glTranslatef(location_.x_, location_.y_, 0.f);
         glRotatef(timer::totalTime()*-50, 0.f, 0.f, 1.f);
 
-        float alpha(ghostTimer_ == 1.f ?     0.2f*std::sin(timer::totalTime()*8.f + 1.5f*M_PI)+0.4f :
-            (ghostTimer_ > 0.f ? ghostTimer_*(0.2f*std::sin(timer::totalTime()*8.f + 1.5f*M_PI)+0.4f) + 1.f-ghostTimer_ : 1.f));
+        float alpha(ghostTimer_ == 1.f ?      0.2f * sin(timer::totalTime()*8.f + 1.5f*M_PI)+0.4f :
+            (ghostTimer_ > 0.f ? ghostTimer_*(0.2f * sin(timer::totalTime()*8.f + 1.5f*M_PI)+0.4f) + 1.f-ghostTimer_ : 1.f));
 
         // draw special
         currentSpecial_->draw(alpha * settings::C_GlowAlpha / 100.f);  /// 0.7 0.2  //new
@@ -533,7 +533,7 @@ void Ship::drawWeapon() const
 }
 
 //  Collision
-//--------------------------------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------------------
 void Ship::onCollision(SpaceObject* with, Vector2f const& location,
                        Vector2f const& direction, Vector2f const& velocity)
 {
@@ -816,7 +816,7 @@ void Ship::onCollision(SpaceObject* with, Vector2f const& location,
             life_ -= amount;
     }
 }
-//--------------------------------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------------------
 
 void Ship::onShockWave(Player* damageSource, float intensity)
 {
@@ -829,8 +829,11 @@ void Ship::onShockWave(Player* damageSource, float intensity)
         {
             float damage(intensity*0.1f*(20.f + settings::C_iDumb));
             life_ -= damage;
-            if ((damageSource_ && (damageSource_->controlType_ == controllers::cPlayer1 || damageSource_->controlType_ == controllers::cPlayer2))
-                || owner_->controlType_ == controllers::cPlayer1 ||  owner_->controlType_ == controllers::cPlayer2)
+            if ((damageSource_ &&
+                (damageSource_->controlType_ == controllers::cPlayer1 ||
+                 damageSource_->controlType_ == controllers::cPlayer2))
+                || owner_->controlType_ == controllers::cPlayer1
+                || owner_->controlType_ == controllers::cPlayer2)
             {
                 damageByLocalPlayer_ -= damage;
                 ++collisionCount_;
@@ -852,7 +855,8 @@ void Ship::setDamageSource(Player* evilOne)
 
 void Ship::drainLife(Player* source, float amount, Vector2f const& direction, float waitForOtherDamage)
 {
-    if (dynamic_cast<LocalPlayer*>(source) != NULL || dynamic_cast<LocalPlayer*>(owner_) != NULL)
+    if (dynamic_cast<LocalPlayer*>(source) != NULL ||
+        dynamic_cast<LocalPlayer*>(owner_) != NULL)
     {
         if (damageCheckTimer_ <= 0.f)
             damageCheckTimer_ = waitForOtherDamage;
@@ -874,8 +878,10 @@ void Ship::heal(Player* source, int amount)
         lifeAmount = maxLife_-life_;
     life_+=lifeAmount;
 
-    if (source->controlType_ == controllers::cPlayer1 || source->controlType_ == controllers::cPlayer2
-            || owner_->controlType_ == controllers::cPlayer1 ||  owner_->controlType_ == controllers::cPlayer2)
+    if (source->controlType_ == controllers::cPlayer1 ||
+        source->controlType_ == controllers::cPlayer2 ||
+        owner_->controlType_ == controllers::cPlayer1 ||
+        owner_->controlType_ == controllers::cPlayer2)
     {
         damageByLocalPlayer_ += lifeAmount;
         ++collisionCount_;
@@ -905,7 +911,7 @@ Player* Ship::getOwner() const
     return owner_;
 }
 
-std::vector<PowerUp*> const& Ship::getCollectedPowerUps() const
+vector<PowerUp*> const& Ship::getCollectedPowerUps() const
 {
     return collectedPowerUps_;
 }
@@ -938,7 +944,8 @@ void Ship::explode()
 
     ++owner_->deaths_;
 
-    if (!damageSource_) damageSource_ = owner_;
+    if (!damageSource_)
+        damageSource_ = owner_;
 
     if (damageSource_ == owner_)
     {
@@ -954,7 +961,10 @@ void Ship::explode()
         ++damageSource_->teamKills_;
         --damageSource_->points_;
 
-        (damageSource_->ship()->fragStars_-1 < 0) ? damageSource_->ship()->fragStars_=0 : --damageSource_->ship()->fragStars_;
+        if (damageSource_->ship()->fragStars_-1 < 0)
+            damageSource_->ship()->fragStars_ = 0;
+        else
+            --damageSource_->ship()->fragStars_;
 
         if (games::type() != games::gSpaceBall && games::type() != games::gCannonKeep)
             damageSource_->team()->subtractPoint();

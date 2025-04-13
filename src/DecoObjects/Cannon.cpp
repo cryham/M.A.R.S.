@@ -50,7 +50,7 @@ void Cannon::update()
 
     float angle = std::acos(toTarget*Vector2f(1.f, 0.f))-M_PI/2;
 
-    if (std::abs(angle-rotation_*M_PI/180) > 0.01f)
+    if (fabs(angle - rotation_ *M_PI/180) > 0.01f)
     {
         timer_ = 0.f;
         const float rotSpeed(timer::frameTime()*4*ships::getShips().size());

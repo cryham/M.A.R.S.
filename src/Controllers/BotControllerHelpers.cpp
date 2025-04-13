@@ -58,7 +58,7 @@ bool BotController::moveTo(Vector2f const& location, float stopFactor, bool avoi
 
     int accelerate(0);
     if (velocityInAimDirection.lengthSquare() < 15000.f + strength_* 75000.f || shipVelocity*aimDirection_ < 0.f)
-        if (distance > 2500 || (shipVelocity*aimDirection_ < 0.f && (distance > 250.f || !goingToLand)))
+        if (distance > 2500 || (shipVelocity * aimDirection_ < 0.f && (distance > 250.f || !goingToLand)))
             if (spaceObjects::isOnLine(shipLocation, shipDirection, shipLocation+aimDirection_*50.f, 10.f))
                 accelerate = 100;
 
@@ -71,11 +71,11 @@ bool BotController::turnTo(Vector2f const& location)
 {
     float    shipRotation = ship()->rotation_*M_PI/180.f;
     Vector2f aimDirection_ = location - ship()->location();
-    float angle = aimDirection_.y_*std::cos(shipRotation)-aimDirection_.x_*std::sin(shipRotation);
+    float angle = aimDirection_.y_ * std::cos(shipRotation) - aimDirection_.x_ * std::sin(shipRotation);
     
     if (angle > 0)  slaveRight(100);
     else            slaveLeft (100);
-    return std::abs(angle) < 1.f;
+    return fabs(angle) < 1.f;
 }
 
 Vector2f BotController::calcPath(Vector2f const& endPoint, bool avoidBall)

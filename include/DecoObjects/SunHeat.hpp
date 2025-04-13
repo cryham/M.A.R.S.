@@ -18,8 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #pragma once
 
 #include "DecoObjects/DecoObject.hpp"
-
-#include "Media/texture.hpp"
+// #include "Media/texture.hpp"
 
 class Sun;
 
@@ -40,5 +39,3 @@ class SunHeat: public DecoObject
         Vector2f location_;
         float radius_;
 };
-
-

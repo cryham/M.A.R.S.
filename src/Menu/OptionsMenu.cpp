@@ -215,7 +215,7 @@ UiWindow* OptionsMenu::get()
         
         tabGameplay->addWidget(new Slider(locales::getLocale(locales::CountDown), "",
             &settings::C_CountDown, 0, 6, 1,
-            Vector2f(20,y), 540, xTxt, true));  y += yadd;
+            Vector2f(20,y), 540, xTxt, true, off));  y += yadd;
         tabGameplay->addWidget(new Slider(locales::SlowMoKickIn, locales::ttSlowMoKickIn,
             &settings::C_slowMoKickIn, 0, 10, 1,
             Vector2f(20,y), 540, xTxt, true, off));  y += yadd;

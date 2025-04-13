@@ -168,7 +168,8 @@ void MapOptions::checkWidgets()
                 settings::C_MapMinPlanetGap   = 250;  settings::C_MapHomeRadius     = 800;  settings::C_ShipRadius = 50;
                 break;
             }
-            float aspY = 910.f / 1440.f;
+            float aspY = settings::C_resY / settings::C_resX;
+            // float aspY = 910.f / 1440.f;
             // float aspY = 810.f / 1440.f;  // org?
             settings::C_MapYsize = settings::C_MapXsize * aspY;
         }

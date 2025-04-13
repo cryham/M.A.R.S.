@@ -22,18 +22,22 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include <sstream>
 
+
 std::list<Number*> Number::activeParticles_;
 
-Number::Number(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity, Color3f const& color, Player* damageSource):
-           Particle<Number>(spaceObjects::oNumber, location, 4, 0, 1.f),
-           alpha_(1.f)
+
+Number::Number(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,
+        Color3f const& color, Player* damageSource)
+    :Particle<Number>(spaceObjects::oNumber, location, 4, 0, 1.f)
+    ,alpha_(1.f)
 {
     velocity_ = velocity;
 
     value_ = direction.x_;
 
     radius_ = direction.y_;
-    if (radius_>50.f) radius_ = 50.f;
+    if (radius_ > 40.f)
+        radius_ = 40.f;
 
     if (value_ > 0)
         color_ = Color3f(0.4f, 1.0f, 0.4f);

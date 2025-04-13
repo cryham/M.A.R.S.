@@ -48,7 +48,7 @@ namespace settings
 {
     //  game settings  adjustable via options menu
     //----------------------------------------------------------------------------------------------------------------------------------
-    int         C_soundVolume =             30;
+    int         C_soundVolume =             80;
     int         C_announcerVolume =         0;
     int         C_musicVolume =             30;
 
@@ -59,7 +59,7 @@ namespace settings
 
     bool        C_adaptiveParticleCount =   false;
     int         C_globalParticleCount =     100;
-    int         C_globalParticleLifeTime =  100;
+    int         C_globalParticleLifeTime =  50;
     bool        C_StarsHigh =               true;
     int         C_StarField =               500;
     //  bots

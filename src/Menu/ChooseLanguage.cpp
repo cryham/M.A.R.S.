@@ -37,19 +37,19 @@ UiWindow* ChooseLanguage::get()
     {
         std::vector<Locale>const& localeList = locales::getLocales();
 
-        instance_ = new ChooseLanguage(220, 110 + 24*localeList.size());
+        instance_ = new ChooseLanguage(440, 110 + 12*localeList.size());
 
         for (int i=0; i < localeList.size(); ++i)
             sortedLocales_.insert(std::make_pair(localeList[i].name_, i));
 
-        int top(50);
+        int top0 = 50, y = top0, n = 0, x = 10, w = 200;
         for (auto it = sortedLocales_.begin(); it != sortedLocales_.end(); ++it)
         {
             bool* key = new bool(false);
             languageKeyMap_.insert(std::make_pair(it->second, key));
 
             Button* newButton(new Button(it->first, localeList[it->second].author_, key,
-                Vector2f(10, top), 200, 20, TEXT_ALIGN_CENTER, font::getFont(it->second)));
+                Vector2f(x, y), w, 20, TEXT_ALIGN_CENTER, font::getFont(it->second)));
             instance_->addWidget(newButton);
 
             if (it->first == locales::getCurrentLocale().name_)
@@ -57,15 +57,21 @@ UiWindow* ChooseLanguage::get()
                 instance_->clearFocus();
                 newButton->setFocus(newButton, false);
             }
-            top += 24;
+            y += 24;
+            ++n;
+            if (n > 9)
+            {   n = 0;
+                y = top0;
+                x += w + 20;
+            }
         }
-
+        y = top0 + 24 * 10;
         instance_->addWidget(new Button(locales::getLocale(locales::Cancel), "", &kCancel_,
-            Vector2f(120,top+30), 90, 20));
+            Vector2f(180, y + 30), 90, 20));
         instance_->addWidget(new Label("Select Language", TEXT_ALIGN_LEFT,
-            Vector2f(10,0),  20.f, getColor3f(0.5f, 0.9f, 1.f), false));
+            Vector2f(10, 0),  20.f, getColor3f(0.5f, 0.9f, 1.f), false));
         instance_->addWidget(new Label("* Incomplete", TEXT_ALIGN_LEFT,
-            Vector2f(10,top+10), 12.f, getColor3f(0.5f, 0.9f, 1.f), false));
+            Vector2f(10, y + 10), 12.f, getColor3f(0.5f, 0.9f, 1.f), false));
         // instance_->addWidget(new Line(Vector2f(10, 35), Vector2f(210, 35)));
     }
     return instance_;

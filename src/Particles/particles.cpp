@@ -1,5 +1,6 @@
 /* particles.cpp
 
+Copyright (c) 2025 Crystal Hammer
 Copyright (c) 2010 - 2011 by Felix Lauer and Simon Schneegans
 
 This program is free software: you can redistribute it and/or modify it
@@ -361,14 +362,14 @@ namespace particles
         //  new
         AmmoAFK85::collideWith(target);
         AmmoFlamer2::collideWith(target);
-        AmmoPlasma::collideWith(target);
+        // AmmoPlasma::collideWith(target);
         AmmoRifle2::collideWith(target);
         AmmoShotgun2::collideWith(target);
         AmmoH2OStorm::collideWith(target);
         AmmoMiniRocket::collideWith(target);
         //  new 2
-        AmmoPulse::collideWith(target);
-        AmmoCloud::collideWith(target);
+        // AmmoPulse::collideWith(target);
+        // AmmoCloud::collideWith(target);
         AmmoFreezers::collideWith(target);
         AmmoLaser::collideWith(target);
         AmmoLightning::collideWith(target);

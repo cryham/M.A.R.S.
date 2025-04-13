@@ -1,5 +1,6 @@
 /* physics.cpp
 
+Copyright (c) 2025 Crystal Hammer
 Copyright (c) 2010 - 2011 by Felix Lauer and Simon Schneegans
 
 This program is free software: you can redistribute it and/or modify it
@@ -47,8 +48,8 @@ namespace physics
             // check for collision with each mobile object
             for (auto& it : mobileObjects_)
             {
-                // don't check for self collision
-                if (it != object)
+                // don't check for self collision  or other clouds
+                if (it != object && !it->cloud_)
                 {
                     // get faster object
                     MobileSpaceObject *source, *target;
@@ -135,8 +136,8 @@ namespace physics
             // check for collision with each mobile object
             for (auto& it : mobileObjects_)
             {
-                // don't check for self collision
-                if (it != object)
+                // don't check for self collision  or clouds
+                if (it != object && !it->cloud_)
                 {
                     // get faster object
                     MobileSpaceObject *source, *target;

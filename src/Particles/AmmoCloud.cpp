@@ -1,6 +1,6 @@
 /* AmmoCloud.cpp
 
-Copyright (c) 2010 - 2011 by Felix Lauer and Simon Schneegans
+Copyright (c) 2025 Crystal Hammer
 
 This program is free software: you can redistribute it and/or modify it
 under the terms of the GNU General Public License as published by the Free
@@ -32,7 +32,10 @@ AmmoCloud::AmmoCloud(Vector2f const& location, Vector2f const& direction, Vector
         Color3f const& color, Player* damageSource)
     :Particle<AmmoCloud>(spaceObjects::oAmmoCloud, location, randomizer::random(19.f, 25.f), 0.01f, randomizer::random(2.f, 4.f))
 {
+    cloud_ = true;
     setDamageSource(damageSource);
+    spawnTime_ = 0.f;
+
     velocity_ = velocity + direction*500;
     acceleration_ = 600.0f;
     location_ += velocity_*timer::frameTime()*1.2f;

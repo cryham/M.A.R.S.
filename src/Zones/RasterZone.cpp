@@ -26,7 +26,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 RasterZone::RasterZone(Vector2f const& btmL, Vector2f const& topRight):
     btmL_(btmL),
-    topR(topRight),
+    topR_(topRight),
     covered_(false)
 {   }
 
@@ -34,8 +34,8 @@ bool RasterZone::isInside(SpaceObject const& toBeChecked) const
 {
     return toBeChecked.location().x_ > btmL_.x_ &&
            toBeChecked.location().y_ > btmL_.y_ &&
-           toBeChecked.location().x_ < topR.x_ &&
-           toBeChecked.location().y_ < topR.y_;
+           toBeChecked.location().x_ < topR_.x_ &&
+           toBeChecked.location().y_ < topR_.y_;
 }
 
 void RasterZone::update()
@@ -60,18 +60,18 @@ void RasterZone::draw() const
         else
             glColor4f (6.f, 0.2f, 0.f, 0.1f);
         glVertex2f(btmL_.x_, btmL_.y_);
-        glVertex2f(btmL_.x_, topR.y_);
-        glVertex2f(topR.x_, topR.y_);
-        glVertex2f(topR.x_, btmL_.y_);
+        glVertex2f(btmL_.x_, topR_.y_);
+        glVertex2f(topR_.x_, topR_.y_);
+        glVertex2f(topR_.x_, btmL_.y_);
     glEnd();
     
     glLineWidth(2.f);
     glBegin(GL_LINE_LOOP);
         glColor4f(0.5f, 0.5f, 0.5f, 0.3f);
         glVertex2f(btmL_.x_, btmL_.y_);
-        glVertex2f(btmL_.x_, topR.y_);
-        glVertex2f(topR.x_, topR.y_);
-        glVertex2f(topR.x_, btmL_.y_);
+        glVertex2f(btmL_.x_, topR_.y_);
+        glVertex2f(topR_.x_, topR_.y_);
+        glVertex2f(topR_.x_, btmL_.y_);
     glEnd();
 }
 
@@ -81,8 +81,8 @@ Vector2f RasterZone::getRandomPoint() const
     for (int i=0; i < 100; ++i)
     {
         randomPoint = Vector2f(
-            randomizer::random(btmL_.x_, topR.x_),
-            randomizer::random(btmL_.y_, topR.y_));
+            randomizer::random(btmL_.x_, topR_.x_),
+            randomizer::random(btmL_.y_, topR_.y_));
         bool fits = true;
         for (const auto& it : spaceObjects::getObjects())
         {

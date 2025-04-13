@@ -1,6 +1,6 @@
 /* AFK85.hpp
 
-Copyright (c) 2010 - 2011 by Felix Lauer and Simon Schneegans
+Copyright (c) 2025 Crystal Hammer
 
 This program is free software: you can redistribute it and/or modify it
 under the terms of the GNU General Public License as published by the Free
@@ -21,7 +21,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 
 /// Weapon: AFK85.
-/// A long distance gun, classic star wars laser flair.
+/// A long distance twin short laser. Double AFK47.
 
 class AFK85: public Weapon
 {

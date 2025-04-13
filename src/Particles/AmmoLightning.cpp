@@ -50,9 +50,8 @@ void AmmoLightning::update()
     physics::collide(this, STATICS | MOBILES | PARTICLES);
     Vector2f acceleration = physics::attract(this)*0.8f;
 
-    // update Size
     if (lifeTime_ > totalLifeTime_-0.3f)
-        radius_ = -400.0*pow(lifeTime_+0.2-totalLifeTime_, 2)+12;
+        radius_ = -400.0 * pow(lifeTime_+0.2-totalLifeTime_, 2)+12;
 
     location_ += velocity_*time + acceleration*time*time;
     velocity_ += acceleration*time - 2.5f*velocity_*time;

@@ -603,6 +603,14 @@ void Ship::onCollision(SpaceObject* with, Vector2f const& location,
             //     dynamic_cast<MobileSpaceObject*>(with)->velocity() * 0.7f, velocity_, owner_->color());
             unfreeze = 0.1f;
             break;
+        case spaceObjects::oAmmoGrenades:  // --.
+            amount = strength*0.0001f;
+            waitForOtherDamage = 0.1f;
+            setDamageSource(with->damageSource());
+            particles::spawnMultiple(10, particles::pSpark, location,
+                dynamic_cast<MobileSpaceObject*>(with)->velocity() * 0.0005f, velocity_*0.001f, owner_->color());
+            unfreeze = 20.f;
+            break;
 
         //  afk
         case spaceObjects::oAmmoAFK85:  // =
@@ -674,7 +682,7 @@ void Ship::onCollision(SpaceObject* with, Vector2f const& location,
 
         //  freezers
         case spaceObjects::oAmmoFreezers:  // :*
-            amount = randomizer::random(3.f, 4.f);
+            amount = randomizer::random(1.f, 2.f);
             setDamageSource(with->damageSource());
             unfreeze = 4.f;
             break;

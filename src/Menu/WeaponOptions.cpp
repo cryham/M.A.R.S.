@@ -50,7 +50,7 @@ UiWindow* WeaponOptions::get()
 			Vector2f(10,0), 20.f, getColor3f(0.5f, 0.9f, 1.f), false));
         // instance_->addWidget(new Line(Vector2f(10, 35), Vector2f(310, 35)));
 
-        //  weapons
+        //  weapons  original
         int x = 20, yTop = 60, y = yTop, yLabel = y-30, yadd = 20, w = 100;
         instance_->addWidget(new LabeledBox(locales::getLocale(locales::Weapons),
         	Vector2f(x-10, yLabel), w, 210));
@@ -62,7 +62,7 @@ UiWindow* WeaponOptions::get()
             Vector2f(x,y), w, Color3f(0.2, 0.8, 0.1)));  y += yadd*3/2;
 
         instance_->addWidget(new Checkbox("FIST OF ALI", "", &kWeapon[weapons::wFist],
-            Vector2f(x,y), w, Color3f(0.6, 0.9, 0.7)));  y += yadd;
+            Vector2f(x,y), w, Color3f(0.4, 0.9, 0.6)));  y += yadd;
         instance_->addWidget(new Checkbox("SHOTGUN",     "", &kWeapon[weapons::wShotgun],
             Vector2f(x,y), w, Color3f(0.8, 0.8, 0.3)));  y += yadd;
         instance_->addWidget(new Checkbox("ROCK'n'LOL",  "", &kWeapon[weapons::wRocketLauncher],
@@ -118,7 +118,8 @@ UiWindow* WeaponOptions::get()
             Vector2f(x,y), w, Color3f(0.4, 0.5, 0.6)));  y += yadd;
         instance_->addWidget(new Checkbox("Seekers",    "", &kWeapon[weapons::wSeekers],
             Vector2f(x,y), w, Color3f(0.7, 0.8, 0.6)));  y += yadd;
-        //  special
+        
+        //  specials
         x += 150;  y = yTop;
         instance_->addWidget(new LabeledBox(locales::getLocale(locales::Specials), 
 			Vector2f(x-10, yLabel), w, 210));
@@ -131,7 +132,7 @@ UiWindow* WeaponOptions::get()
         instance_->addWidget(new Checkbox("FIRE WALL", "", &kSpecial[specials::sFireWall],
             Vector2f(x,y), w, Color3f(1.0, 0.6, 0.2)));  y += yadd;
         instance_->addWidget(new Checkbox("SHOCKER",   "", &kSpecial[specials::sShocker],
-            Vector2f(x,y), w, Color3f(0.93, 0.97, 1.0)));  y += yadd;
+            Vector2f(x,y), w, Color3f(0.6, 0.8, 1.0)));  y += yadd;
     }
     return instance_;
 }

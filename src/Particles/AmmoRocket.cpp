@@ -149,7 +149,7 @@ void AmmoRocket::update()
         }
     }
 
-    if (life_<=0.f)
+    if (life_ <= 0.f)
     {
         visible_ = false;
         particles::spawnMultiple(50, particles::pDust, location_);
@@ -159,7 +159,7 @@ void AmmoRocket::update()
 
         postFX::onExplosion();
         setDamageSource(parent_);
-        physics::  causeShockWave(damageSource(), location_, 150.f, 300.f, 3.f);
+        physics::causeShockWave(damageSource(), location_, 150.f, 300.f, 3.f);
         particles::spawn(particles::pShockWave, location_);
         killMe();
     }
@@ -269,6 +269,7 @@ void AmmoRocket::onCollision(SpaceObject* with, Vector2f const& location,
         frozen_ -= unfreeze;
         if (frozen_ < 0.f)
         {   frozen_ = 0.f;
+
             mass_ = 3.f;
             particles::spawnMultiple(2, particles::pCrushedIce, location_);
         }

@@ -29,7 +29,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 void Freezers::draw(float alpha) const
 {
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    glColor3f(0.2f, 1.f, 0.6f);
+    glColor3f(0.2f, 0.6f, 1.f);
 
     const float r = parent_->radius();
     const int posX = 0;

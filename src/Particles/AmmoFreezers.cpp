@@ -35,12 +35,12 @@ AmmoFreezers::AmmoFreezers(Vector2f const& location, Vector2f const& direction, 
     :Particle<AmmoFreezers>(spaceObjects::oAmmoFreezers, location,
         randomizer::random(9.f, 15.f), 0.01f, randomizer::random(12.f, 15.f))
 {
-    // cloud_ = true;
+    cloud_ = true;
     setDamageSource(damageSource);
     spawnTime_ = 0.f;
     Vector2f side(direction.y_, -direction.x_);
 
-    velocity_ = velocity + direction * 900 + 200.f * side * randomizer::random(-1.f, 1.f);
+    velocity_ = velocity + direction * 900 + 100.f * side * randomizer::random(-1.f, 1.f);
     location_ += velocity_ * timer::frameTime()*1.2f;
 
     radius_ = randomizer::random(7.f, 12.f) * 4.f;
@@ -73,9 +73,10 @@ void AmmoFreezers::update()
 
     if (lifeTime_ > totalLifeTime_)
     {
-        particles::spawnMultiple(2, particles::pMud, location_, Vector2f(), Vector2f(), color_);
-        int rand = randomizer::random(8, 20);
-        sound::playSound(sound::BlubCollide, location_);
+        // particles::spawnMultiple(1, particles::pMud, location_, Vector2f(), Vector2f(), color_);
+        // int rand = randomizer::random(8, 20);
+        // sound::playSound(sound::BlubCollide, location_);
+        killMe();
     }
     else if (lifeTime_ < 2)
     {
@@ -93,7 +94,6 @@ void AmmoFreezers::update()
 void AmmoFreezers::draw() const
 {
     color_.gl4f(0.6f);
-    // const int posX = 3, posY = 0;
     const int posX = 10, posY = 0;
     uv8(posX, posY);      glVertex2f(location_.x_-radius_, location_.y_-radius_);
     uv8(posX,   posY+3);  glVertex2f(location_.x_-radius_, location_.y_+radius_);

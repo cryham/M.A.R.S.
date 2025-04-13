@@ -221,7 +221,7 @@ void Home::explode()
     particles::spawnMultiple(20, particles::pExplode, location_);
     particles::spawnMultiple(2, particles::pBurningFragment, location_);
 
-    postFX::   onExplosion();
+    postFX::onExplosion();
     physics::removeStaticObject(this);
     location_ = Vector2f(5000.f, 5000.f);
     visible_ = false;

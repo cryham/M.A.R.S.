@@ -1,5 +1,6 @@
 /* MiniFlameSmoke.cpp
 
+Copyright (c) 2025 Crystal Hammer
 Copyright (c) 2010 - 2011 by Felix Lauer and Simon Schneegans
 
 This program is free software: you can redistribute it and/or modify it
@@ -25,7 +26,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 std::list<MiniFlameSmoke*> MiniFlameSmoke::activeParticles_;
 
 
-MiniFlameSmoke::MiniFlameSmoke(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity, Color3f const& color, Player* damageSource)
+MiniFlameSmoke::MiniFlameSmoke(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,
+        Color3f const& color, Player* damageSource)
     :Particle<MiniFlameSmoke>(spaceObjects::oMiniFlameSmoke, location+Vector2f::randDirLen()*2.f, 4, 0, randomizer::random(0.8f, 2.0f))
 {
     color_ = Color3f(0.9, 0.8, 0.7);

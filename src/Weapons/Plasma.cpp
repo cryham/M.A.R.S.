@@ -53,8 +53,8 @@ void Plasma::fire() const
     float angleRad = parent_->rotation()*M_PI / 180.f;
     Vector2f dir(std::cos(angleRad), std::sin(angleRad));
 
-    particles::spawn(particles::pAmmoPlasma, parent_->location() + dir*parent_->radius(), dir,
-        parent_->velocity(), Color3f(), parent_->getOwner());
+    particles::spawn(particles::pAmmoPlasma, parent_->location() + dir*parent_->radius(),
+        dir, parent_->velocity(), Color3f(), parent_->getOwner());
 
     parent_->velocity() -= dir * 10.f;
     sound::playSound(sound::Blub, parent_->location());

@@ -1,6 +1,6 @@
 /* AmmoLightning.cpp
 
-Copyright (c) 2010 - 2011 by Felix Lauer and Simon Schneegans
+Copyright (c) 2025 Crystal Hammer
 
 This program is free software: you can redistribute it and/or modify it
 under the terms of the GNU General Public License as published by the Free
@@ -42,6 +42,7 @@ AmmoLightning::AmmoLightning(
     color_ = Color3f(randomizer::random(0.0f, 0.4f), randomizer::random(0.8f, 1.f), randomizer::random(0.0f, 0.4f));
 }
 
+
 void AmmoLightning::update()
 {
     float time = timer::frameTime();
@@ -82,6 +83,7 @@ void AmmoLightning::draw() const
     uv8(posX+1, posY);    glVertex2f(location_.x_+radius_, location_.y_-radius_);
 }
 
+
 void AmmoLightning::onCollision(SpaceObject* with, Vector2f const& location,
                         Vector2f const& direction, Vector2f const& velocity)
 {
@@ -92,21 +94,5 @@ void AmmoLightning::onCollision(SpaceObject* with, Vector2f const& location,
         physics::causeShockWave(damageSource(), location_, 350.f, 100.f, 0.f);
         sound::playSound(sound::BlubCollide, location_);
         killMe();
-    }
-}
-
-void AmmoLightning::shockWave(Vector2f const& location, float strength, float radius)
-{
-    for (auto& it : activeParticles_)
-    {
-        Vector2f direction(it->location_ - location);
-        float distance = direction.length();
-        if (distance < radius && direction != Vector2f())
-        {
-            float intensity = radius-distance;
-            direction = direction.normalize();
-            direction *= intensity;
-            it->velocity_ += direction;
-        }
     }
 }

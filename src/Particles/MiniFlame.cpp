@@ -1,5 +1,6 @@
 /* MiniFlame.cpp
 
+Copyright (c) 2025 Crystal Hammer
 Copyright (c) 2010 - 2011 by Felix Lauer and Simon Schneegans
 
 This program is free software: you can redistribute it and/or modify it
@@ -26,8 +27,9 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 std::list<MiniFlame*> MiniFlame::activeParticles_;
 
 
-MiniFlame::MiniFlame(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity, Color3f const& color, Player* damageSource):
-           Particle<MiniFlame>(spaceObjects::oMiniFlame, location+Vector2f::randDir(), 1.f, 0.f, randomizer::random(0.8f, 2.0f))
+MiniFlame::MiniFlame(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,
+        Color3f const& color, Player* damageSource)
+    :Particle<MiniFlame>(spaceObjects::oMiniFlame, location+Vector2f::randDir(), 1.f, 0.f, randomizer::random(0.8f, 2.0f))
 {
     flickerSpeed_ = randomizer::random(0.01f, 1.f);
     timer_        = randomizer::random(0.f, 1.f);

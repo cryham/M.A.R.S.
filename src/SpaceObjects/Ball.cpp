@@ -1,5 +1,6 @@
 /* Ball.cpp
 
+Copyright (c) 2025 Crystal Hammer
 Copyright (c) 2010 - 2011 by Felix Lauer and Simon Schneegans
 
 This program is free software: you can redistribute it and/or modify it
@@ -223,6 +224,7 @@ void Ball::onCollision(SpaceObject* with, Vector2f const& location,
             unfreeze = 10.f;
             break;
 
+
         //  Ammo new 2
         case spaceObjects::oAmmoCloud:  // OO
         case spaceObjects::oAmmoPulse:  // ))
@@ -231,7 +233,7 @@ void Ball::onCollision(SpaceObject* with, Vector2f const& location,
             unfreeze = 1.f;
             break;
         
-        //  Ammo
+        //  afk =
         case spaceObjects::oAmmoAFK85:
         case spaceObjects::oAmmoAFK47:
             particles::spawnMultiple(1, particles::pSpark, location,
@@ -240,6 +242,9 @@ void Ball::onCollision(SpaceObject* with, Vector2f const& location,
             unfreeze = 1.f;
             break;
 
+        //  rifle  ---
+        case spaceObjects::oAmmoGauss:  // --.
+            velocity_ += velocity * 0.2f*timer::frameTime();
         case spaceObjects::oAmmoLaser:  // ___
             velocity_ += velocity * 0.3f*timer::frameTime();
         case spaceObjects::oAmmoRifle2:  // --
@@ -255,6 +260,7 @@ void Ball::onCollision(SpaceObject* with, Vector2f const& location,
             unfreeze = 10.f;
             break;
 
+        //  guns
         case spaceObjects::oAmmoMinigun:  // ...
         case spaceObjects::oAmmoShotgun2:  // <<
         case spaceObjects::oAmmoShotgun:
@@ -264,13 +270,14 @@ void Ball::onCollision(SpaceObject* with, Vector2f const& location,
             unfreeze = 1.f;
             break;
 
-        case spaceObjects::oAmmoPlasma:
+        case spaceObjects::oAmmoPlasma:  // o
             velocity_ += velocity * 6.f*timer::frameTime();
         case spaceObjects::oAmmoFlubba:
             unfreeze = 10.f;
             break;
 
-        case spaceObjects::oAmmoFlamer2:
+        //  flame
+        case spaceObjects::oAmmoFlamer2: // ~~
             if (heatTimer_ < 20.f)  heatTimer_ += 0.01f;
             velocity_ += velocity * 0.01f*timer::frameTime();
             unfreeze = 1.f;
@@ -294,6 +301,7 @@ void Ball::onCollision(SpaceObject* with, Vector2f const& location,
     {   frozen_ -= unfreeze;
         if (frozen_ <= 0.f)
         {   frozen_ = 0.f;
+
             mass_ = 7.f;
             particles::spawnMultiple(2, particles::pCrushedIce, location_);
         }

@@ -35,15 +35,15 @@ void AFK47::draw(float alpha) const
     const int u = 0, v = 28;
 
     glBegin(GL_QUADS);
-        glTexCoord2f(u*0.125f,     v*0.03125f);    glVertex2f(0,      r* 0.95f);
-        glTexCoord2f(u*0.125f,    (v+1)*0.03125f); glVertex2f(0,      r* 0.45f);
-        glTexCoord2f((u+1)*0.125f,(v+1)*0.03125f); glVertex2f(r*1.5f, r* 0.45f);
-        glTexCoord2f((u+1)*0.125f, v*0.03125f);    glVertex2f(r*1.5f, r* 0.95f);
+        uv8w(u, v);     glVertex2f(0,      r* 0.95f);
+        uv8w(u, v+1);   glVertex2f(0,      r* 0.45f);
+        uv8w(u+1, v+1); glVertex2f(r*1.5f, r* 0.45f);
+        uv8w(u+1, v);   glVertex2f(r*1.5f, r* 0.95f);
 
-        glTexCoord2f(u*0.125f,     v*0.03125f);    glVertex2f(0,      r*-0.95f);
-        glTexCoord2f(u*0.125f,    (v+1)*0.03125f); glVertex2f(0,      r*-0.45f);
-        glTexCoord2f((u+1)*0.125f,(v+1)*0.03125f); glVertex2f(r*1.5f, r*-0.45f);
-        glTexCoord2f((u+1)*0.125f, v*0.03125f);    glVertex2f(r*1.5f, r*-0.95f);
+        uv8w(u, v);     glVertex2f(0,      r*-0.95f);
+        uv8w(u, v+1);   glVertex2f(0,      r*-0.45f);
+        uv8w(u+1, v+1); glVertex2f(r*1.5f, r*-0.45f);
+        uv8w(u+1, v);   glVertex2f(r*1.5f, r*-0.95f);
     glEnd();
 }
 

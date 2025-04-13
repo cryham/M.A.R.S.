@@ -34,10 +34,10 @@ void Freezers::draw(float alpha) const
     const float r = parent_->radius();
     const int u = 0, v = 29;
     glBegin(GL_QUADS);
-        glTexCoord2f(u*0.125f,     v*0.03125f);    glVertex2f(0,     r* 0.7f);
-        glTexCoord2f(u*0.125f,    (v+1)*0.03125f); glVertex2f(0,     r*-0.7f);
-        glTexCoord2f((u+1)*0.125f,(v+1)*0.03125f); glVertex2f(r*5.f, r*-0.7f);
-        glTexCoord2f((u+1)*0.125f, v*0.03125f);    glVertex2f(r*5.f, r* 0.7f);
+        uv8w(u, v);     glVertex2f(0,     r* 0.7f);
+        uv8w(u, v+1);   glVertex2f(0,     r*-0.7f);
+        uv8w(u+1, v+1); glVertex2f(r*5.f, r*-0.7f);
+        uv8w(u+1, v);   glVertex2f(r*5.f, r* 0.7f);
     glEnd();
 }
 

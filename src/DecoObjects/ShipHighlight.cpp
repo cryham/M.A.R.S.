@@ -59,10 +59,10 @@ if (0)
 
     glBegin(GL_QUADS);  // aim ray
         const int u = 0, v = 31;
-        glTexCoord2f(u*0.125f,     v*0.03125f);    glVertex2f(0,     r* 0.2f);
-        glTexCoord2f(u*0.125f,    (v+1)*0.03125f); glVertex2f(0,     r*-0.2f);
-        glTexCoord2f((u+1)*0.125f,(v+1)*0.03125f); glVertex2f(r*9.f, r*-0.2f);
-        glTexCoord2f((u+1)*0.125f, v*0.03125f);    glVertex2f(r*9.f, r* 0.2f);
+        uv8w(u, v);     glVertex2f(0,     r* 0.2f);
+        uv8w(u, v+1);   glVertex2f(0,     r*-0.2f);
+        uv8w(u+1, v+1); glVertex2f(r*9.f, r*-0.2f);
+        uv8w(u+1, v);   glVertex2f(r*9.f, r* 0.2f);
     glEnd();
 }
 

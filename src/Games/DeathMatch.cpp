@@ -48,7 +48,8 @@ DeathMatch::DeathMatch()
         players::addPlayer(newTeam, controllers::cBot, color);
     }
 
-    teams::assignHomes(spaceObjects::addHome(HOME_MIDDLE, 100, Color3f(0.9f, 0.7f, 1.0f)));
+    teams::assignHomes(spaceObjects::addHome(HOME_MIDDLE, 100, Color3f::random()));
+        // Color3f(randomizer::random(0.f, 0.1f), randomizer::random(0.f, 0.1f), randomizer::random(0.f, 0.1f))));
     players::createShips();
 
     spaceObjects::populateSpace(5.f, 10.f, 4);
@@ -66,7 +67,7 @@ void DeathMatch::restart()
 {
     Game::restart();
 
-    teams::assignHomes(spaceObjects::addHome(HOME_MIDDLE, 100, Color3f(1.f, 1.f, 1.f)));
+    teams::assignHomes(spaceObjects::addHome(HOME_MIDDLE, 100, Color3f::random()));
     players::createShips();
 
     spaceObjects::populateSpace(5.f, 10.f, 4);

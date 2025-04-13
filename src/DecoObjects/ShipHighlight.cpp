@@ -40,25 +40,42 @@ void ShipHighlight::draw(Vector2f const& location, float scale, float alpha) con
 {
     const float    maxAngle     (ship_->currentWeapon_->maxAngle());
     const float    shipRotation (ship_->rotation_*M_PI/180.f);
-    const Vector2f shipDirection(Vector2f(std::cos(shipRotation), std::sin(shipRotation)));
+    const Vector2f dir(Vector2f(std::cos(shipRotation), std::sin(shipRotation)));
+    const float    r = ship_->radius_;
     // if (ship_->currentWeapon_->getType() == weapons::wInsta)
        // AmmoInsta::hitsAny(ship_->location() + shipDirection*ship_->radius(), shipDirection, ship_->owner_->team());
 
     glEnable(GL_TEXTURE_2D);
-    glBindTexture(GL_TEXTURE_2D, texture::getTexture(texture::Ships));
     glBlendFunc(GL_SRC_ALPHA, GL_ONE);
 
     glPushMatrix();
     glLoadIdentity();
     glTranslatef(location.x_, location.y_, 0.f);
-    glRotatef(fmod(timer::totalTime()*100.f, 360.f), 0.f, 0.f, 1.f);
+if (0)
+{
+    ship_->owner_->color().gl4f(alpha * 0.2f);
 
-    ship_->owner_->color().brightened().gl4f(alpha);
+    glRotatef(ship_->rotation_, 0.f, 0.f, 1.f);
+
+    glBegin(GL_QUADS);  // aim ray
+        const int posX = 0;
+        const int posY = 31;
+        glTexCoord2f(posX*0.125f,     posY*0.03125f);    glVertex2f(0,     r* 0.2f);
+        glTexCoord2f(posX*0.125f,    (posY+1)*0.03125f); glVertex2f(0,     r*-0.2f);
+        glTexCoord2f((posX+1)*0.125f,(posY+1)*0.03125f); glVertex2f(r*9.f, r*-0.2f);
+        glTexCoord2f((posX+1)*0.125f, posY*0.03125f);    glVertex2f(r*9.f, r* 0.2f);
+    glEnd();
+}
+
+    glRotatef(fmod(timer::totalTime()*10.f, 360.f), 0.f, 0.f, 1.f);
+    glBindTexture(GL_TEXTURE_2D, texture::getTexture(texture::Ships));
+    ship_->owner_->color().brightened().gl4f(1.f); //alpha);
+
     glBegin(GL_QUADS);
-        glTexCoord2f(0.f, 0.875f);       glVertex2f(-ship_->radius_*2.7f*scale,-ship_->radius_*2.7f*scale);
-        glTexCoord2f(0.f, 1.f);          glVertex2f(-ship_->radius_*2.7f*scale, ship_->radius_*2.7f*scale);
-        glTexCoord2f(0.125f,  1.f);      glVertex2f( ship_->radius_*2.7f*scale, ship_->radius_*2.7f*scale);
-        glTexCoord2f(0.125f,  0.875f);   glVertex2f( ship_->radius_*2.7f*scale,-ship_->radius_*2.7f*scale);
+        glTexCoord2f(0.f, 0.875f);       glVertex2f(r*-2.7f*scale, r*-2.7f*scale);
+        glTexCoord2f(0.f, 1.f);          glVertex2f(r*-2.7f*scale, r* 2.7f*scale);
+        glTexCoord2f(0.125f,  1.f);      glVertex2f(r* 2.7f*scale, r* 2.7f*scale);
+        glTexCoord2f(0.125f,  0.875f);   glVertex2f(r* 2.7f*scale, r*-2.7f*scale);
     glEnd();
 
     glPopMatrix();

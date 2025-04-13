@@ -177,12 +177,11 @@ void AmmoRocket::draw() const
         btmL(location_ - 3*dir + side),
         btmR(location_ - 3*dir - side);
 
-    const int posX = 0;
-    const int posY = (static_cast<int>(lifeTime_*3.f) % 2) * 2 + 3;
-    uv8(posX,   posY+2);  glVertex2f(topL.x_, topL.y_);
-    uv8(posX+4, posY+2);  glVertex2f(btmL.x_, btmL.y_);
-    uv8(posX+4, posY);    glVertex2f(btmR.x_, btmR.y_);
-    uv8(posX,   posY);    glVertex2f(topR.x_, topR.y_);
+    const int u = 0, v = ((int)(lifeTime_ * 3.f) % 2) * 2 + 3;
+    uv8(u,   v+2);  glVertex2f(topL.x_, topL.y_);
+    uv8(u+4, v+2);  glVertex2f(btmL.x_, btmL.y_);
+    uv8(u+4, v);    glVertex2f(btmR.x_, btmR.y_);
+    uv8(u,   v);    glVertex2f(topR.x_, topR.y_);
 
     MobileSpaceObject* target(NULL);
     if (ballTarget_)
@@ -193,15 +192,14 @@ void AmmoRocket::draw() const
     if (target && frozen_ <= 0)  // crosshair
     {
         glColor3f(1.f, 0.7f, 0.9f);
-        const int posX = 5;
-        const int posY = 5;
+        const int u = 5, v = 5;
         float const size = std::sin(lifeTime_*5.f)*4.f + 26.f;
         Vector2f const loc(target->location());
 
-        uv8(posX,   posY+3);  glVertex2f(loc.x_ - size, loc.y_ - size);
-        uv8(posX+3, posY+3);  glVertex2f(loc.x_ + size, loc.y_ - size);
-        uv8(posX+3, posY);    glVertex2f(loc.x_ + size, loc.y_ + size);
-        uv8(posX,   posY);    glVertex2f(loc.x_ - size, loc.y_ + size);
+        uv8(u,   v+3);  glVertex2f(loc.x_ - size, loc.y_ - size);
+        uv8(u+3, v+3);  glVertex2f(loc.x_ + size, loc.y_ - size);
+        uv8(u+3, v);    glVertex2f(loc.x_ + size, loc.y_ + size);
+        uv8(u,   v);    glVertex2f(loc.x_ - size, loc.y_ + size);
     }
 }
 

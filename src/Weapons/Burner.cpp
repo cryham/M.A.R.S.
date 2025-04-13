@@ -31,13 +31,12 @@ void Burner::draw(float alpha) const
     glColor4f(1.0f, 1.0f, 1.0f, alpha);
 
     const float r = parent_->radius();
-    const int posX = 0;
-    const int posY = 30;
+    const int u = 0, v = 30;
     glBegin(GL_QUADS);
-        glTexCoord2f(posX*0.125f,     posY*0.03125f);    glVertex2f(0,      r*0.3f);
-        glTexCoord2f(posX*0.125f,    (posY+1)*0.03125f); glVertex2f(0, -1.f*r*0.3f);
-        glTexCoord2f((posX+1)*0.125f,(posY+1)*0.03125f); glVertex2f(r*3.f, -1.f*r*0.3f);
-        glTexCoord2f((posX+1)*0.125f, posY*0.03125f);    glVertex2f(r*3.f,      r*0.3f);
+        glTexCoord2f(u*0.125f,     v*0.03125f);    glVertex2f(0,      r*0.3f);
+        glTexCoord2f(u*0.125f,    (v+1)*0.03125f); glVertex2f(0, -1.f*r*0.3f);
+        glTexCoord2f((u+1)*0.125f,(v+1)*0.03125f); glVertex2f(r*3.f, -1.f*r*0.3f);
+        glTexCoord2f((u+1)*0.125f, v*0.03125f);    glVertex2f(r*3.f,      r*0.3f);
     glEnd();
 }
 

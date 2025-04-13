@@ -89,9 +89,9 @@ void AmmoPulse::update()
 void AmmoPulse::draw() const
 {
     color_.gl4f(0.9f - 0.4f * lifeTime_ / totalLifeTime_);
-    const int posX = 0, posY = 12;
+    const int u = 0, v = 12;
 
-    Vector2f dir(velocity_.normalize()*20.f);
+    Vector2f dir(velocity_.normalize() * 20.f);
     Vector2f side(dir.y_, -1.f*dir.x_);
     const Vector2f
         topL(location_ + 3*side + dir*1),
@@ -99,15 +99,10 @@ void AmmoPulse::draw() const
         btmL(location_ - 3*side + dir*1),
         btmR(location_ - 3*side - dir*3);
 
-    uv8(posX,   posY);    glVertex2f(topL.x_, topL.y_);
-    uv8(posX+4, posY);    glVertex2f(btmL.x_, btmL.y_);
-    uv8(posX+4, posY+2);  glVertex2f(btmR.x_, btmR.y_);
-    uv8(posX,   posY+2);  glVertex2f(topR.x_, topR.y_);
-
-    // uv8(posX, posY);      glVertex2f(location_.x_-radius_, location_.y_-radius_);
-    // uv8(posX, posY+2);    glVertex2f(location_.x_-radius_, location_.y_+radius_);
-    // uv8(posX+3, posY+2);  glVertex2f(location_.x_+radius_, location_.y_+radius_);
-    // uv8(posX+3, posY);    glVertex2f(location_.x_+radius_, location_.y_-radius_);
+    uv8(u,   v);    glVertex2f(topL.x_, topL.y_);
+    uv8(u+4, v);    glVertex2f(btmL.x_, btmL.y_);
+    uv8(u+4, v+2);  glVertex2f(btmR.x_, btmR.y_);
+    uv8(u,   v+2);  glVertex2f(topR.x_, topR.y_);
 }
 
 void AmmoPulse::onCollision(SpaceObject* with, Vector2f const& location,

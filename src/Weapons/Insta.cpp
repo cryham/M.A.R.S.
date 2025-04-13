@@ -33,13 +33,12 @@ void Insta::draw(float alpha) const
     parent_->getOwner()->team()->color().brightened().gl4f(alpha);
 
     const float r = parent_->radius();
-    const int posX = 2;
-    const int posY = 31;
+    const int u = 2, v = 31;
     glBegin(GL_QUADS);
-        glTexCoord2f(posX*0.125f,     posY*0.03125f);    glVertex2f(0,      r* 0.2f);
-        glTexCoord2f(posX*0.125f,    (posY+1)*0.03125f); glVertex2f(0,      r*-0.2f);
-        glTexCoord2f((posX+1)*0.125f,(posY+1)*0.03125f); glVertex2f(r*4.5f, r*-0.2f);
-        glTexCoord2f((posX+1)*0.125f, posY*0.03125f);    glVertex2f(r*4.5f, r* 0.2f);
+        glTexCoord2f(u*0.125f,     v*0.03125f);    glVertex2f(0,      r* 0.2f);
+        glTexCoord2f(u*0.125f,    (v+1)*0.03125f); glVertex2f(0,      r*-0.2f);
+        glTexCoord2f((u+1)*0.125f,(v+1)*0.03125f); glVertex2f(r*4.5f, r*-0.2f);
+        glTexCoord2f((u+1)*0.125f, v*0.03125f);    glVertex2f(r*4.5f, r* 0.2f);
     glEnd();
 }
 

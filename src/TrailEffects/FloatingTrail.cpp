@@ -61,8 +61,7 @@ void FloatingTrail::draw() const
 {
     if (length_ > 1)
     {
-        const int posX = 1;
-        const int posY = 1;
+        const int u = 1, v = 1;
 
         Vector2f toNext;
 
@@ -98,16 +97,16 @@ void FloatingTrail::draw() const
 
             // if (len < lenMax)
             {
-                uv8(posX + 0.5,  posY);    glVertex2f(points_[index].x_ + toNext.y_, points_[index].y_ - toNext.x_);
-                uv8(posX + 0.5,  posY+1);  glVertex2f(points_[index].x_ - toNext.y_, points_[index].y_ + toNext.x_);
+                uv8(u + 0.5,  v);    glVertex2f(points_[index].x_ + toNext.y_, points_[index].y_ - toNext.x_);
+                uv8(u + 0.5,  v+1);  glVertex2f(points_[index].x_ - toNext.y_, points_[index].y_ + toNext.x_);
             }
         }
 
         if (target_)
         {
             color_.gl4f(0);
-            uv8(posX + frontIndex_%2, posY);    glVertex2f(target_->location().x_ + toNext.y_, target_->location().y_ - toNext.x_);
-            uv8(posX + frontIndex_%2, posY+1);  glVertex2f(target_->location().x_ - toNext.y_, target_->location().y_ + toNext.x_);
+            uv8(u + frontIndex_%2, v);    glVertex2f(target_->location().x_ + toNext.y_, target_->location().y_ - toNext.x_);
+            uv8(u + frontIndex_%2, v+1);  glVertex2f(target_->location().x_ - toNext.y_, target_->location().y_ + toNext.x_);
         }
 
         glEnd();

@@ -32,13 +32,12 @@ void Pulse::draw(float alpha) const
     glColor3f(1.f, 0.5f, 0.8f);
 
     const float r = parent_->radius();
-    const int posX = 0;
-    const int posY = 29;
+    const int u = 0, v = 29;
     glBegin(GL_QUADS);
-        glTexCoord2f(posX*0.125f,     posY*0.03125f);    glVertex2f(0,     r* 1.6f);
-        glTexCoord2f(posX*0.125f,    (posY+1)*0.03125f); glVertex2f(0,     r*-1.6f);
-        glTexCoord2f((posX+1)*0.125f,(posY+1)*0.03125f); glVertex2f(r*2.f, r*-1.6f);
-        glTexCoord2f((posX+1)*0.125f, posY*0.03125f);    glVertex2f(r*2.f, r* 1.6f);
+        glTexCoord2f(u*0.125f,     v*0.03125f);    glVertex2f(0,     r* 1.6f);
+        glTexCoord2f(u*0.125f,    (v+1)*0.03125f); glVertex2f(0,     r*-1.6f);
+        glTexCoord2f((u+1)*0.125f,(v+1)*0.03125f); glVertex2f(r*2.f, r*-1.6f);
+        glTexCoord2f((u+1)*0.125f, v*0.03125f);    glVertex2f(r*2.f, r* 1.6f);
     glEnd();
 }
 

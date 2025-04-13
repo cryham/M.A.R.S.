@@ -75,12 +75,11 @@ void AmmoROFLE::draw() const
         btmL(location_ - 3*dir + side),
         btmR(location_ - 3*dir - side);
 
-    const int posX = 0;
-    const float posY = 2.5f;
-    uv8(posX, posY);         glVertex2f(topL.x_, topL.y_);
-    uv8(posX,   posY+0.5f);  glVertex2f(btmL.x_, btmL.y_);
-    uv8(posX+3, posY+0.5f);  glVertex2f(btmR.x_, btmR.y_);
-    uv8(posX+3, posY);       glVertex2f(topR.x_, topR.y_);
+    const float u = 0, v = 2.5f;
+    uv8(u, v);         glVertex2f(topL.x_, topL.y_);
+    uv8(u,   v+0.5f);  glVertex2f(btmL.x_, btmL.y_);
+    uv8(u+3, v+0.5f);  glVertex2f(btmR.x_, btmR.y_);
+    uv8(u+3, v);       glVertex2f(topR.x_, topR.y_);
 }
 
 void AmmoROFLE::onCollision(SpaceObject* with, Vector2f const& location,

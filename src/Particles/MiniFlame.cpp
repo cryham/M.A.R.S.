@@ -69,10 +69,9 @@ void MiniFlame::update()
 void MiniFlame::draw() const
 {
     color_.gl4f();
-    const int posX = 5;
-    const int posY = 0;
-    uv8(posX, posY);      glVertex2f(location_.x_-radius_, location_.y_-radius_);
-    uv8(posX, posY+1);    glVertex2f(location_.x_-radius_, location_.y_+radius_);
-    uv8(posX+1, posY+1);  glVertex2f(location_.x_+radius_, location_.y_+radius_);
-    uv8(posX+1, posY);    glVertex2f(location_.x_+radius_, location_.y_-radius_);
+    const int u = 5, v = 0;
+    uv8(u, v);      glVertex2f(location_.x_-radius_, location_.y_-radius_);
+    uv8(u, v+1);    glVertex2f(location_.x_-radius_, location_.y_+radius_);
+    uv8(u+1, v+1);  glVertex2f(location_.x_+radius_, location_.y_+radius_);
+    uv8(u+1, v);    glVertex2f(location_.x_+radius_, location_.y_-radius_);
 }

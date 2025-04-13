@@ -29,8 +29,10 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 std::list<AmmoPlasma*> AmmoPlasma::activeParticles_;
 
 
-AmmoPlasma::AmmoPlasma(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity, Color3f const& color, Player* damageSource)
-    :Particle<AmmoPlasma>(spaceObjects::oAmmoPlasma, location, randomizer::random(9.f, 15.f), 0.01f, randomizer::random(12.f, 15.f))
+AmmoPlasma::AmmoPlasma(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,
+        Color3f const& color, Player* damageSource)
+    :Particle<AmmoPlasma>(spaceObjects::oAmmoPlasma, location,
+        randomizer::random(9.f, 15.f), 0.01f, randomizer::random(12.f, 15.f))
 {
     setDamageSource(damageSource);
     velocity_ = velocity + direction * 1500;
@@ -75,12 +77,11 @@ void AmmoPlasma::update()
 void AmmoPlasma::draw() const
 {
     color_.gl4f(0.6f);
-    // const int posX = 3, posY = 0;
-    const int posX = 0, posY = 1;
-    uv8(posX, posY);      glVertex2f(location_.x_-radius_, location_.y_-radius_);
-    uv8(posX, posY+1);    glVertex2f(location_.x_-radius_, location_.y_+radius_);
-    uv8(posX+1, posY+1);  glVertex2f(location_.x_+radius_, location_.y_+radius_);
-    uv8(posX+1, posY);    glVertex2f(location_.x_+radius_, location_.y_-radius_);
+    const int u = 0, v = 1;
+    uv8(u, v);      glVertex2f(location_.x_-radius_, location_.y_-radius_);
+    uv8(u, v+1);    glVertex2f(location_.x_-radius_, location_.y_+radius_);
+    uv8(u+1, v+1);  glVertex2f(location_.x_+radius_, location_.y_+radius_);
+    uv8(u+1, v);    glVertex2f(location_.x_+radius_, location_.y_-radius_);
 }
 
 void AmmoPlasma::onCollision(SpaceObject* with, Vector2f const& location,

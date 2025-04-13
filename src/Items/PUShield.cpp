@@ -38,12 +38,11 @@ void PUShield::draw() const
             // shield bubble
             glColor4f(1.0f, 0.5f, 0.8f, 0.9f);
             glBegin(GL_QUADS);
-                const int posX = 5;
-                const int posY = 0;
-                glTexCoord2f(posX*0.15625f,     posY*0.15625f);     glVertex2f(-35, -35);
-                glTexCoord2f(posX*0.15625f,     (posY+1)*0.15625f); glVertex2f(-35, +35);
-                glTexCoord2f((posX+1)*0.15625f, (posY+1)*0.15625f); glVertex2f(+35, +35);
-                glTexCoord2f((posX+1)*0.15625f, posY*0.15625f);     glVertex2f(+35, -35);
+                const int u = 5, v = 0;
+                glTexCoord2f(u*0.15625f,     v*0.15625f);     glVertex2f(-35, -35);
+                glTexCoord2f(u*0.15625f,     (v+1)*0.15625f); glVertex2f(-35, +35);
+                glTexCoord2f((u+1)*0.15625f, (v+1)*0.15625f); glVertex2f(+35, +35);
+                glTexCoord2f((u+1)*0.15625f, v*0.15625f);     glVertex2f(+35, -35);
             glEnd();
 
             glPopMatrix();

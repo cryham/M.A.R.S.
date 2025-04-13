@@ -33,13 +33,12 @@ void NoSpecial::draw(float alpha) const
     parent_->getOwner()->team()->color().brightened().gl4f(0.7f*alpha);
 
     const float r = parent_->radius();
-    const int posX = 3;
-    const int posY = 3;
+    const int u = 3, v = 3;
 
     glBegin(GL_QUADS);
-        glTexCoord2f( posX*0.25f,    posY*0.25f);    glVertex2f(-r*4,-r*4);
-        glTexCoord2f( posX*0.25f,   (posY+1)*0.25f); glVertex2f(-r*4, r*4);
-        glTexCoord2f((posX+1)*0.25f,(posY+1)*0.25f); glVertex2f( r*4, r*4);
-        glTexCoord2f((posX+1)*0.25f, posY*0.25f);    glVertex2f( r*4,-r*4);
+        uv4(u, v);     glVertex2f(-r*4,-r*4);
+        uv4(u, v+1);   glVertex2f(-r*4, r*4);
+        uv4(u+1, v+1); glVertex2f( r*4, r*4);
+        uv4(u+1, v);   glVertex2f( r*4,-r*4);
     glEnd();
 }

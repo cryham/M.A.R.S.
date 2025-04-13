@@ -73,9 +73,6 @@ void AmmoFreezers::update()
 
     if (lifeTime_ > totalLifeTime_)
     {
-        // particles::spawnMultiple(1, particles::pMud, location_, Vector2f(), Vector2f(), color_);
-        // int rand = randomizer::random(8, 20);
-        // sound::playSound(sound::BlubCollide, location_);
         killMe();
     }
     else if (lifeTime_ < 2)
@@ -94,19 +91,15 @@ void AmmoFreezers::update()
 void AmmoFreezers::draw() const
 {
     color_.gl4f(0.6f);
-    const int posX = 10, posY = 0;
-    uv8(posX, posY);      glVertex2f(location_.x_-radius_, location_.y_-radius_);
-    uv8(posX,   posY+3);  glVertex2f(location_.x_-radius_, location_.y_+radius_);
-    uv8(posX+3, posY+3);  glVertex2f(location_.x_+radius_, location_.y_+radius_);
-    uv8(posX+3, posY);    glVertex2f(location_.x_+radius_, location_.y_-radius_);
+    const int u = 10, v = 0;
+    uv8(u, v);      glVertex2f(location_.x_-radius_, location_.y_-radius_);
+    uv8(u,   v+3);  glVertex2f(location_.x_-radius_, location_.y_+radius_);
+    uv8(u+3, v+3);  glVertex2f(location_.x_+radius_, location_.y_+radius_);
+    uv8(u+3, v);    glVertex2f(location_.x_+radius_, location_.y_-radius_);
 }
 
 void AmmoFreezers::onCollision(SpaceObject* with, Vector2f const& location,
                         Vector2f const& direction, Vector2f const& velocity)
 {
-    if (!isDead() && with->type() != spaceObjects::oAmmoFreezers /*&& with->type() != spaceObjects::oMiniAmmoFreezers*/)
-    {
-        sound::playSound(sound::BlubCollide, location_);
-        killMe();
-    }
+    // no
 }

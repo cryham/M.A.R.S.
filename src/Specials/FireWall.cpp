@@ -39,14 +39,13 @@ void FireWall::draw(float alpha) const
 
     float scale(4 + std::sin(timer::totalTime() * 6) * 0.3f);
     const float r = parent_->radius();
-    const int posX = 3;
-    const int posY = 0;
+    const int u = 3, v = 0;
 
     glBegin(GL_QUADS);
-        glTexCoord2f( posX*0.25f,    posY*0.25f);    glVertex2f(-r*scale,-r*scale);
-        glTexCoord2f( posX*0.25f,   (posY+1)*0.25f); glVertex2f(-r*scale, r*scale);
-        glTexCoord2f((posX+1)*0.25f,(posY+1)*0.25f); glVertex2f( r*scale, r*scale);
-        glTexCoord2f((posX+1)*0.25f, posY*0.25f);    glVertex2f( r*scale,-r*scale);
+        uv4(u, v);     glVertex2f(-r*scale,-r*scale);
+        uv4(u, v+1);   glVertex2f(-r*scale, r*scale);
+        uv4(u+1, v+1); glVertex2f( r*scale, r*scale);
+        uv4(u+1, v);   glVertex2f( r*scale,-r*scale);
     glEnd();
 
     // draw effect

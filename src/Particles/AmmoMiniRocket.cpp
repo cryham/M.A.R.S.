@@ -120,12 +120,11 @@ void AmmoMiniRocket::draw() const
         btmL(location_ - 3*dir + side),
         btmR(location_ - 3*dir - side);
 
-    const int posX = 0;
-    const int posY = 5;
-    glTexCoord2f(posX*0.125f,    (posY+2)*0.125f); glVertex2f(topL.x_, topL.y_);
-    glTexCoord2f((posX+4)*0.125f,(posY+2)*0.125f); glVertex2f(btmL.x_, btmL.y_);
-    glTexCoord2f((posX+4)*0.125f, posY*0.125f);    glVertex2f(btmR.x_, btmR.y_);
-    glTexCoord2f(posX*0.125f,     posY*0.125f);    glVertex2f(topR.x_, topR.y_);
+    const int u = 0, v = 5;
+    glTexCoord2f(u*0.125f,    (v+2)*0.125f); glVertex2f(topL.x_, topL.y_);
+    glTexCoord2f((u+4)*0.125f,(v+2)*0.125f); glVertex2f(btmL.x_, btmL.y_);
+    glTexCoord2f((u+4)*0.125f, v*0.125f);    glVertex2f(btmR.x_, btmR.y_);
+    glTexCoord2f(u*0.125f,     v*0.125f);    glVertex2f(topR.x_, topR.y_);
 }
 
 void AmmoMiniRocket::onCollision(SpaceObject* with, Vector2f const& location,

@@ -33,8 +33,7 @@ void Track::draw() const
 {
     if (points_.size() > 2)
     {
-        const int posX = 1;
-        const int posY = 1;
+        const int u = 1, v = 1;
 
         glEnable(GL_TEXTURE_2D);
         glBindTexture(GL_TEXTURE_2D, texture::getTexture(texture::Particles));
@@ -69,10 +68,8 @@ void Track::draw() const
                     left = lastLeft;
             }
 
-            glTexCoord2f((posX + 0.5)*0.125f,     posY*0.125f);
-                glVertex2f(left.x_,left.y_);
-            glTexCoord2f((posX + 0.5)*0.125f, (posY+1)*0.125f);
-                glVertex2f(right.x_, right.y_);
+            glTexCoord2f((u + 0.5)*0.125f,     v*0.125f);  glVertex2f(left.x_,left.y_);
+            glTexCoord2f((u + 0.5)*0.125f, (v+1)*0.125f);  glVertex2f(right.x_, right.y_);
 
             lastLeft = left;
             lastRight = right;

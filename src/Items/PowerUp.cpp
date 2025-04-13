@@ -113,12 +113,11 @@ void PowerUp::draw() const
     glRotatef(fmod(timer::totalTime()*100.f, 360.f), 0.f, 0.f, 1.f);
     // glow
     glBegin(GL_QUADS);
-        const int posX1 = 0;
-        const int posY1 = 0;
-        glTexCoord2f(posX1*0.15625f,     posY1*0.15625f);     glVertex2f(-radius_*2.f, -radius_*2.f);
-        glTexCoord2f(posX1*0.15625f,     (posY1+1)*0.15625f); glVertex2f(-radius_*2.f, +radius_*2.f);
-        glTexCoord2f((posX1+1)*0.15625f, (posY1+1)*0.15625f); glVertex2f(+radius_*2.f, +radius_*2.f);
-        glTexCoord2f((posX1+1)*0.15625f, posY1*0.15625f);     glVertex2f(+radius_*2.f, -radius_*2.f);
+        const int u1 = 0, v1 = 0;
+        glTexCoord2f(u1*0.15625f,     v1*0.15625f);     glVertex2f(-radius_*2.f, -radius_*2.f);
+        glTexCoord2f(u1*0.15625f,     (v1+1)*0.15625f); glVertex2f(-radius_*2.f, +radius_*2.f);
+        glTexCoord2f((u1+1)*0.15625f, (v1+1)*0.15625f); glVertex2f(+radius_*2.f, +radius_*2.f);
+        glTexCoord2f((u1+1)*0.15625f, v1*0.15625f);     glVertex2f(+radius_*2.f, -radius_*2.f);
     glEnd();
 
     glLoadIdentity();
@@ -128,12 +127,11 @@ void PowerUp::draw() const
     glColor3f(1.f, 1.f, 1.f);
     // item layer
     glBegin(GL_QUADS);
-        const int posX2 = texX_;
-        const int posY2 = texY_;
-        glTexCoord2f(posX2*0.15625f,     posY2*0.15625f);     glVertex2f(-radius_, -radius_);
-        glTexCoord2f(posX2*0.15625f,     (posY2+1)*0.15625f); glVertex2f(-radius_, +radius_);
-        glTexCoord2f((posX2+1)*0.15625f, (posY2+1)*0.15625f); glVertex2f(+radius_, +radius_);
-        glTexCoord2f((posX2+1)*0.15625f, posY2*0.15625f);     glVertex2f(+radius_, -radius_);
+        const int u2 = texX_, v2 = texY_;
+        glTexCoord2f(u2*0.15625f,     v2*0.15625f);     glVertex2f(-radius_, -radius_);
+        glTexCoord2f(u2*0.15625f,     (v2+1)*0.15625f); glVertex2f(-radius_, +radius_);
+        glTexCoord2f((u2+1)*0.15625f, (v2+1)*0.15625f); glVertex2f(+radius_, +radius_);
+        glTexCoord2f((u2+1)*0.15625f, v2*0.15625f);     glVertex2f(+radius_, -radius_);
     glEnd();
 
     glPopMatrix();

@@ -31,13 +31,12 @@ void Minigun::draw(float alpha) const
     glColor4f(1.0f, 1.0f, 0.5f, alpha);
 
     const float r = parent_->radius();
-    const int posX = 1;
-    const int posY = 31;
+    const int u = 1, v = 31;
     glBegin(GL_QUADS);  // 1/8 / 4
-        glTexCoord2f(posX*0.125f,     posY*0.03125f);    glVertex2f(0,      r* 0.3f);
-        glTexCoord2f(posX*0.125f,    (posY+1)*0.03125f); glVertex2f(0,      r*-0.3f);
-        glTexCoord2f((posX+1)*0.125f,(posY+1)*0.03125f); glVertex2f(r*6.f,  r*-0.3f);
-        glTexCoord2f((posX+1)*0.125f, posY*0.03125f);    glVertex2f(r*6.f,  r* 0.3f);
+        glTexCoord2f(u*0.125f,     v*0.03125f);    glVertex2f(0,      r* 0.3f);
+        glTexCoord2f(u*0.125f,    (v+1)*0.03125f); glVertex2f(0,      r*-0.3f);
+        glTexCoord2f((u+1)*0.125f,(v+1)*0.03125f); glVertex2f(r*6.f,  r*-0.3f);
+        glTexCoord2f((u+1)*0.125f, v*0.03125f);    glVertex2f(r*6.f,  r* 0.3f);
     glEnd();
 }
 

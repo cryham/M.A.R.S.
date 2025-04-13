@@ -42,12 +42,11 @@ void PUReverse::draw() const
         // reverse
         glColor3f(1.f, 0.7f, 0.9f);
         glBegin(GL_QUADS);
-                const int posX = 1;
-                const int posY = 1;
-                glTexCoord2f(posX*0.15625f,     posY*0.15625f);     glVertex2f(-35, -35);
-                glTexCoord2f(posX*0.15625f,     (posY+1)*0.15625f); glVertex2f(-35, +35);
-                glTexCoord2f((posX+1)*0.15625f, (posY+1)*0.15625f); glVertex2f(+35, +35);
-                glTexCoord2f((posX+1)*0.15625f, posY*0.15625f);     glVertex2f(+35, -35);
+            const int u = 1, v = 1;
+            glTexCoord2f(u*0.15625f,     v*0.15625f);     glVertex2f(-35, -35);
+            glTexCoord2f(u*0.15625f,     (v+1)*0.15625f); glVertex2f(-35, +35);
+            glTexCoord2f((u+1)*0.15625f, (v+1)*0.15625f); glVertex2f(+35, +35);
+            glTexCoord2f((u+1)*0.15625f, v*0.15625f);     glVertex2f(+35, -35);
         glEnd();
 
         glPopMatrix();

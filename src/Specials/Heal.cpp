@@ -38,14 +38,13 @@ void Heal::draw(float alpha) const
     parent_->getOwner()->team()->color().brightened().gl4f(alpha);
 
     const float r = parent_->radius();
-    const int posX = 1;
-    const int posY = 0;
+    const int u = 1, v = 0;
 
     glBegin(GL_QUADS);
-        glTexCoord2f( posX*0.25f,    posY*0.25f);    glVertex2f(-r*4,-r*4);
-        glTexCoord2f( posX*0.25f,   (posY+1)*0.25f); glVertex2f(-r*4, r*4);
-        glTexCoord2f((posX+1)*0.25f,(posY+1)*0.25f); glVertex2f( r*4, r*4);
-        glTexCoord2f((posX+1)*0.25f, posY*0.25f);    glVertex2f( r*4,-r*4);
+        uv4(u, v);     glVertex2f(-r*4,-r*4);
+        uv4(u, v+1);   glVertex2f(-r*4, r*4);
+        uv4(u+1, v+1); glVertex2f( r*4, r*4);
+        uv4(u+1, v);   glVertex2f( r*4,-r*4);
     glEnd();
 
     if (timer_ > 0.f)
@@ -59,14 +58,13 @@ void Heal::draw(float alpha) const
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         glColor4f(1.0f, 1.0f, 1.0f, alpha);
 
-        const int posX = 1;
-        const int posY = 1;
+        const int u = 1, v = 1;
 
         glBegin(GL_QUADS);
-            glTexCoord2f( posX*0.25f,    posY*0.25f);    glVertex2f(-radius_,-radius_);
-            glTexCoord2f( posX*0.25f,   (posY+1)*0.25f); glVertex2f(-radius_, radius_);
-            glTexCoord2f((posX+1)*0.25f,(posY+1)*0.25f); glVertex2f( radius_, radius_);
-            glTexCoord2f((posX+1)*0.25f, posY*0.25f);    glVertex2f( radius_,-radius_);
+            uv4(u, v);     glVertex2f(-radius_,-radius_);
+            uv4(u, v+1);   glVertex2f(-radius_, radius_);
+            uv4(u+1, v+1); glVertex2f( radius_, radius_);
+            uv4(u+1, v);   glVertex2f( radius_,-radius_);
         glEnd();
 
         if (!menus::visible() || games::type() == games::gMenu)

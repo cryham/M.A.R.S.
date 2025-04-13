@@ -59,12 +59,11 @@ void AmmoFist::update()
 void AmmoFist::draw() const
 {
     glColor4f(1, 1, 1, 1);
-    const int posX = 0;
-    const int posY = 1;
-    uv8(posX, posY);      glVertex2f(location_.x_-radius_, location_.y_-radius_);
-    uv8(posX, posY+1);    glVertex2f(location_.x_-radius_, location_.y_+radius_);
-    uv8(posX+1, posY+1);  glVertex2f(location_.x_+radius_, location_.y_+radius_);
-    uv8(posX+1, posY);    glVertex2f(location_.x_+radius_, location_.y_-radius_);
+    const int u = 0, v = 1;
+    uv8(u, v);      glVertex2f(location_.x_-radius_, location_.y_-radius_);
+    uv8(u, v+1);    glVertex2f(location_.x_-radius_, location_.y_+radius_);
+    uv8(u+1, v+1);  glVertex2f(location_.x_+radius_, location_.y_+radius_);
+    uv8(u+1, v);    glVertex2f(location_.x_+radius_, location_.y_-radius_);
 }
 
 void AmmoFist::onCollision(SpaceObject* with, Vector2f const& location,

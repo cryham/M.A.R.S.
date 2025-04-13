@@ -72,12 +72,11 @@ void CannonControl::draw() const
         glRotatef(fmod(timer::totalTime()*100.f, 360.f), 0.f, 0.f, 1.f);
         // glow
         glBegin(GL_QUADS);
-            const int posX1 = 0;
-            const int posY1 = 0;
-            glTexCoord2f(posX1*0.15625f,     posY1*0.15625f);     glVertex2f(-20.f*2.f, -20.f*2.f);
-            glTexCoord2f(posX1*0.15625f,     (posY1+1)*0.15625f); glVertex2f(-20.f*2.f, +20.f*2.f);
-            glTexCoord2f((posX1+1)*0.15625f, (posY1+1)*0.15625f); glVertex2f(+20.f*2.f, +20.f*2.f);
-            glTexCoord2f((posX1+1)*0.15625f, posY1*0.15625f);     glVertex2f(+20.f*2.f, -20.f*2.f);
+            const int u1 = 0, v1 = 0;
+            glTexCoord2f(u1*0.15625f,     v1*0.15625f);     glVertex2f(-20.f*2.f, -20.f*2.f);
+            glTexCoord2f(u1*0.15625f,     (v1+1)*0.15625f); glVertex2f(-20.f*2.f, +20.f*2.f);
+            glTexCoord2f((u1+1)*0.15625f, (v1+1)*0.15625f); glVertex2f(+20.f*2.f, +20.f*2.f);
+            glTexCoord2f((u1+1)*0.15625f, v1*0.15625f);     glVertex2f(+20.f*2.f, -20.f*2.f);
         glEnd();
 
         glLoadIdentity();
@@ -88,12 +87,11 @@ void CannonControl::draw() const
         glColor3f(1.f, 1.f, 1.f);
         // item layer
         glBegin(GL_QUADS);
-            const int posX2 = 1;
-            const int posY2 = 0;
-            glTexCoord2f(posX2*0.15625f,     posY2*0.15625f);     glVertex2f(-20.f, -20.f);
-            glTexCoord2f(posX2*0.15625f,     (posY2+1)*0.15625f); glVertex2f(-20.f, +20.f);
-            glTexCoord2f((posX2+1)*0.15625f, (posY2+1)*0.15625f); glVertex2f(+20.f, +20.f);
-            glTexCoord2f((posX2+1)*0.15625f, posY2*0.15625f);     glVertex2f(+20.f, -20.f);
+            const int u2 = 1, v2 = 0;
+            glTexCoord2f(u2*0.15625f,     v2*0.15625f);     glVertex2f(-20.f, -20.f);
+            glTexCoord2f(u2*0.15625f,     (v2+1)*0.15625f); glVertex2f(-20.f, +20.f);
+            glTexCoord2f((u2+1)*0.15625f, (v2+1)*0.15625f); glVertex2f(+20.f, +20.f);
+            glTexCoord2f((u2+1)*0.15625f, v2*0.15625f);     glVertex2f(+20.f, -20.f);
         glEnd();
 
         glPopMatrix();
@@ -110,12 +108,11 @@ void CannonControl::draw() const
             glBlendFunc(GL_SRC_ALPHA, GL_ONE);
             // flash
             glBegin(GL_QUADS);
-                const int posX3 = 0;
-                const int posY3 = 0;
-                glTexCoord2f(posX3*0.15625f,     posY3*0.15625f);     glVertex2f( - ship_->velocity_.x_ * 0.042f -15,  - ship_->velocity_.y_ * 0.0042f - 43.f-15);
-                glTexCoord2f(posX3*0.15625f,     (posY3+1)*0.15625f); glVertex2f( - ship_->velocity_.x_ * 0.042f -15,  - ship_->velocity_.y_ * 0.0042f - 43.f+15);
-                glTexCoord2f((posX3+1)*0.15625f, (posY3+1)*0.15625f); glVertex2f( - ship_->velocity_.x_ * 0.042f +15,  - ship_->velocity_.y_ * 0.0042f - 43.f+15);
-                glTexCoord2f((posX3+1)*0.15625f, posY3*0.15625f);     glVertex2f( - ship_->velocity_.x_ * 0.042f +15,  - ship_->velocity_.y_ * 0.0042f - 43.f-15);
+                const int u3 = 0, v3 = 0;
+                glTexCoord2f(u3*0.15625f,     v3*0.15625f);     glVertex2f( - ship_->velocity_.x_ * 0.042f -15,  - ship_->velocity_.y_ * 0.0042f - 43.f-15);
+                glTexCoord2f(u3*0.15625f,     (v3+1)*0.15625f); glVertex2f( - ship_->velocity_.x_ * 0.042f -15,  - ship_->velocity_.y_ * 0.0042f - 43.f+15);
+                glTexCoord2f((u3+1)*0.15625f, (v3+1)*0.15625f); glVertex2f( - ship_->velocity_.x_ * 0.042f +15,  - ship_->velocity_.y_ * 0.0042f - 43.f+15);
+                glTexCoord2f((u3+1)*0.15625f, v3*0.15625f);     glVertex2f( - ship_->velocity_.x_ * 0.042f +15,  - ship_->velocity_.y_ * 0.0042f - 43.f-15);
             glEnd();
 
             glColor3f(1.f, 1.0f, 1.0f);
@@ -141,12 +138,11 @@ void CannonControl::draw() const
         // atomar radiance
         glColor4f(1.0f, 0.5f, 0.8f, 0.9f);
         glBegin(GL_QUADS);
-            const int posX = 2;
-            const int posY = 1;
-            glTexCoord2f(posX*0.15625f,     posY*0.15625f);     glVertex2f(-35, -35);
-            glTexCoord2f(posX*0.15625f,     (posY+1)*0.15625f); glVertex2f(-35, +35);
-            glTexCoord2f((posX+1)*0.15625f, (posY+1)*0.15625f); glVertex2f(+35, +35);
-            glTexCoord2f((posX+1)*0.15625f, posY*0.15625f);     glVertex2f(+35, -35);
+            const int u = 2, v = 1;
+            glTexCoord2f(u*0.15625f,     v*0.15625f);     glVertex2f(-35, -35);
+            glTexCoord2f(u*0.15625f,     (v+1)*0.15625f); glVertex2f(-35, +35);
+            glTexCoord2f((u+1)*0.15625f, (v+1)*0.15625f); glVertex2f(+35, +35);
+            glTexCoord2f((u+1)*0.15625f, v*0.15625f);     glVertex2f(+35, -35);
         glEnd();
 
         glPopMatrix();

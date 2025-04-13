@@ -62,7 +62,8 @@ class SpaceObject
         friend void      physics::causeShockWave(Player* damageSource, Vector2f const& location, float strength, float radius, float damage);
 
         //  utility
-        // #define  uv8(u,v)   glTexCoord2f( (u)*0.125f, (v)*0.125f)  // org 128
+        #define  uv4(u,v)   glTexCoord2f( (u)*0.25f, (v)*0.25f)  // for tex with 4x4 tiles
+        // #define  uv8(u,v)   glTexCoord2f( (u)*0.125f, (v)*0.125f)  // org 128  particles.png
         #define  uv8(u,v)   glTexCoord2f( (u)*0.0625f, (v)*0.0625f)  // new 512 x2
 
     protected:

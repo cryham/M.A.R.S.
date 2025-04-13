@@ -89,7 +89,7 @@ Turret::Turret(Vector2f const& location, float rotation, Player* owner)
 
 
 //  update
-//--------------------------------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------------------
 void Turret::update()
 {
     float time = timer::frameTime();
@@ -105,10 +105,10 @@ void Turret::update()
         if (damageCheckTimer_ <= 0.f)
         {
             float damage(damageByLocalPlayer_*20.f);
-            if (std::abs(damage) >= 1.f)
+            if (fabs(damage) >= 1.f)
             {
                 particles::spawn(particles::pNumber, location_+Vector2f(0.f, -20.f),
-                    Vector2f(damage, 20.f + std::abs(damage)*0.02f), (damageDirection_/collisionCount_)*0.5f);
+                    Vector2f(damage, 20.f + fabs(damage)*0.02f), (damageDirection_/collisionCount_)*0.5f);
                 damageDirection_ = Vector2f();
                 damageByLocalPlayer_ = 0;
                 collisionCount_ = 0;
@@ -240,7 +240,7 @@ void Turret::update()
 }
 
 //  draw
-//--------------------------------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------------------
 void Turret::draw() const
 {
     if (visible_)
@@ -337,7 +337,7 @@ void Turret::drawWeapon() const
 }
 
 //  Collision
-//--------------------------------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------------------
 void Turret::onCollision(SpaceObject* with, Vector2f const& location,
                        Vector2f const& direction, Vector2f const& velocity)
 {
@@ -540,7 +540,7 @@ void Turret::onCollision(SpaceObject* with, Vector2f const& location,
             life_ -= amount;
     }*/
 }
-//--------------------------------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------------------
 
 void Turret::onShockWave(Player* damageSource, float intensity)
 {

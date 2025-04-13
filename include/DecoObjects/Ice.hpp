@@ -49,12 +49,11 @@ class Ice: public DecoObject
                 
                 if (object_->frozen_ > 0)
                 {
-                    int posX;
-                    int posY;
-                    if (object_->frozen_ >= 30) {  posX = 0;  posY = 0;  }else
-                    if (object_->frozen_ >= 20) {  posX = 1;  posY = 0;  }else
-                    if (object_->frozen_ >= 10) {  posX = 0;  posY = 1;  }else
-                    if (object_->frozen_ > 0)   {  posX = 1;  posY = 1;  }else
+                    int u, v;
+                    if (object_->frozen_ >= 30) {  u = 0;  v = 0;  }else
+                    if (object_->frozen_ >= 20) {  u = 1;  v = 0;  }else
+                    if (object_->frozen_ >= 10) {  u = 0;  v = 1;  }else
+                    if (object_->frozen_ > 0)   {  u = 1;  v = 1;  }else
                     {
                         decoObjects::removeIce(this);
                         return;
@@ -62,10 +61,10 @@ class Ice: public DecoObject
 
                     glColor3f(1.f, 1.f, 1.f);
                     glBegin(GL_QUADS);
-                        glTexCoord2f( posX*0.5f,    posY*0.5f);    glVertex2f(-object_->radius_*1.5f,-object_->radius_*1.5f);
-                        glTexCoord2f( posX*0.5f,   (posY+1)*0.5f); glVertex2f(-object_->radius_*1.5f, object_->radius_*1.5f);
-                        glTexCoord2f((posX+1)*0.5f,(posY+1)*0.5f); glVertex2f( object_->radius_*1.5f, object_->radius_*1.5f);
-                        glTexCoord2f((posX+1)*0.5f, posY*0.5f);    glVertex2f( object_->radius_*1.5f,-object_->radius_*1.5f);
+                        glTexCoord2f( u*0.5f,    v*0.5f);    glVertex2f(-object_->radius_*1.5f,-object_->radius_*1.5f);
+                        glTexCoord2f( u*0.5f,   (v+1)*0.5f); glVertex2f(-object_->radius_*1.5f, object_->radius_*1.5f);
+                        glTexCoord2f((u+1)*0.5f,(v+1)*0.5f); glVertex2f( object_->radius_*1.5f, object_->radius_*1.5f);
+                        glTexCoord2f((u+1)*0.5f, v*0.5f);    glVertex2f( object_->radius_*1.5f,-object_->radius_*1.5f);
                     glEnd();
 
                 }

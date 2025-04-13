@@ -54,13 +54,12 @@ void Fist::draw(float alpha) const
     glEnd();
 
     parent_->getOwner()->team()->color().gl4f(alpha);
-    const float posX = 2;
-    const float posY = 28;
+    const float u = 2, v = 28;
     glBegin(GL_QUADS);
-        glTexCoord2f(posX*0.125f,     posY*0.03125f);       glVertex2f(position_*r*(position_+1),       (     r*0.5f)*(1+position_));
-        glTexCoord2f(posX*0.125f,    (posY+2)*0.03125f);    glVertex2f(position_*r*(position_+1),       (-1.f*r*0.5f)*(1+position_));
-        glTexCoord2f((posX+0.5f)*0.125f,(posY+2)*0.03125f); glVertex2f(r*(1.f+position_)*(position_+1), (-1.f*r*0.5f)*(1+position_));
-        glTexCoord2f((posX+0.5f)*0.125f, posY*0.03125f);    glVertex2f(r*(1.f+position_)*(position_+1), (     r*0.5f)*(1+position_));
+        glTexCoord2f(u*0.125f,     v*0.03125f);       glVertex2f(position_*r*(position_+1),       (     r*0.5f)*(1+position_));
+        glTexCoord2f(u*0.125f,    (v+2)*0.03125f);    glVertex2f(position_*r*(position_+1),       (-1.f*r*0.5f)*(1+position_));
+        glTexCoord2f((u+0.5f)*0.125f,(v+2)*0.03125f); glVertex2f(r*(1.f+position_)*(position_+1), (-1.f*r*0.5f)*(1+position_));
+        glTexCoord2f((u+0.5f)*0.125f, v*0.03125f);    glVertex2f(r*(1.f+position_)*(position_+1), (     r*0.5f)*(1+position_));
     glEnd();
 }
 

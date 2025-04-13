@@ -39,12 +39,11 @@ void PUSleep::draw() const
             // sleep zzz
             glColor3f(0.6f, 1.f, 0.4f);
             glBegin(GL_QUADS);
-                const int posX = 2;
-                const int posY = 0;
-                glTexCoord2f(posX*0.15625f,     posY*0.15625f);     glVertex2f(-35, -35);
-                glTexCoord2f(posX*0.15625f,     (posY+1)*0.15625f); glVertex2f(-35, +35);
-                glTexCoord2f((posX+1)*0.15625f, (posY+1)*0.15625f); glVertex2f(+35, +35);
-                glTexCoord2f((posX+1)*0.15625f, posY*0.15625f);     glVertex2f(+35, -35);
+                const int u = 2, v = 0;
+                glTexCoord2f(u*0.15625f,     v*0.15625f);     glVertex2f(-35, -35);
+                glTexCoord2f(u*0.15625f,     (v+1)*0.15625f); glVertex2f(-35, +35);
+                glTexCoord2f((u+1)*0.15625f, (v+1)*0.15625f); glVertex2f(+35, +35);
+                glTexCoord2f((u+1)*0.15625f, v*0.15625f);     glVertex2f(+35, -35);
             glEnd();
 
             glPopMatrix();

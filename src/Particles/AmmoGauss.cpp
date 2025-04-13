@@ -74,12 +74,11 @@ void AmmoGauss::draw() const
         btmL(location_ - 1*dir + side),
         btmR(location_ - 1*dir - side);
 
-    const int posX = 0;
-    const float posY = 2.5f;
-    uv8(posX, posY);         glVertex2f(topLeft.x_, topLeft.y_);
-    uv8(posX, posY+0.5f);    glVertex2f(btmL.x_, btmL.y_);
-    uv8(posX+3, posY+0.5f);  glVertex2f(btmR.x_, btmR.y_);
-    uv8(posX+3, posY);       glVertex2f(topRight.x_, topRight.y_);
+    const float u = 0, v = 2.5f;
+    uv8(u, v);         glVertex2f(topLeft.x_, topLeft.y_);
+    uv8(u, v+0.5f);    glVertex2f(btmL.x_, btmL.y_);
+    uv8(u+3, v+0.5f);  glVertex2f(btmR.x_, btmR.y_);
+    uv8(u+3, v);       glVertex2f(topRight.x_, topRight.y_);
 }
 
 

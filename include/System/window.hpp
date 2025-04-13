@@ -62,6 +62,7 @@ namespace window
     int isKeyDown(Key const& key);
 
     Vector2f const getMousePosition();
+    Vector2f const getWindowSize();
 
     void screenShot();
 

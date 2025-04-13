@@ -383,6 +383,10 @@ namespace window
     {
         return Vector2f(sf::Mouse::getPosition(window_).x, sf::Mouse::getPosition(window_).y);
     }
+    Vector2f const getWindowSize()
+    {
+        return Vector2f(window_.getSize().x, window_.getSize().y);
+    }
 
     void screenShot()
     {
@@ -406,7 +410,7 @@ namespace window
             mkdir((settings::C_configPath + "screenshots/").c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
             if (shot.saveToFile(settings::C_configPath + "screenshots/" + filename.str()))
             {   std::cout << "Saved screenshot to " << settings::C_configPath << "screenshots/" << filename.str() << "." << std::endl;
-                hud::displayMessage(*locales::getLocale(locales::SavedScreenshot));
+                hud::displayMessage(locales::getLocale(locales::SavedScreenshot));
             }else
                 std::cout << "Failed saving screenshot to " << settings::C_configPath << "screenshots/" << filename.str() << "." << std::endl;
         #endif
@@ -433,7 +437,8 @@ namespace window
 
     void showCursor(bool show)
     {
-        window_.setMouseCursorVisible(show);
+        // window_.setMouseCursorVisible(1); //show);
+        // window_.setMouseCursorGrabbed(0); //show);
     }
 
     Vector2f const coordToPixel(Vector2f const& spaceCoord)

@@ -1,6 +1,6 @@
 /* AmmoMiniRocket.cpp
 
-Copyright (c) 2010 - 2011 by Felix Lauer and Simon Schneegans
+Copyright (c) 2025 Crystal Hammer
 
 This program is free software: you can redistribute it and/or modify it
 under the terms of the GNU General Public License as published by the Free
@@ -112,20 +112,20 @@ void AmmoMiniRocket::draw() const
 {
     glColor4f(0.3f, 0.4f, 0.3f, 0.3f);
 
-    Vector2f direction(velocity_.normalize()*10.f);
-    Vector2f normDirection(direction.y_, -1.f*direction.x_);
+    Vector2f dir(velocity_.normalize()*10.f);
+    Vector2f side(dir.y_, -1.f*dir.x_);
     const Vector2f
-        topLeft(location_ + direction + normDirection),
-        topRight(location_ + direction - normDirection),
-        bottomLeft(location_ - 3*direction + normDirection),
-        bottomRight(location_ - 3*direction - normDirection);
+        topL(location_ + dir + side),
+        topR(location_ + dir - side),
+        btmL(location_ - 3*dir + side),
+        btmR(location_ - 3*dir - side);
 
     const int posX = 0;
-    const int posY = 5;  //(static_cast<int>(lifeTime_*3.f) % 2) * 2 + 3;
-    glTexCoord2f(posX*0.125f,    (posY+2)*0.125f); glVertex2f(topLeft.x_, topLeft.y_);
-    glTexCoord2f((posX+4)*0.125f,(posY+2)*0.125f); glVertex2f(bottomLeft.x_, bottomLeft.y_);
-    glTexCoord2f((posX+4)*0.125f, posY*0.125f);    glVertex2f(bottomRight.x_, bottomRight.y_);
-    glTexCoord2f(posX*0.125f,     posY*0.125f);    glVertex2f(topRight.x_, topRight.y_);
+    const int posY = 5;
+    glTexCoord2f(posX*0.125f,    (posY+2)*0.125f); glVertex2f(topL.x_, topL.y_);
+    glTexCoord2f((posX+4)*0.125f,(posY+2)*0.125f); glVertex2f(btmL.x_, btmL.y_);
+    glTexCoord2f((posX+4)*0.125f, posY*0.125f);    glVertex2f(btmR.x_, btmR.y_);
+    glTexCoord2f(posX*0.125f,     posY*0.125f);    glVertex2f(topR.x_, topR.y_);
 }
 
 void AmmoMiniRocket::onCollision(SpaceObject* with, Vector2f const& location,
@@ -194,6 +194,7 @@ void AmmoMiniRocket::onCollision(SpaceObject* with, Vector2f const& location,
         frozen_ -= unfreeze;
         if (frozen_ < 0.f)
         {   frozen_ = 0.f;
+        
             mass_ = 3.f;
             particles::spawnMultiple(2, particles::pCrushedIce, location_);
         }

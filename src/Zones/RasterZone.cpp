@@ -24,18 +24,18 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include <cfloat>
 
 
-RasterZone::RasterZone(Vector2f const& bottomLeft, Vector2f const& topRight):
-    bottomLeft_(bottomLeft),
-    topRight_(topRight),
+RasterZone::RasterZone(Vector2f const& btmL, Vector2f const& topRight):
+    btmL_(btmL),
+    topR(topRight),
     covered_(false)
 {   }
 
 bool RasterZone::isInside(SpaceObject const& toBeChecked) const
 {
-    return toBeChecked.location().x_ > bottomLeft_.x_ &&
-           toBeChecked.location().y_ > bottomLeft_.y_ &&
-           toBeChecked.location().x_ < topRight_.x_ &&
-           toBeChecked.location().y_ < topRight_.y_;
+    return toBeChecked.location().x_ > btmL_.x_ &&
+           toBeChecked.location().y_ > btmL_.y_ &&
+           toBeChecked.location().x_ < topR.x_ &&
+           toBeChecked.location().y_ < topR.y_;
 }
 
 void RasterZone::update()
@@ -59,19 +59,19 @@ void RasterZone::draw() const
             glColor4f (0.f, 0.7f, 0.f, 0.1f);
         else
             glColor4f (6.f, 0.2f, 0.f, 0.1f);
-        glVertex2f(bottomLeft_.x_, bottomLeft_.y_);
-        glVertex2f(bottomLeft_.x_, topRight_.y_);
-        glVertex2f(topRight_.x_, topRight_.y_);
-        glVertex2f(topRight_.x_, bottomLeft_.y_);
+        glVertex2f(btmL_.x_, btmL_.y_);
+        glVertex2f(btmL_.x_, topR.y_);
+        glVertex2f(topR.x_, topR.y_);
+        glVertex2f(topR.x_, btmL_.y_);
     glEnd();
     
     glLineWidth(2.f);
     glBegin(GL_LINE_LOOP);
         glColor4f(0.5f, 0.5f, 0.5f, 0.3f);
-        glVertex2f(bottomLeft_.x_, bottomLeft_.y_);
-        glVertex2f(bottomLeft_.x_, topRight_.y_);
-        glVertex2f(topRight_.x_, topRight_.y_);
-        glVertex2f(topRight_.x_, bottomLeft_.y_);
+        glVertex2f(btmL_.x_, btmL_.y_);
+        glVertex2f(btmL_.x_, topR.y_);
+        glVertex2f(topR.x_, topR.y_);
+        glVertex2f(topR.x_, btmL_.y_);
     glEnd();
 }
 
@@ -81,8 +81,8 @@ Vector2f RasterZone::getRandomPoint() const
     for (int i=0; i < 100; ++i)
     {
         randomPoint = Vector2f(
-            randomizer::random(bottomLeft_.x_, topRight_.x_),
-            randomizer::random(bottomLeft_.y_, topRight_.y_));
+            randomizer::random(btmL_.x_, topR.x_),
+            randomizer::random(btmL_.y_, topR.y_));
         bool fits = true;
         for (const auto& it : spaceObjects::getObjects())
         {

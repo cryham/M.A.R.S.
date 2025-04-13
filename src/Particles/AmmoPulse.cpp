@@ -1,6 +1,6 @@
 /* AmmoPulse.cpp
 
-Copyright (c) 2010 - 2011 by Felix Lauer and Simon Schneegans
+Copyright (c) 2025 Crystal Hammer
 
 This program is free software: you can redistribute it and/or modify it
 under the terms of the GNU General Public License as published by the Free
@@ -28,21 +28,25 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 std::list<AmmoPulse*> AmmoPulse::activeParticles_;
 
 
-AmmoPulse::AmmoPulse(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity, Color3f const& color, Player* damageSource)
+AmmoPulse::AmmoPulse(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,
+        Color3f const& color, Player* damageSource)
     :Particle<AmmoPulse>(spaceObjects::oAmmoPulse, location, randomizer::random(19.f, 25.f), 0.01f, randomizer::random(2.f, 4.f))
 {
+    cloud_ = true;
     setDamageSource(damageSource);
-    velocity_ = velocity + direction * 500;
-    acceleration_ = 600.0f;
+    velocity_ = velocity + direction * 1100;
+    acceleration_ = 800.0f;
     location_ += velocity_*timer::frameTime()*1.2f;
 
     radius_ = randomizer::random(17.f, 21.f) * 4.f;
 
-    color_ = Color3f(randomizer::random(0.5f, 0.7f), randomizer::random(0.5f, 0.8f), randomizer::random(0.8f, 0.9f));
+    color_ = Color3f(randomizer::random(0.6f, 1.f), randomizer::random(0.2f, 0.6f), randomizer::random(0.5f, 0.8f));
+    trailEffects::attach(this, 0.005, 0.12f, 160.f, color_ * 0.5f, false);
 }
 
 AmmoPulse::~AmmoPulse()
 {
+    trailEffects::detach(this);
 }
 
 void AmmoPulse::update()
@@ -77,20 +81,33 @@ void AmmoPulse::update()
             Vector2f dir = Vector2f::randDir();
             float len = randomizer::random(10.f, radius_);
             particles::spawnMultiple(1,
-                particles::pMud, location_ + dir * len, dir, dir * len * 0.9f, color_);
+                particles::pSpark, location_ + dir * len, dir, dir * len * 0.9f, color_);
         }
     }
 }
 
 void AmmoPulse::draw() const
 {
-    color_.gl4f(0.5f - 0.4f * lifeTime_ / totalLifeTime_);
-    // const int posX = 3, posY = 0;
-    const int posX = 0, posY = 0;
-    uv8(posX, posY);      glVertex2f(location_.x_-radius_, location_.y_-radius_);
-    uv8(posX, posY+1);    glVertex2f(location_.x_-radius_, location_.y_+radius_);
-    uv8(posX+1, posY+1);  glVertex2f(location_.x_+radius_, location_.y_+radius_);
-    uv8(posX+1, posY);    glVertex2f(location_.x_+radius_, location_.y_-radius_);
+    color_.gl4f(0.9f - 0.4f * lifeTime_ / totalLifeTime_);
+    const int posX = 0, posY = 12;
+
+    Vector2f dir(velocity_.normalize()*20.f);
+    Vector2f side(dir.y_, -1.f*dir.x_);
+    const Vector2f
+        topL(location_ + 3*side + dir*1),
+        topR(location_ + 3*side - dir*3),
+        btmL(location_ - 3*side + dir*1),
+        btmR(location_ - 3*side - dir*3);
+
+    uv8(posX,   posY);    glVertex2f(topL.x_, topL.y_);
+    uv8(posX+4, posY);    glVertex2f(btmL.x_, btmL.y_);
+    uv8(posX+4, posY+2);  glVertex2f(btmR.x_, btmR.y_);
+    uv8(posX,   posY+2);  glVertex2f(topR.x_, topR.y_);
+
+    // uv8(posX, posY);      glVertex2f(location_.x_-radius_, location_.y_-radius_);
+    // uv8(posX, posY+2);    glVertex2f(location_.x_-radius_, location_.y_+radius_);
+    // uv8(posX+3, posY+2);  glVertex2f(location_.x_+radius_, location_.y_+radius_);
+    // uv8(posX+3, posY);    glVertex2f(location_.x_+radius_, location_.y_-radius_);
 }
 
 void AmmoPulse::onCollision(SpaceObject* with, Vector2f const& location,

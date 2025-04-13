@@ -27,7 +27,7 @@ class RasterZone: public Zone
 {
     public:
         /// Ctor, which creates the Zone.
-        RasterZone(Vector2f const& bottomLeft, Vector2f const& topRight);
+        RasterZone(Vector2f const& btmL, Vector2f const& topR);
 
         /// Returns true, if the given SpaceObject is inside this Zone.
         bool isInside(SpaceObject const& toBeChecked) const;
@@ -49,6 +49,6 @@ class RasterZone: public Zone
         bool covered() const;
 
     private:
-        Vector2f bottomLeft_, topRight_;
+        Vector2f btmL_, topR_;
         bool covered_;
 };

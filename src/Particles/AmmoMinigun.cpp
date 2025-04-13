@@ -1,6 +1,6 @@
 /* AmmoMinigun.cpp
 
-Copyright (c) 2010 - 2011 by Felix Lauer and Simon Schneegans
+Copyright (c) 2025 Crystal Hammer
 
 This program is free software: you can redistribute it and/or modify it
 under the terms of the GNU General Public License as published by the Free
@@ -26,13 +26,14 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 std::list<AmmoMinigun*> AmmoMinigun::activeParticles_;
 
 
-AmmoMinigun::AmmoMinigun(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity, Color3f const& color, Player* damageSource):
-         Particle<AmmoMinigun>(spaceObjects::oAmmoMinigun, location, 1.5f, 0.05f, randomizer::random(1.2f, 1.5f)),
-         color_(1.f, randomizer::random(0.7f, 1.f), 0.3f)
+AmmoMinigun::AmmoMinigun(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,
+        Color3f const& color, Player* damageSource)
+    :Particle<AmmoMinigun>(spaceObjects::oAmmoMinigun, location, 1.5f, 0.05f, randomizer::random(1.2f, 1.5f)),
+        color_(1.f, randomizer::random(0.7f, 1.f), 0.3f)
 {
     setDamageSource(damageSource);
-    velocity_ = direction*1900.f *randomizer::random(0.98f, 1.02f) + Vector2f::randDirLen()*40.f;
-    location_ += velocity_*timer::frameTime()*1.2f;
+    velocity_ = direction * 1900.f *randomizer::random(0.98f, 1.02f) + Vector2f::randDirLen() * 40.f;
+    location_ += velocity_ * timer::frameTime()*1.2f;
 
     trail_ = randomizer::random(0.f, 1.f) < 0.3f;
     if (trail_)
@@ -45,12 +46,13 @@ AmmoMinigun::~AmmoMinigun()
         trailEffects::detach(this);
 }
 
+
 void AmmoMinigun::update()
 {
     float time = timer::frameTime();
 
     physics::collide(this, STATICS | MOBILES);
-    Vector2f acceleration = physics::attract(this)*15;
+    Vector2f acceleration = physics::attract(this) * 15;
 
     location_ += velocity_*time + acceleration*time*time;
     velocity_ += acceleration*time - velocity_*time;
@@ -72,13 +74,15 @@ void AmmoMinigun::draw() const
     uv8(posX+1, posY);    glVertex2f(location_.x_+radius_, location_.y_-radius_);
 }
 
+
 void AmmoMinigun::onCollision(SpaceObject* with, Vector2f const& location,
                         Vector2f const& direction, Vector2f const& velocity)
 {
     float strength = (velocity - velocity_).length();
 
     if (randomizer::random(0.f, 1.f) < 0.3f)  // otherwise ricochet
-    {   killMe();
+    {
+        killMe();
         if (strength > 50.f)
         {
             switch (with->type())

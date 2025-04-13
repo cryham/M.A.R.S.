@@ -1,5 +1,6 @@
 /* AmmoSeekers.cpp
 
+Copyright (c) 2025 Crystal Hammer
 Copyright (c) 2010 - 2011 by Felix Lauer and Simon Schneegans
 
 This program is free software: you can redistribute it and/or modify it
@@ -274,7 +275,6 @@ void AmmoSeekers::onCollision(SpaceObject* with, Vector2f const& location,
         default:
             amount = life_ * 0.3f;
             unfreeze = 3.f;  //10;
-
     }
 
     if (frozen_ <= 0)

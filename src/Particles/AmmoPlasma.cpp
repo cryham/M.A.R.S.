@@ -1,6 +1,6 @@
 /* AmmoPlasma.cpp
 
-Copyright (c) 2010 - 2011 by Felix Lauer and Simon Schneegans
+Copyright (c) 2025 Crystal Hammer
 
 This program is free software: you can redistribute it and/or modify it
 under the terms of the GNU General Public License as published by the Free
@@ -33,7 +33,7 @@ AmmoPlasma::AmmoPlasma(Vector2f const& location, Vector2f const& direction, Vect
     :Particle<AmmoPlasma>(spaceObjects::oAmmoPlasma, location, randomizer::random(9.f, 15.f), 0.01f, randomizer::random(12.f, 15.f))
 {
     setDamageSource(damageSource);
-    velocity_ = velocity + direction*1500;
+    velocity_ = velocity + direction * 1500;
     location_ += velocity_*timer::frameTime()*1.2f;
 
     radius_ = randomizer::random(7.f, 11.f) * 3.f;

@@ -32,8 +32,6 @@ class AmmoLightning: public Particle<AmmoLightning>
         void onCollision(SpaceObject* with, Vector2f const& location,
                          Vector2f const& direction, Vector2f const& velocity);
 
-        static void shockWave(Vector2f const& location, float strength, float radius);
-
         friend class Particle<AmmoLightning>;
 
     private:

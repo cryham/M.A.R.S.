@@ -1,5 +1,6 @@
 /* AmmoFlubba.cpp
 
+Copyright (c) 2025 Crystal Hammer
 Copyright (c) 2010 - 2011 by Felix Lauer and Simon Schneegans
 
 This program is free software: you can redistribute it and/or modify it
@@ -47,7 +48,7 @@ void AmmoFlubba::update()
 {
     float time = timer::frameTime();
 
-    physics::collide(this, STATICS | MOBILES | PARTICLES);
+    physics::collide(this, STATICS | MOBILES); // | PARTICLES);
     Vector2f acceleration = physics::attract(this)*0.8f;
 
     // update Size
@@ -88,11 +89,12 @@ void AmmoFlubba::onCollision(SpaceObject* with, Vector2f const& location,
 {
     if (!isDead() &&
         with->type() != spaceObjects::oAmmoCloud &&
+        with->type() != spaceObjects::oAmmoPulse &&
         with->type() != spaceObjects::oAmmoPlasma &&
         with->type() != spaceObjects::oAmmoFlubba &&
         with->type() != spaceObjects::oMiniAmmoFlubba)
     {
-        physics::causeShockWave(damageSource(), location_, 350.f, 100.f, 0.f);
+        // physics::causeShockWave(damageSource(), location_, 350.f, 100.f, 0.f);
         sound::playSound(sound::BlubCollide, location_);
         killMe();
     }

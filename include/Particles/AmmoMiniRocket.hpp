@@ -45,8 +45,6 @@ class AmmoMiniRocket: public Particle<AmmoMiniRocket>
         Color3f color_;
         float timer_;
 
-        Ship* shipTarget_;
-        Ball* ballTarget_;
         Player* parent_;
 
         float rotation_;

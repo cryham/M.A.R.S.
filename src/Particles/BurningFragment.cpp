@@ -1,5 +1,6 @@
 /* BurningFragment.cpp
 
+Copyright (c) 2025 Crystal Hammer
 Copyright (c) 2010 - 2011 by Felix Lauer and Simon Schneegans
 
 This program is free software: you can redistribute it and/or modify it
@@ -27,11 +28,12 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 std::list<BurningFragment*> BurningFragment::activeParticles_;
 
 
-BurningFragment::BurningFragment(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity, Color3f const& color, Player* damageSource):
-         Particle<BurningFragment>(spaceObjects::oBurningFragment, location, 1.f, 0, randomizer::random(4.5f, 5.5f)),
-         color_(randomizer::random(0.7f, 1.f), randomizer::random(0.7f, 1.f), 0.f),
-         timer1_(0.5f),
-         timer2_(0.25f)
+BurningFragment::BurningFragment(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,
+        Color3f const& color, Player* damageSource)
+    :Particle<BurningFragment>(spaceObjects::oBurningFragment, location, 1.f, 0, randomizer::random(4.5f, 5.5f))
+    ,color_(randomizer::random(0.7f, 1.f), randomizer::random(0.7f, 1.f), 0.f)
+    ,timer1_(0.5f)
+    ,timer2_(0.25f)
 {
     radius_   = randomizer::random(0.5f, 5.0f);
     velocity_ = Vector2f::randDir()*randomizer::random(200, 600);
@@ -45,10 +47,12 @@ BurningFragment::~BurningFragment()
     trailEffects::detach(this);
 }
 
+
 void BurningFragment::update()
 {
     float time = timer::frameTime();
     Vector2f acceleration = physics::attract(this);
+    
     physics::collide(this, STATICS);
 
     location_ += velocity_*time + acceleration*time*time*2;
@@ -67,7 +71,6 @@ void BurningFragment::update()
     {   timer2_ = lifeTime_/settings::C_globalParticleCount;
         particles::spawn(particles::pFragmentFlame, location_, Vector2f(), velocity_);
     }
-
     lifeTime_ += time;
 }
 
@@ -85,7 +88,9 @@ void BurningFragment::draw() const
 void BurningFragment::onCollision(SpaceObject* with, Vector2f const& location,
                                   Vector2f const& direction, Vector2f const& velocity)
 {
-    if ((with->type() == spaceObjects::oHome | with->type() == spaceObjects::oSun) | (with->type() == spaceObjects::oPlanet))
+    if (with->type() == spaceObjects::oHome ||
+        with->type() == spaceObjects::oSun ||
+        with->type() == spaceObjects::oPlanet)
     {
         particles::spawn(particles::pMiniFlame, location_);
         particles::spawn(particles::pMiniFlame, location_);

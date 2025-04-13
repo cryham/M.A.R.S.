@@ -1,6 +1,6 @@
 /* AmmoH2OStorm.cpp
 
-Copyright (c) 2010 - 2011 by Felix Lauer and Simon Schneegans
+Copyright (c) 2025 Crystal Hammer
 
 This program is free software: you can redistribute it and/or modify it
 under the terms of the GNU General Public License as published by the Free
@@ -27,8 +27,9 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 std::list<AmmoH2OStorm*> AmmoH2OStorm::activeParticles_;
 
 
-AmmoH2OStorm::AmmoH2OStorm(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity, Color3f const& color, Player* damageSource):
-         Particle<AmmoH2OStorm>(spaceObjects::oAmmoH2OStorm, location, 8.f /*R*/, 0.4f /*mass*/, randomizer::random(9.f, 11.f) /*life*/)
+AmmoH2OStorm::AmmoH2OStorm(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,
+        Color3f const& color, Player* damageSource)
+    :Particle<AmmoH2OStorm>(spaceObjects::oAmmoH2OStorm, location, 8.f /*R*/, 0.4f /*mass*/, randomizer::random(9.f, 11.f) /*life*/)
 {
     setDamageSource(damageSource);
     velocity_ = velocity + direction*1100.f + Vector2f::randDirLen()*150.f;
@@ -39,6 +40,7 @@ AmmoH2OStorm::AmmoH2OStorm(Vector2f const& location, Vector2f const& direction, 
     color_ = 0.7f * Color3f(randomizer::random(0.4f, 0.9f), randomizer::random(0.7f, 1.f), randomizer::random(0.9f, 1.0f));
     index_ = rand() % 3;
 }
+
 
 void AmmoH2OStorm::update()
 {

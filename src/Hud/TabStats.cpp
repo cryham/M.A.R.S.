@@ -145,22 +145,22 @@ void TabStats::draw() const
         glBindTexture(GL_TEXTURE_2D, texture::getTexture(texture::Interface));
 
         glBegin(GL_QUADS);
-            // topleft
+        // topL
         glTexCoord2f(0, 0);                   glVertex2i(topLeft.x_-60*mirror, topLeft.y_-60);
         glTexCoord2f(0, 96.f/512.f);          glVertex2i(topLeft.x_-60*mirror, topLeft.y_+36);
         glTexCoord2f(96.f/512.f, 96.f/512.f); glVertex2i(topLeft.x_+36*mirror, topLeft.y_+36);
         glTexCoord2f(96.f/512.f, 0);          glVertex2i(topLeft.x_+36*mirror, topLeft.y_-60);
-        // topRight
+        // topR
         glTexCoord2f(96.f/512.f, 0);          glVertex2i(topLeft.x_-36*mirror+width, topLeft.y_-60);
         glTexCoord2f(96.f/512.f, 96.f/512.f); glVertex2i(topLeft.x_-36*mirror+width, topLeft.y_+36);
         glTexCoord2f(96.f/256.f, 96.f/512.f); glVertex2i(topLeft.x_+60*mirror+width, topLeft.y_+36);
         glTexCoord2f(96.f/256.f, 0);          glVertex2i(topLeft.x_+60*mirror+width, topLeft.y_-60);
-        // bottomleft
+        // btmL
         glTexCoord2f(0, 96.f/512.f);          glVertex2i(topLeft.x_-60*mirror, topLeft.y_-36+height);
         glTexCoord2f(0, 96.f/256.f);          glVertex2i(topLeft.x_-60*mirror, topLeft.y_+60+height);
         glTexCoord2f(96.f/512.f, 96.f/256.f); glVertex2i(topLeft.x_+36*mirror, topLeft.y_+60+height);
         glTexCoord2f(96.f/512.f, 96.f/512.f); glVertex2i(topLeft.x_+36*mirror, topLeft.y_-36+height);
-        // bottomRight
+        // btmR
         glTexCoord2f(96.f/512.f, 96.f/512.f); glVertex2i(topLeft.x_-36*mirror+width, topLeft.y_-36+height);
         glTexCoord2f(96.f/512.f, 96.f/256.f); glVertex2i(topLeft.x_-36*mirror+width, topLeft.y_+60+height);
         glTexCoord2f(96.f/256.f, 96.f/256.f); glVertex2i(topLeft.x_+60*mirror+width, topLeft.y_+60+height);

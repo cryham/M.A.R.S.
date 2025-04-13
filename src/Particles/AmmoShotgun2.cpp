@@ -1,6 +1,6 @@
 /* AmmoShotgun2.cpp
 
-Copyright (c) 2010 - 2011 by Felix Lauer and Simon Schneegans
+Copyright (c) 2025 Crystal Hammer
 
 This program is free software: you can redistribute it and/or modify it
 under the terms of the GNU General Public License as published by the Free
@@ -32,8 +32,8 @@ AmmoShotgun2::AmmoShotgun2(Vector2f const& location, Vector2f const& direction, 
     ,color_(1.f, 0.4f, 0.3f)
 {
     setDamageSource(damageSource);
-    velocity_ = direction*1000.f + Vector2f::randDirLen()*400.f;
-    location_ += velocity_*timer::frameTime()*1.2f;
+    velocity_ = direction * 1000.f + Vector2f::randDirLen() * 400.f;
+    location_ += velocity_ * timer::frameTime()*1.2f;
 
     trailEffects::attach(this, 0.02f, 0.1f, 4.f, Color3f(0.2f, 0.1f, 0.25f), false);
 }

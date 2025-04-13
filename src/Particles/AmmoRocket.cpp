@@ -169,20 +169,20 @@ void AmmoRocket::draw() const
 {
     glColor4f(1.f, 1.f, 1.f, 1.f);
 
-    Vector2f direction(velocity_.normalize()*10.f);
-    Vector2f normDirection(direction.y_, -1.f*direction.x_);
+    Vector2f dir(velocity_.normalize()*10.f);
+    Vector2f side(dir.y_, -1.f*dir.x_);
     const Vector2f
-        topLeft(location_ + direction + normDirection),
-        topRight(location_ + direction - normDirection),
-        bottomLeft(location_ - 3*direction + normDirection),
-        bottomRight(location_ - 3*direction - normDirection);
+        topL(location_ + dir + side),
+        topR(location_ + dir - side),
+        btmL(location_ - 3*dir + side),
+        btmR(location_ - 3*dir - side);
 
     const int posX = 0;
     const int posY = (static_cast<int>(lifeTime_*3.f) % 2) * 2 + 3;
-    uv8(posX,   posY+2);  glVertex2f(topLeft.x_, topLeft.y_);
-    uv8(posX+4, posY+2);  glVertex2f(bottomLeft.x_, bottomLeft.y_);
-    uv8(posX+4, posY);    glVertex2f(bottomRight.x_, bottomRight.y_);
-    uv8(posX,   posY);    glVertex2f(topRight.x_, topRight.y_);
+    uv8(posX,   posY+2);  glVertex2f(topL.x_, topL.y_);
+    uv8(posX+4, posY+2);  glVertex2f(btmL.x_, btmL.y_);
+    uv8(posX+4, posY);    glVertex2f(btmR.x_, btmR.y_);
+    uv8(posX,   posY);    glVertex2f(topR.x_, topR.y_);
 
     MobileSpaceObject* target(NULL);
     if (ballTarget_)
@@ -190,7 +190,7 @@ void AmmoRocket::draw() const
     else if (shipTarget_)
         target = shipTarget_;
 
-    if (target && frozen_ <= 0)
+    if (target && frozen_ <= 0)  // crosshair
     {
         glColor3f(1.f, 0.7f, 0.9f);
         const int posX = 5;

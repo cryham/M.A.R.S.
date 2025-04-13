@@ -9,8 +9,8 @@ This is my fork with many **new** features and changes:
      - Next, previous *weapon change*, at any time
    - 7 new **Weapons** - fast, excessive:  
      AFK-85, Plasma, H2OStorm, Flamer2, Shotgun2, MiniRockets, Rifle2
-   - 3 new **Weapons** - fast:  
-     Laser, Minigun, Cloud (area)
+   - 4 new **Weapons** - fast:  
+     Laser, Minigun, Cloud (area), Pulse
    - **Map Options** window, with sliders for:  
      - min,max count of space objects (planets, stars, black holes)
      - and their radius range, also minimal gap between

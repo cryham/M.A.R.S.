@@ -3,6 +3,8 @@ doxygen
 *.png
 mars
 ext_libs_*
+*.txt
+!English.txt
 
 .DS_Store
 Thumbs.db

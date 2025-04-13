@@ -17,6 +17,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "Weapons/weapons.hpp"
 
+#include "System/Color3f.hpp"
 #include "Weapons/AFK47.hpp"
 #include "Weapons/Burner.hpp"
 #include "Weapons/Fist.hpp"
@@ -89,6 +90,8 @@ namespace weapons
         return (WeaponType)next;
     }
 
+    //  create
+    //----------------------------------------------------------------
     Weapon* create(WeaponType type, Ship* parent)
     {
         type = getNext(type, false, 1);  // ensure enabled
@@ -113,7 +116,7 @@ namespace weapons
             case wInsta:           return new Insta(parent);
             case wShotgun:         return new Shotgun(parent);
 
-            // cryham  excessive, modded originals
+            // cryham  7 excessive,  modded originals
             case wAFK85:        return new AFK85(parent);
             case wFlamer2:      return new Flamer2(parent);
             case wPlasma:       return new Plasma(parent);
@@ -122,7 +125,7 @@ namespace weapons
             case wMiniRockets:  return new MiniRockets(parent);
             case wShotgun2:     return new Shotgun2(parent);
 
-            // cryham  new
+            // cryham  9 new
             case wPulse:        return new Pulse(parent);
             case wCloud:        return new Cloud(parent);
             case wFreezers:     return new Freezers(parent);
@@ -140,13 +143,57 @@ namespace weapons
 
     Weapon* createNext(WeaponType type, Ship* parent)
     {
+        parent->weaponChangeTime_ = 1.f;
         WeaponType next = getNext(type, true, 1);
         return create(next, parent);
     }
 
     Weapon* createPrev(WeaponType type, Ship* parent)
     {
+        parent->weaponChangeTime_ = 1.f;
         WeaponType next = getNext(type, true, -1);
         return create(next, parent);
     }
+
+    //  Weapon name colors for Gui, Hud text after change
+    //----------------------------------------------------------------
+    Color3f colors[WeaponType::All] =
+    {
+        //  original  8x
+        Color3f(1.0, 0.8, 0.8),  //  Insta-  not on Gui
+        Color3f(0.4, 0.5, 0.9),  //  AFK47
+        Color3f(0.8, 0.4, 0.1),  //  Flamer/Burner
+
+        Color3f(0.4, 0.9, 0.6),  //  Fist
+        Color3f(0.2, 0.8, 0.1),  //  Flubba
+
+        Color3f(0.8, 0.8, 0.3),  //  Shotgun
+        Color3f(0.8, 0.4, 0.2),  //  RocketLauncher ROCK'n'LOL
+        Color3f(0.8, 0.2, 0.2),  //  ROFLE
+
+        Color3f(0.4, 0.5, 0.9),  //  H2OMG
+        //  new 2  7x excessive mod
+        Color3f(0.8, 0.5, 1.0),  //  Shotgun2
+        Color3f(0.5, 0.9, 0.9),  //  Plasma
+        Color3f(0.2, 0.5, 1.0),  //  MiniRockets
+
+        Color3f(1.0, 0.7, 0.2),  //  Flamer2
+        Color3f(0.6, 0.6, 1.0),  //  AFK85
+
+        Color3f(0.9, 0.2, 0.3),  //  Rifle2
+        Color3f(0.4, 0.65,1.0),  //  H2OStorm  oo
+        //  new 3  9x new
+        Color3f(1.0, 0.5, 0.8),  //  Pulse  ))
+        Color3f(0.6, 0.6, 1.0),  //  Cloud  OO
+        Color3f(0.2, 0.7, 0.9),  //  Freezers  **
+
+        Color3f(1.0, 0.5, 0.0),  //  Laser  ___
+        Color3f(0.6, 0.8, 1.0),  //  Lightning  -x
+        Color3f(1.0, 1.0, 0.3),  //  Minigun  ...
+        Color3f(0.8, 0.2, 0.2),  //  Gauss  --.
+        
+        Color3f(0.4, 0.5, 0.6),  //  Grenades  o*
+        Color3f(0.7, 0.8, 0.6),  //  Seekers  ~
+    };
+
 }

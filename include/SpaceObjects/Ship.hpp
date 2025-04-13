@@ -79,6 +79,7 @@ class Ship: public MobileSpaceObject
         template <typename Object> friend class Ice;
         friend class Team;
 
+        float weaponChangeTime_;
     private:
 
         void explode();
@@ -88,7 +89,8 @@ class Ship: public MobileSpaceObject
 
         float rotation_;
         float rotateSpeed_;
-        int up_, down_, left_, right_, boost_;
+        int up_, down_, left_, right_, boost_;  // inputs
+
         bool docked_;
         bool weaponChange_;
         bool specialChange_;

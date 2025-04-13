@@ -22,6 +22,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Media/text.hpp"
 #include "System/settings.hpp"
 #include "System/window.hpp"
+#include "Weapons/weapons.hpp"
 
 #include <sstream>
 
@@ -30,12 +31,16 @@ void ShipName::draw() const
 {
     if (ship_->visible_)
     {
-        bool player = ship_->owner_->type() == controllers::cPlayer1 || ship_->owner_->type() == controllers::cPlayer2;
-        if (ship_->weaponChange_ && player)
+        bool player = ship_->owner_->type() == controllers::cPlayer1 ||
+            ship_->owner_->type() == controllers::cPlayer2;
+        
+        if (player && (ship_->weaponChange_ || ship_->weaponChangeTime_ > 0.f))
             text::drawSpaceText(ship_->currentWeapon_->getName(),
                                 ship_->location_ + Vector2f(0.f, -ship_->radius_*2.5f),
-                                12.f, TEXT_ALIGN_CENTER, Color3f(1.f, 0.5f, 0.8f));
-        else if (ship_->specialChange_ && player)
+                                12.f, TEXT_ALIGN_CENTER,
+                                weapons::colors[ship_->currentWeapon_->getType()]);
+        else
+        if (player && ship_->specialChange_)
             text::drawSpaceText(ship_->currentSpecial_->getName(),
                                 ship_->location_ + Vector2f(0.f, -ship_->radius_*2.5f),
                                 12.f, TEXT_ALIGN_CENTER, Color3f(0.8f, 0.8f, 1.f));

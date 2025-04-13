@@ -18,6 +18,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #pragma once
 
+#include "System/Color3f.hpp"
+
 class Weapon;
 class Ship;
 
@@ -37,6 +39,8 @@ namespace weapons
         wMinigun, wGauss, wGrenades, wSeekers,
         All  // All count  or  no weapon  25
     };
+
+    extern Color3f colors[WeaponType::All];
 
     WeaponType random();
     Weapon* create    (WeaponType type, Ship* parent);

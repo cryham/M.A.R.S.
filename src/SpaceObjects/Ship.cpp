@@ -62,6 +62,7 @@ static float GetAngle(float x, float y)
 
 Ship::Ship(Vector2f const& location, float rotation, Player* owner)
     : MobileSpaceObject(spaceObjects::oShip, location, settings::C_ShipRadius, 10.f)
+    ,weaponChangeTime_(0.f)
     ,owner_(owner)
     ,rotation_(rotation)
     ,rotateSpeed_(1.f)
@@ -123,6 +124,9 @@ void Ship::update()
 {
     float time = timer::frameTime();
 
+    if (weaponChangeTime_ > 0.f)
+        weaponChangeTime_ -= time;
+
     if (damageSourceResetTimer_ > 0.f)
     {   damageSourceResetTimer_ -= time;
         if (frozen_ <= 0.f && damageSourceResetTimer_ <= 0.f)
@@ -137,7 +141,9 @@ void Ship::update()
             if (fabs(damage) >= 1.f)
             {
                 particles::spawn(particles::pNumber, location_ + Vector2f(0.f, -20.f),
-                    Vector2f(damage, 20.f + abs(damage)*0.02f), (damageDirection_/collisionCount_+velocity_)*0.5f);
+                    Vector2f(damage, 20.f + fabs(damage) * 0.02f),
+                    (damageDirection_ / collisionCount_ + velocity_) * 0.5f);
+                
                 damageDirection_ = Vector2f();
                 damageByLocalPlayer_ = 0;
                 collisionCount_ = 0;
@@ -682,13 +688,15 @@ void Ship::onCollision(SpaceObject* with, Vector2f const& location,
 
         //  freezers
         case spaceObjects::oAmmoFreezers:  // :*
-            amount = randomizer::random(1.f, 2.f);
+            amount = randomizer::random(1.f, 2.f) * 0.3f;
+            waitForOtherDamage = 0.2f;
             setDamageSource(with->damageSource());
-            unfreeze = 4.f;
+            // unfreeze = 4.f;
             break;
         //  plasma
         case spaceObjects::oAmmoPlasma:  // o
             amount = randomizer::random(5.f, 6.f);
+            waitForOtherDamage = 0.1f;
             setDamageSource(with->damageSource());
             unfreeze = 4.f;
             break;

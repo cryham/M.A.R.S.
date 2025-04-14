@@ -92,7 +92,7 @@ namespace weapons
 
     //  create
     //----------------------------------------------------------------
-    Weapon* create(WeaponType type, Ship* parent)
+    Weapon* create(WeaponType type, Mount* parent)
     {
         type = getNext(type, false, 1);  // ensure enabled
 
@@ -140,23 +140,7 @@ namespace weapons
             default:            return new NoWeapon(parent);
         }
     }
-/*
-    Weapon* createNext(WeaponType type, Ship* parent)
-    {
-        if (parent)
-            parent->weaponChangeTime_ = 1.f;
-        WeaponType next = getNext(type, true, 1);
-        return create(next, parent);
-    }
 
-    Weapon* createPrev(WeaponType type, Ship* parent)
-    {
-        if (parent)
-            parent->weaponChangeTime_ = 1.f;
-        WeaponType next = getNext(type, true, -1);
-        return create(next, parent);
-    }
-*/
     //  Weapon name colors for Gui, Hud text after change
     //----------------------------------------------------------------
     Color3f colors[WeaponType::All] =

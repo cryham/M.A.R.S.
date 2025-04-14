@@ -27,7 +27,7 @@ class OldRocket: public Weapon
 {
     public:
         /// Ctor which constructs the weapon.
-        OldRocket(Ship* parent):
+        OldRocket(Mount* parent):
               Weapon(weapons::wOldRocket, parent, "ROCK'n'LOL")
         {   }
 

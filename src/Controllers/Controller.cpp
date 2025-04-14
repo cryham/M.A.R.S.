@@ -82,14 +82,14 @@ void Controller::slaveFire (int fire) const
 {
     if (fire > 50 && !slave_->ship_->docked_ && slave_->ship_->visible_ &&
         !slave_->ship_->collectedPowerUps_[items::puSleep] && slave_->ship_->frozen_<=0.f)
-        slave_->ship_->currentWeapon_->fire();
+        slave_->ship_->weapon_->fire();
 }
 
 void Controller::slaveSpecial (int special) const
 {
     if (special > 50 && !slave_->ship_->docked_ && slave_->ship_->visible_ &&
         !slave_->ship_->collectedPowerUps_[items::puSleep] && slave_->ship_->frozen_<=0.f)
-        slave_->ship_->currentSpecial_->activate();
+        slave_->ship_->special_->activate();
 }
 
 // single key presses
@@ -109,15 +109,15 @@ void Controller::slaveBoost () const
 void Controller::slaveNext  () const
 {
     if (slave_->ship_->visible_ && !slave_->ship_->collectedPowerUps_[items::puSleep])
-        slave_->ship_->currentWeapon_->next();
-    //     slave_->ship_->currentSpecial_->next();
+        slave_->ship_->WeaponNext();  //currentWeapon_->next();
+    //     slave_->ship_->special_->next();  // todo: if boost
 }
 
 void Controller::slavePrev  () const
 {
     if (slave_->ship_->visible_ && !slave_->ship_->collectedPowerUps_[items::puSleep])
-        slave_->ship_->currentWeapon_->previous();
-    //     slave_->ship_->currentSpecial_->previous();
+        slave_->ship_->WeaponPrev(); // currentWeapon_->previous();
+    //     slave_->ship_->special_->previous();
 }
 
 
@@ -125,22 +125,22 @@ void Controller::slaveLeft () const
 {
     if (slave_->ship_->weaponChange_ && slave_->ship_->visible_ &&
         !slave_->ship_->collectedPowerUps_[items::puSleep])
-        slave_->ship_->currentWeapon_->previous();
+        slave_->ship_->WeaponPrev();  //currentWeapon_->previous();
     else
     if (slave_->ship_->specialChange_ && slave_->ship_->visible_ &&
         !slave_->ship_->collectedPowerUps_[items::puSleep])
-        slave_->ship_->currentSpecial_->previous();
+        slave_->ship_->special_->previous();
 }
 
 void Controller::slaveRight () const
 {
     if (slave_->ship_->weaponChange_ && slave_->ship_->visible_ &&
         !slave_->ship_->collectedPowerUps_[items::puSleep])
-        slave_->ship_->currentWeapon_->next();
+        slave_->ship_->WeaponNext();  //currentWeapon_->next();
     else
     if (slave_->ship_->specialChange_ && slave_->ship_->visible_ &&
         !slave_->ship_->collectedPowerUps_[items::puSleep])
-        slave_->ship_->currentSpecial_->next();
+        slave_->ship_->special_->next();
 }
 
 void Controller::slaveFire () const

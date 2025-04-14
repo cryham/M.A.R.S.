@@ -27,7 +27,7 @@ class Seekers: public Weapon
 {
     public:
         /// Ctor which constructs the weapon.
-        Seekers(Ship* parent):
+        Seekers(Mount* parent):
               Weapon(weapons::wSeekers, parent, "Seekers")
         {   }
 

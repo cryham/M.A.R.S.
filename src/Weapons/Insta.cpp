@@ -21,18 +21,28 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Particles/particles.hpp"
 #include "Media/sound.hpp"
 #include "Players/Player.hpp"
+#include "System/Color3f.hpp"
 #include "Teams/Team.hpp"
 
 #include <SFML/Graphics.hpp>
 #include <cfloat>
 
 
+Insta::Insta(Mount* parent)
+    :Weapon(weapons::wInsta, parent, sf::String("INSTA-GRAVE"))
+{
+    if (parent && parent->getOwner() && parent->getOwner()->team())
+        color_ = parent_->getOwner()->team()->color().brightened();
+    else
+        color_ = Color3f::random().brightened();
+}
+
 void Insta::draw(float alpha) const
 {
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    parent_->getOwner()->team()->color().brightened().gl4f(alpha);
+    color_.gl4f(alpha);
 
-    const float r = parent_->radius();
+    const float r = parent_->getRadius();
     const int u = 2, v = 31;
     glBegin(GL_QUADS);
         uv8w(u, v);     glVertex2f(0,      r* 0.2f);
@@ -50,12 +60,11 @@ void Insta::fire() const
     
         float angleRad = parent_->rotation()*M_PI / 180;
         Vector2f dir(std::cos(angleRad), std::sin(angleRad));
-        Color3f tmp = parent_->getOwner()->team()->color().brightened();
         
-        particles::spawn(particles::pAmmoInsta, parent_->location() + dir*parent_->radius(), dir,
-            parent_->velocity(), tmp, parent_->getOwner());
+        particles::spawn(particles::pAmmoInsta, parent_->getLocation() + dir*parent_->getRadius(), dir,
+            parent_->getVelocity(), color_, parent_->getOwner());
         
-        sound::playSound(sound::Sniper, parent_->location());
+        sound::playSound(sound::Sniper, parent_->getLocation());
     }
 }
 

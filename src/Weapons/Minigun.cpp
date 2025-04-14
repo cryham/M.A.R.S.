@@ -30,7 +30,7 @@ void Minigun::draw(float alpha) const
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glColor4f(1.0f, 1.0f, 0.5f, alpha);
 
-    const float r = parent_->radius();
+    const float r = parent_->getRadius();
     const int u = 1, v = 31;
     glBegin(GL_QUADS);  // 1/8 / 4
         uv8w(u, v);     glVertex2f(0,      r* 0.3f);
@@ -51,10 +51,10 @@ void Minigun::fire() const
 
         for (int i=0; i < 3; ++i)
             particles::spawn(particles::pAmmoMinigun,
-                parent_->location() + dir*parent_->radius() + dir * 20.f,
-                dir, parent_->velocity(), Color3f(), parent_->getOwner());
+                parent_->getLocation() + dir*parent_->getRadius() + dir * 20.f,
+                dir, parent_->getVelocity(), Color3f(), parent_->getOwner());
 
-        sound::playSound(sound::LaserCollide, parent_->location());
+        sound::playSound(sound::LaserCollide, parent_->getLocation());
     }
 }
 

@@ -31,7 +31,7 @@ void H2OStorm::draw(float alpha) const
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glColor3f(0.7f, 0.8f, 1.f);
 
-    const float r = parent_->radius();
+    const float r = parent_->getRadius();
     const int u = 0, v = 29;
     glBegin(GL_QUADS);
         uv8w(u, v);     glVertex2f(0,     r* 0.8f);
@@ -50,13 +50,13 @@ void H2OStorm::fire() const
         float angleRad = parent_->rotation()*M_PI / 180;
         Vector2f dir(std::cos(angleRad), std::sin(angleRad));
 
-        particles::spawn(particles::pAmmoH2OStorm, parent_->location() + dir*parent_->radius()*1.5, dir,
-            parent_->velocity(), Color3f(), parent_->getOwner());
-        particles::spawn(particles::pAmmoH2OStorm, parent_->location() + dir*parent_->radius(), dir,
-            parent_->velocity(), Color3f(), parent_->getOwner());
-        sound::playSound(sound::BlubPop, parent_->location());
+        particles::spawn(particles::pAmmoH2OStorm, parent_->getLocation() + dir*parent_->getRadius()*1.5, dir,
+            parent_->getVelocity(), Color3f(), parent_->getOwner());
+        particles::spawn(particles::pAmmoH2OStorm, parent_->getLocation() + dir*parent_->getRadius(), dir,
+            parent_->getVelocity(), Color3f(), parent_->getOwner());
+        sound::playSound(sound::BlubPop, parent_->getLocation());
 
-        // parent_->velocity() -= faceDirection*20.f;
+        // parent_->getVelocity() -= faceDirection * 20.f;
     }
 }
 

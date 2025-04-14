@@ -21,7 +21,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "System/Color3f.hpp"
 
 class Weapon;
-class Ship;
+class Mount;
 
 
 namespace weapons
@@ -42,8 +42,7 @@ namespace weapons
 
     extern Color3f colors[WeaponType::All];
 
+    Weapon* create    (WeaponType type, Mount* parent);
     WeaponType random();
-    Weapon* create    (WeaponType type, Ship* parent);
-    Weapon* createNext(WeaponType type, Ship* parent);
-    Weapon* createPrev(WeaponType type, Ship* parent);
+    WeaponType getNext(WeaponType type, bool add1st = true, int add = 1);
 }

@@ -26,12 +26,21 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include <cfloat>
 
 
+AFK47::AFK47(Mount* parent)
+    :Weapon(weapons::wAFK47, parent, sf::String("AFK-47"))
+{
+    if (parent_ && parent_->getOwner())
+        color_ = parent_->getOwner()->color();
+    else
+        color_ = Color3f(0.6,0.6,1.0);
+}
+
 void AFK47::draw(float alpha) const
 {
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     parent_->getOwner()->color().gl4f(alpha);
 
-    const float r = parent_->radius();
+    const float r = parent_->getRadius();
     const int u = 0, v = 28;
 
     glBegin(GL_QUADS);
@@ -53,18 +62,20 @@ void AFK47::fire() const
     if (time - timer_ > 0.1)
     {   timer_ = time;
 
-        const float r = parent_->radius();
+        const float r = parent_->getRadius();
         float angleRad = parent_->rotation()*M_PI / 180;
         Vector2f dir(std::cos(angleRad), std::sin(angleRad));
+        auto pos = parent_->getLocation();
 
-        particles::spawn(particles::pAmmoAFK47, Vector2f(parent_->location().x_ + dir.x_*r*0.9 - dir.y_*r*0.9,
-                parent_->location().y_ + dir.x_*r*0.7 + dir.y_*r*0.7), dir,
-            parent_->velocity(), Color3f(), parent_->getOwner());
-        particles::spawn(particles::pAmmoAFK47, Vector2f(parent_->location().x_ + dir.x_*r*0.9 + dir.y_*r*0.9,
-                parent_->location().y_ - dir.x_*r*0.7 + dir.y_*r*0.7), dir,
-            parent_->velocity(), Color3f(), parent_->getOwner());
+        particles::spawn(particles::pAmmoAFK47, Vector2f(pos.x_ + dir.x_*r*0.9 - dir.y_*r*0.9,
+                pos.y_ + dir.x_*r*0.7 + dir.y_*r*0.7), dir,
+            parent_->getVelocity(), Color3f(), parent_->getOwner());
         
-        sound::playSound(sound::Laser, parent_->location());
+        particles::spawn(particles::pAmmoAFK47, Vector2f(pos.x_ + dir.x_*r*0.9 + dir.y_*r*0.9,
+                pos.y_ - dir.x_*r*0.7 + dir.y_*r*0.7), dir,
+            parent_->getVelocity(), Color3f(), parent_->getOwner());
+        
+        sound::playSound(sound::Laser, pos);
     }
 }
 

@@ -27,7 +27,7 @@ class Burner: public Weapon
 {
     public:
         /// Ctor which constructs the weapon.
-        Burner(Ship* parent):
+        Burner(Mount* parent):
               Weapon(weapons::wBurner, parent, sf::String("WT-FLAMER"))
         {   }
 

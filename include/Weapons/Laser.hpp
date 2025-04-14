@@ -27,7 +27,7 @@ class Laser: public Weapon
 {
     public:
         /// Ctor which constructs the weapon.
-        Laser(Ship* parent):
+        Laser(Mount* parent):
               Weapon(weapons::wLaser, parent, sf::String("Laser"))
         {   }
 

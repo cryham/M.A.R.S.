@@ -28,13 +28,13 @@ Special::Special(specials::SpecialType type, Ship* parent, sf::String name):
 
 void Special::next()
 {
-    parent_->currentSpecial_ = specials::createNext(type_, parent_);
+    parent_->special_ = specials::createNext(type_, parent_);
     delete this;
 }
 
 void Special::previous()
 {
-    parent_->currentSpecial_ = specials::createPrev(type_, parent_);
+    parent_->special_ = specials::createPrev(type_, parent_);
     delete this;
 }
 

@@ -35,13 +35,13 @@ void ShipName::draw() const
             ship_->owner_->type() == controllers::cPlayer2;
         
         if (player && (ship_->weaponChange_ || ship_->weaponChangeTime_ > 0.f))
-            text::drawSpaceText(ship_->currentWeapon_->getName(),
+            text::drawSpaceText(ship_->weapon_->getName(),
                                 ship_->location_ + Vector2f(0.f, -ship_->radius_*2.5f),
                                 12.f, TEXT_ALIGN_CENTER,
-                                weapons::colors[ship_->currentWeapon_->getType()]);
+                                weapons::colors[ship_->weapon_->getType()]);
         else
         if (player && ship_->specialChange_)
-            text::drawSpaceText(ship_->currentSpecial_->getName(),
+            text::drawSpaceText(ship_->special_->getName(),
                                 ship_->location_ + Vector2f(0.f, -ship_->radius_*2.5f),
                                 12.f, TEXT_ALIGN_CENTER, Color3f(0.8f, 0.8f, 1.f));
         else

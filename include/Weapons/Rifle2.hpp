@@ -27,7 +27,7 @@ class Rifle2: public Weapon
 {
     public:
         /// Ctor which constructs the weapon.
-        Rifle2(Ship* parent):
+        Rifle2(Mount* parent):
               Weapon(weapons::wRifle2, parent, sf::String("Rifle2"))
         {   }
 

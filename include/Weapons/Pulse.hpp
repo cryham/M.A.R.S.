@@ -27,7 +27,7 @@ class Pulse: public Weapon
 {
     public:
         /// Ctor which constructs the weapon.
-        Pulse(Ship* parent):
+        Pulse(Mount* parent):
               Weapon(weapons::wPulse, parent, sf::String("Pulse"))
         {   }
 

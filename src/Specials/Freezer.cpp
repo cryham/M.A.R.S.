@@ -39,7 +39,7 @@ void Freezer::draw(float alpha) const
     // draw glow
     parent_->getOwner()->team()->color().brightened().gl4f(0.8f*alpha);;
 
-    const float r = parent_->radius();
+    const float r = parent_->getRadius();
     const int u = 2, v = 0;
 
     glBegin(GL_QUADS);
@@ -88,7 +88,7 @@ void Freezer::activate() const
         {
             if (it != parent_ && it->collidable() && !it->collectedPowerUps_[items::puShield])
             {
-                float distance((it->location()-parent_->location()).length());
+                float distance((it->location()-parent_->getLocation()).length());
                 if (distance <= radius_)
                 {
                     it->setDamageSource(parent_->getOwner());
@@ -105,7 +105,7 @@ void Freezer::activate() const
 
         if (ball && ball->visible_)
         {
-            float distance((ball->location()-parent_->location()).length());
+            float distance((ball->location()-parent_->getLocation()).length());
                 if (distance <= radius_)
                 {
                     ball->velocity_=Vector2f();
@@ -119,7 +119,7 @@ void Freezer::activate() const
 
         for (auto& it : AmmoRocket::activeParticles_)
         {
-            float distance((it->location()-parent_->location()).length());
+            float distance((it->location()-parent_->getLocation()).length());
             if (distance <= radius_)
             {
                 it->velocity_ = it->velocity_*0.00001f;

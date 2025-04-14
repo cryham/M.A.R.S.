@@ -27,7 +27,7 @@ class MiniRockets: public Weapon
 {
     public:
         /// Ctor which constructs the weapon.
-        MiniRockets(Ship* parent):
+        MiniRockets(Mount* parent):
               Weapon(weapons::wMiniRockets, parent, "MiniRockets")
         {   }
 

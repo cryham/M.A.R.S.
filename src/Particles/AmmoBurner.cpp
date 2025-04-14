@@ -61,13 +61,13 @@ void AmmoBurner::update()
 
     lifeTime_ += time;
 
-    // check for collisions with ships
+    //  collisions with ships
     const auto& shipsList = ships::getShips();
     for (const auto& it : shipsList)
         if ((location_ - it->location()).lengthSquare() < std::pow(radius_ + it->radius(), 2) && it->collidable())
             it->onCollision(this, location_, velocity_, velocity_);
 
-    // check for collisions with ball
+    //  collisions with ball
     Ball* ball = balls::getBall();
     if (ball)
         if ((location_ - ball->location()).lengthSquare() < std::pow(radius_ + ball->radius(), 2))

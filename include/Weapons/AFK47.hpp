@@ -27,9 +27,7 @@ class AFK47: public Weapon
 {
     public:
         /// Ctor which constructs the weapon.
-        AFK47(Ship* parent):
-              Weapon(weapons::wAFK47, parent, sf::String("AFK-47"))
-        {   }
+        AFK47(Mount* parent);
 
         /// Spawns some particles.
         void fire() const;
@@ -45,4 +43,6 @@ class AFK47: public Weapon
 
         /// Returns the maximum angle from which this weapon should be used.
         float maxAngle()   const;
+
+        Color3f color_;
 };

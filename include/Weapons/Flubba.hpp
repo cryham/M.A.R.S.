@@ -27,7 +27,7 @@ class Flubba: public Weapon
 {
     public:
         /// Ctor which constructs the weapon.
-        Flubba(Ship* parent):
+        Flubba(Mount* parent):
               Weapon(weapons::wFlubba, parent, sf::String("FLUBBA"))
         {   }
 

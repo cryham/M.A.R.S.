@@ -33,14 +33,14 @@ namespace players
     namespace
 	{
         std::vector<Player*> allPlayers_;
-        Player* playerI_;
-        Player* playerII_;
+        Player* player1_;
+        Player* player2_;
         bool initialized_(false);
 
         void initLocalPlayers()
         {
-            playerI_  = new LocalPlayer(controllers::cPlayer1);
-            playerII_ = new LocalPlayer(controllers::cPlayer2);
+            player1_ = new LocalPlayer(controllers::cPlayer1);
+            player2_ = new LocalPlayer(controllers::cPlayer2);
             initialized_ = true;
         }
     }
@@ -51,20 +51,22 @@ namespace players
         switch (type)
         {
             case controllers::cPlayer1:
-                if (!initialized_) initLocalPlayers();
-                team->addMember(playerI_);
-                allPlayers_.push_back(playerI_);
+                if (!initialized_)
+                    initLocalPlayers();
+                team->addMember(player1_);
+                allPlayers_.push_back(player1_);
                 break;
 
             case controllers::cPlayer2:
-                if (!initialized_) initLocalPlayers();
-                team->addMember(playerII_);
-                allPlayers_.push_back(playerII_);
+                if (!initialized_)
+                    initLocalPlayers();
+                team->addMember(player2_);
+                allPlayers_.push_back(player2_);
                 break;
 
             default:
                 Player* bot = new BotPlayer(generateName::bot(
-                    ((long)team%INT_MAX)/97), color, rand()%SHIP_GRAPHICS_COUNT+1);
+                    ((long)team % INT_MAX) / 97), color, rand() % SHIP_GRAPHICS_COUNT+1);
                 team->addMember(bot);
                 allPlayers_.push_back(bot);
         }
@@ -75,26 +77,26 @@ namespace players
         // temporary list of all homes
         const auto& homes = spaceObjects::getHomes();
         // temporary lists of all inhabitants of all
-        for (const auto& homeIt : homes)
+        for (const auto& home : homes)
         {
             std::vector<Player*> inhabitants;
             for (const auto& playIt : allPlayers_)
             {
-                if (playIt->team()->home() == homeIt)
+                if (playIt->team()->home() == home)
                     inhabitants.push_back(playIt);
             }
-            homeIt->createShips(inhabitants);
+            home->createShips(inhabitants);
         }
     }
 
-    Player const* getPlayerI()
+    Player const* getPlayer1()
     {
-        return playerI_;
+        return player1_;
     }
 
-    Player const* getPlayerII()
+    Player const* getPlayer2()
     {
-        return playerII_;
+        return player2_;
     }
 
     void resetPlayerPoints()

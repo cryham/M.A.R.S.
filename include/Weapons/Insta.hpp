@@ -17,6 +17,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #pragma once
 
+#include "System/Color3f.hpp"
 #include "Weapons/Weapon.hpp"
 
 
@@ -27,9 +28,7 @@ class Insta: public Weapon
 {
     public:
         /// Ctor which constructs the weapon.
-        Insta(Ship* parent):
-              Weapon(weapons::wInsta, parent, sf::String("INSTA-GRAVE"))
-        {   }
+        Insta(Mount* parent);
 
         /// Spawns some particles.
         void fire() const;
@@ -45,4 +44,6 @@ class Insta: public Weapon
 
         /// Returns the maximum angle from which this weapon should be used.
         float maxAngle()   const;
+
+        Color3f color_;
 };

@@ -58,7 +58,8 @@ AmmoSeekers::AmmoSeekers(Vector2f const& location, Vector2f const& direction, Ve
 
     color_ = Color3f(randomizer::random(0.3f, 0.6f), randomizer::random(0.7f, 0.9f), randomizer::random(0.2f, 0.5f));
     // trailEffects::attach(this, 0.02, 0.2f, 20.f, color_, false); //Color3f(0.5f, 0.8f, 0.f), false);
-    trailEffects::attach(this, 0.02, 0.2f, 20.f, parent_->color() * 0.7f, false);
+    trailEffects::attach(this, 0.02, 0.2f, 20.f,
+        (parent_ ? parent_->color() : color_) * 0.7f, false);
 }
 
 AmmoSeekers::~AmmoSeekers()

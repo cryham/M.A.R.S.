@@ -30,7 +30,7 @@ void Burner::draw(float alpha) const
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glColor4f(1.0f, 1.0f, 1.0f, alpha);
 
-    const float r = parent_->radius();
+    const float r = parent_->getRadius();
     const int u = 0, v = 30;
     glBegin(GL_QUADS);
         uv8w(u, v);     glVertex2f(0,      r*0.3f);
@@ -51,12 +51,12 @@ void Burner::fire() const
 
         for (int i=0; i < 20; ++i)
         {
-            particles::spawn(particles::pAmmoBurner, parent_->location() + dir*parent_->radius()*1.5f,
-                dir, parent_->velocity(), Color3f(), parent_->getOwner());
-            particles::spawn(particles::pHeatBurner, parent_->location() + dir*parent_->radius()*1.5f,
-                dir, parent_->velocity());
+            particles::spawn(particles::pAmmoBurner, parent_->getLocation() + dir*parent_->getRadius()*1.5f,
+                dir, parent_->getVelocity(), Color3f(), parent_->getOwner());
+            particles::spawn(particles::pHeatBurner, parent_->getLocation() + dir*parent_->getRadius()*1.5f,
+                dir, parent_->getVelocity());
         }
-        parent_->velocity() -= dir*10.f;
+        parent_->getVelocity() -= dir * 10.f;
     }
 }
 

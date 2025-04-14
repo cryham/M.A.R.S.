@@ -154,7 +154,7 @@ void BotController::attackAny()
 
     if (target_)
     {
-        if ((ship()->location()-target_->location()).lengthSquare() > std::pow(ship()->currentWeapon_->minDistance(),2))
+        if ((ship()->location()-target_->location()).lengthSquare() > std::pow(ship()->weapon_->minDistance(),2))
         {
             moveTo(target_->location(), 0.f);
             shootEnemy(target_);

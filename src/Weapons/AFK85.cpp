@@ -21,17 +21,28 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Particles/particles.hpp"
 #include "Media/sound.hpp"
 #include "Players/Player.hpp"
+#include "System/Color3f.hpp"
+#include "System/Vector2f.hpp"
 
 #include <SFML/Graphics.hpp>
 #include <cfloat>
 
 
+AFK85::AFK85(Mount* parent)
+    :Weapon(weapons::wAFK85, parent, sf::String("AFK-85"))
+{
+    if (parent_ && parent_->getOwner())
+        color_ = parent_->getOwner()->color();
+    else
+        color_ = Color3f(0.6,0.6,1.0);
+}
+
 void AFK85::draw(float alpha) const
 {
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    parent_->getOwner()->color().gl4f(alpha);
+    color_.gl4f(alpha);
 
-    const float r = parent_->radius();
+    const float r = parent_->getRadius();
     const int u = 0, v = 28;
     glBegin(GL_QUADS);
         uv8w(u, v);     glVertex2f(0, r*0.95f);
@@ -52,23 +63,25 @@ void AFK85::fire() const
     if (time - timer_ > 0.05)
     {   timer_ = time;
 
-        const float r = parent_->radius();
+        const float r = parent_->getRadius();
         float angleRad = parent_->rotation()*M_PI / 180;
         Vector2f dir(std::cos(angleRad), std::sin(angleRad));
+        Vector2f pos = parent_->getLocation(), vel = parent_->getVelocity();
 
-        particles::spawn(particles::pAmmoAFK85, Vector2f(parent_->location().x_ + dir.x_*r*0.7 - dir.y_*r*0.7,
-            parent_->location().y_ +  dir.x_*r*0.5 + dir.y_*r*0.5), dir,
-            parent_->velocity(), Color3f(), parent_->getOwner());
-        particles::spawn(particles::pAmmoAFK85, Vector2f(parent_->location().x_ + dir.x_*r*0.7 - dir.y_*r*0.7,
-            parent_->location().y_ +  dir.x_*r*0.5 + dir.y_*r*0.5), dir,
-            parent_->velocity(), Color3f(), parent_->getOwner());
-        particles::spawn(particles::pAmmoAFK85, Vector2f(parent_->location().x_ + dir.x_*r*0.9 + dir.y_*r*0.9,
-            parent_->location().y_ - dir.x_*r*0.7 + dir.y_*r*0.7), dir,
-            parent_->velocity(), Color3f(), parent_->getOwner());
-        particles::spawn(particles::pAmmoAFK85, Vector2f(parent_->location().x_ + dir.x_*r*0.9 + dir.y_*r*0.9,
-            parent_->location().y_ - dir.x_*r*0.7 + dir.y_*r*0.7), dir,
-            parent_->velocity(), Color3f(), parent_->getOwner());
-        sound::playSound(sound::Laser, parent_->location());
+        particles::spawn(particles::pAmmoAFK85, Vector2f(pos.x_ + dir.x_*r*0.7 - dir.y_*r*0.7,
+            pos.y_ +  dir.x_*r*0.5 + dir.y_*r*0.5), dir,
+            vel, Color3f(), parent_->getOwner());
+        particles::spawn(particles::pAmmoAFK85, Vector2f(pos.x_ + dir.x_*r*0.7 - dir.y_*r*0.7,
+            pos.y_ +  dir.x_*r*0.5 + dir.y_*r*0.5), dir,
+            vel, Color3f(), parent_->getOwner());
+        particles::spawn(particles::pAmmoAFK85, Vector2f(pos.x_ + dir.x_*r*0.9 + dir.y_*r*0.9,
+            pos.y_ - dir.x_*r*0.7 + dir.y_*r*0.7), dir,
+            vel, Color3f(), parent_->getOwner());
+        particles::spawn(particles::pAmmoAFK85, Vector2f(pos.x_ + dir.x_*r*0.9 + dir.y_*r*0.9,
+            pos.y_ - dir.x_*r*0.7 + dir.y_*r*0.7), dir,
+            vel, Color3f(), parent_->getOwner());
+
+        sound::playSound(sound::Laser, pos);
     }
 }
 

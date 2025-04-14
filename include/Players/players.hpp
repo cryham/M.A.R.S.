@@ -24,6 +24,7 @@ class Team;
 class Home;
 class Player;
 
+
 namespace players 
 {
     void addPlayer (Team* team, controllers::ControlType type, Color3f const& = Color3f::random());
@@ -33,7 +34,6 @@ namespace players
     void resetPlayerPoints();
     void clear();
 
-    Player const* getPlayerI ();
-    Player const* getPlayerII();
+    Player const* getPlayer1();
+    Player const* getPlayer2();
 }
-

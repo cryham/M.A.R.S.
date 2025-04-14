@@ -37,7 +37,7 @@ void Blast::draw(float alpha) const
     parent_->getOwner()->team()->color().brightened().gl4f(0.8f*alpha);
 
     float scale(4 + std::sin(timer::totalTime()*6)*0.3f);
-    const float r = parent_->radius();
+    const float r = parent_->getRadius();
     const int u = 0, v = 0;
 
     glBegin(GL_QUADS);
@@ -84,7 +84,7 @@ void Blast::activate() const
     {
         radius_ = radius();
         parent_->fragStars_ = 0;
-        physics::causeShockWave(parent_->getOwner(), parent_->location(), 1000.f, radius_*0.8f, 0.f);
+        physics::causeShockWave(parent_->getOwner(), parent_->getLocation(), 1000.f, radius_*0.8f, 0.f);
         timer_ = 0.5f;
     }
 }

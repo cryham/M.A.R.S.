@@ -27,7 +27,7 @@ class Gauss: public Weapon
 {
     public:
         /// Ctor which constructs the weapon.
-        Gauss(Ship* parent):
+        Gauss(Mount* parent):
               Weapon(weapons::wGauss, parent, sf::String("Gauss"))
         {   }
 

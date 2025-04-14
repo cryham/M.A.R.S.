@@ -31,7 +31,7 @@ void Shotgun2::draw(float alpha) const
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glColor4f(1.0f, 0.5f, 1.0f, alpha);
 
-    const float r = parent_->radius();
+    const float r = parent_->getRadius();
     const int u = 0, v = 30;
     glBegin(GL_QUADS);
         uv8w(u, v);     glVertex2f(0,      r* 0.8f);
@@ -51,11 +51,11 @@ void Shotgun2::fire() const
         Vector2f dir(std::cos(angleRad), std::sin(angleRad));
 
         for (int i=0; i < 75; ++i)
-            particles::spawn(particles::pAmmoShotgun2, parent_->location() + dir*parent_->radius(),
-                dir, parent_->velocity(), Color3f(), parent_->getOwner());
+            particles::spawn(particles::pAmmoShotgun2, parent_->getLocation() + dir*parent_->getRadius(),
+                dir, parent_->getVelocity(), Color3f(), parent_->getOwner());
 
-        parent_->velocity() -= dir * 50.f;
-        sound::playSound(sound::Pump, parent_->location());
+        parent_->getVelocity() -= dir * 50.f;
+        sound::playSound(sound::Pump, parent_->getLocation());
     }
 }
 

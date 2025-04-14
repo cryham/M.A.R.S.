@@ -27,10 +27,7 @@ class Fist: public Weapon
 {
     public:
         /// Ctor which constructs the weapon.
-        Fist(Ship* parent):
-              Weapon(weapons::wFist, parent, sf::String("FIST OF ALI")),
-              position_(1.f)
-        {   }
+        Fist(Mount* parent);
 
         /// Spawns some particles.
         void fire() const;
@@ -49,4 +46,5 @@ class Fist: public Weapon
 
     private:
         mutable float position_;
+        Color3f color_;
 };

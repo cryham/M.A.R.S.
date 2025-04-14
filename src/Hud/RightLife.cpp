@@ -33,11 +33,11 @@ void RightLife::draw() const
     Player const* player(NULL);
 
     if (settings::bPlayer1teamL && settings::bPlayer2teamL ||
-        settings::bPlayer1teamR && settings::bPlayer2teamR)       player = players::getPlayerI();
-    else if (settings::bPlayer1teamL && settings::bPlayer2teamR)  player = players::getPlayerII();
-    else if (settings::bPlayer2teamL && settings::bPlayer1teamR)  player = players::getPlayerI();
-    else if (settings::bPlayer1teamR)                             player = players::getPlayerI();
-    else if (settings::bPlayer2teamR)                             player = players::getPlayerII();
+        settings::bPlayer1teamR && settings::bPlayer2teamR)       player = players::getPlayer1();
+    else if (settings::bPlayer1teamL && settings::bPlayer2teamR)  player = players::getPlayer2();
+    else if (settings::bPlayer2teamL && settings::bPlayer1teamR)  player = players::getPlayer1();
+    else if (settings::bPlayer1teamR)                             player = players::getPlayer1();
+    else if (settings::bPlayer2teamR)                             player = players::getPlayer2();
 
     if (player)
     {

@@ -38,7 +38,7 @@ void ShipHighlight::draw() const
 
 void ShipHighlight::draw(Vector2f const& location, float scale, float alpha) const
 {
-    const float    maxAngle     (ship_->currentWeapon_->maxAngle());
+    const float    maxAngle     (ship_->weapon_->maxAngle());
     const float    shipRotation (ship_->rotation_*M_PI/180.f);
     const Vector2f dir(Vector2f(std::cos(shipRotation), std::sin(shipRotation)));
     const float    r = ship_->radius_;

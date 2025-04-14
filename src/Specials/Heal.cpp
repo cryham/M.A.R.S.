@@ -37,7 +37,7 @@ void Heal::draw(float alpha) const
     alpha *= 0.6 + std::sin(timer::totalTime()*6)*0.1f;
     parent_->getOwner()->team()->color().brightened().gl4f(alpha);
 
-    const float r = parent_->radius();
+    const float r = parent_->getRadius();
     const int u = 1, v = 0;
 
     glBegin(GL_QUADS);
@@ -82,7 +82,7 @@ void Heal::activate() const
         {
             if (it != parent_)
             {
-                float distance((it->location()-parent_->location()).length());
+                float distance((it->location()-parent_->getLocation()).length());
                 if (it->collidable() && parent_->getOwner()->team() == it->getOwner()->team() && distance <= radius_)
                 {
                     it->heal(  parent_->getOwner(), ((radius_/distance)-0.8f)*parent_->fragStars_*30);

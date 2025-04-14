@@ -85,22 +85,22 @@ void Tutorial::update()
 {
     Game::update();
 
-    if (!dead_ && players::getPlayerI()->ship()->getLife() == 0.f)
+    if (!dead_ && players::getPlayer1()->ship()->getLife() == 0.f)
     {
         dead_ = true;
         savedState_ = state_;
         deadTimer_ = timer::totalTime();
         state_ = 50;
     }
-    else if (!life_ && players::getPlayerI()->ship()->getLife() < 30.f &&
-            players::getPlayerI()->ship()->getLife() != 0.f)
+    else if (!life_ && players::getPlayer1()->ship()->getLife() < 30.f &&
+            players::getPlayer1()->ship()->getLife() != 0.f)
     {
         life_ = true;
         savedState_ = state_;
         state_ = 51;
     }
-    else if (!fuel_ && players::getPlayerI()->ship()->getFuel() < 30.f &&
-            players::getPlayerI()->ship()->getLife() != 0.f)
+    else if (!fuel_ && players::getPlayer1()->ship()->getFuel() < 30.f &&
+            players::getPlayer1()->ship()->getLife() != 0.f)
     {
         fuel_ = true;
         savedState_ = state_;
@@ -162,7 +162,7 @@ void Tutorial::update()
                 ++state_;
             }   break;
         case 8:
-            if (players::getPlayerI()->ship()->docked_)
+            if (players::getPlayer1()->ship()->docked_)
             {   zones::clear();
                 menus::showWindow(TutorialWindow::get(locales::Tut05, locales::TutText05, 5, false, true));
                 ++state_;
@@ -197,7 +197,7 @@ void Tutorial::update()
                 ++state_;
             }   break;
         case 13:
-            if (players::getPlayerI()->ship()->docked_)
+            if (players::getPlayer1()->ship()->docked_)
             {   zones::clear();
                 zones::createRaster(4, 3);
                 menus::showWindow(TutorialWindow::get(locales::Tut09, locales::TutText09, 9, false, true));
@@ -209,7 +209,7 @@ void Tutorial::update()
                 ++state_;
             }   break;
         case 15:
-            if (!players::getPlayerI()->ship()->docked_)
+            if (!players::getPlayer1()->ship()->docked_)
             {   timer_ = timer::totalTime();
                 ++state_;
             }   break;
@@ -227,7 +227,7 @@ void Tutorial::update()
             }   break;
         case 17:
             if (evilPlayer1_->ship()->getLife() == 0.f)
-            {   players::getPlayerI()->ship()->fragStars_ = 1;
+            {   players::getPlayer1()->ship()->fragStars_ = 1;
                 timer_ = timer::totalTime();
                 ++state_;
             }   break;
@@ -241,7 +241,7 @@ void Tutorial::update()
             }   break;
 
          case 19:
-            if (players::getPlayerI()->ship()->docked_)
+            if (players::getPlayer1()->ship()->docked_)
             {   zones::clear();
                 zones::createRaster(4, 3);
                 menus::showWindow(TutorialWindow::get(locales::Tut21, locales::TutText21, 13, false, true));
@@ -253,7 +253,7 @@ void Tutorial::update()
                 ++state_;
             }   break;
         case 21:
-            if (!players::getPlayerI()->ship()->docked_)
+            if (!players::getPlayer1()->ship()->docked_)
             {   timer_ = timer::totalTime();
                 ++state_;
             }   break;
@@ -261,7 +261,7 @@ void Tutorial::update()
        case 22:
             if (timer::totalTime() > timer_ + 1.f)
             {
-                if (players::getPlayerI()->ship()->currentSpecial_->getType() == specials::sFreeze)
+                if (players::getPlayer1()->ship()->special_->getType() == specials::sFreeze)
                 {   menus::showWindow(TutorialWindow::get(locales::Tut24, locales::TutText24, 15, false, true));
                     state_ += 2;
                 }else
@@ -271,7 +271,7 @@ void Tutorial::update()
                 }
             }   break;
         case 23:
-            if (players::getPlayerI()->ship()->docked_)
+            if (players::getPlayer1()->ship()->docked_)
             {   zones::clear();
                 zones::createRaster(4, 3);
                 timer_ = timer::totalTime();
@@ -282,7 +282,7 @@ void Tutorial::update()
             if (!menus::visible())
             {   menus::showWindow(TutorialWindow::get(locales::Tut25, locales::TutText25, 16, false, false));
                 evilPlayer1_->ship()->respawnTimer_ = 0.f;
-                players::getPlayerI()->ship()->fragStars_ = 3;
+                players::getPlayer1()->ship()->fragStars_ = 3;
                 
                 timer_ = timer::totalTime();
                 ++state_;
@@ -293,14 +293,14 @@ void Tutorial::update()
                 state_ +=2;
             }
             else if (evilPlayer1_->ship()->frozen_ <= 0 &&
-                players::getPlayerI()->ship()->fragStars_ == 0)
+                players::getPlayer1()->ship()->fragStars_ == 0)
             {   timer_ = timer::totalTime();
                 ++state_;
             }   break;
         case 26:
             if (timer::totalTime() > timer_ + 1.f)
             {   menus::showWindow(TutorialWindow::get(locales::Tut26, locales::TutText26, 0, true, false));
-                players::getPlayerI()->ship()->fragStars_ = 3;
+                players::getPlayer1()->ship()->fragStars_ = 3;
                 
                 timer_ = timer::totalTime();
                 --state_;
@@ -321,7 +321,7 @@ void Tutorial::update()
                 ++state_;
             }   break;
         case 29:
-            if (players::getPlayerI()->ship()->docked_ && !menus::visible())
+            if (players::getPlayer1()->ship()->docked_ && !menus::visible())
             {   zones::clear();
                 zones::createRaster(4, 3);
                 menus::showWindow(TutorialWindow::get(locales::Tut28, locales::TutText28, 18, true, true));
@@ -340,12 +340,12 @@ void Tutorial::update()
             if (!menus::visible())
             {   menus::showWindow(TutorialWindow::get(locales::Tut13, locales::TutText13, 19, false, false));
                 
-                players::addPlayer(players::getPlayerI()->team(), controllers::cBot);
+                players::addPlayer(players::getPlayer1()->team(), controllers::cBot);
                 std::vector<Player*> friends(
-                    players::getPlayerI()->team()->members().begin()+1,
-                    players::getPlayerI()->team()->members().end());
+                    players::getPlayer1()->team()->members().begin()+1,
+                    players::getPlayer1()->team()->members().end());
                 friendPlayer_ = friends[0];
-                players::getPlayerI()->team()->home()->createShips(friends);
+                players::getPlayer1()->team()->home()->createShips(friends);
                 hud::init();
                 
                 timer_ = timer::totalTime();
@@ -354,7 +354,7 @@ void Tutorial::update()
                 ++state_;
             }   break;
         case 31:
-            if (players::getPlayerI()->team()->points() >= 5)
+            if (players::getPlayer1()->team()->points() >= 5)
             {   timer_ = timer::totalTime();
                 ++state_;
             }   break;

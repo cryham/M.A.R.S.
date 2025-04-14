@@ -27,7 +27,7 @@ class Cloud: public Weapon
 {
     public:
         /// Ctor which constructs the weapon.
-        Cloud(Ship* parent):
+        Cloud(Mount* parent):
               Weapon(weapons::wCloud, parent, sf::String("Cloud"))
         {   }
 

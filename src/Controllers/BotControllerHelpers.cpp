@@ -183,13 +183,13 @@ void BotController::shootEnemies()
 
 void BotController::shootPoint(Vector2f const& location, bool avoidTeamMembers)
 {
-    const float    maxDistance  = ship()->currentWeapon_->maxDistance();
-    const float    minDistance  = ship()->currentWeapon_->minDistance();
-    const float    maxAngle     = ship()->currentWeapon_->maxAngle();
+    const float    maxDistance  = ship()->weapon_->maxDistance();
+    const float    minDistance  = ship()->weapon_->minDistance();
+    const float    maxAngle     = ship()->weapon_->maxAngle();
     const float    shipRotation = ship()->rotation_*M_PI/180.f;
     const Vector2f shipDirection(Vector2f(std::cos(shipRotation), std::sin(shipRotation)));
 
-    if (ship()->currentWeapon_->getType() == weapons::wInsta)
+    if (ship()->weapon_->getType() == weapons::wInsta)
     {
         slaveFire(AmmoInsta::hitsAny(ship()->location() + shipDirection*ship()->radius(), shipDirection, slave_->team()));
     }

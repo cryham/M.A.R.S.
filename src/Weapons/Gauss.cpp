@@ -31,7 +31,7 @@ void Gauss::draw(float alpha) const
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glColor4f(0.2, 0.6, 1.0, alpha);
 
-    const float r = parent_->radius();
+    const float r = parent_->getRadius();
     const int u = 0, v = 30;
     glBegin(GL_QUADS);
         uv8w(u, v);     glVertex2f(0,     r* 0.2f);
@@ -57,10 +57,10 @@ void Gauss::fire() const
     float angleRad = parent_->rotation()*M_PI / 180;
     Vector2f dir(std::cos(angleRad), std::sin(angleRad));
 
-    particles::spawn(particles::pAmmoGauss, parent_->location() + dir*parent_->radius(),
-        dir, parent_->velocity(), Color3f(), parent_->getOwner());
+    particles::spawn(particles::pAmmoGauss, parent_->getLocation() + dir*parent_->getRadius(),
+        dir, parent_->getVelocity(), Color3f(), parent_->getOwner());
     
-    sound::playSound(sound::Sniper, parent_->location());
+    sound::playSound(sound::Sniper, parent_->getLocation());
 }
 
 

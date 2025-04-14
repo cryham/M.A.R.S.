@@ -311,7 +311,7 @@ namespace zones
 
     bool updateTutZones()
     {
-        if (tutorialZones_.back()->isInside(*players::getPlayerI()->ship())) 
+        if (tutorialZones_.back()->isInside(*players::getPlayer1()->ship())) 
         {
             delete tutorialZones_.back();
             tutorialZones_.pop_back();

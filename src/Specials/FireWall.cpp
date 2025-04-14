@@ -38,7 +38,7 @@ void FireWall::draw(float alpha) const
     parent_->getOwner()->team()->color().brightened().gl4f(0.8f * alpha);
 
     float scale(4 + std::sin(timer::totalTime() * 6) * 0.3f);
-    const float r = parent_->radius();
+    const float r = parent_->getRadius();
     const int u = 3, v = 0;
 
     glBegin(GL_QUADS);
@@ -64,13 +64,13 @@ void FireWall::draw(float alpha) const
                 for (int i=0; i < 20; ++i)
                 {
                     particles::spawn(particles::pAmmoBurner, parent_->location_+Vector2f( dir.x_,  dir.y_)*r*1.25f, Vector2f( dir.x_,  dir.y_),
-                        parent_->velocity(), Color3f(), parent_->getOwner());
+                        parent_->getVelocity(), Color3f(), parent_->getOwner());
                     particles::spawn(particles::pAmmoBurner, parent_->location_+Vector2f(-dir.x_, -dir.y_)*r*1.25f, Vector2f(-dir.x_, -dir.y_),
-                        parent_->velocity(), Color3f(), parent_->getOwner());
+                        parent_->getVelocity(), Color3f(), parent_->getOwner());
                     particles::spawn(particles::pAmmoBurner, parent_->location_+Vector2f( dir.y_, -dir.x_)*r*1.25f, Vector2f( dir.y_, -dir.x_),
-                        parent_->velocity(), Color3f(), parent_->getOwner());
+                        parent_->getVelocity(), Color3f(), parent_->getOwner());
                     particles::spawn(particles::pAmmoBurner, parent_->location_+Vector2f(-dir.y_,  dir.x_)*r*1.25f, Vector2f(-dir.y_,  dir.x_),
-                        parent_->velocity(), Color3f(), parent_->getOwner());
+                        parent_->getVelocity(), Color3f(), parent_->getOwner());
                 }
             }
         }

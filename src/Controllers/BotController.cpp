@@ -148,7 +148,7 @@ void BotController::applyForJob(JobMap& jobMap)
                 case Job::jHeal:
                 {
                     // 20 - 100, based on fragstars and distance
-                    if (ship()->currentSpecial_->getType() == specials::sHeal && ship()->fragStars_ > 0)
+                    if (ship()->special_->getType() == specials::sHeal && ship()->fragStars_ > 0)
                     {
                         Ship* target = static_cast<Ship*>(it->first.object_);
                         if (target != ship())

@@ -32,7 +32,7 @@ void NoSpecial::draw(float alpha) const
     // draw glow
     parent_->getOwner()->team()->color().brightened().gl4f(0.7f*alpha);
 
-    const float r = parent_->radius();
+    const float r = parent_->getRadius();
     const int u = 3, v = 3;
 
     glBegin(GL_QUADS);

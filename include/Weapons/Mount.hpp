@@ -1,7 +1,6 @@
-/* defines.hpp
+/* Mount.hpp
 
 Copyright (c) 2025 Crystal Hammer
-Copyright (c) 2010 - 2011 by Felix Lauer and Simon Schneegans
 
 This program is free software: you can redistribute it and/or modify it
 under the terms of the GNU General Public License as published by the Free
@@ -18,12 +17,33 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #pragma once
 
-#define VERSION_MAJOR               "0"
-#define VERSION_MINOR               "8"
-#define VERSION_PATCH               "0"
-#define VERSION_REVIS               "1"
+#include "System/Vector2f.hpp"
 
-#define SHIP_GRAPHICS_COUNT         15
+class Player;
 
-#define INITIAL_WINDOW_X            960
-#define INITIAL_WINDOW_Y            540
+
+//  rotating mount for weapon, base for Ship and Turret
+
+class Mount
+{
+    public:
+        Mount(float rotation = 0.f, Player* owner = NULL);
+
+        Player* getOwner() const;
+
+        float   rotation() const;
+        virtual float    getRadius() = 0;
+
+        virtual Vector2f getLocation() = 0;
+        virtual Vector2f& getVelocity() = 0;
+
+    protected:
+
+        Player* owner_;
+
+        // float radius_;
+
+        float rotation_;
+        float rotateSpeed_;
+        // int left_, right_;  // inputs
+};

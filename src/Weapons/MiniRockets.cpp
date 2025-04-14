@@ -31,7 +31,7 @@ void MiniRockets::draw(float alpha) const
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glColor4f(0.5f, 0.75f, 1.0f, 1.f);
     
-    const float r = parent_->radius();
+    const float r = parent_->getRadius();
     const int u = 0, v = 30;
     glBegin(GL_QUADS);
         uv8w(u, v);     glVertex2f(0,     r*-0.5f);
@@ -58,12 +58,12 @@ void MiniRockets::fire() const
         Vector2f side(std::cos(angleRad + M_PI_2), std::sin(angleRad + M_PI_2));
 
         particles::spawn(particles::pAmmoMiniRocket,
-            parent_->location() + 3.f * dir * parent_->radius() +
-                                        side * parent_->radius() * (side_ ? -0.8f : 0.8f),
-            dir, parent_->velocity(), Color3f(), parent_->getOwner());
+            parent_->getLocation() + 3.f * dir * parent_->getRadius() +
+                                        side * parent_->getRadius() * (side_ ? -0.8f : 0.8f),
+            dir, parent_->getVelocity(), Color3f(), parent_->getOwner());
 
-        // parent_->velocity() -= faceDirection * 100.f;
-        sound::playSound(sound::Swish, parent_->location());
+        // parent_->getVelocity() -= faceDirection * 100.f;
+        sound::playSound(sound::Swish, parent_->getLocation());
         ++side_;
         if (side_ >= 2)
             side_ = 0;

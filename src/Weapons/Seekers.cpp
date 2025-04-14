@@ -30,7 +30,7 @@ void Seekers::draw(float alpha) const
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glColor4f(0.6f, 1.0f, 0.2f, alpha);
 
-    const float r = parent_->radius();
+    const float r = parent_->getRadius();
     const int u = 0, v = 30;
     glBegin(GL_QUADS);
         uv8w(u, v);     glVertex2f(0,     r* 0.7f);
@@ -49,13 +49,13 @@ void Seekers::fire() const
         float angleRad = parent_->rotation()*M_PI / 180.f;
         Vector2f dir(std::cos(angleRad), std::sin(angleRad));
 
-        particles::spawn(particles::pAmmoSeekers, parent_->location() + dir*parent_->radius(),
-            dir, parent_->velocity(), Color3f(), parent_->getOwner());
-        particles::spawnMultiple(10.f, particles::pDust,  parent_->location() + dir*parent_->radius(),
-            parent_->velocity());
+        particles::spawn(particles::pAmmoSeekers, parent_->getLocation() + dir*parent_->getRadius(),
+            dir, parent_->getVelocity(), Color3f(), parent_->getOwner());
+        particles::spawnMultiple(10.f, particles::pDust,  parent_->getLocation() + dir*parent_->getRadius(),
+            parent_->getVelocity());
 
-        // parent_->velocity() -= faceDirection * 40.f;
-        sound::playSound(sound::Swish, parent_->location());
+        // parent_->getVelocity() -= faceDirection * 40.f;
+        sound::playSound(sound::Swish, parent_->getLocation());
     }
 }
 

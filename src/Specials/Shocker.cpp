@@ -41,7 +41,7 @@ void Shocker::draw(float alpha) const
     const int u = 3, v = 1;
 
     float scale(4 + std::sin(timer::totalTime()*6)*0.3f);
-    const float r = parent_->radius();
+    const float r = parent_->getRadius();
 
     glBegin(GL_QUADS);
         uv4(u, v);     glVertex2f(-r*scale,-r*scale);
@@ -63,6 +63,7 @@ void Shocker::draw(float alpha) const
     }
 }
 
+
 void Shocker::activate() const
 {
     if (parent_->fragStars_ > 0 && timer_ <= 0.f)
@@ -74,11 +75,11 @@ void Shocker::activate() const
 
         if (ships.size() >= 2)
         {
-            for (auto& it :ships)
+            for (auto& it : ships)
             {
                 if (it != parent_)
                 {
-                    Vector2f direction(it->location()-parent_->location());
+                    Vector2f direction(it->location()-parent_->getLocation());
                     float distance (direction.lengthSquare());
 
                     if (distance <= radius()*radius() && it->attackable())
@@ -90,7 +91,7 @@ void Shocker::activate() const
         Ball* ball(balls::getBall());
         if (ball)
         {
-            Vector2f direction(ball->location() - parent_->location());
+            Vector2f direction(ball->location() - parent_->getLocation());
             float distance (direction.lengthSquare());
             if (distance <= radius()*radius())
                 ballTarget_ = ball;
@@ -101,7 +102,7 @@ void Shocker::activate() const
 
         for (auto& it : targets_)
         {
-            Vector2f direction(it->location()-parent_->location());
+            Vector2f direction(it->location()-parent_->getLocation());
 
             decoObjects::addBolt(parent_, it, 100.f/targetCount);
 
@@ -115,7 +116,7 @@ void Shocker::activate() const
             if (ball->sticky_)
                 ball->sticky_=false;
 
-            Vector2f direction(ballTarget_->location()-parent_->location());
+            Vector2f direction(ballTarget_->location()-parent_->getLocation());
 
             decoObjects::addBolt(parent_, ball, 100.f/targetCount);
             ball->velocity_+=direction.normalize()*damage*5.f;

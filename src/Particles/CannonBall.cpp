@@ -60,7 +60,7 @@ void CannonBall::update()
         particles::spawn(particles::pFragmentFlame, location_, Vector2f(20.f,0), velocity_);
     }
 
-    // check for collisions with homes
+    //  collisions with homes
     std::vector<Home*>const& homes = spaceObjects::getHomes();
     for (const auto& it : homes)
     {
@@ -71,7 +71,7 @@ void CannonBall::update()
         }
     }
 
-    // check for collisions with ships
+    //  collisions with ships
     const auto& shipsList = ships::getShips();
     for (const auto& it : shipsList)
         if ((location_ - it->location()).lengthSquare() < std::pow(radius_ + it->radius(), 2) && it->collidable())

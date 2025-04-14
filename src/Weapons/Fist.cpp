@@ -29,6 +29,17 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include <SFML/Graphics.hpp>
 
 
+Fist::Fist(Mount* parent)
+    :Weapon(weapons::wFist, parent, sf::String("FIST OF ALI"))
+    ,position_(1.f)
+{
+    if (parent && parent->getOwner() && parent->getOwner()->team())
+        color_ = parent_->getOwner()->team()->color().brightened();
+    else
+        color_ = Color3f::random().brightened();
+}
+
+//  draw
 void Fist::draw(float alpha) const
 {
     if (!menus::visible() || games::type() == games::gMenu)
@@ -44,7 +55,7 @@ void Fist::draw(float alpha) const
 
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glColor4f(1.0f, 1.0f, 1.0f, alpha);
-    const float r = parent_->radius();
+    const float r = parent_->getRadius();
 
     glBegin(GL_QUADS);
         glTexCoord2f(0.109375f, 0.953125f); glVertex2f(0.f, r * 0.5f);
@@ -53,7 +64,7 @@ void Fist::draw(float alpha) const
         glTexCoord2f(0.203125f, 0.859375f); glVertex2f(position_* r*(position_+1)*1.2f, r* 0.5f * (1+position_)*0.7f);
     glEnd();
 
-    parent_->getOwner()->team()->color().gl4f(alpha);
+    color_.gl4f(alpha);
     const float u = 2, v = 28;
     glBegin(GL_QUADS);
         uv8w(u, v);         glVertex2f(position_*r*(position_+1),       (     r*0.5f)*(1+position_));
@@ -63,6 +74,7 @@ void Fist::draw(float alpha) const
     glEnd();
 }
 
+
 void Fist::fire() const
 {
     float time = timer::totalTime();
@@ -70,13 +82,14 @@ void Fist::fire() const
     {   timer_ = time;
 
         float angleRad = parent_->rotation()*M_PI / 180.f;
-        Vector2f faceDirection(std::cos(angleRad), std::sin(angleRad));
+        Vector2f dir(std::cos(angleRad), std::sin(angleRad));
 
-        particles::spawn(particles::pAmmoFist, parent_->location() + faceDirection*parent_->radius(),
-            faceDirection, parent_->velocity(), Color3f(), parent_->getOwner());
+        particles::spawn(particles::pAmmoFist,
+            parent_->getLocation() + dir*parent_->getRadius(),
+            dir, parent_->getVelocity(), Color3f(), parent_->getOwner());
 
-        parent_->velocity() -= faceDirection * 200.f;  // knock back
-        sound::playSound(sound::Pump, parent_->location());
+        parent_->getVelocity() -= dir * 200.f;  // knock back
+        sound::playSound(sound::Pump, parent_->getLocation());
     }
 }
 

@@ -19,8 +19,9 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "System/timer.hpp"
 #include "Weapons/weapons.hpp"
+#include "Weapons/Mount.hpp"
 
-class Ship;
+class Mount;  // Ship or Turret
 
 
 /// A virtual base class for all weapons.
@@ -30,7 +31,7 @@ class Weapon
 {
     public:
         /// Ctor which constructs the base Weapon.
-        Weapon(weapons::WeaponType type, Ship* parent, sf::String name);
+        Weapon(weapons::WeaponType type, Mount* parent, sf::String name);
         virtual ~Weapon()
         {   }
 
@@ -40,13 +41,6 @@ class Weapon
         /// Draws the weapon.
         virtual void draw(float alpha) const = 0;
 
-        /// Replaces this weapon by the next one.
-        /// With this method it's possible to cycle through the weapons.
-        void next();
-
-        /// Replaces this weapon by the previous one.
-        /// With this method it's possible to cycle through the weapons.
-        void previous();
 
         /// Returns the name of the Weapon.
         sf::String const& getName() const
@@ -55,6 +49,7 @@ class Weapon
         /// Returns the type of the Weapon.
         weapons::WeaponType getType() const
         {   return type_;  }
+
 
         /// Returns the maximum distance from which this weapon should be used.
         virtual float maxDistance() const = 0;
@@ -66,7 +61,7 @@ class Weapon
         virtual float maxAngle()   const = 0;
 
     protected:
-        Ship* parent_;
+        Mount* parent_;
         mutable float timer_;
 
     private:

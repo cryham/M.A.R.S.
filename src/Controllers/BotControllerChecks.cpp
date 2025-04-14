@@ -110,8 +110,8 @@ void BotController::checkSpecial()
 {
     if (ship()->fragStars_ > 0 && randomizer::random(0, 10) == 1)
     {
-        float radius(ship()->currentSpecial_->radius());
-        switch (ship()->currentSpecial_->getType())
+        float radius(ship()->special_->radius());
+        switch (ship()->special_->getType())
         {
             case specials::sHeal:
                 if (ship()->getLife() < 10)

@@ -27,7 +27,7 @@ class H2OStorm: public Weapon
 {
     public:
         /// Ctor which constructs the weapon.
-        H2OStorm(Ship* parent):
+        H2OStorm(Mount* parent):
               Weapon(weapons::wH2OStorm, parent, sf::String("H2o-Storm"))
         {   }
 

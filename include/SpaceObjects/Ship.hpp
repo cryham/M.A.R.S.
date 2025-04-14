@@ -28,21 +28,21 @@ class Player;
 class PowerUp;
 
 
-class Ship: public MobileSpaceObject
+class Ship: public MobileSpaceObject, public Mount
 {
     public:
         Ship(Vector2f const& location, float rotation, Player* owner);
 
-        void update();
-        void draw() const;
+        void update() override;
+        void draw() const override;
         void drawWeapon() const;
 
         void onCollision(SpaceObject* with, Vector2f const& location,
-                         Vector2f const& direction, Vector2f const& velocity);
+                         Vector2f const& direction, Vector2f const& velocity) override;
 
-        void onShockWave(Player* damageSource, float intensity);
+        void onShockWave(Player* damageSource, float intensity) override;
 
-        void setDamageSource(Player* evilOne);
+        void setDamageSource(Player* evilOne) override;
         void drainLife(Player* source, float amount, Vector2f const& direction, float waitForOtherDamage = 0.001f);
 
         void heal(Player* source, int amount);
@@ -52,7 +52,10 @@ class Ship: public MobileSpaceObject
         float   getFuel()  const;
         Player* getOwner() const;
 
-        float   rotation() const;
+        //  Mount:
+        Vector2f  getLocation() override {  return location_;  }
+        Vector2f& getVelocity() override {  return velocity_;  }
+        float     getRadius() override   {  return radius_;  }
 
         bool    collidable() const;
         bool    attackable() const;
@@ -87,8 +90,6 @@ class Ship: public MobileSpaceObject
 
         Player* owner_;
 
-        float rotation_;
-        float rotateSpeed_;
         int up_, down_, left_, right_, boost_;  // inputs
 
         bool docked_;
@@ -104,8 +105,10 @@ class Ship: public MobileSpaceObject
         Vector2f respawnLocation_;
         float respawnRotation_;
 
-        Weapon* currentWeapon_;
-        Special* currentSpecial_;
+        Weapon* weapon_;
+        Special* special_;
+        void WeaponNext();
+        void WeaponPrev();
 
         float life_, maxLife_;
         float fuel_, maxFuel_;

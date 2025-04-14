@@ -47,12 +47,13 @@ void AmmoFlamer2::update()
 {
     float time = timer::frameTime();
     physics::collide(this, STATICS);
-    // update Color
+    
+    //  update Color
     color_.h((-1.0f/totalLifeTime_*lifeTime_+1.f)*60.f);
     color_.v(-0.8f/totalLifeTime_*lifeTime_+0.8f);
     color_.s(lifeTime_*10.f + 0.3f);
 
-    // update Size
+    //  update Size
     radius_ = lifeTime_*40 + 15;
 
     location_ += velocity_*time;
@@ -62,13 +63,13 @@ void AmmoFlamer2::update()
 
     lifeTime_ += time;
 
-    // check for collisions with ships
+    //  collisions with Ships
     const auto& shipsList = ships::getShips();
     for (const auto& it : shipsList)
         if ((location_ - it->location()).lengthSquare() < std::pow(radius_ + it->radius(), 2) && it->collidable())
             it->onCollision(this, location_, velocity_, velocity_);
 
-    // check for collisions with ball
+    //  collisions with Ball
     Ball* ball = balls::getBall();
     if (ball)
         if ((location_ - ball->location()).lengthSquare() < std::pow(radius_ + ball->radius(), 2))

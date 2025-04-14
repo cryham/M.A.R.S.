@@ -31,7 +31,7 @@ void Flubba::draw(float alpha) const
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glColor3f(0.2f, 1.f, 0.f);
 
-    const float r = parent_->radius();
+    const float r = parent_->getRadius();
     const int u = 0, v = 29;
     glBegin(GL_QUADS);
         uv8w(u, v);     glVertex2f(0,     r* 0.4f);
@@ -51,11 +51,11 @@ void Flubba::fire() const
     float angleRad = parent_->rotation()*M_PI / 180.f;
     Vector2f dir(std::cos(angleRad), std::sin(angleRad));
     
-    particles::spawn(particles::pAmmoFlubba, parent_->location() + dir*parent_->radius(), dir,
-        parent_->velocity(), Color3f(), parent_->getOwner());
+    particles::spawn(particles::pAmmoFlubba, parent_->getLocation() + dir*parent_->getRadius(), dir,
+        parent_->getVelocity(), Color3f(), parent_->getOwner());
     
-    parent_->velocity() -= dir * 10.f;
-    sound::playSound(sound::Blub, parent_->location());
+    parent_->getVelocity() -= dir * 10.f;
+    sound::playSound(sound::Blub, parent_->getLocation());
 }
 
 

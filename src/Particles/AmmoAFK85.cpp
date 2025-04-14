@@ -35,7 +35,10 @@ AmmoAFK85::AmmoAFK85(Vector2f const& location, Vector2f const& direction, Vector
     // color_ = damageSource->team()->color();  // team's color
     // color_ = damageSource->color();  // player's color
     // color_ = Color3f(0.8f, 0.6f, 1.f);
-    color_ = damageSource->color() * 0.5f + 0.5f * Color3f(0.8f, 0.6f, 1.f);
+    if (damageSource)
+        color_ = damageSource->color() * 0.5f + 0.5f * Color3f(0.8f, 0.6f, 1.f);
+    else
+        color_ = Color3f(0.8f, 0.6f, 1.f);
 
     Vector2f distortion(Vector2f::randDir());
     velocity_ = direction*1000.f + distortion*17.f;

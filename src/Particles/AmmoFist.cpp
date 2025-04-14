@@ -35,6 +35,8 @@ AmmoFist::AmmoFist(Vector2f const& location, Vector2f const& direction, Vector2f
 
 void AmmoFist::update()
 {
+    if (!damageSource_)
+        return;
     float time = timer::frameTime()*0.5f;
 
     for (int i=0; i<2; ++i)

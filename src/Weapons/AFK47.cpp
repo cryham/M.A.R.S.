@@ -38,7 +38,7 @@ AFK47::AFK47(Mount* parent)
 void AFK47::draw(float alpha) const
 {
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    parent_->getOwner()->color().gl4f(alpha);
+    color_.gl4f(alpha);
 
     const float r = parent_->getRadius();
     const int u = 0, v = 28;

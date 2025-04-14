@@ -123,17 +123,19 @@ void AmmoSeekers::update()
 
             vector<Ship*> const& ships (ships::getShips());
             float closest(FLT_MAX);
+            
             for (const auto& it : ships)
-            {
-                float distance((location_ - it->location()).lengthSquare());
-                if (distance < closest && it->collidable() &&
-                    it->getOwner() != parent_ &&  // dont aim at self
-                    it->getOwner()->team() != parent_->team())  // or same team
+                if (parent_ && it->getOwner() && it->getOwner()->team())
                 {
-                    shipTarget_ = it;
-                    closest = distance;
+                    float distance((location_ - it->location()).lengthSquare());
+                    if (distance < closest && it->collidable() &&
+                        it->getOwner() != parent_ &&  // dont aim at self
+                        it->getOwner()->team() != parent_->team())  // or same team
+                    {
+                        shipTarget_ = it;
+                        closest = distance;
+                    }
                 }
-            }
 
             Ball* ball(balls::getBall());
             if (ball)

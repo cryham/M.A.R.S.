@@ -20,6 +20,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "SpaceObjects/Home.hpp"
 #include "System/Vector2f.hpp"
 
+
 namespace balls
 {
     namespace

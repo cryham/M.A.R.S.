@@ -179,6 +179,9 @@ UiWindow* OptionsMenu::get()
         tabGraphics->addWidget(new Checkbox(locales::VerticalSynchronisation, locales::ttVerticalSynchronisation,
             &vsync_,
             Vector2f(20,y), 150));  y += yadd;
+        tabGraphics->addWidget(new Slider(locales::getLocale(locales::AntiAliasing), "",
+            &settings::iAntiAliasing, 0, 16, 1,
+            Vector2f(20,y), 540, xTxt, true, off));  y += yadd;
 
         tabGraphics->addWidget(new Checkbox(locales::Shaders, locales::ttShaders,
             &shaders_,

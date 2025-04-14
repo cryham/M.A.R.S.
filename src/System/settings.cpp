@@ -93,6 +93,8 @@ namespace settings
     int         iResX =                   INITIAL_WINDOW_X;
     int         iResY =                   INITIAL_WINDOW_Y;
     int         iColorDepth =             32;
+    int         iAntiAliasing =           0;
+
     //  post fx
     bool        bShaders =                false;
     bool        bFlashes =                false;
@@ -113,8 +115,8 @@ namespace settings
     int         iMapMinPlanetsSize  = 50;
     int         iMapMaxPlanetsSize  = 120;
 
-    int         iMapBlackHoles      = 15;
-    int         iMapSuns            = 5;
+    int         iMapBlackHoles      = -1;  // -1 map default
+    int         iMapSuns            = -1;
 
     int         iMapMinPlanetGap    = 150;
     int         iMapHomeRadius      = 100;
@@ -384,7 +386,8 @@ namespace settings
             //  screen
             oss << "resolutionX "           << iResX << endl;
             oss << "resolutionY "           << iResY << endl;
-            oss << "colorDepth "            << iColorDepth << endl << endl;
+            oss << "colorDepth "            << iColorDepth << endl;
+            oss << "antiAliasing "          << iAntiAliasing << endl << endl;
             //  keys
             oss << "screenShotKey "         << keyScreenShot << endl;
             oss << "statisticsKey "         << keyStatistics << endl;
@@ -409,6 +412,9 @@ namespace settings
             oss << "MapMinPlanetsSize "     << iMapMinPlanetsSize << endl;
             oss << "MapMaxPlanetsSize "     << iMapMaxPlanetsSize << endl;
             oss << "MapMinPlanetGap "       << iMapMinPlanetGap << endl << endl;
+
+            oss << "MapBlackHoles "         << iMapBlackHoles << endl;
+            oss << "MapSuns "               << iMapSuns << endl << endl;
 
             oss << "MapHomeRadius "         << iMapHomeRadius << endl;
             oss << "ShipRadius "            << iShipRadius << endl;
@@ -708,6 +714,7 @@ namespace settings
                 else if (line == "resolutionX")         readInt(iss, iResX);
                 else if (line == "resolutionY")         readInt(iss, iResY);
                 else if (line == "colorDepth")          readInt(iss, iColorDepth);
+                else if (line == "antiAliasing")        readInt(iss, iAntiAliasing);
                 //  keys
                 else if (line == "screenShotKey")       iss >> keyScreenShot;
                 else if (line == "statisticsKey")       iss >> keyStatistics;
@@ -725,6 +732,9 @@ namespace settings
                 else if (line == "MapMinPlanetsSize")   iss >> iMapMinPlanetsSize;
                 else if (line == "MapMaxPlanetsSize")   iss >> iMapMaxPlanetsSize;
                 else if (line == "MapMinPlanetGap")     iss >> iMapMinPlanetGap;
+
+                else if (line == "MapBlackHoles")       iss >> iMapBlackHoles;
+                else if (line == "MapSuns")             iss >> iMapSuns;
 
                 else if (line == "MapHomeRadius")       iss >> iMapHomeRadius;
                 else if (line == "ShipRadius")          iss >> iShipRadius;

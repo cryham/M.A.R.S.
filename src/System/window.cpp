@@ -106,7 +106,7 @@ namespace window
                 backBuffer_.clear();
                 backBuffer_.create(viewPort_.x_, viewPort_.y_);
                 glViewport(0,0,viewPort_.x_, viewPort_.y_);
-                backBuffer_.setSmooth(false);
+                backBuffer_.setSmooth(true);  // false
             }
         }
 
@@ -231,6 +231,8 @@ namespace window
     //----------------------------------------------------------------------------------------------------------------------------------
     void create()
     {
+        sf::ContextSettings context;
+        context.antialiasingLevel = settings::iAntiAliasing;
         sf::Uint32 style = sf::Style::Default;
 
     #ifdef DEBUG  // fix no mouse input
@@ -241,7 +243,7 @@ namespace window
         if (settings::bFullScreen && mode.isValid())
             style = sf::Style::Fullscreen;
     #endif
-        window_.create(mode, "M.A.R.S. - a " + generateName::game(), style);
+        window_.create(mode, "M.A.R.S. - a " + generateName::game(), style, context);
     
         window_.setVerticalSyncEnabled(settings::bVSync);
         //window_.SetFramerateLimit(15);

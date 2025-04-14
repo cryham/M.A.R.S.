@@ -89,6 +89,8 @@ namespace settings
     extern int            iResX;
     extern int            iResY;
     extern int            iColorDepth;
+    extern int            iAntiAliasing;
+
     extern bool           bShaders;
     extern bool           bFlashes;
     extern Key            keyScreenShot;

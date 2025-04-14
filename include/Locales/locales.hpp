@@ -107,10 +107,11 @@ namespace locales
         Defaults,
         //  Game
         ShipTurnSpeed, DamageScale, Regeneration, FuelRegen,
-        RespawnDelay, GlowAlpha,
-        GravityScale,
+        RespawnDelay, GlowAlpha, GravityScale,
         MouseRotationAim, ttMouseRotationAim,
-        View, Flashes,
+        
+        View, Flashes, AntiAliasing,
+        BlackHoles, Suns,
 
         COUNT  /// amount of entries in the enum
     };

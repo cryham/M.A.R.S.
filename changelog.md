@@ -19,6 +19,7 @@ Version 0.8.0
    - **Map Options** window, with sliders for:  
      - min,max count of space objects (planets, stars, black holes)
      - and their radius range, also minimal gap between
+     - percentage of black holes and now *3 types* of suns
      - radius of: ships, home planets, ball
      - *Cyclic borders*, gravity scale
    - **Game options** window with sliders:
@@ -29,7 +30,7 @@ Version 0.8.0
 - ToDo:
    - ToDo: *turrets*, near team homes, or any middle, destroyable, respawned
    - ToDo: game effects from weapons: shock no weapons, chill slow move
-   - ToDo: 2nd weapon? timed regen
+   - ToDo: 2nd weapon? timed regen or passive ability
 - **Gui**
   - **Scale** slider for whole Gui in Options
   - bigger Gui, font, by default, added some colors
@@ -41,6 +42,7 @@ Version 0.8.0
     - no logo, signs
     - countdown seconds, 0 will disable
   - fast fade in/out
+  - anti aliasing slider
 - Sources - complete change of code formatting, by hand in all files
   - new cpp standard, using auto, not iterator, pragma once
   - braces in own line, at same width for { and }, only when needed

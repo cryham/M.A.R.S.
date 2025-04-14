@@ -19,6 +19,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "Interface/Line.hpp"
 #include "Interface/Slider.hpp"
+#include "Interface/Tab.hpp"
+#include "Interface/TabList.hpp"
 #include "Interface/UiWindow.hpp"
 #include "Interface/Button.hpp"
 #include "Interface/LabeledBox.hpp"
@@ -41,8 +43,8 @@ UiWindow* MapOptions::get()
 {
     if (instance_ == NULL)
     {
-        int w = 630, h = 430;
-        instance_ = new MapOptions(w+20, h);
+        int w = 620, h = 430;
+        instance_ = new MapOptions(w+30, h);
         // instance_->addWidget(new Line(Vector2f(10, 35), Vector2f(310, 35)));
 
         instance_->addWidget(new Button(locales::getLocale(locales::Ok), "", &kOk_,
@@ -50,72 +52,89 @@ UiWindow* MapOptions::get()
         instance_->addWidget(new Button(locales::getLocale(locales::Defaults), "", &kDefaults_,
             Vector2f(210, h-20), 130, 20));
 
-        int y = 10, yadd = 20;
         instance_->addWidget(new Label(locales::getLocale(locales::MapOptions), TEXT_ALIGN_LEFT,
-            Vector2f(10,0), 20.f, getColor3f(0.5f, 0.9f, 1.f), false));  y += yadd;
+            Vector2f(10,0), 20.f, getColor3f(0.5f, 0.9f, 1.f), false));
 
-        instance_->addWidget(new LabeledBox(locales::getLocale(locales::SpaceObjects),
-            Vector2f(10, y), 100, 210));  y += yadd;
-        instance_->addWidget(new Slider(locales::getLocale(locales::MinPlanets), "",
-            &settings::iMapMinPlanets, 0, 30, 1,
-            Vector2f(20,y), w, 240, true));  y += yadd;
-        instance_->addWidget(new Slider(locales::getLocale(locales::MaxPlanets), "",
-            &settings::iMapMaxPlanets, 0, 30, 1,
-            Vector2f(20,y), w, 240, true));  y += yadd;
-        instance_->addWidget(new Slider(locales::getLocale(locales::MinPlanetsSize), "",
-            &settings::iMapMinPlanetsSize, 1, 300, 1,
-            Vector2f(20,y), w, 240, true));  y += yadd;
-        instance_->addWidget(new Slider(locales::getLocale(locales::MaxPlanetsSize), "",
-            &settings::iMapMaxPlanetsSize, 1, 900, 1,
-            Vector2f(20,y), w, 240, true));  y += yadd*3/2;
+        TabList* tabList  = new TabList(Vector2f(10,55), 580, 270);
+        Tab* tabSize     = new Tab(locales::getLocale(locales::MapSize), 120);
+        Tab* tabObjects  = new Tab(locales::getLocale(locales::SpaceObjects), 120);
 
-        instance_->addWidget(new Slider(locales::getLocale(locales::MinPlanetGap), "",  // gap
-            &settings::iMapMinPlanetGap, 0, 900, 1,
-            Vector2f(20,y), w, 240, true));  y += yadd;
 
-        // instance_->addWidget(new LabeledBox(locales::getLocale(locales::SpaceObjects),
+        int x = 10, y1 = 40, y = y1, yadd = 20;
+        // tabObjects->addWidget(new LabeledBox(locales::getLocale(locales::SpaceObjects),
         //     Vector2f(10, y), 100, 210));  y += yadd;
-        instance_->addWidget(new Slider(locales::getLocale(locales::MapHomeRadius), "",  // home
-            &settings::iMapHomeRadius, 1, 900, 1,
-            Vector2f(20,y), w, 240, true));  y += yadd;
-        instance_->addWidget(new Slider(locales::getLocale(locales::GravityScale), "",  // gravity
-            &settings::iGravityScale, 5, 300, 10,
-            Vector2f(20,y), w, 240, true));  y += yadd;
-        instance_->addWidget(new Slider(locales::getLocale(locales::ShipRadius), "",  // ship
-            &settings::iShipRadius, 5, 60, 10,
-            Vector2f(20,y), w*2/3, 240, true));  y += yadd;
-        instance_->addWidget(new Slider(locales::getLocale(locales::BallRadius), "",  // ball
-            &settings::iBallRadius, 5, 60, 10,
-            Vector2f(20,y), w*2/3, 240, true));  y += yadd*3/2;
+        tabObjects->addWidget(new Slider(locales::getLocale(locales::MinPlanets), "",
+            &settings::iMapMinPlanets, 0, 30, 1,
+            Vector2f(x,y), w, 240, true));  y += yadd;
+        tabObjects->addWidget(new Slider(locales::getLocale(locales::MaxPlanets), "",
+            &settings::iMapMaxPlanets, 0, 30, 1,
+            Vector2f(x,y), w, 240, true));  y += yadd*3/2;
 
+        tabObjects->addWidget(new Slider(locales::getLocale(locales::MinPlanetsSize), "",
+            &settings::iMapMinPlanetsSize, 1, 300, 1,
+            Vector2f(x,y), w, 240, true));  y += yadd;
+        tabObjects->addWidget(new Slider(locales::getLocale(locales::MaxPlanetsSize), "",
+            &settings::iMapMaxPlanetsSize, 1, 900, 1,
+            Vector2f(x,y), w, 240, true));  y += yadd*3/2;
+
+        tabObjects->addWidget(new Slider(locales::getLocale(locales::BlackHoles), "",
+            &settings::iMapBlackHoles, 0, 900, 1,
+            Vector2f(x,y), w, 240, true));  y += yadd;
+        tabObjects->addWidget(new Slider(locales::getLocale(locales::Suns), "",
+            &settings::iMapSuns, 0, 900, 1,
+            Vector2f(x,y), w, 240, true));  y += yadd*3/2;
+
+        tabObjects->addWidget(new Slider(locales::getLocale(locales::MinPlanetGap), "",  // gap
+            &settings::iMapMinPlanetGap, 0, 900, 1,
+            Vector2f(x,y), w, 240, true));  y += yadd;
+        tabObjects->addWidget(new Slider(locales::getLocale(locales::MapHomeRadius), "",  // home
+            &settings::iMapHomeRadius, 1, 900, 1,
+            Vector2f(x,y), w, 240, true));  y += yadd*3/2;
+
+        y = y1;
         //  map Size buttons  ----
-        instance_->addWidget(new LabeledBox(locales::getLocale(locales::MapSize),
-            Vector2f(10, y), 100, 210));  y += yadd*3/2;
+        // tabSize->addWidget(new LabeledBox(locales::getLocale(locales::MapSize),
+        //     Vector2f(10, y), 100, 210));  y += yadd*3/2;
         
         for (int i=0; i < MapOptions::kMapSizes_; ++i)
-            instance_->addWidget(new Button(
+            tabSize->addWidget(new Button(
                 locales::getLocale(locales::LocaleType(locales::MapSize0 + i)), "",
                 &kMapSize_[i],  Vector2f(20 + i*90,y), 80, 20));
         y += yadd*3/2;
         
         //  map Size  ----
-        instance_->addWidget(new Slider(locales::getLocale(locales::MapXsize), "",
+        tabSize->addWidget(new Slider(locales::getLocale(locales::MapXsize), "",
             &settings::iMapXsize, 10, 23000, 10,
-            Vector2f(20,y), w, 240, true));  y += yadd;
-        instance_->addWidget(new Slider(locales::getLocale(locales::MapYsize), "",
+            Vector2f(x,y), w, 240, true));  y += yadd;
+        tabSize->addWidget(new Slider(locales::getLocale(locales::MapYsize), "",
             &settings::iMapYsize, 10, 23000, 10,
-            Vector2f(20,y), w, 240, true));  y += yadd;
+            Vector2f(x,y), w, 240, true));  y += yadd*2;
         // C_MapYaspect..
         
-        //  borders
-        instance_->addWidget(new Label(locales::getLocale(locales::CyclicBorders),
-            TEXT_ALIGN_LEFT, Vector2f(10, y)));  //y += yadd;
-        instance_->addWidget(new Checkbox(locales::getLocale(locales::Horizontal), "",
+        //  borders []
+        tabSize->addWidget(new Label(locales::getLocale(locales::CyclicBorders),
+            TEXT_ALIGN_LEFT, Vector2f(20, y)));  //y += yadd;
+        tabSize->addWidget(new Checkbox(locales::getLocale(locales::Horizontal), "",
             &settings::bCyclicBorderX,
             Vector2f(w/3,y), w/2));  //y += yadd;
-        instance_->addWidget(new Checkbox(locales::getLocale(locales::Vertical), "",
+        tabSize->addWidget(new Checkbox(locales::getLocale(locales::Vertical), "",
             &settings::bCyclicBorderY,
-            Vector2f(2*w/3,y), w/3));  y += yadd;
+            Vector2f(2*w/3,y), w/3));  y += yadd*2;
+
+        tabSize->addWidget(new Slider(locales::getLocale(locales::GravityScale), "",  // gravity
+            &settings::iGravityScale, 5, 300, 10,
+            Vector2f(x,y), w, 240, true));  y += yadd*3/2;
+        tabSize->addWidget(new Slider(locales::getLocale(locales::ShipRadius), "",  // ship
+            &settings::iShipRadius, 5, 60, 10,
+            Vector2f(x,y), w*2/3, 240, true));  y += yadd;
+        tabSize->addWidget(new Slider(locales::getLocale(locales::BallRadius), "",  // ball
+            &settings::iBallRadius, 5, 60, 10,
+            Vector2f(x,y), w*2/3, 240, true));  y += yadd*3/2;
+
+
+        tabList->addTab(tabSize);
+        tabList->addTab(tabObjects);
+        instance_->addWidget(tabList);
     }
     return instance_;
 }
@@ -180,6 +199,7 @@ void MapOptions::checkWidgets()
         settings::iMapMinPlanets     = 1;    settings::iMapMaxPlanets     = 4;
         settings::iMapMinPlanetsSize = 50;   settings::iMapMaxPlanetsSize = 120;
         settings::iMapMinPlanetGap   = 150;  settings::iMapHomeRadius     = 100;  settings::iShipRadius = 18;
+        settings::iMapBlackHoles     = -1;   settings::iMapSuns = -1;
 
         settings::iMapXsize   = 1440;
         settings::iMapYsize   = 810;

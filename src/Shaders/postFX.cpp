@@ -44,6 +44,17 @@ namespace postFX
             bumpMap_.setActive(true);
             bumpMap_.clear(sf::Color(127, 0, 127));
 
+            // glViewport(0, 0, settings::C_MapXsize*0.5f / window::scale_x(), settings::C_MapYsize*0.5f / window::scale_y());
+            glViewport(0, 0, settings::iMapXsize*0.5f, settings::iMapYsize*0.5f);
+            glMatrixMode(GL_PROJECTION);
+            glLoadIdentity();
+
+            // glOrtho(0.f, settings::C_MapXsize / window::scale_x(), settings::C_MapYsize / window::scale_y(), 0.f, -1, 1);
+            glOrtho(0.f, settings::iMapXsize, settings::iMapYsize, 0.f, -1, 1);
+            glMatrixMode(GL_MODELVIEW);
+            glLoadIdentity();
+            
+
             particles::drawHeat();
             decoObjects::drawHeat();
 
@@ -86,10 +97,10 @@ namespace postFX
         {
             postFX_.loadFromFile(settings::sDataPath + "shaders/bump.frag", sf::Shader::Fragment);
             bumpMap_.create(settings::iMapXsize*0.5f, settings::iMapYsize*0.5f);
-            glViewport(0,0,settings::iMapXsize*0.5f, settings::iMapYsize*0.5f);
-            glOrtho(0, settings::iMapXsize, settings::iMapYsize, 0, -1, 1);
-            glEnable(GL_BLEND);
-            glMatrixMode(GL_MODELVIEW);
+            // glViewport(0,0,settings::C_MapXsize*0.5f, settings::C_MapYsize*0.5f);
+            // glOrtho(0, settings::C_MapXsize, settings::C_MapYsize, 0, -1, 1);
+            // glEnable(GL_BLEND);
+            // glMatrixMode(GL_MODELVIEW);
             postFX_.setUniform("BumpMap", bumpMap_.getTexture());
             postFX_.setUniform("Exposure", exposure_);
         }

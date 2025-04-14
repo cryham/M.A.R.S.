@@ -72,6 +72,7 @@ void Heal::draw(float alpha) const
     }
 }
 
+
 void Heal::activate() const
 {
     if (parent_->fragStars_ > 0  && timer_ <= 0.f)

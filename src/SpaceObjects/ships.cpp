@@ -17,15 +17,17 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "SpaceObjects/ships.hpp"
 #include "SpaceObjects/Ship.hpp"
+#include "SpaceObjects/Turret.hpp"
 
 #include <vector>
 
 
-namespace ships
+namespace ships  // and turrets
 {
     namespace
     {
         std::vector<Ship*> shipList_;
+        std::vector<Turret*> turretList_;
     }
 
     void addShip(Vector2f const& location, float rotation, Player* owner)
@@ -33,9 +35,16 @@ namespace ships
         shipList_.push_back(new Ship(location, rotation, owner));
     }
 
+    void addTurret(Vector2f const& location, float rotation, Player* owner)
+    {
+        turretList_.push_back(new Turret(location, rotation, owner));
+    }
+
     void update()
     {
         for (auto& it : shipList_)
+            it->update();
+        for (auto& it : turretList_)
             it->update();
     }
 
@@ -46,10 +55,14 @@ namespace ships
 
         for (const auto& it : shipList_)
             it->drawWeapon();
+        for (const auto& it : turretList_)
+            it->drawWeapon();
 
         glBindTexture(GL_TEXTURE_2D, texture::getTexture(texture::Ships));
 
         for (const auto& it : shipList_)
+            it->draw();
+        for (const auto& it : turretList_)
             it->draw();
 
         glDisable(GL_TEXTURE_2D);
@@ -61,10 +74,19 @@ namespace ships
         return shipList_;
     }
 
+    std::vector<Turret*> const& getTurrets()
+    {
+        return turretList_;
+    }
+
     void clear()
     {
         for (auto& it : shipList_)
             delete it;
         shipList_.clear();
+        
+        for (auto& it : turretList_)
+            delete it;
+        turretList_.clear();
     }
 }

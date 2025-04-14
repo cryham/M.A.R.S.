@@ -19,10 +19,12 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "SpaceObjects/Turret.hpp"
 
 #include "SpaceObjects/spaceObjects.hpp"
+#include "System/Color3f.hpp"
 #include "System/Vector2f.hpp"
 #include "System/timer.hpp"
 #include "System/settings.hpp"
 #include "Particles/particles.hpp"
+#include "Weapons/Mount.hpp"
 #include "Weapons/weapons.hpp"
 #include "Specials/specials.hpp"
 #include "Media/sound.hpp"
@@ -48,42 +50,31 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 Turret::Turret(Vector2f const& location, float rotation, Player* owner)
     : SpaceObject(spaceObjects::oTurret, location, settings::iShipRadius, 10.f)
-    ,owner_(owner)
-    ,rotation_(rotation)
-    ,rotateSpeed_(1.f)
-    ,up_(0), down_(0), left_(0), right_(0), boost_(0)
-    ,docked_(true)
-    ,weaponChange_(true)
-    ,specialChange_(false)
+    , Mount(rotation, owner)
+    ,left_(0), right_(0)
     ,visible_(true)
-    ,ghostTimer_(1.f)
+    // ,ghostTimer_(1.f)
     ,frozen_(0.f)
     ,respawnTimer_(0.f)
     ,damageSourceResetTimer_(0.f)
     ,respawnLocation_(location)
     ,respawnRotation_(rotation)
-    ,currentWeapon_(NULL)
-    ,currentSpecial_(NULL)
+    ,weapon_(NULL)
+    // ,special_(NULL)
     ,life_(200.f)
     ,maxLife_(life_)
-    ,fuel_(100.f)
-    ,maxFuel_(fuel_)
-    ,collectedPowerUps_(items::COUNT, NULL)
+
     ,fragStars_(0)
     ,damageByLocalPlayer_(0.f)
     ,damageCheckTimer_(0.f)
     ,damageDirection_(0.f, 0.f)
     ,collisionCount_(0)
 {
-    // decoObjects::addName(this);
+	//decoObjects::addHighlight(this);
 
-    // if (owner_->controlType_ == controllers::cPlayer1)
-    // {
-	//     decoObjects::addHighlight(this);
-	currentWeapon_  = weapons:: create(weapons::wAFK47, NULL);
-	currentSpecial_ = specials::create(specials::sHeal, NULL);
+	weapon_  = weapons::create(weapons::random(), this);
+	// special_ = specials::create(specials::sHeal, this);  // todo
 
-    // owner->Turret_ = this;
     damageSource_ = owner_;
 }
 
@@ -123,6 +114,8 @@ void Turret::update()
             if (ghostTimer_ <= 0.f)
                 physics::addMobileObject(this);
         }*/
+        if (weapon_)
+            weapon_->fire();  //~
 
         if (games::elapsedTime() > settings::iCountDown || games::type() == games::gTutorial)
         {
@@ -133,80 +126,18 @@ void Turret::update()
                 Vector2f faceDirection(std::cos(angleRad), std::sin(angleRad));
                 Vector2f sideDirection(std::cos(angleRad + M_PI_2), std::sin(angleRad + M_PI_2));
                 Vector2f acceleration;
-                float slower = collectedPowerUps_[items::puReverse] ? 0.33f : 1.f;
 
 				//  turn
 				if (right_ > 5)
-					fmod(rotation_+= rotateSpeed_ *time *rot *slower * right_, 360.f);
+					fmod(rotation_+= rotateSpeed_ *time *rot * right_, 360.f);
 				if (left_  > 5)
-					fmod(rotation_-= rotateSpeed_ *time *rot *slower * left_, 360.f);
+					fmod(rotation_-= rotateSpeed_ *time *rot * left_, 360.f);
 
 				if (right_ == 0 && left_ == 0)
 					rotateSpeed_ = 1.0;
 				else if (rotateSpeed_ < 13.f)
 					rotateSpeed_ += time*40.f;
 
-                // movement
-                // check if docked
-				/*
-                Home const* home = owner_->team()->home();
-                Vector2f toHome = home->location()-location_;
-                bool closeToHome(toHome.lengthSquare() < std::pow(home->radius() + radius_ + 0.1f, 2.f));
-
-                if (up_ < 10 && velocity_.lengthSquare() < 13000.f &&
-                    closeToHome && ((faceDirection + toHome.normalize()).lengthSquare() < 0.26f))
-                {
-                    docked_ = true;
-                    velocity_ = Vector2f();
-                    if (fuel_ < maxFuel_)
-                    {
-                        if (fuel_ > 0)
-                            fuel_ += time*maxFuel_*0.2;
-                    }
-                    else fuel_ = maxFuel_;
-
-                    if (life_ < maxLife_)
-                    {
-                        if (life_ > 0)
-                            life_ += time*maxLife_*0.2;
-                    }
-                    else life_ = maxLife_;
-
-                    if (owner_->controlType_ == controllers::cPlayer1 ||
-                        owner_->controlType_ == controllers::cPlayer2)
-                    {
-                        if (life_ < maxLife_)
-                        {
-                            damageByLocalPlayer_ += time*maxLife_*0.2;
-                            collisionCount_ = 1;
-                            damageDirection_ = Vector2f(0.f, -250.f);
-                        }
-                        if (damageCheckTimer_ <= 0.f)
-                            damageCheckTimer_ = 0.6f;
-                    }
-                }else
-                {
-                    if (settings::C_Regeneration > 0)  /// 0.06 life regeneration  //new
-                    {
-                        life_ += time * maxLife_ * settings::C_Regeneration / 1000.f;
-                        if (life_ > maxLife_)
-                            life_ = maxLife_;
-                    }
-                    docked_ = false;
-                    weaponChange_ = false;
-                    specialChange_ = false;
-                    // acceleration += physics::attract(this);
-                }*/
-
-                // s = s0 + v0*t + 0.5*a*t*t
-                // location_ += velocity_*time + acceleration*0.5f*time*time;
-                // v = v0 + a*t
-                // velocity_ += acceleration*time + velocity_*(-0.2f)*time;
-
-                // if (ghostTimer_ <= 0.f)
-                //     physics::collide(this, STATICS | MOBILES);
-                // else
-                //     physics::collide(this, STATICS);
             }else
             {
                 frozen_ -= timer::frameTime()*3.f;
@@ -219,8 +150,8 @@ void Turret::update()
                 }
 
                 // velocity_ = Vector2f();
-                if (damageSource_==players::getPlayerI() || damageSource_==players::getPlayerII() ||
-                    owner_==players::getPlayerI() || owner_==players::getPlayerII())
+                if (damageSource_==players::getPlayer1() || damageSource_==players::getPlayer2() /*||
+                    owner_==players::getPlayerI() || owner_==players::getPlayerII()*/)
                 {
                     damageByLocalPlayer_ -= timer::frameTime()*10.f;
                     collisionCount_ = 1;
@@ -243,52 +174,57 @@ void Turret::update()
 //----------------------------------------------------------------------------------------------------------------------------------
 void Turret::draw() const
 {
-    if (visible_)
-    {
-        glPushMatrix();
-        glLoadIdentity();
-        glTranslatef(location_.x_, location_.y_, 0.f);
+    if (!visible_)  return;
 
-        // draw Turret
-        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-        glRotatef(rotation_, 0.f, 0.f, 1.f);
+    glPushMatrix();
+    glLoadIdentity();
+    glTranslatef(location_.x_, location_.y_, 0.f);
 
-        float x, y, alpha(ghostTimer_ == 1.f ? 0.2f*std::sin(timer::totalTime()*8.f + 1.5f*M_PI)+0.4f :
-            (ghostTimer_ > 0.f ? ghostTimer_*(0.2f*std::sin(timer::totalTime()*8.f + 1.5f*M_PI)+0.4f) + 1.f-ghostTimer_ : 1.f));
+    // draw Turret
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glRotatef(rotation_, 0.f, 0.f, 1.f);
 
-        x = static_cast<float>(owner_->graphic()%8)*0.125f;
-        y = static_cast<float>(std::floor(owner_->graphic()*0.125f))*0.375f;
+    float x, y, alpha = 1.f;  //(ghostTimer_ == 1.f ? 0.2f*std::sin(timer::totalTime()*8.f + 1.5f*M_PI)+0.4f :
+        //(ghostTimer_ > 0.f ? ghostTimer_*(0.2f*std::sin(timer::totalTime()*8.f + 1.5f*M_PI)+0.4f) + 1.f-ghostTimer_ : 1.f));
 
-        glColor4f(1.f, 1.f, 1.f, alpha);
-        glBegin(GL_QUADS);
-            glTexCoord2f(x, y+0.125f);          glVertex2f(-radius_, -radius_);
-            glTexCoord2f(x+0.125f, y+0.125f);   glVertex2f(-radius_,  radius_);
-            glTexCoord2f(x+0.125f, y);          glVertex2f( radius_,  radius_);
-            glTexCoord2f(x, y);                 glVertex2f( radius_, -radius_);
-        glEnd();
+    Color3f clr{1,1,1};
+    int graphic = 0;
+    
+    x = 0;
+    y = 0;
+    // x = static_cast<float>(graphic % 8) * 0.125f;
+    // y = static_cast<float>(std::floor(graphic * 0.125f))*0.375f;
 
-        y += 0.125f;
+    glColor4f(1.f, 1.f, 1.f, alpha);
+    glBegin(GL_QUADS);
+        glTexCoord2f(x, y+0.125f);          glVertex2f(-radius_, -radius_);
+        glTexCoord2f(x+0.125f, y+0.125f);   glVertex2f(-radius_,  radius_);
+        glTexCoord2f(x+0.125f, y);          glVertex2f( radius_,  radius_);
+        glTexCoord2f(x, y);                 glVertex2f( radius_, -radius_);
+    glEnd();
 
-        owner_->team()->color().gl4f(alpha);
-        glBegin(GL_QUADS);
-            glTexCoord2f(x, y+0.125f);          glVertex2f(-radius_, -radius_);
-            glTexCoord2f(x+0.125f, y+0.125f);   glVertex2f(-radius_,  radius_);
-            glTexCoord2f(x+0.125f, y);          glVertex2f( radius_,  radius_);
-            glTexCoord2f(x, y);                 glVertex2f( radius_, -radius_);
-        glEnd();
+    y += 0.125f;
 
-        y += 0.125f;
+    clr.gl4f(alpha);  // team-
+    glBegin(GL_QUADS);
+        glTexCoord2f(x, y+0.125f);          glVertex2f(-radius_, -radius_);
+        glTexCoord2f(x+0.125f, y+0.125f);   glVertex2f(-radius_,  radius_);
+        glTexCoord2f(x+0.125f, y);          glVertex2f( radius_,  radius_);
+        glTexCoord2f(x, y);                 glVertex2f( radius_, -radius_);
+    glEnd();
 
-        owner_->color().gl4f(alpha);
-        glBegin(GL_QUADS);
-            glTexCoord2f(x, y+0.125f);          glVertex2f(-radius_, -radius_);
-            glTexCoord2f(x+0.125f, y+0.125f);   glVertex2f(-radius_,  radius_);
-            glTexCoord2f(x+0.125f, y);          glVertex2f( radius_,  radius_);
-            glTexCoord2f(x, y);                 glVertex2f( radius_, -radius_);
-        glEnd();
+    y += 0.125f;
 
-        glPopMatrix();
-    }
+    clr.brightened().gl4f(alpha);
+    glBegin(GL_QUADS);
+        glTexCoord2f(x, y+0.125f);          glVertex2f(-radius_, -radius_);
+        glTexCoord2f(x+0.125f, y+0.125f);   glVertex2f(-radius_,  radius_);
+        glTexCoord2f(x+0.125f, y);          glVertex2f( radius_,  radius_);
+        glTexCoord2f(x, y);                 glVertex2f( radius_, -radius_);
+    glEnd();
+
+    glPopMatrix();
+
     /*else if (respawnTimer_ > 6.f)
     {
         glPushMatrix();
@@ -312,28 +248,27 @@ void Turret::draw() const
 
 void Turret::drawWeapon() const
 {
-     if (visible_)
-     {
-        glPushMatrix();
-        glLoadIdentity();
-        glTranslatef(location_.x_, location_.y_, 0.f);
-        glRotatef(timer::totalTime()*-50, 0.f, 0.f, 1.f);
+    if (!visible_)  return;
 
-        float alpha(ghostTimer_ == 1.f ?     0.2f*std::sin(timer::totalTime()*8.f + 1.5f*M_PI)+0.4f :
-            (ghostTimer_ > 0.f ? ghostTimer_*(0.2f*std::sin(timer::totalTime()*8.f + 1.5f*M_PI)+0.4f) + 1.f-ghostTimer_ : 1.f));
+    glPushMatrix();
+    glLoadIdentity();
+    glTranslatef(location_.x_, location_.y_, 0.f);
+    glRotatef(timer::totalTime()*-50, 0.f, 0.f, 1.f);
 
-        // draw special
-        currentSpecial_->draw(alpha * settings::iGlowAlpha / 100.f);  /// 0.7 0.2  //new
+    float alpha = 1.f;  //(ghostTimer_ == 1.f ?     0.2f*std::sin(timer::totalTime()*8.f + 1.5f*M_PI)+0.4f :
+        //(ghostTimer_ > 0.f ? ghostTimer_*(0.2f*std::sin(timer::totalTime()*8.f + 1.5f*M_PI)+0.4f) + 1.f-ghostTimer_ : 1.f));
 
-        glLoadIdentity();
-        glTranslatef(location_.x_, location_.y_, 0.f);
-        glRotatef(rotation_, 0.f, 0.f, 1.f);
+    // draw special
+    // special_->draw(alpha * settings::iGlowAlpha / 100.f);  /// 0.7 0.2  //new
 
-        // draw weapon
-        currentWeapon_->draw(alpha);
+    glLoadIdentity();
+    glTranslatef(location_.x_, location_.y_, 0.f);
+    glRotatef(rotation_, 0.f, 0.f, 1.f);
 
-        glPopMatrix();
-     }
+    // draw weapon
+    weapon_->draw(alpha);
+
+    glPopMatrix();
 }
 
 //  Collision
@@ -366,7 +301,7 @@ void Turret::onCollision(SpaceObject* with, Vector2f const& location,
 
         case spaceObjects::oBall:
             amount =  dynamic_cast<Ball*>(with)->heatAmount() * 0.1f;
-            // particles::spawnMultiple(2, particles::pSpark, location, direction*100.f, Vector2f(), owner_->color());
+            // particles::spawnMultiple(2, particles::pSpark, location, direction*100.f, Vector2f());
             if (strength > 50)
                 sound::playSound(sound::ShipPlanetCollide, location, (strength-50)/3);
             unfreeze = 10.f;
@@ -378,7 +313,7 @@ void Turret::onCollision(SpaceObject* with, Vector2f const& location,
             waitForOtherDamage = 0.15f;
             setDamageSource(with->damageSource());
             particles::spawnMultiple(2, particles::pSpark, location,
-                dynamic_cast<MobileSpaceObject*>(with)->velocity() * 0.3f, Vector2f(), owner_->color());
+                dynamic_cast<MobileSpaceObject*>(with)->velocity() * 0.3f, Vector2f());
             unfreeze = 0.1f;
             break;
         case spaceObjects::oAmmoAFK47:
@@ -386,7 +321,7 @@ void Turret::onCollision(SpaceObject* with, Vector2f const& location,
             waitForOtherDamage = 0.15f;
             setDamageSource(with->damageSource());
             particles::spawnMultiple(2, particles::pSpark, location,
-                dynamic_cast<MobileSpaceObject*>(with)->velocity() * 0.3f, Vector2f(), owner_->color());
+                dynamic_cast<MobileSpaceObject*>(with)->velocity() * 0.3f, Vector2f());
             unfreeze = 0.1f;
             break;
 
@@ -394,14 +329,14 @@ void Turret::onCollision(SpaceObject* with, Vector2f const& location,
             amount = strength*0.006f;
             setDamageSource(with->damageSource());
             particles::spawnMultiple(20, particles::pSpark, location,
-                dynamic_cast<MobileSpaceObject*>(with)->velocity() * 0.5f, Vector2f(), owner_->color());
+                dynamic_cast<MobileSpaceObject*>(with)->velocity() * 0.5f, Vector2f());
             unfreeze = 20.f;
             break;
         case spaceObjects::oAmmoROFLE:
             amount = strength*0.0004f;
             setDamageSource(with->damageSource());
             particles::spawnMultiple(20, particles::pSpark, location,
-                dynamic_cast<MobileSpaceObject*>(with)->velocity() * 0.5f, Vector2f(), owner_->color());
+                dynamic_cast<MobileSpaceObject*>(with)->velocity() * 0.5f, Vector2f());
             unfreeze = 20.f;
             break;
 
@@ -410,7 +345,7 @@ void Turret::onCollision(SpaceObject* with, Vector2f const& location,
             waitForOtherDamage = 0.1f;
             setDamageSource(with->damageSource());
             particles::spawnMultiple(2, particles::pSpark, location,
-                dynamic_cast<MobileSpaceObject*>(with)->velocity() * 0.7f, Vector2f(), owner_->color());
+                dynamic_cast<MobileSpaceObject*>(with)->velocity() * 0.7f, Vector2f());
             unfreeze = 0.1f;
             break;
         case spaceObjects::oAmmoShotgun:
@@ -418,7 +353,7 @@ void Turret::onCollision(SpaceObject* with, Vector2f const& location,
             waitForOtherDamage = 0.1f;
             setDamageSource(with->damageSource());
             particles::spawnMultiple(2, particles::pSpark, location,
-                dynamic_cast<MobileSpaceObject*>(with)->velocity() * 0.7f, Vector2f(), owner_->color());
+                dynamic_cast<MobileSpaceObject*>(with)->velocity() * 0.7f, Vector2f());
             unfreeze = 0.1f;
             break;
 
@@ -477,7 +412,7 @@ void Turret::onCollision(SpaceObject* with, Vector2f const& location,
 
         case spaceObjects::oCannonBall:
             amount = life_;
-            setDamageSource(owner_);
+            // setDamageSource(owner_);
             unfreeze = frozen_;
             break;
 
@@ -508,7 +443,7 @@ void Turret::onCollision(SpaceObject* with, Vector2f const& location,
 
     amount *= settings::iDamageScale / 100.f;  /// 0.5f;  //new
 
-    /*if (attackable())
+    if (attackable())
     {
         // increase the amount done to weak bots
         // strong bots just take normal damage
@@ -519,7 +454,7 @@ void Turret::onCollision(SpaceObject* with, Vector2f const& location,
              owner_->controlType_ != controllers::cPlayer2) &&
             amount < life_)
         {
-            amount *= (10.f - 0.09f*settings::C_iDumb);
+            amount *= (10.f - 0.09f*settings::iBotsDifficulty);
         }
 
         if ((damageSource_ &&
@@ -538,7 +473,7 @@ void Turret::onCollision(SpaceObject* with, Vector2f const& location,
         }
         else
             life_ -= amount;
-    }*/
+    }
 }
 //----------------------------------------------------------------------------------------------------------------------------------
 
@@ -549,18 +484,16 @@ void Turret::onShockWave(Player* damageSource, float intensity)
     else
     {
         setDamageSource(damageSource);
-        if (!collectedPowerUps_[items::puShield])
+
+        float damage(intensity * 0.1f * (20.f + settings::iBotsDifficulty));
+        life_ -= damage;
+        if ((damageSource_ && (damageSource_->controlType_ == controllers::cPlayer1 ||
+                               damageSource_->controlType_ == controllers::cPlayer2)))
         {
-            float damage(intensity*0.1f*(20.f + settings::iBotsDifficulty));
-            life_ -= damage;
-            if ((damageSource_ && (damageSource_->controlType_ == controllers::cPlayer1 || damageSource_->controlType_ == controllers::cPlayer2))
-                || owner_->controlType_ == controllers::cPlayer1 ||  owner_->controlType_ == controllers::cPlayer2)
-            {
-                damageByLocalPlayer_ -= damage;
-                ++collisionCount_;
-                if (damageCheckTimer_ <= 0.f)
-                    damageCheckTimer_ = 0.01f;
-            }
+            damageByLocalPlayer_ -= damage;
+            ++collisionCount_;
+            if (damageCheckTimer_ <= 0.f)
+                damageCheckTimer_ = 0.01f;
         }
     }
 }
@@ -576,7 +509,7 @@ void Turret::setDamageSource(Player* evilOne)
 
 void Turret::drainLife(Player* source, float amount, Vector2f const& direction, float waitForOtherDamage)
 {
-    if (dynamic_cast<LocalPlayer*>(source) != NULL || dynamic_cast<LocalPlayer*>(owner_) != NULL)
+    if (dynamic_cast<LocalPlayer*>(source) != NULL /*|| dynamic_cast<LocalPlayer*>(owner_) != NULL*/)
     {
         if (damageCheckTimer_ <= 0.f)
             damageCheckTimer_ = waitForOtherDamage;
@@ -586,20 +519,18 @@ void Turret::drainLife(Player* source, float amount, Vector2f const& direction, 
 
         ++collisionCount_;
     }
-
     setDamageSource(source);
     life_ -= amount;
 }
 
 void Turret::heal(Player* source, int amount)
 {
-    float lifeAmount((maxLife_/100.f)*amount);
+    float lifeAmount(maxLife_ / 100.f * amount);
     if (life_ + lifeAmount > maxLife_)
-        lifeAmount = maxLife_-life_;
-    life_+=lifeAmount;
+        lifeAmount = maxLife_ - life_;
+    life_ += lifeAmount;
 
-    if (source->controlType_ == controllers::cPlayer1 || source->controlType_ == controllers::cPlayer2
-            || owner_->controlType_ == controllers::cPlayer1 ||  owner_->controlType_ == controllers::cPlayer2)
+    if (source->controlType_ == controllers::cPlayer1 || source->controlType_ == controllers::cPlayer2)
     {
         damageByLocalPlayer_ += lifeAmount;
         ++collisionCount_;
@@ -608,36 +539,16 @@ void Turret::heal(Player* source, int amount)
     }
 }
 
-void Turret::refuel(Player* source, int amount)
-{
-    float fuelAmount((maxFuel_/100.f)*amount);
-    (fuel_ + fuelAmount) > maxFuel_ ? fuel_ = maxFuel_ : fuel_ += fuelAmount;
-}
-
 float Turret::getLife() const
 {
     return life_ < 0.f ? 0.f : life_/maxLife_*100.f;
 }
 
-float Turret::getFuel() const
-{
-    return fuel_ < 0.f ? 0.f : fuel_/maxFuel_*100.f;
-}
-
-Player* Turret::getOwner() const
-{
-    return owner_;
-}
-
-std::vector<PowerUp*> const& Turret::getCollectedPowerUps() const
-{
-    return collectedPowerUps_;
-}
-
+//  explode
 void Turret::explode()
 {
     sound::playSound(sound::ShipExplode, location_, 100.f);
-    particles::spawnMultiple(5 , particles::pFragment, location_, location_, location_, owner_->color());
+    particles::spawnMultiple(5 , particles::pFragment, location_, location_, location_);
     particles::spawnMultiple(50, particles::pDust, location_);
     particles::spawnMultiple(20, particles::pExplode, location_);
     particles::spawnMultiple(5, particles::pBurningFragment, location_);
@@ -650,19 +561,13 @@ void Turret::explode()
 
     visible_ = false;
     life_ = 0.f;
-    fuel_ = 0.f;
-    /*if (games::type() == games::gGraveItation)
-        respawnTimer_ = 2.f;
-    else
-        respawnTimer_ = 5.f;*/
-    respawnTimer_ = settings::iRespawnDelay / 10.f;  /// 2.f;  //new
+    respawnTimer_ = 5.f;  //settings::iRespawnDelay / 10.f;  //par..
 
     frozen_ = 0.f;
-    currentSpecial_->stop();
+    // special_->stop();
 
-    ++owner_->deaths_;
-
-    if (!damageSource_) damageSource_ = owner_;
+    // if (!damageSource_)
+    //     damageSource_ = owner_;
 
     /*if (damageSource_ == owner_)
     {
@@ -686,8 +591,7 @@ void Turret::explode()
         announcer::announce(announcer::Affronting);
     }
     else
-    {
-        ++damageSource_->frags_;
+    {   ++damageSource_->frags_;
         ++damageSource_->points_;
 
         if (games::type() != games::gSpaceBall && games::type() != games::gCannonKeep)
@@ -703,31 +607,24 @@ void Turret::respawn()
 {
     location_ = respawnLocation_;
     rotation_ = respawnRotation_;
-    velocity_ = Vector2f();
     rotateSpeed_ = 1.f;
     life_ = maxLife_;
-    fuel_ = maxFuel_;
+
     fragStars_ = 0;
-    ghostTimer_ = 1.f;
     visible_ = true;
-    docked_ = true;
     damageByLocalPlayer_ = 0.f;
     damageDirection_ = Vector2f();
     collisionCount_ = 0;
     sound::playSound(sound::ShipRespawn, location_, 100.f);
 }
 
-float Turret::rotation() const
-{
-    return rotation_;
-}
 
 bool Turret::collidable() const
 {
-    return visible_ && ghostTimer_ <= 0.f;
+    return visible_; // && ghostTimer_ <= 0.f;
 }
 
 bool Turret::attackable() const
 {
-    return collidable() && frozen_ <= 0 && !collectedPowerUps_[items::puShield];
+    return collidable() && frozen_ <= 0;
 }

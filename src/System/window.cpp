@@ -231,12 +231,18 @@ namespace window
     //----------------------------------------------------------------------------------------------------------------------------------
     void create()
     {
+        sf::Uint32 style = sf::Style::Default;
+
+    #ifdef DEBUG  // fix no mouse input
+    	sf::VideoMode mode = sf::VideoMode::getDesktopMode();
+    #else
         sf::VideoMode mode(settings::iResX, settings::iResY, settings::iColorDepth);
 
         if (settings::bFullScreen && mode.isValid())
-            window_.create(mode, "M.A.R.S. - a " + generateName::game(), sf::Style::Fullscreen);
-        else
-            window_.create(mode, "M.A.R.S. - a " + generateName::game());    
+            style = sf::Style::Fullscreen;
+    #endif
+        window_.create(mode, "M.A.R.S. - a " + generateName::game(), style);
+    
         window_.setVerticalSyncEnabled(settings::bVSync);
         //window_.SetFramerateLimit(15);
 

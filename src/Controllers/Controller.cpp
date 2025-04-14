@@ -106,14 +106,14 @@ void Controller::slaveBoost () const
 }
 
 
-void Controller::slaveNext  () const
+void Controller::slaveNext () const
 {
     if (slave_->ship_->visible_ && !slave_->ship_->collectedPowerUps_[items::puSleep])
         slave_->ship_->WeaponNext();  //currentWeapon_->next();
     //     slave_->ship_->special_->next();  // todo: if boost
 }
 
-void Controller::slavePrev  () const
+void Controller::slavePrev () const
 {
     if (slave_->ship_->visible_ && !slave_->ship_->collectedPowerUps_[items::puSleep])
         slave_->ship_->WeaponPrev(); // currentWeapon_->previous();

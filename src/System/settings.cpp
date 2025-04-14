@@ -308,7 +308,7 @@ namespace settings
             oss << "vsync "                 << strBool(bVSync) << endl << endl;
             
             oss << "drawAIPath "            << strBool(bDrawAIPath) << endl;
-            oss << "iDumb "                 << iBotsDifficulty << endl;
+            oss << "BotsDifficulty "        << iBotsDifficulty << endl;
             oss << "adaptiveParticleCount " << strBool(bAdaptiveParticleCount) << endl;
             oss << "drawBotJobs "           << strBool(bDrawBotJobs) << endl;
             oss << "drawZones "             << strBool(bDrawZones) << endl << endl;
@@ -613,18 +613,18 @@ namespace settings
                 else if (line == "announcerVolume")        readInt(iss, iAnnouncerVolume, 0, 100);
                 else if (line == "musicVolume")            readInt(iss, iMusicVolume, 0, 100);
                 
-                else if (line == "iParticleCount")      readInt(iss, iParticleCount, 10, 300);
-                else if (line == "iParticleLifeTime")   readInt(iss, iParticleLifeTime, 10, 300);
+                else if (line == "iParticleCount")         readInt(iss, iParticleCount, 10, 300);
+                else if (line == "iParticleLifeTime")      readInt(iss, iParticleLifeTime, 10, 300);
                 
                 else if (line == "showFPS")                readBool(iss, line, bShowFPS);
                 else if (line == "showParticleCount")      readBool(iss, line, bShowParticleCount);
-                // else if (line == "showLatency")            readBool(iss, line, showLatency);
+                // else if (line == "showLatency")         readBool(iss, line, showLatency);
                 
                 else if (line == "fullScreen")             readBool(iss, line, bFullScreen);
                 else if (line == "vsync")                  readBool(iss, line, bVSync);
                 
                 else if (line == "drawAIPath")             readBool(iss, line, bDrawAIPath);
-                else if (line == "iDumb")                  readInt(iss, iBotsDifficulty, 0, 100);
+                else if (line == "BotsDifficulty")         readInt(iss, iBotsDifficulty, 0, 100);
 
                 else if (line == "adaptiveParticleCount")  readBool(iss, line, bAdaptiveParticleCount);
                 else if (line == "drawBotJobs")            readBool(iss, line, bDrawBotJobs);

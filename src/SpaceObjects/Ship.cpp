@@ -304,12 +304,13 @@ vector<PowerUp*> const& Ship::getCollectedPowerUps() const
     return collectedPowerUps_;
 }
 
+
 void Ship::WeaponNext()
 {
     delete weapon_;
     weaponChangeTime_ = 1.f;
     auto next = weapons::getNext(weapon_->getType(), true, 1);
-    weapon_ = weapons::create(weapon_->getType(), this);
+    weapon_ = weapons::create(next, this);
 }
 void Ship::WeaponPrev()
 {
@@ -338,10 +339,7 @@ void Ship::explode()
     visible_ = false;
     life_ = 0.f;
     fuel_ = 0.f;
-    /*if (games::type() == games::gGraveItation)
-        respawnTimer_ = 2.f;
-    else
-        respawnTimer_ = 5.f;*/
+
     respawnTimer_ = settings::iRespawnDelay / 10.f;  /// 2.f;  //new
     
     frozen_ = 0.f;
@@ -408,11 +406,6 @@ void Ship::respawn()
     sound::playSound(sound::ShipRespawn, location_, 100.f);
 }
 
-
-// float Ship::rotation() const
-// {
-//     return rotation_;
-// }
 
 bool Ship::collidable() const
 {

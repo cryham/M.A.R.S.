@@ -1,6 +1,6 @@
 # Custom
 doxygen
-*.png
+#*.png
 mars
 ext_libs_*
 *.txt

@@ -18,6 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #pragma once
 
 #include "SpaceObjects/SpaceObject.hpp"
+#include "System/Color3f.hpp"
 
 
 class BlackHole: public SpaceObject
@@ -30,4 +31,5 @@ class BlackHole: public SpaceObject
 
     private:
         float rotation_;
+        Color3f color_;
 };

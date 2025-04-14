@@ -65,59 +65,68 @@ namespace texture
         {
             return *textures_[type];
         }
-        else {
-            // load it from file
+        else  // load it from file
+        {
+            auto path = settings::sDataPath;
             switch (type)
             {
-                case Home:                  loadTexture_(type, settings::sDataPath + "tex/spaceObjects/planetPlayer.png"); break;
-                case Planet1:               loadTexture_(type, settings::sDataPath + "tex/spaceObjects/planet1.png");   break;
-                case Planet2:               loadTexture_(type, settings::sDataPath + "tex/spaceObjects/planet2.png");   break;
-                case Planet3:               loadTexture_(type, settings::sDataPath + "tex/spaceObjects/planet3.png");   break;
-                case Planet4:               loadTexture_(type, settings::sDataPath + "tex/spaceObjects/planet4.png");   break;
-                case Planet5:               loadTexture_(type, settings::sDataPath + "tex/spaceObjects/planet5.png");   break;
-                case Planet6:               loadTexture_(type, settings::sDataPath + "tex/spaceObjects/planet6.png");   break;
-                case Planet7:               loadTexture_(type, settings::sDataPath + "tex/spaceObjects/planet7.png");   break;
-                case Planet8:               loadTexture_(type, settings::sDataPath + "tex/spaceObjects/planet8.png");   break;
-                case Planet9:               loadTexture_(type, settings::sDataPath + "tex/spaceObjects/planet9.png");   break;
-                case Planet10:              loadTexture_(type, settings::sDataPath + "tex/spaceObjects/planet10.png");  break;
-                case Planet11:              loadTexture_(type, settings::sDataPath + "tex/spaceObjects/planet11.png");  break;
-                case Planet12:              loadTexture_(type, settings::sDataPath + "tex/spaceObjects/planet12.png");  break;
-                case Planet13:              loadTexture_(type, settings::sDataPath + "tex/spaceObjects/planet13.png");  break;
-                case Planet14:              loadTexture_(type, settings::sDataPath + "tex/spaceObjects/planet14.png");  break;
-                case Planet15:              loadTexture_(type, settings::sDataPath + "tex/spaceObjects/planet15.png");  break;
-                case Sun1:                  loadTexture_(type, settings::sDataPath + "tex/spaceObjects/sun1.png");      break;
-                case SunHeat:               loadTexture_(type, settings::sDataPath + "tex/spaceObjects/sunHeat.png");   break;
-                case Ice:                   loadTexture_(type, settings::sDataPath + "tex/ice.png");                    break;
-                case Bolt:                  loadTexture_(type, settings::sDataPath + "tex/bolt.png");                   break;
-                case Cracks:                loadTexture_(type, settings::sDataPath + "tex/cracks.png");                 break;
-                case Hole1:                 loadTexture_(type, settings::sDataPath + "tex/spaceObjects/hole1.png");     break;
-                case Ball:                  loadTexture_(type, settings::sDataPath + "tex/ball.png");                   break;
-                case Particles:             loadTexture_(type, settings::sDataPath + "tex/particles.png");              break;
-                case PowerUps:              loadTexture_(type, settings::sDataPath + "tex/powerUps.png");               break;
-                case Ships:                 loadTexture_(type, settings::sDataPath + "tex/ships.png");                  break;
-                case Weapons:               loadTexture_(type, settings::sDataPath + "tex/weapons.png");                break;
-                case MotherShip:            loadTexture_(type, settings::sDataPath + "tex/motherShip.png");             break;
-                case MotherShipPlayerLayer: loadTexture_(type, settings::sDataPath + "tex/motherShipPlayerLayer.png");  break;
-                case Sign1:                 loadTexture_(type, settings::sDataPath + "tex/signs/sign1.png");            break;
-                case Sign2:                 loadTexture_(type, settings::sDataPath + "tex/signs/sign2.png");            break;
-                case Logo1:                 loadTexture_(type, settings::sDataPath + "tex/logos/logo1.png");            break;
-                case Cannon:                loadTexture_(type, settings::sDataPath + "tex/cannon.png");                 break;
-                case CannonSocket:          loadTexture_(type, settings::sDataPath + "tex/cannonSocket.png");           break;
-                case Stars1_large:          loadTexture_(type, settings::sDataPath + "tex/background/starfield_1_large.jpg");    break;
-                case Stars1_medium:         loadTexture_(type, settings::sDataPath + "tex/background/starfield_1_medium.jpg");   break;
-                case Stars2_large:          loadTexture_(type, settings::sDataPath + "tex/background/starfield_2_large.jpg");    break;
-                case Stars2_medium:         loadTexture_(type, settings::sDataPath + "tex/background/starfield_2_medium.jpg");   break;
-                case Star:                  loadTexture_(type, settings::sDataPath + "tex/background/star.png");        break;
-                case EnergyBars:            loadTexture_(type, settings::sDataPath + "tex/interface/energyBars.png");   break;
-                case Widgets:               loadTexture_(type, settings::sDataPath + "tex/interface/widgets.png");      break;
-                case Interface:             loadTexture_(type, settings::sDataPath + "tex/interface/interface.png");    break;
-                case CountDown0:            loadTexture_(type, settings::sDataPath + "tex/countdown/0.png");            break;
-                case CountDown1:            loadTexture_(type, settings::sDataPath + "tex/countdown/1.png");            break;
-                case CountDown2:            loadTexture_(type, settings::sDataPath + "tex/countdown/2.png");            break;
-                case CountDown3:            loadTexture_(type, settings::sDataPath + "tex/countdown/3.png");            break;
-                case CountDown4:            loadTexture_(type, settings::sDataPath + "tex/countdown/4.png");            break;
-                case ShockWave:             loadTexture_(type, settings::sDataPath + "tex/shockwave.png");              break;
-                case COUNT: std::cout << "COUNT is not a valid Texturetype..." << std::endl;
+                case Home:           loadTexture_(type, path + "tex/spaceObjects/planetPlayer.png"); break;
+                case Planet1:        loadTexture_(type, path + "tex/spaceObjects/planet1.png");   break;
+                case Planet2:        loadTexture_(type, path + "tex/spaceObjects/planet2.png");   break;
+                case Planet3:        loadTexture_(type, path + "tex/spaceObjects/planet3.png");   break;
+                case Planet4:        loadTexture_(type, path + "tex/spaceObjects/planet4.png");   break;
+                case Planet5:        loadTexture_(type, path + "tex/spaceObjects/planet5.png");   break;
+                case Planet6:        loadTexture_(type, path + "tex/spaceObjects/planet6.png");   break;
+                case Planet7:        loadTexture_(type, path + "tex/spaceObjects/planet7.png");   break;
+                case Planet8:        loadTexture_(type, path + "tex/spaceObjects/planet8.png");   break;
+                case Planet9:        loadTexture_(type, path + "tex/spaceObjects/planet9.png");   break;
+                case Planet10:       loadTexture_(type, path + "tex/spaceObjects/planet10.png");  break;
+                case Planet11:       loadTexture_(type, path + "tex/spaceObjects/planet11.png");  break;
+                case Planet12:       loadTexture_(type, path + "tex/spaceObjects/planet12.png");  break;
+                case Planet13:       loadTexture_(type, path + "tex/spaceObjects/planet13.png");  break;
+                case Planet14:       loadTexture_(type, path + "tex/spaceObjects/planet14.png");  break;
+                case Planet15:       loadTexture_(type, path + "tex/spaceObjects/planet15.png");  break;
+                case Sun1:           loadTexture_(type, path + "tex/spaceObjects/sun1.png");      break;
+                case Sun2:           loadTexture_(type, path + "tex/spaceObjects/sun2.png");      break;
+                case Sun3:           loadTexture_(type, path + "tex/spaceObjects/sun3.png");      break;
+                case SunHeat:        loadTexture_(type, path + "tex/spaceObjects/sunHeat.png");   break;
+                
+                case Ice:            loadTexture_(type, path + "tex/ice.png");                    break;
+                case Bolt:           loadTexture_(type, path + "tex/bolt.png");                   break;
+                case Cracks:         loadTexture_(type, path + "tex/cracks.png");                 break;
+                case Hole1:          loadTexture_(type, path + "tex/spaceObjects/hole1.png");     break;
+                case Ball:           loadTexture_(type, path + "tex/ball.png");                   break;
+                case Particles:      loadTexture_(type, path + "tex/particles.png");              break;
+                case PowerUps:       loadTexture_(type, path + "tex/powerUps.png");               break;
+                case Ships:          loadTexture_(type, path + "tex/ships.png");                  break;
+                case Weapons:        loadTexture_(type, path + "tex/weapons.png");                break;
+                
+                // case MotherShip:            loadTexture_(type, path + "tex/motherShip.png");             break;
+                // case MotherShipPlayerLayer: loadTexture_(type, path + "tex/motherShipPlayerLayer.png");  break;
+                
+                case Sign1:          loadTexture_(type, path + "tex/signs/sign1.png");            break;
+                case Sign2:          loadTexture_(type, path + "tex/signs/sign2.png");            break;
+                case Logo1:          loadTexture_(type, path + "tex/logos/logo1.png");            break;
+
+                case Cannon:         loadTexture_(type, path + "tex/cannon.png");                 break;
+                case CannonSocket:   loadTexture_(type, path + "tex/cannonSocket.png");           break;
+                case Stars1_large:   loadTexture_(type, path + "tex/background/starfield_1_large.jpg");    break;
+                case Stars1_medium:  loadTexture_(type, path + "tex/background/starfield_1_medium.jpg");   break;
+                case Stars2_large:   loadTexture_(type, path + "tex/background/starfield_2_large.jpg");    break;
+                case Stars2_medium:  loadTexture_(type, path + "tex/background/starfield_2_medium.jpg");   break;
+                case Star:           loadTexture_(type, path + "tex/background/star.png");        break;
+
+                case EnergyBars:     loadTexture_(type, path + "tex/interface/energyBars.png");   break;
+                case Widgets:        loadTexture_(type, path + "tex/interface/widgets.png");      break;
+                case Interface:      loadTexture_(type, path + "tex/interface/interface.png");    break;
+                case CountDown0:     loadTexture_(type, path + "tex/countdown/0.png");            break;
+                case CountDown1:     loadTexture_(type, path + "tex/countdown/1.png");            break;
+                case CountDown2:     loadTexture_(type, path + "tex/countdown/2.png");            break;
+                case CountDown3:     loadTexture_(type, path + "tex/countdown/3.png");            break;
+                case CountDown4:     loadTexture_(type, path + "tex/countdown/4.png");            break;
+                case ShockWave:      loadTexture_(type, path + "tex/shockwave.png");              break;
+                case COUNT:
+                    std::cout << "COUNT is not a valid Texturetype..." << std::endl;
             }
             return *textures_[type];
         }

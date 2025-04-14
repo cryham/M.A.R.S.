@@ -23,12 +23,21 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "System/randomizer.hpp"
 
 
-Sun::Sun(Vector2f const& location, float radius)
-    :SpaceObject(spaceObjects::oSun,location, radius, radius*50)
+Sun::Sun(Vector2f const& location, float radius, int type)
+    :SpaceObject(spaceObjects::oSun,location, radius, radius * randomizer::random(40, 70))  // 50
     ,eruptionTimer_(0)
+    ,type_(std::min(2, type))
 {
     physics::addStaticObject(this);
     physics::addGravitySource(this);
+
+    float g = randomizer::random(0.7f,1.f), b = std::min(g, randomizer::random(0.2f,1.f));
+    switch (type_)
+    {
+    case 0:  color_ = Color3f(1.f, g, b);  break;  // orange yellow
+    case 1:  color_ = Color3f(b, g, 1.f);  break;  // white blue cyan
+    case 2:  color_ = Color3f(g, b, 0.2f);  break;  // red brown
+    }
 }
 
 void Sun::update()
@@ -53,15 +62,18 @@ void Sun::draw() const
 {
     glEnable(GL_TEXTURE_2D);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    glBindTexture(GL_TEXTURE_2D, texture::getTexture(texture::Sun1));
+    
+    auto tex = (texture::TextureType)(texture::Sun1 + type_);
+    glBindTexture(GL_TEXTURE_2D, texture::getTexture(tex));
 
-    glColor3f(1,1,1);
+    color_.gl3f();
+
     float drawRadius = radius_*2;
     glBegin(GL_QUADS);
-        glTexCoord2i(0, 0); glVertex2f(location_.x_-drawRadius, location_.y_-drawRadius);
-        glTexCoord2i(0, 1); glVertex2f(location_.x_-drawRadius, location_.y_+drawRadius);
-        glTexCoord2i(1, 1); glVertex2f(location_.x_+drawRadius, location_.y_+drawRadius);
-        glTexCoord2i(1, 0); glVertex2f(location_.x_+drawRadius, location_.y_-drawRadius);
+        glTexCoord2i(0, 0);  glVertex2f(location_.x_-drawRadius, location_.y_-drawRadius);
+        glTexCoord2i(0, 1);  glVertex2f(location_.x_-drawRadius, location_.y_+drawRadius);
+        glTexCoord2i(1, 1);  glVertex2f(location_.x_+drawRadius, location_.y_+drawRadius);
+        glTexCoord2i(1, 0);  glVertex2f(location_.x_+drawRadius, location_.y_-drawRadius);
     glEnd();
 
     glDisable(GL_TEXTURE_2D);

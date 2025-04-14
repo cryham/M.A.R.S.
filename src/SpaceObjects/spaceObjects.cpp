@@ -97,8 +97,8 @@ namespace spaceObjects
 
     int randomPlanetSize()
     {
-        // return randomizer::random(settings::iMapMinPlanetsSize, settings::iMapMaxPlanetsSize);
-        return rand() % (settings::iMapMaxPlanetsSize - settings::iMapMinPlanetsSize) + settings::iMapMinPlanetsSize;
+        return randomizer::random(settings::iMapMinPlanetsSize, settings::iMapMaxPlanetsSize);
+        // return rand() % (settings::iMapMaxPlanetsSize - settings::iMapMinPlanetsSize) + settings::iMapMinPlanetsSize;
     }
 
     void addPlanet()
@@ -120,7 +120,7 @@ namespace spaceObjects
         Vector2f position = possiblePlanetLocation(radius, 200);
         if (position != Vector2f(0,0))
         {
-            Sun* newSun = new Sun(position, radius);
+            Sun* newSun = new Sun(position, radius, randomizer::random(0, 2));
             objectList_.push_back(newSun);
             decoObjects::addSunHeat(newSun);
         }
@@ -251,8 +251,8 @@ namespace spaceObjects
     void populateSpace(float holePercentage, float sunPercentage, int maxObjects)
     {
         int count = randomizer::random(settings::iMapMinPlanets, settings::iMapMaxPlanets);
-        int holes = holePercentage;
-        int suns = sunPercentage;
+        int holes = settings::iMapBlackHoles < 0 ? holePercentage : settings::iMapBlackHoles;
+        int suns = settings::iMapSuns < 0 ? sunPercentage : settings::iMapSuns;
 
         while (--count >= 0)
         {

@@ -56,7 +56,7 @@ void RadioButton::mouseMoved(Vector2f const& position)
 void RadioButton::mouseLeft(bool down)
 {
     UiElement::mouseLeft(down);
-    if (!pressed_ && hovered_ && focused_)
+    if (pressed_ && hovered_ && focused_)
     {
         if (*value_ && offSwitchable_)
             *value_ = false;
@@ -74,7 +74,7 @@ void RadioButton::keyEvent(bool down, Key const& key)
     if (key.navi_ == Key::nConfirm)
     {
         pressed_ = down;
-        if (!pressed_)
+        if (pressed_)
         {
             if (*value_ && offSwitchable_)
                 *value_ = false;

@@ -60,7 +60,7 @@ void ColorPicker::mouseMoved(Vector2f const& position)
 void ColorPicker::mouseLeft(bool down)
 {
     UiElement::mouseLeft(hovered_ && down);
-    if (!pressed_ && hovered_ && focused_)
+    if (pressed_ && hovered_ && focused_)
     {
         hovered_ = false;
         sound::playSound(sound::Click);
@@ -73,7 +73,7 @@ void ColorPicker::keyEvent(bool down, Key const& key)
     if (key.navi_ == Key::nConfirm)
     {
         pressed_ = down;
-        if (!pressed_)
+        if (pressed_)
         {
             hovered_ = false;
             sound::playSound(sound::Click);

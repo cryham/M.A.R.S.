@@ -62,7 +62,7 @@ void Checkbox::mouseMoved(Vector2f const& position)
 void Checkbox::mouseLeft(bool down)
 {
     UiElement::mouseLeft(down);
-    if (!pressed_ && hovered_ && focused_)
+    if (pressed_ && hovered_ && focused_)
     {
         *value_ = !*value_;
         sound::playSound(sound::Check);
@@ -74,7 +74,7 @@ void Checkbox::keyEvent(bool down, Key const& key)
     if (key.navi_ == Key::nConfirm)
     {
         pressed_ = down;
-        if (!pressed_)
+        if (pressed_)
         {
             *value_ = !*value_;
             sound::playSound(sound::Click);

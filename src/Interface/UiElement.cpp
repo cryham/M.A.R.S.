@@ -49,7 +49,7 @@ void UiElement::mouseMoved(Vector2f const& position)
     Vector2f topLeftAbs(getTopLeft());
     if (locales::getCurrentLocale().LTR_)
     {
-        if ((!sf::Mouse::isButtonPressed(sf::Mouse::Left) || pressed_) &&
+        if (//(!sf::Mouse::isButtonPressed(sf::Mouse::Left) || pressed_) &&
             topLeftAbs.x_+width_ > position.x_ &&
             topLeftAbs.y_+height_ > position.y_ &&
             topLeftAbs.x_ < position.x_ &&
@@ -59,7 +59,7 @@ void UiElement::mouseMoved(Vector2f const& position)
             hovered_ = false;
     }else
     {
-        if ((!sf::Mouse::isButtonPressed(sf::Mouse::Left) || pressed_) &&
+        if (//(!sf::Mouse::isButtonPressed(sf::Mouse::Left) || pressed_) &&
             topLeftAbs.x_-width_ < position.x_ &&
             topLeftAbs.y_+height_ > position.y_ &&
             topLeftAbs.x_ > position.x_ &&

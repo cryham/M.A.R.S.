@@ -63,7 +63,8 @@ void Button::mouseMoved(Vector2f const& position)
 void Button::mouseLeft(bool down)
 {
     UiElement::mouseLeft(down);
-    if (!pressed_ && hovered_ && focused_)
+    // if (pressed_ && hovered_ && focused_)
+    if (pressed_)
     {
         *key_ = true;
         hovered_ = false;
@@ -77,7 +78,7 @@ void Button::keyEvent(bool down, Key const& key)
     if (key.navi_ == Key::nConfirm)
     {
         pressed_ = down;
-        if (!pressed_)
+        if (pressed_)
         {
             *key_ = true;
             hovered_ = false;
@@ -87,7 +88,8 @@ void Button::keyEvent(bool down, Key const& key)
     }
 }
 
-void Button::draw () const
+//  draw
+void Button::draw() const
 {
     UiElement::draw();
 

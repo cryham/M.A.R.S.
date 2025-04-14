@@ -45,7 +45,7 @@ void Tab::mouseMoved(Vector2f const& position)
     
     if (locales::getCurrentLocale().LTR_)
     {
-        if ((!sf::Mouse::isButtonPressed(sf::Mouse::Left) || pressed_) &&
+        if (//(!sf::Mouse::isButtonPressed(sf::Mouse::Left) || pressed_) &&
             topLeftAbs.x_+width_ > position.x_ &&
             topLeftAbs.y_+height_ > position.y_ &&
             topLeftAbs.x_ < position.x_ &&
@@ -55,7 +55,7 @@ void Tab::mouseMoved(Vector2f const& position)
             hovered_ = false;
     }
     else {
-        if ((!sf::Mouse::isButtonPressed(sf::Mouse::Left) || pressed_) &&
+        if (//(!sf::Mouse::isButtonPressed(sf::Mouse::Left) || pressed_) &&
             topLeftAbs.x_-width_ < position.x_ &&
             topLeftAbs.y_+height_ > position.y_ &&
             topLeftAbs.x_ > position.x_ &&
@@ -80,8 +80,7 @@ void Tab::mouseWheelMoved(Vector2f const& position, int delta)
 void Tab::mouseLeft(bool down)
 {
     pressed_ = hovered_ && down;
-
-    if (!pressed_ && hovered_)
+    if (pressed_) //&& hovered_)
     {
         TabList* parent(dynamic_cast<TabList*>(parent_));
         if (parent)

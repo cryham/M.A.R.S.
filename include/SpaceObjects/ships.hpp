@@ -22,15 +22,22 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 class Player;
 class Ship;
+class Turret;
 
-namespace ships 
+
+namespace ships  // and turrets
 {
+    float GetAngle(float x, float y);  // radians
+
     void addShip(Vector2f const& location, float rotation, Player* owner);
+    void addTurret(Vector2f const& location, float rotation, Player* owner);
+    void createTurrets();
 
     void update();
     void draw();
 
     std::vector<Ship*> const& getShips();
+    std::vector<Turret*> const& getTurrets();
 
     void clear();
 }

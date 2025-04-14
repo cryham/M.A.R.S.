@@ -152,13 +152,6 @@ void Home::createShips(vector<Player*>& inhabitants) const
             ships::addShip(location, rotation, it);
         }
     }
-    //  turrets
-    int cnt = 0; //randomizer::random(3, 8);  // test`
-    for (int i=0; i < cnt; ++i)
-    {
-        Vector2f pos = spaceObjects::possiblePlanetLocation(10.f, 10.f);
-        ships::addTurret(pos, randomizer::random(0.f, 360.f), NULL);
-    }
 }
 
 

@@ -23,36 +23,35 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "DecoObjects/Ice.hpp"
 
 
-class Turret: public SpaceObject
+class Turret: public SpaceObject, public Mount
 {
     public:
         Turret(Vector2f const& location, float rotation, Player* owner);
 
-        void update();
-        void draw() const;
+        void update() override;
+        void draw() const override;
         void drawWeapon() const;
 
         void onCollision(SpaceObject* with, Vector2f const& location,
-                         Vector2f const& direction, Vector2f const& velocity);
+                         Vector2f const& direction, Vector2f const& velocity) override;
 
-        void onShockWave(Player* damageSource, float intensity);
+        void onShockWave(Player* damageSource, float intensity) override;
 
-        void setDamageSource(Player* evilOne);
+        void setDamageSource(Player* evilOne) override;
         void drainLife(Player* source, float amount, Vector2f const& direction, float waitForOtherDamage = 0.001f);
 
         void heal(Player* source, int amount);
-        void refuel(Player* source, int amount);
 
         float   getLife()  const;
-        float   getFuel()  const;
-        Player* getOwner() const;
 
-        float   rotation() const;
+        //  Mount:
+        Vector2f velocityFake;
+        Vector2f getLocation() override {  return location_;  }
+        Vector2f& getVelocity() override {  return velocityFake;  }
+        float    getRadius() override   {  return radius_;  }
 
         bool    collidable() const;
         bool    attackable() const;
-
-        std::vector<PowerUp*> const& getCollectedPowerUps() const;
 
         friend class Controller;
         friend class BotController;
@@ -79,18 +78,10 @@ class Turret: public SpaceObject
         void explode();
         void respawn();
 
-        Player* owner_;
-        Vector2f velocity_;
-
-        float rotation_;
-        float rotateSpeed_;
-        int up_, down_, left_, right_, boost_;
-        bool docked_;
-        bool weaponChange_;
-        bool specialChange_;
+        int left_, right_;
 
         bool visible_;
-        float ghostTimer_;
+        // float ghostTimer_;
         float frozen_;
         float respawnTimer_;
         float damageSourceResetTimer_;
@@ -98,13 +89,10 @@ class Turret: public SpaceObject
         Vector2f respawnLocation_;
         float respawnRotation_;
 
-        Weapon* currentWeapon_;
-        Special* currentSpecial_;
+        Weapon* weapon_;
+        // Special* special_;
 
         float life_, maxLife_;
-        float fuel_, maxFuel_;
-
-        std::vector<PowerUp*> collectedPowerUps_;
 
         int fragStars_;
         float damageByLocalPlayer_;

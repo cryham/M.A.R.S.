@@ -112,8 +112,10 @@ void Game::update()
         }else
         {
             decoObjects::update();
-            ships::update();
+
+            ships::update();  // and turrets
             balls::update();
+
             teams::update();
             controllers::update();
             zones::update();
@@ -133,7 +135,7 @@ void Game::draw() const
     trailEffects::draw();
     
     controllers::draw();
-    ships::draw();
+    ships::draw();  // and turrets
     balls::draw();
     
     spaceObjects::draw();

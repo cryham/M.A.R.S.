@@ -18,6 +18,10 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "SpaceObjects/ships.hpp"
 #include "SpaceObjects/Ship.hpp"
 #include "SpaceObjects/Turret.hpp"
+#include "SpaceObjects/spaceObjects.hpp"
+#include "SpaceObjects/Home.hpp"
+#include "SpaceObjects/Planet.hpp"
+#include "System/randomizer.hpp"
 
 #include <vector>
 
@@ -88,5 +92,46 @@ namespace ships  // and turrets
         for (auto& it : turretList_)
             delete it;
         turretList_.clear();
+    }
+
+
+    //  angle
+    float GetAngle(float x, float y)
+    {
+        if (x == 0.f && y == 0.f)
+            return 0.f;
+
+        if (y == 0.f)
+            return (x < 0.f) ? M_PI : 0.f;
+        else
+            return (y < 0.f) ? atan2f(-y, x) : (2.f * M_PI - atan2f(y, x));
+    }
+
+    //  turrets  ----
+    void createTurrets()
+    {
+        int cnt = 0; //randomizer::random(3, 8);  // test`
+        for (auto& p : spaceObjects::getHomes())
+            for (int i=0; i < cnt; ++i)
+            {
+                auto dir = Vector2f::randDir();
+                auto ang = GetAngle(dir.x_, dir.y_);
+                float r = p->radius() * randomizer::random(0.9f, 1.f);
+
+                Vector2f pos = p->location();
+                addTurret(pos, ang, NULL);
+            }
+        
+        cnt = 2; //randomizer::random(3, 8);  // test`
+        for (auto& p : spaceObjects::getPlanets())
+            for (int i=0; i < cnt; ++i)
+            {
+                auto dir = Vector2f::randDir();
+                auto ang = GetAngle(dir.x_, dir.y_);
+                float r = p->radius() * randomizer::random(0.9f, 1.f);
+
+                Vector2f pos = p->location() + dir * r;
+                addTurret(pos, ang, NULL);
+            }
     }
 }

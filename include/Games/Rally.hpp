@@ -31,6 +31,8 @@ class Rally: public Game
         /// Ctor starts a new game.
         Rally();
         ~Rally();
+        
+        void init();
 
         /// Draws the game.
         void draw() const;
@@ -41,4 +43,3 @@ class Rally: public Game
     private:
         Track* track_;
 };
-

@@ -18,6 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "SpaceObjects/Ship.hpp"
 
+#include "SpaceObjects/ships.hpp"
 #include "SpaceObjects/spaceObjects.hpp"
 #include "System/timer.hpp"
 #include "System/settings.hpp"
@@ -46,18 +47,6 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include <sstream>
 
 using namespace std;
-
-
-static float GetAngle(float x, float y)
-{
-	if (x == 0.f && y == 0.f)
-		return 0.f;
-
-	if (y == 0.f)
-		return (x < 0.f) ? M_PI : 0.f;
-	else
-		return (y < 0.f) ? atan2f(-y, x) : (2.f * M_PI - atan2f(y, x));
-}
 
 
 //  update
@@ -126,7 +115,7 @@ void Ship::update()
                     Vector2f mp = window::getMousePosition(), ws = window::getWindowSize();
                     float sx = location_.x_ / settings::iMapXsize * ws.x_;
                     float sy = location_.y_ / settings::iMapYsize * ws.y_;
-                    float angle = GetAngle(mp.x_ - sx, -mp.y_ + sy) * 180.f/M_PI;
+                    float angle = ships::GetAngle(mp.x_ - sx, -mp.y_ + sy) * 180.f/M_PI;
                     // cout << " shp: " << location_.x_ << " " << location_.y_
                     //     << " m " << p.x_ << " " << p.y_ << " rot " << rotation_ //* 180.f/M_PI
                     //     << " a " << a * 180.f/M_PI << endl;

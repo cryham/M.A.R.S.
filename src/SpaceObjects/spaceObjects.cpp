@@ -42,6 +42,8 @@ namespace spaceObjects
         // they are saved twice
         vector<SpaceObject*> objectList_;
         vector<Home*>        homeList_;
+        // planets for turrets
+        vector<SpaceObject*> planetsList_;
     }
 
     Vector2f possiblePlanetLocation(int radius, float minDistance)
@@ -111,7 +113,9 @@ namespace spaceObjects
 
     void addPlanet(Vector2f const& location, float radius)
     {
-        objectList_.push_back(new Planet(location, radius));
+        Planet* planet = new Planet(location, radius);
+        objectList_.push_back(planet);
+        planetsList_.push_back(planet);
     }
 
     void addSun()
@@ -120,9 +124,9 @@ namespace spaceObjects
         Vector2f position = possiblePlanetLocation(radius, 200);
         if (position != Vector2f(0,0))
         {
-            Sun* newSun = new Sun(position, radius, randomizer::random(0, 2));
-            objectList_.push_back(newSun);
-            decoObjects::addSunHeat(newSun);
+            Sun* sun = new Sun(position, radius, randomizer::random(0, 2));
+            objectList_.push_back(sun);
+            decoObjects::addSunHeat(sun);
         }
     }
 
@@ -160,7 +164,8 @@ namespace spaceObjects
         return home;
     }
 
-    vector<Home*>const& getHomes()
+
+    vector<Home*> const& getHomes()
     {
         return homeList_;
     }
@@ -170,6 +175,11 @@ namespace spaceObjects
         return objectList_;
     }
 
+    vector<SpaceObject*> const& getPlanets()
+    {
+        return planetsList_;
+    }
+    
     
     SpaceObject const* getObstacle(Vector2f const& start, Vector2f const& end, bool avoidBall, float minDistance)
     {

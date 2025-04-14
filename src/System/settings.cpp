@@ -559,6 +559,16 @@ namespace settings
 
         //  read lines
         //----------------------------------------------------------------------------------------------------------------------------------
+        //  weapons
+        for (int i=0; i < weapons::All; ++i)
+        {
+            bEnabledWeaponsByUser[i] = bEnabledWeapons[i] = true;
+        }
+        for (int i=0; i < specials::All; ++i)
+        {
+            bEnabledSpecialsByUser[i] = bEnabledSpecials[i] = true;
+        }
+
         vector<sf::String> lines;
         if (file::load(sConfigPath + "mars.cfg", lines))
         {

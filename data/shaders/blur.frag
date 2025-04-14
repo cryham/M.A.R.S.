@@ -1,4 +1,4 @@
-// RadialBlur - Shader
+//  RadialBlur - Shader  unused
 
 uniform sampler2D Texture;   // scene texture
 vec2 radial_size = vec2(1.0/1440.0, 1.0/900.0);    // texel size

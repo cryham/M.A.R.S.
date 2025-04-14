@@ -57,11 +57,13 @@ namespace specials
     {
         type = getNext(type, false, 1);  // ensure enabled
 
-        if  (parent->getOwner()->type() == controllers::cPlayer1 && type != specials::All)
-            settings::player1Special = type;
-        else if  (parent->getOwner()->type()  == controllers::cPlayer2 && type != specials::All)
-            settings::player2Special = type;
-
+        if (parent)
+        {
+            if  (parent->getOwner()->type() == controllers::cPlayer1 && type != specials::All)
+                settings::player1Special = type;
+            else if  (parent->getOwner()->type()  == controllers::cPlayer2 && type != specials::All)
+                settings::player2Special = type;
+        }
         switch (type)
         {
             case sHeal:      return new Heal(parent);

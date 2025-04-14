@@ -28,6 +28,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 class Home;
 class SpaceObject;
 
+
 namespace spaceObjects 
 {
     enum ObjectType

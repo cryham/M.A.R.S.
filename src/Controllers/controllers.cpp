@@ -22,6 +22,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include <SFML/Window.hpp>
 
+
 namespace controllers 
 {
     namespace

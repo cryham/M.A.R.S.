@@ -68,7 +68,7 @@ UiWindow* WeaponOptions::get()
 
         addCheck("FIST OF ALI",weapons::wFist);
         addCheck("SHOTGUN",    weapons::wShotgun);
-        addCheck("ROCK'n'LOL", weapons::wRocketLauncher);
+        addCheck("ROCK'n'LOL", weapons::wOldRocket);
         addCheck("ROFLE",      weapons::wROFLE, 3);
 
         addCheck("H2-OMG",     weapons::wH2OMG);

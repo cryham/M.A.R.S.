@@ -25,7 +25,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Weapons/Flubba.hpp"
 #include "Weapons/H2OMG.hpp"
 #include "Weapons/ROFLE.hpp"
-#include "Weapons/RocketLauncher.hpp"
+#include "Weapons/OldRocket.hpp"
 #include "Weapons/Shotgun.hpp"
 #include "Weapons/NoWeapon.hpp"
 
@@ -67,7 +67,7 @@ namespace weapons
         return (WeaponType)next;
     }
 
-    WeaponType getNext(WeaponType type, bool add1st = true, int add = 1)
+    WeaponType getNext(WeaponType type, bool add1st, int add)
     {
         int next = type, cnt = 0;
         auto check = [&next]()
@@ -96,7 +96,7 @@ namespace weapons
     {
         type = getNext(type, false, 1);  // ensure enabled
 
-        if (parent)
+        if (parent && parent->getOwner())
         {
             if (parent->getOwner()->type() == controllers::cPlayer1 && type != weapons::All && type != wInsta)
                 settings::player1Weapon = type;
@@ -106,15 +106,15 @@ namespace weapons
         }
         switch (type)
         {
-            case wAFK47:           return new AFK47(parent);
-            case wBurner:          return new Burner(parent);
-            case wFist:            return new Fist(parent);
-            case wFlubba:          return new Flubba(parent);
-            case wH2OMG:           return new H2OMG(parent);
-            case wROFLE:           return new ROFLE(parent);
-            case wRocketLauncher:  return new RocketLauncher(parent);
-            case wInsta:           return new Insta(parent);
-            case wShotgun:         return new Shotgun(parent);
+            case wAFK47:        return new AFK47(parent);
+            case wBurner:       return new Burner(parent);
+            case wFist:         return new Fist(parent);
+            case wFlubba:       return new Flubba(parent);
+            case wH2OMG:        return new H2OMG(parent);
+            case wROFLE:        return new ROFLE(parent);
+            case wOldRocket:    return new OldRocket(parent);
+            case wInsta:        return new Insta(parent);
+            case wShotgun:      return new Shotgun(parent);
 
             // cryham  7 excessive,  modded originals
             case wAFK85:        return new AFK85(parent);
@@ -140,21 +140,23 @@ namespace weapons
             default:            return new NoWeapon(parent);
         }
     }
-
+/*
     Weapon* createNext(WeaponType type, Ship* parent)
     {
-        parent->weaponChangeTime_ = 1.f;
+        if (parent)
+            parent->weaponChangeTime_ = 1.f;
         WeaponType next = getNext(type, true, 1);
         return create(next, parent);
     }
 
     Weapon* createPrev(WeaponType type, Ship* parent)
     {
-        parent->weaponChangeTime_ = 1.f;
+        if (parent)
+            parent->weaponChangeTime_ = 1.f;
         WeaponType next = getNext(type, true, -1);
         return create(next, parent);
     }
-
+*/
     //  Weapon name colors for Gui, Hud text after change
     //----------------------------------------------------------------
     Color3f colors[WeaponType::All] =
@@ -168,7 +170,7 @@ namespace weapons
         Color3f(0.2, 0.8, 0.1),  //  Flubba
 
         Color3f(0.8, 0.8, 0.3),  //  Shotgun
-        Color3f(0.8, 0.4, 0.2),  //  RocketLauncher ROCK'n'LOL
+        Color3f(0.8, 0.4, 0.2),  //  OldRocket ROCK'n'LOL
         Color3f(0.8, 0.2, 0.2),  //  ROFLE
 
         Color3f(0.4, 0.5, 0.9),  //  H2OMG

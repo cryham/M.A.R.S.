@@ -30,7 +30,7 @@ namespace weapons
 	{
         wInsta = 0,  // original 8+1
         wAFK47, wBurner, wFist, wFlubba,
-        wShotgun, wRocketLauncher, wROFLE, wH2OMG,
+        wShotgun, wOldRocket, wROFLE, wH2OMG,
         //  cryham 7 excessive
         wShotgun2, wPlasma, wMiniRockets, wFlamer2,
         wAFK85, wRifle2, wH2OStorm,

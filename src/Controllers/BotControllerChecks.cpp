@@ -141,7 +141,8 @@ void BotController::checkSpecial()
                 break;
             }
 
-            default: {
+            default:
+            {
                 int decision(0);
                 std::vector<Ship*> const& ships(ships::getShips());
                 for (auto it = ships.cbegin(); it != ships.cend(); ++it)

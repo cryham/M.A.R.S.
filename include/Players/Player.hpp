@@ -23,6 +23,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 class Team;
 
+
 class Player
 {
     public:

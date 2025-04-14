@@ -33,25 +33,28 @@ namespace spaceObjects
 {
     enum ObjectType
     {
-        oPlanet, oSun, oBlackHole,
-        oHome, oShip, oBall, oFuel,
-        
-        oAmmoAFK47, oAmmoROFLE, oAmmoShotgun,
+        //  big
+        oPlanet, oSun, oBlackHole, oHome, oStar,
+        oShip, oBall, oTurret, oCannonBall,
+        oPowerUpCollect, oNumber,
+
+        oFuel, oSpark,  // decoration
         oMud, oSmoke, oEruption, oDust, oExplode,
-        oFragment, oBurningFragment, oFragmentFlame,
-        
-        oMiniFlame, oAmmoFlubba, oMiniAmmoFlubba, oCannonBall, oSpark,
-        oAmmoBurner, oAmmoH2OMG, oHeat,
-        oHeatJet, oShockWave, oHeatBurner, oMiniFlameSmoke,
+        oFragment, oBurningFragment, oFragmentFlame, oMiniFlame,
+        oHeat, oHeatJet, oShockWave, oHeatBurner, oMiniFlameSmoke,
 
-        oAmmoRocket, oPowerUpCollect, oAmmoFist,
-        oNumber, oAmmoInsta, oStar, oTurret,
-
+        //  ammo orig 9
+        oAmmoAFK47, oAmmoROFLE, oAmmoShotgun,
+        oAmmoFlubba, oMiniAmmoFlubba,
+        oAmmoBurner, oAmmoH2OMG,
+        oAmmoRocket, oAmmoFist, oAmmoInsta, 
+        //  new 7
         oAmmoAFK85, oAmmoRifle2, oAmmoShotgun2,
         oAmmoPlasma, oAmmoFlamer2, oAmmoH2OStorm, oAmmoMiniRocket, 
-
-        oAmmoPulse, oAmmoCloud, oAmmoFreezers, oAmmoLaser, oAmmoLightning,
+        //  new 9
+        oAmmoPulse, oAmmoCloud, oAmmoLaser,
         oAmmoMinigun, oAmmoGauss, oAmmoGrenades, oAmmoSeekers,
+        oAmmoFreezers, oAmmoLightning,
     };
 
     void update();
@@ -69,11 +72,12 @@ namespace spaceObjects
     SpaceObject const* getObstacle(Vector2f const& start, Vector2f const& end, bool avoidBall = false, float minDistance = 0.f);
     bool               isOnLine   (Vector2f const& source, Vector2f const& direction, Vector2f const& target, float maxAngle);
 
-    std::vector<Home*>const&                getHomes();
-    std::vector<SpaceObject*> const&        getObjects();
+    std::vector<Home*> const&         getHomes();
+    std::vector<SpaceObject*> const&  getObjects();
 
     /// Populates the space with planets, suns and black holes.
     void populateSpace(float holePercentage, float sunPercentage, int maxObjects);
+    Vector2f possiblePlanetLocation(int radius, float minDistance);
 
     void clear();
 }

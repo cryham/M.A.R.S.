@@ -23,6 +23,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Media/sound.hpp"
 #include "Media/announcer.hpp"
 #include "Media/text.hpp"
+#include "SpaceObjects/spaceObjects.hpp"
 #include "System/settings.hpp"
 #include "System/window.hpp"
 #include "Games/games.hpp"
@@ -31,8 +32,11 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Shaders/postFX.hpp"
 #include "Teams/teams.hpp"
 #include "defines.hpp"
+#include "System/randomizer.hpp"
 
+#include <cmath>
 #include <sstream>
+using namespace std;
 
 
 Home::Home(Vector2f const& location,
@@ -81,7 +85,7 @@ void Home::drawLife() const
     int lifeSize = 20.f / settings::iMapXsize * window::getViewPort().x_;
     if (visible_)
     {
-        std::stringstream sstr;
+        stringstream sstr;
         sstr << getLife();
 
         int xOffset(location_.x_ > settings::iMapXsize ? -65 : 65);
@@ -95,44 +99,44 @@ int Home::getLife() const
     return life_ < 0 ? 0 : life_;
 }
 
-void Home::createShips(std::vector<Player*>& inhabitants) const
+
+//  create Ships
+void Home::createShips(vector<Player*>& inhabitants) const
 {
-    // set ship locations....
-    // calculate available surface angle of homePlanet, looking at two cases:
+    //  set ship locations
+    //  calculate available surface angle of homePlanet, looking at two cases:
     if (location_.x_ < radius_)
     {
         // 1. homeplanet is covered by left screen edge
-        float angle = std::acos(-location_.x_/radius_);
+        float angle = acos(-location_.x_/radius_);
         float deltaAngle = 2 * angle/(inhabitants.size()+1);
         angle = ((inhabitants.size()+1) % 2) * deltaAngle/2;
-        int shipCounter = 0;
+        int cnt = 0;
 
         for (auto& it : inhabitants)
         {
-            // calc location of ship
-            angle += deltaAngle*shipCounter*std::pow(-1.0, shipCounter);
-            Vector2f location = Vector2f(std::cos(angle), std::sin(angle)) * (radius_+settings::iPlayer1Ship) + location_;
+            angle += deltaAngle * cnt * pow(-1.0, cnt);
+            Vector2f location = Vector2f(cos(angle), sin(angle)) * (radius_+settings::iPlayer1Ship) + location_;
             float    rotation = angle*180/M_PI;
             ships::addShip(location, rotation, it);
-            ++shipCounter;
+            ++cnt;
         }
     }
     else if (location_.x_ > settings::iMapXsize - radius_)
     {
         // 2. homeplanet is covered by right screen edge
-        float angle = std::acos((location_.x_ - settings::iMapXsize)/radius_);
+        float angle = acos((location_.x_ - settings::iMapXsize)/radius_);
         float deltaAngle = 2 * angle/(inhabitants.size()+1);
         angle = ((inhabitants.size()+1) % 2) * deltaAngle/2;
-        int shipCounter = 0;
+        int cnt = 0;
 
         for (auto& it : inhabitants)
         {
-            // calc location of ship
-            angle += deltaAngle*shipCounter*std::pow(-1.0, shipCounter);
-            Vector2f location = Vector2f(-std::cos(angle), std::sin(angle)) * (radius_+16)+location_;
+            angle += deltaAngle * cnt * pow(-1.0, cnt);
+            Vector2f location = Vector2f(-cos(angle), sin(angle)) * (radius_+16) + location_;
             float    rotation = 180 - angle*180/M_PI;
             ships::addShip(location, rotation, it);
-            ++shipCounter;
+            ++cnt;
         }
     }else
     {
@@ -142,15 +146,23 @@ void Home::createShips(std::vector<Player*>& inhabitants) const
 
         for (auto& it : inhabitants)
         {
-            // calc location of ship
             angle += deltaAngle;
-            Vector2f location = Vector2f(std::cos(angle), std::sin(angle)) * (radius_+16)+location_;
-            float    rotation = angle*180/M_PI;
+            Vector2f location = Vector2f(cos(angle), sin(angle)) * (radius_+16) + location_;
+            float    rotation = angle *180/M_PI;
             ships::addShip(location, rotation, it);
         }
     }
+    //  turrets
+    int cnt = 0; //randomizer::random(3, 8);  // test`
+    for (int i=0; i < cnt; ++i)
+    {
+        Vector2f pos = spaceObjects::possiblePlanetLocation(10.f, 10.f);
+        ships::addTurret(pos, randomizer::random(0.f, 360.f), NULL);
+    }
 }
 
+
+//  collision
 void Home::onCollision(SpaceObject* with, Vector2f const& location,
     Vector2f const& direction, Vector2f const& velocity)
 {
@@ -158,18 +170,35 @@ void Home::onCollision(SpaceObject* with, Vector2f const& location,
 
     switch (with->type())
     {
-        case spaceObjects::oAmmoROFLE: case spaceObjects::oAmmoInsta:
+        case spaceObjects::oAmmoFlamer2:  case spaceObjects::oAmmoBurner:
+            particles::spawn(particles::pMiniFlame, location);
+            break;
+
+        case spaceObjects::oAmmoRifle2:  case spaceObjects::oAmmoGauss:
+        case spaceObjects::oAmmoROFLE:  case spaceObjects::oAmmoInsta:
             particles::spawnMultiple(20, particles::pMud, location, direction, velocity, color_);
             break;
 
-        case spaceObjects::oAmmoShotgun:
+        case spaceObjects::oAmmoShotgun2:  case spaceObjects::oAmmoShotgun:
             particles::spawnMultiple(2, particles::pMud, location, direction, velocity, color_);
             break;
 
-        case spaceObjects::oAmmoAFK47:
+        case spaceObjects::oAmmoMinigun:  case spaceObjects::oAmmoLaser:
+        case spaceObjects::oAmmoAFK85:  case spaceObjects::oAmmoAFK47:
             particles::spawnMultiple(2, particles::pMud, location, direction, velocity, color_);
             break;
+        
+        case spaceObjects::oAmmoPlasma:  case spaceObjects::oAmmoH2OStorm:
+        case spaceObjects::oAmmoPulse: //case spaceObjects::oAmmoCloud:
+            particles::spawnMultiple(5, particles::pMud, location, direction, velocity, color_);
+            break;
+        // rest of oAmmo-
+        // oAmmoFlubba, oAmmoH2OMG,
+        // oAmmoRocket, oAmmoFist,
+        // oAmmoMiniRocket, oAmmoGrenades, oAmmoSeekers,
+        // oAmmoFreezers, oAmmoLightning,
 
+        //  bigger
         case spaceObjects::oShip:
             if (strength > 50)
                 particles::spawnMultiple(10, particles::pMud, location, direction, velocity, color_);
@@ -201,10 +230,6 @@ void Home::onCollision(SpaceObject* with, Vector2f const& location,
             life_ -= 1;
             teams::getTeamL()->home() == this ? teams::getTeamR()->addPoint() : teams::getTeamL()->addPoint();
             if (life_ <= 0) explode();
-            break;
-
-        case spaceObjects::oAmmoBurner:
-            particles::spawn(particles::pMiniFlame, location);
             break;
 
         default:;

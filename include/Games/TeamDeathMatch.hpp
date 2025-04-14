@@ -29,6 +29,7 @@ class TeamDeathMatch: public Game
     public:
         /// Ctor starts a new game.
         TeamDeathMatch();
+        void init();
 
         /// Draws the game.
         void draw() const;

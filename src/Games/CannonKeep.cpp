@@ -17,6 +17,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "Games/CannonKeep.hpp"
 
+#include "SpaceObjects/ships.hpp"
 #include "Teams/CKTeam.hpp"
 #include "System/settings.hpp"
 #include "Media/music.hpp"
@@ -80,16 +81,7 @@ CannonKeep::CannonKeep()
     for (int i=0; i < settings::iBotsLeft;  ++i)  players::addPlayer(myTeamL, controllers::cBot);
     for (int i=0; i < settings::iBotsRight; ++i)  players::addPlayer(myTeamR, controllers::cBot);
 
-    Home* homeL = spaceObjects::addHome(HOME_LEFT, settings::iPointLimitCK, myTeamL->color());
-    Home* homeR = spaceObjects::addHome(HOME_RIGHT, settings::iPointLimitCK, myTeamR->color());
-
-    teams::assignHomes(homeL, homeR);
-    players::createShips();
-    decoObjects::addCannon();
-    items::addCannonControl();
-
-    spaceObjects::populateSpace(5.f, 10.f, 4);
-    zones::createRaster(4,3);
+    init();
 }
 
 void CannonKeep::draw() const
@@ -102,7 +94,12 @@ void CannonKeep::draw() const
 void CannonKeep::restart()
 {
     Game::restart();
+    init();
+}
 
+
+void CannonKeep::init()
+{
     Home* homeL = spaceObjects::addHome(HOME_LEFT, settings::iPointLimitCK, teams::getTeamL()->color());
     Home* homeR = spaceObjects::addHome(HOME_RIGHT, settings::iPointLimitCK, teams::getTeamR()->color());
 
@@ -112,5 +109,7 @@ void CannonKeep::restart()
     items::addCannonControl();
 
     spaceObjects::populateSpace(5.f, 10.f, 4);
+    ships::createTurrets();
+
     zones::createRaster(4,3);
 }

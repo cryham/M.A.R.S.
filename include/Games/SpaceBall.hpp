@@ -29,6 +29,7 @@ class SpaceBall: public Game
     public:
         /// Ctor starts a new game.
         SpaceBall();
+        void init();
 
         /// Draws the game.
         void draw() const;

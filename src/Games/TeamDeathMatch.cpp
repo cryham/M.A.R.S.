@@ -17,6 +17,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "Games/TeamDeathMatch.hpp"
 
+#include "SpaceObjects/ships.hpp"
 #include "Teams/TDMTeam.hpp"
 #include "System/settings.hpp"
 #include "Media/music.hpp"
@@ -75,14 +76,7 @@ TeamDeathMatch::TeamDeathMatch()
     for (int i=0; i < settings::iBotsLeft;  ++i)  players::addPlayer(myTeamL, controllers::cBot);
     for (int i=0; i < settings::iBotsRight; ++i)  players::addPlayer(myTeamR, controllers::cBot);
 
-    Home* homeL = spaceObjects::addHome(HOME_LEFT, 100, myTeamL->color());
-    Home* homeR = spaceObjects::addHome(HOME_RIGHT, 100, myTeamR->color());
-
-    teams::assignHomes(homeL, homeR);
-    players::createShips();
-
-    spaceObjects::populateSpace(5.f, 10.f, 4);
-    zones::createRaster(4,3);
+    init();
 }
 
 void TeamDeathMatch::draw() const
@@ -95,7 +89,14 @@ void TeamDeathMatch::draw() const
 void TeamDeathMatch::restart()
 {
     Game::restart();
+    init();
+}
 
+
+void TeamDeathMatch::init()
+{
+    // Home* homeL = spaceObjects::addHome(HOME_LEFT, 100, myTeamL->color());
+    // Home* homeR = spaceObjects::addHome(HOME_RIGHT, 100, myTeamR->color());
     Home* homeL = spaceObjects::addHome(HOME_LEFT, 100, teams::getTeamL()->color());
     Home* homeR = spaceObjects::addHome(HOME_RIGHT, 100, teams::getTeamR()->color());
 
@@ -103,5 +104,7 @@ void TeamDeathMatch::restart()
     players::createShips();
 
     spaceObjects::populateSpace(5.f, 10.f, 4);
+    ships::createTurrets();
+
     zones::createRaster(4,3);
 }

@@ -22,6 +22,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "System/settings.hpp"
 #include "Media/music.hpp"
 #include "SpaceObjects/balls.hpp"
+#include "SpaceObjects/ships.hpp"
 #include "Players/players.hpp"
 #include "Teams/teams.hpp"
 
@@ -78,18 +79,7 @@ SpaceBall::SpaceBall()
     for (int i=0; i < settings::iBotsLeft;  ++i)  players::addPlayer(myTeamL, controllers::cBot);
     for (int i=0; i < settings::iBotsRight; ++i)  players::addPlayer(myTeamR, controllers::cBot);
 
-    Home* homeL = spaceObjects::addHome(HOME_LEFT, settings::iPointLimitSB, myTeamL->color());
-    Home* homeR = spaceObjects::addHome(HOME_RIGHT, settings::iPointLimitSB, myTeamR->color());
-
-    teams::assignHomes(homeL, homeR);
-    players::createShips();
-
-    balls::addBall();
-
-    spaceObjects::populateSpace(5.f, 10.f, 4);
-
-    zones::detectTacticalZones();
-    zones::createRaster(4, 3);
+    init();
 }
 
 
@@ -103,7 +93,12 @@ void SpaceBall::draw() const
 void SpaceBall::restart()
 {
     Game::restart();
+    init();
+}
 
+
+void SpaceBall::init()
+{
     Home* homeL = spaceObjects::addHome(HOME_LEFT, settings::iPointLimitSB, teams::getTeamL()->color());
     Home* homeR = spaceObjects::addHome(HOME_RIGHT, settings::iPointLimitSB, teams::getTeamR()->color());
 
@@ -113,6 +108,7 @@ void SpaceBall::restart()
     balls::addBall();
 
     spaceObjects::populateSpace(5.f, 10.f, 4);
+    ships::createTurrets();
 
     zones::detectTacticalZones();
     zones::createRaster(4, 3);

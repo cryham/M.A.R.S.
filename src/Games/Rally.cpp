@@ -32,6 +32,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 Rally::Rally()
     :Game(games::gRally)
+    ,track_(0)
 {
     copyFromUser();
 
@@ -50,15 +51,7 @@ Rally::Rally()
         color.v(newTeam->color().v()+randomizer::random(-0.5f, 0.5f));
         players::addPlayer(newTeam, controllers::cBot, color);
     }
-
-    Home* home = spaceObjects::addHome(HOME_RALLY, 100, Color3f(1.f, 1.f, 1.f));
-    teams::assignHomes(home);
-    players::createShips();
-
-    //spaceObjects::populateSpace(5.f, 10.f, 4);
-    zones::createRaster(4,3);
-
-    track_ = new Track(home);
+    init();
 }
 
 Rally::~Rally()
@@ -77,7 +70,12 @@ void Rally::draw() const
 void Rally::restart()
 {
     Game::restart();
+    init();
+}
 
+
+void Rally::init()
+{
     Home* home = spaceObjects::addHome(HOME_RALLY, 100, Color3f(1.f, 1.f, 1.f));
     teams::assignHomes(home);
     players::createShips();

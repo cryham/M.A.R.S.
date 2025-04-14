@@ -17,6 +17,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "Games/DeathMatch.hpp"
 
+#include "SpaceObjects/ships.hpp"
 #include "Teams/DMTeam.hpp"
 #include "Players/players.hpp"
 #include "System/settings.hpp"
@@ -47,13 +48,7 @@ DeathMatch::DeathMatch()
         color.v(newTeam->color().v()+randomizer::random(-0.5f, 0.5f));
         players::addPlayer(newTeam, controllers::cBot, color);
     }
-
-    teams::assignHomes(spaceObjects::addHome(HOME_MIDDLE, 100, Color3f::random()));
-        // Color3f(randomizer::random(0.f, 0.1f), randomizer::random(0.f, 0.1f), randomizer::random(0.f, 0.1f))));
-    players::createShips();
-
-    spaceObjects::populateSpace(5.f, 10.f, 4);
-    zones::createRaster(4,3);
+    init();
 }
 
 void DeathMatch::draw() const
@@ -66,10 +61,18 @@ void DeathMatch::draw() const
 void DeathMatch::restart()
 {
     Game::restart();
+    init();
+}
 
+
+void DeathMatch::init()
+{
     teams::assignHomes(spaceObjects::addHome(HOME_MIDDLE, 100, Color3f::random()));
+        // Color3f(randomizer::random(0.f, 0.1f), randomizer::random(0.f, 0.1f), randomizer::random(0.f, 0.1f))));
     players::createShips();
 
     spaceObjects::populateSpace(5.f, 10.f, 4);
+    ships::createTurrets();
+
     zones::createRaster(4,3);
 }

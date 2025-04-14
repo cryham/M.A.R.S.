@@ -28,6 +28,7 @@ class GraveItation: public Game
     public:
         /// Ctor starts a new game.
         GraveItation();
+        void init();
 
         /// Draws the game.
         void draw() const;
@@ -35,4 +36,3 @@ class GraveItation: public Game
         /// Restarts the game.
         void restart();
 };
-

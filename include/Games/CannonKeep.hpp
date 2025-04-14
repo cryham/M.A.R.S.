@@ -31,6 +31,7 @@ class CannonKeep: public Game
     public:
         /// Ctor starts a new game.
         CannonKeep();
+        void init();
 
         /// Draws the game.
         void draw() const;

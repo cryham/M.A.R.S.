@@ -29,6 +29,7 @@ class DeathMatch: public Game
     public:
         /// Ctor starts a new game.
         DeathMatch();
+        void init();
 
         /// Draws the game.
         void draw() const;
@@ -36,4 +37,3 @@ class DeathMatch: public Game
         /// Restarts the game.
         void restart();
 };
-

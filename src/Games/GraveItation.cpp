@@ -78,14 +78,7 @@ GraveItation::GraveItation()
     for (int i=0; i < settings::iBotsLeft;  ++i)  players::addPlayer(myTeamL, controllers::cBot);
     for (int i=0; i < settings::iBotsRight; ++i)  players::addPlayer(myTeamR, controllers::cBot);
 
-    Home* homeL = spaceObjects::addHome(HOME_LEFT,  100, myTeamL->color());
-    Home* homeR = spaceObjects::addHome(HOME_RIGHT, 100, myTeamR->color());
-
-    teams::assignHomes(homeL, homeR);
-    players::createShips();
-
-    spaceObjects::populateSpace(25.f, 5.f, 2);
-    zones::createRaster(4,3);
+    init();
 }
 
 void GraveItation::draw() const
@@ -98,7 +91,12 @@ void GraveItation::draw() const
 void GraveItation::restart()
 {
     Game::restart();
+    init();
+}
 
+
+void GraveItation::init()
+{
     Home* homeL = spaceObjects::addHome(HOME_LEFT, 100, teams::getTeamL()->color());
     Home* homeR = spaceObjects::addHome(HOME_RIGHT, 100, teams::getTeamR()->color());
 
@@ -106,5 +104,6 @@ void GraveItation::restart()
     players::createShips();
 
     spaceObjects::populateSpace(25.f, 5.f, 2);
+
     zones::createRaster(4,3);
 }

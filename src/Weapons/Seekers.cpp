@@ -51,7 +51,7 @@ void Seekers::fire() const
 
         particles::spawn(particles::pAmmoSeekers, parent_->getLocation() + dir*parent_->getRadius(),
             dir, parent_->getVelocity(), Color3f(), parent_->getOwner());
-        particles::spawnMultiple(10.f, particles::pDust,  parent_->getLocation() + dir*parent_->getRadius(),
+        particles::spawnMultiple(1.f, particles::pDust,  parent_->getLocation() + dir*parent_->getRadius(),
             parent_->getVelocity());
 
         // parent_->getVelocity() -= faceDirection * 40.f;

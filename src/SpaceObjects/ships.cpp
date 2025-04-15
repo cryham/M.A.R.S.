@@ -145,7 +145,7 @@ namespace ships  // and turrets
             out = pos.x_ < tr || pos.y_ < tr ||
                 pos.x_ > settings::iMapXsize - tr || pos.y_ > settings::iMapYsize - tr;
             
-            // std::cout << "home tur1  " << pos.x_ << " " << pos.y_ << " out: " << out << std::endl;
+            // std::cout << "tur1  " << pos.x_ << " " << pos.y_ << "  out " << (out?"Y":"n") << std::endl;
             //  too close to other turrets
             if (!out && !turretList_.empty())
             {
@@ -154,10 +154,10 @@ namespace ships  // and turrets
                 {
                     float d = (pos - turret->location()).length();
                     if (d < dist)
-                        d = dist;
+                        dist = d;
                 }
                 out = dist < 100;
-                // std::cout << "home tur2. dist " << dist << " out: " << out << std::endl;
+                // std::cout << "tur2- dist " << dist << "  out " << (out?"Y":"n") << std::endl;
             }
             ++tries;
         };

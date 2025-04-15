@@ -39,4 +39,3 @@ class ShipHighlight: public DecoObject
 
         Ship* ship_;
 };
-

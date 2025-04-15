@@ -43,7 +43,7 @@ UiWindow* TutorialWindow::get(const sf::String& title, const sf::String& text, i
     reset();
     if (instance_ == NULL)
     {
-        instance_ = new TutorialWindow(400, 200);
+        instance_ = new TutorialWindow(500, 200);
         instance_->addWidget(new Button(locales::getLocale(next ? locales::Next : locales::Ok), "", &kOk_,
             Vector2f(300,170), 90, 20));
         instance_->addWidget(new Label(title, TEXT_ALIGN_LEFT,

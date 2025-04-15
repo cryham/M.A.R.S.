@@ -27,16 +27,21 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 class Slider: public UiElement
 {
     public:
+        static std::vector<sf::String> None;
+
         Slider (locales::LocaleType text, locales::LocaleType toolTip,
             int* value, int minValue, int maxValue, int step,
             Vector2f const& topLeft, int width, int labelWidth = 185,
             bool showValue = false,
-            std::vector<sf::String> const& sliderNames = std::vector<sf::String>() );
+            std::vector<sf::String> const& sliderNames = None,
+            std::string format = {"%.0f"}, float divBy = 1.f);
+
         Slider (const sf::String& text, const sf::String& toolTip,
             int* value, int minValue, int maxValue, int step,
             Vector2f const& topLeft, int width, int labelWidth = 185,
             bool showValue = false,
-            std::vector<sf::String> const& sliderNames = std::vector<sf::String>() );
+            std::vector<sf::String> const& sliderNames = None,
+            std::string format = {"%.0f"}, float divBy = 1.f);
         ~Slider ();
 
         void mouseLeft(bool down) override;
@@ -52,9 +57,14 @@ class Slider: public UiElement
     private:
         int* value_;
         int minValue_, maxValue_, step_;
+        
         Label* label_;
         int labelWidth_;
         bool showValue_;
+
+        std::string format_;  // value format: %4.2f, etc.
+        float divBy_;  // value is divided by this
+        
         std::vector<sf::String> sliderNames_;
         sf::String toolTip_;
 };

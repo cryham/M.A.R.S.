@@ -417,7 +417,7 @@
 303 Reset Defaults
 
 //  Game
-304 Ship turn speed
+304 Turn speed
 305 Damage scale
 306 Regeneration
 307 Fuel regeneration

@@ -84,10 +84,12 @@ UiWindow* MapOptions::get()
 
         tabObjects->addWidget(new Slider(locales::getLocale(locales::BlackHoles), "",
             &settings::iMapBlackHoles, -1, 100, 1,
-            Vector2f(x,y), w, 240, true));  y += yadd;
+            Vector2f(x,y), w, 240, true, Slider::None,
+            "%1.0f %%", 1.f));  y += yadd;
         tabObjects->addWidget(new Slider(locales::getLocale(locales::Suns), "",  // suns
             &settings::iMapSuns, -1, 100, 1,
-            Vector2f(x,y), w, 240, true));  y += yadd*3/2;
+            Vector2f(x,y), w, 240, true, Slider::None,
+            "%1.0f %%", 1.f));  y += yadd*3/2;
 
 
         //  map Size  buttons  ----
@@ -122,7 +124,8 @@ UiWindow* MapOptions::get()
 
         tabSize->addWidget(new Slider(locales::getLocale(locales::GravityScale), "",  // gravity
             &settings::iGravityScale, 5, 300, 10,
-            Vector2f(x,y), w, 240, true));  y += yadd*3/2;
+            Vector2f(x,y), w, 240, true, Slider::None,
+            "%1.0f %%", 1.f));  y += yadd*3/2;
         tabSize->addWidget(new Slider(locales::getLocale(locales::ShipRadius), "",  // ship
             &settings::iShipRadius, 5, 60, 10,
             Vector2f(x,y), w*2/3.f, 240, true));  y += yadd;
@@ -145,9 +148,10 @@ UiWindow* MapOptions::get()
             Vector2f(x,y), w, 240, true));  y += yadd;
         tabTurrets->addWidget(new Slider(locales::getLocale(locales::RespawnDelay), "",
             &settings::iTurretRespawnDelay, -1, 600, 1,
-            Vector2f(x,y), w, 240, true));  y += yadd;
-        tabTurrets->addWidget(new Slider(locales::getLocale(locales::ShipTurnSpeed), "",
-            &settings::iTurretTurnSpeed, 5, 300, 10,
+            Vector2f(x,y), w, 240, true, Slider::None,
+            "%3.1f s", 10.f));  y += yadd;
+        tabTurrets->addWidget(new Slider(locales::getLocale(locales::TurnSpeed), "",
+            &settings::iTurretTurnSpeed, 1, 100, 10,
             Vector2f(x,y), w, 240, true));  y += yadd;
 
 

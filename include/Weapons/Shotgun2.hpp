@@ -28,7 +28,7 @@ class Shotgun2: public Weapon
     public:
         /// Ctor which constructs the weapon.
         Shotgun2(Mount* parent):
-              Weapon(weapons::wShotgun2, parent, sf::String("SHOTGUN2"))
+              Weapon(weapons::wShotgun2, parent, sf::String("Shotgun2"))
         {   }
 
         /// Spawns some particles.

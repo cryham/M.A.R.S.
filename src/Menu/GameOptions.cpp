@@ -54,26 +54,22 @@ UiWindow* GameOptions::get()
         // instance_->addWidget(new LabeledBox(locales::getLocale(locales::SpaceObjects),
         //    Vector2f(10, y), 100, 210));  y += yadd*3/2;
 
-        instance_->addWidget(new Slider(locales::iDumb, locales::ttBotStrength,
+        instance_->addWidget(new Slider(locales::BotsDifficulty, locales::ttBotStrength,
 			&settings::iBotsDifficulty, 0, 100, 5,
-			Vector2f(20,y), w, 240, true));  y += yadd;
+			Vector2f(20,y), w, 240, true, Slider::None,
+            "%1.0f %%", 1.f));  y += yadd;
         instance_->addWidget(new Slider(locales::PowerUpRate, locales::ttPowerUpRate,
 			&settings::iPowerUpRate, 0, 100, 5,
 			Vector2f(20,y), w, 240, true));  y += yadd*3/2;
 
-        // instance_->addWidget(new Slider(locales::getLocale(locales::ShipTurnSpeed), "",
-        //    &settings::C_ShipTurnSpeed, 1, 60, 1,
-        //    Vector2f(20,y), w, 240, true));  y += yadd;
-        // instance_->addWidget(new Slider(locales::getLocale(locales::GlowAlpha), "",
-        //    &settings::C_GlowAlpha, 0, 150, 1,
-        //    Vector2f(20,y), w, 240, true));  y += yadd*3/2;
-
         instance_->addWidget(new Slider(locales::getLocale(locales::DamageScale), "",
            &settings::iDamageScale, 0, 200, 1,
-           Vector2f(20,y), w, 240, true));  y += yadd;
+           Vector2f(20,y), w, 240, true, Slider::None,
+            "%1.0f %%", 1.f));  y += yadd;
         instance_->addWidget(new Slider(locales::getLocale(locales::RespawnDelay), "",
            &settings::iRespawnDelay, 0, 80, 1,
-           Vector2f(20,y), w, 240, true));  y += yadd*3/2;
+           Vector2f(20,y), w, 240, true, Slider::None,
+           "%3.1f s", 10.f));  y += yadd*3/2;
 
         instance_->addWidget(new Slider(locales::getLocale(locales::Regeneration), "",
            &settings::iRegeneration, 0, 150, 1,

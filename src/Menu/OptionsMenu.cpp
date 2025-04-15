@@ -47,13 +47,6 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Locales/locales.hpp"
 #include "Menu/ChooseLanguage.hpp"
 #include "Menu/ShaderError.hpp"
-#include "Menu/About.hpp"
-#include "Menu/Connect.hpp"
-#include "Menu/InfoCK.hpp"
-#include "Menu/InfoSB.hpp"
-#include "Menu/InfoDM.hpp"
-#include "Menu/InfoTDM.hpp"
-#include "Menu/InfoHide.hpp"
 #include "Shaders/postFX.hpp"
 #include "defines.hpp"
 
@@ -108,7 +101,8 @@ UiWindow* OptionsMenu::get()
 
         tabInterface->addWidget(new Slider(locales::Scale, locales::ttScale,
             &UIscale_, 80, 400, 10,
-            Vector2f(20,y), 540, xTxt, true));  y += yadd*3/2;
+            Vector2f(20,y), 540, xTxt, true, Slider::None,
+            "%1.0f %%", 1.f));  y += yadd*3/2;
         
         tabInterface->addWidget(new Checkbox(locales::ShowToolTips, locales::ttShowToolTips,
             &settings::bShowToolTips,
@@ -202,10 +196,12 @@ UiWindow* OptionsMenu::get()
         //  particles
         tabGraphics->addWidget(new Slider(locales::ParticleCountSlider, locales::ttParticleCountSlider,
             &settings::iParticleCount, 1, 300, 15,
-            Vector2f(20,y), 540, xTxt, true));  y += yadd;
+            Vector2f(20,y), 540, xTxt, true, Slider::None,
+            "%1.0f %%", 1.f));  y += yadd;
         tabGraphics->addWidget(new Slider(locales::ParticleLifetime, locales::ttParticleLifetime,
             &settings::iParticleLifeTime, 1, 300, 15,
-            Vector2f(20,y), 540, xTxt, true));  y += yadd;
+            Vector2f(20,y), 540, xTxt, true, Slider::None,
+            "%1.0f %%", 1.f));  y += yadd;
 
 
         //  Gameplay  ----
@@ -214,11 +210,13 @@ UiWindow* OptionsMenu::get()
             Vector2f(10,y), 560, 90));  y += yadd*3/2;
         tabGameplay->addWidget(new Slider(locales::GameSpeed, locales::ttGameSpeed,
             &settings::iGameSpeed, 50, 200, 5,
-            Vector2f(20,y), 540, xTxt, true));  y += yadd*3/2;
+            Vector2f(20,y), 540, xTxt, true, Slider::None,
+            "%1.0f %%", 1.f));  y += yadd*3/2;
         
         tabGameplay->addWidget(new Slider(locales::getLocale(locales::CountDown), "",
             &settings::iCountDown, 0, 6, 1,
-            Vector2f(20,y), 540, xTxt, true, off));  y += yadd;
+            Vector2f(20,y), 540, xTxt, true, off,
+            "%3.1f s", 10.f));  y += yadd;
         tabGameplay->addWidget(new Slider(locales::SlowMoKickIn, locales::ttSlowMoKickIn,
             &settings::iSlowMoKickIn, 0, 10, 1,
             Vector2f(20,y), 540, xTxt, true, off));  y += yadd;
@@ -250,13 +248,16 @@ UiWindow* OptionsMenu::get()
             Vector2f(10,y), 560, 90));  y += yadd*3/2;
         tabAudio->addWidget(new Slider(locales::MusicVolume, locales::ttMusicVolume,
             &musicVolume_, 0, 100, 5,
-            Vector2f(20,y), 540, xTxt, true, off));  y += yadd;
+            Vector2f(20,y), 540, xTxt, true, off,
+            "%1.0f %%", 1.f));  y += yadd;
         tabAudio->addWidget(new Slider(locales::SoundVolume, locales::ttSoundVolume,
             &soundVolume_, 0, 100, 5,
-            Vector2f(20,y), 540, xTxt, true, off));  y += yadd;
+            Vector2f(20,y), 540, xTxt, true, off,
+            "%1.0f %%", 1.f));  y += yadd;
         tabAudio->addWidget(new Slider(locales::AnnouncerVolume, locales::ttAnnouncerVolume,
             &announcerVolume_, 0, 100, 5,
-            Vector2f(20,y), 540, xTxt, true, off));  y += yadd*2;
+            Vector2f(20,y), 540, xTxt, true, off,
+            "%1.0f %%", 1.f));  y += yadd*2;
         
         tabAudio->addWidget(new LabeledBox(locales::getLocale(locales::PlaybackSettings),
             Vector2f(10,y), 560, 60));  y += yadd*3/2;
@@ -301,12 +302,13 @@ UiWindow* OptionsMenu::get()
 
         tabShips->addWidget(new LabeledBox(locales::getLocale(locales::GameOptions),
             Vector2f(10, y), 560, 90));  y += yadd*3/2;
-        tabShips->addWidget(new Slider(locales::getLocale(locales::ShipTurnSpeed), "",
+        tabShips->addWidget(new Slider(locales::getLocale(locales::TurnSpeed), "",
            &settings::iShipTurnSpeed, 1, 60, 1,
            Vector2f(20,y), 540, 240, true));  y += yadd;
         tabShips->addWidget(new Slider(locales::getLocale(locales::GlowAlpha), "",
            &settings::iGlowAlpha, 0, 150, 1,
-           Vector2f(20,y), 540, 240, true));  y += yadd*3/2;
+           Vector2f(20,y), 540, 240, true, Slider::None,
+            "%1.0f %%", 1.f));  y += yadd*3/2;
 
 
         //  Player I keys  ----

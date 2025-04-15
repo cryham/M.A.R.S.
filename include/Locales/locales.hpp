@@ -66,7 +66,7 @@ namespace locales
         
         Interface, StarsHigh, Language, ScreenShotKey,
         Points, Frags, TeamKills, Suicides, Deaths, GameOptions, Total, Statistics, Pointlimit, Shaders,
-        ShaderError, Gameplay, PowerUpRate, iDumb, SlowMoKickIn, SlowMoOff,
+        ShaderError, Gameplay, PowerUpRate, BotsDifficulty, SlowMoKickIn, SlowMoOff,
         Credits, SpecialThanks, CreditText,
         Resolution, ColorDepth, SpecialKey,
         
@@ -106,7 +106,7 @@ namespace locales
         MapSize0,MapSize1,MapSize2,MapSize3,MapSize4,MapSize5,MapSize6,
         Defaults,
         //  Game
-        ShipTurnSpeed, DamageScale, Regeneration, FuelRegen,
+        TurnSpeed, DamageScale, Regeneration, FuelRegen,
         RespawnDelay, GlowAlpha, GravityScale,
         MouseRotationAim, ttMouseRotationAim,
         

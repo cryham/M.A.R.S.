@@ -17,6 +17,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "Interface/Slider.hpp"
 
+#include "System/Vector2f.hpp"
 #include "System/settings.hpp"
 #include "System/window.hpp"
 #include "Media/text.hpp"
@@ -25,24 +26,34 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Interface/toolTip.hpp"
 
 #include <SFML/OpenGL.hpp>
+#include <cstdio>
 #include <sstream>
+
+
+std::vector<sf::String> Slider::None;
 
 
 Slider::Slider (locales::LocaleType text, locales::LocaleType toolTip,
         int* value, int minValue, int maxValue, int step,
         Vector2f const& topLeft, int width, int labelWidth,
         bool showValue,
-        std::vector<sf::String> const& sliderNames)
+        std::vector<sf::String> const& sliderNames,
+        std::string format,
+        float divBy)
     :Slider (locales::getLocale(text), locales::getLocale(toolTip),
         value, minValue, maxValue, step,
         topLeft, width, labelWidth,
-        showValue, sliderNames)
+        showValue, sliderNames,
+        format,
+        divBy)
 {   }
 
 Slider::Slider (const sf::String& text, const sf::String& toolTip,
         int* value, int minValue, int maxValue, int step,
         Vector2f const& topLeft, int width, int labelWidth,
-        bool showValue, std::vector<sf::String> const& sliderNames)
+        bool showValue, std::vector<sf::String> const& sliderNames,
+        std::string format,
+        float divBy)
     : UiElement(topLeft, width, 20)
     , value_(value)
     , minValue_(minValue)
@@ -50,6 +61,8 @@ Slider::Slider (const sf::String& text, const sf::String& toolTip,
     , step_(step)
     , labelWidth_(labelWidth * scale_)
     , showValue_(showValue)
+    , format_(format)
+    , divBy_(divBy)
     , sliderNames_(sliderNames)
     , toolTip_(toolTip)
 {
@@ -180,27 +193,23 @@ void Slider::draw() const
 
     if (showValue_)
     {
-        std::stringstream sstr;
+        char ch[64];
+        sprintf(ch, format_.c_str(), *value_ / divBy_);
+        std::string s;  s.assign(ch);
+
+        Vector2f pos = origin + Vector2f((labelWidth_-10) * mirror, 1);
         if (!sliderNames_.empty())
         {
-            if (sliderNames_.size() <= *value_-minValue_)
-            {
-                sstr << *value_;
-                text::drawScreenText( sf::String(sstr.str()),
-                    origin + Vector2f((labelWidth_-10)*mirror,1),
-                    12.f, TEXT_ALIGN_RIGHT, Color3f(0.7, 0.7, 0.7));
-            }
+            int id = *value_ - minValue_;
+            if (id < 0 || id >= sliderNames_.size())
+                text::drawScreenText( s,
+                    pos, 12.f, TEXT_ALIGN_RIGHT, Color3f(0.7, 0.7, 0.7));
             else
-                text::drawScreenText( sliderNames_[*value_-minValue_],
-                    origin + Vector2f((labelWidth_-10)*mirror,1),
-                    12.f, TEXT_ALIGN_RIGHT, Color3f(0.7, 0.7, 0.7));
+                text::drawScreenText( sliderNames_[id],
+                    pos, 12.f, TEXT_ALIGN_RIGHT, Color3f(0.7, 0.7, 0.7));
         }else
-        {   sstr << *value_;
-            text::drawScreenText(sf::String( sstr.str()),
-                origin + Vector2f((labelWidth_-10)*mirror,1),
-                12.f, TEXT_ALIGN_RIGHT, Color3f(0.7, 0.7, 0.7));
-        }
-
+            text::drawScreenText( s,
+                pos, 12.f, TEXT_ALIGN_RIGHT, Color3f(0.7, 0.7, 0.7));
     }
 
     // draw Label

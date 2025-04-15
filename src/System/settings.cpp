@@ -436,7 +436,13 @@ namespace settings
             oss << "Regeneration "          << iRegeneration << endl;
             oss << "FuelRegen "             << iFuelRegen << endl << endl;
             oss << "RespawnDelay "          << iRespawnDelay << endl;
-            oss << "GlowAlpha "             << iGlowAlpha << endl;
+            oss << "GlowAlpha "             << iGlowAlpha << endl << endl;
+            //  turrets
+            oss << "TurretsOnHome "         << iTurretsOnHome << endl;
+            oss << "TurretsOnPlanet "       << iTurretsOnPlanet << endl;
+            oss << "TurretAttackSpeed "     << iTurretAttackSpeed << endl;
+            oss << "TurretRespawnDelay "    << iTurretRespawnDelay << endl;
+            oss << "TurretTurnSpeed "       << iTurretTurnSpeed << endl << endl;
 
             oss.close();
             return true;
@@ -757,6 +763,12 @@ namespace settings
                 else if (line == "FuelRegen")           iss >> iFuelRegen;
                 else if (line == "RespawnDelay")        iss >> iRespawnDelay;
                 else if (line == "GlowAlpha")           iss >> iGlowAlpha;
+                //  turrets
+                else if (line == "TurretsOnHome")       iss >> iTurretsOnHome;
+                else if (line == "TurretsOnPlanet")     iss >> iTurretsOnPlanet;
+                else if (line == "TurretAttackSpeed")   iss >> iTurretAttackSpeed;
+                else if (line == "TurretRespawnDelay")  iss >> iTurretRespawnDelay;
+                else if (line == "TurretTurnSpeed")     iss >> iTurretTurnSpeed;
                 else
                 if (line.substr(0,14) != "enabledWeapons" && line.substr(0,15) != "enabledSpecials")
                     cout << line << " is a bad option in " << sConfigPath << "mars.cfg!\n";

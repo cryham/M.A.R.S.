@@ -16,6 +16,9 @@ Version 0.8.0
        Laser (long), Minigun (fast), Seekers (homing rockets),  
        WIP: Gauss (cannon), Grenades (explosives),  
        Pulse (arc area), Cloud (area), WIP: Freezers, Lightning
+   - **Turrets** WIP
+     - possible on team home or any planets
+     - destroyable, respawned
    - **Map Options** window, with sliders for:  
      - min,max count of space objects (planets, stars, black holes)
      - and their radius range, also minimal gap between
@@ -28,9 +31,8 @@ Version 0.8.0
    - more possible bots, more kills to end game
    - Ship thrusters now blue
 - ToDo:
-   - ToDo: *turrets*, near team homes, or any middle, destroyable, respawned
-   - ToDo: game effects from weapons: shock no weapons, chill slow move
-   - ToDo: 2nd weapon? timed regen or passive ability
+   - game effects from weapons: shock no weapons, chill slow move
+   - 2nd weapon? timed regen or passive ability
 - **Gui**
   - **Scale** slider for whole Gui in Options
   - bigger Gui, font, by default, added some colors

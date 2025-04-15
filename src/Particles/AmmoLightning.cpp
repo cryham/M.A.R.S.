@@ -33,7 +33,7 @@ AmmoLightning::AmmoLightning(
     Vector2f const& location, Vector2f const& direction,
     Vector2f const& velocity, Color3f const& color,
     Player* damageSource)
-    :Particle<AmmoLightning>(spaceObjects::oAmmoLightning, location, 8.f, 0.001f, randomizer::random(0.4f, 1.5f))
+    :Particle<AmmoLightning>(spaceObjects::oAmmoLightning, location, 2.f, 0.001f, randomizer::random(0.4f, 1.5f))
 {
     cloud_ = true;
     setDamageSource(damageSource);
@@ -45,7 +45,7 @@ AmmoLightning::AmmoLightning(
     acceleration_ = -randomizer::random(300.f, 600.f);
 
     location_ += velocity_*timer::frameTime()*1.2f;
-    radius_ = randomizer::random(6.f, 9.f) * 4.f;
+    radius_ = randomizer::random(6.f, 8.f) * 8.f;
     size_ = radius_;
 
     color_ = Color3f(randomizer::random(0.5f, 0.9f), randomizer::random(0.6f, 0.8f), 1.f);
@@ -56,7 +56,7 @@ void AmmoLightning::update()
 {
     float time = timer::frameTime();
 
-    physics::overlap(this, MOBILES);
+    physics::overlap(this, MOBILES | STATICS);
 
     radius_ = size_ + 1400.f * std::min(2.f, 3.f * lifeTime_);
 

@@ -42,6 +42,33 @@ namespace physics
     //----------------------------------------------------------------------------------------------------------------------------------
     void overlap (MobileSpaceObject* object, int with)
     {
+        // collision with planets
+        if (with & STATICS)
+        {
+            // check for collision with each static object
+            for (auto& it : staticObjects_)
+            {
+                // if object touches obstacle
+                if ((it->location_ - object->location_).lengthSquare() < std::pow(it->radius_ + object->radius_, 2))
+                {
+                    const Vector2f impactDirection = (it->location_ - object->location_).normalize();
+
+                    // if object is moving towards obstacle... avoiding double interactions
+                    // if ((object->velocity() * impactDirection) > 0)
+                    {
+                        const Vector2f velocityBefore = (object->velocity() * impactDirection) * impactDirection;
+                        // const Vector2f velocityBefore = object->velocity();
+                        // object->velocity() = object->velocity() - velocityBefore*0.6 - velocityBefore;
+
+                        const Vector2f impactLocation = it->location_ - impactDirection*it->radius_;
+                        it-> onCollision(object, impactLocation, impactDirection, velocityBefore);
+                        // object->onCollision(it,  impactLocation, impactDirection, velocityBefore);
+                        break;
+                    }
+                }
+            }
+        }
+
         // collision with ships and balls
         if (with & MOBILES)
         {
@@ -104,7 +131,7 @@ namespace physics
     //----------------------------------------------------------------------------------------------------------------------------------
     void collide (MobileSpaceObject* object, int with)
     {
-        // collision with planets
+        // collision with planets and turrets
         if (with & STATICS)
         {
             // check for collision with each static object
@@ -130,6 +157,7 @@ namespace physics
                 }
             }
         }
+
         // collision with ships and balls
         if (with & MOBILES)
         {
@@ -222,11 +250,13 @@ namespace physics
                 }
             }
         }
+
         // collision with particles
         if (with & PARTICLES)
             particles::collideWith(object);
     }
     //----------------------------------------------------------------------------------------------------------------------------------
+
 
     Vector2f attract (MobileSpaceObject* attracted)
     {

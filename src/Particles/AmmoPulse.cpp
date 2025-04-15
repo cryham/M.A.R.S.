@@ -53,11 +53,9 @@ void AmmoPulse::update()
 {
     float time = timer::frameTime();
 
-    physics::overlap(this, MOBILES);
-    // Vector2f acceleration; // = physics::attract(this)*0.8f;  //..add?
+    physics::overlap(this, MOBILES | STATICS);
 
-    location_ += velocity_*time;  // + acceleration*time*time;
-    // velocity_ += acceleration*time + 0.1f*velocity_*time;
+    location_ += velocity_*time;
     Vector2f const faceDirection(velocity_.normalize());
     velocity_ += acceleration_ * faceDirection * time;
     radius_ = 84.f + 120.4f * lifeTime_ / totalLifeTime_;

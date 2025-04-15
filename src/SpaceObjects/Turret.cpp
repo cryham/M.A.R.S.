@@ -189,6 +189,7 @@ void Turret::update()
             if (getLife() <= 0)  explode();
         }
     }else
+    if (settings::iTurretRespawnDelay >= 0)
     {
         respawnTimer_ -= time;
         if (respawnTimer_ < 0)  respawn();

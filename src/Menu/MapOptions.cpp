@@ -78,18 +78,18 @@ UiWindow* MapOptions::get()
             &settings::iMapMaxPlanetsSize, 1, 900, 1,
             Vector2f(x,y), w, 240, true));  y += yadd*3/2;
 
-        tabObjects->addWidget(new Slider(locales::getLocale(locales::BlackHoles), "",
-            &settings::iMapBlackHoles, 0, 900, 1,
-            Vector2f(x,y), w, 240, true));  y += yadd;
-        tabObjects->addWidget(new Slider(locales::getLocale(locales::Suns), "",
-            &settings::iMapSuns, 0, 900, 1,
-            Vector2f(x,y), w, 240, true));  y += yadd*3/2;
-
         tabObjects->addWidget(new Slider(locales::getLocale(locales::MinPlanetGap), "",  // gap
             &settings::iMapMinPlanetGap, 0, 900, 1,
             Vector2f(x,y), w, 240, true));  y += yadd;
         tabObjects->addWidget(new Slider(locales::getLocale(locales::MapHomeRadius), "",  // home
             &settings::iMapHomeRadius, 1, 900, 1,
+            Vector2f(x,y), w, 240, true));  y += yadd*3/2;
+
+        tabObjects->addWidget(new Slider(locales::getLocale(locales::BlackHoles), "",
+            &settings::iMapBlackHoles, -1, 100, 1,
+            Vector2f(x,y), w, 240, true));  y += yadd;
+        tabObjects->addWidget(new Slider(locales::getLocale(locales::Suns), "",  // suns
+            &settings::iMapSuns, -1, 100, 1,
             Vector2f(x,y), w, 240, true));  y += yadd*3/2;
 
 
@@ -147,7 +147,7 @@ UiWindow* MapOptions::get()
             &settings::iTurretAttackSpeed, 0, 1000, 1,
             Vector2f(x,y), w, 240, true));  y += yadd;
         tabTurrets->addWidget(new Slider(locales::getLocale(locales::RespawnDelay), "",
-            &settings::iTurretRespawnDelay, 0, 120, 1,
+            &settings::iTurretRespawnDelay, -1, 600, 1,
             Vector2f(x,y), w, 240, true));  y += yadd;
         tabTurrets->addWidget(new Slider(locales::getLocale(locales::ShipTurnSpeed), "",
             &settings::iTurretTurnSpeed, 5, 300, 10,

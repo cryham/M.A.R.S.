@@ -61,7 +61,7 @@ namespace physics
                         // object->velocity() = object->velocity() - velocityBefore*0.6 - velocityBefore;
 
                         const Vector2f impactLocation = it->location_ - impactDirection*it->radius_;
-                        it-> onCollision(object, impactLocation, impactDirection, velocityBefore);
+                        it->onCollision(object, impactLocation, impactDirection, velocityBefore);
                         // object->onCollision(it,  impactLocation, impactDirection, velocityBefore);
                         break;
                     }
@@ -104,9 +104,9 @@ namespace physics
                             const Vector2f chordMidPoint     = target->location_ + centerDist;
 
                             // if path of object has intersected with target within the last frame
-                            if ( ((source->location_ - target->location_).lengthSquare() < minDistSquared)
-                              || ((lastFrameLocation - target->location_).lengthSquare() < minDistSquared)
-                              || ((chordMidPoint - source->location_)*(chordMidPoint - lastFrameLocation) < 0.f))
+                            if ((source->location_ - target->location_).lengthSquare() < minDistSquared ||
+                                (lastFrameLocation - target->location_).lengthSquare() < minDistSquared ||
+                                (chordMidPoint - source->location_) * (chordMidPoint - lastFrameLocation) < 0.f)
                             {
                                 if (source->velocity()*(target->location_ - lastFrameLocation) > 0)
                                 {
@@ -150,7 +150,7 @@ namespace physics
                         object->velocity() = object->velocity() - velocityBefore*0.6 - velocityBefore;
 
                         const Vector2f impactLocation = it->location_ - impactDirection*it->radius_;
-                        it-> onCollision(object, impactLocation, impactDirection, velocityBefore);
+                        it->onCollision(object, impactLocation, impactDirection, velocityBefore);
                         object->onCollision(it,  impactLocation, impactDirection, velocityBefore);
                         break;
                     }
@@ -193,9 +193,9 @@ namespace physics
                             const Vector2f chordMidPoint     = target->location_ + centerDist;
 
                             // if path of object has intersected with target within the last frame
-                            if ( ((source->location_ - target->location_).lengthSquare() < minDistSquared)
-                              || ((lastFrameLocation - target->location_).lengthSquare() < minDistSquared)
-                              || ((chordMidPoint - source->location_)*(chordMidPoint - lastFrameLocation) < 0.f))
+                            if ((source->location_ - target->location_).lengthSquare() < minDistSquared ||
+                                (lastFrameLocation - target->location_).lengthSquare() < minDistSquared ||
+                                (chordMidPoint - source->location_)*(chordMidPoint - lastFrameLocation) < 0.f)
                             {
                                 if (source->velocity()*(target->location_ - lastFrameLocation) > 0)
                                 {
@@ -222,16 +222,20 @@ namespace physics
                                         // add to orthongonal speed component of initial velocity
                                         // special case: Collision with rofle bullets is not physically correct, for improved gameplay
                                         if ((source->type() == spaceObjects::oAmmoROFLE) | (target->type() == spaceObjects::oAmmoROFLE))
-                                            target-> velocity() += (0.05f*source->velocity()*source->mass_ + (velocityTargetAfter - velocityTargetBefore) * 0.6);
+                                            target->velocity() += (0.05f*source->velocity()*source->mass_ +
+                                                (velocityTargetAfter - velocityTargetBefore) * 0.6);
                                         else
                                         {   source->velocity() += (velocitySourceAfter - velocitySourceBefore) * 0.8;
                                             target->velocity() += (velocityTargetAfter - velocityTargetBefore) * 0.8;
                                         }
                                     }else
                                     {
-                                        const Vector2f velocityAfter = (velocitySourceBefore*source->mass_ + velocityTargetBefore*target->mass_) / (source->mass_ + target->mass_);
+                                        const Vector2f velocityAfter = (velocitySourceBefore*source->mass_ +
+                                            velocityTargetBefore*target->mass_) / (source->mass_ + target->mass_);
+                                        
                                         target->onCollision(source, impactLocation, impactDirection, Vector2f());
                                         source->onCollision(target, impactLocation, impactDirection, Vector2f());
+                                        
                                         source->velocity() = source->velocity() - velocitySourceBefore + velocityAfter;
                                         target->velocity() = target->velocity() - velocityTargetBefore + velocityAfter;
                                     }
@@ -243,7 +247,7 @@ namespace physics
                     {
                         // if objects intersect, but aren't moving
                         const Vector2f normDistance = (target->location_ - source->location_).normalize();
-                        const float    moveOutDist  = ((target->radius_ + source->radius_) - (source->location_ - target->location_).length())*0.5;
+                        const float    moveOutDist  = ((target->radius_ + source->radius_) - (source->location_ - target->location_).length()) * 0.5;
                         source->location_ = target->location_ - normDistance*moveOutDist;
                         target->location_ = source->location_ + normDistance*moveOutDist;
                     }

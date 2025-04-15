@@ -143,7 +143,7 @@ namespace settings
     int         iTurretsOnPlanet     = 1;
     int         iTurretAttackSpeed   = 100;
     int         iTurretRespawnDelay  = 100;  // 8s
-    int         iTurretTurnSpeed     = 100;
+    int         iTurretTurnSpeed     = 5;
 
     //  weapons
     bool        bEnabledWeapons[weapons::All] = {true,};

@@ -130,34 +130,38 @@ void Turret::update()
                     }
                 }
                 if (closest)
-                {   // rotate and attack  // todo: turn speed
+                {   //  rotate and attack
                     auto pos = closest->location() - location_;
-                    rotation_ = ships::GetAngle(pos.x_, -pos.y_) * 180.f/M_PI;
+                    float angle = ships::GetAngle(pos.x_, -pos.y_) * 180.f/M_PI;
+                #if 0
+                    rotation_ = angle;
+                #else
+                    const float rot = settings::iTurretTurnSpeed / 100.f;
+                    float diff = angle - rotation_;
+                    diff = fmod(diff + 180.f,  360.f) - 180.f;
+
+                    float amt = fabs(diff) * 5.f;
+                    if (amt > 100.f)  amt = 100.f;
+                    int rot_left_  = diff < 0.f ? amt : 0.f;
+                    int rot_right_ = diff > 0.f ? amt : 0.f;
+
+                    if (rot_right_ > 5)
+                        fmod(rotation_+= rotateSpeed_ *time *rot * rot_right_, 360.f);
+                    if (rot_left_  > 5)
+                        fmod(rotation_-= rotateSpeed_ *time *rot * rot_left_, 360.f);
+
+                    if (rot_right_ == 0 && rot_left_ == 0)
+                        rotateSpeed_ = 1.0;
+                    else if (rotateSpeed_ < 13.f)
+                        rotateSpeed_ += time*40.f;
+                #endif
 
                     if (weapon_ && randomizer::random(0, 1000) < settings::iTurretAttackSpeed)
                         weapon_->fire();
                 }
-                /*
-                const float rot = settings::iShipTurnSpeed / 100.f;
-                float angleRad = rotation_ * M_PI / 180.f;
-                Vector2f faceDirection(std::cos(angleRad), std::sin(angleRad));
-                Vector2f sideDirection(std::cos(angleRad + M_PI_2), std::sin(angleRad + M_PI_2));
-                Vector2f acceleration;
-
-				//  turn
-				if (right_ > 5)
-					fmod(rotation_+= rotateSpeed_ *time *rot * right_, 360.f);
-				if (left_  > 5)
-					fmod(rotation_-= rotateSpeed_ *time *rot * left_, 360.f);
-
-				if (right_ == 0 && left_ == 0)
-					rotateSpeed_ = 1.0;
-				else if (rotateSpeed_ < 13.f)
-					rotateSpeed_ += time*40.f;
-                */
             }else
             {
-                frozen_ -= timer::frameTime()*3.f;
+                frozen_ -= timer::frameTime()*3.f;  // melt
                 life_ -= timer::frameTime()*7.f;
 
                 if (frozen_ <= 0.f)
@@ -498,8 +502,8 @@ void Turret::onShockWave(Player* damageSource, float intensity)
 
         float damage(intensity * 0.1f * (20.f + settings::iBotsDifficulty));
         life_ -= damage;
-        if ((damageSource_ && (damageSource_->controlType_ == controllers::cPlayer1 ||
-                               damageSource_->controlType_ == controllers::cPlayer2)))
+        if (damageSource_ && (damageSource_->controlType_ == controllers::cPlayer1 ||
+                              damageSource_->controlType_ == controllers::cPlayer2))
         {
             damageByLocalPlayer_ -= damage;
             ++collisionCount_;

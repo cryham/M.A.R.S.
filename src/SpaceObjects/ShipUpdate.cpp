@@ -110,16 +110,16 @@ void Ship::update()
                     //     << " m " << p.x_ << " " << p.y_ << " rot " << rotation_ //* 180.f/M_PI
                     //     << " a " << a * 180.f/M_PI << endl;
                     
-                    //  turn
-                #if 1  // immediate meh
+                #if 0  // immediate-
                     rotation_ = angle;
-                #else  // todo: speed ..
-                    float diff = fabs(rotation_ - angle) * 10.f;
-                    if (diff > 100.f)  diff = 100.f;
-                    int rot_left_  = angle < rotation_ ? diff : 0.f;
-                    int rot_right_ = angle > rotation_ ? diff : 0.f;
-                    //  turn
-                    // rotateSpeed_ = 1.f;
+                #else
+                    float diff = angle - rotation_;
+                    diff = fmod(diff + 180.f,  360.f) - 180.f;
+
+                    float amt = min(100.f, fabs(diff) * 5.f);
+                    int rot_left_  = diff < 0.f ? amt : 0.f;
+                    int rot_right_ = diff > 0.f ? amt : 0.f;
+
                     if (rot_right_ > 5)
                         fmod(rotation_+= rotateSpeed_ *time *rot *slower * rot_right_, 360.f);
                     if (rot_left_  > 5)
@@ -212,7 +212,7 @@ void Ship::update()
                     }
                 }else
                 {
-                    //  turn
+                    //  turn manual
                     if (right_ > 5)
                         fmod(rotation_+= rotateSpeed_ *time *rot *slower * right_, 360.f);
                     if (left_  > 5)

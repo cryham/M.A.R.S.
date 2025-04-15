@@ -27,11 +27,11 @@ class AmmoPulse: public Particle<AmmoPulse>
             Color3f const& color, Player* damageSource);
         ~AmmoPulse();
 
-        void update();
-        void draw() const;
+        void update() override;;
+        void draw() const override;
 
         void onCollision(SpaceObject* with, Vector2f const& location,
-                         Vector2f const& direction, Vector2f const& velocity);
+                         Vector2f const& direction, Vector2f const& velocity) override;
 
         static void shockWave(Vector2f const& location, float strength, float radius);
 

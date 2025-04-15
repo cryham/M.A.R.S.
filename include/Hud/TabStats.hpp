@@ -31,8 +31,8 @@ class TabStats: public HudElement
     public:
         TabStats();
 
-        void update();
-        void draw() const;
+        void update() override;
+        void draw() const override;
 
         void display(bool show = true);
         void refresh();

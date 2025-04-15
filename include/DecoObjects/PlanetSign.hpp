@@ -33,7 +33,7 @@ class PlanetSign: public DecoObject
         /// Creates a randomly positioned Sign on the target Planet.
         PlanetSign(Planet* planet);
 
-        void draw() const;
+        void draw() const override;
 
     private:
         texture::TextureType texture_;

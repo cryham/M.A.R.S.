@@ -18,7 +18,6 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #pragma once
 
 #include "Interface/UiElement.hpp"
-#include "Interface/Label.hpp"
 
 #include <vector>
 
@@ -29,11 +28,12 @@ class VerticalSlider: public UiElement
         VerticalSlider (float* value, float min, float max,
             Vector2f const& topLeft, int height);
 
-        void mouseLeft(bool down);
-        void mouseMoved(Vector2f const& position);
-        void keyEvent(bool down, Key const& key);
+        void mouseLeft(bool down) override;
+        void mouseMoved(Vector2f const& position) override;
 
-        void draw() const;
+        void keyEvent(bool down, Key const& key) override;
+
+        void draw() const override;
 
     private:
         float* value_;

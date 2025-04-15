@@ -26,6 +26,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 class Ship;
 
 
+//  Base for all collectible power ups
+
 class PowerUp
 {
     public:
@@ -49,8 +51,10 @@ class PowerUp
 
         Vector2f location_;
         float radius_;
+
         std::list<Ship*> ships_;
         bool collected_;
+
         items::PowerUpType type_;
         float lifeTime_, totalLifeTime_;
 

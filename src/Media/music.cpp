@@ -21,7 +21,6 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "System/timer.hpp"
 #include "Hud/hud.hpp"
 #include "Locales/locales.hpp"
-#include "defines.hpp"
 #include "Games/games.hpp"
 #include "Hud/musicNotify.hpp"
 #include "System/window.hpp"
@@ -30,11 +29,11 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include <sys/types.h>
 #include <dirent.h>
 
+
 namespace music
 {
     namespace
     {
-        // for Music there is only one channel... who wants to have multiple music files played at once?
         sf::Music                musicChannel_;
         bool                     initialized_(false);
         float                    fadeOutTimer_(0.f);
@@ -65,8 +64,8 @@ namespace music
             setGlobalVolume();
             initialized_ = true;
         }
-
     }
+
 
     void update()
     {
@@ -91,7 +90,7 @@ namespace music
             }
 
             float slowMoTime(timer::slowMoTime());
-                 if (slowMoTime > 0.75f)  musicChannel_.setPitch(slowMoTime*0.666f);
+            if      (slowMoTime > 0.75f)  musicChannel_.setPitch(slowMoTime*0.666f);
             else if (slowMoTime > 0.25f)  musicChannel_.setPitch(0.5f);
             else if (slowMoTime > 0.0f)   musicChannel_.setPitch(1.f-slowMoTime*2.f);
             else                          musicChannel_.setPitch(1.f);
@@ -106,6 +105,7 @@ namespace music
         else if (musicChannel_.getStatus() == sf::Music::Playing)
             stop();
     }
+
 
     void play(std::string fileName)
     {

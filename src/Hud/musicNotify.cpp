@@ -44,7 +44,7 @@ namespace musicNotify
 
     }
 
-
+    //  draw
     void draw()
     {
         if (timer_ > 0.f)

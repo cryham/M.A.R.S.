@@ -19,7 +19,6 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "System/timer.hpp"
 #include "System/settings.hpp"
-#include "System/window.hpp"
 #include "Particles/particles.hpp"
 #include "DecoObjects/decoObjects.hpp"
 

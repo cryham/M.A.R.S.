@@ -23,5 +23,5 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 class RightLife: public HudElement
 {
     public:
-        void draw() const;
+        void draw() const override;
 };

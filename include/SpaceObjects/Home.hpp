@@ -29,8 +29,8 @@ class Home: public SpaceObject
         Home(Vector2f const& location, int life, float radius, float mass,
             Color3f const& color);
 
-        void update();
-        void draw() const;
+        void update() override;;
+        void draw() const override;
         void drawLife() const;
 
         int getLife() const;
@@ -38,7 +38,7 @@ class Home: public SpaceObject
         void createShips(std::vector<Player*>& inhabitants) const;
 
         void onCollision(SpaceObject* with, Vector2f const& location,
-                         Vector2f const& direction, Vector2f const& velocity);
+                         Vector2f const& direction, Vector2f const& velocity) override;
 
     private:
         void explode();

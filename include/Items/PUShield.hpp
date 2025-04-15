@@ -31,8 +31,8 @@ class PUShield: public PowerUp
             PowerUp(items::puShield, location,
                 15.f, randomizer::random(8.f, 12.f), 4, 0, Color3f(0.3f, 0.1f, 1.0f)){}
 
-        void draw() const;
+        void draw() const override;
 
     private:
-        void refreshLifeTime();
+        void refreshLifeTime() override;
 };

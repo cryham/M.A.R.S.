@@ -32,8 +32,8 @@ class DeathMatch: public Game
         void init();
 
         /// Draws the game.
-        void draw() const;
+        void draw() const override;
 
         /// Restarts the game.
-        void restart();
+        void restart() override;
 };

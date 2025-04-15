@@ -17,6 +17,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #pragma once
 
+
 /// A namespace for the commentator of the game.
 /// The different moods which can be given to the
 /// commentator will lead to different sayings.
@@ -41,4 +42,3 @@ namespace announcer
     /// which will be chosen randomly.
     void announce (SoundMood mood);
 }
-

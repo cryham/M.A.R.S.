@@ -39,15 +39,15 @@ class Slider: public UiElement
             std::vector<sf::String> const& sliderNames = std::vector<sf::String>() );
         ~Slider ();
 
-        void mouseLeft(bool down);
-        void mouseMoved(Vector2f const& position);
-        void mouseWheelMoved(Vector2f const& position, int delta);
-        void keyEvent(bool down, Key const& key);
+        void mouseLeft(bool down) override;
+        void mouseMoved(Vector2f const& position) override;
+        void mouseWheelMoved(Vector2f const& position, int delta) override;
+        void keyEvent(bool down, Key const& key) override;
 
-        void draw() const;
+        void draw() const override;
 
-        void setFocus  (UiElement* toBeFocused, bool isPrevious);
-        void clearFocus();
+        void setFocus(UiElement* toBeFocused, bool isPrevious) override;
+        void clearFocus() override;
 
     private:
         int* value_;

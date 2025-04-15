@@ -32,11 +32,11 @@ class AmmoSeekers: public Particle<AmmoSeekers>
             Color3f const& color, Player* damageSource);
         ~AmmoSeekers();
 
-        void update();
-        void draw() const;
+        void update() override;;
+        void draw() const override;
 
         void onCollision(SpaceObject* with, Vector2f const& location,
-                         Vector2f const& direction, Vector2f const& velocity);
+                         Vector2f const& direction, Vector2f const& velocity) override;
 
         friend class Particle<AmmoSeekers>;
         template <typename Object> friend class Ice;

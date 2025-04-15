@@ -18,11 +18,11 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #pragma once
 
 #include "System/Vector2f.hpp"
-#include "System/Color3f.hpp"
 
 #include <vector>
 
 class Home;
+
 
 class Track
 {
@@ -38,10 +38,11 @@ class Track
 
         void sortAnchors();
         void sortLTR();
-        void sortHalf (Vector2f const& origin, int startIndex, int endIndex, bool rightHalf, bool CW);
+        void sortHalf(Vector2f const& origin, int startIndex, int endIndex, bool rightHalf, bool CW);
 
         void removeSharpCorners();
         void createBezier();
+
 
         std::vector<Vector2f> points_;
         std::vector<Vector2f> anchors_;

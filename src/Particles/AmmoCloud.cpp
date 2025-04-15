@@ -17,11 +17,9 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "Particles/AmmoCloud.hpp"
 
+#include "SpaceObjects/physics.hpp"
 #include "System/timer.hpp"
-#include "System/settings.hpp"
 #include "Particles/particles.hpp"
-#include "TrailEffects/trailEffects.hpp"
-#include "Media/sound.hpp"
 #include "System/randomizer.hpp"
 #include <cmath>
 
@@ -54,7 +52,7 @@ void AmmoCloud::update()
 {
     float time = timer::frameTime();
 
-    physics::overlap(this, MOBILES);
+    physics::overlap(this, MOBILES | STATICS);
     // Vector2f acceleration; // = physics::attract(this)*0.8f;  //..add?
 
     location_ += velocity_*time;  // + acceleration*time*time;

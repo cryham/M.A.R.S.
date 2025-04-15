@@ -21,8 +21,6 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Items/items.hpp"
 #include "Items/CannonControl.hpp"
 #include "Teams/Team.hpp"
-#include "System/settings.hpp"
-#include "Players/BotPlayer.hpp"
 #include "Teams/teams.hpp"
 #include "SpaceObjects/Ball.hpp"
 #include "SpaceObjects/Home.hpp"

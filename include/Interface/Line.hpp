@@ -25,9 +25,9 @@ class Line: public UiElement
     public:
         Line(Vector2f const& begin, Vector2f const& end);
 
-        void draw() const;
+        void draw() const override;
 
-        bool isTabable() const
+        bool isTabable() const override
         {   return false;  }
 
     private:

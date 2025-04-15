@@ -29,10 +29,11 @@ class ColorPickerWindow: public UiWindow
     public:
         ColorPickerWindow (ColorPicker* parent, Color3f* color);
 
-        void draw() const;
+        void draw() const override;
 
-        void checkWidgets();
-        void onShow()
+        void checkWidgets() override;
+
+        void onShow() override
         {   }
         void reset()
         {   }
@@ -43,4 +44,3 @@ class ColorPickerWindow: public UiWindow
         ColorPicker* parent_;
         Color3f*  color_;
 };
-

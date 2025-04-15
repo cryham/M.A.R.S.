@@ -19,7 +19,6 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "Interface/UiElement.hpp"
 #include "System/Color3f.hpp"
-#include "Hud/hud.hpp"
 
 
 class Label: public UiElement
@@ -30,15 +29,15 @@ class Label: public UiElement
             Color3f color = Color3f(0.7f,0.7f,0.7f),
             bool interactive = true, sf::Font* font = NULL);
 
-        void mouseMoved(Vector2f const& position);
+        void mouseMoved(Vector2f const& position) override;
 
-        void draw() const;
+        void draw() const override;
 
-        bool isTabable() const
+        bool isTabable() const override
         {   return false;  }
 
-        void setFocus  (UiElement* toBeFocused, bool isPrevious);
-        void clearFocus();
+        void setFocus(UiElement* toBeFocused, bool isPrevious) override;
+        void clearFocus() override;
 
     private:
         sf::String text_;

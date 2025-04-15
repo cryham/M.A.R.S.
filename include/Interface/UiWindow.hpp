@@ -28,19 +28,19 @@ class UiWindow: public UiElement
         UiWindow (int width, int height, Vector2f const& position = Vector2f());
         virtual ~UiWindow();
 
-        void mouseMoved(Vector2f const& position);
-        void mouseWheelMoved(Vector2f const& position, int delta);
-        void mouseLeft(bool down);
-        void keyEvent(bool down, Key const& key);
-        void textEntered(sf::Uint32 keyCode);
+        void mouseMoved(Vector2f const& position) override;
+        void mouseWheelMoved(Vector2f const& position, int delta) override;
+        void mouseLeft(bool down) override;
+        void keyEvent(bool down, Key const& key) override;
+        void textEntered(sf::Uint32 keyCode) override;
 
-        bool tabNext();
-        bool tabPrevious();
+        bool tabNext() override;
+        bool tabPrevious() override;
 
-        virtual void draw () const;
+        virtual void draw () const override;
 
-        void setFocus(UiElement* toBeFocused, bool isPrevious);
-        void clearFocus();
+        void setFocus(UiElement* toBeFocused, bool isPrevious) override;
+        void clearFocus() override;
 
         virtual void checkWidgets() = 0;
         virtual void onShow() = 0;
@@ -48,10 +48,10 @@ class UiWindow: public UiElement
         void addWidget (UiElement* toBeAdded);
 
         void setTopMost(bool);
-        bool isTopMost() const {  return topMost_;  }
-        bool isTabable() const {  return false;  }
+        bool isTopMost() const override {  return topMost_;  }
+        bool isTabable() const override {  return false;  }
 
-        virtual Vector2f getTopLeft() const;
+        virtual Vector2f getTopLeft() const  override;
 
     protected:
         std::vector<UiElement*> widgets_;

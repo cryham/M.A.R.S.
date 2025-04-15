@@ -19,7 +19,6 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "System/settings.hpp"
 #include "System/timer.hpp"
-#include "defines.hpp"
 #include "System/randomizer.hpp"
 
 #include <iostream>

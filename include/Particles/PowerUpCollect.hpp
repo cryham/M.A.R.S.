@@ -27,8 +27,8 @@ class PowerUpCollect: public Particle<PowerUpCollect>
         PowerUpCollect(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,
             Color3f const& color, Player* damageSource);
 
-        void update();
-        void draw() const;
+        void update() override;;
+        void draw() const override;
 
         friend class Particle<PowerUpCollect>;
 

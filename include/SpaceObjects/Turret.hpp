@@ -20,7 +20,6 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "SpaceObjects/SpaceObject.hpp"
 #include "Weapons/Weapon.hpp"
 #include "Specials/Special.hpp"
-#include "DecoObjects/Ice.hpp"
 
 
 class Turret: public SpaceObject, public Mount

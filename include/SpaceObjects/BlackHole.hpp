@@ -26,8 +26,8 @@ class BlackHole: public SpaceObject
     public:
         BlackHole(Vector2f const& location, float radius);
 
-        void update();
-        void draw() const;
+        void update() override;;
+        void draw() const override;
 
     private:
         float rotation_;

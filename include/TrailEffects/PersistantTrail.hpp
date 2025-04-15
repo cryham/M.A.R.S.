@@ -33,9 +33,10 @@ class PersistantTrail: public Trail
             float timeStep, float duration, float width,
             Color3f const& color);
 
-        void update();
-        void draw() const;
-        bool isDead() const;
+        void update() override;;
+        void draw() const override;
+        
+        bool isDead() const override;
 
     private:
         std::vector<Vector2f> points_;

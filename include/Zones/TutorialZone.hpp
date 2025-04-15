@@ -30,10 +30,10 @@ class TutorialZone: public Zone
         TutorialZone(Vector2f const& location, float radius);
 
         /// Returns true, if the given SpaceObject is inside this Zone.
-        bool isInside(SpaceObject const& toBeChecked) const;
+        bool isInside(SpaceObject const& toBeChecked) const override;
 
         /// Draws the zone.
-        void draw() const;
+        void draw() const override;
 
     private:
         const float radius_;

@@ -26,13 +26,13 @@ class Ball: public MobileSpaceObject
     public:
         Ball(Vector2f const& location);
 
-        void update();
-        void draw() const;
+        void update() override;;
+        void draw() const override;
 
         void onCollision(SpaceObject* with, Vector2f const& location,
-                         Vector2f const& direction, Vector2f const& velocity);
+                         Vector2f const& direction, Vector2f const& velocity) override;
 
-        void onShockWave(Player* source, float intensity);
+        void onShockWave(Player* source, float intensity) override;
 
         bool atStart() const      {   return sticky_;  }
         bool isVisible() const    {   return visible_;  }

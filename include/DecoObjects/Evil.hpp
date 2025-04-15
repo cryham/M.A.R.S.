@@ -25,5 +25,5 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 class Evil: public DecoObject
 {
     public:
-        void draw() const;
+        void draw() const override;
 };

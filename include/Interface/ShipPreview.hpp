@@ -27,9 +27,9 @@ class ShipPreview: public UiElement
         ShipPreview (Color3f* color, Color3f* teamColor,
             int* graphic, Vector2f const& topLeft);
 
-        void draw() const;
+        void draw() const override;
 
-        bool isTabable() const
+        bool isTabable() const override
         {   return false;  }
 
     private:

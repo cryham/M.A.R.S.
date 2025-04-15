@@ -29,19 +29,19 @@ class TabList: public UiElement
         TabList (Vector2f const& topLeft, int width, int height);
         ~TabList();
 
-        void mouseMoved(Vector2f const& position);
-        void mouseWheelMoved(Vector2f const& position, int delta);
-        void mouseLeft(bool down);
-        void keyEvent(bool down, Key const& key);
-        void textEntered(sf::Uint32 keyCode);
+        void mouseMoved(Vector2f const& position) override;
+        void mouseWheelMoved(Vector2f const& position, int delta) override;
+        void mouseLeft(bool down) override;
+        void keyEvent(bool down, Key const& key) override;
+        void textEntered(sf::Uint32 keyCode) override;
 
-        bool tabNext();
-        bool tabPrevious();
+        bool tabNext() override;
+        bool tabPrevious() override;
 
-        void setFocus  (UiElement* toBeFocused, bool isPrevious);
-        void clearFocus();
+        void setFocus(UiElement* toBeFocused, bool isPrevious) override;
+        void clearFocus() override;
 
-        void draw() const;
+        void draw() const override;
 
         void addTab(Tab* toBeAdded);
         void activate(Tab* toBeActivated);

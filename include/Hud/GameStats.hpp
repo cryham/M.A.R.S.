@@ -28,7 +28,7 @@ class GameStats: public HudElement
             particleCount_(0)
         {   }
 
-        void draw() const;
+        void draw() const override;
 
     private:
         mutable float updateTimer_;

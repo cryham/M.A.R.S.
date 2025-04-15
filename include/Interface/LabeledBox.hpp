@@ -18,7 +18,6 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #pragma once
 
 #include "Interface/UiElement.hpp"
-#include "System/Color3f.hpp"
 
 class Label;
 
@@ -30,9 +29,9 @@ class LabeledBox: public UiElement
 
         ~LabeledBox();
 
-        void draw() const;
+        void draw() const override;
 
-        bool isTabable() const
+        bool isTabable() const override
         {   return false;  }
 
     private:

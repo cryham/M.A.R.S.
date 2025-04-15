@@ -23,6 +23,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include <vector>
 #include <set>
 
+
 namespace trailEffects
 {
     namespace
@@ -86,5 +87,3 @@ namespace trailEffects
         trails_.clear();
     }
 }
-
-

@@ -33,14 +33,14 @@ class KeyEdit: public UiElement
             Vector2f const& topLeft, int width, int labelWidth, Color3f color = {0.7f,0.7f,0.7f});
         ~KeyEdit ();
 
-        void mouseMoved(Vector2f const& position);
-        void mouseLeft(bool down);
-        void keyEvent(bool down, Key const& key);
+        void mouseMoved(Vector2f const& position) override;
+        void mouseLeft(bool down) override;
+        void keyEvent(bool down, Key const& key) override;
 
-        void draw() const;
+        void draw() const override;
 
-        void setFocus  (UiElement* toBeFocused, bool isPrevious);
-        void clearFocus();
+        void setFocus(UiElement* toBeFocused, bool isPrevious) override;
+        void clearFocus() override;
 
     private:
         Key* value_;

@@ -31,8 +31,8 @@ class PUReverse: public PowerUp
             PowerUp(items::puReverse, location,
                 15.f, randomizer::random(8.f, 12.f), 3, 0, Color3f(1.f, 0.2f, 0.8f)){}
 
-        void draw() const;
+        void draw() const override;
 
     private:
-        void refreshLifeTime();
+        void refreshLifeTime() override;
 };

@@ -37,7 +37,7 @@ class Bolt: public DecoObject
             ,flickerTimer_(0.f)
         {   }
 
-        void draw() const;
+        void draw() const override;
 
     private:
         SpaceObject *from_, *to_;

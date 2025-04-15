@@ -27,11 +27,11 @@ class AmmoH2OMG: public Particle<AmmoH2OMG>
         AmmoH2OMG(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,
             Color3f const& color, Player* damageSource);
 
-        void update();
-        void draw() const;
+        void update() override;;
+        void draw() const override;
 
         void onCollision(SpaceObject* with, Vector2f const& location,
-                         Vector2f const& direction, Vector2f const& velocity);
+                         Vector2f const& direction, Vector2f const& velocity) override;
 
         friend class Particle<AmmoH2OMG>;
 

@@ -33,13 +33,13 @@ class Tutorial: public Game
         Tutorial();
 
         /// Updates the game.
-        void update();
+        void update() override;;
 
         /// Draws the game.
-        void draw() const;
+        void draw() const override;
 
         /// Restarts the game.
-        void restart();
+        void restart() override;
 
     private:
         /// State of the tutorial.

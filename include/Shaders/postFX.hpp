@@ -21,6 +21,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include <SFML/Graphics.hpp>
 
+
 /// A namespace for post processing shaders.
 
 namespace postFX 

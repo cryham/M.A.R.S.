@@ -25,6 +25,7 @@ class HudElement
         {   }
 
         virtual void draw() const = 0;
+        
         virtual void update()
         {   }
 };

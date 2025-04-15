@@ -33,7 +33,7 @@ class SunHeat: public DecoObject
         SunHeat(Sun* sun);
 
         /// Draws the texture.
-        void draw() const;
+        void draw() const override;
 
     private:
         Vector2f location_;

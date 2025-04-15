@@ -27,8 +27,8 @@ class Message: public HudElement
     public:
         Message(sf::String const& message, Color3f const& color);
 
-        void draw() const;
-        void update();
+        void draw() const override;
+        void update() override;;
 
         bool isDead() const;
 

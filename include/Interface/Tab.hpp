@@ -40,7 +40,7 @@ class Tab: public UiElement
 
         void draw () const;
 
-        void setFocus  (UiElement* toBeFocused, bool isPrevious);
+        void setFocus(UiElement* toBeFocused, bool isPrevious);
         void clearFocus();
 
         void addWidget (UiElement* toBeAdded);

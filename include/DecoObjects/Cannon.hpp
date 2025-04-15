@@ -28,7 +28,7 @@ class Cannon: public DecoObject
         Cannon();
 
         void update();
-        void draw() const;
+        void draw() const override;
 
     private:
         float timer_;

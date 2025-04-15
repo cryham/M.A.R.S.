@@ -17,17 +17,14 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "Menu/MapOptions.hpp"
 
-#include "Interface/Line.hpp"
 #include "Interface/Slider.hpp"
 #include "Interface/Tab.hpp"
 #include "Interface/TabList.hpp"
 #include "Interface/UiWindow.hpp"
 #include "Interface/Button.hpp"
-#include "Interface/LabeledBox.hpp"
 #include "Interface/Checkbox.hpp"
 #include "Interface/Label.hpp"
 #include "System/settings.hpp"
-#include "System/window.hpp"
 #include "Menu/menus.hpp"
 #include "Locales/locales.hpp"
 
@@ -118,20 +115,20 @@ UiWindow* MapOptions::get()
             TEXT_ALIGN_LEFT, Vector2f(20, y)));  //y += yadd;
         tabSize->addWidget(new Checkbox(locales::getLocale(locales::Horizontal), "",
             &settings::bCyclicBorderX,
-            Vector2f(w/3,y), w/2));  //y += yadd;
+            Vector2f(w/3.f,y), w/2));  //y += yadd;
         tabSize->addWidget(new Checkbox(locales::getLocale(locales::Vertical), "",
             &settings::bCyclicBorderY,
-            Vector2f(2*w/3,y), w/3));  y += yadd*2;
+            Vector2f(2*w/3.f,y), w/3));  y += yadd*2;
 
         tabSize->addWidget(new Slider(locales::getLocale(locales::GravityScale), "",  // gravity
             &settings::iGravityScale, 5, 300, 10,
             Vector2f(x,y), w, 240, true));  y += yadd*3/2;
         tabSize->addWidget(new Slider(locales::getLocale(locales::ShipRadius), "",  // ship
             &settings::iShipRadius, 5, 60, 10,
-            Vector2f(x,y), w*2/3, 240, true));  y += yadd;
+            Vector2f(x,y), w*2/3.f, 240, true));  y += yadd;
         tabSize->addWidget(new Slider(locales::getLocale(locales::BallRadius), "",  // ball
             &settings::iBallRadius, 5, 60, 10,
-            Vector2f(x,y), w*2/3, 240, true));  y += yadd*3/2;
+            Vector2f(x,y), w*2/3.f, 240, true));  y += yadd*3/2;
 
         
         //  Turrets  ----

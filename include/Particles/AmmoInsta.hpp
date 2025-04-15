@@ -30,11 +30,11 @@ class AmmoInsta: public Particle<AmmoInsta>
             Color3f const& color, Player* damageSource);
         ~AmmoInsta();
 
-        void update();
-        void draw() const;
+        void update() override;;
+        void draw() const override;
 
         void onCollision(SpaceObject* with, Vector2f const& location,
-                         Vector2f const& direction, Vector2f const& velocity);
+                         Vector2f const& direction, Vector2f const& velocity) override;
 
         static int hitsAny(Vector2f const& location, Vector2f const& direction, Team* team);
 

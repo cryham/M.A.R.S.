@@ -30,7 +30,7 @@ class ShipName: public DecoObject
         ShipName(Ship* ship): ship_(ship)
         {   }
 
-        void draw() const;
+        void draw() const override;
 
     private:
         Ship* ship_;

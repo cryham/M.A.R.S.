@@ -24,6 +24,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include <SFML/Window.hpp>
 
 
+//  Base for all Gui controls
+
 class UiElement
 {
     public:
@@ -42,7 +44,7 @@ class UiElement
         virtual void draw() const;
 
         void setParent(UiElement* newParent);
-        virtual void setFocus  (UiElement* toBeFocused, bool isPrevious);
+        virtual void setFocus(UiElement* toBeFocused, bool isPrevious);
         virtual void clearFocus();
 
         bool         isHovered() const {  return hovered_;  }

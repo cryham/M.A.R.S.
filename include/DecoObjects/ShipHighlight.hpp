@@ -32,7 +32,7 @@ class ShipHighlight: public DecoObject
         ShipHighlight(Ship* ship): ship_(ship)
         {   }
 
-        void draw() const;
+        void draw() const override;
 
     private:
         void draw(Vector2f const& location, float scale, float alpha) const;

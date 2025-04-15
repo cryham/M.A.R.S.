@@ -25,8 +25,8 @@ class Logo: public HudElement
     public:
         Logo();
 
-        void update();
-        void draw() const;
+        void update() override;
+        void draw() const override;
 
     private:
         float timer_;

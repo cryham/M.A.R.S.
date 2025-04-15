@@ -30,14 +30,14 @@ class TacticalZone: public Zone
         TacticalZone(Vector2f const& location, float radius);
 
         /// Returns true, if the given SpaceObject is inside this Zone.
-        bool isInside(SpaceObject const& toBeChecked) const;
+        bool isInside(SpaceObject const& toBeChecked) const override;
 
         /// Updates the Zone.
         void update();
 
         /// Draws the zone.
         /// Only for debugging information.
-        void draw() const;
+        void draw() const override;
 
         /// Returns a random point inside this Zone.
         Vector2f getRandomPoint() const;

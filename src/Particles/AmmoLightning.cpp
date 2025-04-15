@@ -20,7 +20,6 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "SpaceObjects/physics.hpp"
 #include "System/Vector2f.hpp"
 #include "System/timer.hpp"
-#include "System/settings.hpp"
 #include "Particles/particles.hpp"
 #include "Media/sound.hpp"
 #include "System/randomizer.hpp"

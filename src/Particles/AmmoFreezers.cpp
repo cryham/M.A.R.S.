@@ -20,10 +20,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "SpaceObjects/physics.hpp"
 #include "System/Vector2f.hpp"
 #include "System/timer.hpp"
-#include "System/settings.hpp"
 #include "Particles/particles.hpp"
-#include "TrailEffects/trailEffects.hpp"
-#include "Media/sound.hpp"
 #include "System/randomizer.hpp"
 
 
@@ -60,7 +57,7 @@ void AmmoFreezers::update()
 {
     float time = timer::frameTime();
 
-    physics::overlap(this, STATICS | MOBILES);
+    physics::overlap(this, MOBILES | STATICS);
     Vector2f acceleration = physics::attract(this) * 0.8f;
 
     location_ += velocity_*time + acceleration*time*time;
@@ -90,12 +87,14 @@ void AmmoFreezers::update()
 
 void AmmoFreezers::draw() const
 {
+    const float r = radius_;
+
     color_.gl4f(0.6f);
     const int u = 10, v = 0;
-    uv8(u, v);      glVertex2f(location_.x_-radius_, location_.y_-radius_);
-    uv8(u,   v+2);  glVertex2f(location_.x_-radius_, location_.y_+radius_);
-    uv8(u+2, v+2);  glVertex2f(location_.x_+radius_, location_.y_+radius_);
-    uv8(u+2, v);    glVertex2f(location_.x_+radius_, location_.y_-radius_);
+    uv8(u, v);      glVertex2f(location_.x_ - r, location_.y_ - r);
+    uv8(u,   v+2);  glVertex2f(location_.x_ - r, location_.y_ + r);
+    uv8(u+2, v+2);  glVertex2f(location_.x_ + r, location_.y_ + r);
+    uv8(u+2, v);    glVertex2f(location_.x_ + r, location_.y_ - r);
 }
 
 void AmmoFreezers::onCollision(SpaceObject* with, Vector2f const& location,

@@ -27,10 +27,10 @@ class Star: public Particle<Star>
         Star(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,
             Color3f const& color, Player* damageSource);
 
-        void update();
+        void update() override;;
         void update(float time);
 
-        void draw() const;
+        void draw() const override;
 
         friend class Particle<Star>;
 

@@ -76,9 +76,9 @@ namespace hud
                 ++it;
         }
         musicNotify::update();
-
     }
 
+    //  draw
     void draw()
     {
         particles::drawNumbers();

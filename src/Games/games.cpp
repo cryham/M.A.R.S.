@@ -36,6 +36,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include <SFML/OpenGL.hpp>
 
+
 namespace games
 {
     namespace
@@ -95,6 +96,7 @@ namespace games
             start(newGameType_);
     }
 
+
     void draw()
     {
         postFX::update();
@@ -112,6 +114,7 @@ namespace games
         if (fadeIn_ || fadeOut_)
             fade();
     }
+
 
     void start(GameType const& type)
     {

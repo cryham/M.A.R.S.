@@ -20,6 +20,7 @@ Version 0.8.0
      - possible on team home or any planets
      - destroyable, respawned
    - **Map Options** window, with sliders for:  
+     - *map size*, with 7 button presets (from Tiny to Huge)
      - min,max count of space objects (planets, stars, black holes)
      - and their radius range, also minimal gap between
      - percentage of black holes and now *3 types* of suns

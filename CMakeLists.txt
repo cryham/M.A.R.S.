@@ -1,32 +1,33 @@
-################################################################
 # Project M.A.R.S.
-################################################################
-
+#---------------------------------------------------------------------
 PROJECT(MARS)
 
 # version number
 set(mars_MAJOR 0)
-set(mars_MINOR 7)
-set(mars_PATCH 5)
+set(mars_MINOR 8)
+set(mars_PATCH 0)
 set(mars_VERSION ${mars_MAJOR}.${mars_MINOR}.${mars_PATCH})
+
 set(mars_DESCRIPTION "M.A.R.S. - a ridiculous Shooter")
-set(mars_HOMEPAGE "http://www.marsshooter.org")
+set(mars_HOMEPAGE "https://github.com/cryham/M.A.R.S./")
 set(mars_EXENAME "marsshooter")
 set(mars_PACKAGENAME "mars")
  
 # We require at least version 3.7.2
 cmake_minimum_required(VERSION 3.7.2)
+# c++14
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED on)
 
-#####################################################################
+
 # Installation directories
-#####################################################################
+#---------------------------------------------------------------------
 include(GNUInstallDirs)
 set(mars_DATA_DEST_DIR ${CMAKE_INSTALL_FULL_DATAROOTDIR}/games/marsshooter CACHE STRING "marsshooter data files destdir")
 set(mars_EXE_DEST_DIR ${CMAKE_INSTALL_PREFIX}/games CACHE STRING "marsshooter exe destdir")
 
-#####################################################################
 # Configure and find libraries
-#####################################################################
+#---------------------------------------------------------------------
 
 # find OpenGL headers and library
 find_package(OpenGL REQUIRED)
@@ -60,18 +61,18 @@ endif(APPLE)
 
 # include the 'include' directory
 include_directories(${MARS_SOURCE_DIR}/include)
- 
-#####################################################################
+
+
 # Create executable
-#####################################################################
+#---------------------------------------------------------------------
 
 # compile source
 add_subdirectory(src) 
 set(CMAKE_CXX_FLAGS "-s" CACHE STRING "CXX flags")
- 
-#####################################################################
+
+
 # Create package
-#####################################################################
+#---------------------------------------------------------------------
 
 # CPack version numbers for release tarball name.
 set(CPACK_PACKAGE_VERSION_MAJOR ${mars_MAJOR})
@@ -86,9 +87,8 @@ set(CPACK_BINARY_DRAGNDROP ON)
 include(CPack)
 
 
-################################################################
 # Summary
-################################################################
+#---------------------------------------------------------------------
 
 message( "" )
 message( "Summary:" )

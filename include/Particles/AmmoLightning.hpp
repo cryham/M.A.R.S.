@@ -35,6 +35,7 @@ class AmmoLightning: public Particle<AmmoLightning>
         friend class Particle<AmmoLightning>;
 
     private:
+        float size_;
         Color3f color_;
         static std::list<AmmoLightning*> activeParticles_;
 };

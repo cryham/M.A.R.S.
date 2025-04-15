@@ -370,9 +370,9 @@ namespace particles
         //  new 2
         // AmmoPulse::collideWith(target);
         // AmmoCloud::collideWith(target);
-        AmmoFreezers::collideWith(target);
+        // AmmoFreezers::collideWith(target);
         AmmoLaser::collideWith(target);
-        AmmoLightning::collideWith(target);
+        // AmmoLightning::collideWith(target);
 
         AmmoMinigun::collideWith(target);
         AmmoGauss::collideWith(target);

@@ -37,8 +37,9 @@ AmmoH2OStorm::AmmoH2OStorm(Vector2f const& location, Vector2f const& direction, 
 
     radius_ = randomizer::random(15.f, 23.f);
 
-    color_ = 0.7f * Color3f(randomizer::random(0.4f, 0.9f), randomizer::random(0.7f, 1.f), randomizer::random(0.9f, 1.0f));
-    index_ = rand() % 3;
+    color_ = 0.7f * Color3f(randomizer::random(0.4f, 0.8f), randomizer::random(0.7f, 1.f), randomizer::random(0.9f, 1.0f));
+    // index_ = rand() % 6;  //3
+    index_ = 3 + rand() % 3;
 }
 
 
@@ -67,12 +68,21 @@ void AmmoH2OStorm::update()
 
 void AmmoH2OStorm::draw() const
 {
-    color_.gl4f(0.8f);  // alpha
-    const int u = index_, v = 0;
-    uv8(u, v);      glVertex2f(location_.x_-radius_, location_.y_-radius_);
-    uv8(u, v+1);    glVertex2f(location_.x_-radius_, location_.y_+radius_);
-    uv8(u+1, v+1);  glVertex2f(location_.x_+radius_, location_.y_+radius_);
-    uv8(u+1, v);    glVertex2f(location_.x_+radius_, location_.y_-radius_);
+    const float r = radius_ * 1.3f;
+    color_.gl4f(0.6f);  // alpha
+    if (index_ >= 3)
+    {   const int u = 6 + 2 * (index_-3), v = 0;
+        uv8(u,   v);    glVertex2f(location_.x_ - r, location_.y_ - r);
+        uv8(u,   v+2);  glVertex2f(location_.x_ - r, location_.y_ + r);
+        uv8(u+2, v+2);  glVertex2f(location_.x_ + r, location_.y_ + r);
+        uv8(u+2, v);    glVertex2f(location_.x_ + r, location_.y_ - r);
+    }else
+    {   const int u = index_, v = 0;
+        uv8(u,   v);    glVertex2f(location_.x_ - r, location_.y_ - r);
+        uv8(u,   v+1);  glVertex2f(location_.x_ - r, location_.y_ + r);
+        uv8(u+1, v+1);  glVertex2f(location_.x_ + r, location_.y_ + r);
+        uv8(u+1, v);    glVertex2f(location_.x_ + r, location_.y_ - r);
+    }
 }
 
 void AmmoH2OStorm::onCollision(SpaceObject* with, Vector2f const& location,

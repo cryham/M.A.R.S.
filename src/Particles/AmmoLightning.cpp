@@ -17,6 +17,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "Particles/AmmoLightning.hpp"
 
+#include "SpaceObjects/physics.hpp"
+#include "System/Vector2f.hpp"
 #include "System/timer.hpp"
 #include "System/settings.hpp"
 #include "Particles/particles.hpp"
@@ -31,15 +33,22 @@ AmmoLightning::AmmoLightning(
     Vector2f const& location, Vector2f const& direction,
     Vector2f const& velocity, Color3f const& color,
     Player* damageSource)
-    :Particle<AmmoLightning>(spaceObjects::oAmmoLightning, location, 8.f, 1.0f, randomizer::random(12.f, 15.f))
+    :Particle<AmmoLightning>(spaceObjects::oAmmoLightning, location, 8.f, 0.001f, randomizer::random(0.4f, 1.5f))
 {
+    cloud_ = true;
     setDamageSource(damageSource);
-    velocity_ = velocity + direction*900;
+    Vector2f side(direction.y_, -direction.x_);
+
+    velocity_ = velocity + direction * randomizer::random(1500.f, 2400.f) +
+        200.f * side * randomizer::random(-1.f, 1.f) +
+        Vector2f::randDir() * randomizer::random(0.f, 100.f);
+    acceleration_ = -randomizer::random(300.f, 600.f);
+
     location_ += velocity_*timer::frameTime()*1.2f;
+    radius_ = randomizer::random(6.f, 9.f) * 4.f;
+    size_ = radius_;
 
-    radius_ = randomizer::random(6.f, 8.f);
-
-    color_ = Color3f(randomizer::random(0.0f, 0.4f), randomizer::random(0.8f, 1.f), randomizer::random(0.0f, 0.4f));
+    color_ = Color3f(randomizer::random(0.5f, 0.9f), randomizer::random(0.6f, 0.8f), 1.f);
 }
 
 
@@ -47,44 +56,61 @@ void AmmoLightning::update()
 {
     float time = timer::frameTime();
 
-    physics::collide(this, STATICS | MOBILES | PARTICLES);
-    Vector2f acceleration = physics::attract(this)*0.8f;
+    physics::overlap(this, MOBILES);
 
-    if (lifeTime_ > totalLifeTime_-0.3f)
-        radius_ = -400.0 * pow(lifeTime_+0.2-totalLifeTime_, 2)+12;
+    radius_ = size_ + 1400.f * std::min(2.f, 3.f * lifeTime_);
 
-    location_ += velocity_*time + acceleration*time*time;
-    velocity_ += acceleration*time - 2.5f*velocity_*time;
+    location_ += velocity_*time;
+    Vector2f const dir(velocity_.normalize());
+    velocity_ += acceleration_ * dir * time;
     borders();
 
     lifeTime_ += time;
-
-    if (lifeTime_ > totalLifeTime_)
-    {
-        particles::spawnMultiple(2, particles::pMud, location_, Vector2f(), Vector2f(), color_);
-        sound::playSound(sound::BlubCollide, location_);
-
-        int rand = randomizer::random(8, 20);
-        // for (int i=0; i < rand; ++i)
-        //     particles::spawn(particles::pMiniAmmoLightning, location_, Vector2f(), Vector2f(), Color3f(), damageSource_);
-    }
 }
 
 //  draw
 void AmmoLightning::draw() const
 {
-    color_.gl4f(0.8f);
-    const int u = 4, v = 0;
-    uv8(u, v);      glVertex2f(location_.x_-radius_, location_.y_-radius_);
-    uv8(u, v+1);    glVertex2f(location_.x_-radius_, location_.y_+radius_);
-    uv8(u+1, v+1);  glVertex2f(location_.x_+radius_, location_.y_+radius_);
-    uv8(u+1, v);    glVertex2f(location_.x_+radius_, location_.y_-radius_);
+    float a = 0.1f + 0.2f * std::min(1.f, 3.2f * lifeTime_ / totalLifeTime_);
+    a *= 0.7f * (totalLifeTime_ - lifeTime_) / totalLifeTime_;
+
+    Vector2f dir(velocity_.normalize() * 100.f);
+    Vector2f side(dir.y_, -dir.x_);
+    side *= 1.2f;
+    const Vector2f
+        topL(location_ + side + dir), topL2(location_ + side*0.38f + dir*1.3f), topL3(location_ + side*1.1f + dir*1.51f),
+        topR(location_ + side - dir), topR2(location_ + side*0.36f - dir*1.6f), topR3(location_ + side*0.9f - dir*1.57f),
+        btmL(location_ - side + dir), btmL2(location_ - side*0.47f + dir*2.4f), btmL3(location_ - side*1.3f + dir*1.53f),
+        btmR(location_ - side - dir), btmR2(location_ - side*0.45f - dir*2.7f), btmR3(location_ - side*0.7f - dir*1.51f);
+
+    int v = 2, u;
+    color_.gl4f(a * 0.9f + 0.1f * sinf(0.5f + lifeTime_ * 23.f));
+    u = 8 + ((int)(lifeTime_ * 26.f) % 4) * 2;
+    uv8(u,   v+4);  glVertex2f(topL.x_, topL.y_);
+    uv8(u+2, v+4);  glVertex2f(btmL.x_, btmL.y_);
+    uv8(u+2, v);    glVertex2f(btmR.x_, btmR.y_);
+    uv8(u,   v);    glVertex2f(topR.x_, topR.y_);
+
+    color_.brightened().gl4f(a * 2.5f + 0.07f * cosf(lifeTime_ * 53.f));
+    u = 8 + ((int)(lifeTime_ * 36.f) % 4) * 2;
+    uv8(u,   v);    glVertex2f(topL2.x_, topL2.y_);
+    uv8(u+2, v);    glVertex2f(btmL2.x_, btmL2.y_);
+    uv8(u+2, v+4);  glVertex2f(btmR2.x_, btmR2.y_);
+    uv8(u,   v+4);  glVertex2f(topR2.x_, topR2.y_);
+
+    color_.gl4f(a * 1.2f + 0.05f * sinf(lifeTime_ * 67.f));
+    u = 8 + ((int)(lifeTime_ * 56.f) % 4) * 2;
+    uv8(u,   v);    glVertex2f(topL3.x_, topL3.y_);
+    uv8(u+2, v);    glVertex2f(btmL3.x_, btmL3.y_);
+    uv8(u+2, v+4);  glVertex2f(btmR3.x_, btmR3.y_);
+    uv8(u,   v+4);  glVertex2f(topR3.x_, topR3.y_);
 }
 
 
 void AmmoLightning::onCollision(SpaceObject* with, Vector2f const& location,
                         Vector2f const& direction, Vector2f const& velocity)
 {
+    return;
     if (!isDead() &&
         with->type() != spaceObjects::oAmmoLightning /*&&
         with->type() != spaceObjects::oMiniAmmoLightning*/)

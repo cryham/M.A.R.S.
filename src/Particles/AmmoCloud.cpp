@@ -23,6 +23,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "TrailEffects/trailEffects.hpp"
 #include "Media/sound.hpp"
 #include "System/randomizer.hpp"
+#include <cmath>
 
 
 std::list<AmmoCloud*> AmmoCloud::activeParticles_;
@@ -58,8 +59,8 @@ void AmmoCloud::update()
 
     location_ += velocity_*time;  // + acceleration*time*time;
     // velocity_ += acceleration*time + 0.1f*velocity_*time;
-    Vector2f const faceDirection(velocity_.normalize());
-    velocity_ += acceleration_ * faceDirection * time;
+    Vector2f const dir(velocity_.normalize());
+    velocity_ += acceleration_ * dir * time;
     radius_ = 84.f + 120.4f * lifeTime_ / totalLifeTime_;
     borders();
 
@@ -67,12 +68,8 @@ void AmmoCloud::update()
     spawnTime_ += time;
 
     if (lifeTime_ > totalLifeTime_)
-    {
-        // particles::spawnMultiple(2, particles::pMud, location_, Vector2f(), Vector2f(), color_);
-        // int rand = randomizer::random(8, 20);
-        // sound::playSound(sound::BlubCollide, location_);
         killMe();
-    }else
+    else
     if (lifeTime_ < 2)
     {
         if (spawnTime_ > 0.1f) //+ 0.1f * lifeTime_)
@@ -88,12 +85,21 @@ void AmmoCloud::update()
 
 void AmmoCloud::draw() const
 {
-    color_.gl4f(0.5f - 0.4f * lifeTime_ / totalLifeTime_);
+    const float r = radius_, r2 = radius_ * 1.3f;
+    // color_.gl4f(0.1f - 0.1f * lifeTime_ / totalLifeTime_);
+    color_.gl4f(0.4f * (0.7f + 0.3f * sinf(2.f * lifeTime_ / totalLifeTime_ * M_PI)));
     const int u = 0, v = 0;
-    uv8(u, v);      glVertex2f(location_.x_-radius_, location_.y_-radius_);
-    uv8(u, v+1);    glVertex2f(location_.x_-radius_, location_.y_+radius_);
-    uv8(u+1, v+1);  glVertex2f(location_.x_+radius_, location_.y_+radius_);
-    uv8(u+1, v);    glVertex2f(location_.x_+radius_, location_.y_-radius_);
+    uv8(u, v);      glVertex2f(location_.x_ - r, location_.y_ - r);
+    uv8(u, v+1);    glVertex2f(location_.x_ - r, location_.y_ + r);
+    uv8(u+1, v+1);  glVertex2f(location_.x_ + r, location_.y_ + r);
+    uv8(u+1, v);    glVertex2f(location_.x_ + r, location_.y_ - r);
+    
+    color_.gl4f(0.3f * sinf(lifeTime_ / totalLifeTime_ * M_PI));
+    const int u2 = 10, v2 = 0;
+    uv8(u2,   v2);    glVertex2f(location_.x_ - r2, location_.y_ - r2);
+    uv8(u2,   v2+2);  glVertex2f(location_.x_ - r2, location_.y_ + r2);
+    uv8(u2+2, v2+2);  glVertex2f(location_.x_ + r2, location_.y_ + r2);
+    uv8(u2+2, v2);    glVertex2f(location_.x_ + r2, location_.y_ - r2);
 }
 
 void AmmoCloud::onCollision(SpaceObject* with, Vector2f const& location,

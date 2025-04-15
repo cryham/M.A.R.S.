@@ -24,9 +24,10 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 std::list<Spark*> Spark::activeParticles_;
 
 
-Spark::Spark(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity, Color3f const& color, Player* damageSource):
-         Particle<Spark>(spaceObjects::oSpark, location, 1, 0, randomizer::random(0.3f, 0.4f)),
-         color_(color)
+Spark::Spark(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,
+        Color3f const& color, Player* damageSource)
+    :Particle<Spark>(spaceObjects::oSpark, location, 1, 0, randomizer::random(0.3f, 0.4f))
+    ,color_(color)
 {
     Vector2f distortion(Vector2f::randDirLen());
     velocity_ = direction + velocity_*0.5f + distortion*150.f;
@@ -52,8 +53,8 @@ void Spark::draw() const
 {
     color_.gl4f();
     const int u = 0, v = 1;
-    uv8(u, v);      glVertex2f(location_.x_-radius_, location_.y_-radius_);
-    uv8(u, v+1);    glVertex2f(location_.x_-radius_, location_.y_+radius_);
+    uv8(u,   v);    glVertex2f(location_.x_-radius_, location_.y_-radius_);
+    uv8(u,   v+1);  glVertex2f(location_.x_-radius_, location_.y_+radius_);
     uv8(u+1, v+1);  glVertex2f(location_.x_+radius_, location_.y_+radius_);
     uv8(u+1, v);    glVertex2f(location_.x_+radius_, location_.y_-radius_);
 }

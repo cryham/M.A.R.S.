@@ -24,9 +24,10 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 std::list<Eruption*> Eruption::activeParticles_;
 
 
-Eruption::Eruption(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity, Color3f const& color, Player* damageSource):
-         Particle<Eruption>(spaceObjects::oEruption, location, 1.f, 0.f, randomizer::random(1.0f, 2.5f)),
-         color_(Color3f(1.0f, 0.9f, 0.2f))
+Eruption::Eruption(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,
+        Color3f const& color, Player* damageSource)
+    :Particle<Eruption>(spaceObjects::oEruption, location, 1.f, 0.f, randomizer::random(1.0f, 2.5f))
+    ,color_(Color3f(1.0f, 0.9f, 0.2f))
 {
     Vector2f distortion(Vector2f::randDir()*randomizer::random(0.9f, 1.1f));
     velocity_ = velocity*50.f + distortion*70.f;
@@ -51,8 +52,8 @@ void Eruption::draw() const
 {
     color_.gl4f();
     const int u = 0, v = 1;
-    uv8(u, v);      glVertex2f(location_.x_-radius_, location_.y_-radius_);
-    uv8(u, v+1);    glVertex2f(location_.x_-radius_, location_.y_+radius_);
+    uv8(u,   v);    glVertex2f(location_.x_-radius_, location_.y_-radius_);
+    uv8(u,   v+1);  glVertex2f(location_.x_-radius_, location_.y_+radius_);
     uv8(u+1, v+1);  glVertex2f(location_.x_+radius_, location_.y_+radius_);
     uv8(u+1, v);    glVertex2f(location_.x_+radius_, location_.y_-radius_);
 }

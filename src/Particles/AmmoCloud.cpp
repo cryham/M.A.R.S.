@@ -87,8 +87,8 @@ void AmmoCloud::draw() const
     // color_.gl4f(0.1f - 0.1f * lifeTime_ / totalLifeTime_);
     color_.gl4f(0.4f * (0.7f + 0.3f * sinf(2.f * lifeTime_ / totalLifeTime_ * M_PI)));
     const int u = 0, v = 0;
-    uv8(u, v);      glVertex2f(location_.x_ - r, location_.y_ - r);
-    uv8(u, v+1);    glVertex2f(location_.x_ - r, location_.y_ + r);
+    uv8(u,   v);    glVertex2f(location_.x_ - r, location_.y_ - r);
+    uv8(u,   v+1);  glVertex2f(location_.x_ - r, location_.y_ + r);
     uv8(u+1, v+1);  glVertex2f(location_.x_ + r, location_.y_ + r);
     uv8(u+1, v);    glVertex2f(location_.x_ + r, location_.y_ - r);
     

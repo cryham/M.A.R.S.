@@ -97,7 +97,7 @@ void CannonBall::draw() const
 {
     glColor4f(1.0f, 1.0f, 1.0f, 1.f);
     const int u = 5, v = 2;
-    uv8(u, v);      glVertex2f(location_.x_-radius_, location_.y_-radius_);
+    uv8(u,   v);    glVertex2f(location_.x_-radius_, location_.y_-radius_);
     uv8(u,   v+3);  glVertex2f(location_.x_-radius_, location_.y_+radius_);
     uv8(u+3, v+3);  glVertex2f(location_.x_+radius_, location_.y_+radius_);
     uv8(u+3, v);    glVertex2f(location_.x_+radius_, location_.y_-radius_);

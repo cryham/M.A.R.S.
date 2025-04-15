@@ -67,8 +67,8 @@ void AmmoMinigun::draw() const
 {
     color_.gl4f(1.f - 0.5f * lifeTime_ / totalLifeTime_);
     const int u = 0, v = 1;
-    uv8(u, v);      glVertex2f(location_.x_-radius_, location_.y_-radius_);
-    uv8(u, v+1);    glVertex2f(location_.x_-radius_, location_.y_+radius_);
+    uv8(u,   v);    glVertex2f(location_.x_-radius_, location_.y_-radius_);
+    uv8(u,   v+1);  glVertex2f(location_.x_-radius_, location_.y_+radius_);
     uv8(u+1, v+1);  glVertex2f(location_.x_+radius_, location_.y_+radius_);
     uv8(u+1, v);    glVertex2f(location_.x_+radius_, location_.y_-radius_);
 }

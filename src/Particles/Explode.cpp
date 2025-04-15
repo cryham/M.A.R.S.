@@ -59,7 +59,7 @@ void Explode::draw() const
 {
     color_.gl4f(0.5);
     const int u = 6, v = 0;
-    uv8(u, v);      glVertex2f(location_.x_-radius_, location_.y_-radius_);
+    uv8(u,   v);    glVertex2f(location_.x_-radius_, location_.y_-radius_);
     uv8(u,   v+2);  glVertex2f(location_.x_-radius_, location_.y_+radius_);
     uv8(u+2, v+2);  glVertex2f(location_.x_+radius_, location_.y_+radius_);
     uv8(u+2, v);    glVertex2f(location_.x_+radius_, location_.y_-radius_);

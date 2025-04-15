@@ -55,8 +55,8 @@ void CrushedIce::draw() const
 {
     color_.gl4f(1.0f);
     const int u = 5, v = 1;
-    uv8(u, v);      glVertex2f(location_.x_-radius_, location_.y_-radius_);
-    uv8(u, v+1);    glVertex2f(location_.x_-radius_, location_.y_+radius_);
+    uv8(u,   v);    glVertex2f(location_.x_-radius_, location_.y_-radius_);
+    uv8(u,   v+1);  glVertex2f(location_.x_-radius_, location_.y_+radius_);
     uv8(u+1, v+1);  glVertex2f(location_.x_+radius_, location_.y_+radius_);
     uv8(u+1, v);    glVertex2f(location_.x_+radius_, location_.y_-radius_);
 }

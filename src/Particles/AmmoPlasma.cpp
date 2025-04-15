@@ -42,7 +42,7 @@ AmmoPlasma::AmmoPlasma(Vector2f const& location, Vector2f const& direction, Vect
 
     color_ = Color3f(randomizer::random(0.3f, 0.7f), randomizer::random(0.8f, 1.f), randomizer::random(0.9f, 1.f));
 
-    trailEffects::attach(this, 0.05, 0.1f, radius_ * 3.f, Color3f(0.04f, 0.31f, randomizer::random(0.28f, 0.35f)), false);
+    trailEffects::attach(this, 0.05, 0.15f, radius_ * 3.f, Color3f(0.04f, 0.31f, randomizer::random(0.28f, 0.35f)), false);
 }
 
 AmmoPlasma::~AmmoPlasma()

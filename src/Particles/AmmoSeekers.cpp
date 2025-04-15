@@ -213,7 +213,7 @@ void AmmoSeekers::draw() const
         uv8(u,   v+3);  glVertex2f(loc.x_ - size, loc.y_ - size);
         uv8(u+3, v+3);  glVertex2f(loc.x_ + size, loc.y_ - size);
         uv8(u+3, v);    glVertex2f(loc.x_ + size, loc.y_ + size);
-        uv8(u, v);      glVertex2f(loc.x_ - size, loc.y_ + size);
+        uv8(u,   v);    glVertex2f(loc.x_ - size, loc.y_ + size);
     }
 }
 

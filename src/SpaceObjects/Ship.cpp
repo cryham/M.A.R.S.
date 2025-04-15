@@ -262,7 +262,7 @@ void Ship::heal(Player* source, int amount)
     float lifeAmount((maxLife_/100.f)*amount);
     if (life_ + lifeAmount > maxLife_)
         lifeAmount = maxLife_-life_;
-    life_+=lifeAmount;
+    life_ += lifeAmount;
 
     if (source->controlType_ == controllers::cPlayer1 ||
         source->controlType_ == controllers::cPlayer2 ||
@@ -278,7 +278,7 @@ void Ship::heal(Player* source, int amount)
 
 void Ship::refuel(Player* source, int amount)
 {
-    float fuelAmount((maxFuel_/100.f)*amount);
+    float fuelAmount(maxFuel_/100.f * amount);
     (fuel_ + fuelAmount) > maxFuel_ ? fuel_ = maxFuel_ : fuel_ += fuelAmount;
 }
 

@@ -24,8 +24,9 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 std::list<Fuel*> Fuel::activeParticles_;
 
 
-Fuel::Fuel(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity, Color3f const& color, Player* damageSource):
-           Particle<Fuel>(spaceObjects::oFuel, location, 1.f, 0.f, randomizer::random(0.2f, 0.4f))
+Fuel::Fuel(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,
+        Color3f const& color, Player* damageSource)
+    :Particle<Fuel>(spaceObjects::oFuel, location, 1.f, 0.f, randomizer::random(0.2f, 0.4f))
 {
     Vector2f distortion(Vector2f::randDirLen());
     location_ = location + distortion;
@@ -59,8 +60,8 @@ void Fuel::draw() const
 {
     color_.gl4f();
     const int u = 0, v = 0;
-    uv8(u, v);      glVertex2f(location_.x_-radius_, location_.y_-radius_);
-    uv8(u, v+1);    glVertex2f(location_.x_-radius_, location_.y_+radius_);
+    uv8(u,   v);    glVertex2f(location_.x_-radius_, location_.y_-radius_);
+    uv8(u,   v+1);  glVertex2f(location_.x_-radius_, location_.y_+radius_);
     uv8(u+1, v+1);  glVertex2f(location_.x_+radius_, location_.y_+radius_);
     uv8(u+1, v);    glVertex2f(location_.x_+radius_, location_.y_-radius_);
 }

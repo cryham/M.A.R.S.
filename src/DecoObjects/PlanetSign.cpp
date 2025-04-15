@@ -30,7 +30,8 @@ PlanetSign::PlanetSign(Planet* planet):
 
     Vector2f direction = Vector2f::randDir();
     rotation_ = std::acos(direction.x_)*180.f/M_PI + 90.f;
-    if (direction.y_ < 0.f) rotation_ = 180.f - rotation_;
+    if (direction.y_ < 0.f)
+        rotation_ = 180.f - rotation_;
 
     direction = direction*(planet->radius() - scale_*0.5f);
 

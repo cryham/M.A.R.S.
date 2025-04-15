@@ -55,8 +55,6 @@ void H2OStorm::fire() const
         particles::spawn(particles::pAmmoH2OStorm, parent_->getLocation() + dir*parent_->getRadius(), dir,
             parent_->getVelocity(), Color3f(), parent_->getOwner());
         sound::playSound(sound::BlubPop, parent_->getLocation());
-
-        // parent_->getVelocity() -= faceDirection * 20.f;
     }
 }
 

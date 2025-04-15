@@ -81,8 +81,8 @@ namespace particles
 
         pAmmoPulse,
         pAmmoCloud,
-        pAmmoFreezers,
         pAmmoLaser,
+        pAmmoFreezers,
         pAmmoLightning,
 
         pAmmoMinigun,

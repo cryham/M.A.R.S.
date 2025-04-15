@@ -54,8 +54,6 @@ Ship::Ship(Vector2f const& location, float rotation, Player* owner)
     , Mount(0.f, owner)
     ,weaponChangeTime_(0.f)
     ,owner_(owner)
-    // ,rotation_(rotation)
-    // ,rotateSpeed_(1.f)
     ,up_(0), down_(0), left_(0), right_(0), boost_(0)
     ,docked_(true)
     ,weaponChange_(true)
@@ -219,9 +217,9 @@ void Ship::onShockWave(Player* damageSource, float intensity)
             life_ -= damage;
             if ((damageSource_ &&
                 (damageSource_->controlType_ == controllers::cPlayer1 ||
-                 damageSource_->controlType_ == controllers::cPlayer2))
-                || owner_->controlType_ == controllers::cPlayer1
-                || owner_->controlType_ == controllers::cPlayer2)
+                 damageSource_->controlType_ == controllers::cPlayer2)) ||
+                owner_->controlType_ == controllers::cPlayer1 ||
+                owner_->controlType_ == controllers::cPlayer2)
             {
                 damageByLocalPlayer_ -= damage;
                 ++collisionCount_;

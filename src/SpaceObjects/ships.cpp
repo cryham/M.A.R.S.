@@ -21,6 +21,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "SpaceObjects/spaceObjects.hpp"
 #include "SpaceObjects/Home.hpp"
 #include "SpaceObjects/Planet.hpp"
+#include "System/Vector2f.hpp"
 #include "System/randomizer.hpp"
 #include "System/settings.hpp"
 
@@ -124,30 +125,68 @@ namespace ships  // and turrets
     }
 
 
-    //  turrets  ----
+    //  add Turrets
+    //----------------------------------------------------------------------------------------------------------------------------------
     void createTurrets()
     {
-        int cnt = settings::iTurretsOnHome;
-        for (auto& p : spaceObjects::getHomes())
-            for (int i=0; i < cnt; ++i)
-            {
-                auto dir = Vector2f::randDir();
-                auto ang = GetAngle(dir.x_, dir.y_);
-                float r = p->radius() * randomizer::random(0.9f, 1.f);
+        float tr = settings::iShipRadius;
+        Vector2f pos;  float ang;
+        int tries = 0;
+        bool out;
 
-                Vector2f pos = p->location();
+        //  get new random pos
+        auto newPos = [&](Vector2f p, float r)
+        {
+            auto dir = Vector2f::randDir();
+            ang = GetAngle(dir.x_, dir.y_);
+            pos = p + dir * r;
+
+            //  outside of map
+            out = pos.x_ < tr || pos.y_ < tr ||
+                pos.x_ > settings::iMapXsize - tr || pos.y_ > settings::iMapYsize - tr;
+            
+            // std::cout << "home tur1  " << pos.x_ << " " << pos.y_ << " out: " << out << std::endl;
+            //  too close to other turrets
+            if (!out && !turretList_.empty())
+            {
+                float dist = FLT_MAX;
+                for (auto& turret : turretList_)
+                {
+                    float d = (pos - turret->location()).length();
+                    if (d < dist)
+                        d = dist;
+                }
+                out = dist < 100;
+                // std::cout << "home tur2. dist " << dist << " out: " << out << std::endl;
+            }
+            ++tries;
+        };
+
+        //  on Homes
+        int count = settings::iTurretsOnHome;
+        for (auto& home : spaceObjects::getHomes())
+            for (int i=0; i < count; ++i)
+            {
+                tries = 0;
+                do
+                {   float r = home->radius() * randomizer::random(1.2f, 1.3f);
+                    newPos(home->location(), r);
+                }
+                while (tries < 20 && out);
                 addTurret(pos, ang, NULL);
             }
         
-        cnt = settings::iTurretsOnPlanet;
-        for (auto& p : spaceObjects::getPlanets())
-            for (int i=0; i < cnt; ++i)
+        //  on Planets
+        count = settings::iTurretsOnPlanet;
+        for (auto& planet : spaceObjects::getPlanets())
+            for (int i=0; i < count; ++i)
             {
-                auto dir = Vector2f::randDir();
-                auto ang = GetAngle(dir.x_, dir.y_);
-                float r = p->radius() * randomizer::random(1.f, 1.1f);  //-
-
-                Vector2f pos = p->location() + dir * r;
+                tries = 0;
+                do
+                {   float r = planet->radius() * randomizer::random(1.2f, 1.3f);
+                    newPos(planet->location(), r);
+                }
+                while (tries < 20 && out);
                 addTurret(pos, ang, NULL);
             }
     }

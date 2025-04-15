@@ -589,7 +589,7 @@ namespace settings
                 for (int i=0; i < weapons::All; ++i)
                 {
                     stringstream ss;
-                    ss << "enabledWeapons" << i << "]";
+                    ss << "enabledWeapons" << i;
                     if (line == ss.str())
                     {
                         readBool(iss, line, bEnabledWeaponsByUser[i]);   bEnabledWeapons[i] = bEnabledWeaponsByUser[i];
@@ -600,7 +600,7 @@ namespace settings
                 for (int i=0; i < specials::All; ++i)
                 {
                     stringstream ss;
-                    ss << "enabledSpecials" << i << "]";
+                    ss << "enabledSpecials" << i;
                     if (line == ss.str())
                     {
                         readBool(iss, line, bEnabledSpecialsByUser[i]);   bEnabledSpecials[i] = bEnabledSpecialsByUser[i];

@@ -255,6 +255,7 @@ namespace spaceObjects
             delete it;
         objectList_.clear();
         homeList_.clear();
+        planetsList_.clear();
     }
 
 

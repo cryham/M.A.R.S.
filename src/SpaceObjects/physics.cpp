@@ -117,7 +117,7 @@ namespace physics
                     object->location_ = it->location_ - impactDirection*(it->radius_ + object->radius_);
 
                     // if object is moving towards obstacle... avoiding double interactions
-                    if ((object->velocity()*impactDirection) > 0)
+                    if ((object->velocity() * impactDirection) > 0)
                     {
                         const Vector2f velocityBefore = (object->velocity() * impactDirection) * impactDirection;
                         object->velocity() = object->velocity() - velocityBefore*0.6 - velocityBefore;

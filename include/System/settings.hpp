@@ -147,6 +147,15 @@ namespace settings
     extern int            iGravityScale;
     ///@}
 
+    /// \name Turrets new
+    extern int            iTurretsOnHome;
+    extern int            iTurretsOnPlanet;
+    extern int            iTurretAttackSpeed;
+    extern int            iTurretRespawnDelay;
+    extern int            iTurretTurnSpeed;
+    ///@}
+
+
     /// \name Player settings
     ///@{
     extern sf::String     sPlayer1Name;

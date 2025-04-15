@@ -135,10 +135,12 @@ void Game::draw() const
     trailEffects::draw();
     
     controllers::draw();
-    ships::draw();  // and turrets
+    ships::draw();
     balls::draw();
     
     spaceObjects::draw();
+    ships::drawTurrets();
+
     particles::drawHigher();
     decoObjects::draw();
     items::draw();

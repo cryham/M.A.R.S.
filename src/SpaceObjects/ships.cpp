@@ -22,6 +22,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "SpaceObjects/Home.hpp"
 #include "SpaceObjects/Planet.hpp"
 #include "System/randomizer.hpp"
+#include "System/settings.hpp"
 
 #include <vector>
 
@@ -52,6 +53,7 @@ namespace ships  // and turrets
             it->update();
     }
 
+    //  draw  ----
     void draw()
     {
         glEnable(GL_TEXTURE_2D);
@@ -59,19 +61,33 @@ namespace ships  // and turrets
 
         for (const auto& it : shipList_)
             it->drawWeapon();
-        for (const auto& it : turretList_)
-            it->drawWeapon();
 
         glBindTexture(GL_TEXTURE_2D, texture::getTexture(texture::Ships));
 
         for (const auto& it : shipList_)
             it->draw();
+
+        glDisable(GL_TEXTURE_2D);
+        glBindTexture(GL_TEXTURE_2D, 0);
+    }
+
+    void drawTurrets()
+    {
+        glEnable(GL_TEXTURE_2D);
+        glBindTexture(GL_TEXTURE_2D, texture::getTexture(texture::Weapons));
+
+        for (const auto& it : turretList_)
+            it->drawWeapon();
+
+        glBindTexture(GL_TEXTURE_2D, texture::getTexture(texture::Ships));
+
         for (const auto& it : turretList_)
             it->draw();
 
         glDisable(GL_TEXTURE_2D);
         glBindTexture(GL_TEXTURE_2D, 0);
     }
+
 
     std::vector<Ship*> const& getShips()
     {
@@ -107,10 +123,11 @@ namespace ships  // and turrets
             return (y < 0.f) ? atan2f(-y, x) : (2.f * M_PI - atan2f(y, x));
     }
 
+
     //  turrets  ----
     void createTurrets()
     {
-        int cnt = 0; //randomizer::random(3, 8);  // test`
+        int cnt = settings::iTurretsOnHome;
         for (auto& p : spaceObjects::getHomes())
             for (int i=0; i < cnt; ++i)
             {
@@ -122,13 +139,13 @@ namespace ships  // and turrets
                 addTurret(pos, ang, NULL);
             }
         
-        cnt = 2; //randomizer::random(3, 8);  // test`
+        cnt = settings::iTurretsOnPlanet;
         for (auto& p : spaceObjects::getPlanets())
             for (int i=0; i < cnt; ++i)
             {
                 auto dir = Vector2f::randDir();
                 auto ang = GetAngle(dir.x_, dir.y_);
-                float r = p->radius() * randomizer::random(0.9f, 1.f);
+                float r = p->radius() * randomizer::random(1.f, 1.1f);  //-
 
                 Vector2f pos = p->location() + dir * r;
                 addTurret(pos, ang, NULL);

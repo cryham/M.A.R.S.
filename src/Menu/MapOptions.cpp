@@ -56,8 +56,9 @@ UiWindow* MapOptions::get()
             Vector2f(10,0), 20.f, getColor3f(0.5f, 0.9f, 1.f), false));
 
         TabList* tabList  = new TabList(Vector2f(10,55), 580, 270);
-        Tab* tabSize     = new Tab(locales::getLocale(locales::MapSize), 120);
-        Tab* tabObjects  = new Tab(locales::getLocale(locales::SpaceObjects), 120);
+        Tab* tabSize     = new Tab(locales::getLocale(locales::MapSize), 130);
+        Tab* tabObjects  = new Tab(locales::getLocale(locales::SpaceObjects), 130);
+        Tab* tabTurrets  = new Tab(locales::getLocale(locales::Turrets), 130);
 
 
         int x = 10, y1 = 40, y = y1, yadd = 20;
@@ -91,8 +92,9 @@ UiWindow* MapOptions::get()
             &settings::iMapHomeRadius, 1, 900, 1,
             Vector2f(x,y), w, 240, true));  y += yadd*3/2;
 
+
+        //  map Size  buttons  ----
         y = y1;
-        //  map Size buttons  ----
         // tabSize->addWidget(new LabeledBox(locales::getLocale(locales::MapSize),
         //     Vector2f(10, y), 100, 210));  y += yadd*3/2;
         
@@ -102,7 +104,7 @@ UiWindow* MapOptions::get()
                 &kMapSize_[i],  Vector2f(20 + i*90,y), 80, 20));
         y += yadd*3/2;
         
-        //  map Size  ----
+        //  map Size
         tabSize->addWidget(new Slider(locales::getLocale(locales::MapXsize), "",
             &settings::iMapXsize, 10, 23000, 10,
             Vector2f(x,y), w, 240, true));  y += yadd;
@@ -131,9 +133,30 @@ UiWindow* MapOptions::get()
             &settings::iBallRadius, 5, 60, 10,
             Vector2f(x,y), w*2/3, 240, true));  y += yadd*3/2;
 
+        
+        //  Turrets  ----
+        y = y1;
+        tabTurrets->addWidget(new Slider(locales::getLocale(locales::OnHome), "",
+            &settings::iTurretsOnHome, 0, 6, 1,
+            Vector2f(x,y), w, 240, true));  y += yadd;
+        tabTurrets->addWidget(new Slider(locales::getLocale(locales::OnPlanets), "",
+            &settings::iTurretsOnPlanet, 0, 6, 1,
+            Vector2f(x,y), w, 240, true));  y += yadd*3/2;
+        
+        tabTurrets->addWidget(new Slider(locales::getLocale(locales::AttackSpeed), "",
+            &settings::iTurretAttackSpeed, 0, 1000, 1,
+            Vector2f(x,y), w, 240, true));  y += yadd;
+        tabTurrets->addWidget(new Slider(locales::getLocale(locales::RespawnDelay), "",
+            &settings::iTurretRespawnDelay, 0, 120, 1,
+            Vector2f(x,y), w, 240, true));  y += yadd;
+        tabTurrets->addWidget(new Slider(locales::getLocale(locales::ShipTurnSpeed), "",
+            &settings::iTurretTurnSpeed, 5, 300, 10,
+            Vector2f(x,y), w, 240, true));  y += yadd;
+
 
         tabList->addTab(tabSize);
         tabList->addTab(tabObjects);
+        tabList->addTab(tabTurrets);        
         instance_->addWidget(tabList);
     }
     return instance_;

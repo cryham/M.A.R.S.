@@ -434,3 +434,8 @@
 
 316 BlackHoles
 317 Suns
+
+318 Turrets
+319 On home planets
+320 On planets
+321 Attack speed

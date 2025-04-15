@@ -35,6 +35,7 @@ namespace ships  // and turrets
 
     void update();
     void draw();
+    void drawTurrets();
 
     std::vector<Ship*> const& getShips();
     std::vector<Turret*> const& getTurrets();

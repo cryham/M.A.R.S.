@@ -74,11 +74,13 @@ class Turret: public SpaceObject, public Mount
         friend class Team;
 
     private:
-
         void explode();
         void respawn();
 
         int left_, right_;
+
+        Color3f color_;
+        int graphic_;
 
         bool visible_;
         // float ghostTimer_;

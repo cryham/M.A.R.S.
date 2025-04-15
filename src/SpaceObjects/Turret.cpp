@@ -18,6 +18,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "SpaceObjects/Turret.hpp"
 
+#include "SpaceObjects/physics.hpp"
+#include "SpaceObjects/ships.hpp"
 #include "SpaceObjects/spaceObjects.hpp"
 #include "System/Color3f.hpp"
 #include "System/Vector2f.hpp"
@@ -71,11 +73,14 @@ Turret::Turret(Vector2f const& location, float rotation, Player* owner)
     ,collisionCount_(0)
 {
 	//decoObjects::addHighlight(this);
+    color_ = Color3f::random().brightened() * 0.5f;
+    graphic_ = randomizer::random(0, SHIP_GRAPHICS_COUNT);
 
 	weapon_  = weapons::create(weapons::random(), this);
 	// special_ = specials::create(specials::sHeal, this);  // todo
 
     damageSource_ = owner_;
+    physics::addStaticObject(this);
 }
 
 
@@ -114,13 +119,33 @@ void Turret::update()
             if (ghostTimer_ <= 0.f)
                 physics::addMobileObject(this);
         }*/
-        if (weapon_)
-            weapon_->fire();  //~
 
         if (games::elapsedTime() > settings::iCountDown || games::type() == games::gTutorial)
         {
             if (frozen_ <= 0)
             {
+                //  find closest ship
+                float dist = FLT_MAX;
+                Ship* closest = 0;
+                
+                const auto& all = ships::getShips();
+                for (const auto& ship : all)
+                {
+                    float d = (location_ - ship->location()).lengthSquare();
+                    if (d < dist)
+                    {   dist = d;
+                        closest = ship;
+                    }
+                }
+                if (closest)
+                {   // rotate and attack  // todo: turn speed
+                    auto pos = closest->location() - location_;
+                    rotation_ = ships::GetAngle(pos.x_, -pos.y_) * 180.f/M_PI;
+
+                    if (weapon_ && randomizer::random(0, 1000) < settings::iTurretAttackSpeed)
+                        weapon_->fire();
+                }
+                /*
                 const float rot = settings::iShipTurnSpeed / 100.f;
                 float angleRad = rotation_ * M_PI / 180.f;
                 Vector2f faceDirection(std::cos(angleRad), std::sin(angleRad));
@@ -137,7 +162,7 @@ void Turret::update()
 					rotateSpeed_ = 1.0;
 				else if (rotateSpeed_ < 13.f)
 					rotateSpeed_ += time*40.f;
-
+                */
             }else
             {
                 frozen_ -= timer::frameTime()*3.f;
@@ -161,12 +186,12 @@ void Turret::update()
                 }
             }
             // check for death
-            if (getLife() <= 0) explode();
+            if (getLife() <= 0)  explode();
         }
     }else
     {
         respawnTimer_ -= time;
-        if (respawnTimer_ < 0) respawn();
+        if (respawnTimer_ < 0)  respawn();
     }
 }
 
@@ -184,16 +209,9 @@ void Turret::draw() const
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glRotatef(rotation_, 0.f, 0.f, 1.f);
 
-    float x, y, alpha = 1.f;  //(ghostTimer_ == 1.f ? 0.2f*std::sin(timer::totalTime()*8.f + 1.5f*M_PI)+0.4f :
-        //(ghostTimer_ > 0.f ? ghostTimer_*(0.2f*std::sin(timer::totalTime()*8.f + 1.5f*M_PI)+0.4f) + 1.f-ghostTimer_ : 1.f));
-
-    Color3f clr{1,1,1};
-    int graphic = 0;
-    
-    x = 0;
-    y = 0;
-    // x = static_cast<float>(graphic % 8) * 0.125f;
-    // y = static_cast<float>(std::floor(graphic * 0.125f))*0.375f;
+    float x, y, alpha = 1.f;
+    x = static_cast<float>(graphic_ % 8) * 0.125f;
+    y = static_cast<float>(std::floor(graphic_ * 0.125f))*0.375f;
 
     glColor4f(1.f, 1.f, 1.f, alpha);
     glBegin(GL_QUADS);
@@ -205,7 +223,7 @@ void Turret::draw() const
 
     y += 0.125f;
 
-    clr.gl4f(alpha);  // team-
+    color_.gl4f(alpha);  // team-
     glBegin(GL_QUADS);
         glTexCoord2f(x, y+0.125f);          glVertex2f(-radius_, -radius_);
         glTexCoord2f(x+0.125f, y+0.125f);   glVertex2f(-radius_,  radius_);
@@ -215,7 +233,7 @@ void Turret::draw() const
 
     y += 0.125f;
 
-    clr.brightened().gl4f(alpha);
+    color_.brightened().gl4f(alpha);
     glBegin(GL_QUADS);
         glTexCoord2f(x, y+0.125f);          glVertex2f(-radius_, -radius_);
         glTexCoord2f(x+0.125f, y+0.125f);   glVertex2f(-radius_,  radius_);
@@ -441,17 +459,17 @@ void Turret::onCollision(SpaceObject* with, Vector2f const& location,
         }
     }
 
-    amount *= settings::iDamageScale / 100.f;  /// 0.5f;  //new
+    amount *= settings::iDamageScale / 100.f;
 
-    if (attackable())
+    // if (attackable())
     {
         // increase the amount done to weak bots
         // strong bots just take normal damage
         if (damageSource_ &&
             (damageSource_->controlType_ == controllers::cPlayer1 ||
-             damageSource_->controlType_ == controllers::cPlayer2) &&
+             damageSource_->controlType_ == controllers::cPlayer2) /*&&
             (owner_->controlType_ != controllers::cPlayer1 &&
-             owner_->controlType_ != controllers::cPlayer2) &&
+             owner_->controlType_ != controllers::cPlayer2)*/ &&
             amount < life_)
         {
             amount *= (10.f - 0.09f*settings::iBotsDifficulty);
@@ -459,9 +477,9 @@ void Turret::onCollision(SpaceObject* with, Vector2f const& location,
 
         if ((damageSource_ &&
             (damageSource_->controlType_ == controllers::cPlayer1 ||
-             damageSource_->controlType_ == controllers::cPlayer2)) ||
+             damageSource_->controlType_ == controllers::cPlayer2))/* ||
             owner_->controlType_ == controllers::cPlayer1 ||
-            owner_->controlType_ == controllers::cPlayer2)
+            owner_->controlType_ == controllers::cPlayer2*/)
         {
             Vector2f direction;
 
@@ -561,7 +579,7 @@ void Turret::explode()
 
     visible_ = false;
     life_ = 0.f;
-    respawnTimer_ = 5.f;  //settings::iRespawnDelay / 10.f;  //par..
+    respawnTimer_ = settings::iTurretRespawnDelay / 10.f;
 
     frozen_ = 0.f;
     // special_->stop();

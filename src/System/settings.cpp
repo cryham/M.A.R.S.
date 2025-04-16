@@ -121,18 +121,21 @@ namespace settings
     int         iMapMinPlanetGap    = 150;
     int         iMapHomeRadius      = 100;
 
-    int         iShipRadius         = 18;
     int         iMapXsize           = 1440;
     int         iMapYsize           = 810;
     // int      iMapYaspect         = 1000 * 1440 / 810;  // / 1000 = 1
+
+    int         iShipRadius         = 18;
     int         iBallRadius         = 15;
 
-    int         iShipTurnSpeed   = 25;
     int         iDamageScale     = 70;
     int         iRegeneration    = 60;
     int         iFuelRegen       = 150;
     int         iRespawnDelay    = 20;
+    
+    int         iShipTurnSpeed   = 25;
     int         iGlowAlpha       = 30;
+    int         iAimRayAlpha     = 25;
 
     bool        bCyclicBorderX   = false;
     bool        bCyclicBorderY   = false;
@@ -436,7 +439,8 @@ namespace settings
             oss << "Regeneration "          << iRegeneration << endl;
             oss << "FuelRegen "             << iFuelRegen << endl << endl;
             oss << "RespawnDelay "          << iRespawnDelay << endl;
-            oss << "GlowAlpha "             << iGlowAlpha << endl << endl;
+            oss << "GlowAlpha "             << iGlowAlpha << endl;
+            oss << "AimRayAlpha "           << iAimRayAlpha << endl << endl;
             //  turrets
             oss << "TurretsOnHome "         << iTurretsOnHome << endl;
             oss << "TurretsOnPlanet "       << iTurretsOnPlanet << endl;
@@ -763,6 +767,7 @@ namespace settings
                 else if (line == "FuelRegen")           iss >> iFuelRegen;
                 else if (line == "RespawnDelay")        iss >> iRespawnDelay;
                 else if (line == "GlowAlpha")           iss >> iGlowAlpha;
+                else if (line == "AimRayAlpha")         iss >> iAimRayAlpha;
                 //  turrets
                 else if (line == "TurretsOnHome")       iss >> iTurretsOnHome;
                 else if (line == "TurretsOnPlanet")     iss >> iTurretsOnPlanet;

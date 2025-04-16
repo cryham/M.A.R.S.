@@ -19,7 +19,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "SpaceObjects/Ship.hpp"
 #include "Players/Player.hpp"
-#include "Particles/AmmoInsta.hpp"
+#include "System/settings.hpp"
 
 
 void ShipHighlight::draw() const
@@ -51,20 +51,22 @@ void ShipHighlight::draw(Vector2f const& location, float scale, float alpha) con
     glPushMatrix();
     glLoadIdentity();
     glTranslatef(location.x_, location.y_, 0.f);
-if (0)
-{
-    ship_->owner_->color().gl4f(alpha * 0.2f);
 
-    glRotatef(ship_->rotation_, 0.f, 0.f, 1.f);
+    int aim = settings::iAimRayAlpha;
+    if (aim > 0)
+    {
+        ship_->owner_->color().gl4f(alpha * aim / 100.f);
 
-    glBegin(GL_QUADS);  // aim ray
-        const int u = 0, v = 31;
-        uv8w(u, v);     glVertex2f(0,     r* 0.2f);
-        uv8w(u, v+1);   glVertex2f(0,     r*-0.2f);
-        uv8w(u+1, v+1); glVertex2f(r*9.f, r*-0.2f);
-        uv8w(u+1, v);   glVertex2f(r*9.f, r* 0.2f);
-    glEnd();
-}
+        glRotatef(ship_->rotation_, 0.f, 0.f, 1.f);
+
+        glBegin(GL_QUADS);  //  aim ray ---
+            const int u = 0, v = 31;
+            uv8w(u, v);     glVertex2f(0,       r* 0.1f);
+            uv8w(u, v+1);   glVertex2f(0,       r*-0.1f);
+            uv8w(u+1, v+1); glVertex2f(r*121.f, r*-0.1f);
+            uv8w(u+1, v);   glVertex2f(r*121.f, r* 0.1f);
+        glEnd();
+    }
 
     glRotatef(fmod(timer::totalTime()*10.f, 360.f), 0.f, 0.f, 1.f);
     glBindTexture(GL_TEXTURE_2D, texture::getTexture(texture::Ships));

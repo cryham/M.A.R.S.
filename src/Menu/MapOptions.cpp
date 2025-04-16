@@ -140,18 +140,18 @@ UiWindow* MapOptions::get()
             &settings::iTurretsOnHome, 0, 6, 1,
             Vector2f(x,y), w, 240, true));  y += yadd;
         tabTurrets->addWidget(new Slider(locales::getLocale(locales::OnPlanets), "",
-            &settings::iTurretsOnPlanet, 0, 6, 1,
+            &settings::iTurretsOnPlanet, 0, 9, 1,
             Vector2f(x,y), w, 240, true));  y += yadd*3/2;
         
         tabTurrets->addWidget(new Slider(locales::getLocale(locales::AttackSpeed), "",
             &settings::iTurretAttackSpeed, 0, 1000, 1,
             Vector2f(x,y), w, 240, true));  y += yadd;
         tabTurrets->addWidget(new Slider(locales::getLocale(locales::RespawnDelay), "",
-            &settings::iTurretRespawnDelay, -1, 600, 1,
+            &settings::iTurretRespawnDelay, -1, 3000, 1,
             Vector2f(x,y), w, 240, true, Slider::None,
             "%3.1f s", 10.f));  y += yadd;
         tabTurrets->addWidget(new Slider(locales::getLocale(locales::TurnSpeed), "",
-            &settings::iTurretTurnSpeed, 1, 100, 10,
+            &settings::iTurretTurnSpeed, 1, 60, 1,
             Vector2f(x,y), w, 240, true));  y += yadd;
 
 

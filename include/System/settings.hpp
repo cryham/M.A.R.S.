@@ -133,14 +133,14 @@ namespace settings
 
     /// \name Game settings new
     ///@{
-    extern int            iShipTurnSpeed;
     extern int            iDamageScale;
-
     extern int            iRegeneration;
     extern int            iFuelRegen;
-
     extern int            iRespawnDelay;
+    
+    extern int            iShipTurnSpeed;
     extern int            iGlowAlpha;
+    extern int            iAimRayAlpha;
 
     extern bool           bCyclicBorderX;
     extern bool           bCyclicBorderY;

@@ -29,9 +29,6 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Interface/KeyEdit.hpp"
 #include "Interface/TextEdit.hpp"
 #include "Interface/ShipPreview.hpp"
-#include "Interface/Line.hpp"
-#include "Interface/RadioGroup.hpp"
-#include "Interface/RadioButton.hpp"
 #include "Interface/ComboBox.hpp"
 #include "Interface/LanguageButton.hpp"
 #include "Interface/ColorPicker.hpp"
@@ -43,9 +40,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "System/generateName.hpp"
 #include "Media/music.hpp"
 #include "Particles/Star.hpp"
-#include "Media/sound.hpp"
 #include "Locales/locales.hpp"
-#include "Menu/ChooseLanguage.hpp"
 #include "Menu/ShaderError.hpp"
 #include "Shaders/postFX.hpp"
 #include "defines.hpp"
@@ -308,7 +303,12 @@ UiWindow* OptionsMenu::get()
         tabShips->addWidget(new Slider(locales::getLocale(locales::GlowAlpha), "",
            &settings::iGlowAlpha, 0, 150, 1,
            Vector2f(20,y), 540, 240, true, Slider::None,
+            "%1.0f %%", 1.f));  y += yadd;
+        tabShips->addWidget(new Slider(locales::getLocale(locales::AimRay), "",
+           &settings::iAimRayAlpha, 0, 150, 1,
+           Vector2f(20,y), 540, 240, true, Slider::None,
             "%1.0f %%", 1.f));  y += yadd*3/2;
+
 
 
         //  Player I keys  ----

@@ -35,7 +35,7 @@ namespace texture
         Home, Planet1, Planet2, Planet3, Planet4, Planet5,
         Planet6, Planet7, Planet8, Planet9, Planet10,
         Planet11, Planet12, Planet13, Planet14, Planet15,
-        Sun1, Sun2, Sun3, SunHeat,
+        Sun1, Sun2, Sun3, Sun4, SunHeat,
         
         Ice, Bolt, Cracks, Hole1,
         Ball, Particles, PowerUps, Ships, Weapons,

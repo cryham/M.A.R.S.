@@ -89,6 +89,7 @@ namespace texture
                 case Sun1:           loadTexture_(type, path + "tex/spaceObjects/sun1.png");      break;
                 case Sun2:           loadTexture_(type, path + "tex/spaceObjects/sun2.png");      break;
                 case Sun3:           loadTexture_(type, path + "tex/spaceObjects/sun3.png");      break;
+                case Sun4:           loadTexture_(type, path + "tex/spaceObjects/sun4.png");      break;
                 case SunHeat:        loadTexture_(type, path + "tex/spaceObjects/sunHeat.png");   break;
                 
                 case Ice:            loadTexture_(type, path + "tex/ice.png");                    break;

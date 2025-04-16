@@ -124,7 +124,7 @@ namespace spaceObjects
         Vector2f position = possiblePlanetLocation(radius, 200);
         if (position != Vector2f(0,0))
         {
-            Sun* sun = new Sun(position, radius, randomizer::random(0, 2));
+            Sun* sun = new Sun(position, radius, randomizer::random(0, 3));
             objectList_.push_back(sun);
             decoObjects::addSunHeat(sun);
         }

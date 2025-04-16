@@ -18,25 +18,30 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "SpaceObjects/Sun.hpp"
 
 #include "Media/sound.hpp"
+#include "SpaceObjects/spaceObjects.hpp"
 #include "System/timer.hpp"
 #include "Particles/particles.hpp"
 #include "System/randomizer.hpp"
 
 
 Sun::Sun(Vector2f const& location, float radius, int type)
-    :SpaceObject(spaceObjects::oSun,location, radius, radius * randomizer::random(40, 70))  // 50
+    :SpaceObject(spaceObjects::oSun, location, radius, radius * randomizer::random(40, 70))  // 50
     ,eruptionTimer_(0)
-    ,type_(std::min(2, type))
+    ,type_(std::min(3, type))
 {
     physics::addStaticObject(this);
     physics::addGravitySource(this);
 
-    float g = randomizer::random(0.7f,1.f), b = std::min(g, randomizer::random(0.2f,1.f));
+    float r = randomizer::random(0.9f,1.f),
+        g = randomizer::random(0.7f,1.f),
+        b = std::min(g, randomizer::random(0.2f,1.f)),
+        c = randomizer::random(0.3f,1.f);
     switch (type_)
     {
     case 0:  color_ = Color3f(1.f, g, b);  break;  // orange yellow
     case 1:  color_ = Color3f(b, g, 1.f);  break;  // white blue cyan
-    case 2:  color_ = Color3f(g, b, 0.2f);  break;  // red brown
+    case 2:  color_ = Color3f(c, b, 0.2f);  break;  // red brown
+    case 3:  color_ = Color3f(g, std::min(r,g), 1.f);  break;  // white yellow
     }
 }
 
@@ -49,10 +54,11 @@ void Sun::update()
     }else
     {
         // get random direction
-        Vector2f direction = Vector2f::randDir();
-        Vector2f eruptionLocation = location_ + direction * radius_ * 0.9;
+        Vector2f dir = Vector2f::randDir();
+        Vector2f pos = location_ + dir * radius_ * 0.9;
         float intensity = randomizer::random(0.5f, 2.0f);
-        particles::spawnMultiple(intensity*5, particles::pEruption, eruptionLocation, direction, direction*intensity);
+        
+        particles::spawnMultiple(intensity*5, particles::pEruption, pos, dir, dir*intensity);
         eruptionTimer_ = randomizer::random(1.0f, 2.5f);
     }
 }
@@ -84,16 +90,21 @@ void Sun::onCollision(SpaceObject* with, Vector2f const& location,
                       Vector2f const& direction, Vector2f const& velocity)
 {
     float strength = velocity.length();
+    auto type = with->type();
+    
+    if (strength > 50 &&
+        type != spaceObjects::oFuel &&
+        type != spaceObjects::oAmmoBurner && type != spaceObjects::oAmmoFlamer2)
+        particles::spawnMultiple(0.5, particles::pMud, location, direction, velocity, color_.brightened());
 
-    if (with->type() != spaceObjects::oFuel && with->type() != spaceObjects::oAmmoBurner  && strength > 50)
-        particles::spawnMultiple(5, particles::pMud, location, direction, velocity, Color3f(1.0f, 0.9f, 0.2f));
-
-    if (((with->type() == spaceObjects::oShip) |
-         (with->type() == spaceObjects::oBall)) && (strength > 50))
+    if (type == spaceObjects::oShip ||
+        type == spaceObjects::oBall && strength > 50)
     {
-        Vector2f direction = location - location_;
-        Vector2f eruptionLocation = location_ + direction * 0.9;
-        particles::spawnMultiple(strength*0.1, particles::pEruption, eruptionLocation, direction, direction*strength*0.00005);
+        Vector2f dir = location - location_;
+        Vector2f pos = location_ + dir * 0.9;
+        
+        particles::spawnMultiple(strength * (0.1 + 0.1 * type_), particles::pEruption,
+            pos, dir, dir*strength*0.00005, color_);
         eruptionTimer_ = randomizer::random(0.5f, 1.5f);
     }
 }

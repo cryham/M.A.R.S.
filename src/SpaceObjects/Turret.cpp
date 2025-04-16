@@ -292,6 +292,7 @@ void Turret::onCollision(SpaceObject* with, Vector2f const& location,
 {
     if (life_ <= 0.f)
         return;
+
     float strength = velocity.length();
     // damage
     float amount(0.f);
@@ -301,13 +302,13 @@ void Turret::onCollision(SpaceObject* with, Vector2f const& location,
 
     switch (with->type())
     {
-        case spaceObjects::oSun:
+        /*case spaceObjects::oSun:
             amount = strength*0.08f + 20;
             if (strength > 50)
                 sound::playSound(sound::BallPlanetCollide, location, (strength-50)/3);
             break;
 
-        /*case spaceObjects::oShip:
+        case spaceObjects::oShip:
             setDamageSource(with->damageSource());
             amount = strength * 0.01f;
             dynamic_cast<Ship*>(with)->setDamageSource(damageSource_);
@@ -318,6 +319,7 @@ void Turret::onCollision(SpaceObject* with, Vector2f const& location,
         case spaceObjects::oShip:
         case spaceObjects::oPlanet:
         case spaceObjects::oHome:
+        case spaceObjects::oSun:
             break;
 
         case spaceObjects::oBall:

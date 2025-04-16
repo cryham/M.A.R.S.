@@ -19,6 +19,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "System/timer.hpp"
 #include "System/randomizer.hpp"
+#include <cmath>
 
 
 std::list<Chill*> Chill::activeParticles_;
@@ -48,11 +49,12 @@ void Chill::update()
 
 void Chill::draw() const
 {
-    color_.gl4f(0.2f - 0.2f * lifeTime_/totalLifeTime_);
+    color_.gl4f(0.15f * sinf(M_PI * lifeTime_/totalLifeTime_));
+    const float r = radius_ * 1.4f;
     const int u = 10, v = 0;
 
-    uv8(u,   v);    glVertex2f(location_.x_-radius_, location_.y_-radius_);
-    uv8(u,   v+2);  glVertex2f(location_.x_-radius_, location_.y_+radius_);
-    uv8(u+2, v+2);  glVertex2f(location_.x_+radius_, location_.y_+radius_);
-    uv8(u+2, v);    glVertex2f(location_.x_+radius_, location_.y_-radius_);
+    uv8(u,   v);    glVertex2f(location_.x_ - r, location_.y_ - r);
+    uv8(u,   v+2);  glVertex2f(location_.x_ - r, location_.y_ + r);
+    uv8(u+2, v+2);  glVertex2f(location_.x_ + r, location_.y_ + r);
+    uv8(u+2, v);    glVertex2f(location_.x_ + r, location_.y_ - r);
 }

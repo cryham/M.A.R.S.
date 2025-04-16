@@ -45,10 +45,10 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 Turret::Turret(Vector2f const& location, float rotation, Player* owner)
     : SpaceObject(spaceObjects::oTurret, location, settings::iShipRadius, 10.f)
     , Mount(rotation, owner)
-    ,left_(0), right_(0)
     ,visible_(true)
     // ,ghostTimer_(1.f)
     ,frozen_(0.f)
+
     ,respawnTimer_(0.f)
     ,damageSourceResetTimer_(0.f)
     ,respawnLocation_(location)
@@ -58,14 +58,13 @@ Turret::Turret(Vector2f const& location, float rotation, Player* owner)
     ,life_(200.f)
     ,maxLife_(life_)
 
-    ,fragStars_(0)
     ,damageByLocalPlayer_(0.f)
     ,damageCheckTimer_(0.f)
     ,damageDirection_(0.f, 0.f)
     ,collisionCount_(0)
 {
-	//decoObjects::addHighlight(this);
-    color_ = Color3f::random().brightened() * 0.5f;
+    // color_ = Color3f::random().brightened() * 0.5f;
+    color_ = Color3f(0.7,0.7,0.7) - Color3f::random() * 0.1f;
     graphic_ = randomizer::random(0, SHIP_GRAPHICS_COUNT);
 
 	weapon_  = weapons::create(weapons::random(), this);
@@ -291,6 +290,8 @@ void Turret::drawWeapon() const
 void Turret::onCollision(SpaceObject* with, Vector2f const& location,
                        Vector2f const& direction, Vector2f const& velocity)
 {
+    if (life_ <= 0.f)
+        return;
     float strength = velocity.length();
     // damage
     float amount(0.f);
@@ -306,29 +307,65 @@ void Turret::onCollision(SpaceObject* with, Vector2f const& location,
                 sound::playSound(sound::BallPlanetCollide, location, (strength-50)/3);
             break;
 
-        case spaceObjects::oShip:
+        /*case spaceObjects::oShip:
             setDamageSource(with->damageSource());
             amount = strength * 0.01f;
             dynamic_cast<Ship*>(with)->setDamageSource(damageSource_);
             if (strength > 50)
-				sound::playSound(sound::ShipCollide, location, (strength-50)/3);
+                sound::playSound(sound::ShipCollide, location, (strength-50)/3);
+            break;*/
+
+        case spaceObjects::oShip:
+        case spaceObjects::oPlanet:
+        case spaceObjects::oHome:
             break;
 
         case spaceObjects::oBall:
             amount =  dynamic_cast<Ball*>(with)->heatAmount() * 0.1f;
-            // particles::spawnMultiple(2, particles::pSpark, location, direction*100.f, Vector2f());
+            // particles::spawnMultiple(2, particles::pSpark, location, direction*100.f);
             if (strength > 50)
                 sound::playSound(sound::ShipPlanetCollide, location, (strength-50)/3);
             unfreeze = 10.f;
             break;
 
-        //  Ammo
+
+        //  clouds
+        case spaceObjects::oAmmoPulse:  // ))
+            amount = strength*0.002f;
+            waitForOtherDamage = 0.2f;
+            setDamageSource(with->damageSource());
+            unfreeze = 0.1f;
+        case spaceObjects::oAmmoCloud:  // OO
+            amount = strength*0.004f;
+            waitForOtherDamage = 0.1f;
+            setDamageSource(with->damageSource());
+            unfreeze = 0.1f;
+            break;
+
+        case spaceObjects::oAmmoMinigun:  // ...
+            amount = strength*0.002f;
+            waitForOtherDamage = 0.1f;
+            setDamageSource(with->damageSource());
+            // particles::spawnMultiple(2, particles::pSpark, location,
+            //     dynamic_cast<MobileSpaceObject*>(with)->velocity() * 0.7f, velocity_, owner_->color());
+            unfreeze = 0.1f;
+            break;
+        case spaceObjects::oAmmoGrenades:  // --.
+            amount = strength*0.0001f;
+            waitForOtherDamage = 0.1f;
+            setDamageSource(with->damageSource());
+            particles::spawnMultiple(10, particles::pSpark, location,
+                dynamic_cast<MobileSpaceObject*>(with)->velocity() * 0.0005f); //, owner_->color());
+            unfreeze = 20.f;
+            break;
+
+        //  afk
         case spaceObjects::oAmmoAFK85:  // =
             amount = strength*0.0023f;
             waitForOtherDamage = 0.15f;
             setDamageSource(with->damageSource());
             particles::spawnMultiple(2, particles::pSpark, location,
-                dynamic_cast<MobileSpaceObject*>(with)->velocity() * 0.3f, Vector2f());
+                dynamic_cast<MobileSpaceObject*>(with)->velocity() * 0.3f);
             unfreeze = 0.1f;
             break;
         case spaceObjects::oAmmoAFK47:
@@ -336,31 +373,49 @@ void Turret::onCollision(SpaceObject* with, Vector2f const& location,
             waitForOtherDamage = 0.15f;
             setDamageSource(with->damageSource());
             particles::spawnMultiple(2, particles::pSpark, location,
-                dynamic_cast<MobileSpaceObject*>(with)->velocity() * 0.3f, Vector2f());
+                dynamic_cast<MobileSpaceObject*>(with)->velocity() * 0.3f);
             unfreeze = 0.1f;
             break;
 
+        //  rifles  ---
+        case spaceObjects::oAmmoGauss:  // --.
+            amount = strength*0.0007f;
+            waitForOtherDamage = 0.2f;
+            setDamageSource(with->damageSource());
+            particles::spawnMultiple(10, particles::pSpark, location,
+                dynamic_cast<MobileSpaceObject*>(with)->velocity() * 0.0005f);  //, owner_->color());
+            unfreeze = 20.f;
+            break;
+        case spaceObjects::oAmmoLaser:  // ___
+            amount = strength*0.003f;
+            waitForOtherDamage = 0.1f;
+            setDamageSource(with->damageSource());
+            particles::spawnMultiple(1, particles::pSpark, location,
+                dynamic_cast<MobileSpaceObject*>(with)->velocity() * 0.05f);  //, owner_->color());
+            unfreeze = 30.f;
+            break;
         case spaceObjects::oAmmoRifle2:  // --
             amount = strength*0.006f;
             setDamageSource(with->damageSource());
             particles::spawnMultiple(20, particles::pSpark, location,
-                dynamic_cast<MobileSpaceObject*>(with)->velocity() * 0.5f, Vector2f());
+                dynamic_cast<MobileSpaceObject*>(with)->velocity() * 0.5f);
             unfreeze = 20.f;
             break;
         case spaceObjects::oAmmoROFLE:
             amount = strength*0.0004f;
             setDamageSource(with->damageSource());
             particles::spawnMultiple(20, particles::pSpark, location,
-                dynamic_cast<MobileSpaceObject*>(with)->velocity() * 0.5f, Vector2f());
+                dynamic_cast<MobileSpaceObject*>(with)->velocity() * 0.5f);
             unfreeze = 20.f;
             break;
 
-        case spaceObjects::oAmmoShotgun2:  // <
-            amount = strength*0.0007f;
+        //  shotgun  <
+        case spaceObjects::oAmmoShotgun2:  // <<
+            amount = strength*0.0012f;
             waitForOtherDamage = 0.1f;
             setDamageSource(with->damageSource());
             particles::spawnMultiple(2, particles::pSpark, location,
-                dynamic_cast<MobileSpaceObject*>(with)->velocity() * 0.7f, Vector2f());
+                dynamic_cast<MobileSpaceObject*>(with)->velocity() * 0.7f);
             unfreeze = 0.1f;
             break;
         case spaceObjects::oAmmoShotgun:
@@ -368,21 +423,45 @@ void Turret::onCollision(SpaceObject* with, Vector2f const& location,
             waitForOtherDamage = 0.1f;
             setDamageSource(with->damageSource());
             particles::spawnMultiple(2, particles::pSpark, location,
-                dynamic_cast<MobileSpaceObject*>(with)->velocity() * 0.7f, Vector2f());
+                dynamic_cast<MobileSpaceObject*>(with)->velocity() * 0.7f);
             unfreeze = 0.1f;
             break;
 
+        //  freezers
+        case spaceObjects::oAmmoFreezers:  // :*
+            amount = randomizer::random(1.5f, 2.f) * 0.4f;
+            waitForOtherDamage = 0.1f;
+            setDamageSource(with->damageSource());
+            // unfreeze = 4.f;
+            break;
+        case spaceObjects::oAmmoLightning:  // -~
+            amount = randomizer::random(0.5f, 2.f) * 0.6f;
+            waitForOtherDamage = 0.1f;
+            setDamageSource(with->damageSource());
+            // unfreeze = 4.f;
+            break;
+
+        //  plasma
         case spaceObjects::oAmmoPlasma:  // o
             amount = randomizer::random(5.f, 6.f);
+            waitForOtherDamage = 0.1f;
             setDamageSource(with->damageSource());
             unfreeze = 4.f;
             break;
+        
+        //  flubba  o.
         case spaceObjects::oAmmoFlubba:
             amount = randomizer::random(2.5f, 3.f);
             setDamageSource(with->damageSource());
             unfreeze = 4.f;
             break;
+        case spaceObjects::oMiniAmmoFlubba:
+            amount = randomizer::random(0.7f, 1.f);
+            waitForOtherDamage = 0.3f;
+            setDamageSource(with->damageSource());
+            break;
 
+        //  H2o
         case spaceObjects::oAmmoH2OStorm:  // *
             amount = strength*0.002f;
             waitForOtherDamage = 0.15f;
@@ -396,17 +475,13 @@ void Turret::onCollision(SpaceObject* with, Vector2f const& location,
             unfreeze = 0.1f;
             break;
 
-        case spaceObjects::oMiniAmmoFlubba:
-            amount = randomizer::random(0.7f, 1.f);
-            waitForOtherDamage = 0.3f;
-            setDamageSource(with->damageSource());
-            break;
-
+        //  Flame  ~~
         case spaceObjects::oAmmoFlamer2:
         case spaceObjects::oAmmoBurner:
             amount = timer::frameTime();
             waitForOtherDamage = 0.15f;
-            // if (frozen_ <= 0) velocity_ += velocity*0.03f*timer::frameTime();
+            // if (frozen_ <= 0)
+            //     velocity_ += velocity*0.03f*timer::frameTime();
             // chance to spawn smoke
             if (randomizer::random(0.f, 100.f) / settings::iParticleCount < 0.01f)
                 particles::spawn(particles::pSmoke, location, velocity);
@@ -414,6 +489,12 @@ void Turret::onCollision(SpaceObject* with, Vector2f const& location,
             unfreeze = 0.05f;
             break;
 
+        //  rockets  - =
+        case spaceObjects::oAmmoSeekers:
+            amount = 3.f;
+            setDamageSource(with->damageSource());
+            unfreeze = 5.f;
+            break;
         case spaceObjects::oAmmoMiniRocket:
             amount = 20.f;
             setDamageSource(with->damageSource());
@@ -425,12 +506,8 @@ void Turret::onCollision(SpaceObject* with, Vector2f const& location,
             unfreeze = 10.f;
             break;
 
-        case spaceObjects::oCannonBall:
-            amount = life_;
-            // setDamageSource(owner_);
-            unfreeze = frozen_;
-            break;
 
+        //  big  -o
         case spaceObjects::oAmmoFist:
             amount = 25.f+randomizer::random(-3.f, 3.f);
             setDamageSource(with->damageSource());
@@ -440,6 +517,12 @@ void Turret::onCollision(SpaceObject* with, Vector2f const& location,
         case spaceObjects::oAmmoInsta:
             amount = life_ / 8.f;
             setDamageSource(with->damageSource());
+            break;
+
+        case spaceObjects::oCannonBall:
+            amount = life_;
+            setDamageSource(owner_);
+            unfreeze = frozen_;
             break;
 
         default:;
@@ -458,19 +541,19 @@ void Turret::onCollision(SpaceObject* with, Vector2f const& location,
 
     amount *= settings::iDamageScale / 100.f;
 
-    // if (attackable())
+    if (attackable() && life_ > 0.f)
     {
         // increase the amount done to weak bots
         // strong bots just take normal damage
-        if (damageSource_ &&
-            (damageSource_->controlType_ == controllers::cPlayer1 ||
-             damageSource_->controlType_ == controllers::cPlayer2) /*&&
-            (owner_->controlType_ != controllers::cPlayer1 &&
-             owner_->controlType_ != controllers::cPlayer2)*/ &&
-            amount < life_)
-        {
-            amount *= (10.f - 0.09f*settings::iBotsDifficulty);
-        }
+        // if (damageSource_ &&
+        //     (damageSource_->controlType_ == controllers::cPlayer1 ||
+        //      damageSource_->controlType_ == controllers::cPlayer2) /*&&
+        //     (owner_->controlType_ != controllers::cPlayer1 &&
+        //      owner_->controlType_ != controllers::cPlayer2)*/ &&
+        //     amount < life_)
+        // {
+        //     amount *= (10.f - 0.09f*settings::iBotsDifficulty);
+        // }
 
         if ((damageSource_ &&
             (damageSource_->controlType_ == controllers::cPlayer1 ||
@@ -485,8 +568,7 @@ void Turret::onCollision(SpaceObject* with, Vector2f const& location,
                 direction = target->velocity();
 
             drainLife(damageSource_, amount, direction, waitForOtherDamage);
-        }
-        else
+        }else
             life_ -= amount;
     }
 }
@@ -625,11 +707,12 @@ void Turret::respawn()
     rotateSpeed_ = 1.f;
     life_ = maxLife_;
 
-    fragStars_ = 0;
+    // fragStars_ = 0;
     visible_ = true;
     damageByLocalPlayer_ = 0.f;
     damageDirection_ = Vector2f();
     collisionCount_ = 0;
+
     sound::playSound(sound::ShipRespawn, location_, 100.f);
 }
 

@@ -305,7 +305,7 @@ UiWindow* OptionsMenu::get()
            Vector2f(20,y), 540, 240, true, Slider::None,
             "%1.0f %%", 1.f));  y += yadd;
         tabShips->addWidget(new Slider(locales::getLocale(locales::AimRay), "",
-           &settings::iAimRayAlpha, 0, 150, 1,
+           &settings::iAimRayAlpha, 0, 100, 1,
            Vector2f(20,y), 540, 240, true, Slider::None,
             "%1.0f %%", 1.f));  y += yadd*3/2;
 

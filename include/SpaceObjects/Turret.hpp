@@ -76,8 +76,6 @@ class Turret: public SpaceObject, public Mount
         void explode();
         void respawn();
 
-        int left_, right_;
-
         Color3f color_;
         int graphic_;
 
@@ -95,7 +93,6 @@ class Turret: public SpaceObject, public Mount
 
         float life_, maxLife_;
 
-        int fragStars_;
         float damageByLocalPlayer_;
         float damageCheckTimer_;
         Vector2f damageDirection_;

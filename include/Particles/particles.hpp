@@ -24,18 +24,23 @@ class Player;
 class SpaceObject;
 class MobileSpaceObject;
 
+
 /// A namespace which handles everything related to particles.
 /// The functions in this namespace can spawn, draw, count and
 /// clear all particles.
 
 namespace particles 
 {
+
     /// A list of all supported particle types.
     enum ParticleType
     {
         pFuel,              ///< Spawned by the Ships exhaust.
         pSpark,             ///< Spawned when a Particle collides with a Ship, or a Ship with another Ship.
         pDust,              ///< Spawned by explosions - they form the ring.
+
+        pElectric,          ///< Spawned by the Lightning gun.
+        pChill,             ///< Spawned by the Freezers gun.
 
         pAmmoFlubba,        ///< Spawned by the Flubba.
         pExplode,           ///< Spawned by explosions (the yellowish glow).
@@ -160,4 +165,3 @@ namespace particles
     /// Removes all particles.
     void clear();
 }
-

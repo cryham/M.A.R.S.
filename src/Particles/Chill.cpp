@@ -1,6 +1,6 @@
-/* Spark.cpp
+/* Chill.cpp
 
-Copyright (c) 2010 - 2011 by Felix Lauer and Simon Schneegans
+Copyright (c) 2025 Crystal Hammer
 
 This program is free software: you can redistribute it and/or modify it
 under the terms of the GNU General Public License as published by the Free
@@ -15,32 +15,26 @@ more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-#include "Particles/Spark.hpp"
+#include "Particles/Chill.hpp"
 
 #include "System/timer.hpp"
 #include "System/randomizer.hpp"
 
 
-std::list<Spark*> Spark::activeParticles_;
+std::list<Chill*> Chill::activeParticles_;
 
 
-Spark::Spark(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,
+Chill::Chill(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,
         Color3f const& color, Player* damageSource)
-    :Particle<Spark>(spaceObjects::oSpark, location, 1, 0, randomizer::random(0.3f, 0.4f))
+    :Particle<Chill>(spaceObjects::oChill, location, randomizer::random(16.f, 40.f), 0.f, randomizer::random(0.6f, 0.8f))
     ,color_(color)
 {
     Vector2f distortion(Vector2f::randDirLen());
-    velocity_ = direction + velocity_*0.5f + distortion*150.f;
-
-    if (randomizer::random(0, 1) == 0)
-        color_ = Color3f(1.0f, 0.8f, 0.0f);
+    velocity_ = direction + distortion*150.f;
 }
 
-void Spark::update()
+void Chill::update()
 {
-    // update Color
-    color_.v(-1.0/totalLifeTime_*lifeTime_+1);
-
     float time = timer::frameTime();
 
     location_ += velocity_*time;
@@ -48,14 +42,17 @@ void Spark::update()
     // borders();
 
     lifeTime_ += time;
+    if (lifeTime_ > totalLifeTime_)
+        killMe();
 }
 
-void Spark::draw() const
+void Chill::draw() const
 {
-    color_.gl4f();
-    const int u = 0, v = 1;
+    color_.gl4f(0.2f - 0.2f * lifeTime_/totalLifeTime_);
+    const int u = 10, v = 0;
+
     uv8(u,   v);    glVertex2f(location_.x_-radius_, location_.y_-radius_);
-    uv8(u,   v+1);  glVertex2f(location_.x_-radius_, location_.y_+radius_);
-    uv8(u+1, v+1);  glVertex2f(location_.x_+radius_, location_.y_+radius_);
-    uv8(u+1, v);    glVertex2f(location_.x_+radius_, location_.y_-radius_);
+    uv8(u,   v+2);  glVertex2f(location_.x_-radius_, location_.y_+radius_);
+    uv8(u+2, v+2);  glVertex2f(location_.x_+radius_, location_.y_+radius_);
+    uv8(u+2, v);    glVertex2f(location_.x_+radius_, location_.y_-radius_);
 }

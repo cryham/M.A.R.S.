@@ -387,7 +387,8 @@ void Ship::onCollision(SpaceObject* with, Vector2f const& location,
             setDamageSource(with->damageSource());
             amount = strength * 0.01f;
             dynamic_cast<Ship*>(with)->setDamageSource(damageSource_);
-            if (strength > 50) sound::playSound(sound::ShipCollide, location, (strength-50)/3);
+            if (strength > 50)
+                sound::playSound(sound::ShipCollide, location, (strength-50)/3);
             break;
 
         case spaceObjects::oPlanet:
@@ -513,14 +514,14 @@ void Ship::onCollision(SpaceObject* with, Vector2f const& location,
 
         //  freezers
         case spaceObjects::oAmmoFreezers:  // :*
-            amount = randomizer::random(1.f, 2.f) * 0.3f;
-            waitForOtherDamage = 0.2f;
+            amount = randomizer::random(1.5f, 2.f) * 0.25f;
+            waitForOtherDamage = 0.1f;
             setDamageSource(with->damageSource());
             // unfreeze = 4.f;
             break;
         case spaceObjects::oAmmoLightning:  // -~
-            amount = randomizer::random(1.f, 2.f) * 0.1f;
-            waitForOtherDamage = 0.2f;
+            amount = randomizer::random(0.5f, 2.f) * 0.35f;
+            waitForOtherDamage = 0.1f;
             setDamageSource(with->damageSource());
             // unfreeze = 4.f;
             break;
@@ -564,7 +565,8 @@ void Ship::onCollision(SpaceObject* with, Vector2f const& location,
         case spaceObjects::oAmmoBurner:
             amount = timer::frameTime();
             waitForOtherDamage = 0.15f;
-            if (frozen_ <= 0) velocity_ += velocity*0.03f*timer::frameTime();
+            if (frozen_ <= 0)
+                velocity_ += velocity*0.03f * timer::frameTime();
             // chance to spawn smoke
             if (randomizer::random(0.f, 100.f) / settings::iParticleCount < 0.01f)
                 particles::spawn(particles::pSmoke, location, velocity);

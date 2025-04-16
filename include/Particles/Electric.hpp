@@ -1,4 +1,4 @@
-/* AmmoLightning.hpp
+/* Electric.hpp
 
 Copyright (c) 2025 Crystal Hammer
 
@@ -18,25 +18,21 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #pragma once
 
 #include "Particles/Particle.hpp"
+#include "System/Color3f.hpp"
 
 
-class AmmoLightning: public Particle<AmmoLightning>
+class Electric: public Particle<Electric>
 {
     public:
-        AmmoLightning(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,
+        Electric(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,
             Color3f const& color, Player* damageSource);
 
         void update() override;;
         void draw() const override;
 
-        void onCollision(SpaceObject* with, Vector2f const& location,
-                         Vector2f const& direction, Vector2f const& velocity) override;
-
-        friend class Particle<AmmoLightning>;
+        friend class Particle<Electric>;
 
     private:
-        float spawnTime_;
-        float size_;
         Color3f color_;
-        static std::list<AmmoLightning*> activeParticles_;
+        static std::list<Electric*> activeParticles_;
 };

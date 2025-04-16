@@ -33,6 +33,7 @@ AmmoLightning::AmmoLightning(
     Vector2f const& velocity, Color3f const& color,
     Player* damageSource)
     :Particle<AmmoLightning>(spaceObjects::oAmmoLightning, location, 2.f, 0.001f, randomizer::random(0.4f, 1.5f))
+    ,spawnTime_(0.f)
 {
     cloud_ = true;
     setDamageSource(damageSource);
@@ -57,7 +58,7 @@ void AmmoLightning::update()
 
     physics::overlap(this, MOBILES | STATICS);
 
-    radius_ = size_ + 1400.f * std::min(2.f, 3.f * lifeTime_);
+    radius_ = size_ + 40.f * std::min(3.f, 3.f * lifeTime_);
 
     location_ += velocity_*time;
     Vector2f const dir(velocity_.normalize());
@@ -65,6 +66,25 @@ void AmmoLightning::update()
     borders();
 
     lifeTime_ += time;
+    spawnTime_ += time;
+
+    if (lifeTime_ > totalLifeTime_)
+    {
+        killMe();
+    }
+    else if (lifeTime_ < 2)
+    {
+        if (spawnTime_ > 0.1f)
+        {   spawnTime_ = 0.f;
+
+            Vector2f dir = Vector2f::randDir();
+            float len = randomizer::random(2.f, radius_ * 0.3f);
+
+            particles::spawnMultiple(0.5f,
+                             particles::pSpark,    location_ + dir * len, dir, dir * len * 5.2f, color_);
+            particles::spawn(particles::pElectric, location_ + dir * len, dir, dir * len * 0.9f, color_);
+        }
+    }
 }
 
 //  draw
@@ -73,7 +93,7 @@ void AmmoLightning::draw() const
     float a = 0.1f + 0.2f * std::min(1.f, 3.2f * lifeTime_ / totalLifeTime_);
     a *= 0.7f * (totalLifeTime_ - lifeTime_) / totalLifeTime_;
 
-    Vector2f dir(velocity_.normalize() * 100.f);
+    Vector2f dir(velocity_.normalize() * 1.f * radius_);
     Vector2f side(dir.y_, -dir.x_);
     side *= 1.2f;
     const Vector2f

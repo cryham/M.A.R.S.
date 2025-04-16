@@ -28,7 +28,7 @@ Version 0.8.0
      - *Cyclic borders*, gravity scale
    - **Game options** window with sliders:
      - Damage scale, Respawn delay, Life and fuel *regeneration*
-     - Ship turn speed, ship glow amount
+     - Ship turn speed, ship glow amount, Aiming ray
    - more possible bots, more kills to end game
    - Ship thrusters now blue
 - ToDo:
@@ -45,7 +45,8 @@ Version 0.8.0
     - no logo, signs
     - countdown seconds, 0 will disable
   - fast fade in/out
-  - anti aliasing slider
+  - immediate clicking, on mouse press, not release
+  - anti aliasing, slider
 - Sources - complete change of code formatting, by hand in all files
   - new cpp standard, using auto, not iterator, pragma once
   - braces in own line, at same width for { and }, only when needed

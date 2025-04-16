@@ -73,6 +73,9 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Particles/AmmoGrenades.hpp"
 #include "Particles/AmmoSeekers.hpp"
 
+#include "Particles/Chill.hpp"
+#include "Particles/Electric.hpp"
+
 #include "TrailEffects/trailEffects.hpp"
 
 
@@ -83,8 +86,12 @@ namespace particles
         AmmoAFK47::        updateAll();
         AmmoBurner::       updateAll();
         AmmoFlubba::       updateAll();
+
+        Electric::         updateAll();
+        Chill::            updateAll();
         Fuel::             updateAll();
         Mud::              updateAll();
+
         Smoke::            updateAll();
         Eruption::         updateAll();
         AmmoROFLE::        updateAll();
@@ -159,8 +166,12 @@ namespace particles
             MiniAmmoFlubba::   drawAll();
             MiniFlame::        drawAll();
             AmmoH2OMG::        drawAll();
+
             Eruption::         drawAll();
             Mud::              drawAll();
+            Electric::         drawAll();
+            Chill::            drawAll();
+
             AmmoShotgun::      drawAll();
             AmmoROFLE::        drawAll();
             BurningFragment::  drawAll();
@@ -300,7 +311,10 @@ namespace particles
             case pAmmoShotgun:      AmmoShotgun::      spawn(location, direction, velocity, color, damageSource); break;
             case pAmmoFlubba:       AmmoFlubba::       spawn(location, direction, velocity, color, damageSource); break;
             case pAmmoROFLE:        AmmoROFLE::        spawn(location, direction, velocity, color, damageSource); break;
-            
+
+            //  common new
+            case pElectric:         Electric::         spawn(location, direction, velocity, color, damageSource); break;
+            case pChill:            Chill::            spawn(location, direction, velocity, color, damageSource); break;
             //  common
             case pFuel:             Fuel::             spawn(location, direction, velocity, color, damageSource); break;
             case pMud:              Mud::              spawn(location, direction, velocity, color, damageSource); break;
@@ -392,6 +406,7 @@ namespace particles
     int count()
     {
         return trailEffects::count() + Fuel::count() + Mud::count() + Smoke::count() + Eruption::count()
+            + Electric::count() + Chill::count()
             + AmmoAFK47::count() + AmmoROFLE::count() + Dust::count() + Explode::count()
             + BurningFragment::count() + FragmentFlame::count() + AmmoShotgun::count()
             + MiniFlame::count() + AmmoFlubba::count() + MiniAmmoFlubba::count()
@@ -418,6 +433,8 @@ namespace particles
         AmmoShotgun::      clear();
         AmmoH2OMG::        clear();
         //  common
+        Electric::         clear();
+        Chill::            clear();
         Fuel::             clear();
         Mud::              clear();
         Smoke::            clear();

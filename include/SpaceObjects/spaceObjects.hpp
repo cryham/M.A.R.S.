@@ -42,6 +42,7 @@ namespace spaceObjects
         oMud, oSmoke, oEruption, oDust, oExplode,
         oFragment, oBurningFragment, oFragmentFlame, oMiniFlame,
         oHeat, oHeatJet, oShockWave, oHeatBurner, oMiniFlameSmoke,
+        oElectric, oChill,  // new decoration from oAmmoFreezers, oAmmoLightning
 
         //  ammo orig 9
         oAmmoAFK47, oAmmoROFLE, oAmmoShotgun,

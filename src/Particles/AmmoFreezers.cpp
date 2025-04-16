@@ -74,27 +74,44 @@ void AmmoFreezers::update()
     }
     else if (lifeTime_ < 2)
     {
-        if (spawnTime_ > 0.04f)
+        if (spawnTime_ > 0.1f)
         {   spawnTime_ = 0.f;
 
             Vector2f dir = Vector2f::randDir();
-            float len = randomizer::random(3.f, radius_ * 0.3f);
-            particles::spawnMultiple(1,
-                particles::pMud, location_ + dir * len, dir, dir * len * 0.9f, color_);
+            float len = randomizer::random(1.f, radius_ * 0.2f);
+
+            particles::spawnMultiple(0.3f,
+                             particles::pMud,   location_ + dir * len, dir, dir * len * 15.2f, color_);
+            particles::spawn(particles::pChill, location_ + dir * len, dir, dir * len * 0.2f, color_);
         }
     }
 }
 
 void AmmoFreezers::draw() const
 {
-    const float r = radius_;
+    const float r = radius_ * 0.7f, r2 = radius_ * 1.3f, r3 = radius_ * 1.8f;
 
-    color_.gl4f(0.6f);
+    color_.gl4f(0.1f);
     const int u = 10, v = 0;
-    uv8(u, v);      glVertex2f(location_.x_ - r, location_.y_ - r);
+    uv8(u,   v);    glVertex2f(location_.x_ - r, location_.y_ - r);
     uv8(u,   v+2);  glVertex2f(location_.x_ - r, location_.y_ + r);
     uv8(u+2, v+2);  glVertex2f(location_.x_ + r, location_.y_ + r);
     uv8(u+2, v);    glVertex2f(location_.x_ + r, location_.y_ - r);
+    color_.gl4f(0.6f);
+
+    color_.gl4f(0.2f);
+    const int u2 = 8;
+    uv8(u2,   v);    glVertex2f(location_.x_ - r2, location_.y_ - r2);
+    uv8(u2,   v+2);  glVertex2f(location_.x_ - r2, location_.y_ + r2);
+    uv8(u2+2, v+2);  glVertex2f(location_.x_ + r2, location_.y_ + r2);
+    uv8(u2+2, v);    glVertex2f(location_.x_ + r2, location_.y_ - r2);
+
+    color_.brightened().gl4f(0.2f);
+    const int u3 = 6;
+    uv8(u3,   v);    glVertex2f(location_.x_ - r3, location_.y_ - r3);
+    uv8(u3,   v+2);  glVertex2f(location_.x_ - r3, location_.y_ + r3);
+    uv8(u3+2, v+2);  glVertex2f(location_.x_ + r3, location_.y_ + r3);
+    uv8(u3+2, v);    glVertex2f(location_.x_ + r3, location_.y_ - r3);
 }
 
 void AmmoFreezers::onCollision(SpaceObject* with, Vector2f const& location,

@@ -64,7 +64,7 @@ void Flamer2::fire() const
 
 float Flamer2::maxDistance() const
 {
-    return 400.f;
+    return 500.f;
 }
 
 float Flamer2::minDistance() const

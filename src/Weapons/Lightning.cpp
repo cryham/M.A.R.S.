@@ -24,6 +24,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Teams/Team.hpp"
 
 #include <SFML/Graphics.hpp>
+#include <cfloat>
 
 
 void Lightning::draw(float alpha) const
@@ -61,7 +62,7 @@ void Lightning::fire() const
 
 float Lightning::maxDistance() const
 {
-    return 200.f;
+    return FLT_MAX;
 }
 
 float Lightning::minDistance() const

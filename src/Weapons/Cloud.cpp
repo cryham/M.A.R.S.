@@ -24,6 +24,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Teams/Team.hpp"
 
 #include <SFML/Graphics.hpp>
+#include <cfloat>
 
 
 void Cloud::draw(float alpha) const
@@ -62,7 +63,7 @@ void Cloud::fire() const
 
 float Cloud::maxDistance() const
 {
-    return 200.f;
+    return FLT_MAX;
 }
 
 float Cloud::minDistance() const
@@ -72,5 +73,5 @@ float Cloud::minDistance() const
 
 float Cloud::maxAngle() const
 {
-    return 70.f;
+    return 50.f;
 }

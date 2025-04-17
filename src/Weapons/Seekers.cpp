@@ -72,5 +72,5 @@ float Seekers::minDistance() const
 
 float Seekers::maxAngle() const
 {
-    return 30.f;
+    return 70.f;
 }

@@ -59,15 +59,15 @@ void Grenades::fire() const
 
 float Grenades::maxDistance() const
 {
-    return 200.f;
+    return 700.f;
 }
 
 float Grenades::minDistance() const
 {
-    return 20.f;
+    return 300.f;
 }
 
 float Grenades::maxAngle() const
 {
-    return 70.f;
+    return 50.f;
 }

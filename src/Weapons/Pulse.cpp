@@ -24,6 +24,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Teams/Team.hpp"
 
 #include <SFML/Graphics.hpp>
+#include <cfloat>
 
 
 void Pulse::draw(float alpha) const
@@ -59,15 +60,15 @@ void Pulse::fire() const
 
 float Pulse::maxDistance() const
 {
-    return 300.f;
+    return FLT_MAX;
 }
 
 float Pulse::minDistance() const
 {
-    return 20.f;
+    return 0.f;
 }
 
 float Pulse::maxAngle() const
 {
-    return 70.f;
+    return 30.f;
 }

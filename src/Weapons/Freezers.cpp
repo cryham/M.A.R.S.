@@ -61,7 +61,7 @@ void Freezers::fire() const
 
 float Freezers::maxDistance() const
 {
-    return 600.f;
+    return 1200.f;
 }
 
 float Freezers::minDistance() const

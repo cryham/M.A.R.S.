@@ -61,7 +61,7 @@ void Flubba::fire() const
 
 float Flubba::maxDistance() const
 {
-    return 200.f;
+    return 300.f;
 }
 
 float Flubba::minDistance() const

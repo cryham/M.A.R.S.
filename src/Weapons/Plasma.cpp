@@ -67,7 +67,7 @@ float Plasma::maxDistance() const
 
 float Plasma::minDistance() const
 {
-    return 20.f;
+    return 0.f;
 }
 
 float Plasma::maxAngle() const

@@ -62,7 +62,7 @@ void Shotgun2::fire() const
 
 float Shotgun2::maxDistance() const
 {
-    return 300.f;
+    return 500.f;
 }
 
 float Shotgun2::minDistance() const
@@ -72,5 +72,5 @@ float Shotgun2::minDistance() const
 
 float Shotgun2::maxAngle() const
 {
-    return 20.f;
+    return 30.f;
 }

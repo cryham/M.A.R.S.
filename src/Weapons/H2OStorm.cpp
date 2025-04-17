@@ -71,5 +71,5 @@ float H2OStorm::minDistance() const
 
 float H2OStorm::maxAngle() const
 {
-    return 20.f;
+    return 30.f;
 }

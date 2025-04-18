@@ -27,11 +27,13 @@ class Ship;
 class ShipName: public DecoObject
 {
     public:
-        ShipName(Ship* ship): ship_(ship)
+        ShipName(Ship* ship, bool bar)
+            :ship_(ship), bar_(bar)
         {   }
 
         void draw() const override;
 
     private:
         Ship* ship_;
+        bool bar_;  // only bar, no text
 };

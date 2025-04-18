@@ -89,7 +89,8 @@ namespace decoObjects
 
     /// Adds a ShipName to the target Ship.
     /// \param ship The Ship to be named.
-    void addName(Ship* ship);
+    /// \param bar Use bar only, no text.
+    void addName(Ship* ship, bool bar);
 
     /// Adds a ShipHighlight to the target Ship.
     /// \param ship The Ship to be highlighted.

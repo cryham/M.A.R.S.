@@ -39,8 +39,6 @@ AmmoRocket::AmmoRocket(Vector2f const& location, Vector2f const& direction, Vect
         Color3f const& color, Player* damageSource)
     :Particle<AmmoRocket>(spaceObjects::oAmmoRocket, location, 10.f, 3.0f, 10000.f)
     ,timer_(1.f)
-    ,shipTarget_(NULL)
-    ,ballTarget_(NULL)
     ,parent_(damageSource)
     ,rotation_(0.f)
     ,life_(50.f)
@@ -48,8 +46,8 @@ AmmoRocket::AmmoRocket(Vector2f const& location, Vector2f const& direction, Vect
     ,visible_(true)
 {
     setDamageSource(damageSource);
-    velocity_ = direction*300.f;
-    location_ += velocity_*timer::frameTime()*1.2f;
+    velocity_ = direction * 300.f;
+    location_ += velocity_ *timer::frameTime()*1.2f;
 
     trailEffects::attach(this, 0.05, 2.5f, 20.f, Color3f(0.6f, 0.2f, 0.f), false);
 }
@@ -70,7 +68,7 @@ void AmmoRocket::update()
 
         if (shipTarget_ || ballTarget_)
         {
-            MobileSpaceObject* target(NULL);
+            MobileSpaceObject* target = nullptr;
             if (ballTarget_)
                 target = ballTarget_;
             else if (shipTarget_)
@@ -88,10 +86,10 @@ void AmmoRocket::update()
             velocity_ *= 300.f;
 
             if (shipTarget_ && dynamic_cast<Ship*>(shipTarget_)->getLife() <= 0.f)
-                shipTarget_ = NULL;
+                shipTarget_ = nullptr;
             else
             if (ballTarget_ && !(dynamic_cast<Ball*>(ballTarget_)->isVisible()))
-                ballTarget_ = NULL;
+                ballTarget_ = nullptr;
         }
 
         location_ += velocity_*time;
@@ -108,8 +106,8 @@ void AmmoRocket::update()
         if (timer_ < 0.f)
         {   timer_ = 0.5f;
 
-            ballTarget_ = NULL;
-            shipTarget_ = NULL;
+            ballTarget_ = nullptr;
+            shipTarget_ = nullptr;
 
             std::vector<Ship*> const& ships (ships::getShips());
             float closest(FLT_MAX);
@@ -130,7 +128,7 @@ void AmmoRocket::update()
                 if (distance < closest && ball->isVisible())
                 {
                     ballTarget_ = ball;
-                    shipTarget_ = NULL;
+                    shipTarget_ = nullptr;
                 }
             }
         }
@@ -138,8 +136,8 @@ void AmmoRocket::update()
     {
         physics::collide(this, STATICS | MOBILES | PARTICLES);
 
-        frozen_  -= time*3.f;
-        life_    -= time*5.f;
+        frozen_ -= time*3.f;
+        life_   -= time*5.f;
 
         if (frozen_ < 0.f)
         {   frozen_ = 0.f;
@@ -182,7 +180,7 @@ void AmmoRocket::draw() const
     uv8(u+4, v);    glVertex2f(btmR.x_, btmR.y_);
     uv8(u,   v);    glVertex2f(topR.x_, topR.y_);
 
-    MobileSpaceObject* target(NULL);
+    MobileSpaceObject* target = nullptr;
     if (ballTarget_)
         target = ballTarget_;
     else if (shipTarget_)

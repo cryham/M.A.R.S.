@@ -52,9 +52,11 @@ class Player
         friend class Turret;
 
     private:
-        Ship* ship_;
-        Team* team_;
+        Ship* ship_ = nullptr;
+        Team* team_ = nullptr;
+
         int points_, frags_, suicides_, deaths_, teamKills_, cannonShots_,
             goals_, selfGoals_;
+
         controllers::ControlType controlType_;
 };

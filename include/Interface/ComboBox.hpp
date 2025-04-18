@@ -48,11 +48,11 @@ class ComboBox: public UiElement
         friend class DropDownWindow;
 
     private:
-        UiWindow* dropBox_;
+        UiWindow* dropBox_ = nullptr;
 
-        sf::String* currentValue_;
+        sf::String* currentValue_ = nullptr;
         std::vector<sf::String> values_;
-        Label* label_;
+        Label* label_ = nullptr;
         int labelWidth_;
         bool opened_;
         sf::String toolTip_;

@@ -44,7 +44,6 @@ ComboBox::ComboBox (const sf::String& text, const sf::String& toolTip,
         sf::String* value, std::vector<sf::String> const& values,
         Vector2f const& topLeft, int width, int labelWidth)
     :UiElement(topLeft, width, 16)
-    ,dropBox_(NULL)
     ,values_(values)
     ,labelWidth_(labelWidth * scale_)
     ,currentValue_(value)

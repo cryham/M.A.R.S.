@@ -25,7 +25,6 @@ TextBox::TextBox(const sf::String& text,
         Vector2f const& topLeft, int width, int height, Color3f const& color)
     :UiElement(topLeft, 1.25f * width / scale_, height)
     ,color_(color)
-    ,slider_(NULL)
     ,position_(0)
     ,scrollSpeed_(0.f)
 {

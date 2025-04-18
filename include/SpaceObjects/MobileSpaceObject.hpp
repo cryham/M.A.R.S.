@@ -25,8 +25,6 @@ class MobileSpaceObject: public SpaceObject
     public:
         MobileSpaceObject(spaceObjects::ObjectType type, Vector2f location, float radius, float mass)
             :SpaceObject(type, location, radius, mass)
-            ,velocity_(0.f, 0.f)
-            ,cloud_(false)
         {   }
 
         Vector2f& velocity()
@@ -35,9 +33,10 @@ class MobileSpaceObject: public SpaceObject
         //  cyclic borders
         void borders();
 
-        bool cloud_;  // no collision, can overlap,  cloud, plasma etc
+        bool cloud_ = false;  // no collision, can overlap,  cloud, plasma etc
+        float chill_ = 0.f;
 
     protected:
         Vector2f velocity_;
-        float acceleration_;
+        float acceleration_ = 0.f;
 };

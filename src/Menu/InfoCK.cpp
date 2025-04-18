@@ -28,13 +28,13 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Locales/locales.hpp"
 
 
-UiWindow* InfoCK::instance_(NULL);
+UiWindow* InfoCK::instance_ = nullptr;
 bool InfoCK::kClose_(false);
 
 
 UiWindow* InfoCK::get()
 {
-    if (instance_ == NULL)
+    if (!instance_)
     {
         instance_ = new InfoCK(320*scale_, 300);
         instance_->addWidget(new Button(locales::getLocale(locales::Close), "", &kClose_,
@@ -76,5 +76,5 @@ void InfoCK::reset()
 {
     if (instance_)
         delete instance_;
-    instance_ = NULL;
+    instance_ = nullptr;
 }

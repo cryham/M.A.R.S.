@@ -39,7 +39,7 @@ class Ball: public MobileSpaceObject
         float heatAmount() const  {   return heatTimer_*5.f;  }
 
         Player* lastShooter() const {   return lastShooter_;  }
-        void resetShooter()         {   lastShooter_ = NULL;  }
+        void resetShooter()         {   lastShooter_ = nullptr;  }
 
         friend class BotController;
         friend class Freezer;
@@ -59,6 +59,6 @@ class Ball: public MobileSpaceObject
 
         float heatTimer_, smokeTimer_, respawnTimer_;
 
-        Player* lastShooter_;
+        Player* lastShooter_ = nullptr;
 };
 

@@ -128,7 +128,7 @@ void RadioGroup::setFocus(UiElement* toBeFocused, bool isPrevious)
 void RadioGroup::clearFocus()
 {
     UiElement::clearFocus();
-    focusedButton_ = NULL;
+    focusedButton_ = nullptr;
     for (auto& it : radioButtons_)
         it->clearFocus();
 }

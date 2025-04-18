@@ -149,7 +149,7 @@ void BotController::attackAny()
     if (target_ && !target_->attackable())
     {
         aggroTable_[target_] = 0.f;
-        target_ = NULL;
+        target_ = nullptr;
     }
 
     if (target_)
@@ -225,7 +225,7 @@ void  BotController::unfreeze()
 {
     if (currentJob_.object_)
     {
-        target_=NULL;
+        target_ = nullptr;
         moveTo(static_cast<Ship*>(currentJob_.object_)->location(), 0.f);
         shootEnemy(static_cast<Ship*>(currentJob_.object_));
     }

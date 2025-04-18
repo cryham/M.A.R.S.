@@ -55,7 +55,7 @@ class UiWindow: public UiElement
 
     protected:
         std::vector<UiElement*> widgets_;
-        UiElement* focusedWidget_;
+        UiElement* focusedWidget_ = nullptr;
 
     private:
         bool topMost_;

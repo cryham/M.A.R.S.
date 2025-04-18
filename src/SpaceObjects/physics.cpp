@@ -195,9 +195,9 @@ namespace physics
                             // if path of object has intersected with target within the last frame
                             if ((source->location_ - target->location_).lengthSquare() < minDistSquared ||
                                 (lastFrameLocation - target->location_).lengthSquare() < minDistSquared ||
-                                (chordMidPoint - source->location_)*(chordMidPoint - lastFrameLocation) < 0.f)
+                                (chordMidPoint - source->location_) * (chordMidPoint - lastFrameLocation) < 0.f)
                             {
-                                if (source->velocity()*(target->location_ - lastFrameLocation) > 0)
+                                if (source->velocity() * (target->location_ - lastFrameLocation) > 0)
                                 {
                                     const Vector2f moveOutDist (velocitySourceNorm * std::sqrt(minDistSquared - centerDist.lengthSquare()));
                                     source->location_ = chordMidPoint - moveOutDist;

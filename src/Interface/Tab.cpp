@@ -26,7 +26,6 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 Tab::Tab (const sf::String& name, int width, bool* activated)
     :UiElement(Vector2f() * 1.f/scale_, width * 1.f/scale_, 20)
-    ,focusedWidget_(NULL)
     ,name_(name)
     ,activated_(activated)
     ,active_(false)
@@ -130,7 +129,7 @@ bool Tab::tabNext()
             focusedWidget_->setFocus(focusedWidget_, false);
             return false;
         }else
-        {   focusedWidget_ = NULL;
+        {   focusedWidget_ = nullptr;
             return true;
         }
     }
@@ -169,7 +168,7 @@ bool Tab::tabPrevious()
             focusedWidget_->setFocus(focusedWidget_, true);
             return false;
         }else
-        {   focusedWidget_ = NULL;
+        {   focusedWidget_ = nullptr;
             return true;
         }
     }
@@ -254,7 +253,7 @@ void Tab::setFocus(UiElement* toBeFocused, bool isPrevious)
     if (toBeFocused != this)
         focusedWidget_ = toBeFocused;
     else
-        focusedWidget_ = NULL;
+        focusedWidget_ = nullptr;
 
     label_->setFocus(this, isPrevious);
 }
@@ -262,7 +261,7 @@ void Tab::setFocus(UiElement* toBeFocused, bool isPrevious)
 void Tab::clearFocus()
 {
     UiElement::clearFocus();
-    focusedWidget_ = NULL;
+    focusedWidget_ = nullptr;
 
     for (auto& it : widgets_)
         it->clearFocus();

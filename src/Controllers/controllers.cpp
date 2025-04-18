@@ -27,16 +27,16 @@ namespace controllers
 {
     namespace
 	{
-        KeyController* keyControllers1_(NULL);
-        KeyController* keyControllers2_(NULL);
+        KeyController* keyControllers1_ = nullptr;
+        KeyController* keyControllers2_ = nullptr;
         std::vector<BotController*> botControllers_;
     }
 
     void update()
     {
-        if (keyControllers1_ != NULL && (settings::bPlayer1teamL || settings::bPlayer1teamR))
+        if (keyControllers1_ && (settings::bPlayer1teamL || settings::bPlayer1teamR))
             keyControllers1_->update();
-        if (keyControllers2_ != NULL && (settings::bPlayer2teamL || settings::bPlayer2teamR))
+        if (keyControllers2_ && (settings::bPlayer2teamL || settings::bPlayer2teamR))
             keyControllers2_->update();
 
         for (auto& it : botControllers_)
@@ -45,9 +45,9 @@ namespace controllers
 
     void singleKeyEvent(Key const& keyCode)
     {
-        if (keyControllers1_ != NULL && (settings::bPlayer1teamL || settings::bPlayer1teamR))
+        if (keyControllers1_ && (settings::bPlayer1teamL || settings::bPlayer1teamR))
             keyControllers1_->update(keyCode);
-        if (keyControllers2_ != NULL && (settings::bPlayer2teamL || settings::bPlayer2teamR))
+        if (keyControllers2_ && (settings::bPlayer2teamL || settings::bPlayer2teamR))
             keyControllers2_->update(keyCode);
     }
 
@@ -87,8 +87,8 @@ namespace controllers
     {
         delete keyControllers1_;
         delete keyControllers2_;
-        keyControllers1_ = NULL;
-        keyControllers2_ = NULL;
+        keyControllers1_ = nullptr;
+        keyControllers2_ = nullptr;
 
         for (auto& it : botControllers_)
             delete it;

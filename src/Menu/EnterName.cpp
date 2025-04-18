@@ -29,13 +29,13 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Locales/locales.hpp"
 
 
-UiWindow* EnterName::instance_(NULL);
+UiWindow* EnterName::instance_ = nullptr;
 bool EnterName::kOk_(false);
 
 
 UiWindow* EnterName::get()
 {
-    if (instance_ == NULL)
+    if (!instance_)
     {   instance_ = new EnterName(320, 160);
 
         instance_->addWidget(new TextEdit("", settings::sPlayer1Name, "PlayerI",
@@ -74,5 +74,5 @@ void EnterName::reset()
 {
     if (instance_)
         delete instance_;
-    instance_ = NULL;
+    instance_ = nullptr;
 }

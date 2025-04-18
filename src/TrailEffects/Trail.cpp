@@ -25,7 +25,7 @@ Trail::Trail(SpaceObject* target):
 
 void Trail::detach()
 {
-    target_ = NULL;
+    target_ = nullptr;
 }
 
 SpaceObject* Trail::target() const

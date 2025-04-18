@@ -35,7 +35,7 @@ namespace postFX
     void onExplosion();
 
     /// Returns a pointer to the active shader.
-    /// If an error occured, it will return NULL.
+    /// If an error occured, it will return nullptr.
     sf::Shader* get();
 
     /// Checks, whether GLSL shaders are supported on the current hardware.

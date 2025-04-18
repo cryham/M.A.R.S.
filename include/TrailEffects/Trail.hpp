@@ -35,5 +35,5 @@ class Trail
         SpaceObject* target() const;
 
     protected:
-        SpaceObject* target_;
+        SpaceObject* target_ = nullptr;
 };

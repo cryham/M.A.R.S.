@@ -44,7 +44,7 @@ class TextEdit: public UiElement
 
     private:
         sf::String value_, fallBack_;
-        Label* label_;
+        Label* label_ = nullptr;
         unsigned maxLength_;
         unsigned cursorPos_;
         mutable int cursorTimer_;

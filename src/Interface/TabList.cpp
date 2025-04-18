@@ -29,7 +29,6 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 TabList::TabList (Vector2f const& topLeft, int width, int height):
     UiElement(topLeft * 1.f/scale_,  width * 1.f/scale_, height),
-    focusedTab_(NULL),
     lastTabEnd_(0)
 {   }
 

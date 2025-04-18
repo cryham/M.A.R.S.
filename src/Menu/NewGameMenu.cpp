@@ -43,7 +43,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Locales/locales.hpp"
 
 
-UiWindow* NewGameMenu::instance_(NULL);
+UiWindow* NewGameMenu::instance_ = nullptr;
 bool NewGameMenu::kStart_(false);
 bool NewGameMenu::kInfo_(false);
 bool NewGameMenu::kCancel_(false);
@@ -59,17 +59,17 @@ bool NewGameMenu::kWeaponOptions_(false);
 bool NewGameMenu::kMapOptions_(false);
 bool NewGameMenu::kGameOptions_(false);
 
-Tab* NewGameMenu::tabSpaceBall_(NULL);
-Tab* NewGameMenu::tabDeathMatch_(NULL);
-Tab* NewGameMenu::tabTeamDeathMatch_(NULL);
-Tab* NewGameMenu::tabCannonKeep_(NULL);
-Tab* NewGameMenu::tabGraveItation_(NULL);
-Tab* NewGameMenu::tabRally_(NULL);
+Tab* NewGameMenu::tabSpaceBall_ = nullptr;
+Tab* NewGameMenu::tabDeathMatch_ = nullptr;
+Tab* NewGameMenu::tabTeamDeathMatch_ = nullptr;
+Tab* NewGameMenu::tabCannonKeep_ = nullptr;
+Tab* NewGameMenu::tabGraveItation_ = nullptr;
+Tab* NewGameMenu::tabRally_ = nullptr;
 
 
 UiWindow* NewGameMenu::get()
 {
-    if (instance_ == NULL)
+    if (!instance_)
     {
         instance_ = new NewGameMenu(580, 350);
         instance_->addWidget(new Label(locales::getLocale(locales::StartLocalGame), TEXT_ALIGN_LEFT,
@@ -402,5 +402,5 @@ void NewGameMenu::reset()
 {
     if (instance_)
         delete instance_;
-    instance_ = NULL;
+    instance_ = nullptr;
 }

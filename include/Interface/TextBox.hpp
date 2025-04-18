@@ -44,7 +44,7 @@ class TextBox: public UiElement
     private:
         Color3f color_;
         std::vector<sf::String> texts_;
-        VerticalSlider* slider_;
+        VerticalSlider* slider_ = nullptr;
         mutable float position_;
         mutable float scrollSpeed_;
 };

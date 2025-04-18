@@ -26,7 +26,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Locales/locales.hpp"
 
 
-UiWindow* ToMainConfirm::instance_(NULL);
+UiWindow* ToMainConfirm::instance_ = nullptr;
 bool ToMainConfirm::kOk_(false);
 bool ToMainConfirm::kCancel_(false);
 
@@ -39,9 +39,9 @@ UiWindow* ToMainConfirm::get()
         music::fadeOut();
         return 0;
     }
-    if (instance_ == NULL)
-    {
-        instance_ = new ToMainConfirm(280, 80);
+    if (!instance_)
+    {   instance_ = new ToMainConfirm(280, 80);
+    
         instance_->addWidget(new Button(locales::getLocale(locales::Ok),     "", &kOk_,
             Vector2f(180,50), 90, 20));
         instance_->addWidget(new Button(locales::getLocale(locales::Cancel), "", &kCancel_,
@@ -72,5 +72,5 @@ void ToMainConfirm::reset()
 {
     if (instance_)
         delete instance_;
-    instance_ = NULL;
+    instance_ = nullptr;
 }

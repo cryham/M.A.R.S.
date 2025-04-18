@@ -38,7 +38,7 @@ namespace zones
 {
     namespace
     {
-        Zone *homeL_(NULL), *homeR_(NULL), *teamL_(NULL), *teamR_(NULL);
+        Zone *homeL_ = nullptr, *homeR_ = nullptr, *teamL_ = nullptr, *teamR_ = nullptr;
         
         std::vector<TutorialZone*> tutorialZones_  = std::vector<TutorialZone*>();
         std::vector<TacticalZone*> tacticalZonesL_ = std::vector<TacticalZone*>();
@@ -105,7 +105,7 @@ namespace zones
                     if (-0.7f <= tolerate && 0.7f >= tolerate)
                     {
                         float distance ((objectDistance - objectsLeft[i]->radius() - objectsLeft[j]->radius())/2.f);
-                        TacticalZone* zone(NULL);
+                        TacticalZone* zone = nullptr;
                         if (objectsLeft[i]->location().y_ > objectsLeft[j]->location().y_)
                             zone = new TacticalZone(objectsLeft[j]->location() + normalObjectConnection * (objectsLeft[j]->radius() + distance),
                                                     distance);
@@ -133,7 +133,7 @@ namespace zones
                     if (-0.7f <= tolerate && 0.7f >= tolerate)
                     {
                         float distance ((objectDistance - objectsRight[i]->radius() - objectsRight[j]->radius())/2.f);
-                        TacticalZone* zone(NULL);
+                        TacticalZone* zone = nullptr;
                         if (objectsRight[i]->location().y_ > objectsRight[j]->location().y_)
                             zone = new TacticalZone(objectsRight[j]->location() + normalObjectConnection * (objectsRight[j]->radius() + distance),
                                                     distance);
@@ -387,10 +387,10 @@ namespace zones
 
     void clear()
     {
-        if (homeL_) {  delete homeL_;  homeL_ = NULL;  }
-        if (homeR_) {  delete homeR_;  homeR_ = NULL;  }
-        if (teamL_) {  delete teamL_;  teamL_ = NULL;  }
-        if (teamR_) {  delete teamR_;  teamR_ = NULL;  }
+        if (homeL_) {  delete homeL_;  homeL_ = nullptr;  }
+        if (homeR_) {  delete homeR_;  homeR_ = nullptr;  }
+        if (teamL_) {  delete teamL_;  teamL_ = nullptr;  }
+        if (teamR_) {  delete teamR_;  teamR_ = nullptr;  }
         
         for (auto& it : tacticalZonesL_)
             delete it;

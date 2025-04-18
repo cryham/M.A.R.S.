@@ -44,8 +44,6 @@ AmmoSeekers::AmmoSeekers(Vector2f const& location, Vector2f const& direction, Ve
         Color3f const& color, Player* damageSource)
     :Particle<AmmoSeekers>(spaceObjects::oAmmoSeekers, location, 5.f, 1.0f, 1000.f)
     ,timer_(0.5f)  // 1.f target homing delay
-    ,shipTarget_(NULL)
-    ,ballTarget_(NULL)
     ,parent_(damageSource)
     ,rotation_(0.f)
     ,life_(10.f)
@@ -78,7 +76,7 @@ void AmmoSeekers::update()
 
         if (shipTarget_ || ballTarget_)
         {
-            MobileSpaceObject* target(NULL);
+            MobileSpaceObject* target = nullptr;
             if (ballTarget_)
                 target = ballTarget_;
             else if (shipTarget_)
@@ -97,10 +95,10 @@ void AmmoSeekers::update()
             velocity_ *= 600.f;  // speed
 
             if (shipTarget_ && dynamic_cast<Ship*>(shipTarget_)->getLife() <= 0.f)
-                shipTarget_ = NULL;
+                shipTarget_ = nullptr;
             else
             if (ballTarget_ && !(dynamic_cast<Ball*>(ballTarget_)->isVisible()))
-                ballTarget_ = NULL;
+                ballTarget_ = nullptr;
         }
 
         location_ += velocity_ * time;
@@ -118,8 +116,8 @@ void AmmoSeekers::update()
         {
             timer_ = 0.5f;
 
-            ballTarget_ = NULL;
-            shipTarget_ = NULL;
+            ballTarget_ = nullptr;
+            shipTarget_ = nullptr;
 
             vector<Ship*> const& ships (ships::getShips());
             float closest(FLT_MAX);
@@ -144,7 +142,7 @@ void AmmoSeekers::update()
                 if (distance < closest && ball->isVisible())
                 {
                     ballTarget_ = ball;
-                    shipTarget_ = NULL;
+                    shipTarget_ = nullptr;
                 }
             }
         }
@@ -152,8 +150,8 @@ void AmmoSeekers::update()
     {
         physics::collide(this, STATICS | MOBILES | PARTICLES);
 
-        frozen_  -= time*3.f;
-        life_    -= time*5.f;
+        frozen_ -= time*3.f;
+        life_   -= time*5.f;
 
         if (frozen_ < 0.f)
         {   frozen_ = 0.f;
@@ -196,7 +194,7 @@ void AmmoSeekers::draw() const
     uv8(u+4, v);    glVertex2f(btmR.x_, btmR.y_);
     uv8(u,   v);    glVertex2f(topR.x_, topR.y_);
 
-    MobileSpaceObject* target(NULL);
+    MobileSpaceObject* target = nullptr;
     if (ballTarget_)
         target = ballTarget_;
     else if (shipTarget_)

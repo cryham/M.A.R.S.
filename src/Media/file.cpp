@@ -62,7 +62,7 @@ namespace file
 
                 std::vector<FriBidiChar> visual(outSize);
                 FriBidiParType base = FRIBIDI_PAR_LTR;
-                fribidi_log2vis(logical.data(), outSize, &base, visual.data(), NULL, NULL, NULL);
+                fribidi_log2vis(logical.data(), outSize, &base, visual.data(), nullptr, nullptr, nullptr);
 
                 std::vector<char> outstring(outSize * 4, 0);
                 fribidi_unicode_to_charset(FRIBIDI_CHAR_SET_UTF8, visual.data(), outSize, outstring.data());

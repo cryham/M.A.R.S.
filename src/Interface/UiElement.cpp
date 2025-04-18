@@ -31,16 +31,15 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 float UiElement::scale_ = 3.f/2.f;  // global UI scale
 
 
-UiElement::UiElement(Vector2f const& topLeft, int width, int height):
-    parent_(NULL),
-    topLeft_(topLeft * scale_),
-    width_(width * scale_),
-    height_(height * scale_),
-    hovered_(false),
-    focused_(false),
-    pressed_(false),
-    hoveredFadeTime_(0.f),
-    focusedFadeTime_(0.f)
+UiElement::UiElement(Vector2f const& topLeft, int width, int height)
+    :topLeft_(topLeft * scale_)
+    ,width_(width * scale_)
+    ,height_(height * scale_)
+    ,hovered_(false)
+    ,focused_(false)
+    ,pressed_(false)
+    ,hoveredFadeTime_(0.f)
+    ,focusedFadeTime_(0.f)
 {   }
 
 
@@ -114,7 +113,7 @@ Vector2f UiElement::getTopLeft() const
     if (!locales::getCurrentLocale().LTR_)
         topLeft.x_ *= -1.f;
 
-    if (parent_ != NULL)
+    if (parent_)
         return topLeft + parent_->getTopLeft();
     else
         return topLeft;

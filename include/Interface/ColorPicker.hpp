@@ -42,10 +42,11 @@ class ColorPicker: public UiElement
         friend class ColorPickerWindow;
 
     private:
-        UiWindow* colorWindow_;
+        UiWindow* colorWindow_ = nullptr;
 
-        Color3f* currentValue_;
-        Label* label_;
+        Color3f* currentValue_ = nullptr;
+        Label* label_ = nullptr;
+
         int labelWidth_;
         bool opened_;
 };

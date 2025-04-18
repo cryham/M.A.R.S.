@@ -88,8 +88,8 @@ class Turret: public SpaceObject, public Mount
         Vector2f respawnLocation_;
         float respawnRotation_;
 
-        Weapon* weapon_;
-        // Special* special_;
+        Weapon* weapon_ = nullptr;
+        // Special* special_ = nullptr;
 
         float life_, maxLife_;
 

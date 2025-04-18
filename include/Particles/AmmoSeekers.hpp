@@ -46,9 +46,9 @@ class AmmoSeekers: public Particle<AmmoSeekers>
         Color3f color_;
         float timer_;
 
-        Ship* shipTarget_;
-        Ball* ballTarget_;
-        Player* parent_;
+        Ship* shipTarget_ = nullptr;
+        Ball* ballTarget_ = nullptr;
+        Player* parent_ = nullptr;
 
         float rotation_;
         float life_;

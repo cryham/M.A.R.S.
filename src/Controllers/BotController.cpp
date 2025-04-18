@@ -32,12 +32,10 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 BotController::BotController(Player* slave, float strength):
     Controller(slave),
-    target_(NULL),
     weaponChangeTimer_(randomizer::random(0.f, 0.5f)),
     specialChangeTimer_(randomizer::random(0.f, 0.5f)),
     currentJob_(Job::jCharge, 1),
     nextRoutePoint_(FLT_MAX, FLT_MAX),
-    toCover_(NULL),
     strength_(strength)
 {   }
 
@@ -315,7 +313,7 @@ void BotController::applyForJob(JobMap& jobMap)
 
 void BotController::reset()
 {
-    target_ = NULL;
+    target_ = nullptr;
     weaponChangeTimer_ =  0.f;
     specialChangeTimer_ = 0.f;
     nextRoutePoint_ = Vector2f(FLT_MAX, FLT_MAX);

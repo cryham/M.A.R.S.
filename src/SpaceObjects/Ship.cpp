@@ -65,13 +65,11 @@ Ship::Ship(Vector2f const& location, float rotation, Player* owner)
     ,damageSourceResetTimer_(0.f)
     ,respawnLocation_(location)
     ,respawnRotation_(rotation)
-    ,weapon_(NULL)
-    ,special_(NULL)
     ,life_(200.f)
     ,maxLife_(life_)
     ,fuel_(100.f)
     ,maxFuel_(fuel_)
-    ,collectedPowerUps_(items::COUNT, NULL)
+    ,collectedPowerUps_(items::COUNT, nullptr)
     ,fragStars_(0)
     ,damageByLocalPlayer_(0.f)
     ,damageCheckTimer_(0.f)
@@ -83,26 +81,22 @@ Ship::Ship(Vector2f const& location, float rotation, Player* owner)
         decoObjects::addHighlight(this);
         weapon_  = weapons:: create(settings::player1Weapon, this);
         special_ = specials::create(settings::player1Special, this);
-        // if (settings::)
-            decoObjects::addName(this);
+        decoObjects::addName(this, false);
     }
     else if (owner_->controlType_ == controllers::cPlayer2)
     {
         decoObjects::addHighlight(this);
         weapon_  = weapons:: create(settings::player2Weapon, this);
         special_ = specials::create(settings::player2Special, this);
-        //if (settings::)
-            decoObjects::addName(this);
+        decoObjects::addName(this, false);
     }
     else
     {   weapon_  = weapons:: create(weapons::random(), this);
         special_ = specials::create(specials::sHeal, this);
-        //if (settings::)
-        // decoObjects::addName(this);
+        decoObjects::addName(this, true);  // settings::bBotBars
     }
     owner->ship_ = this;
     damageSource_ = owner_;
-    // window::ungrab();
 }
 
 
@@ -241,8 +235,8 @@ void Ship::setDamageSource(Player* evilOne)
 
 void Ship::drainLife(Player* source, float amount, Vector2f const& direction, float waitForOtherDamage)
 {
-    if (dynamic_cast<LocalPlayer*>(source) != NULL ||
-        dynamic_cast<LocalPlayer*>(owner_) != NULL)
+    if (dynamic_cast<LocalPlayer*>(source) ||
+        dynamic_cast<LocalPlayer*>(owner_))
     {
         if (damageCheckTimer_ <= 0.f)
             damageCheckTimer_ = waitForOtherDamage;

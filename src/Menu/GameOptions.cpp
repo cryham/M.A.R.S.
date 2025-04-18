@@ -32,14 +32,14 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include <sstream>
 
 
-UiWindow* GameOptions::instance_(NULL);
+UiWindow* GameOptions::instance_ = nullptr;
 bool GameOptions::kOk_(false);
 bool GameOptions::kDefaults_(false);
 
 
 UiWindow* GameOptions::get()
 {
-    if (instance_ == NULL)
+    if (!instance_)
     {
         instance_ = new GameOptions(650, 400);
         instance_->addWidget(new Button(locales::getLocale(locales::Ok), "", &kOk_,
@@ -109,5 +109,5 @@ void GameOptions::reset()
 {
     if (instance_)
         delete instance_;
-    instance_ = NULL;
+    instance_ = nullptr;
 }

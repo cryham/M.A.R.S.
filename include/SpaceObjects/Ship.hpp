@@ -57,7 +57,7 @@ class Ship: public MobileSpaceObject, public Mount
         Vector2f& getVelocity() override {  return velocity_;  }
         float     getRadius() override   {  return radius_;  }
 
-        bool    collidable() const;
+        bool    collidable() const;  // for logic, not physics
         bool    attackable() const;
 
         std::vector<PowerUp*> const& getCollectedPowerUps() const;
@@ -88,7 +88,7 @@ class Ship: public MobileSpaceObject, public Mount
         void explode();
         void respawn();
 
-        Player* owner_;
+        Player* owner_ = nullptr;
 
         int up_, down_, left_, right_, boost_;  // inputs
 
@@ -105,8 +105,8 @@ class Ship: public MobileSpaceObject, public Mount
         Vector2f respawnLocation_;
         float respawnRotation_;
 
-        Weapon* weapon_;
-        Special* special_;
+        Weapon* weapon_ = nullptr;
+        Special* special_ = nullptr;
         void WeaponNext();
         void WeaponPrev();
 

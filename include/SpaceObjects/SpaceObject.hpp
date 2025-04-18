@@ -32,7 +32,6 @@ class SpaceObject
             :location_(location)
             ,radius_(radius)
             ,mass_(mass)
-            ,damageSource_(NULL)
             ,type_(type)
         {   }
         virtual ~SpaceObject()
@@ -69,9 +68,9 @@ class SpaceObject
 
     protected:
         Vector2f location_;
-        float radius_;
-        float mass_;
-        Player* damageSource_;
+        float radius_ = 1.f;
+        float mass_ = 1.f;
+        Player* damageSource_ = nullptr;
 
     private:
         spaceObjects::ObjectType type_;

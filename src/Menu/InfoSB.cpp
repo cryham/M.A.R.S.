@@ -28,13 +28,13 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Locales/locales.hpp"
 
 
-UiWindow* InfoSB::instance_(NULL);
+UiWindow* InfoSB::instance_ = nullptr;
 bool InfoSB::kClose_(false);
 
 
 UiWindow* InfoSB::get()
 {
-    if (instance_ == NULL)
+    if (!instance_)
     {
         instance_ = new InfoSB(320*scale_, 300);
         instance_->addWidget(new Button(locales::getLocale(locales::Close), "", &kClose_,
@@ -76,5 +76,5 @@ void InfoSB::reset()
 {
     if (instance_)
         delete instance_;
-    instance_ = NULL;
+    instance_ = nullptr;
 }

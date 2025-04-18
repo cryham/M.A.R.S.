@@ -27,7 +27,7 @@ class Player;
 class Mount
 {
     public:
-        Mount(float rotation = 0.f, Player* owner = NULL);
+        Mount(float rotation = 0.f, Player* owner = nullptr);
 
         Player* getOwner() const;
 

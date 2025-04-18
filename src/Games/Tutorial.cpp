@@ -41,10 +41,6 @@ Tutorial::Tutorial()
     :Game(games::gTutorial)
     ,state_(-1)
     ,savedState_(0)
-    ,evilHome_(NULL)
-    ,evilPlayer1_(NULL)
-    ,evilPlayer2_(NULL)
-    ,friendPlayer_(NULL)
     ,timer_(0.f)
     ,deadTimer_(0.f)
     ,dead_(false)
@@ -434,8 +430,8 @@ void Tutorial::restart()
     players::clear();
     teams::clear();
     controllers::clear();
-    evilPlayer1_ = NULL;
-    evilPlayer2_ = NULL;
+    evilPlayer1_ = nullptr;
+    evilPlayer2_ = nullptr;
 
     players::addPlayer(teams::addTeam(new DMTeam(settings::clr1Team)), controllers::cPlayer1);
     teams::assignHomes(spaceObjects::addHome(Vector2f(settings::iMapXsize+20, 450.f), 100, settings::clr1Player, 100, 15000));

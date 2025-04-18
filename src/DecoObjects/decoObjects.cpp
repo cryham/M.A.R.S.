@@ -35,7 +35,7 @@ namespace decoObjects
 {
     namespace
     {
-        Cannon* cannon_(NULL);
+        Cannon* cannon_ = nullptr;
         std::vector<DecoObject*> decos_;
         std::vector<DecoObject*> heats_;
         std::vector<DecoObject*> names_;
@@ -59,7 +59,7 @@ namespace decoObjects
 
         for (auto it = ices_.begin(); it != ices_.end(); ++it)
         {
-            if ((*it) != NULL)
+            if (*it)
                 (*it)->draw();
             else
                 it = ices_.erase(it);
@@ -67,7 +67,7 @@ namespace decoObjects
 
         for (auto it = bolts_.begin(); it != bolts_.end(); ++it)
         {
-            if ((*it) != NULL)
+            if (*it)
                 (*it)->draw();
             else
                 it = bolts_.erase(it);
@@ -146,7 +146,7 @@ namespace decoObjects
             if (*it == toBeRemoved)
             {
                 delete *it;
-                *it = NULL;
+                *it = nullptr;
                 break;
             }
     }
@@ -162,14 +162,14 @@ namespace decoObjects
             if (*it == toBeRemoved)
             {
                 delete *it;
-                *it = NULL;
+                *it = nullptr;
                 break;
             }
     }
 
-    void addName(Ship* ship)
+    void addName(Ship* ship, bool bar)
     {
-        names_.push_back(new ShipName(ship));
+        names_.push_back(new ShipName(ship, bar));
     }
 
     void addHighlight(Ship* ship)
@@ -181,7 +181,7 @@ namespace decoObjects
     {
         if (cannon_)
         {   delete cannon_;
-            cannon_ = NULL;
+            cannon_ = nullptr;
         }
         for (auto& it : decos_)
             delete it;

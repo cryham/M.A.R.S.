@@ -31,8 +31,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Weapons/weapons.hpp"
 
 
-UiWindow* WeaponOptions::instance_(NULL);
-bool WeaponOptions::kOk_(false);
+UiWindow* WeaponOptions::instance_ = nullptr;
+bool WeaponOptions::kOk_ = false;
 
 
 bool WeaponOptions::kWeapon[weapons::All] = {false,};
@@ -41,9 +41,9 @@ bool WeaponOptions::kSpecial[specials::All] = {false,};
 
 UiWindow* WeaponOptions::get()
 {
-    if (instance_ == NULL)
-    {
-        instance_ = new WeaponOptions(4*170+10, 300);
+    if (!instance_)
+    {   instance_ = new WeaponOptions(4*170+10, 300);
+    
         instance_->addWidget(new Button(locales::getLocale(locales::Ok), "", &kOk_, 
 			Vector2f(250,270), 90, 20));
         instance_->addWidget(new Label(locales::getLocale(locales::WeaponOptions), TEXT_ALIGN_LEFT, 
@@ -146,5 +146,5 @@ void WeaponOptions::reset()
 {
     if (instance_)
         delete instance_;
-    instance_ = NULL;
+    instance_ = nullptr;
 }

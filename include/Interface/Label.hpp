@@ -27,7 +27,7 @@ class Label: public UiElement
         Label (const sf::String& text, int textAlign,
             Vector2f const& topLeft, float fontSize = 12.f,
             Color3f color = Color3f(0.7f,0.7f,0.7f),
-            bool interactive = true, sf::Font* font = NULL);
+            bool interactive = true, sf::Font* font = nullptr);
 
         void mouseMoved(Vector2f const& position) override;
 

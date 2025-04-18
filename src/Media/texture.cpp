@@ -61,7 +61,7 @@ namespace texture
     GLuint const& getTexture(TextureType type)
     {
         // if texture is already loaded
-        if (textures_[type] != NULL)
+        if (textures_[type])
         {
             return *textures_[type];
         }

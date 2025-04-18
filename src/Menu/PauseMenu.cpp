@@ -30,7 +30,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Locales/locales.hpp"
 
 
-UiWindow* PauseMenu::instance_(NULL);
+UiWindow* PauseMenu::instance_ = nullptr;
 bool PauseMenu::kResume_(false);
 bool PauseMenu::kNew_(false);
 bool PauseMenu::kOptions_(false);
@@ -42,9 +42,9 @@ bool PauseMenu::kHide_(false);
 
 UiWindow* PauseMenu::get()
 {
-    if (instance_ == NULL)
-    {
-        instance_ = new PauseMenu(180, 210);
+    if (!instance_)
+    {   instance_ = new PauseMenu(180, 210);
+    
         float y = 10, yadd = 30, w = 160;
         // instance_->addWidget(new Button(locales::getLocale(locales::Continue),     "", &kResume_,
         //  Vector2f(10,y), w, 20));  y += yadd;
@@ -104,5 +104,5 @@ void PauseMenu::reset()
 {
     if (instance_)
         delete instance_;
-    instance_ = NULL;
+    instance_ = nullptr;
 }

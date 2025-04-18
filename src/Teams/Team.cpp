@@ -31,10 +31,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 Team::Team(Color3f const& color):
     evaluationTimer_(0.f),
-    home_(NULL),
     color_(color),
-    homeZone_(NULL),
-    teamZone_(NULL),
     victories_(0),
     points_(0)
 {   }
@@ -127,7 +124,7 @@ void Team::evaluate()
         while (botsLeft)
         {
             JobMap::iterator mostWantedJob;
-            BotController* mostWanting = NULL;
+            BotController* mostWanting = nullptr;
             short highestDesire(0);
 
             for (auto it = jobMap_.begin(); it != jobMap_.end(); ++it)

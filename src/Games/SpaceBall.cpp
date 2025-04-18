@@ -17,7 +17,6 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "Games/SpaceBall.hpp"
 
-#include "Teams/DMTeam.hpp"
 #include "Teams/SBTeam.hpp"
 #include "System/settings.hpp"
 #include "Media/music.hpp"
@@ -34,8 +33,8 @@ SpaceBall::SpaceBall()
 
     music::play();
 
-    Team* myTeamL = NULL;
-    Team* myTeamR = NULL;
+    Team* myTeamL = nullptr;
+    Team* myTeamR = nullptr;
 
     if (settings::bPlayer1teamL)
     {
@@ -66,7 +65,6 @@ SpaceBall::SpaceBall()
         Color3f rand = Color3f::random();
         myTeamL = new SBTeam(rand.inverted());
         myTeamR = new SBTeam(rand);
-
     }
     else if (!myTeamL)
         myTeamL = new SBTeam(myTeamR->color().inverted());

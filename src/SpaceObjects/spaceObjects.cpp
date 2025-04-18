@@ -183,7 +183,7 @@ namespace spaceObjects
     
     SpaceObject const* getObstacle(Vector2f const& start, Vector2f const& end, bool avoidBall, float minDistance)
     {
-        SpaceObject const* closest(NULL);
+        SpaceObject const* closest = nullptr;
         float closestDistance = FLT_MAX;
 
         for (auto it = objectList_.cbegin(); it != objectList_.cend(); ++it)

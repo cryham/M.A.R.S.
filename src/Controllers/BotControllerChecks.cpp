@@ -88,7 +88,7 @@ void BotController::checkEnergy()
     {
         for (auto& it : aggroTable_)
             it.second = 0.f;
-        target_ = NULL;
+        target_ = nullptr;
     }
     else
     {

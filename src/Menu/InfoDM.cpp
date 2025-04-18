@@ -28,13 +28,13 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Locales/locales.hpp"
 
 
-UiWindow* InfoDM::instance_(NULL);
+UiWindow* InfoDM::instance_ = nullptr;
 bool InfoDM::kClose_(false);
 
 
 UiWindow* InfoDM::get()
 {
-    if (instance_ == NULL)
+    if (!instance_)
     {
         instance_ = new InfoDM(320*scale_, 300);
         instance_->addWidget(new Button(locales::getLocale(locales::Close), "", &kClose_,
@@ -76,5 +76,5 @@ void InfoDM::reset()
 {
     if (instance_)
         delete instance_;
-    instance_ = NULL;
+    instance_ = nullptr;
 }

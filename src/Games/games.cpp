@@ -41,13 +41,13 @@ namespace games
 {
     namespace
     {
-        Game* currentGame_(NULL);
-        bool restart_(false);
-        bool newGame_(true);
-        GameType newGameType_(gNoGame);
-        bool fadeOut_(false);
-        bool fadeIn_(false);
-        float fadeFactor_(1.f);
+        Game* currentGame_= nullptr;
+        bool restart_ = false;
+        bool newGame_ = true;
+        GameType newGameType_ = gNoGame;
+        bool fadeOut_ = false;
+        bool fadeIn_ = false;
+        float fadeFactor_ = 1.f;
 
         void fade()
         {

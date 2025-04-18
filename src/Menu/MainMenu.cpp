@@ -31,7 +31,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Games/games.hpp"
 
 
-UiWindow* MainMenu::instance_(NULL);
+UiWindow* MainMenu::instance_ = nullptr;
 bool MainMenu::kStartLocal_(false);
 bool MainMenu::kStartTut_(false);
 bool MainMenu::kStartMulti_(false);
@@ -43,7 +43,7 @@ bool MainMenu::kExit_(false);
 
 UiWindow* MainMenu::get()
 {
-    if (instance_ == NULL)
+    if (!instance_)
     {
         float y = 10, w = 180 * scale_, h = 20, yadd = h + 10;
         
@@ -105,5 +105,5 @@ void MainMenu::reset()
 {
     if (instance_)
         delete instance_;
-    instance_ = NULL;
+    instance_ = nullptr;
 }

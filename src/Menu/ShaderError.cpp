@@ -20,19 +20,17 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Media/text.hpp"
 #include "Interface/UiWindow.hpp"
 #include "Interface/Button.hpp"
-#include "System/window.hpp"
 #include "Menu/menus.hpp"
-#include "Games/games.hpp"
 #include "Locales/locales.hpp"
 
 
-UiWindow* ShaderError::instance_(NULL);
-bool ShaderError::kOk_(false);
+UiWindow* ShaderError::instance_ = nullptr;
+bool ShaderError::kOk_ = false;
 
 
 UiWindow* ShaderError::get()
 {
-    if (instance_ == NULL)
+    if (!instance_)
     {   instance_ = new ShaderError(350, 80);
     
         instance_->addWidget(new Button(locales::getLocale(locales::Ok),     "", &kOk_,
@@ -55,5 +53,5 @@ void ShaderError::reset()
 {
     if (instance_)
         delete instance_;
-    instance_ = NULL;
+    instance_ = nullptr;
 }

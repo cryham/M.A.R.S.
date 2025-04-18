@@ -27,14 +27,14 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Locales/locales.hpp"
 
 
-UiWindow* About::instance_(NULL);
-bool About::kClose_(false);
+UiWindow* About::instance_ = nullptr;
+bool About::kClose_ = false;
 sf::String About::marsName_("");
 
 
 UiWindow* About::get()
 {
-    if (instance_ == NULL) 
+    if (!instance_)
     {
         instance_ = new About(620, 330);
         instance_->addWidget(new Button(locales::getLocale(locales::Close), "", &kClose_,
@@ -85,5 +85,5 @@ void About::reset()
 {
     if (instance_)
         delete instance_;
-    instance_ = NULL;
+    instance_ = nullptr;
 }

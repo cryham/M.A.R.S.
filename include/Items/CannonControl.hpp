@@ -37,6 +37,6 @@ class CannonControl
     private:
         Vector2f respawnLocation_;
         Vector2f location_;
-        Ship* ship_;
+        Ship* ship_ = nullptr;
         bool collected_;
 };

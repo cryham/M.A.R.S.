@@ -63,7 +63,7 @@ class UiElement
     protected:
         int width() const;
 
-        UiElement* parent_;
+        UiElement* parent_ = nullptr;
         mutable Vector2f topLeft_;
         int width_, height_;
 

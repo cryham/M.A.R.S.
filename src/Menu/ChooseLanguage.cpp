@@ -25,15 +25,16 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "System/settings.hpp"
 
 
-UiWindow* ChooseLanguage::instance_(NULL);
-bool ChooseLanguage::kCancel_(false);
+UiWindow* ChooseLanguage::instance_ = nullptr;
+bool ChooseLanguage::kCancel_ = false;
+
 std::map<int, bool*> ChooseLanguage::languageKeyMap_;
 std::map<sf::String, int> ChooseLanguage::sortedLocales_;
 
 
 UiWindow* ChooseLanguage::get()
 {
-    if (instance_ == NULL)
+    if (!instance_)
     {
         std::vector<Locale>const& localeList = locales::getLocales();
 
@@ -100,7 +101,7 @@ void ChooseLanguage::reset()
 {
     if (instance_)
         delete instance_;
-    instance_ = NULL;
+    instance_ = nullptr;
 
     languageKeyMap_.clear();
     for (auto& it : languageKeyMap_)

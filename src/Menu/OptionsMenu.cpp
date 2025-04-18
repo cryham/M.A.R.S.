@@ -49,7 +49,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include <sstream>
 
 
-UiWindow* OptionsMenu::instance_(NULL);
+UiWindow* OptionsMenu::instance_ = nullptr;
 bool OptionsMenu::kOk_(false);
 bool OptionsMenu::fullscreen_(false);
 bool OptionsMenu::vsync_(false);
@@ -66,9 +66,8 @@ int  OptionsMenu::UIscale_(100);
 
 UiWindow* OptionsMenu::get()
 {
-    if (instance_ == NULL)
-    {
-        instance_ = new OptionsMenu(700, 390);
+    if (!instance_)
+    {   instance_ = new OptionsMenu(700, 390);
 
         instance_->addWidget(new Button(locales::getLocale(locales::Ok), "", &kOk_,
             Vector2f(500,360), 90, 20));
@@ -503,5 +502,5 @@ void OptionsMenu::reset()
 {
     if (instance_)
         delete instance_;
-    instance_ = NULL;
+    instance_ = nullptr;
 }

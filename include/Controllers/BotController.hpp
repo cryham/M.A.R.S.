@@ -81,7 +81,7 @@ class BotController: public Controller
         void     charge();
         void     land();
 
-        Ship*    target_;
+        Ship*    target_ = nullptr;
         std::map<Ship*, float> aggroTable_;
 
         Job      currentJob_;
@@ -100,7 +100,7 @@ class BotController: public Controller
         void     shootPoint(Vector2f const& location, bool avoidTeamMembers = true);
 
         Vector2f nextRoutePoint_;
-        TacticalZone* toCover_;
+        TacticalZone* toCover_ = nullptr;
         const float strength_;
 
         //path variables

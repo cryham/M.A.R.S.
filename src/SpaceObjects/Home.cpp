@@ -206,7 +206,7 @@ void Home::onCollision(SpaceObject* with, Vector2f const& location,
             for (int i=0; i < amount; ++i)
                 teams::getTeamL()->home() == this ? teams::getTeamR()->addPoint() : teams::getTeamL()->addPoint();
 
-            if (ball->lastShooter() != NULL)
+            if (ball->lastShooter())
             {
                 // If an oponnent threw the ball to the home, give him a
                 // point

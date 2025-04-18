@@ -19,8 +19,6 @@ this program.  If not, see <http://www.gnu.org/licenses/>.*/
 
 #include "Media/text.hpp"
 #include "System/window.hpp"
-#include "Menu/ChooseLanguage.hpp"
-#include "Menu/ShaderError.hpp"
 #include "Menu/About.hpp"
 #include "Menu/Connect.hpp"
 #include "Menu/InfoCK.hpp"
@@ -42,7 +40,7 @@ namespace menus
 	{
         std::vector<UiWindow*> windowStack_;
         bool hidden_(false);
-        UiElement* keyboardFixTarget_(NULL);
+        UiElement* keyboardFixTarget_ = nullptr;
     }
 
 
@@ -191,7 +189,7 @@ namespace menus
 
     void unFixKeyboard()
     {
-        keyboardFixTarget_ = NULL;
+        keyboardFixTarget_ = nullptr;
     }
 
     bool keyboardFixed()

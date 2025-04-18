@@ -70,10 +70,10 @@ class Team
         
         JobMap jobMap_;
 
-        Home* home_;
+        Home* home_ = nullptr;
         Color3f color_;
-        Zone* homeZone_;
-        Zone* teamZone_;
+        Zone* homeZone_ = nullptr;
+        Zone* teamZone_ = nullptr;
         mutable int victories_;
         mutable int points_;
 };

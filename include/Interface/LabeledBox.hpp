@@ -35,7 +35,7 @@ class LabeledBox: public UiElement
         {   return false;  }
 
     private:
-        Label* label_;
+        Label* label_ = nullptr;
 };
 
 

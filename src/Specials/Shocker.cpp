@@ -17,6 +17,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "Specials/Shocker.hpp"
 
+#include "Particles/particles.hpp"
 #include "SpaceObjects/Ship.hpp"
 #include "SpaceObjects/ships.hpp"
 #include "SpaceObjects/balls.hpp"
@@ -26,7 +27,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "System/timer.hpp"
 #include "System/randomizer.hpp"
 #include "Menu/menus.hpp"
-#include "Particles/particles.hpp"
+#include "DecoObjects/decoObjects.hpp"
 
 #include <SFML/Graphics.hpp>
 
@@ -40,7 +41,7 @@ void Shocker::draw(float alpha) const
 
     const int u = 3, v = 1;
 
-    float scale(4 + std::sin(timer::totalTime()*6)*0.3f);
+    float scale = 4 + std::sin(timer::totalTime()*6) * 0.3f;
     const float r = parent_->getRadius();
 
     glBegin(GL_QUADS);
@@ -69,7 +70,7 @@ void Shocker::activate() const
     if (parent_->fragStars_ > 0 && timer_ <= 0.f)
     {
         targets_.clear();
-        ballTarget_ = NULL;
+        ballTarget_ = nullptr;
 
         std::vector<Ship*> ships = ships::getShips();
 
@@ -97,7 +98,7 @@ void Shocker::activate() const
                 ballTarget_ = ball;
         }
 
-        int targetCount = targets_.size() + (ballTarget_ == NULL ? 0 : 1);
+        int targetCount = targets_.size() + (ballTarget_ ? 0 : 1);
         float damage = parent_->fragStars_/3.f * 200.f/targetCount;
 
         for (auto& it : targets_)

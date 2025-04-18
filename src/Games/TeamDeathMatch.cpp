@@ -33,8 +33,8 @@ TeamDeathMatch::TeamDeathMatch()
 
     music::play();
 
-    Team* myTeamL = NULL;
-    Team* myTeamR = NULL;
+    Team* myTeamL = nullptr;
+    Team* myTeamR = nullptr;
 
     if (settings::bPlayer1teamL)
     {

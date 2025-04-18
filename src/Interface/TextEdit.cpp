@@ -33,7 +33,6 @@ TextEdit::TextEdit (const sf::String& text, sf::String& value, const sf::String&
     : UiElement(topLeft, width, 20)
     , value_(value)
     , fallBack_(fallBack)
-    , label_(NULL)
     , maxLength_(maxLength)
     , cursorPos_(value.getSize())
     , cursorTimer_(0)

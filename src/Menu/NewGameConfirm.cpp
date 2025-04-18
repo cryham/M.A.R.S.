@@ -26,7 +26,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Locales/locales.hpp"
 
 
-UiWindow* NewGameConfirm::instance_(NULL);
+UiWindow* NewGameConfirm::instance_ = nullptr;
 bool NewGameConfirm::kOk_(false);
 bool NewGameConfirm::kCancel_(false);
 
@@ -38,9 +38,9 @@ UiWindow* NewGameConfirm::get()
         games::restart();
         return 0;
     }
-    if (instance_ == NULL)
-    {
-        instance_ = new NewGameConfirm(280, 80);
+    if (!instance_)
+    {   instance_ = new NewGameConfirm(280, 80);
+    
         instance_->addWidget(new Button(locales::getLocale(locales::Ok), "", &kOk_,
             Vector2f(180,50), 90, 20));
         instance_->addWidget(new Button(locales::getLocale(locales::Cancel), "", &kCancel_,
@@ -69,5 +69,5 @@ void NewGameConfirm::reset()
 {
     if (instance_)
         delete instance_;
-    instance_ = NULL;
+    instance_ = nullptr;
 }

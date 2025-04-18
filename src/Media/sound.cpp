@@ -53,7 +53,7 @@ namespace sound
                 init_();
             
             // check if sound is already loaded
-            if (sounds_[sound] != NULL)
+            if (sounds_[sound])
             {
                 // if its already loaded search for free soundChannel_
                 int i = 0;
@@ -118,7 +118,7 @@ namespace sound
                         std::cout << "COUNT is not a valid Soundtype..." << std::endl;
                 }
                 //  play it
-                if (sounds_[sound] != NULL)
+                if (sounds_[sound])
                     playSound(sound, position, volume);
             }
         }

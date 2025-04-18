@@ -27,10 +27,9 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include <SFML/OpenGL.hpp>
 
 
-UiWindow::UiWindow (int width, int height, Vector2f const& position):
-    UiElement(position, width, height),
-    topMost_(false),
-    focusedWidget_(NULL)
+UiWindow::UiWindow (int width, int height, Vector2f const& position)
+    :UiElement(position, width, height)
+    ,topMost_(false)
 {   }
 
 UiWindow::~UiWindow()

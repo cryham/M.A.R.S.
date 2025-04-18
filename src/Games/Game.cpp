@@ -93,7 +93,7 @@ void Game::update()
         {
             if (!ended_)
             {
-                Team* best(NULL);
+                Team* best = nullptr;
                 int   most(0);
                 for (auto& it : teams::getAllTeams())
                     if (most < it->points())

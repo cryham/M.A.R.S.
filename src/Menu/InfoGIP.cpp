@@ -28,13 +28,13 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Locales/locales.hpp"
 
 
-UiWindow* InfoGIP::instance_(NULL);
+UiWindow* InfoGIP::instance_ = nullptr;
 bool InfoGIP::kClose_(false);
 
 
 UiWindow* InfoGIP::get()
 {
-    if (instance_ == NULL)
+    if (!instance_)
     {
         instance_ = new InfoGIP(320*scale_, 300);
         instance_->addWidget(new Button(locales::getLocale(locales::Close), "", &kClose_,
@@ -76,5 +76,5 @@ void InfoGIP::reset()
 {
     if (instance_)
         delete instance_;
-    instance_ = NULL;
+    instance_ = nullptr;
 }

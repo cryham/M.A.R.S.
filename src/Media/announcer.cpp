@@ -50,7 +50,7 @@ namespace announcer
         void playSound(SoundType sound)
         {
             // check if sound is already loaded
-            if (sounds_[sound] != NULL)
+            if (sounds_[sound])
             {
                 if (soundChannel_.getStatus() != sf::Sound::Playing)
                 {
@@ -76,7 +76,7 @@ namespace announcer
                     case COUNT: std::cout << "COUNT is not a valid Soundtype..." << std::endl;
                 }
                 // ... play it afterwards
-                if (sounds_[sound] != NULL)
+                if (sounds_[sound])
                     playSound(sound);
             }
         }

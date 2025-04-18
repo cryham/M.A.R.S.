@@ -39,7 +39,7 @@ PowerUp::PowerUp(items::PowerUpType type, Vector2f const& location, float radius
 PowerUp::~PowerUp()
 {
     for (auto& it : ships_)
-        it->collectedPowerUps_[type_] = NULL;
+        it->collectedPowerUps_[type_] = nullptr;
 }
 
 void PowerUp::update()
@@ -65,7 +65,7 @@ void PowerUp::update()
         auto it = ships_.begin();
         while (it != ships_.end())
         {
-            if ((*it)->collectedPowerUps_[type_] != NULL)
+            if ((*it)->collectedPowerUps_[type_])
             {
                 (*it)->collectedPowerUps_[type_]->lifeTime_ = 0;
                 it = ships_.erase(it);
@@ -91,7 +91,7 @@ void PowerUp::update()
         {
             if (*it && (*it)->getLife() == 0.f)
             {
-                (*it)->collectedPowerUps_[type_] = NULL;
+                (*it)->collectedPowerUps_[type_] = nullptr;
                 it = ships_.erase(it);
             }else
                 ++it;

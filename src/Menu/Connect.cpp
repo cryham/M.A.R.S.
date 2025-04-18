@@ -26,13 +26,13 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Locales/locales.hpp"
 
 
-UiWindow* Connect::instance_(NULL);
-bool Connect::kClose_(false);
+UiWindow* Connect::instance_ = nullptr;
+bool Connect::kClose_ = false;
 
 
 UiWindow* Connect::get()
 {
-    if (instance_ == NULL)
+    if (!instance_)
     {   instance_ = new Connect(320, 180);
 
         instance_->addWidget(new Button(locales::getLocale(locales::Close), "", &kClose_,
@@ -60,5 +60,5 @@ void Connect::reset()
 {
     if (instance_)
         delete instance_;
-    instance_ = NULL;
+    instance_ = nullptr;
 }

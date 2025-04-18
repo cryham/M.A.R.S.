@@ -48,6 +48,6 @@ class TabList: public UiElement
 
     private:
         std::vector<Tab*> tabs_;
-        Tab* focusedTab_;
+        Tab* focusedTab_ = nullptr;
         int lastTabEnd_;
 };

@@ -23,7 +23,7 @@ Version 0.8.0
      - *map size*, with 7 button presets (from Tiny to Huge)
      - min,max count of space objects (planets, stars, black holes)
      - and their radius range, also minimal gap between
-     - percentage of black holes and now *3 types* of suns
+     - percentage of black holes and now *4 types* of suns
      - radius of: ships, home planets, ball
      - *Cyclic borders*, gravity scale
    - **Game options** window with sliders:

@@ -89,7 +89,7 @@ Vector2f BotController::calcPath(Vector2f const& endPoint, bool avoidBall)
         // check for collision with planet
         SpaceObject const* obstacle = spaceObjects::getObstacle(ship()->location(), endPoint, avoidBall, 40.f);
 
-        if (obstacle != NULL)
+        if (obstacle)
         {
             // special case: obstacle center is target point
             if (obstacle->location() == endPoint)
@@ -143,7 +143,7 @@ Vector2f BotController::calcPath(Vector2f const& endPoint, bool avoidBall)
             SpaceObject const* newObstacle = spaceObjects::getObstacle(ship()->location(), newEndPoint, avoidBall, 40.f);
 
             // if a new obstacle was found, calculate the midpoint of both
-            if (newObstacle != NULL && obstacle != newObstacle)
+            if (newObstacle && obstacle != newObstacle)
             {
                 Vector2f obst1obst2 = (newObstacle->location() - obstacle->location()).normalize();
                 // get points on surface of obstacles

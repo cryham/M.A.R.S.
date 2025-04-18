@@ -26,7 +26,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "System/settings.hpp"
 
 
-UiWindow* ExitConfirm::instance_(NULL);
+UiWindow* ExitConfirm::instance_ = nullptr;
 bool ExitConfirm::kOk_(false);
 bool ExitConfirm::kCancel_(false);
 
@@ -39,7 +39,7 @@ UiWindow* ExitConfirm::get()
         window::close();
         return 0;
     }
-    if (instance_ == NULL)
+    if (!instance_)
     {   instance_ = new ExitConfirm(280, 80);
     
         instance_->addWidget(new Button(locales::getLocale(locales::Ok), "", &kOk_,
@@ -69,5 +69,5 @@ void ExitConfirm::reset()
 {
     if (instance_)
         delete instance_;
-    instance_ = NULL;
+    instance_ = nullptr;
 }

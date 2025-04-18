@@ -25,7 +25,6 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 CannonControl::CannonControl(Vector2f const& location):
     respawnLocation_(location),
     location_(location),
-    ship_(NULL),
     collected_(false)
 {   }
 
@@ -47,13 +46,13 @@ void CannonControl::update()
         {
             collected_ = false;
             location_ = respawnLocation_;
-            ship_ = NULL;
+            ship_ = nullptr;
         }
         else if (ship_->getLife() == 0.f)
         {
             collected_ = false;
             location_ = ship_->location();
-            ship_ = NULL;
+            ship_ = nullptr;
         }
     }
 }
@@ -154,7 +153,7 @@ Player* CannonControl::getCarrier() const
     if (ship_)
         return ship_->owner_;
     else
-        return NULL;
+        return nullptr;
 }
 
 Vector2f const& CannonControl::location() const

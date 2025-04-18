@@ -28,14 +28,15 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Locales/locales.hpp"
 
 
-UiWindow* InfoHide::instance_(NULL);
+UiWindow* InfoHide::instance_ = nullptr;
 bool InfoHide::kOk_(false);
 
 
 UiWindow* InfoHide::get()
 {
-    if (instance_ == NULL)
+    if (!instance_)
     {   instance_ = new InfoHide(320*scale_, 200);
+
         instance_->addWidget(new Button(locales::getLocale(locales::Close), "", &kOk_,
             Vector2f(220,170), 90, 20));
         
@@ -69,5 +70,5 @@ void InfoHide::reset()
 {
     if (instance_)
         delete instance_;
-    instance_ = NULL;
+    instance_ = nullptr;
 }

@@ -36,7 +36,7 @@ namespace items
 {
     namespace
     {
-        CannonControl* cannonControl_(NULL);
+        CannonControl* cannonControl_ = nullptr;
         std::list<PowerUp*> powerUps_ = std::list<PowerUp*>();
 
 
@@ -166,7 +166,7 @@ namespace items
         if (cannonControl_)
         {
             delete cannonControl_;
-            cannonControl_ = NULL;
+            cannonControl_ = nullptr;
         }
         for (auto& it : powerUps_)
             delete it;

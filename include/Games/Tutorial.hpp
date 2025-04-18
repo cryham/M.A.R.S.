@@ -50,16 +50,16 @@ class Tutorial: public Game
         int savedState_;
 
         /// Pointer to the evil left-hand planet.
-        Home* evilHome_;
+        Home* evilHome_ = nullptr;
 
         /// Pointer to the weak opponent.
-        Player* evilPlayer1_;
+        Player* evilPlayer1_ = nullptr;
 
         /// Pointer to the strong opponent.
-        Player* evilPlayer2_;
+        Player* evilPlayer2_ = nullptr;
 
         /// A friend.
-        Player* friendPlayer_;
+        Player* friendPlayer_ = nullptr;
 
         /// Some data
         ///@{

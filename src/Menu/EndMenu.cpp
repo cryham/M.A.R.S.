@@ -28,7 +28,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Locales/locales.hpp"
 
 
-UiWindow* EndMenu::instance_(NULL);
+UiWindow* EndMenu::instance_ = nullptr;
 bool EndMenu::kNew_(false);
 bool EndMenu::kOptions_(false);
 bool EndMenu::kToMainMenu_(false);
@@ -37,7 +37,7 @@ bool EndMenu::kHide_(false);
 
 UiWindow* EndMenu::get()
 {
-    if (instance_ == NULL)
+    if (!instance_)
     {   instance_ = new EndMenu(180, 130);
     
         instance_->addWidget(new Button(locales::getLocale(locales::RestartGame),     "", &kNew_,
@@ -84,5 +84,5 @@ void EndMenu::reset()
 {
     if (instance_)
         delete instance_;
-    instance_ = NULL;
+    instance_ = nullptr;
 }

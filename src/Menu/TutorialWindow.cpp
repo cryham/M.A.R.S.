@@ -28,8 +28,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include <sstream>
 
 
-UiWindow* TutorialWindow::instance_(NULL);
-bool TutorialWindow::kOk_(false);
+UiWindow* TutorialWindow::instance_ = nullptr;
+bool TutorialWindow::kOk_ = false;
 sf::String TutorialWindow::index_("1/1");
 
 
@@ -41,9 +41,10 @@ UiWindow* TutorialWindow::get(locales::LocaleType title, locales::LocaleType tex
 UiWindow* TutorialWindow::get(const sf::String& title, const sf::String& text, int index, bool info, bool next)
 {
     reset();
-    if (instance_ == NULL)
-    {
-        instance_ = new TutorialWindow(500, 200);
+    
+    if (!instance_)
+    {   instance_ = new TutorialWindow(500, 200);
+
         instance_->addWidget(new Button(locales::getLocale(next ? locales::Next : locales::Ok), "", &kOk_,
             Vector2f(300,170), 90, 20));
         instance_->addWidget(new Label(title, TEXT_ALIGN_LEFT,
@@ -79,5 +80,5 @@ void TutorialWindow::reset()
 {
     if (instance_)
         delete instance_;
-    instance_ = NULL;
+    instance_ = nullptr;
 }

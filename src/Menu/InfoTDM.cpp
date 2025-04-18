@@ -28,15 +28,15 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Locales/locales.hpp"
 
 
-UiWindow* InfoTDM::instance_(NULL);
+UiWindow* InfoTDM::instance_ = nullptr;
 bool InfoTDM::kClose_(false);
 
 
 UiWindow* InfoTDM::get()
 {
-    if (instance_ == NULL)
-    {
-        instance_ = new InfoTDM(320*scale_, 300);
+    if (!instance_)
+    {   instance_ = new InfoTDM(320*scale_, 300);
+    
         instance_->addWidget(new Button(locales::getLocale(locales::Close), "", &kClose_,
             Vector2f(220,270), 90, 20));
 
@@ -76,5 +76,5 @@ void InfoTDM::reset()
 {
     if (instance_)
         delete instance_;
-    instance_ = NULL;
+    instance_ = nullptr;
 }

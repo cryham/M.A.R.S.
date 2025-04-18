@@ -29,7 +29,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Locales/locales.hpp"
 
 
-UiWindow* MapOptions::instance_(NULL);
+UiWindow* MapOptions::instance_ = nullptr;
 
 bool MapOptions::kOk_(false);
 bool MapOptions::kDefaults_(false);
@@ -38,7 +38,7 @@ bool MapOptions::kMapSize_[MapOptions::kMapSizes_] = {false,};
 
 UiWindow* MapOptions::get()
 {
-    if (instance_ == NULL)
+    if (!instance_)
     {
         int w = 620, h = 430;
         instance_ = new MapOptions(w+30, h);
@@ -241,5 +241,5 @@ void MapOptions::reset()
 {
     if (instance_)
         delete instance_;
-    instance_ = NULL;
+    instance_ = nullptr;
 }

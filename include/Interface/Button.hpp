@@ -27,7 +27,7 @@ class Button: public UiElement
     public:
         Button (const sf::String& text, const sf::String& toolTip, bool* key,
             Vector2f const& topLeft, int width, int height,
-            int align = TEXT_ALIGN_CENTER, sf::Font* font = NULL);
+            int align = TEXT_ALIGN_CENTER, sf::Font* font = nullptr);
         ~Button ();
 
         void mouseMoved(Vector2f const& position) override;

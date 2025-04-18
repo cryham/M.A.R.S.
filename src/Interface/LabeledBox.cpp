@@ -25,7 +25,6 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 LabeledBox::LabeledBox (const sf::String& text, Vector2f const& topLeft, int width, int height)
     :UiElement(topLeft, width, height)
-    ,label_(NULL)
 {
     if (!text.isEmpty())
     {

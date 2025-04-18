@@ -33,7 +33,7 @@ void LeftLife::draw() const
 {
     text::drawFooText();
 
-    Player const* player(NULL);
+    Player const* player = nullptr;
 
     if (settings::bPlayer1teamL && settings::bPlayer2teamL ||
         settings::bPlayer1teamR && settings::bPlayer2teamR)       player = players::getPlayer2();

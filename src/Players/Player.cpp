@@ -20,8 +20,6 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 
 Player::Player(controllers::ControlType controlType):
-    ship_(NULL),
-    team_(NULL),
     points_(0),
     frags_(0),
     suicides_(0),

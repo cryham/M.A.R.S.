@@ -53,8 +53,6 @@ Turret::Turret(Vector2f const& location, float rotation, Player* owner)
     ,damageSourceResetTimer_(0.f)
     ,respawnLocation_(location)
     ,respawnRotation_(rotation)
-    ,weapon_(NULL)
-    // ,special_(NULL)
     ,life_(200.f)
     ,maxLife_(life_)
 
@@ -105,12 +103,6 @@ void Turret::update()
 
     if (visible_)
     {
-        /*if (ghostTimer_ > 0.f && !(docked_ && ghostTimer_ == 1.f))
-        {   ghostTimer_ -= time;
-            if (ghostTimer_ <= 0.f)
-                physics::addMobileObject(this);
-        }*/
-
         if (games::elapsedTime() > settings::iCountDown || games::type() == games::gTutorial)
         {
             if (frozen_ <= 0)
@@ -122,13 +114,15 @@ void Turret::update()
                 const auto& all = ships::getShips();
                 for (const auto& ship : all)
                 {
-                    float d = (location_ - ship->location()).lengthSquare();
-                    if (d < dist)
+                    float d = (location_ - ship->location()).length();
+                    if (d < dist &&
+                        d < weapon_->maxDistance() &&
+                        d > weapon_->minDistance())
                     {   dist = d;
                         closest = ship;
                     }
                 }
-                if (closest)
+                if (closest && weapon_)
                 {   //  rotate and attack
                     auto pos = closest->location() - location_;
                     float angle = ships::GetAngle(pos.x_, -pos.y_) * 180.f/M_PI;
@@ -155,7 +149,7 @@ void Turret::update()
                         rotateSpeed_ += time*40.f;
                 #endif
 
-                    if (weapon_ && randomizer::random(0, 1000) < settings::iTurretAttackSpeed)
+                    if (randomizer::random(0, 1000) < settings::iTurretAttackSpeed)
                         weapon_->fire();
                 }
             }else
@@ -269,8 +263,7 @@ void Turret::drawWeapon() const
     glTranslatef(location_.x_, location_.y_, 0.f);
     glRotatef(timer::totalTime()*-50, 0.f, 0.f, 1.f);
 
-    float alpha = 1.f;  //(ghostTimer_ == 1.f ?     0.2f*std::sin(timer::totalTime()*8.f + 1.5f*M_PI)+0.4f :
-        //(ghostTimer_ > 0.f ? ghostTimer_*(0.2f*std::sin(timer::totalTime()*8.f + 1.5f*M_PI)+0.4f) + 1.f-ghostTimer_ : 1.f));
+    float alpha = 1.f;
 
     // draw special
     // special_->draw(alpha * settings::iGlowAlpha / 100.f);  /// 0.7 0.2  //new
@@ -608,7 +601,7 @@ void Turret::setDamageSource(Player* evilOne)
 
 void Turret::drainLife(Player* source, float amount, Vector2f const& direction, float waitForOtherDamage)
 {
-    if (dynamic_cast<LocalPlayer*>(source) != NULL /*|| dynamic_cast<LocalPlayer*>(owner_) != NULL*/)
+    if (dynamic_cast<LocalPlayer*>(source) /*|| dynamic_cast<LocalPlayer*>(owner_)*/)
     {
         if (damageCheckTimer_ <= 0.f)
             damageCheckTimer_ = waitForOtherDamage;
@@ -654,7 +647,7 @@ void Turret::explode()
     particles::spawnMultiple(1, particles::pMiniFlame, location_);
     physics::  causeShockWave(damageSource(), location_, 400.f, 200.f, 2.f);
     particles::spawn(particles::pShockWave, location_);
-    // physics::  removeMobileObject(this);
+    physics::  removeStaticObject(this);
     timer::    onShipExplode();
     postFX::   onExplosion();
 
@@ -708,6 +701,7 @@ void Turret::respawn()
     rotation_ = respawnRotation_;
     rotateSpeed_ = 1.f;
     life_ = maxLife_;
+    physics::  addStaticObject(this);
 
     // fragStars_ = 0;
     visible_ = true;

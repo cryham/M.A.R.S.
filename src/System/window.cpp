@@ -20,7 +20,6 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "System/generateName.hpp"
 #include "System/settings.hpp"
-#include "Media/texture.hpp"
 #include "Controllers/controllers.hpp"
 #include "Menu/menus.hpp"
 #include "Locales/locales.hpp"
@@ -29,7 +28,6 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Games/games.hpp"
 #include "SpaceObjects/stars.hpp"
 #include "Hud/hud.hpp"
-#include "defines.hpp"
 
 #include <SFML/OpenGL.hpp>
 #include <SFML/Window/ContextSettings.hpp>
@@ -271,17 +269,25 @@ namespace window
 
         // probably improves performance...
         glDisable(GL_LIGHTING);
-        glDisable(GL_POLYGON_SMOOTH);
         glDisable(GL_ALPHA_TEST);
         glDisable(GL_DEPTH_TEST);
         glDisable(GL_SCISSOR_TEST);
-        glHint(GL_PERSPECTIVE_CORRECTION_HINT,GL_FASTEST);
-        glHint(GL_POINT_SMOOTH_HINT,GL_FASTEST);
-
         glEnable(GL_BLEND);
         glDisable(GL_LINE_SMOOTH);
         glDisable(GL_POINT_SMOOTH);
+        glDisable(GL_POLYGON_SMOOTH);
+    #if 1
+        glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_FASTEST);
+        glHint(GL_POINT_SMOOTH_HINT, GL_FASTEST);
+    #else  // nicest?
+        glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
+        glHint(GL_POINT_SMOOTH_HINT, GL_NICEST);
+        glHint(GL_LINE_SMOOTH_HINT, GL_NICEST);
+        glHint(GL_POLYGON_SMOOTH_HINT, GL_NICEST);
 
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    #endif
         glMatrixMode(GL_MODELVIEW);
         glLoadIdentity();
     }
@@ -369,7 +375,7 @@ namespace window
         window_.draw(toBeDrawn, states);
 
         if (shader)
-            sf::Shader::bind(NULL);
+            sf::Shader::bind(nullptr);
 
         window_.popGLStates();
         glPopMatrix();

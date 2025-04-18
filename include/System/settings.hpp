@@ -148,6 +148,7 @@ namespace settings
     ///@}
 
     /// \name Turrets new
+    extern int            iTurretsInSpace;
     extern int            iTurretsOnHome;
     extern int            iTurretsOnPlanet;
     extern int            iTurretAttackSpeed;

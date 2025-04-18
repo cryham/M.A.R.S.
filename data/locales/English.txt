@@ -436,7 +436,9 @@
 317 Suns
 
 318 Turrets
-319 On home planets
-320 On planets
-321 Attack speed
-322 Aiming ray
+319 Floating in space
+320 On home planets
+321 On planets
+322 Attack speed
+
+323 Aiming ray

@@ -142,11 +142,12 @@ namespace settings
     int         iGravityScale    = 100;
 
     //  turrets
+    int         iTurretsInSpace      = 0;
     int         iTurretsOnHome       = 0;
-    int         iTurretsOnPlanet     = 1;
+    int         iTurretsOnPlanet     = 0;
     int         iTurretAttackSpeed   = 100;
-    int         iTurretRespawnDelay  = 100;  // 8s
-    int         iTurretTurnSpeed     = 5;
+    int         iTurretRespawnDelay  = -1;  // -1 none
+    int         iTurretTurnSpeed     = 8;
 
     //  weapons
     bool        bEnabledWeapons[weapons::All] = {true,};
@@ -442,6 +443,7 @@ namespace settings
             oss << "GlowAlpha "             << iGlowAlpha << endl;
             oss << "AimRayAlpha "           << iAimRayAlpha << endl << endl;
             //  turrets
+            oss << "TurretsInSpace"         << iTurretsInSpace << endl;
             oss << "TurretsOnHome "         << iTurretsOnHome << endl;
             oss << "TurretsOnPlanet "       << iTurretsOnPlanet << endl;
             oss << "TurretAttackSpeed "     << iTurretAttackSpeed << endl;
@@ -769,6 +771,7 @@ namespace settings
                 else if (line == "GlowAlpha")           iss >> iGlowAlpha;
                 else if (line == "AimRayAlpha")         iss >> iAimRayAlpha;
                 //  turrets
+                else if (line == "TurretsInSpace")      iss >> iTurretsInSpace;
                 else if (line == "TurretsOnHome")       iss >> iTurretsOnHome;
                 else if (line == "TurretsOnPlanet")     iss >> iTurretsOnPlanet;
                 else if (line == "TurretAttackSpeed")   iss >> iTurretAttackSpeed;

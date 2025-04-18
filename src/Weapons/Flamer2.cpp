@@ -18,9 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "Weapons/Flamer2.hpp"
 
-#include "SpaceObjects/Ship.hpp"
 #include "Particles/particles.hpp"
-#include "Media/sound.hpp"
 #include "Players/Player.hpp"
 
 #include <SFML/Graphics.hpp>

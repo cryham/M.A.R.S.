@@ -162,8 +162,23 @@ namespace ships  // and turrets
             ++tries;
         };
 
+        //  random in space
+        int count = settings::iTurretsInSpace;
+        for (auto& home : spaceObjects::getHomes())
+            for (int i=0; i < count; ++i)
+            {
+                tries = 0;
+                do
+                {   float r = home->radius() * randomizer::random(1.2f, 1.3f);
+                    Vector2f pos = spaceObjects::possiblePlanetLocation(50, 150);
+                    newPos(pos, r);
+                }
+                while (tries < 20 && out);
+                addTurret(pos, ang, nullptr);
+            }
+
         //  on Homes
-        int count = settings::iTurretsOnHome;
+        count = settings::iTurretsOnHome;
         for (auto& home : spaceObjects::getHomes())
             for (int i=0; i < count; ++i)
             {
@@ -173,7 +188,7 @@ namespace ships  // and turrets
                     newPos(home->location(), r);
                 }
                 while (tries < 20 && out);
-                addTurret(pos, ang, NULL);
+                addTurret(pos, ang, nullptr);
             }
         
         //  on Planets
@@ -187,7 +202,7 @@ namespace ships  // and turrets
                     newPos(planet->location(), r);
                 }
                 while (tries < 20 && out);
-                addTurret(pos, ang, NULL);
+                addTurret(pos, ang, nullptr);
             }
     }
 }

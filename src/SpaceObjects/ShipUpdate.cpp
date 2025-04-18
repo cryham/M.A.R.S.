@@ -34,6 +34,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "System/window.hpp"
 
 #include <cmath>
+#include <math.h>
 #include <sstream>
 
 using namespace std;
@@ -114,21 +115,28 @@ void Ship::update()
                     rotation_ = angle;
                 #else
                     float diff = angle - rotation_;
-                    diff = fmod(diff + 180.f,  360.f) - 180.f;
+                    // cout << "ang  " << angle << "  rot " << rotation_ << "  dif " << diff << endl;
+                    while (diff > 180.f)  diff -= 360.f;
+                    while (diff <-180.f)  diff += 360.f;
+                    // diff = fmod(diff + 180.f,  360.f) - 180.f;
 
                     float amt = min(100.f, fabs(diff) * 5.f);
-                    int rot_left_  = diff < 0.f ? amt : 0.f;
-                    int rot_right_ = diff > 0.f ? amt : 0.f;
+                    // cout << "  mod " << diff << "  amt " << amt << endl;
+                    float rot_left_  = diff < 0.f ? amt : 0.f;
+                    float rot_right_ = diff > 0.f ? amt : 0.f;
 
-                    if (rot_right_ > 5)
-                        fmod(rotation_+= rotateSpeed_ *time *rot *slower * rot_right_, 360.f);
-                    if (rot_left_  > 5)
-                        fmod(rotation_-= rotateSpeed_ *time *rot *slower * rot_left_, 360.f);
-
+                    // if (rot_right_ > 5)
+                        rotation_+= rotateSpeed_ *time *rot *slower * rot_right_;
+                    // if (rot_left_  > 5)
+                        rotation_-= rotateSpeed_ *time *rot *slower * rot_left_;
+                    
                     if (rot_right_ == 0 && rot_left_ == 0)
                         rotateSpeed_ = 1.0;
                     else if (rotateSpeed_ < 13.f)
                         rotateSpeed_ += time*40.f;
+
+                    rotation_ = fmodf(rotation_, 360.f);  // always 0..360
+                    while (rotation_ < 0.f)  rotation_ += 360.f;
                 #endif
 
                     //  accelerate sideways

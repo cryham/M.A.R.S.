@@ -18,10 +18,10 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Particles/AmmoPulse.hpp"
 
 #include "System/timer.hpp"
-#include "System/settings.hpp"
+// #include "System/settings.hpp"
 #include "Particles/particles.hpp"
 #include "TrailEffects/trailEffects.hpp"
-#include "Media/sound.hpp"
+// #include "Media/sound.hpp"
 #include "System/randomizer.hpp"
 
 
@@ -40,7 +40,8 @@ AmmoPulse::AmmoPulse(Vector2f const& location, Vector2f const& direction, Vector
 
     radius_ = randomizer::random(17.f, 21.f) * 4.f;
 
-    color_ = Color3f(randomizer::random(0.6f, 1.f), randomizer::random(0.2f, 0.6f), randomizer::random(0.5f, 0.8f));
+    color_ = Color3f(randomizer::random(0.6f, 1.f), randomizer::random(0.2f, 0.6f), randomizer::random(0.5f, 0.8f));  // red-pink
+    // color_ = Color3f(randomizer::random(0.9f, 1.f), randomizer::random(0.2f, 0.7f), randomizer::random(0.f, 0.3f));  // orange
     trailEffects::attach(this, 0.005, 0.12f, 160.f, color_ * 0.5f, false);
 }
 

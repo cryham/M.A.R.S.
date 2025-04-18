@@ -20,7 +20,6 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "SpaceObjects/MobileSpaceObject.hpp"
 #include "Weapons/Weapon.hpp"
 #include "Specials/Special.hpp"
-#include "DecoObjects/Ice.hpp"
 
 #define ITEM_CANNON_CONTROL 0
 

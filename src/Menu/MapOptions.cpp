@@ -136,7 +136,7 @@ UiWindow* MapOptions::get()
         
         //  Turrets  ----
         y = y1;
-        tabTurrets->addWidget(new Slider(locales::getLocale(locales::OnHome), "",
+        tabTurrets->addWidget(new Slider(locales::getLocale(locales::InSpace), "",
             &settings::iTurretsInSpace, 0, 6, 1,
             Vector2f(x,y), w, 240, true));  y += yadd;
         tabTurrets->addWidget(new Slider(locales::getLocale(locales::OnHome), "",

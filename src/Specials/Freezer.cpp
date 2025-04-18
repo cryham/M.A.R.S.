@@ -17,6 +17,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "Specials/Freezer.hpp"
 
+#include "Particles/AmmoRocket.hpp"
 #include "SpaceObjects/Ship.hpp"
 #include "SpaceObjects/ships.hpp"
 #include "SpaceObjects/balls.hpp"

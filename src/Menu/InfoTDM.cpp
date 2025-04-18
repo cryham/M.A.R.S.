@@ -22,7 +22,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Menu/menus.hpp"
 #include "Interface/TextBox.hpp"
 #include "Interface/Checkbox.hpp"
-#include "Interface/Line.hpp"
+// #include "Interface/Line.hpp"
 #include "Media/text.hpp"
 #include "System/settings.hpp"
 #include "Locales/locales.hpp"

@@ -17,6 +17,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "Controllers/BotController.hpp"
 
+#include "DecoObjects/decoObjects.hpp"
 #include "System/settings.hpp"
 #include "SpaceObjects/Ship.hpp"
 #include "Players/Player.hpp"
@@ -24,7 +25,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "SpaceObjects/Home.hpp"
 #include "Items/items.hpp"
 #include "Items/CannonControl.hpp"
-#include "Particles/AmmoInsta.hpp"
+#include "SpaceObjects/Ball.hpp"
 
 #include <SFML/OpenGL.hpp>
 

@@ -20,7 +20,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Media/text.hpp"
 #include "Interface/UiWindow.hpp"
 #include "Interface/Button.hpp"
-#include "System/window.hpp"
+#include "Media/music.hpp"
 #include "Menu/menus.hpp"
 #include "Games/games.hpp"
 #include "Locales/locales.hpp"

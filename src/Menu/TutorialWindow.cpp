@@ -22,7 +22,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "Menu/menus.hpp"
 #include "Media/text.hpp"
 #include "Interface/TextBox.hpp"
-#include "Interface/Line.hpp"
+// #include "Interface/Line.hpp"
 #include "Locales/locales.hpp"
 
 #include <sstream>

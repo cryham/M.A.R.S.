@@ -18,7 +18,7 @@ this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "DecoObjects/Bolt.hpp"
 
 #include "DecoObjects/decoObjects.hpp"
-#include "SpaceObjects/Ship.hpp"
+#include "SpaceObjects/Ball.hpp"
 #include "Menu/menus.hpp"
 #include "System/randomizer.hpp"
 

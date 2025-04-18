@@ -2,6 +2,7 @@
 
 #include <SFML/Window.hpp>
 
+
 struct Key
 {
     Key(sf::Keyboard::Key code);
@@ -28,7 +29,7 @@ struct Key
     static sf::Joystick::Axis convertToSFML(AxisType joyAxis);
 };
 
+
 bool operator== (Key const& lhs, Key const& rhs);
 std::ostream& operator<< (std::ostream& stream, Key const& input);
 std::istream& operator>> (std::istream& stream, Key& output);
-

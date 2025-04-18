@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 
+
 /// A namespace for UTF-8 encoded text file handling.
 /// It contains function which work with
 /// UTF-8 encoded text files.

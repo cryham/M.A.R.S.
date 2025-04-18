@@ -9,6 +9,7 @@
 #include "System/Color3f.hpp"
 #include "System/settings.hpp"
 
+
 /// A namespace for drawing text on the screen.
 
 namespace text 

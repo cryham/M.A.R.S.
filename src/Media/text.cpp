@@ -7,7 +7,8 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/OpenGL.hpp>
 
-namespace text 
+
+namespace text
 {
     namespace
 	{

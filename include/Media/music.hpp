@@ -2,6 +2,7 @@
 
 #include <SFML/Audio.hpp>
 
+
 /// A namespace for playing music.
 /// Music is streamed from OGG files.
 
@@ -31,4 +32,3 @@ namespace music
     /// when this variable has been changed to apply the effect.
     void setGlobalVolume();
 }
-

@@ -1,5 +1,6 @@
 #pragma once
 
+
 /// A namespace which handles the current game.
 /// With functions of this namespace, games may be launched,
 /// updated and drawn. Furthermore some information on the
@@ -54,5 +55,3 @@ namespace games
     /// Returns the duration of the current Game.
     float elapsedTime();
 }
-
-

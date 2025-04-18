@@ -7,6 +7,7 @@
 #include "SpaceObjects/ships.hpp"
 #include "Games/games.hpp"
 
+
 void TutTeam::createJobs()
 {
     checkEnemies();

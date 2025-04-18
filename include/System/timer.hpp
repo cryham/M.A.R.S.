@@ -2,6 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 
+
 /// A namespace handling time.
 /// The entire game is timed by this namespace.
 

@@ -18,7 +18,6 @@
 #include <cmath>
 #include <math.h>
 #include <sstream>
-
 using namespace std;
 
 

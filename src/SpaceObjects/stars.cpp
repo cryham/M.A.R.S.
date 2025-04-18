@@ -10,6 +10,7 @@
 
 #include <SFML/System.hpp>
 
+
 namespace stars
 {
     namespace
@@ -18,6 +19,7 @@ namespace stars
         float top_, left_;
         float spawnTimer_(0.f);
     }
+
 
     void init()
     {

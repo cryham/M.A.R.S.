@@ -6,6 +6,7 @@
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 
+
 /// A namespace for genearing names.
 /// It generates names for bots, the game itself and
 /// stores the names for the ships.
@@ -30,4 +31,3 @@ namespace generateName
     /// The key is loaded from the current locale.
     sf::String const key(Key const& keyCode);
 }
-

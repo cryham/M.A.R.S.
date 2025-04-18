@@ -15,6 +15,7 @@ class Team;
 class TacticalZone;
 class RasterZone;
 
+
 /// A namespace which handles several zones for AI calculations.
 /// A Zone is an area in space which is useful for tactical
 /// calculations, the tutorial and path finding.
@@ -72,5 +73,3 @@ namespace zones
     /// Removes every Zone.
     void clear();
 }
-
-

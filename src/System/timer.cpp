@@ -5,6 +5,7 @@
 #include "Menu/menus.hpp"
 #include "Games/games.hpp"
 
+
 namespace timer
 {
     namespace
@@ -24,6 +25,7 @@ namespace timer
         float exploCounterResetTimer_(0.f);
         int   exploCounter_(0);
     }
+
 
     void update(float frameTime)
     {

@@ -9,6 +9,7 @@
 #include <SFML/Graphics.hpp>
 #include <string>
 
+
 /// A namespace which handles the settings.
 /// All settings are stored in global variables and
 /// can be saved to and loaded from file

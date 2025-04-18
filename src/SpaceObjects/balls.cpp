@@ -25,7 +25,7 @@ namespace balls
 {
     namespace
     {
-        Ball* ball_(NULL);
+        Ball* ball_ = nullptr;
     }
 
 
@@ -68,7 +68,7 @@ namespace balls
         if (ball_)
         {
             delete ball_;
-            ball_ = NULL;
+            ball_ = nullptr;
         }
     }
 }

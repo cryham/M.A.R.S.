@@ -48,6 +48,8 @@ namespace settings
     int         iBotsLeft =               2;
     int         iBotsRight =              2;
     int         iBotsDeath =              10;
+    int         iBallsSB =                1;
+
     int         iPointLimitSB =           10;
     int         iPointLimitCK =           10;
     int         iPointLimitDM =           30;
@@ -309,6 +311,8 @@ namespace settings
             oss << "botsLeft "              << iBotsLeft << endl;
             oss << "botsRight "             << iBotsRight << endl;
             oss << "botsDeath "             << iBotsDeath << endl;
+            oss << "BallsSB "               << iBallsSB << endl;
+
             oss << "pointLimitSB "          << iPointLimitSB << endl;
             oss << "pointLimitCK "          << iPointLimitCK << endl;
             oss << "pointLimitDM "          << iPointLimitDM << endl;
@@ -634,6 +638,8 @@ namespace settings
                 else if (line == "botsLeft")               readInt(iss, iBotsLeft, 0, 20);
                 else if (line == "botsRight")              readInt(iss, iBotsRight, 0, 20);
                 else if (line == "botsDeath")              readInt(iss, iBotsDeath, 0, 80);
+                else if (line == "BallsSB")                readInt(iss, iBallsSB, 1, 20);
+
                 else if (line == "pointLimitSB")           readInt(iss, iPointLimitSB, 1, 100);
                 else if (line == "pointLimitCK")           readInt(iss, iPointLimitCK, 1, 100);
                 else if (line == "pointLimitDM")           readInt(iss, iPointLimitDM, 1, 400);

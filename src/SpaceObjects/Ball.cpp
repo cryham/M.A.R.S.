@@ -13,9 +13,8 @@
 #include <cmath>
 
 
-Ball::Ball(Vector2f const& location)
-    :MobileSpaceObject(spaceObjects::oBall, location,
-        settings::iBallRadius, settings::iBallRadius / 2.f)
+Ball::Ball(Vector2f const& location, float radius)
+    :MobileSpaceObject(spaceObjects::oBall, location, radius, radius / 2.f)
         // 15.f, 7.f)
     ,rotation_(0)
     ,rotateSpeed_(0.f)
@@ -101,7 +100,7 @@ void Ball::update()
                 particles::spawnMultiple(2, particles::pCrushedIce, location_);
             }
         }
-    }else
+    }else //if (settings:: ..?
     {
         respawnTimer_ -= time;
         if (respawnTimer_ < 0.2f && (respawnTimer_ + time) >= 0.2f)

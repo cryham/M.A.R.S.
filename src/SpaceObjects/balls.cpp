@@ -3,16 +3,18 @@
 #include "SpaceObjects/Home.hpp"
 #include "System/Vector2f.hpp"
 
+#include <vector>
+
 
 namespace balls
 {
     namespace
     {
-        Ball* ball_ = nullptr;
+        std::vector<Ball*> balls_;
     }
 
 
-    void addBall(Vector2f const& location)
+    void addBall(float radius, Vector2f const& location)
     {
         // temporary list of all homes
         const auto& homes = spaceObjects::getHomes();
@@ -24,34 +26,32 @@ namespace balls
                 midPoint += it->location();
             midPoint /= homes.size();
 
-            ball_ = new Ball(midPoint);
+            balls_.push_back(new Ball(midPoint, radius));
         }else
-            ball_ = new Ball(location);
+            balls_.push_back(new Ball(location, radius));
     }
 
     void update()
     {
-        if (ball_)
-            ball_->update();
+        for (auto& ball : balls_)
+            ball->update();
     }
 
     void draw()
     {
-        if (ball_)
-            ball_->draw();
+        for (auto& ball : balls_)
+            ball->draw();
     }
 
     Ball* getBall()
     {
-        return ball_;
+        return balls_.empty() ? nullptr : balls_[0];
     }
 
     void clear()
     {
-        if (ball_)
-        {
-            delete ball_;
-            ball_ = nullptr;
-        }
+        for (auto& ball : balls_)
+            delete ball;
+        balls_.clear();
     }
 }

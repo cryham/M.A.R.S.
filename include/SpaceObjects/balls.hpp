@@ -6,7 +6,7 @@
 
 namespace balls 
 {
-    void addBall(Vector2f const& location = Vector2f(0, 0));
+    void addBall(float radius, Vector2f const& location = Vector2f(0, 0));
 
     void update();
     void draw();
@@ -15,4 +15,3 @@ namespace balls
 
     void clear();
 }
-

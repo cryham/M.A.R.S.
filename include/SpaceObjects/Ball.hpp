@@ -7,7 +7,7 @@
 class Ball: public MobileSpaceObject
 {
     public:
-        Ball(Vector2f const& location);
+        Ball(Vector2f const& location, float radius);
 
         void update() override;;
         void draw() const override;
@@ -32,8 +32,10 @@ class Ball: public MobileSpaceObject
     private:
         void explode();
         void respawn();
+
         float rotation_;
         float rotateSpeed_;
+
         float frozen_;
         bool  sticky_, visible_;
 

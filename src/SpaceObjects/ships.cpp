@@ -147,14 +147,12 @@ namespace ships  // and turrets
 
         //  random in space
         int count = settings::iTurretsInSpace;
-        for (auto& home : spaceObjects::getHomes())
             for (int i=0; i < count; ++i)
             {
                 tries = 0;
                 do
-                {   float r = home->radius() * randomizer::random(1.2f, 1.3f);
-                    Vector2f pos = spaceObjects::possiblePlanetLocation(50, 150);
-                    newPos(pos, r);
+                {   Vector2f pos = spaceObjects::possiblePlanetLocation(50, 150);
+                    newPos(pos, 0.f);
                 }
                 while (tries < 20 && out);
                 addTurret(pos, ang, nullptr);

@@ -1,5 +1,6 @@
 #include "Games/SpaceBall.hpp"
 
+#include "System/Vector2f.hpp"
 #include "Teams/SBTeam.hpp"
 #include "System/settings.hpp"
 #include "Media/music.hpp"
@@ -7,6 +8,7 @@
 #include "SpaceObjects/ships.hpp"
 #include "Players/players.hpp"
 #include "Teams/teams.hpp"
+#include "System/randomizer.hpp"
 
 
 SpaceBall::SpaceBall()
@@ -50,9 +52,13 @@ SpaceBall::SpaceBall()
         myTeamR = new SBTeam(rand);
     }
     else if (!myTeamL)
-        myTeamL = new SBTeam(myTeamR->color().inverted());
+        myTeamL = new SBTeam(
+            !settings::bPlayer1teamL && !settings::bPlayer2teamL ? settings::clr2Team
+            : myTeamR->color().inverted());
     else if (!myTeamR)
-        myTeamR = new SBTeam(myTeamL->color().inverted());
+        myTeamR = new SBTeam(
+            !settings::bPlayer1teamR && !settings::bPlayer2teamR ? settings::clr1Team
+            : myTeamL->color().inverted());
 
     teams::addTeam(myTeamL);
     teams::addTeam(myTeamR);
@@ -86,7 +92,15 @@ void SpaceBall::init()
     teams::assignHomes(homeL, homeR);
     players::createShips();
 
-    balls::addBall();
+    if (settings::iBallsSB > 0)
+        for (int i=0; i < settings::iBallsSB; ++i)
+        {
+            float r = settings::iBallRadius * randomizer::random(0.5f, 2.f);
+            Vector2f pos = spaceObjects::possiblePlanetLocation(50, r * 1.2f);
+            balls::addBall(r, pos);
+        }
+    else
+        balls::addBall(settings::iBallRadius);
 
     spaceObjects::populateSpace(5.f, 10.f, 4);
     ships::createTurrets();

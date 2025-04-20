@@ -35,7 +35,7 @@ UiWindow* MapOptions::get()
         instance_->addWidget(new Label(locales::getLocale(locales::MapOptions), TEXT_ALIGN_LEFT,
             Vector2f(10,0), 20.f, getColor3f(0.5f, 0.9f, 1.f), false));
 
-        TabList* tabList  = new TabList(Vector2f(10,55), 580, 270);
+        TabList* tabList = new TabList(Vector2f(10,55), 580, 270);
         Tab* tabSize     = new Tab(locales::getLocale(locales::MapSize), 130);
         Tab* tabObjects  = new Tab(locales::getLocale(locales::SpaceObjects), 130);
         Tab* tabTurrets  = new Tab(locales::getLocale(locales::Turrets), 130);
@@ -112,9 +112,6 @@ UiWindow* MapOptions::get()
         tabSize->addWidget(new Slider(locales::getLocale(locales::ShipRadius), "",  // ship
             &settings::iShipRadius, 5, 60, 10,
             Vector2f(x,y), w*2/3.f, 240, true));  y += yadd;
-        tabSize->addWidget(new Slider(locales::getLocale(locales::BallRadius), "",  // ball
-            &settings::iBallRadius, 5, 60, 10,
-            Vector2f(x,y), w*2/3.f, 240, true));  y += yadd*3/2;
 
         
         //  Turrets  ----

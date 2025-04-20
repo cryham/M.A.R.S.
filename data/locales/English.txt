@@ -442,3 +442,10 @@
 322 Attack speed
 
 323 Aiming ray
+
+324 Balls count
+325 Balls Options
+326 Color variation
+327 Weight
+
+328 New Game

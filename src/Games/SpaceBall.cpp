@@ -6,6 +6,7 @@
 #include "Media/music.hpp"
 #include "SpaceObjects/balls.hpp"
 #include "SpaceObjects/ships.hpp"
+#include "SpaceObjects/spaceObjects.hpp"
 #include "Players/players.hpp"
 #include "Teams/teams.hpp"
 #include "System/randomizer.hpp"
@@ -95,12 +96,12 @@ void SpaceBall::init()
     if (settings::iBallsSB > 0)
         for (int i=0; i < settings::iBallsSB; ++i)
         {
-            float r = settings::iBallRadius * randomizer::random(0.5f, 2.f);
-            Vector2f pos = spaceObjects::possiblePlanetLocation(50, r * 1.2f);
+            float r = randomizer::random(settings::iBallRadiusMin, settings::iBallRadiusMax);
+            Vector2f pos = spaceObjects::possiblePlanetLocation(r, r * 1.2f);
             balls::addBall(r, pos);
         }
     else
-        balls::addBall(settings::iBallRadius);
+        balls::addBall(settings::iBallRadiusMin);
 
     spaceObjects::populateSpace(5.f, 10.f, 4);
     ships::createTurrets();

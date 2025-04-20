@@ -111,8 +111,8 @@ void TabStats::draw() const
             glVertex2f(topLeft.x_-10*mirror,topLeft.y_-10);
             glVertex2f(topLeft.x_+width+10*mirror,topLeft.y_-10);
             glColor4f(1.0,1.0,1.0,0.02);
-            glVertex2f(topLeft.x_+width+10*mirror,topLeft.y_+height/4);
-            glVertex2f(topLeft.x_-10*mirror,topLeft.y_+height/3);
+            glVertex2f(topLeft.x_+width+10*mirror,topLeft.y_+height/4.f);
+            glVertex2f(topLeft.x_-10*mirror,topLeft.y_+height/3.f);
         glEnd();
 
         glLineWidth(2.f);

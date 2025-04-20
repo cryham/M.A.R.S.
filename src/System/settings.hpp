@@ -47,8 +47,6 @@ namespace settings
     extern int        iBotsRight;
     extern int        iBotsDeath;
 
-    extern int        iBallsSB;
-
     extern int        iPointLimitSB;
     extern int        iPointLimitCK;
     extern int        iPointLimitDM;
@@ -97,7 +95,7 @@ namespace settings
     extern bool       bEnabledSpecialsByUser[specials::All];
     ///@}
 
-    /// \name Map settings new
+    /// \name Map settings
     ///@{
     extern int        iMapMinPlanets;
     extern int        iMapMaxPlanets;
@@ -115,10 +113,9 @@ namespace settings
     // extern int     iMapYaspect;
 
     extern int        iShipRadius;
-    extern int        iBallRadius;
     ///@}
 
-    /// \name Game settings new
+    /// \name Game settings
     ///@{
     extern int        iDamageScale;
     extern int        iRegeneration;
@@ -134,7 +131,17 @@ namespace settings
     extern int        iGravityScale;
     ///@}
 
-    /// \name Turrets new
+    /// \name Balls settings
+    ///@{
+    extern int        iBallsSB;
+    extern int        iBallRadiusMin;
+    extern int        iBallRadiusMax;
+    extern int        iBallColors;
+    extern int        iBallWeight;
+    extern int        iBallRespawnDelay;
+    ///@}
+
+    /// \name Turrets
     extern int        iTurretsInSpace;
     extern int        iTurretsOnHome;
     extern int        iTurretsOnPlanet;

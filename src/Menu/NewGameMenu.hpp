@@ -24,7 +24,7 @@ class NewGameMenu : public UiWindow
 
         static bool kStart_, kInfo_, kCancel_, playerI_, playerII_,
                     tSB_, tDM_, tTDM_, tCK_, tGI_, tRLY_,
-                    kWeaponOptions_, kMapOptions_, kGameOptions_;
+                    kWeaponOptions_, kMapOptions_, kGameOptions_, kBallsOptions_;
 
         static Tab *tabSpaceBall_, *tabDeathMatch_, *tabTeamDeathMatch_,
                    *tabCannonKeep_, *tabGraveItation_, *tabRally_;

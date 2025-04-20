@@ -29,6 +29,10 @@ Version 0.8.0
    - **Game options** window with sliders:
      - Damage scale, Respawn delay, Life and fuel *regeneration*
      - Ship turn speed, ship glow amount, Aiming ray
+   - **Balls options** window with sliders for:
+     - *more balls* (but bots only know how to play with first one)
+     - min,max radius, color variation, weight factor
+     - respawn delay, -1 means off
    - more possible bots, more kills to end game
    - Ship thrusters now blue
 - _ToDo_:
@@ -57,3 +61,4 @@ Version 0.8.0
   - braces in own line, at same width for { and }, only when needed
   - 2 line separators after all includes, and between big methods
   - split long lines, add empty lines for clarity
+  - fixed few memory issues, leaks, probably not all

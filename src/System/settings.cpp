@@ -50,7 +50,6 @@ namespace settings
     int         iBotsLeft =               2;
     int         iBotsRight =              2;
     int         iBotsDeath =              10;
-    int         iBallsSB =                1;
 
     int         iPointLimitSB =           10;
     int         iPointLimitCK =           10;
@@ -112,8 +111,8 @@ namespace settings
     // int      iMapYaspect         = 1000 * 1440 / 810;  // / 1000 = 1
 
     int         iShipRadius         = 18;
-    int         iBallRadius         = 15;
 
+    //  game
     int         iDamageScale     = 70;
     int         iRegeneration    = 60;
     int         iFuelRegen       = 150;
@@ -126,6 +125,14 @@ namespace settings
     bool        bCyclicBorderX   = false;
     bool        bCyclicBorderY   = false;
     int         iGravityScale    = 100;
+
+    //  balls
+    int         iBallsSB         = 1;
+    int         iBallRadiusMin   = 15;
+    int         iBallRadiusMax   = 15;
+    int         iBallColors      = 10;
+    int         iBallWeight      = 100;
+    int         iBallRespawnDelay = 50;
 
     //  turrets
     int         iTurretsInSpace      = 0;
@@ -406,6 +413,7 @@ namespace settings
             //  map  ----
             oss << "MapXsize "              << iMapXsize << endl;
             oss << "MapYsize "              << iMapYsize << endl;
+
             oss << "MapMinPlanets "         << iMapMinPlanets << endl;
             oss << "MapMaxPlanets "         << iMapMaxPlanets << endl;
             oss << "MapMinPlanetsSize "     << iMapMinPlanetsSize << endl;
@@ -416,8 +424,7 @@ namespace settings
             oss << "MapSuns "               << iMapSuns << endl << endl;
 
             oss << "MapHomeRadius "         << iMapHomeRadius << endl;
-            oss << "ShipRadius "            << iShipRadius << endl;
-            oss << "BallRadius "            << iBallRadius << endl << endl;
+            oss << "ShipRadius "            << iShipRadius << endl << endl;
 
             oss << "CyclicBorderX "         << strBool(bCyclicBorderX) << endl;
             oss << "CyclicBorderY "         << strBool(bCyclicBorderY) << endl;
@@ -428,10 +435,19 @@ namespace settings
             oss << "Regeneration "          << iRegeneration << endl;
             oss << "FuelRegen "             << iFuelRegen << endl << endl;
             oss << "RespawnDelay "          << iRespawnDelay << endl;
+
             oss << "GlowAlpha "             << iGlowAlpha << endl;
             oss << "AimRayAlpha "           << iAimRayAlpha << endl << endl;
+
+            //  balls
+            oss << "BallsSB "               << iBallsSB << endl;
+            oss << "BallRadiusMin "         << iBallRadiusMin << endl;
+            oss << "BallRadiusMax "         << iBallRadiusMax << endl;
+            oss << "BallColors "            << iBallColors << endl;
+            oss << "BallWeight "            << iBallWeight << endl;
+            oss << "BallRespawnDelay "      << iBallRespawnDelay << endl << endl;
             //  turrets
-            oss << "TurretsInSpace"         << iTurretsInSpace << endl;
+            oss << "TurretsInSpace "        << iTurretsInSpace << endl;
             oss << "TurretsOnHome "         << iTurretsOnHome << endl;
             oss << "TurretsOnPlanet "       << iTurretsOnPlanet << endl;
             oss << "TurretAttackSpeed "     << iTurretAttackSpeed << endl;
@@ -736,6 +752,7 @@ namespace settings
                 //  map
                 else if (line == "MapXsize")            iss >> iMapXsize;
                 else if (line == "MapYsize")            iss >> iMapYsize;
+
                 else if (line == "MapMinPlanets")       iss >> iMapMinPlanets;
                 else if (line == "MapMaxPlanets")       iss >> iMapMaxPlanets;
                 else if (line == "MapMinPlanetsSize")   iss >> iMapMinPlanetsSize;
@@ -747,7 +764,6 @@ namespace settings
 
                 else if (line == "MapHomeRadius")       iss >> iMapHomeRadius;
                 else if (line == "ShipRadius")          iss >> iShipRadius;
-                else if (line == "BallRadius")          iss >> iBallRadius;
 
                 else if (line == "CyclicBorderX")       readBool(iss, line, bCyclicBorderX);
                 else if (line == "CyclicBorderY")       readBool(iss, line, bCyclicBorderY);
@@ -758,8 +774,16 @@ namespace settings
                 else if (line == "Regeneration")        iss >> iRegeneration;
                 else if (line == "FuelRegen")           iss >> iFuelRegen;
                 else if (line == "RespawnDelay")        iss >> iRespawnDelay;
+
                 else if (line == "GlowAlpha")           iss >> iGlowAlpha;
                 else if (line == "AimRayAlpha")         iss >> iAimRayAlpha;
+                //  balls
+                else if (line == "BallsSB")             iss >> iBallsSB;
+                else if (line == "BallRadiusMin")       iss >> iBallRadiusMin;
+                else if (line == "BallRadiusMax")       iss >> iBallRadiusMax;
+                else if (line == "BallColors")          iss >> iBallColors;
+                else if (line == "BallWeight")          iss >> iBallWeight;
+                else if (line == "BallRespawnDelay")    iss >> iBallRespawnDelay;
                 //  turrets
                 else if (line == "TurretsInSpace")      iss >> iTurretsInSpace;
                 else if (line == "TurretsOnHome")       iss >> iTurretsOnHome;

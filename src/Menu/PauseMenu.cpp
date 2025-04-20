@@ -26,24 +26,25 @@ bool PauseMenu::kHide_(false);
 UiWindow* PauseMenu::get()
 {
     if (!instance_)
-    {   instance_ = new PauseMenu(180, 210);
-    
-        float y = 10, yadd = 30, w = 160;
+    {
+        float y = 10, w = 160 * scale_, h = 20, yadd = h + 10;
+        
+        instance_ = new PauseMenu(w + 20, 210);
         // instance_->addWidget(new Button(locales::getLocale(locales::Continue),     "", &kResume_,
-        //  Vector2f(10,y), w, 20));  y += yadd;
+        //  Vector2f(10,y), w, h));  y += yadd;
         instance_->addWidget(new Button(locales::getLocale(locales::RestartGame),     "", &kNew_,
-            Vector2f(10,y), w, 20));  y += yadd;
+            Vector2f(10,y), w, h));  y += yadd;
         instance_->addWidget(new Button(locales::getLocale(locales::Options),         "", &kOptions_,
-            Vector2f(10,y), w, 20));  y += yadd;
+            Vector2f(10,y), w, h));  y += yadd;
         instance_->addWidget(new Button(locales::getLocale(locales::MapOptions),      "", &kMapOptions_,
-            Vector2f(10,y), w, 20));  y += yadd;
+            Vector2f(10,y), w, h));  y += yadd;
         instance_->addWidget(new Button(locales::getLocale(locales::GameOptions),     "", &kGameOptions_,
-            Vector2f(10,y), w, 20));  y += yadd*3/2;
+            Vector2f(10,y), w, h));  y += yadd*3/2;
         
         instance_->addWidget(new Button(locales::getLocale(locales::HideMenu),        "", &kHide_,
-            Vector2f(10,y), w, 20));  y += yadd;
+            Vector2f(10,y), w, h));  y += yadd;
         instance_->addWidget(new Button(locales::getLocale(locales::QuitCurrentGame), "", &kToMainMenu_,
-            Vector2f(10,y), w, 20));  y += yadd;
+            Vector2f(10,y), w, h));  y += yadd;
     }
     return instance_;
 }

@@ -1,6 +1,8 @@
 #include "Menu/NewGameMenu.hpp"
 
 #include "Media/text.hpp"
+#include "Media/music.hpp"
+
 #include "Interface/UiWindow.hpp"
 #include "Interface/Button.hpp"
 #include "Interface/Tab.hpp"
@@ -9,38 +11,41 @@
 #include "Interface/RadioButton.hpp"
 #include "Interface/Slider.hpp"
 #include "Interface/Checkbox.hpp"
-#include "Interface/Line.hpp"
+// #include "Interface/Line.hpp"
 #include "Interface/LabeledBox.hpp"
+
 #include "Games/games.hpp"
-#include "System/window.hpp"
 #include "System/settings.hpp"
 #include "Menu/menus.hpp"
+#include "Locales/locales.hpp"
+
 #include "Menu/InfoSB.hpp"
 #include "Menu/InfoDM.hpp"
 #include "Menu/InfoTDM.hpp"
 #include "Menu/InfoCK.hpp"
 #include "Menu/InfoGIP.hpp"
+
 #include "Menu/WeaponOptions.hpp"
 #include "Menu/MapOptions.hpp"
 #include "Menu/GameOptions.hpp"
-#include "Locales/locales.hpp"
+#include "Menu/BallsOptions.hpp"
 
 
 UiWindow* NewGameMenu::instance_ = nullptr;
+
 bool NewGameMenu::kStart_(false);
 bool NewGameMenu::kInfo_(false);
 bool NewGameMenu::kCancel_(false);
+
 bool NewGameMenu::playerI_(false);
 bool NewGameMenu::playerII_(false);
+
 bool NewGameMenu::tSB_(false);
 bool NewGameMenu::tDM_(false);
 bool NewGameMenu::tTDM_(false);
 bool NewGameMenu::tCK_(false);
 bool NewGameMenu::tGI_(false);
 bool NewGameMenu::tRLY_(false);
-bool NewGameMenu::kWeaponOptions_(false);
-bool NewGameMenu::kMapOptions_(false);
-bool NewGameMenu::kGameOptions_(false);
 
 Tab* NewGameMenu::tabSpaceBall_ = nullptr;
 Tab* NewGameMenu::tabDeathMatch_ = nullptr;
@@ -48,6 +53,11 @@ Tab* NewGameMenu::tabTeamDeathMatch_ = nullptr;
 Tab* NewGameMenu::tabCannonKeep_ = nullptr;
 Tab* NewGameMenu::tabGraveItation_ = nullptr;
 Tab* NewGameMenu::tabRally_ = nullptr;
+
+bool NewGameMenu::kWeaponOptions_(false);
+bool NewGameMenu::kMapOptions_(false);
+bool NewGameMenu::kGameOptions_(false);
+bool NewGameMenu::kBallsOptions_(false);
 
 
 UiWindow* NewGameMenu::get()
@@ -83,62 +93,69 @@ UiWindow* NewGameMenu::get()
         tabRally_           = new Tab("Rally", 80, &tRLY_);  //-
 
         //  Space Ball  ----
-        int x = 10, y = 30, yadd = 20;  // todo ..
+        int x = 10, y1 = 30, y = y1, yadd = 20;
         tabSpaceBall_->addWidget(new LabeledBox(locales::getLocale(locales::LeftTeam),
-			Vector2f(10, 30), 250, 80));
+			Vector2f(10, y), 250, 80));
         tabSpaceBall_->addWidget(new LabeledBox(locales::getLocale(locales::RightTeam),
-			Vector2f(300, 30), 250, 80));
+			Vector2f(300, y), 250, 80));  y += yadd*3/2;
         RadioGroup* player1Group = new RadioGroup();
             player1Group->addRadioButton(new RadioButton(settings::sPlayer1Name, locales::getLocale(locales::ttTeamPlayer),
 			&settings::bPlayer1teamL,
-			Vector2f(20,60), 80, true));
+			Vector2f(20, y), 80, true));
             player1Group->addRadioButton(new RadioButton(settings::sPlayer1Name, locales::getLocale(locales::ttTeamPlayer),
 			&settings::bPlayer1teamR,
-			Vector2f(310,60), 80, true));
+			Vector2f(310, y), 80, true));
         tabSpaceBall_->addWidget(player1Group);
         RadioGroup* player2Group = new RadioGroup();
             player2Group->addRadioButton(new RadioButton(settings::sPlayer2Name, locales::getLocale(locales::ttTeamPlayer),
 			&settings::bPlayer2teamL,
-			Vector2f(120,60), 80, true));
+			Vector2f(120, y), 80, true));
             player2Group->addRadioButton(new RadioButton(settings::sPlayer2Name, locales::getLocale(locales::ttTeamPlayer),
 			&settings::bPlayer2teamR,
-			Vector2f(410,60), 80, true));
+			Vector2f(410, y), 80, true));  y += yadd;
+        
         tabSpaceBall_->addWidget(player2Group);
         tabSpaceBall_->addWidget(new Slider(locales::Bots, locales::ttBotCount,
 			&settings::iBotsLeft, 0, 20, 1,
-			Vector2f(20,80), 230, 120, true));
+			Vector2f(20, y), 230, 120, true));
         tabSpaceBall_->addWidget(new Slider(locales::Bots, locales::ttBotCount,
 			&settings::iBotsRight, 0, 20, 1,
-			Vector2f(310,80), 230, 120, true));
+			Vector2f(310, y), 230, 120, true));  y += yadd*2;
         tabSpaceBall_->addWidget(new LabeledBox(locales::getLocale(locales::GameOptions),
-			Vector2f(10,120), 540, 100));
+			Vector2f(10, y), 540, 100));  y += yadd*3/2;
 
         tabSpaceBall_->addWidget(new Slider(locales::Pointlimit, locales::ttPointLimitTeam,
-			&settings::iPointLimitSB, 1, 20, 1,
-			Vector2f(20,150), 520, 270, true));
+			&settings::iPointLimitSB, 1, 260, 1,
+			Vector2f(20, y), 520, 270, true));  y += yadd;
+            
+        tabSpaceBall_->addWidget(new Button(locales::getLocale(locales::BallsOptions), "", &kBallsOptions_,
+			Vector2f(20, y), 120, 20));  y += yadd;
         tabSpaceBall_->addWidget(new Button(locales::getLocale(locales::WeaponOptions), "", &kWeaponOptions_,
 			Vector2f(110,y2w), 120, 20));
 
         //  Death Match  ----
+        y = y1;
         tabDeathMatch_->addWidget(new LabeledBox(locales::getLocale(locales::PlayerOptions),
-			Vector2f(10, 30), 540, 80));
+			Vector2f(10, y), 540, 80));  y += yadd*3/2;
         tabDeathMatch_->addWidget(new Checkbox(settings::sPlayer1Name, locales::getLocale(locales::ttPlayersWho), &playerI_,
-			Vector2f(20,60), 100));
+			Vector2f(20, y), 100));
         tabDeathMatch_->addWidget(new Checkbox(settings::sPlayer2Name, locales::getLocale(locales::ttPlayersWho), &playerII_,
-			Vector2f(310,60), 100));
+			Vector2f(310, y), 100));  y += yadd;
         tabDeathMatch_->addWidget(new Slider(locales::Bots, locales::ttBotCount,
 			&settings::iBotsDeath, 0, 80, 1,
-			Vector2f(20,80), 520, 270, true));
+			Vector2f(20, y), 520, 270, true));  y += yadd*2;
+
         tabDeathMatch_->addWidget(new LabeledBox(locales::getLocale(locales::GameOptions),
-			Vector2f(10,120), 540, 100));
-        
+			Vector2f(10, y), 540, 100));  y += yadd*3/2;
         tabDeathMatch_->addWidget(new Slider(locales::Fraglimit, locales::ttPointLimitTeam,
 			&settings::iPointLimitDM, 1, 400, 1,
-			Vector2f(20,150), 520, 270, true));
+			Vector2f(20, y), 520, 270, true));
+        
         tabDeathMatch_->addWidget(new Button(locales::getLocale(locales::WeaponOptions), "", &kWeaponOptions_,
 			Vector2f(110,y2w), 120, 20));
 
         //  Team Death Match  ----
+        y = y1;
         tabTeamDeathMatch_->addWidget(new LabeledBox(locales::getLocale(locales::LeftTeam),
 			Vector2f(10, 30), 250, 80));
         tabTeamDeathMatch_->addWidget(new LabeledBox(locales::getLocale(locales::RightTeam),
@@ -365,6 +382,10 @@ void NewGameMenu::checkWidgets()
     else if (kGameOptions_)
     {   kGameOptions_ = false;
         menus::showWindow(GameOptions::get());
+    }
+    else if (kBallsOptions_)
+    {   kBallsOptions_ = false;
+        menus::showWindow(BallsOptions::get());
     }
     else if (kCancel_)
     {   kCancel_ = false;

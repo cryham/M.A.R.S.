@@ -14,7 +14,7 @@
 MenuGame::MenuGame()
     :Game(games::gMenu)
 {
-    clear();
+    weaponsClear();
     settings::bEnabledWeapons[weapons::wInsta] = true;
 
     music::play(settings::sDataPath + "audio/menu.ogg");
@@ -42,6 +42,8 @@ MenuGame::MenuGame()
     }
 
     spaceObjects::populateSpace(40.f, 5.f, 2);
+    spaceObjects::addAsteroids();  //-
+    
     zones::createRaster(4,3);
 }
 
@@ -58,5 +60,7 @@ void MenuGame::restart()
     menus::showMain();
 
     spaceObjects::populateSpace(40.f, 5.f, 2);
+    spaceObjects::addAsteroids();
+
     zones::createRaster(4,3);
 }

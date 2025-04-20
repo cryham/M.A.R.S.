@@ -15,7 +15,7 @@
 CannonKeep::CannonKeep()
     :Game(games::gCannonKeep)
 {
-    copyFromUser();
+    weaponsFromUser();
 
     music::play();
 
@@ -93,6 +93,7 @@ void CannonKeep::init()
 
     spaceObjects::populateSpace(5.f, 10.f, 4);
     ships::createTurrets();
+    spaceObjects::addAsteroids();
 
     zones::createRaster(4,3);
 }

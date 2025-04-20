@@ -8,8 +8,6 @@
 #include "SpaceObjects/spaceObjects.hpp"
 #include "SpaceObjects/Track.hpp"
 #include "Teams/teams.hpp"
-#include "TrailEffects/trailEffects.hpp"
-#include "TrailEffects/Trail.hpp"
 #include "System/randomizer.hpp"
 
 
@@ -17,7 +15,7 @@ Rally::Rally()
     :Game(games::gRally)
     ,track_(0)
 {
-    copyFromUser();
+    weaponsFromUser();
 
     music::play();
 
@@ -64,6 +62,7 @@ void Rally::init()
     players::createShips();
 
     //spaceObjects::populateSpace(5.f, 10.f, 4);
+    //spaceObjects::addAsteroids();
     zones::createRaster(4,3);
 
     delete track_;

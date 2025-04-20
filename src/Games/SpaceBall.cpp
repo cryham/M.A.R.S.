@@ -15,7 +15,7 @@
 SpaceBall::SpaceBall()
     :Game(games::gSpaceBall)
 {
-    copyFromUser();
+    weaponsFromUser();
 
     music::play();
 
@@ -98,13 +98,14 @@ void SpaceBall::init()
         {
             float r = randomizer::random(settings::iBallRadiusMin, settings::iBallRadiusMax);
             Vector2f pos = spaceObjects::possiblePlanetLocation(r, r * 1.2f);
-            balls::addBall(r, pos);
+            balls::addBall(i, r, pos);
         }
     else
-        balls::addBall(settings::iBallRadiusMin);
+        balls::addBall(0, settings::iBallRadiusMin, Vector2f());
 
     spaceObjects::populateSpace(5.f, 10.f, 4);
     ships::createTurrets();
+    spaceObjects::addAsteroids();
 
     zones::detectTacticalZones();
     zones::createRaster(4, 3);

@@ -12,7 +12,7 @@
 TeamDeathMatch::TeamDeathMatch()
     :Game(games::gTeamDeathMatch)
 {
-    copyFromUser();
+    weaponsFromUser();
 
     music::play();
 
@@ -88,6 +88,7 @@ void TeamDeathMatch::init()
 
     spaceObjects::populateSpace(5.f, 10.f, 4);
     ships::createTurrets();
+    spaceObjects::addAsteroids();
 
     zones::createRaster(4,3);
 }

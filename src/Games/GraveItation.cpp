@@ -11,7 +11,7 @@
 GraveItation::GraveItation()
     :Game(games::gGraveItation)
 {
-    clear();
+    weaponsClear();
     settings::bEnabledWeapons[weapons::wInsta] = true;
 
     music::play();
@@ -87,6 +87,7 @@ void GraveItation::init()
     players::createShips();
 
     spaceObjects::populateSpace(25.f, 5.f, 2);
+    spaceObjects::addAsteroids();
 
     zones::createRaster(4,3);
 }

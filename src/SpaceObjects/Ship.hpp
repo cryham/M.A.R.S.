@@ -1,13 +1,12 @@
 #pragma once
 
 #include "SpaceObjects/MobileSpaceObject.hpp"
-#include "Weapons/Weapon.hpp"
-#include "Specials/Special.hpp"
+#include "Weapons/Mount.hpp"
+#include <vector>
 
-#define ITEM_CANNON_CONTROL 0
 
-class Player;
-class PowerUp;
+class Player;  class PowerUp;
+class Special;  class Weapon;
 
 
 class Ship : public MobileSpaceObject, public Mount

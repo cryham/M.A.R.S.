@@ -44,8 +44,8 @@ class Game
         bool ended() const;
 
         //  copy weapons and specials from ByUser
-        void copyFromUser();
-        void clear();
+        void weaponsFromUser();
+        void weaponsClear();
 
     private:
         games::GameType type_;

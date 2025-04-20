@@ -4,8 +4,6 @@
 #include "Teams/DMTeam.hpp"
 #include "System/settings.hpp"
 #include "Media/music.hpp"
-#include "Items/items.hpp"
-#include "DecoObjects/decoObjects.hpp"
 #include "Menu/menus.hpp"
 #include "Hud/hud.hpp"
 #include "Players/Player.hpp"
@@ -17,7 +15,6 @@
 #include "Menu/TutorialWindow.hpp"
 #include "Menu/EnterName.hpp"
 #include "Locales/locales.hpp"
-#include "defines.hpp"
 
 
 Tutorial::Tutorial()
@@ -31,7 +28,7 @@ Tutorial::Tutorial()
     ,fuel_(false)
     ,name_(false)
 {
-    clear();
+    weaponsClear();
     settings::bEnabledWeapons[weapons::wAFK47] = true;
     settings::bEnabledWeapons[weapons::wShotgun] = true;
     settings::bEnabledWeapons[weapons::wROFLE] = true;

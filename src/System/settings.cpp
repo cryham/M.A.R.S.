@@ -28,6 +28,8 @@ inline int clamp(int x, int min, int max)
 
 namespace settings
 {
+    const string mars_cfg = "mars2.cfg";
+
     //  game settings  adjustable via options menu
     //----------------------------------------------------------------------------------------------------------------------------------
     int         iSoundVolume =            80;
@@ -281,7 +283,7 @@ namespace settings
     //----------------------------------------------------------------------------------------------------------------------------------
     bool save()
     {
-        ofstream oss((sConfigPath + "mars.cfg").c_str());
+        ofstream oss((sConfigPath + mars_cfg).c_str());
         if (oss)
         {
             oss << "// mars config file" << endl;
@@ -439,7 +441,7 @@ namespace settings
             oss.close();
             return true;
         }else
-        {   cout << "Faild to save configuration file " << sConfigPath << "mars.cfg!" << endl;
+        {   cout << "Faild to save configuration file " << sConfigPath << mars_cfg << endl;
             return false;
         }
     }
@@ -479,9 +481,9 @@ namespace settings
                 string home(getenv("HOME"));
                 if (*home.rbegin() != '/') home += '/';
 
-                if (ifstream((sConfigPath + "mars.cfg").c_str()))
+                if (ifstream((sConfigPath + mars_cfg).c_str()))
                     success = true;
-                else if (ifstream((home + ".marsshooter/mars.cfg").c_str()))
+                else if (ifstream((home + ".marsshooter/" + mars_cfg).c_str()))
                 {
                     sConfigPath =      home + ".marsshooter/";
                     success = true;
@@ -494,9 +496,9 @@ namespace settings
                 SHGetFolderPath(NULL, CSIDL_APPDATA, NULL, 0, szAppData);
                 string home(szAppData);
 
-                if (ifstream((C_configPath + "mars.cfg").c_str()))
+                if (ifstream((C_configPath + cfg).c_str()))
                     success = true;
-                else if (ifstream((home + "/.marsshooter/mars.cfg").c_str()))
+                else if (ifstream((home + "/.marsshooter/" + cfg).c_str()))
                 {
                     C_configPath =      home + "/.marsshooter/";
                     success = true;
@@ -508,7 +510,7 @@ namespace settings
                 string home(getenv("HOME"));
                 if (*home.rbegin() != '/') home += '/';
 
-                if (ifstream((home + "Library/Preferences/mars/mars.cfg").c_str()))
+                if (ifstream((home + "Library/Preferences/mars/" + cfg).c_str()))
                 {
                     C_configPath =      home + "Library/Preferences/mars/";
                     success = true;
@@ -516,7 +518,7 @@ namespace settings
                     C_configPath =      home + "Library/Preferences/mars/";
             #endif
 
-            if (success) cout << "Found " << sConfigPath << "mars.cfg"  << endl;
+            if (success) cout << "Found " << sConfigPath << mars_cfg << endl;
             else         cout << "Found nothing. Will create a new one." << endl;
         }
 
@@ -581,7 +583,7 @@ namespace settings
         }
 
         vector<sf::String> lines;
-        if (file::load(sConfigPath + "mars.cfg", lines))
+        if (file::load(sConfigPath + mars_cfg, lines))
         {
             // clear();  //..
             for (auto& it : lines)
@@ -767,11 +769,11 @@ namespace settings
                 else if (line == "TurretTurnSpeed")     iss >> iTurretTurnSpeed;
                 else
                 if (line.substr(0,14) != "enabledWeapons" && line.substr(0,15) != "enabledSpecials")
-                    cout << line << " is a bad option in " << sConfigPath << "mars.cfg!\n";
+                    cout << line << " is a bad option in " << sConfigPath << mars_cfg << "\n";
             }
         }else 
             if (save())
-                cout << "Created " << sConfigPath << "mars.cfg, using default settings.\n";
+                cout << "Created " << sConfigPath << mars_cfg << ", using default settings.\n";
 
         return true;
     }

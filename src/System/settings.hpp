@@ -17,7 +17,7 @@
 namespace settings
 {
     /// Loads all settings from the file.
-    /// All settings are stored in the file mars.cfg in C_configPath.
+    /// All settings are stored in the file mars_cfg in C_configPath.
     /// This has to be called once at the beginning of the game. If an error
     /// occurs, default settings are used.
     bool load();

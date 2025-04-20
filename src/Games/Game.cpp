@@ -1,5 +1,6 @@
 #include "Games/Game.hpp"
 
+#include "SpaceObjects/asteroids.hpp"
 #include "SpaceObjects/spaceObjects.hpp"
 #include "SpaceObjects/balls.hpp"
 #include "SpaceObjects/ships.hpp"
@@ -14,11 +15,10 @@
 #include "DecoObjects/decoObjects.hpp"
 #include "Items/items.hpp"
 #include "Menu/menus.hpp"
-#include "System/window.hpp"
 #include "Media/announcer.hpp"
-#include "Shaders/postFX.hpp"
 #include "SpaceObjects/stars.hpp"
 #include "TrailEffects/trailEffects.hpp"
+#include "SpaceObjects/physics.hpp"
 #include "Teams/teams.hpp"
 
 
@@ -43,14 +43,19 @@ Game::~Game()
 {
     items::clear();
     ships::clear();
+
     balls::clear();
+    asteroids::clear();
+
     physics::clear();
     particles::clear();
     spaceObjects::clear();
+    
     controllers::clear();
     teams::clear();
     players::clear();
     zones::clear();
+    
     decoObjects::clear();
     trailEffects::clear();
     timer::resetSlowMotion();
@@ -97,6 +102,7 @@ void Game::update()
 
             ships::update();  // and turrets
             balls::update();
+            asteroids::update();
 
             teams::update();
             controllers::update();
@@ -118,6 +124,8 @@ void Game::draw() const
     
     controllers::draw();
     ships::draw();
+
+    asteroids::draw();
     balls::draw();
     
     spaceObjects::draw();
@@ -132,13 +140,16 @@ void Game::restart()
 {
     items::clear();
     ships::clear();
+
     balls::clear();
-    
+    asteroids::clear();
+
     physics::clear();
     particles::clear();
+
     spaceObjects::clear();
-    
     zones::clear();
+
     decoObjects::clear();
     trailEffects::clear();
 
@@ -155,7 +166,7 @@ void Game::restart()
 }
 
 
-void Game::clear()
+void Game::weaponsClear()
 {
     for (int i=0; i < weapons::All; ++i)
         settings::bEnabledWeapons[i] = false;
@@ -163,7 +174,7 @@ void Game::clear()
         settings::bEnabledSpecials[i] = false;
 }
 
-void Game::copyFromUser()
+void Game::weaponsFromUser()
 {
     for (int i=0; i < weapons::All; ++i)
         settings::bEnabledWeapons[i] = settings::bEnabledWeaponsByUser[i];

@@ -65,5 +65,7 @@ namespace spaceObjects
     void populateSpace(float holePercentage, float sunPercentage, int maxObjects);
     Vector2f possiblePlanetLocation(int radius, float minDistance);
 
+    void addAsteroids();
+
     void clear();
 }

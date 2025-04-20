@@ -69,6 +69,20 @@ namespace texture
                 case Planet13:       loadTexture_(type, path + "tex/spaceObjects/planet13.png");  break;
                 case Planet14:       loadTexture_(type, path + "tex/spaceObjects/planet14.png");  break;
                 case Planet15:       loadTexture_(type, path + "tex/spaceObjects/planet15.png");  break;
+
+                case Asteroid1:      loadTexture_(type, path + "tex/spaceObjects/planet3rock1.png");   break;
+                case Asteroid2:      loadTexture_(type, path + "tex/spaceObjects/planet3rock2.png");   break;
+                case Asteroid3:      loadTexture_(type, path + "tex/spaceObjects/planet3rock3.png");   break;
+                case Asteroid4:      loadTexture_(type, path + "tex/spaceObjects/planet13rock1.png");   break;
+                case Asteroid5:      loadTexture_(type, path + "tex/spaceObjects/planet13rock2.png");   break;
+                case Asteroid6:      loadTexture_(type, path + "tex/spaceObjects/planet13rock3.png");   break;
+                case Asteroid7:      loadTexture_(type, path + "tex/spaceObjects/planet14rock1.png");   break;
+                case Asteroid8:      loadTexture_(type, path + "tex/spaceObjects/planet14rock2.png");   break;
+                case Asteroid9:      loadTexture_(type, path + "tex/spaceObjects/planet14rock3.png");   break;
+                case Asteroid10:     loadTexture_(type, path + "tex/spaceObjects/planet7rock1.png");  break;
+                case Asteroid11:     loadTexture_(type, path + "tex/spaceObjects/planet7rock2.png");  break;
+                case Asteroid12:     loadTexture_(type, path + "tex/spaceObjects/planet7rock3.png");  break;
+
                 case Sun1:           loadTexture_(type, path + "tex/spaceObjects/sun1.png");      break;
                 case Sun2:           loadTexture_(type, path + "tex/spaceObjects/sun2.png");      break;
                 case Sun3:           loadTexture_(type, path + "tex/spaceObjects/sun3.png");      break;

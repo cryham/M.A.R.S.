@@ -1,6 +1,7 @@
 #include "SpaceObjects/balls.hpp"
 
 #include "SpaceObjects/Home.hpp"
+#include "SpaceObjects/Ball.hpp"
 #include "System/Vector2f.hpp"
 
 #include <vector>
@@ -14,12 +15,12 @@ namespace balls
     }
 
 
-    void addBall(float radius, Vector2f const& location)
+    void addBall(int id, float radius, Vector2f const& location)
     {
         // temporary list of all homes
         const auto& homes = spaceObjects::getHomes();
 
-        if (homes.size() >= 2 && location == Vector2f(0,0))
+        if (homes.size() >= 2 && id == 0)  // 1st ball
         {
             Vector2f midPoint;
             for (const auto& it : homes)

@@ -1,12 +1,13 @@
 #pragma once
 
 #include "System/Vector2f.hpp"
-#include "SpaceObjects/Ball.hpp"
+
+class Ball;
 
 
-namespace balls 
+namespace balls
 {
-    void addBall(float radius, Vector2f const& location = Vector2f(0, 0));
+    void addBall(int id, float radius, Vector2f const& location);
 
     void update();
     void draw();

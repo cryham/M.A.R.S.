@@ -16,9 +16,11 @@ Version 0.8.0
        Laser (long), Minigun (fast), Seekers (homing rockets),  
        WIP: Gauss (cannon), Grenades (explosives),  
        Pulse (arc area), Cloud (area), WIP: Freezers, Lightning
-   - **Turrets** WIP
-     - possible on team home or any planets
+   - **Turrets**
+     - possible floating in space or on team home or any planets
      - destroyable, respawned
+   - **Asteroids** on map, options tab in Map:
+     - min,max count and radius, color variation, weight
    - **Map Options** window, with sliders for:  
      - *map size*, with 7 button presets (from Tiny to Huge)
      - min,max count of space objects (planets, stars, black holes)
@@ -29,15 +31,14 @@ Version 0.8.0
    - **Game options** window with sliders:
      - Damage scale, Respawn delay, Life and fuel *regeneration*
      - Ship turn speed, ship glow amount, Aiming ray
-   - **Balls options** window with sliders for:
-     - *more balls* (but bots only know how to play with first one)
+   - **More Balls, options** window with sliders for:
+     - balls count (but bots only know about first one _ToDo_)
      - min,max radius, color variation, weight factor
      - respawn delay, -1 means off
    - more possible bots, more kills to end game
    - Ship thrusters now blue
 - _ToDo_:
    - game effects from weapons: *shock* no weapons, *chill* slow move
-   - asteroids
    - game modes:
      - campaign
      - missions, destroy number of ships, all turrets

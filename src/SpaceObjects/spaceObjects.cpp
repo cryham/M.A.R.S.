@@ -4,8 +4,9 @@
 #include "SpaceObjects/Sun.hpp"
 #include "SpaceObjects/BlackHole.hpp"
 #include "SpaceObjects/Home.hpp"
-#include "SpaceObjects/Turret.hpp"
+#include "SpaceObjects/asteroids.hpp"
 #include "SpaceObjects/balls.hpp"
+#include "SpaceObjects/Ball.hpp"
 #include "Items/CannonControl.hpp"
 #include "Items/items.hpp"
 #include "DecoObjects/decoObjects.hpp"
@@ -83,9 +84,10 @@ namespace spaceObjects
     int randomPlanetSize()
     {
         return randomizer::random(settings::iMapMinPlanetsSize, settings::iMapMaxPlanetsSize);
-        // return rand() % (settings::iMapMaxPlanetsSize - settings::iMapMinPlanetsSize) + settings::iMapMinPlanetsSize;
     }
 
+
+    //  add  ----
     void addPlanet()
     {
         int radius = randomPlanetSize();
@@ -121,7 +123,7 @@ namespace spaceObjects
             objectList_.push_back(new BlackHole(position, radius));
     }
 
-    //  Home planets
+    //  add Home planets
     Home* addHome(int where, int life, Color3f const& color)
     {
         Vector2f position;
@@ -242,6 +244,7 @@ namespace spaceObjects
     }
 
 
+    //  add Planets, suns, black holes
     void populateSpace(float holePercentage, float sunPercentage, int maxObjects)
     {
         int count = randomizer::random(settings::iMapMinPlanets, settings::iMapMaxPlanets);
@@ -258,6 +261,18 @@ namespace spaceObjects
                 addSun();
             else
                 addPlanet();
+        }
+    }
+
+    //  Asteroids  ----
+    void addAsteroids()
+    {
+        int count = randomizer::random(settings::iAsteroidsMin, settings::iAsteroidsMax);
+        while (--count >= 0)
+        {
+            int r = randomizer::random(settings::iAsteroidsMinSize, settings::iAsteroidsMaxSize);
+            Vector2f pos = possiblePlanetLocation(r, r*0.5f);
+            asteroids::addAsteroid(r, pos, rand() % ASTEROIDS_COUNT);
         }
     }
 }

@@ -23,22 +23,23 @@ UiWindow* MapOptions::get()
 {
     if (!instance_)
     {
-        int w = 620, h = 430;
+        int w = 600, h = 340, xTxt = 240;
         instance_ = new MapOptions(w+30, h);
         // instance_->addWidget(new Line(Vector2f(10, 35), Vector2f(310, 35)));
 
         instance_->addWidget(new Button(locales::getLocale(locales::Ok), "", &kOk_,
             Vector2f(350, h-20), 90, 20));
         instance_->addWidget(new Button(locales::getLocale(locales::Defaults), "", &kDefaults_,
-            Vector2f(210, h-20), 130, 20));
+            Vector2f(180, h-20), 130, 20));
 
         instance_->addWidget(new Label(locales::getLocale(locales::MapOptions), TEXT_ALIGN_LEFT,
             Vector2f(10,0), 20.f, getColor3f(0.5f, 0.9f, 1.f), false));
 
-        TabList* tabList = new TabList(Vector2f(10,55), 580, 270);
-        Tab* tabSize     = new Tab(locales::getLocale(locales::MapSize), 130);
-        Tab* tabObjects  = new Tab(locales::getLocale(locales::SpaceObjects), 130);
-        Tab* tabTurrets  = new Tab(locales::getLocale(locales::Turrets), 130);
+        TabList* tabList  = new TabList(Vector2f(10,55), 580, 270);
+        Tab* tabSize      = new Tab(locales::getLocale(locales::MapSize), 130);
+        Tab* tabObjects   = new Tab(locales::getLocale(locales::SpaceObjects), 130);
+        Tab* tabTurrets   = new Tab(locales::getLocale(locales::Turrets), 130);
+        Tab* tabAsteroids = new Tab(locales::getLocale(locales::Asteroids), 130);
 
 
         int x = 10, y1 = 40, y = y1, yadd = 20;
@@ -46,32 +47,32 @@ UiWindow* MapOptions::get()
         //     Vector2f(10, y), 100, 210));  y += yadd;
         tabObjects->addWidget(new Slider(locales::getLocale(locales::MinPlanets), "",
             &settings::iMapMinPlanets, 0, 30, 1,
-            Vector2f(x,y), w, 240, true));  y += yadd;
+            Vector2f(x,y), w, xTxt, true));  y += yadd;
         tabObjects->addWidget(new Slider(locales::getLocale(locales::MaxPlanets), "",
             &settings::iMapMaxPlanets, 0, 30, 1,
-            Vector2f(x,y), w, 240, true));  y += yadd*3/2;
+            Vector2f(x,y), w, xTxt, true));  y += yadd*3/2;
 
         tabObjects->addWidget(new Slider(locales::getLocale(locales::MinPlanetsSize), "",
             &settings::iMapMinPlanetsSize, 1, 300, 1,
-            Vector2f(x,y), w, 240, true));  y += yadd;
+            Vector2f(x,y), w, xTxt, true));  y += yadd;
         tabObjects->addWidget(new Slider(locales::getLocale(locales::MaxPlanetsSize), "",
             &settings::iMapMaxPlanetsSize, 1, 900, 1,
-            Vector2f(x,y), w, 240, true));  y += yadd*3/2;
+            Vector2f(x,y), w, xTxt, true));  y += yadd*3/2;
 
         tabObjects->addWidget(new Slider(locales::getLocale(locales::MinPlanetGap), "",  // gap
             &settings::iMapMinPlanetGap, 0, 900, 1,
-            Vector2f(x,y), w, 240, true));  y += yadd;
+            Vector2f(x,y), w, xTxt, true));  y += yadd;
         tabObjects->addWidget(new Slider(locales::getLocale(locales::MapHomeRadius), "",  // home
             &settings::iMapHomeRadius, 1, 900, 1,
-            Vector2f(x,y), w, 240, true));  y += yadd*3/2;
+            Vector2f(x,y), w, xTxt, true));  y += yadd*3/2;
 
         tabObjects->addWidget(new Slider(locales::getLocale(locales::BlackHoles), "",
             &settings::iMapBlackHoles, -1, 100, 1,
-            Vector2f(x,y), w, 240, true, Slider::None,
+            Vector2f(x,y), w, xTxt, true, Slider::None,
             "%1.0f %%", 1.f));  y += yadd;
         tabObjects->addWidget(new Slider(locales::getLocale(locales::Suns), "",  // suns
             &settings::iMapSuns, -1, 100, 1,
-            Vector2f(x,y), w, 240, true, Slider::None,
+            Vector2f(x,y), w, xTxt, true, Slider::None,
             "%1.0f %%", 1.f));  y += yadd*3/2;
 
 
@@ -83,21 +84,21 @@ UiWindow* MapOptions::get()
         for (int i=0; i < MapOptions::kMapSizes_; ++i)
             tabSize->addWidget(new Button(
                 locales::getLocale(locales::LocaleType(locales::MapSize0 + i)), "",
-                &kMapSize_[i],  Vector2f(20 + i*90,y), 80, 20));
-        y += yadd*3/2;
+                &kMapSize_[i],  Vector2f(0 + i*80,y), 70, 20));
+        y += yadd*2;
         
         //  map Size
         tabSize->addWidget(new Slider(locales::getLocale(locales::MapXsize), "",
             &settings::iMapXsize, 10, 23000, 10,
-            Vector2f(x,y), w, 240, true));  y += yadd;
+            Vector2f(x,y), w, xTxt, true));  y += yadd;
         tabSize->addWidget(new Slider(locales::getLocale(locales::MapYsize), "",
             &settings::iMapYsize, 10, 23000, 10,
-            Vector2f(x,y), w, 240, true));  y += yadd*2;
+            Vector2f(x,y), w, xTxt, true));  y += yadd*2;
         // C_MapYaspect..
         
         //  borders []
         tabSize->addWidget(new Label(locales::getLocale(locales::CyclicBorders),
-            TEXT_ALIGN_LEFT, Vector2f(20, y)));  //y += yadd;
+            TEXT_ALIGN_LEFT, Vector2f(10, y)));  //y += yadd;
         tabSize->addWidget(new Checkbox(locales::getLocale(locales::Horizontal), "",
             &settings::bCyclicBorderX,
             Vector2f(w/3.f,y), w/2));  //y += yadd;
@@ -107,7 +108,7 @@ UiWindow* MapOptions::get()
 
         tabSize->addWidget(new Slider(locales::getLocale(locales::GravityScale), "",  // gravity
             &settings::iGravityScale, 5, 300, 10,
-            Vector2f(x,y), w, 240, true, Slider::None,
+            Vector2f(x,y), w, xTxt, true, Slider::None,
             "%1.0f %%", 1.f));  y += yadd*3/2;
         tabSize->addWidget(new Slider(locales::getLocale(locales::ShipRadius), "",  // ship
             &settings::iShipRadius, 5, 60, 10,
@@ -117,30 +118,61 @@ UiWindow* MapOptions::get()
         //  Turrets  ----
         y = y1;
         tabTurrets->addWidget(new Slider(locales::getLocale(locales::InSpace), "",
-            &settings::iTurretsInSpace, 0, 6, 1,
-            Vector2f(x,y), w, 240, true));  y += yadd;
+            &settings::iTurretsInSpace, 0, 30, 1,
+            Vector2f(x,y), w, xTxt, true));  y += yadd;
         tabTurrets->addWidget(new Slider(locales::getLocale(locales::OnHome), "",
             &settings::iTurretsOnHome, 0, 6, 1,
-            Vector2f(x,y), w, 240, true));  y += yadd;
+            Vector2f(x,y), w, xTxt, true));  y += yadd;
         tabTurrets->addWidget(new Slider(locales::getLocale(locales::OnPlanets), "",
             &settings::iTurretsOnPlanet, 0, 9, 1,
-            Vector2f(x,y), w, 240, true));  y += yadd*3/2;
+            Vector2f(x,y), w, xTxt, true));  y += yadd*3/2;
         
         tabTurrets->addWidget(new Slider(locales::getLocale(locales::AttackSpeed), "",
             &settings::iTurretAttackSpeed, 0, 1000, 1,
-            Vector2f(x,y), w, 240, true));  y += yadd;
+            Vector2f(x,y), w, xTxt, true));  y += yadd;
         tabTurrets->addWidget(new Slider(locales::getLocale(locales::RespawnDelay), "",
             &settings::iTurretRespawnDelay, -1, 3000, 1,
-            Vector2f(x,y), w, 240, true, Slider::None,
+            Vector2f(x,y), w, xTxt, true, Slider::None,
             "%3.1f s", 10.f));  y += yadd;
         tabTurrets->addWidget(new Slider(locales::getLocale(locales::TurnSpeed), "",
             &settings::iTurretTurnSpeed, 1, 60, 1,
-            Vector2f(x,y), w, 240, true));  y += yadd;
+            Vector2f(x,y), w, xTxt, true));  y += yadd;
+
+
+        //  Asteroids  ----
+        y = y1;
+        tabAsteroids->addWidget(new Slider(locales::getLocale(locales::MinPlanets), "",
+            &settings::iAsteroidsMin, 0, 30, 1,
+            Vector2f(x,y), w, xTxt, true));  y += yadd;
+        tabAsteroids->addWidget(new Slider(locales::getLocale(locales::MaxPlanets), "",
+            &settings::iAsteroidsMax, 0, 30, 1,
+            Vector2f(x,y), w, xTxt, true));  y += yadd*3/2;
+
+        tabAsteroids->addWidget(new Slider(locales::getLocale(locales::MinPlanetsSize), "",
+            &settings::iAsteroidsMinSize, 1, 100, 1,
+            Vector2f(x,y), w, xTxt, true));  y += yadd;
+        tabAsteroids->addWidget(new Slider(locales::getLocale(locales::MaxPlanetsSize), "",
+            &settings::iAsteroidsMaxSize, 1, 100, 1,
+            Vector2f(x,y), w, xTxt, true));  y += yadd*3/2;
+
+        tabAsteroids->addWidget(new Slider(locales::getLocale(locales::ColorVariation), "",
+            &settings::iAsteroidsColors, 0, 100, 1,
+            Vector2f(x,y), w, xTxt, true, Slider::None,
+            "%1.0f %%", 1.f));  y += yadd;
+
+        tabAsteroids->addWidget(new Slider(locales::getLocale(locales::Weight), "",
+            &settings::iAsteroidsWeight, 0, 300, 1,
+            Vector2f(x,y), w, xTxt, true, Slider::None,
+            "%1.0f %%", 1.f));  y += yadd;
+        tabAsteroids->addWidget(new Slider(locales::getLocale(locales::DamageScale), "",
+            &settings::iAsteroidsLife, -1, 300, 1,
+            Vector2f(x,y), w, xTxt, true));  y += yadd*3/2;
 
 
         tabList->addTab(tabSize);
         tabList->addTab(tabObjects);
-        tabList->addTab(tabTurrets);        
+        tabList->addTab(tabTurrets);
+        tabList->addTab(tabAsteroids);
         instance_->addWidget(tabList);
     }
     return instance_;

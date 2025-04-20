@@ -25,8 +25,8 @@ namespace settings
     /// Saves the current state of the variables to file.
     bool save();
 
-    /// \name Game settings
-    ///@{
+
+    //  graphics
     extern int        iSoundVolume;
     extern int        iAnnouncerVolume;
     extern int        iMusicVolume;
@@ -43,6 +43,7 @@ namespace settings
     extern bool       bAdaptiveParticleCount;
     extern int        iParticleLifeTime;
 
+    //  bots, game settings
     extern int        iBotsLeft;
     extern int        iBotsRight;
     extern int        iBotsDeath;
@@ -56,6 +57,7 @@ namespace settings
     extern int        iSlowMoKickIn;
     extern int        iGameSpeed;
 
+    //  Gui
     extern bool       bShowInfoHide;
     extern bool       bShowInfoSB;
     extern bool       bShowInfoDM;
@@ -71,15 +73,17 @@ namespace settings
     extern bool       bLogoSigns;
     extern int        iCountDown;
 
+    //  screen
     extern int        iResX;
     extern int        iResY;
     extern int        iColorDepth;
     extern int        iAntiAliasing;
-
+    //  post fx
     extern bool       bShaders;
     extern bool       bFlashes;
     extern Key        keyScreenShot;
 
+    //  audio
     extern bool       bAudioRandom;
     extern Key        keyAudioNext;
     extern Key        keyAudioPrev;
@@ -93,10 +97,9 @@ namespace settings
     extern bool       bEnabledWeaponsByUser[weapons::All];
     extern bool       bEnabledSpecials[specials::All];
     extern bool       bEnabledSpecialsByUser[specials::All];
-    ///@}
 
-    /// \name Map settings
-    ///@{
+
+    //  map setup
     extern int        iMapMinPlanets;
     extern int        iMapMaxPlanets;
     extern int        iMapMinPlanetsSize;
@@ -113,10 +116,8 @@ namespace settings
     // extern int     iMapYaspect;
 
     extern int        iShipRadius;
-    ///@}
 
-    /// \name Game settings
-    ///@{
+    //  game
     extern int        iDamageScale;
     extern int        iRegeneration;
     extern int        iFuelRegen;
@@ -129,30 +130,34 @@ namespace settings
     extern bool       bCyclicBorderX;
     extern bool       bCyclicBorderY;
     extern int        iGravityScale;
-    ///@}
 
-    /// \name Balls settings
-    ///@{
+    //  Balls  ----
     extern int        iBallsSB;
     extern int        iBallRadiusMin;
     extern int        iBallRadiusMax;
     extern int        iBallColors;
     extern int        iBallWeight;
     extern int        iBallRespawnDelay;
-    ///@}
 
-    /// \name Turrets
+    ///  Turrets  ----
     extern int        iTurretsInSpace;
     extern int        iTurretsOnHome;
     extern int        iTurretsOnPlanet;
     extern int        iTurretAttackSpeed;
     extern int        iTurretRespawnDelay;
     extern int        iTurretTurnSpeed;
-    ///@}
+
+    //  Asteroids  ----
+    extern int        iAsteroidsMin;
+    extern int        iAsteroidsMax;
+    extern int        iAsteroidsMinSize;
+    extern int        iAsteroidsMaxSize;
+    extern int        iAsteroidsColors;
+    extern int        iAsteroidsWeight;
+    extern int        iAsteroidsLife;
 
 
-    /// \name Player settings
-    ///@{
+    //  Player1 settings
     extern sf::String sPlayer1Name;
     extern Color3f    clr1Player;
     extern Color3f    clr1Team;
@@ -177,6 +182,7 @@ namespace settings
     extern weapons::WeaponType   player1Weapon;
     extern specials::SpecialType player1Special;
 
+    //  Player2 settings
     extern sf::String sPlayer2Name;
     extern Color3f    clr2Player;
     extern Color3f    clr2Team;
@@ -200,21 +206,10 @@ namespace settings
     extern int        iPlayer2Ship;
     extern weapons::WeaponType   player2Weapon;
     extern specials::SpecialType player2Special;
-    ///@}
-
-    /// \name AI settings
-    ///@{
+    
+    //  bots,AI settings
     extern int        iBotsDifficulty;
     extern bool       bDrawBotJobs;
     extern bool       bDrawAIPath;
     extern bool       bDrawZones;
-    ///@}
-
-    /// \name Network settings unused
-    ///@{
-    // extern sf::String     sIP;
-    // extern sf::String     sPort;
-    // extern bool           bNetworkPlayerI;
-    // extern bool           bShowLatency;
-    ///@}
 };

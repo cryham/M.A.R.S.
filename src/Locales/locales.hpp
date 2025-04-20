@@ -96,7 +96,10 @@ namespace locales
         View, Flashes, AntiAliasing,
         BlackHoles, Suns,
         Turrets, InSpace, OnHome, OnPlanets, AttackSpeed,
-        AimRay, BallsCount,
+        AimRay,
+        //  balls
+        BallsCount, BallsOptions, ColorVariation, Weight,
+        NewGame, Asteroids,
 
         COUNT  /// amount of entries in the enum
     };

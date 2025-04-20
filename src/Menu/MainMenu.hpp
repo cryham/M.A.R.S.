@@ -21,6 +21,6 @@ class MainMenu : public UiWindow
 
         static UiWindow* instance_;
 
-        static bool kStartLocal_, kStartTut_, kStartMulti_, kJoinMulti_, kOptions_, kAbout_, kExit_;
+        static bool kNewGame_, kStartTut_,
+                    kOptions_, kAbout_, kExit_;
 };
-

@@ -32,6 +32,7 @@ namespace settings
 
     //  game settings  adjustable via options menu
     //----------------------------------------------------------------------------------------------------------------------------------
+    //  graphics
     int         iSoundVolume =            80;
     int         iAnnouncerVolume =        0;
     int         iMusicVolume =            30;
@@ -46,7 +47,7 @@ namespace settings
     int         iParticleLifeTime =       50;
     bool        bStarsHigh =              true;
     int         iStarField =              500;
-    //  bots
+    //  bots, game
     int         iBotsLeft =               2;
     int         iBotsRight =              2;
     int         iBotsDeath =              10;
@@ -60,6 +61,7 @@ namespace settings
     int         iSlowMoKickIn =           3;
     int         iGameSpeed =              100;
 
+    //  Gui
     bool        bShowInfoHide =           true;
     bool        bShowInfoSB =             true;
     bool        bShowInfoDM =             true;
@@ -126,21 +128,32 @@ namespace settings
     bool        bCyclicBorderY   = false;
     int         iGravityScale    = 100;
 
-    //  balls
-    int         iBallsSB         = 1;
-    int         iBallRadiusMin   = 15;
-    int         iBallRadiusMax   = 15;
-    int         iBallColors      = 10;
-    int         iBallWeight      = 100;
+
+    //  Balls   ----
+    int         iBallsSB          = 1;
+    int         iBallRadiusMin    = 15;
+    int         iBallRadiusMax    = 15;
+    int         iBallColors       = 10;
+    int         iBallWeight       = 100;
     int         iBallRespawnDelay = 50;
 
-    //  turrets
-    int         iTurretsInSpace      = 0;
-    int         iTurretsOnHome       = 0;
-    int         iTurretsOnPlanet     = 0;
-    int         iTurretAttackSpeed   = 100;
-    int         iTurretRespawnDelay  = -1;  // -1 none
-    int         iTurretTurnSpeed     = 8;
+    //  Turrets  ----
+    int         iTurretsInSpace     = 0;
+    int         iTurretsOnHome      = 0;
+    int         iTurretsOnPlanet    = 0;
+    int         iTurretAttackSpeed  = 100;
+    int         iTurretRespawnDelay = -1;  // -1 none
+    int         iTurretTurnSpeed    = 8;
+
+    //  Asteroids  ----
+    int         iAsteroidsMin      = 1;
+    int         iAsteroidsMax      = 6;
+    int         iAsteroidsMinSize  = 20;
+    int         iAsteroidsMaxSize  = 50;
+    int         iAsteroidsColors   = 10;
+    int         iAsteroidsWeight   = 100;
+    int         iAsteroidsLife     = -1;
+
 
     //  weapons
     bool        bEnabledWeapons[weapons::All] = {true,};
@@ -149,7 +162,7 @@ namespace settings
     bool        bEnabledSpecialsByUser[specials::All] = {true,};
 
 
-    //  player settings -----
+    //  player1 settings -----
     sf::String    sPlayer1Name =      "PlayerI";
     Color3f       clr1Player =        Color3f(1.f, 0.87f, 0.0125f);
     Color3f       clr1Team =          Color3f(0.94f, 0.24f, 1.f);
@@ -174,6 +187,7 @@ namespace settings
     weapons::WeaponType   player1Weapon =  weapons::wAFK47;
     specials::SpecialType player1Special = specials::sHeal;
     
+    //  player2 settings -----
     sf::String    sPlayer2Name =      "PlayerII";
     Color3f       clr2Player =        Color3f(0.5f, 0.4f, 0.82f);
     Color3f       clr2Team =          Color3f(0.05f, 1.f, 0.785f);
@@ -199,17 +213,11 @@ namespace settings
     specials::SpecialType player2Special = specials::sHeal;
 
 
-    //  ai settings ------
+    //  bots settings  ------
     bool        bDrawBotJobs =             false;
     bool        bDrawZones =               false;
     bool        bDrawAIPath =              false;
     int         iBotsDifficulty =          30;
-
-    //  network settings ----- unused
-    // sf::String sIP =                      "192.168.0.1";
-    // sf::String sPort =                    "12345";
-    // bool          bNetworkPlayerI =        true;
-    // bool          showLatency =           false;
 
 
     //  utility
@@ -362,10 +370,6 @@ namespace settings
             oss << "playerIISpecial "       <<  player2Special << endl;
             oss << "playerIImouseAim "      << strBool(bPlayer2mouseAim) << endl << endl;
             
-            //  net unused
-            // oss << "connectIP "             << sIP.toAnsiString() << endl;
-            // oss << "connectPort "           << sPort.toAnsiString() << endl;
-            // oss << "networkTeamRed "        << strBool(bNetworkPlayerI) << endl << endl;
             //  show
             oss << "showInfoHide "          << strBool(bShowInfoHide) << endl;
             oss << "showInfoSB "            << strBool(bShowInfoSB) << endl;
@@ -410,7 +414,8 @@ namespace settings
             for (int i=0; i < specials::All; ++i)
                 oss << "enabledSpecials"<< i <<" " << strBool(bEnabledSpecialsByUser[i]) << endl;
             oss << endl;
-            //  map  ----
+            
+            //  Map  --------
             oss << "MapXsize "              << iMapXsize << endl;
             oss << "MapYsize "              << iMapYsize << endl;
 
@@ -439,20 +444,28 @@ namespace settings
             oss << "GlowAlpha "             << iGlowAlpha << endl;
             oss << "AimRayAlpha "           << iAimRayAlpha << endl << endl;
 
-            //  balls
+            //  Balls
             oss << "BallsSB "               << iBallsSB << endl;
             oss << "BallRadiusMin "         << iBallRadiusMin << endl;
             oss << "BallRadiusMax "         << iBallRadiusMax << endl;
             oss << "BallColors "            << iBallColors << endl;
             oss << "BallWeight "            << iBallWeight << endl;
             oss << "BallRespawnDelay "      << iBallRespawnDelay << endl << endl;
-            //  turrets
+            //  Turrets
             oss << "TurretsInSpace "        << iTurretsInSpace << endl;
             oss << "TurretsOnHome "         << iTurretsOnHome << endl;
             oss << "TurretsOnPlanet "       << iTurretsOnPlanet << endl;
             oss << "TurretAttackSpeed "     << iTurretAttackSpeed << endl;
             oss << "TurretRespawnDelay "    << iTurretRespawnDelay << endl;
             oss << "TurretTurnSpeed "       << iTurretTurnSpeed << endl << endl;
+            //  Asteroids
+            oss << "AsteroidsMin "       << iAsteroidsMin << endl;
+            oss << "AsteroidsMax "       << iAsteroidsMax << endl;
+            oss << "AsteroidsMinSize "   << iAsteroidsMinSize << endl;
+            oss << "AsteroidsMaxSize "   << iAsteroidsMaxSize << endl;
+            oss << "AsteroidColors "     << iAsteroidsColors << endl;
+            oss << "AsteroidsWeight "    << iAsteroidsWeight << endl;
+            oss << "AsteroidsLife "      << iAsteroidsLife << endl << endl;
 
             oss.close();
             return true;
@@ -709,10 +722,6 @@ namespace settings
                 else if (line == "playerIITeamL")       readBool(iss, line, bPlayer2teamL);
                 else if (line == "playerIITeamR")       readBool(iss, line, bPlayer2teamR);
                 //----
-                //  net unused
-                // else if (line == "connectIP") {         string tmp;  iss >> tmp;  sIP = sf::String(tmp);    }
-                // else if (line == "connectPort") {       string tmp;  iss >> tmp;  sPort = sf::String(tmp);  }
-                // else if (line == "networkTeamRed")      readBool(iss, line, bNetworkPlayerI);
                 //  show
                 else if (line == "showInfoHide")        readBool(iss, line, bShowInfoHide);
                 else if (line == "showInfoSB")          readBool(iss, line, bShowInfoSB);
@@ -749,7 +758,8 @@ namespace settings
                 else if (line == "audioNextKey")        iss >> keyAudioNext;
                 else if (line == "audioPreviousKey")    iss >> keyAudioPrev;
                 //  weapons  above
-                //  map
+                
+                //  Map  --------
                 else if (line == "MapXsize")            iss >> iMapXsize;
                 else if (line == "MapYsize")            iss >> iMapYsize;
 
@@ -777,20 +787,30 @@ namespace settings
 
                 else if (line == "GlowAlpha")           iss >> iGlowAlpha;
                 else if (line == "AimRayAlpha")         iss >> iAimRayAlpha;
-                //  balls
+
+                //  Balls
                 else if (line == "BallsSB")             iss >> iBallsSB;
                 else if (line == "BallRadiusMin")       iss >> iBallRadiusMin;
                 else if (line == "BallRadiusMax")       iss >> iBallRadiusMax;
                 else if (line == "BallColors")          iss >> iBallColors;
                 else if (line == "BallWeight")          iss >> iBallWeight;
                 else if (line == "BallRespawnDelay")    iss >> iBallRespawnDelay;
-                //  turrets
+                //  Turrets
                 else if (line == "TurretsInSpace")      iss >> iTurretsInSpace;
                 else if (line == "TurretsOnHome")       iss >> iTurretsOnHome;
                 else if (line == "TurretsOnPlanet")     iss >> iTurretsOnPlanet;
                 else if (line == "TurretAttackSpeed")   iss >> iTurretAttackSpeed;
                 else if (line == "TurretRespawnDelay")  iss >> iTurretRespawnDelay;
                 else if (line == "TurretTurnSpeed")     iss >> iTurretTurnSpeed;
+                //  Asteroids
+                else if (line == "AsteroidsMin")     iss >> iAsteroidsMin;
+                else if (line == "AsteroidsMax")     iss >> iAsteroidsMax;
+                else if (line == "AsteroidsMinSize") iss >> iAsteroidsMinSize;
+                else if (line == "AsteroidsMaxSize") iss >> iAsteroidsMaxSize;
+                else if (line == "AsteroidColors")   iss >> iAsteroidsColors;
+                else if (line == "AsteroidsWeight")  iss >> iAsteroidsWeight;
+                else if (line == "AsteroidsLife")    iss >> iAsteroidsLife;
+
                 else
                 if (line.substr(0,14) != "enabledWeapons" && line.substr(0,15) != "enabledSpecials")
                     cout << line << " is a bad option in " << sConfigPath << mars_cfg << "\n";

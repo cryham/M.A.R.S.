@@ -4,7 +4,7 @@
 #include "System/Color3f.hpp"
 
 
-class AmmoBurner: public Particle<AmmoBurner>
+class AmmoBurner : public Particle<AmmoBurner>
 {
     public:
         AmmoBurner(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,

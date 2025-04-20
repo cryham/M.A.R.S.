@@ -5,7 +5,7 @@
 #include <vector>
 
 
-class VerticalSlider: public UiElement
+class VerticalSlider : public UiElement
 {
     public:
         VerticalSlider (float* value, float min, float max,

@@ -21,6 +21,10 @@ namespace texture
 
         Sun1, Sun2, Sun3, Sun4, SunHeat,
         
+        Asteroid1, Asteroid2, Asteroid3, Asteroid4, Asteroid5,
+        Asteroid6, Asteroid7, Asteroid8, Asteroid9, Asteroid10,
+        Asteroid11, Asteroid12,
+        
         Ice, Bolt, Cracks, Hole1,
         Ball, Particles, PowerUps, Ships, Weapons,
         // MotherShip, MotherShipPlayerLayer,  // unused

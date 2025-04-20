@@ -5,7 +5,7 @@
 class TextBox;
 
 
-class InfoCK: public UiWindow
+class InfoCK : public UiWindow
 {
     public:
         static UiWindow* get();

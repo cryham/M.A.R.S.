@@ -4,7 +4,7 @@
 #include "System/Color3f.hpp"
 
 
-class Fuel: public Particle<Fuel>
+class Fuel : public Particle<Fuel>
 {
     public:
         Fuel(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,

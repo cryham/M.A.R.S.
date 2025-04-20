@@ -6,7 +6,7 @@
 /// Weapon: H2O-Storm.
 /// A long distance heavy wind storm.
 
-class H2OStorm: public Weapon
+class H2OStorm : public Weapon
 {
     public:
         /// Ctor which constructs the weapon.

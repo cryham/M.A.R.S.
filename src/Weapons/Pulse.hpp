@@ -6,7 +6,7 @@
 /// Weapon: Pulse.
 /// A short distance gun, populates the screen with ugly green bubbles.
 
-class Pulse: public Weapon
+class Pulse : public Weapon
 {
     public:
         /// Ctor which constructs the weapon.

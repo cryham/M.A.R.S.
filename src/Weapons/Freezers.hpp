@@ -6,7 +6,7 @@
 /// Weapon: Freezers.
 /// A short distance gun, populates the screen with ugly green bubbles.
 
-class Freezers: public Weapon
+class Freezers : public Weapon
 {
     public:
         /// Ctor which constructs the weapon.

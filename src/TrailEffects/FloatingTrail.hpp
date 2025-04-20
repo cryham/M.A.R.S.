@@ -9,7 +9,7 @@
 class SpaceObject;
 
 
-class FloatingTrail: public Trail
+class FloatingTrail : public Trail
 {
     public:
         FloatingTrail(SpaceObject* target,

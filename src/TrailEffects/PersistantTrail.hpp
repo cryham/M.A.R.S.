@@ -9,7 +9,7 @@
 class SpaceObject;
 
 
-class PersistantTrail: public Trail
+class PersistantTrail : public Trail
 {
     public:
         PersistantTrail(SpaceObject* target,

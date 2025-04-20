@@ -6,7 +6,7 @@
 /// Zone: RasterZone.
 /// A square shaped zone.
 
-class RasterZone: public Zone
+class RasterZone : public Zone
 {
     public:
         /// Ctor, which creates the Zone.

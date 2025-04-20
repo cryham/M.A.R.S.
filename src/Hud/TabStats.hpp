@@ -9,7 +9,7 @@
 #include <set>
 
 
-class TabStats: public HudElement
+class TabStats : public HudElement
 {
     public:
         TabStats();

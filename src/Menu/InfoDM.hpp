@@ -5,7 +5,7 @@
 class TextBox;
 
 
-class InfoDM: public UiWindow
+class InfoDM : public UiWindow
 {
     public:
         static UiWindow* get();

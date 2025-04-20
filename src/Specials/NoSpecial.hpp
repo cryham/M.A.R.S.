@@ -6,7 +6,7 @@
 /// Special: NoSpecial.
 /// Nothing at all...
 
-class NoSpecial: public Special
+class NoSpecial : public Special
 {
     public:
         /// Ctor which constructs the special.

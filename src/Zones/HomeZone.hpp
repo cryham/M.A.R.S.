@@ -6,7 +6,7 @@
 /// Zone: HomeZone.
 /// A large round Zone around the HomePlanet.
 
-class HomeZone: public Zone
+class HomeZone : public Zone
 {
     public:
         /// Ctor, which creates the Zone.

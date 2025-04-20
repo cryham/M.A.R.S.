@@ -6,7 +6,7 @@
 /// Weapon: ROCK'n'LOL.
 /// A rocket launcher which aims at nearby enemies.
 
-class Seekers: public Weapon
+class Seekers : public Weapon
 {
     public:
         /// Ctor which constructs the weapon.

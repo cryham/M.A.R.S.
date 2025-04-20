@@ -8,7 +8,7 @@ class Track;
 /// Game: Rally (RLY).
 /// Be the first to reach a goal.
 
-class Rally: public Game
+class Rally : public Game
 {
     public:
         /// Ctor starts a new game.

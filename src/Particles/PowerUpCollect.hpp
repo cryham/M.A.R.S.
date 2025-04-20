@@ -4,7 +4,7 @@
 #include "System/Color3f.hpp"
 
 
-class PowerUpCollect: public Particle<PowerUpCollect>
+class PowerUpCollect : public Particle<PowerUpCollect>
 {
     public:
         PowerUpCollect(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,

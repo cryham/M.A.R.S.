@@ -6,7 +6,7 @@
 #include <vector>
 
 
-class Tab: public UiElement
+class Tab : public UiElement
 {
     public:
         Tab (const sf::String& text, int width, bool* activated = nullptr);

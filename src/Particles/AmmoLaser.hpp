@@ -4,7 +4,7 @@
 #include "TrailEffects/trailEffects.hpp"
 
 
-class AmmoLaser: public Particle<AmmoLaser>
+class AmmoLaser : public Particle<AmmoLaser>
 {
     public:
         AmmoLaser(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,

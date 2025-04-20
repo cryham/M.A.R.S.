@@ -3,7 +3,7 @@
 #include "Interface/UiWindow.hpp"
 
 
-class GameOptions: public UiWindow
+class GameOptions : public UiWindow
 {
     public:
         static UiWindow* get();

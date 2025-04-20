@@ -4,7 +4,7 @@
 #include "System/Color3f.hpp"
 
 
-class Chill: public Particle<Chill>
+class Chill : public Particle<Chill>
 {
     public:
         Chill(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,

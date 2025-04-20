@@ -5,7 +5,7 @@
 #include "Specials/specials.hpp"
 
 
-class WeaponOptions: public UiWindow
+class WeaponOptions : public UiWindow
 {
     public:
         static UiWindow* get();

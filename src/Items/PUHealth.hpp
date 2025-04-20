@@ -7,7 +7,7 @@
 #include <SFML/System.hpp>
 
 
-class PUHealth: public PowerUp
+class PUHealth : public PowerUp
 {
     public:
         PUHealth(Vector2f const& location):

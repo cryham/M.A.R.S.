@@ -10,7 +10,7 @@ class Player;
 class PowerUp;
 
 
-class Ship: public MobileSpaceObject, public Mount
+class Ship : public MobileSpaceObject, public Mount
 {
     public:
         Ship(Vector2f const& location, float rotation, Player* owner);

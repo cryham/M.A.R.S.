@@ -6,7 +6,7 @@
 /// Weapon: Rifle2.
 /// A long distance gun, a sniper.
 
-class Rifle2: public Weapon
+class Rifle2 : public Weapon
 {
     public:
         /// Ctor which constructs the weapon.

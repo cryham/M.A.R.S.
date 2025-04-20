@@ -3,7 +3,7 @@
 #include "Hud/HudElement.hpp"
 
 
-class GameStats: public HudElement
+class GameStats : public HudElement
 {
     public:
         GameStats():

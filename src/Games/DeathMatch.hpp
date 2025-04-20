@@ -7,7 +7,7 @@
 /// Classic Deathmatch. Smash as many opponents as possible.
 /// Be the first to reach the frag limit.
 
-class DeathMatch: public Game
+class DeathMatch : public Game
 {
     public:
         /// Ctor starts a new game.

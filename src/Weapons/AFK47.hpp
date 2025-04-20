@@ -6,7 +6,7 @@
 /// Weapon: AFK47.
 /// A long distance gun, classic star wars laser flair.
 
-class AFK47: public Weapon
+class AFK47 : public Weapon
 {
     public:
         /// Ctor which constructs the weapon.

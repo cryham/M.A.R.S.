@@ -7,7 +7,7 @@
 #include <vector>
 
 
-class Slider: public UiElement
+class Slider : public UiElement
 {
     public:
         static std::vector<sf::String> None;

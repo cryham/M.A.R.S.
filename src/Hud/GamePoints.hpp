@@ -3,7 +3,7 @@
 #include "Hud/HudElement.hpp"
 
 
-class GamePoints: public HudElement
+class GamePoints : public HudElement
 {
     public:
         GamePoints(): timer_(0.f)

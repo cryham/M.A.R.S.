@@ -5,7 +5,7 @@
 class Tab;
 
 
-class NewGameMenu: public UiWindow
+class NewGameMenu : public UiWindow
 {
     public:
         static UiWindow* get();

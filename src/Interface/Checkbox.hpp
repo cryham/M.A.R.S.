@@ -5,7 +5,7 @@
 #include "Locales/locales.hpp"
 
 
-class Checkbox: public UiElement
+class Checkbox : public UiElement
 {
     public:
         Checkbox (const sf::String& text, const sf::String& toolTip,

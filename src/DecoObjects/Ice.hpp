@@ -10,7 +10,7 @@
 /// An ice block drawn over frozen SpaceObjects.
 
 template <typename Object>
-class Ice: public DecoObject
+class Ice : public DecoObject
 {
     public:
         Ice(Object* object): object_(object)

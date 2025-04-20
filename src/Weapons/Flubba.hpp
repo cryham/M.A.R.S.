@@ -6,7 +6,7 @@
 /// Weapon: Flubba.
 /// A short distance gun, populates the screen with ugly green bubbles.
 
-class Flubba: public Weapon
+class Flubba : public Weapon
 {
     public:
         /// Ctor which constructs the weapon.

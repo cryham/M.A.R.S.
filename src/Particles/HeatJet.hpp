@@ -3,7 +3,7 @@
 #include "Particles/Particle.hpp"
 
 
-class HeatJet: public Particle<HeatJet>
+class HeatJet : public Particle<HeatJet>
 {
     public:
         HeatJet(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,

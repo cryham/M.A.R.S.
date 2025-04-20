@@ -6,7 +6,7 @@
 /// Weapon: Minigun.
 /// A short distance gun, which fires some particles in multiple direction.
 
-class Minigun: public Weapon
+class Minigun : public Weapon
 {
     public:
         /// Ctor which constructs the weapon.

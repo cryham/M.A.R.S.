@@ -3,7 +3,7 @@
 #include "Particles/Particle.hpp"
 
 
-class ShockWave: public Particle<ShockWave>
+class ShockWave : public Particle<ShockWave>
 {
     public:
         ShockWave(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,

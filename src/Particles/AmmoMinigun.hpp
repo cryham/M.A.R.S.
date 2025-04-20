@@ -4,7 +4,7 @@
 #include "System/Color3f.hpp"
 
 
-class AmmoMinigun: public Particle<AmmoMinigun>
+class AmmoMinigun : public Particle<AmmoMinigun>
 {
     public:
         AmmoMinigun(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,

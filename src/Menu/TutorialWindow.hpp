@@ -4,7 +4,7 @@
 #include "Locales/locales.hpp"
 
 
-class TutorialWindow: public UiWindow
+class TutorialWindow : public UiWindow
 {
     public:
         static UiWindow* get(locales::LocaleType title, locales::LocaleType text, int index, bool info, bool next);

@@ -6,7 +6,7 @@
 /// Weapon: ROCK'n'LOL.
 /// A launcher of big, old, slow rocket, which aims at nearby enemies.
 
-class OldRocket: public Weapon
+class OldRocket : public Weapon
 {
     public:
         /// Ctor which constructs the weapon.

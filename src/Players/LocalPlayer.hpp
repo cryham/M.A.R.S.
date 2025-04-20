@@ -6,7 +6,7 @@ class Team;
 class KeyController;
 
 
-class LocalPlayer: public Player
+class LocalPlayer : public Player
 {
     public:
         LocalPlayer(controllers::ControlType type);

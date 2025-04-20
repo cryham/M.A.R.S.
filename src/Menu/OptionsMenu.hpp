@@ -3,7 +3,7 @@
 #include "Interface/UiWindow.hpp"
 
 
-class OptionsMenu: public UiWindow
+class OptionsMenu : public UiWindow
 {
     public:
         static UiWindow* get();

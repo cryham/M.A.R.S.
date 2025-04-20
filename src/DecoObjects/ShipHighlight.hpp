@@ -9,7 +9,7 @@ class Ship;
 /// Human controlled Ships are highlighed to make it
 /// easier to see the Ship
 
-class ShipHighlight: public DecoObject
+class ShipHighlight : public DecoObject
 {
     public:
         ShipHighlight(Ship* ship): ship_(ship)

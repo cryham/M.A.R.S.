@@ -9,7 +9,7 @@
 /// Base class for all particles.
 
 template <typename Derived>
-class Particle: public MobileSpaceObject
+class Particle : public MobileSpaceObject
 {
     public:
         /// Base ctor of a Particle.

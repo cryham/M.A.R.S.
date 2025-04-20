@@ -4,7 +4,7 @@
 #include "System/Color3f.hpp"
 
 
-class Number: public Particle<Number>
+class Number : public Particle<Number>
 {
     public:
         Number(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,

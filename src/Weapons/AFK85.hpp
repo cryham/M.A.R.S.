@@ -7,7 +7,7 @@
 /// Weapon: AFK85.
 /// A long distance twin short laser. Double AFK47.
 
-class AFK85: public Weapon
+class AFK85 : public Weapon
 {
     public:
         /// Ctor which constructs the weapon.

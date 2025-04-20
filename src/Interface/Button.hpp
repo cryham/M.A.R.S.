@@ -5,7 +5,7 @@
 #include "Media/text.hpp"
 
 
-class Button: public UiElement
+class Button : public UiElement
 {
     public:
         Button (const sf::String& text, const sf::String& toolTip, bool* key,

@@ -3,7 +3,7 @@
 #include "Particles/Particle.hpp"
 
 
-class Heat: public Particle<Heat>
+class Heat : public Particle<Heat>
 {
     public:
         Heat(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,

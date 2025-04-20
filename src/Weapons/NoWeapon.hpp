@@ -6,7 +6,7 @@
 
 /// Weapon: NoWeapon.
 
-class NoWeapon: public Weapon
+class NoWeapon : public Weapon
 {
     public:
         /// Ctor which constructs the weapon.

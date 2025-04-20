@@ -7,7 +7,7 @@
 class RadioGroup;
 
 
-class RadioButton: public UiElement
+class RadioButton : public UiElement
 {
     public:
         RadioButton(const sf::String& text, const sf::String& toolTip, bool* value,

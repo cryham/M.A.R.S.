@@ -3,7 +3,7 @@
 #include "Interface/UiWindow.hpp"
 
 
-class ToMainConfirm: public UiWindow
+class ToMainConfirm : public UiWindow
 {
     public:
         static UiWindow* get();

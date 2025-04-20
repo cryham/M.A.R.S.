@@ -3,7 +3,7 @@
 #include "Interface/UiWindow.hpp"
 
 
-class ExitConfirm: public UiWindow
+class ExitConfirm : public UiWindow
 {
     public:
         static UiWindow* get();

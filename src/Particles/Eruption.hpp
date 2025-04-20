@@ -4,7 +4,7 @@
 #include "System/Color3f.hpp"
 
 
-class Eruption: public Particle<Eruption>
+class Eruption : public Particle<Eruption>
 {
     public:
         Eruption(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,

@@ -4,7 +4,7 @@
 #include "System/Color3f.hpp"
 
 
-class Label: public UiElement
+class Label : public UiElement
 {
     public:
         Label (const sf::String& text, int textAlign,

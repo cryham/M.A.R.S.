@@ -4,7 +4,7 @@
 #include "System/Color3f.hpp"
 
 
-class BlackHole: public SpaceObject
+class BlackHole : public SpaceObject
 {
     public:
         BlackHole(Vector2f const& location, float radius);

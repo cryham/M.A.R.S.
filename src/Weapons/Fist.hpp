@@ -6,7 +6,7 @@
 /// Weapon: Fist.
 /// A short distance gun, which pwnes nearby enemies
 
-class Fist: public Weapon
+class Fist : public Weapon
 {
     public:
         /// Ctor which constructs the weapon.

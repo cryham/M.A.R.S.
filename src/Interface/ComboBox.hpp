@@ -7,7 +7,7 @@
 class UiWindow;
 
 
-class ComboBox: public UiElement
+class ComboBox : public UiElement
 {
     public:
         ComboBox (locales::LocaleType text, locales::LocaleType toolTip,

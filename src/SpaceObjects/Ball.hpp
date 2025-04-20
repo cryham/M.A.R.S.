@@ -5,7 +5,7 @@
 #include "System/Color3f.hpp"
 
 
-class Ball: public MobileSpaceObject
+class Ball : public MobileSpaceObject
 {
     public:
         Ball(Vector2f const& location, float radius);

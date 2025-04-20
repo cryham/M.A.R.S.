@@ -8,7 +8,7 @@
 class RadioButton;
 
 
-class RadioGroup: public UiElement
+class RadioGroup : public UiElement
 {
     public:
         RadioGroup();

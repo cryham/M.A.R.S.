@@ -5,7 +5,7 @@
 class Label;
 
 
-class LabeledBox: public UiElement
+class LabeledBox : public UiElement
 {
     public:
         LabeledBox(const sf::String& text, Vector2f const& topLeft, int width, int height);

@@ -6,7 +6,7 @@
 /// Weapon: Mini Rockets.
 /// Twin mini rocket launchers, accelerating, blue.
 
-class MiniRockets: public Weapon
+class MiniRockets : public Weapon
 {
     public:
         /// Ctor which constructs the weapon.

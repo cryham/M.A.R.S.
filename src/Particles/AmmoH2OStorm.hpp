@@ -4,7 +4,7 @@
 #include "System/Color3f.hpp"
 
 
-class AmmoH2OStorm: public Particle<AmmoH2OStorm>
+class AmmoH2OStorm : public Particle<AmmoH2OStorm>
 {
     public:
         AmmoH2OStorm(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,

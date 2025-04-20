@@ -3,7 +3,7 @@
 #include "Particles/Particle.hpp"
 
 
-class AmmoPulse: public Particle<AmmoPulse>
+class AmmoPulse : public Particle<AmmoPulse>
 {
     public:
         AmmoPulse(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,

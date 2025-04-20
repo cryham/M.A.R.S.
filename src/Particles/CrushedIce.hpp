@@ -4,7 +4,7 @@
 #include "System/Color3f.hpp"
 
 
-class CrushedIce: public Particle<CrushedIce>
+class CrushedIce : public Particle<CrushedIce>
 {
     public:
         CrushedIce(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,

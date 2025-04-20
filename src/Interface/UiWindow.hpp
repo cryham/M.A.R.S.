@@ -5,7 +5,7 @@
 #include <vector>
 
 
-class UiWindow: public UiElement
+class UiWindow : public UiElement
 {
     public:
         UiWindow (int width, int height, Vector2f const& position = Vector2f());

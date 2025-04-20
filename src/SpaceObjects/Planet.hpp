@@ -3,7 +3,7 @@
 #include "SpaceObjects/SpaceObject.hpp"
 
 
-class Planet: public SpaceObject
+class Planet : public SpaceObject
 {
     public:
         Planet(Vector2f const& location, float radius);

@@ -5,7 +5,7 @@
 class TextBox;
 
 
-class About: public UiWindow
+class About : public UiWindow
 {
     public:
         static UiWindow* get();

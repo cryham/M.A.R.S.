@@ -7,7 +7,7 @@
 #include <SFML/System.hpp>
 
 
-class PUReverse: public PowerUp
+class PUReverse : public PowerUp
 {
     public:
         PUReverse(Vector2f const& location):

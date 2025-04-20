@@ -5,7 +5,7 @@
 class TextBox;
 
 
-class InfoHide: public UiWindow
+class InfoHide : public UiWindow
 {
     public:
         static UiWindow* get();

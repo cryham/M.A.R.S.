@@ -4,7 +4,7 @@
 #include "System/Color3f.hpp"
 
 
-class Spark: public Particle<Spark>
+class Spark : public Particle<Spark>
 {
     public:
         Spark(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,

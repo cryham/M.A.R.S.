@@ -4,7 +4,7 @@
 #include "System/Color3f.hpp"
 
 
-class Electric: public Particle<Electric>
+class Electric : public Particle<Electric>
 {
     public:
         Electric(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,

@@ -3,7 +3,7 @@
 #include "Hud/HudElement.hpp"
 
 
-class Logo: public HudElement
+class Logo : public HudElement
 {
     public:
         Logo();

@@ -3,7 +3,7 @@
 #include "Interface/UiWindow.hpp"
 
 
-class Connect: public UiWindow
+class Connect : public UiWindow
 {
     public:
         static UiWindow* get();

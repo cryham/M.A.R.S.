@@ -9,7 +9,7 @@
 /// oponents home planet. The team which is the first to destroy
 /// the others planet will win the match.
 
-class CannonKeep: public Game
+class CannonKeep : public Game
 {
     public:
         /// Ctor starts a new game.

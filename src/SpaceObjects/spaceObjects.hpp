@@ -18,7 +18,8 @@ namespace spaceObjects
     {
         //  big
         oPlanet, oSun, oBlackHole, oHome, oStar,
-        oShip, oBall, oTurret, oCannonBall,
+        oShip, oBall, oCannonBall,
+        oTurret, oAsteroid,  // new
         oPowerUpCollect, oNumber,
 
         oFuel, oSpark,  // decoration

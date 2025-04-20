@@ -4,7 +4,7 @@
 #include "System/Color3f.hpp"
 
 
-class Dust: public Particle<Dust>
+class Dust : public Particle<Dust>
 {
     public:
         Dust(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,

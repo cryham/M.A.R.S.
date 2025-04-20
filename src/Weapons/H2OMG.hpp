@@ -6,7 +6,7 @@
 /// Weapon: H2OMG.
 /// A long distance gun, which fires some icy cubes.
 
-class H2OMG: public Weapon
+class H2OMG : public Weapon
 {
     public:
         /// Ctor which constructs the weapon.

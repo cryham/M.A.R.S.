@@ -3,7 +3,7 @@
 #include "Particles/Particle.hpp"
 
 
-class BurningFragment: public Particle<BurningFragment>
+class BurningFragment : public Particle<BurningFragment>
 {
     public:
         BurningFragment(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,

@@ -3,7 +3,7 @@
 #include "Interface/UiWindow.hpp"
 
 
-class EnterName: public UiWindow
+class EnterName : public UiWindow
 {
     public:
         static UiWindow* get();

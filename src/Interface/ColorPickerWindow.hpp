@@ -7,7 +7,7 @@ class ColorPicker;
 class Button;
 
 
-class ColorPickerWindow: public UiWindow
+class ColorPickerWindow : public UiWindow
 {
     public:
         ColorPickerWindow (ColorPicker* parent, Color3f* color);

@@ -4,7 +4,7 @@
 #include "System/Color3f.hpp"
 
 
-class Fragment: public Particle<Fragment>
+class Fragment : public Particle<Fragment>
 {
     public:
         Fragment(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,

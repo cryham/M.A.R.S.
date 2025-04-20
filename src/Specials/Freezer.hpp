@@ -6,7 +6,7 @@
 /// Special: Freezer.
 /// A Freezing wave.
 
-class Freezer: public Special
+class Freezer : public Special
 {
     public:
         /// Ctor which constructs the special.

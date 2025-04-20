@@ -6,7 +6,7 @@
 /// Weapon: Plasma.
 /// A short distance gun, populates the screen with ugly green bubbles.
 
-class Plasma: public Weapon
+class Plasma : public Weapon
 {
     public:
         /// Ctor which constructs the weapon.

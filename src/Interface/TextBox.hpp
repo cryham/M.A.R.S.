@@ -7,7 +7,7 @@
 #include <vector>
 
 
-class TextBox: public UiElement
+class TextBox : public UiElement
 {
     public:
         TextBox (const sf::String& text,

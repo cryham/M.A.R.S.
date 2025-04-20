@@ -6,7 +6,7 @@
 /// Zone: TutorialZone.
 /// A very large Zone, covering half the screen.
 
-class TeamZone: public Zone
+class TeamZone : public Zone
 {
     public:
         /// Ctor, which creates the Zone.

@@ -7,7 +7,7 @@
 #include <SFML/System.hpp>
 
 
-class PUSleep: public PowerUp
+class PUSleep : public PowerUp
 {
     public:
         PUSleep(Vector2f const& location):

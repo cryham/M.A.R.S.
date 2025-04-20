@@ -6,7 +6,7 @@
 /// Weapon: Flamer2.
 /// A short distance weapon, which burns nearby enemies.
 
-class Flamer2: public Weapon
+class Flamer2 : public Weapon
 {
     public:
         /// Ctor which constructs the weapon.

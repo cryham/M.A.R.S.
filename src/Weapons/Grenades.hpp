@@ -6,7 +6,7 @@
 /// Weapon: Grenades.
 /// A short distance gun, populates the screen with ugly green bubbles.
 
-class Grenades: public Weapon
+class Grenades : public Weapon
 {
     public:
         /// Ctor which constructs the weapon.

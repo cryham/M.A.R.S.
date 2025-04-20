@@ -3,7 +3,7 @@
 #include "Particles/Particle.hpp"
 
 
-class AmmoPlasma: public Particle<AmmoPlasma>
+class AmmoPlasma : public Particle<AmmoPlasma>
 {
     public:
         AmmoPlasma(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,

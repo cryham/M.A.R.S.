@@ -4,7 +4,7 @@
 #include "System/Color3f.hpp"
 
 
-class AmmoAFK85: public Particle<AmmoAFK85>
+class AmmoAFK85 : public Particle<AmmoAFK85>
 {
     public:
         AmmoAFK85(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,

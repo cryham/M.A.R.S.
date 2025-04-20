@@ -6,7 +6,7 @@
 /// Special: FireWall.
 /// A fire wave.
 
-class FireWall: public Special
+class FireWall : public Special
 {
     public:
         /// Ctor which constructs the special.

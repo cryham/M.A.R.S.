@@ -6,7 +6,7 @@
 /// Weapon: Cloud.
 /// A short distance gun, populates the screen with ugly green bubbles.
 
-class Cloud: public Weapon
+class Cloud : public Weapon
 {
     public:
         /// Ctor which constructs the weapon.

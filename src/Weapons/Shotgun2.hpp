@@ -6,7 +6,7 @@
 /// Weapon: Shotgun2.
 /// A short distance gun, which fires some particles in multiple direction.
 
-class Shotgun2: public Weapon
+class Shotgun2 : public Weapon
 {
     public:
         /// Ctor which constructs the weapon.

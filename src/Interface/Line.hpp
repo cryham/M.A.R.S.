@@ -3,7 +3,7 @@
 #include "Interface/UiElement.hpp"
 
 
-class Line: public UiElement
+class Line : public UiElement
 {
     public:
         Line(Vector2f const& begin, Vector2f const& end);

@@ -3,7 +3,7 @@
 #include "Particles/Particle.hpp"
 
 
-class MiniAmmoFlubba: public Particle<MiniAmmoFlubba>
+class MiniAmmoFlubba : public Particle<MiniAmmoFlubba>
 {
     public:
         MiniAmmoFlubba(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,

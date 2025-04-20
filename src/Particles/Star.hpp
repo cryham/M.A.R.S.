@@ -4,7 +4,7 @@
 #include "System/Color3f.hpp"
 
 
-class Star: public Particle<Star>
+class Star : public Particle<Star>
 {
     public:
         Star(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,

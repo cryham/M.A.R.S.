@@ -7,7 +7,7 @@ class Ship;
 
 /// An object displaying the players name at his Ship.
 
-class ShipName: public DecoObject
+class ShipName : public DecoObject
 {
     public:
         ShipName(Ship* ship, bool bar)

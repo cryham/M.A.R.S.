@@ -6,7 +6,7 @@
 /// Zone: TutorialZone.
 /// A beautiful pinkish Zone, employed in the Tutorial.
 
-class TutorialZone: public Zone
+class TutorialZone : public Zone
 {
     public:
         /// Ctor, which creates the Zone.

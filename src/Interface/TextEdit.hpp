@@ -8,7 +8,7 @@
 #define IP_EDIT    2
 
 
-class TextEdit: public UiElement
+class TextEdit : public UiElement
 {
     public:
         TextEdit (const sf::String& text, sf::String& value, const sf::String& fallBack,

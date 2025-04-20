@@ -3,7 +3,7 @@
 #include "Particles/Particle.hpp"
 
 
-class AmmoCloud: public Particle<AmmoCloud>
+class AmmoCloud : public Particle<AmmoCloud>
 {
     public:
         AmmoCloud(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,

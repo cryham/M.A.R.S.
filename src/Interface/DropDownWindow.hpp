@@ -8,7 +8,7 @@
 class ComboBox;
 
 
-class DropDownWindow: public UiWindow
+class DropDownWindow : public UiWindow
 {
     public:
         DropDownWindow (int width, ComboBox* parent, std::vector<sf::String> elements);

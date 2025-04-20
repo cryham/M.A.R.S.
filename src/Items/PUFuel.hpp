@@ -7,7 +7,7 @@
 #include <SFML/System.hpp>
 
 
-class PUFuel: public PowerUp
+class PUFuel : public PowerUp
 {
     public:
         PUFuel(Vector2f const& location):

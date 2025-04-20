@@ -9,7 +9,7 @@
 /// A Controller which updates it's associated Ship based on keyboard events.
 /// Used for local players.
 
-class KeyController: public Controller
+class KeyController : public Controller
 {
     public:
         /// Constructs a KeyController, attached to a Player.

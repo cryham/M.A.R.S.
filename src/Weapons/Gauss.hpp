@@ -6,7 +6,7 @@
 /// Weapon: Gauss.
 /// A long distance gun, a sniper.
 
-class Gauss: public Weapon
+class Gauss : public Weapon
 {
     public:
         /// Ctor which constructs the weapon.

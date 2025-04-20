@@ -10,7 +10,7 @@ class Planet;
 /// A random sign on a Planet.
 /// Very decorative.
 
-class PlanetSign: public DecoObject
+class PlanetSign : public DecoObject
 {
     public:
         /// Creates a randomly positioned Sign on the target Planet.

@@ -6,7 +6,7 @@
 class UiWindow;
 
 
-class LanguageButton: public UiElement
+class LanguageButton : public UiElement
 {
     public:
         LanguageButton (const sf::String& text, Vector2f const& topLeft, int width, int labelWidth=185);

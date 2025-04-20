@@ -5,7 +5,7 @@
 #include "System/window.hpp"
 
 
-class Message: public HudElement
+class Message : public HudElement
 {
     public:
         Message(sf::String const& message, Color3f const& color);

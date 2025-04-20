@@ -6,7 +6,7 @@
 /// Weapon: Burner.
 /// A short distance weapon, which burns nearby enemies.
 
-class Burner: public Weapon
+class Burner : public Weapon
 {
     public:
         /// Ctor which constructs the weapon.

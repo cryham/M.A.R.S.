@@ -3,7 +3,7 @@
 #include "Particles/Particle.hpp"
 
 
-class AmmoLightning: public Particle<AmmoLightning>
+class AmmoLightning : public Particle<AmmoLightning>
 {
     public:
         AmmoLightning(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,

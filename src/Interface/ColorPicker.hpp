@@ -6,7 +6,7 @@
 class UiWindow;
 
 
-class ColorPicker: public UiElement
+class ColorPicker : public UiElement
 {
     public:
         ColorPicker (const sf::String& text, Color3f* value,

@@ -6,7 +6,7 @@
 /// Weapon: ROFLE.
 /// A long distance gun, a sniper.
 
-class ROFLE: public Weapon
+class ROFLE : public Weapon
 {
     public:
         /// Ctor which constructs the weapon.

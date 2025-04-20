@@ -3,7 +3,7 @@
 #include "Interface/UiWindow.hpp"
 
 
-class ShaderError: public UiWindow
+class ShaderError : public UiWindow
 {
     public:
         static UiWindow* get();

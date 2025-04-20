@@ -5,7 +5,7 @@
 #include "Locales/locales.hpp"
 
 
-class KeyEdit: public UiElement
+class KeyEdit : public UiElement
 {
     public:
         KeyEdit (locales::LocaleType text, locales::LocaleType toolTip,

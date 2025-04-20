@@ -6,7 +6,7 @@ class BotController;
 class Team;
 
 
-class BotPlayer: public Player
+class BotPlayer : public Player
 {
     public:
         BotPlayer(std::pair<sf::String, int>const& nameStrength,

@@ -6,7 +6,7 @@
 #include <float.h>
 
 
-class Home: public SpaceObject
+class Home : public SpaceObject
 {
     public:
         Home(Vector2f const& location, int life, float radius, float mass,

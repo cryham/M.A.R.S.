@@ -6,7 +6,7 @@
 /// Game: GraveItation (GI).
 /// InstaGib with one instantly killing weapon.
 
-class GraveItation: public Game
+class GraveItation : public Game
 {
     public:
         /// Ctor starts a new game.

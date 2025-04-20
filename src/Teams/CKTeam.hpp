@@ -3,7 +3,7 @@
 #include "Teams/Team.hpp"
 
 
-class CKTeam: public Team
+class CKTeam : public Team
 {
     public:
         CKTeam(Color3f const& color = Color3f::random()):

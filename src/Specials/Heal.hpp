@@ -6,7 +6,7 @@
 /// Special: Heal.
 /// A healing wave.
 
-class Heal: public Special
+class Heal : public Special
 {
     public:
         /// Ctor which constructs the special.

@@ -3,7 +3,7 @@
 #include "Interface/UiWindow.hpp"
 
 
-class PauseMenu: public UiWindow
+class PauseMenu : public UiWindow
 {
     public:
         static UiWindow* get();

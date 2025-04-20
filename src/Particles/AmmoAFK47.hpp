@@ -3,7 +3,7 @@
 #include "Particles/Particle.hpp"
 
 
-class AmmoAFK47: public Particle<AmmoAFK47>
+class AmmoAFK47 : public Particle<AmmoAFK47>
 {
     public:
         AmmoAFK47(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,

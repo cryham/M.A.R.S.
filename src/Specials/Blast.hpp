@@ -6,7 +6,7 @@
 /// Special: Blast.
 /// A blast wave.
 
-class Blast: public Special
+class Blast : public Special
 {
     public:
         /// Ctor which constructs the special.

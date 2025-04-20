@@ -6,7 +6,7 @@
 /// Weapon: Lightning.
 /// A short distance gun, populates the screen with ugly green bubbles.
 
-class Lightning: public Weapon
+class Lightning : public Weapon
 {
     public:
         /// Ctor which constructs the weapon.

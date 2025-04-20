@@ -3,7 +3,7 @@
 #include "SpaceObjects/SpaceObject.hpp"
 
 
-class MobileSpaceObject: public SpaceObject
+class MobileSpaceObject : public SpaceObject
 {
     public:
         MobileSpaceObject(spaceObjects::ObjectType type, Vector2f location, float radius, float mass)

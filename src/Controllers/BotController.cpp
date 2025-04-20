@@ -179,7 +179,7 @@ void BotController::applyForJob(JobMap& jobMap)
                     break;
                 }
                 case Job::jGetPUReverse: case Job::jGetPUSleep:
-{
+                {
                     // 0 - 70, based on distance
                     float dist = ((*static_cast<Vector2f*>(it->first.object_) - ship()->location()).length());
                     dist *= 0.3f;

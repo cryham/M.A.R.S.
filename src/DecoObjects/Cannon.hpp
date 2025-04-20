@@ -5,7 +5,7 @@
 
 /// The cannon, displayed at the top of the screen when playing CannonKeep.
 
-class Cannon: public DecoObject
+class Cannon : public DecoObject
 {
     public:
         Cannon();

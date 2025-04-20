@@ -9,7 +9,7 @@
 /// Special: Shocker.
 /// Fires shocking bolts.
 
-class Shocker: public Special
+class Shocker : public Special
 {
     public:
         /// Ctor which constructs the special.

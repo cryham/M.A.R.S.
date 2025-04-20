@@ -3,7 +3,7 @@
 #include "Interface/UiWindow.hpp"
 
 
-class NewGameConfirm: public UiWindow
+class NewGameConfirm : public UiWindow
 {
     public:
         static UiWindow* get();

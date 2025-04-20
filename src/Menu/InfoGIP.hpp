@@ -5,7 +5,7 @@
 class TextBox;
 
 
-class InfoGIP: public UiWindow
+class InfoGIP : public UiWindow
 {
     public:
         static UiWindow* get();

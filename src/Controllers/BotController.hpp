@@ -10,7 +10,7 @@
 class TacticalZone;
 
 
-class BotController: public Controller
+class BotController : public Controller
 {
     public:
         /// Constructs the BotController, initializing its members.

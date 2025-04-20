@@ -4,7 +4,7 @@
 #include "System/Color3f.hpp"
 
 
-class ShipPreview: public UiElement
+class ShipPreview : public UiElement
 {
     public:
         ShipPreview (Color3f* color, Color3f* teamColor,

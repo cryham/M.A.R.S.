@@ -3,7 +3,7 @@
 #include "Teams/Team.hpp"
 
 
-class TDMTeam: public Team
+class TDMTeam : public Team
 {
     public:
         TDMTeam(Color3f const& color = Color3f::random()):

@@ -4,7 +4,7 @@
 #include "System/Color3f.hpp"
 
 
-class Sun: public SpaceObject
+class Sun : public SpaceObject
 {
     public:
         Sun(Vector2f const& location, float radius, int type);

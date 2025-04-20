@@ -5,7 +5,7 @@
 #include <map>
 
 
-class ChooseLanguage: public UiWindow
+class ChooseLanguage : public UiWindow
 {
     public:
         static UiWindow* get();

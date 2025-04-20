@@ -7,7 +7,7 @@ class SpaceObject;
 
 /// An object for drawing bolts between ships.
 
-class Bolt: public DecoObject
+class Bolt : public DecoObject
 {
     public:
         Bolt(SpaceObject *from, SpaceObject *to, float intensity)

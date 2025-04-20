@@ -5,7 +5,7 @@
 #include "Specials/Special.hpp"
 
 
-class Turret: public SpaceObject, public Mount
+class Turret : public SpaceObject, public Mount
 {
     public:
         Turret(Vector2f const& location, float rotation, Player* owner);

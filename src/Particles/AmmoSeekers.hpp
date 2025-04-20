@@ -7,7 +7,7 @@ class Ship;
 class Ball;
 
 
-class AmmoSeekers: public Particle<AmmoSeekers>
+class AmmoSeekers : public Particle<AmmoSeekers>
 {
     public:
         AmmoSeekers(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,

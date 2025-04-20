@@ -6,7 +6,7 @@
 /// Zone: TacticalZone.
 /// A round Zone.
 
-class TacticalZone: public Zone
+class TacticalZone : public Zone
 {
     public:
         /// Ctor, which creates the Zone.

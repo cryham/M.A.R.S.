@@ -4,7 +4,7 @@
 #include "System/Color3f.hpp"
 
 
-class MiniFlame: public Particle<MiniFlame>
+class MiniFlame : public Particle<MiniFlame>
 {
     public:
         MiniFlame(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,

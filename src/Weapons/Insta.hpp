@@ -7,7 +7,7 @@
 /// Weapon: Insta.
 /// A long distance gun, killing instantly.
 
-class Insta: public Weapon
+class Insta : public Weapon
 {
     public:
         /// Ctor which constructs the weapon.

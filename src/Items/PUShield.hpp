@@ -7,7 +7,7 @@
 #include <SFML/System.hpp>
 
 
-class PUShield: public PowerUp
+class PUShield : public PowerUp
 {
     public:
         PUShield(Vector2f const& location):

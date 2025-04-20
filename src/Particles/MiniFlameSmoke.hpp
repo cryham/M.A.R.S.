@@ -3,7 +3,7 @@
 #include "Particles/Particle.hpp"
 
 
-class MiniFlameSmoke: public Particle<MiniFlameSmoke>
+class MiniFlameSmoke : public Particle<MiniFlameSmoke>
 {
     public:
         MiniFlameSmoke(Vector2f const& location, Vector2f const& direction, Vector2f const& velocity,

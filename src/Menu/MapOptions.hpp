@@ -3,7 +3,7 @@
 #include "Interface/UiWindow.hpp"
 
 
-class MapOptions: public UiWindow
+class MapOptions : public UiWindow
 {
     public:
         static UiWindow* get();

@@ -13,7 +13,7 @@ class TacticalZone;
 class BotController: public Controller
 {
     public:
-        /// Constructs the BotController, initializing it's members.
+        /// Constructs the BotController, initializing its members.
         /// \param slave The Player, controlled by this bot.
         /// \param type The type of the Controller.
         /// \param strength The individual strength of the bot. From 0 to 100.

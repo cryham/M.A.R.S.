@@ -2,6 +2,7 @@
 
 #include "SpaceObjects/MobileSpaceObject.hpp"
 #include "Players/Player.hpp"
+#include "System/Color3f.hpp"
 
 
 class Ball: public MobileSpaceObject
@@ -19,7 +20,7 @@ class Ball: public MobileSpaceObject
 
         bool atStart() const      {   return sticky_;  }
         bool isVisible() const    {   return visible_;  }
-        float heatAmount() const  {   return heatTimer_*5.f;  }
+        float heatAmount() const  {   return heatTimer_ * 5.f;  }
 
         Player* lastShooter() const {   return lastShooter_;  }
         void resetShooter()         {   lastShooter_ = nullptr;  }
@@ -45,5 +46,6 @@ class Ball: public MobileSpaceObject
         float heatTimer_, smokeTimer_, respawnTimer_;
 
         Player* lastShooter_ = nullptr;
-};
 
+        Color3f color_;
+};

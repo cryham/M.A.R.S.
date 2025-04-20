@@ -1,6 +1,7 @@
 # Project M.A.R.S.
 #---------------------------------------------------------------------
-cmake_minimum_required(VERSION 3.7.2)
+cmake_minimum_required( VERSION 3.16 )
+cmake_policy(SET CMP0072 NEW)
 
 PROJECT(MARS)
 

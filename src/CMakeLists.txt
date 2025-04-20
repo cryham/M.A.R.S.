@@ -55,6 +55,17 @@ else(APPLE)
 	)
 endif(APPLE)
 
+
+#  extra, flags
+#---------------------------------------------------------------------
+target_precompile_headers( marsshooter PRIVATE pch.h )
+
+#target_compile_options(  marsshooter PRIVATE -Wswitch )
+#target_compile_features( marsshooter PRIVATE cxx_std_17 )
+
+#set_target_properties( marsshooter PROPERTIES LINKER_LANGUAGE CXX )
+
+
 # link SFML and other libraries
 #---------------------------------------------------------------------
 target_link_libraries(

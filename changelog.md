@@ -31,8 +31,13 @@ Version 0.8.0
      - Ship turn speed, ship glow amount, Aiming ray
    - more possible bots, more kills to end game
    - Ship thrusters now blue
-- ToDo:
-   - game effects from weapons: shock no weapons, chill slow move
+- _ToDo_:
+   - game effects from weapons: *shock* no weapons, *chill* slow move
+   - asteroids
+   - game modes:
+     - campaign
+     - missions, destroy number of ships, all turrets
+     - mothership destroy, with 2..8 turrets, 2..8 ship spawners
    - 2nd weapon? timed regen or passive ability
 - **Gui**
   - **Scale** slider for whole Gui in Options

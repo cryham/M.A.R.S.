@@ -8,22 +8,15 @@
 #include "Weapons/Mount.hpp"
 #include "Specials/specials.hpp"
 #include "Media/sound.hpp"
-#include "Hud/hud.hpp"
-#include "Media/text.hpp"
 #include "Players/Player.hpp"
 #include "Players/LocalPlayer.hpp"
 #include "Teams/Team.hpp"
 #include "Games/games.hpp"
-#include "Controllers/Controller.hpp"
-#include "SpaceObjects/Ball.hpp"
 #include "Media/announcer.hpp"
 #include "DecoObjects/decoObjects.hpp"
 #include "Shaders/postFX.hpp"
 #include "Items/items.hpp"
-#include "SpaceObjects/Home.hpp"
-#include "defines.hpp"
 #include "System/randomizer.hpp"
-#include "System/window.hpp"
 
 #include <cmath>
 #include <sstream>
@@ -31,7 +24,7 @@ using namespace std;
 
 
 Ship::Ship(Vector2f const& location, float rotation, Player* owner)
-    : MobileSpaceObject(spaceObjects::oShip, location, settings::iShipRadius, 10.f)
+    : MobileSpaceObject(spaceObjects::oShip, location, settings::iShipRadius, settings::iShipRadius / 18.f * 10.f)
     , Mount(0.f, owner)
     ,weaponChangeTime_(0.f)
     ,owner_(owner)

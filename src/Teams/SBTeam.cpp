@@ -7,6 +7,7 @@
 #include "SpaceObjects/Ship.hpp"
 #include "Players/Player.hpp"
 #include "System/settings.hpp"
+#include "SpaceObjects/Ball.hpp"
 
 #include <list>
 

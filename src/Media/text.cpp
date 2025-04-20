@@ -52,7 +52,6 @@ namespace text
     {
         drawText(text, window::coordToPixel(location),
             size /* 4/3*/, align, color, alpha, font);
-
     }
 
     void drawScreenText(sf::String const& text, Vector2f const& location,

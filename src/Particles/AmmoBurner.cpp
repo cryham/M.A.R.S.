@@ -4,6 +4,7 @@
 #include "SpaceObjects/ships.hpp"
 #include "SpaceObjects/balls.hpp"
 #include "SpaceObjects/Ship.hpp"
+#include "SpaceObjects/Ball.hpp"
 #include "Media/sound.hpp"
 #include "System/randomizer.hpp"
 

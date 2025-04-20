@@ -8,6 +8,7 @@
 #include "SpaceObjects/Ball.hpp"
 #include "SpaceObjects/Home.hpp"
 #include "Zones/TacticalZone.hpp"
+#include "Specials/Special.hpp"
 #include "System/randomizer.hpp"
 
 #include <cfloat>

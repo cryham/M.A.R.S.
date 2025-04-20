@@ -1,9 +1,12 @@
 #include "Controllers/Controller.hpp"
 
-#include "Controllers/KeyController.hpp"
-#include "Controllers/BotController.hpp"
+// #include "Controllers/KeyController.hpp"
+// #include "Controllers/BotController.hpp"
 #include "Players/Player.hpp"
 #include "Items/items.hpp"
+#include "Weapons/Weapon.hpp"
+#include "Specials/Special.hpp"
+
 
 Controller::Controller(Player* slave):
     type_(slave->type()),

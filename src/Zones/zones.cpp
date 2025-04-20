@@ -11,11 +11,12 @@
 #include "Games/games.hpp"
 #include "SpaceObjects/Home.hpp"
 #include "SpaceObjects/balls.hpp"
-#include "defines.hpp"
+#include "SpaceObjects/Ball.hpp"
 #include "System/settings.hpp"
 #include "System/randomizer.hpp"
 
 #include <iostream>
+
 
 namespace zones
 {
@@ -31,6 +32,7 @@ namespace zones
         float totalTacticalAreaL_(0), totalTacticalAreaR_(0);
         int lastZone_(0);
     }
+
 
     Zone* addTeamZone(Vector2f const& location)
     {
@@ -53,6 +55,9 @@ namespace zones
         tutorialZones_.push_back(new TutorialZone(location, radius));
     }
 
+
+    //  Detect Tactical Zones
+    //----------------------------------------------------------------------------------------------------------------------------------
     void detectTacticalZones()
     {
         // devide space objects into left and right side
@@ -264,6 +269,8 @@ namespace zones
         tacticalZonesR_.push_back(new TacticalZone(spaceObjects::getHomes()[1]->location(), 350.f));
         totalTacticalAreaR_ += 160000;
     }
+    //----------------------------------------------------------------------------------------------------------------------------------
+
 
     void createRaster(int dimX, int dimY)
     {

@@ -3,6 +3,7 @@
 #include "SpaceObjects/ships.hpp"
 #include "SpaceObjects/Ship.hpp"
 #include "Players/Player.hpp"
+#include "System/timer.hpp"
 
 
 PowerUp::PowerUp(items::PowerUpType type, Vector2f const& location, float radius,

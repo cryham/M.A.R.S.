@@ -3,6 +3,7 @@
 #include "SpaceObjects/Ship.hpp"
 #include "SpaceObjects/ships.hpp"
 #include "Players/Player.hpp"
+#include "System/timer.hpp"
 
 
 CannonControl::CannonControl(Vector2f const& location):

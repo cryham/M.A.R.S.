@@ -4,6 +4,7 @@
 #include "SpaceObjects/Ball.hpp"
 #include "Menu/menus.hpp"
 #include "System/randomizer.hpp"
+#include "System/timer.hpp"
 
 
 void Bolt::draw() const

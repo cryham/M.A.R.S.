@@ -1,11 +1,8 @@
 #include "Menu/BallsOptions.hpp"
 
-// #include "Media/text.hpp"
 #include "Interface/UiWindow.hpp"
 #include "Interface/Button.hpp"
 #include "Interface/Slider.hpp"
-// #include "Interface/Checkbox.hpp"
-// #include "Interface/LabeledBox.hpp"
 #include "System/settings.hpp"
 #include "Menu/menus.hpp"
 #include "Locales/locales.hpp"

@@ -1,14 +1,9 @@
-
 #include "Zones/TutorialZone.hpp"
 
 #include "SpaceObjects/SpaceObject.hpp"
-#include "SpaceObjects/spaceObjects.hpp"
-#include "SpaceObjects/Ship.hpp"
-#include "Players/players.hpp"
-#include "Players/Player.hpp"
-#include "Teams/Team.hpp"
-#include <SFML/System.hpp>
+#include "System/timer.hpp"
 
+#include <SFML/System.hpp>
 #include <cmath>
 
 

@@ -11,6 +11,7 @@
 #include "Games/games.hpp"
 #include "Teams/Team.hpp"
 #include "Items/items.hpp"
+#include "SpaceObjects/Ball.hpp"
 
 #include <SFML/Graphics.hpp>
 #include <vector>

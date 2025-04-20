@@ -1,19 +1,19 @@
 #include "Controllers/BotController.hpp"
 
 #include "SpaceObjects/Ship.hpp"
-#include "Games/games.hpp"
-#include "System/settings.hpp"
 #include "SpaceObjects/balls.hpp"
 #include "SpaceObjects/ships.hpp"
 #include "Players/Player.hpp"
 #include "Teams/Team.hpp"
-#include "System/window.hpp"
 #include "Zones/TacticalZone.hpp"
 #include "Zones/RasterZone.hpp"
 #include "SpaceObjects/Home.hpp"
 #include "Teams/teams.hpp"
 #include "Items/items.hpp"
 #include "Items/CannonControl.hpp"
+#include "SpaceObjects/Ball.hpp"
+#include "Weapons/Weapon.hpp"
+
 
 void BotController::kickBallToEnemy()
 {
@@ -24,8 +24,7 @@ void BotController::kickBallToEnemy()
         ballLocation = calcPath(ballLocation, false);
         if (ballLocation == balls::getBall()->location_)
             shootPoint(ballLocation);
-    }
-    else
+    }else
     {
         Vector2f shipLocation = ship()->location();
         Vector2f ballVelocity = balls::getBall()->velocity_;
@@ -195,7 +194,7 @@ void BotController::escape()
         nextRoutePoint_.x_ = FLT_MAX;
 }
 
-void  BotController::heal()
+void BotController::heal()
 {
     if (currentJob_.object_)
     {
@@ -204,7 +203,7 @@ void  BotController::heal()
     }
 }
 
-void  BotController::unfreeze()
+void BotController::unfreeze()
 {
     if (currentJob_.object_)
     {

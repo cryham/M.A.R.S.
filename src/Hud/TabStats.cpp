@@ -20,13 +20,13 @@
 
 
 // helper function
-void inline writeScoreAtCol(sf::String value, int col, Vector2f topLeft, int mirror, Color3f drawColor)
+void inline writeScoreAtCol(sf::String value, int col, Vector2f topLeft, float mirror, Color3f drawColor)
 {
     text::drawScreenText(value, topLeft+Vector2f((140+80*col + 1)*mirror,1), 12.f, TEXT_ALIGN_CENTER, Color3f(0.f, 0.f, 0.f));
     text::drawScreenText(value, topLeft+Vector2f((140+80*col)*mirror,0), 12.f, TEXT_ALIGN_CENTER, drawColor);
 }
 
-void inline writeScoreAtCol(int value, int col, Vector2f topLeft, int mirror, Color3f drawColor)
+void inline writeScoreAtCol(int value, int col, Vector2f topLeft, float mirror, Color3f drawColor)
 {
     std::stringstream sstr;
     sstr << value;
@@ -69,7 +69,6 @@ void TabStats::draw() const
     float scale = UiElement::scale_;
     if (visible_ && !menus::visible())
     {
-        int mirror(locales::getCurrentLocale().LTR_ ? 1 : -1);
         // get height of list
         int height, h = 70;
         if (games::type() == games::gDeathMatch || games::type() == games::gRally)
@@ -89,8 +88,10 @@ void TabStats::draw() const
             nbColumns++;
         if (games::type() == games::gDeathMatch || games::type() == games::gRally)
             nbColumns--;
+
         // Padding, Name, [BOT], Padding, Columns, Padding
-        int width = (3 + 77 + 20 + 70 + (nbColumns*80) + 5)*mirror;
+        float mirror = (locales::getCurrentLocale().LTR_ ? 1 : -1) * 1.3f;  // spread
+        int width = (3 + 77 + 20 + 70 + (nbColumns*80) + 5) * mirror;
 
         // draw background
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);

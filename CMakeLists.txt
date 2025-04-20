@@ -1,5 +1,7 @@
 # Project M.A.R.S.
 #---------------------------------------------------------------------
+cmake_minimum_required(VERSION 3.7.2)
+
 PROJECT(MARS)
 
 # version number
@@ -13,8 +15,6 @@ set(mars_HOMEPAGE "https://github.com/cryham/M.A.R.S./")
 set(mars_EXENAME "marsshooter")
 set(mars_PACKAGENAME "mars")
  
-# We require at least version 3.7.2
-cmake_minimum_required(VERSION 3.7.2)
 # c++14
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED on)
@@ -60,7 +60,8 @@ else(APPLE)
 endif(APPLE)
 
 # include the 'include' directory
-include_directories(${MARS_SOURCE_DIR}/include)
+#include_directories(${MARS_SOURCE_DIR}/include)
+include_directories(${MARS_SOURCE_DIR}/src)
 
 
 # Create executable

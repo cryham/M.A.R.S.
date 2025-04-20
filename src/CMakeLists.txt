@@ -1,23 +1,26 @@
-
-#####################################################################
 # Actually compile the executable
-#####################################################################
+#---------------------------------------------------------------------
 
 # required for M_PI on some platforms
 add_definitions(-D_USE_MATH_DEFINES)
 
+
 # determine source and header files
-file(GLOB MARS_SOURCES */*.cpp)
-file(GLOB MARS_HEADERS ${MARS_SOURCE_DIR}/include/*/*.hpp ${MARS_SOURCE_DIR}/include/*.hpp)
+#---------------------------------------------------------------------
+file(GLOB MARS_SOURCES */*.cpp */*.hpp *.hpp)
+#file(GLOB MARS_SOURCES */*.cpp)
+#file(GLOB MARS_HEADERS */*.hpp *.hpp)
+#file(GLOB MARS_HEADERS ${MARS_SOURCE_DIR}/include/*/*.hpp ${MARS_SOURCE_DIR}/include/*.hpp)
 file(GLOB MARS_RESOURCES ${MARS_SOURCE_DIR}/mars.cfg)
 
 # create executable
+#---------------------------------------------------------------------
 if(APPLE)
 	add_executable(
 		marsshooter MACOSX_BUNDLE
 			main.cpp
 			${MARS_SOURCES}
-			${MARS_HEADERS}
+			#${MARS_HEADERS}
 			${MARS_RESOURCES}
 	)
 
@@ -28,13 +31,13 @@ if(APPLE)
 	set(MACOSX_BUNDLE_LONG_VERSION_STRING "${mars_VERSION}")
 	set(MACOSX_BUNDLE_SHORT_VERSION_STRING "${mars_VERSION}")
 	set(MACOSX_BUNDLE_BUNDLE_VERSION "${mars_VERSION}")
-  set(MACOSX_BUNDLE_ICON_FILE ${MARS_SOURCE_DIR}/resources/icon.icns)
+    set(MACOSX_BUNDLE_ICON_FILE ${MARS_SOURCE_DIR}/resources/icon.icns)
 
 	# Let gcc 4.0 compile the executable even on Mac OS X 10.6
 	# so that the executable also runs on Mac OS X 10.4
 	# only valid for xcode not for command line version of gcc
 	set(CMAKE_XCODE_ATTRIBUTE_GCC_VERSION "4.0")
-  
+
   # paths for data files in bundle
   set_source_files_properties(
     ${MARS_RESOURCES}
@@ -42,16 +45,18 @@ if(APPLE)
       MACOSX_PACKAGE_LOCATION Resources
   )
 else(APPLE)
+#---------------------------------------------------------------------
 	add_executable(
 		marsshooter
-			main.cpp 
+			main.cpp
 			${MARS_SOURCES}
-			${MARS_HEADERS}
+			#${MARS_HEADERS}
 			${MARS_SOURCE_DIR}/resources/resource.rc
 	)
 endif(APPLE)
 
 # link SFML and other libraries
+#---------------------------------------------------------------------
 target_link_libraries(
 	marsshooter
 		${FOUNDATION_LIBRARY}
@@ -62,13 +67,13 @@ target_link_libraries(
 		${TAG_LIBRARY}
 )
 
-#####################################################################
+
 # Installation
-#####################################################################
+#---------------------------------------------------------------------
 
 if(UNIX)
 	install(
-		TARGETS 
+		TARGETS
 			marsshooter
 		RUNTIME DESTINATION
 			${mars_EXE_DEST_DIR}
@@ -88,15 +93,15 @@ if(UNIX)
 			${mars_DATA_DEST_DIR}
 	)
 	install(
-		DIRECTORY 
+		DIRECTORY
 			${CMAKE_SOURCE_DIR}/data/audio
 			${CMAKE_SOURCE_DIR}/data/fonts
 			${CMAKE_SOURCE_DIR}/data/locales
 			${CMAKE_SOURCE_DIR}/data/shaders
 			${CMAKE_SOURCE_DIR}/data/tex
-		DESTINATION 
+		DESTINATION
 			${mars_DATA_DEST_DIR}
-		PATTERN 
+		PATTERN
 			".svn" EXCLUDE
 	)
 	# icons
@@ -159,7 +164,7 @@ if(APPLE)
 			FILES_MATCHING
 				PATTERN "*.*"
 	)
-	
+
 	# copy sndfile framework into app bundle for Mac OS X
 	install(
 		DIRECTORY /Library/Frameworks/sndfile.framework

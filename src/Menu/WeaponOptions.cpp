@@ -68,9 +68,9 @@ UiWindow* WeaponOptions::get()
         addCheck("Plasma",     weapons::wPlasma);
         
         //  weapons 3
-        x += 150;  y = yTop;
+        x += 150;  y = yTop - yadd;
         addCheck("Pulse",     weapons::wPulse);
-        addCheck("Cloud",     weapons::wCloud);
+        addCheck("Cloud",     weapons::wCloud, 3);
         addCheck("Freezers",  weapons::wFreezers);
         addCheck("Lightning", weapons::wLightning, 3);
 

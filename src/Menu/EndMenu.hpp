@@ -20,6 +20,5 @@ class EndMenu : public UiWindow
 
         static UiWindow* instance_;
 
-        static bool kNew_, kOptions_, kToMainMenu_, kHide_;
+        static bool kRestart_, kNew_, kOptions_, kToMainMenu_, kHide_;
 };
-

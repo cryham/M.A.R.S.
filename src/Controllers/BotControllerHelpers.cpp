@@ -83,7 +83,7 @@ Vector2f BotController::calcPath(Vector2f const& endPoint, bool avoidBall)
                 bool fits(false);
                 std::vector<Ship*> const& allShips = ships::getShips();
                 
-                while(!fits && ++count < 6)
+                while (!fits && ++count < 6)
                 {
                     fits = true;
                     for (const auto& it : allShips)

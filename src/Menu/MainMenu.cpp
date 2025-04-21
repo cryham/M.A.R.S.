@@ -7,7 +7,6 @@
 #include "Menu/OptionsMenu.hpp"
 #include "Menu/NewGameMenu.hpp"
 #include "Menu/About.hpp"
-#include "Menu/Connect.hpp"
 #include "Menu/InfoSB.hpp"
 #include "System/settings.hpp"
 #include "Locales/locales.hpp"
@@ -15,10 +14,8 @@
 
 
 UiWindow* MainMenu::instance_ = nullptr;
-bool MainMenu::kStartLocal_(false);
+bool MainMenu::kNewGame_(false);
 bool MainMenu::kStartTut_(false);
-bool MainMenu::kStartMulti_(false);
-bool MainMenu::kJoinMulti_(false);
 bool MainMenu::kOptions_(false);
 bool MainMenu::kAbout_(false);
 bool MainMenu::kExit_(false);
@@ -31,16 +28,14 @@ UiWindow* MainMenu::get()
         float y = 10, w = 180 * scale_, h = 20, yadd = h + 10;
         
         instance_ = new MainMenu(w + 20, 190, Vector2f(0.f, 50.f));
-        instance_->addWidget(new Button(locales::getLocale(locales::StartLocalGame), "", &kStartLocal_,
+        instance_->addWidget(new Button(locales::getLocale(locales::NewGame), "", &kNewGame_,
             Vector2f(10,y), w, h));  y += yadd;
         instance_->addWidget(new Button(locales::getLocale(locales::StartTutorial),  "", &kStartTut_,
             Vector2f(10,y), w, h));  y += yadd*3/2;
-        // instance_->addWidget(new Button(locales::getLocale(locales::StartNetworkGame), "", &kStartMulti_,
-        //    Vector2f(10,y), w, h));  y += yadd;
-        // instance_->addWidget(new Button(locales::getLocale(locales::JoinNetworkGame),  "", &kJoinMulti_,
-        //    Vector2f(10,y), w, h));  y += yadd;
+
         instance_->addWidget(new Button(locales::getLocale(locales::Options),        "", &kOptions_,
             Vector2f(10,y), w, h));  y += yadd*3/2;
+
         instance_->addWidget(new Button(locales::getLocale(locales::About),          "", &kAbout_,
             Vector2f(10,y), w, h));  y += yadd;
         instance_->addWidget(new Button(locales::getLocale(locales::Quit),           "", &kExit_,
@@ -63,8 +58,8 @@ void MainMenu::checkWidgets()
     {   kOptions_ = false;
         menus::showWindow(OptionsMenu::get());
     }
-    else if (kStartLocal_)
-    {   kStartLocal_ = false;
+    else if (kNewGame_)
+    {   kNewGame_ = false;
         menus::showWindow(NewGameMenu::get());
         if (settings::bShowInfoSB)
             menus::showWindow(InfoSB::get());
@@ -73,14 +68,6 @@ void MainMenu::checkWidgets()
     {   kStartTut_ = false;
         menus::hideWindow();
         games::start(games::gTutorial);
-    }
-    else if (kJoinMulti_)
-    {   kJoinMulti_ = false;
-        menus::showWindow(Connect::get());
-    }
-    else if (kStartMulti_)
-    {   kStartMulti_ = false;
-        menus::showWindow(Connect::get());
     }
 }
 

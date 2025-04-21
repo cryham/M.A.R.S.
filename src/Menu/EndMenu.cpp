@@ -2,6 +2,7 @@
 
 #include "Interface/UiWindow.hpp"
 #include "Interface/Button.hpp"
+#include "Menu/NewGameMenu.hpp"
 #include "Menu/menus.hpp"
 #include "Menu/ToMainConfirm.hpp"
 #include "Games/games.hpp"
@@ -12,6 +13,7 @@
 
 
 UiWindow* EndMenu::instance_ = nullptr;
+bool EndMenu::kRestart_(false);
 bool EndMenu::kNew_(false);
 bool EndMenu::kOptions_(false);
 bool EndMenu::kToMainMenu_(false);
@@ -21,37 +23,43 @@ bool EndMenu::kHide_(false);
 UiWindow* EndMenu::get()
 {
     if (!instance_)
-    {   instance_ = new EndMenu(180, 130);
-    
-        instance_->addWidget(new Button(locales::getLocale(locales::RestartGame),     "", &kNew_,
-            Vector2f(10,10), 160, 20));
+    {
+        int y = 10, w = 160 * scale_, h = 20, yadd = h + 10;
+
+        instance_ = new EndMenu(w + 20, 180);
+        instance_->addWidget(new Button(locales::getLocale(locales::StartLocalGame),  "", &kNew_,
+            Vector2f(10,y), w, h));  y += yadd;
+        instance_->addWidget(new Button(locales::getLocale(locales::RestartGame),     "", &kRestart_,
+            Vector2f(10,y), w, h));  y += yadd*3/2;
+
         instance_->addWidget(new Button(locales::getLocale(locales::Options),         "", &kOptions_,
-            Vector2f(10,40), 160, 20));
+            Vector2f(10,y), w, h));  y += yadd;
         instance_->addWidget(new Button(locales::getLocale(locales::HideMenu),        "", &kHide_,
-            Vector2f(10,70), 160, 20));
+            Vector2f(10,y), w, h));  y += yadd;
         instance_->addWidget(new Button(locales::getLocale(locales::QuitCurrentGame), "", &kToMainMenu_,
-            Vector2f(10,100), 160, 20));
+            Vector2f(10,y), w, h));  y += yadd;
     }
     return instance_;
 }
 
 void EndMenu::checkWidgets()
 {
-    if (kToMainMenu_)
-    {   kToMainMenu_ = false;
+    if (kNew_)
+    {   kNew_ = false;
 
-        menus::showWindow(ToMainConfirm::get());
+        menus::showWindow(NewGameMenu::get());
+        games::restart();
+    }
+    else if (kRestart_)
+    {   kRestart_ = false;
+
+        menus::hideWindow();
+        games::restart();
     }
     else if (kOptions_)
     {   kOptions_ = false;
 
         menus::showWindow(OptionsMenu::get());
-    }
-    else if (kNew_)
-    {   kNew_ = false;
-
-        menus::hideWindow();
-        games::restart();
     }
     else if (kHide_)
     {   kHide_ = false;
@@ -60,6 +68,11 @@ void EndMenu::checkWidgets()
             menus::showWindow(InfoHide::get());
         else
             menus::hideMenu();
+    }
+    else if (kToMainMenu_)
+    {   kToMainMenu_ = false;
+
+        menus::showWindow(ToMainConfirm::get());
     }
 }
 

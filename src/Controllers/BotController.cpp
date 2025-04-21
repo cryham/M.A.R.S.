@@ -95,9 +95,9 @@ void BotController::applyForJob(JobMap& jobMap)
     {
         short need(0);
 
-        short didThisJobLAstTimeToo(0);
+        short didThis(0);  // did this job last time too
         if (currentJob_.type_ == it->first.type_)
-            didThisJobLAstTimeToo = 10;
+            didThis = 10;
 
         if (ship()->getLife() > 0 && ship()->frozen_ <= 0.f)
         {
@@ -122,7 +122,7 @@ void BotController::applyForJob(JobMap& jobMap)
                 {
                     float life = std::pow(100.f - ship()->getLife(),3)*0.0001f;
                     float fuel = std::pow(100.f - ship()->getFuel(),3)*0.0001f;
-                    need = std::max(life,fuel) + didThisJobLAstTimeToo;
+                    need = std::max(life,fuel) + didThis;
                     break;
                 }
                 case Job::jHeal:
@@ -136,8 +136,9 @@ void BotController::applyForJob(JobMap& jobMap)
                             float dist((target->location() - ship()->location()).length());
                             dist *= 0.1f;
                             dist = 50 - dist;
-                            if (dist < 0) dist = 0;
-                            need = dist + (10 * ship()->fragStars_) + didThisJobLAstTimeToo;
+                            if (dist < 0)
+                                dist = 0;
+                            need = dist + (10 * ship()->fragStars_) + didThis;
                         }
                     }
                     break;
@@ -151,7 +152,7 @@ void BotController::applyForJob(JobMap& jobMap)
                     dist = 100 - dist;
                     if (dist < 0)
                         dist = 0;
-                    need = 1 + dist + didThisJobLAstTimeToo;
+                    need = 1 + dist + didThis;
                     break;
                 }
                 case Job::jAttackTarget:
@@ -164,7 +165,7 @@ void BotController::applyForJob(JobMap& jobMap)
                     if (dist < 0)
                         dist = 0;
                     float life = ship()->getLife()*0.5f;
-                    need = dist + life + didThisJobLAstTimeToo;
+                    need = dist + life + didThis;
                     break;
                 }
                 case Job::jGetPUShield: case Job::jGetPUHealth:
@@ -176,7 +177,7 @@ void BotController::applyForJob(JobMap& jobMap)
                     if (dist < 0)
                         dist = 0;
                     float life = 100 - ship()->getLife();
-                    need = dist*life*0.01 + didThisJobLAstTimeToo;
+                    need = dist*life*0.01 + didThis;
                     break;
                 }
                 case Job::jGetPUReverse: case Job::jGetPUSleep:
@@ -187,7 +188,7 @@ void BotController::applyForJob(JobMap& jobMap)
                     dist = 70 - dist;
                     if (dist < 0)
                         dist = 0;
-                    need = dist + didThisJobLAstTimeToo;
+                    need = dist + didThis;
                     break;
                 }
                 case Job::jGetPUFuel:
@@ -199,7 +200,7 @@ void BotController::applyForJob(JobMap& jobMap)
                     if (dist < 0)
                         dist = 0;
                     float fuel = 100 - ship()->getFuel();
-                    need = dist*fuel*0.01f + didThisJobLAstTimeToo;
+                    need = dist*fuel*0.01f + didThis;
                     break;
                 }
                 case Job::jKickToEnemy:
@@ -214,7 +215,7 @@ void BotController::applyForJob(JobMap& jobMap)
                     Vector2f targetPlanetLocation = calcPath(teams::getEnemy(slave_->team())->home()->location(), false);
                     float dir = spaceObjects::isOnLine(ship()->location(), ballLocation - ship()->location(),
                         targetPlanetLocation, 25.f) ? 15 : 0;
-                    need = 1 + dist + dir + didThisJobLAstTimeToo;
+                    need = 1 + dist + dir + didThis;
                     break;
                 }
                 case Job::jKickOutHome:
@@ -229,7 +230,7 @@ void BotController::applyForJob(JobMap& jobMap)
                     Vector2f targetPlanetLocation = calcPath(teams::getEnemy(slave_->team())->home()->location(), false);
                     float dir = spaceObjects::isOnLine(ballLocation, ship()->location() - ballLocation,
                         slave_->team()->home()->location(), 45.f) ? 50 : 0;
-                    need = dist + dir + didThisJobLAstTimeToo;
+                    need = dist + dir + didThis;
                     break;
                 }
                 case Job::jProtectZone:
@@ -241,10 +242,10 @@ void BotController::applyForJob(JobMap& jobMap)
                     if (dist < 0)
                         dist = 0;
                     if (currentJob_.type_ == it->first.type_ && currentJob_.object_ == it->first.object_)
-                        didThisJobLAstTimeToo = 10;
+                        didThis = 10;
                     else
-                        didThisJobLAstTimeToo = 0;
-                    need = 1 + dist + didThisJobLAstTimeToo;
+                        didThis = 0;
+                    need = 1 + dist + didThis;
                     break;
                 }
                 case Job::jWaitForBall:
@@ -255,12 +256,12 @@ void BotController::applyForJob(JobMap& jobMap)
                     dist = 60 - dist;
                     if (dist < 0)
                         dist = 0;
-                    need = 10 + dist + didThisJobLAstTimeToo;
+                    need = 10 + dist + didThis;
                     break;
                 }
                 case Job::jEscape:
                 {
-                    need = 10 + didThisJobLAstTimeToo;
+                    need = 10 + didThis;
                     CannonControl* control(items::getCannonControl());
                     if (control)
                     {
@@ -282,7 +283,7 @@ void BotController::applyForJob(JobMap& jobMap)
                         if (dist < 0)
                             dist = 0;
                         float life = ship()->getLife()*0.5f;
-                        need = dist + life + didThisJobLAstTimeToo;
+                        need = dist + life + didThis;
                     }
                     break;
                 }

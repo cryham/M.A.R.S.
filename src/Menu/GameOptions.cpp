@@ -4,8 +4,6 @@
 #include "Interface/UiWindow.hpp"
 #include "Interface/Button.hpp"
 #include "Interface/Slider.hpp"
-#include "Interface/Checkbox.hpp"
-#include "Interface/LabeledBox.hpp"
 #include "System/settings.hpp"
 #include "Menu/menus.hpp"
 #include "Locales/locales.hpp"
@@ -27,7 +25,7 @@ UiWindow* GameOptions::get()
         instance_->addWidget(new Button(locales::getLocale(locales::Ok), "", &kOk_,
             Vector2f(350,370), 90, 20));
         instance_->addWidget(new Button(locales::getLocale(locales::Defaults), "", &kDefaults_,
-            Vector2f(210,370), 130, 20));
+            Vector2f(180,370), 130, 20));
         
         int y = 10, yadd = 20, w = 540;
         instance_->addWidget(new Label(locales::getLocale(locales::GameOptions), TEXT_ALIGN_LEFT,

@@ -61,6 +61,7 @@ void Ship::update()
             if (ghostTimer_ <= 0.f)
                 physics::addMobileObject(this);
         }
+        const float chill = 1.f - chilled_;
 
         if (games::elapsedTime() > settings::iCountDown || games::type() == games::gTutorial)
         {
@@ -203,9 +204,9 @@ void Ship::update()
                 {
                     //  turn manual
                     if (right_ > 5)
-                        fmod(rotation_+= rotateSpeed_ *time *rot *slower * right_, 360.f);
+                        fmod(rotation_+= chill * rotateSpeed_ *time *rot *slower * right_, 360.f);
                     if (left_  > 5)
-                        fmod(rotation_-= rotateSpeed_ *time *rot *slower * left_, 360.f);
+                        fmod(rotation_-= chill * rotateSpeed_ *time *rot *slower * left_, 360.f);
 
                     if (right_ == 0 && left_ == 0)
                         rotateSpeed_ = 1.0;
@@ -286,10 +287,23 @@ void Ship::update()
                     acceleration += physics::attract(this);
                 }
 
-                // s = s0 + v0*t + 0.5*a*t*t
-                location_ += velocity_*time + acceleration*0.5f*time*time;
-                // v = v0 + a*t
-                velocity_ += acceleration*time + velocity_*(-0.2f)*time;
+                //  move  ----
+                // s += v*t + 0.5*a*t^2  v += a*t
+                location_ += chill * (velocity_*time + acceleration*0.5f*time*time);
+                velocity_ += chill * (acceleration*time + velocity_*-0.2f*time);
+
+
+                //  new status
+                //  chilled  slow down  ***
+                chilled_ -= time * 0.3f;  // fade out
+                if (chilled_ > 0.9f)  chilled_ = 0.9f;  // max
+                if (chilled_ < 0.f)   chilled_ = 0.f;
+
+                //  shocked_  fade  ***
+                shocked_ -= time * 0.3f;
+                if (shocked_ > 0.9f)  shocked_ = 0.9f;  // max
+                if (shocked_ < 0.f)   shocked_ = 0.f;
+
 
                 if (ghostTimer_ <= 0.f)
                     physics::collide(this, STATICS | MOBILES);
@@ -395,7 +409,7 @@ void Ship::onCollision(SpaceObject* with, Vector2f const& location,
             break;
 
         case spaceObjects::oBall:
-            amount =  dynamic_cast<Ball*>(with)->heatAmount() * 0.1f;
+            amount = dynamic_cast<Ball*>(with)->heatAmount() * 0.1f;
             particles::spawnMultiple(2, particles::pSpark, location, direction*100.f, velocity_, owner_->color());
             if (strength > 50)
                 sound::playSound(sound::ShipPlanetCollide, location, (strength-50)/3);
@@ -403,16 +417,38 @@ void Ship::onCollision(SpaceObject* with, Vector2f const& location,
             break;
 
 
+        //  freezers
+        case spaceObjects::oChill:  // .. is particle, won't work ..
+            amount = randomizer::random(1.5f, 2.f) * 0.25f;
+            chilled_ += amount * 0.04f;  // 0.1  * timer::frameTime() ?
+            break;
+        case spaceObjects::oAmmoFreezers:  // :*
+            amount = randomizer::random(1.5f, 2.f) * 0.25f  *0.3f;
+            waitForOtherDamage = 0.1f;
+            setDamageSource(with->damageSource());
+            chilled_ += amount * 0.10f;  // 0.15
+            break;
+        case spaceObjects::oAmmoLightning:  // -~
+            amount = randomizer::random(0.5f, 2.f) * 0.35f  *0.3f;
+            waitForOtherDamage = 0.1f;
+            setDamageSource(with->damageSource());
+            shocked_ += amount * 0.08f;  // 0.1
+            break;
+
         //  clouds
         case spaceObjects::oAmmoPulse:  // ))
-            amount = strength*0.0001f;
+            // amount = strength*0.0001f;
+            amount = 1.2f;
             waitForOtherDamage = 0.2f;
             setDamageSource(with->damageSource());
             unfreeze = 0.1f;
+            break;
         case spaceObjects::oAmmoCloud:  // OO
-            amount = strength*0.001f;
+            amount = strength*0.001f  *0.5f;
             waitForOtherDamage = 0.1f;
             setDamageSource(with->damageSource());
+            chilled_ += amount * 0.04f;
+            shocked_ += amount * 0.03f;  // 0.1
             unfreeze = 0.1f;
             break;
 
@@ -499,20 +535,6 @@ void Ship::onCollision(SpaceObject* with, Vector2f const& location,
             particles::spawnMultiple(2, particles::pSpark, location,
                 dynamic_cast<MobileSpaceObject*>(with)->velocity() * 0.7f, velocity_, owner_->color());
             unfreeze = 0.1f;
-            break;
-
-        //  freezers
-        case spaceObjects::oAmmoFreezers:  // :*
-            amount = randomizer::random(1.5f, 2.f) * 0.25f;
-            waitForOtherDamage = 0.1f;
-            setDamageSource(with->damageSource());
-            // unfreeze = 4.f;
-            break;
-        case spaceObjects::oAmmoLightning:  // -~
-            amount = randomizer::random(0.5f, 2.f) * 0.35f;
-            waitForOtherDamage = 0.1f;
-            setDamageSource(with->damageSource());
-            // unfreeze = 4.f;
             break;
 
         //  plasma

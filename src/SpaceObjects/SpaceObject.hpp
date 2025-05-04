@@ -56,8 +56,8 @@ class SpaceObject
         Player* damageSource_ = nullptr;
 
         //  new effects from weapons, factors fading out in time
-        float chilled_ = 1.f;  // slows down movement
-        float shocked_ = 1.f;  // paralyzed, disables weapons, rotation
+        float chilled_ = 0.f;  // slows down movement, rotation
+        float shocked_ = 0.f;  // paralyzed, disables weapons
     private:
         spaceObjects::ObjectType type_;
 };

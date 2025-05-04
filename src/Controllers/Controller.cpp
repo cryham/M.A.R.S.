@@ -67,14 +67,16 @@ void Controller::slaveRight (int right) const
 void Controller::slaveFire (int fire) const
 {
     if (fire > 50 && !slave_->ship_->docked_ && slave_->ship_->visible_ &&
-        !slave_->ship_->collectedPowerUps_[items::puSleep] && slave_->ship_->frozen_<=0.f)
+        !slave_->ship_->collectedPowerUps_[items::puSleep] && slave_->ship_->frozen_<=0.f &&
+        slave_->ship_->shocked_ < 0.3f)
         slave_->ship_->weapon_->fire();
 }
 
 void Controller::slaveSpecial (int special) const
 {
     if (special > 50 && !slave_->ship_->docked_ && slave_->ship_->visible_ &&
-        !slave_->ship_->collectedPowerUps_[items::puSleep] && slave_->ship_->frozen_<=0.f)
+        !slave_->ship_->collectedPowerUps_[items::puSleep] && slave_->ship_->frozen_<=0.f &&
+        slave_->ship_->shocked_ < 0.3f)
         slave_->ship_->special_->activate();
 }
 

@@ -78,6 +78,7 @@ Ship::Ship(Vector2f const& location, float rotation, Player* owner)
 //----------------------------------------------------------------------------------------------------------------------------------
 void Ship::draw() const
 {
+    const float r = radius_;
     if (visible_)
     {
         glPushMatrix();
@@ -91,36 +92,60 @@ void Ship::draw() const
         float x, y, alpha(ghostTimer_ == 1.f ? 0.2f * sin(timer::totalTime()*8.f + 1.5f*M_PI)+0.4f : 
             (ghostTimer_ > 0.f ? ghostTimer_* (0.2f * sin(timer::totalTime()*8.f + 1.5f*M_PI)+0.4f) + 1.f-ghostTimer_ : 1.f));
 
-        x = static_cast<float>(owner_->graphic()%8)*0.125f;
-        y = static_cast<float>(floor(owner_->graphic()*0.125f))*0.375f;
+        x = (owner_->graphic() % 8) * 0.125f;
+        y = floor(owner_->graphic() * 0.125f) * 0.375f;
 
         glColor4f(1.f, 1.f, 1.f, alpha);
         glBegin(GL_QUADS);
-            glTexCoord2f(x, y+0.125f);          glVertex2f(-radius_, -radius_);
-            glTexCoord2f(x+0.125f, y+0.125f);   glVertex2f(-radius_,  radius_);
-            glTexCoord2f(x+0.125f, y);          glVertex2f( radius_,  radius_);
-            glTexCoord2f(x, y);                 glVertex2f( radius_, -radius_);
+            glTexCoord2f(x, y+0.125f);          glVertex2f(-r, -r);
+            glTexCoord2f(x+0.125f, y+0.125f);   glVertex2f(-r,  r);
+            glTexCoord2f(x+0.125f, y);          glVertex2f( r,  r);
+            glTexCoord2f(x, y);                 glVertex2f( r, -r);
         glEnd();
 
         y += 0.125f;
-
         owner_->team()->color().gl4f(alpha);
         glBegin(GL_QUADS);
-            glTexCoord2f(x, y+0.125f);          glVertex2f(-radius_, -radius_);
-            glTexCoord2f(x+0.125f, y+0.125f);   glVertex2f(-radius_,  radius_);
-            glTexCoord2f(x+0.125f, y);          glVertex2f( radius_,  radius_);
-            glTexCoord2f(x, y);                 glVertex2f( radius_, -radius_);
+            glTexCoord2f(x, y+0.125f);          glVertex2f(-r, -r);
+            glTexCoord2f(x+0.125f, y+0.125f);   glVertex2f(-r,  r);
+            glTexCoord2f(x+0.125f, y);          glVertex2f( r,  r);
+            glTexCoord2f(x, y);                 glVertex2f( r, -r);
         glEnd();
 
         y += 0.125f;
-
         owner_->color().gl4f(alpha);
         glBegin(GL_QUADS);
-            glTexCoord2f(x, y+0.125f);          glVertex2f(-radius_, -radius_);
-            glTexCoord2f(x+0.125f, y+0.125f);   glVertex2f(-radius_,  radius_);
-            glTexCoord2f(x+0.125f, y);          glVertex2f( radius_,  radius_);
-            glTexCoord2f(x, y);                 glVertex2f( radius_, -radius_);
+            glTexCoord2f(x, y+0.125f);          glVertex2f(-r, -r);
+            glTexCoord2f(x+0.125f, y+0.125f);   glVertex2f(-r,  r);
+            glTexCoord2f(x+0.125f, y);          glVertex2f( r,  r);
+            glTexCoord2f(x, y);                 glVertex2f( r, -r);
         glEnd();
+
+
+        //  new status
+        if (chilled_ > 0.1f)
+        {
+            glColor4f(1.f, 1.f, 1.f, chilled_);
+            x = 0.125f;  y = 7.f*0.125f;  float r2 = r * 2.2f;
+            glBegin(GL_QUADS);
+                glTexCoord2f(x, y+0.125f);          glVertex2f(-r2, -r2);
+                glTexCoord2f(x+0.125f, y+0.125f);   glVertex2f(-r2,  r2);
+                glTexCoord2f(x+0.125f, y);          glVertex2f( r2,  r2);
+                glTexCoord2f(x, y);                 glVertex2f( r2, -r2);
+            glEnd();
+        }
+
+        if (shocked_ > 0.1f)
+        {
+            glColor4f(1.f, 1.f, 1.f, shocked_);
+            x = 0.25f;  y = 7.f*0.125f;  float r2 = r * 2.6f;
+            glBegin(GL_QUADS);
+                glTexCoord2f(x, y+0.125f);          glVertex2f(-r2, -r2);
+                glTexCoord2f(x+0.125f, y+0.125f);   glVertex2f(-r2,  r2);
+                glTexCoord2f(x+0.125f, y);          glVertex2f( r2,  r2);
+                glTexCoord2f(x, y);                 glVertex2f( r2, -r2);
+            glEnd();
+        }
 
         glPopMatrix();
     }
@@ -135,10 +160,10 @@ void Ship::draw() const
         // draw glow
         owner_->team_->color().gl4f((respawnTimer_ - 6.f)*0.25f);
         glBegin(GL_QUADS);
-            glTexCoord2f(0.f, 0.75f);       glVertex2f(-radius_*3.6f,-radius_*3.6f);
-            glTexCoord2f(0.f, 0.875f);      glVertex2f(-radius_*3.6f, radius_*3.6f);
-            glTexCoord2f(0.125f, 0.875f);   glVertex2f( radius_*3.6f, radius_*3.6f);
-            glTexCoord2f(0.125f, 0.75f);    glVertex2f( radius_*3.6f,-radius_*3.6f);
+            glTexCoord2f(0.f, 0.75f);       glVertex2f(-r*3.6f,-r*3.6f);
+            glTexCoord2f(0.f, 0.875f);      glVertex2f(-r*3.6f, r*3.6f);
+            glTexCoord2f(0.125f, 0.875f);   glVertex2f( r*3.6f, r*3.6f);
+            glTexCoord2f(0.125f, 0.75f);    glVertex2f( r*3.6f,-r*3.6f);
         glEnd();
 
         glPopMatrix();

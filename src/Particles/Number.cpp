@@ -15,8 +15,11 @@ Number::Number(Vector2f const& location, Vector2f const& direction, Vector2f con
     ,alpha_(1.f)
 {
     velocity_ = velocity;
+    float len = velocity.length(), max = 900.f;  // limit vel len
+    if (len > max)
+        velocity_ = velocity.normalize() * max;
 
-    value_ = direction.x_;
+    value_ = direction.x_ / 10.f;
 
     radius_ = direction.y_;
     if (radius_ > 40.f)

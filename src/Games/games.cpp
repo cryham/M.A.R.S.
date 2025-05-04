@@ -25,6 +25,7 @@ namespace games
     namespace
     {
         Game* currentGame_= nullptr;
+
         bool restart_ = false;
         bool newGame_ = true;
         GameType newGameType_ = gNoGame;
@@ -36,7 +37,7 @@ namespace games
         {
             if (fadeIn_)
             {
-                fadeFactor_ -= timer::frameTime()*9.f;
+                fadeFactor_ -= timer::frameTime()*19.f;
                 if (fadeFactor_ <= 0.f)
                 {   fadeFactor_ = 0.f;
                     fadeIn_ = false;
@@ -44,7 +45,7 @@ namespace games
             }
             else if (fadeOut_)
             {
-                fadeFactor_ += timer::frameTime()*9.f;
+                fadeFactor_ += timer::frameTime()*19.f;
                 if (fadeFactor_ >= 1.f)
                 {   fadeFactor_ = 1.f;
                     fadeOut_ = false;

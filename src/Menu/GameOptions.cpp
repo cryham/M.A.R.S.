@@ -52,7 +52,7 @@ UiWindow* GameOptions::get()
            "%3.1f s", 10.f));  y += yadd*3/2;
 
         instance_->addWidget(new Slider(locales::getLocale(locales::Regeneration), "",
-           &settings::iRegeneration, 0, 150, 1,
+           &settings::iRegeneration, 0, 100, 1,
            Vector2f(20,y), w, 240, true));  y += yadd;
         instance_->addWidget(new Slider(locales::getLocale(locales::FuelRegen), "",
            &settings::iFuelRegen, 0, 150, 1,

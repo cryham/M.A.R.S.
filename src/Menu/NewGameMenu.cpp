@@ -65,7 +65,7 @@ UiWindow* NewGameMenu::get()
     if (!instance_)
     {
         instance_ = new NewGameMenu(580, 350);
-        instance_->addWidget(new Label(locales::getLocale(locales::StartLocalGame), TEXT_ALIGN_LEFT,
+        instance_->addWidget(new Label(locales::getLocale(locales::NewGame), TEXT_ALIGN_LEFT,
 			Vector2f(10,0), 20.f, getColor3f(0.5f, 0.9f, 1.f), false));
 
         Button* btnOk = new Button(locales::getLocale(locales::Start), "", &kStart_,

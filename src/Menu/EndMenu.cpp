@@ -27,7 +27,7 @@ UiWindow* EndMenu::get()
         int y = 10, w = 160 * scale_, h = 20, yadd = h + 10;
 
         instance_ = new EndMenu(w + 20, 180);
-        instance_->addWidget(new Button(locales::getLocale(locales::StartLocalGame),  "", &kNew_,
+        instance_->addWidget(new Button(locales::getLocale(locales::NewGame),         "", &kNew_,
             Vector2f(10,y), w, h));  y += yadd;
         instance_->addWidget(new Button(locales::getLocale(locales::RestartGame),     "", &kRestart_,
             Vector2f(10,y), w, h));  y += yadd*3/2;

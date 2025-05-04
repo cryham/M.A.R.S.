@@ -8,6 +8,7 @@
 #include "System/timer.hpp"
 #include "System/settings.hpp"
 #include "Particles/particles.hpp"
+#include "System/window.hpp"
 #include "Weapons/Mount.hpp"
 #include "Weapons/weapons.hpp"
 #include "Media/sound.hpp"
@@ -50,6 +51,7 @@ Turret::Turret(Vector2f const& location, float rotation, Player* owner)
 	weapon_  = weapons::create(weapons::random(), this);
 	// special_ = specials::create(specials::sHeal, this);  // todo
 
+    rotation_ = randomizer::random(0.f, 360.f);
     damageSource_ = owner_;
     physics::addStaticObject(this);
 }
@@ -181,41 +183,41 @@ void Turret::draw() const
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glRotatef(rotation_, 0.f, 0.f, 1.f);
 
-    float x, y, alpha = 1.f;
+    float x, y, alpha = 1.f, r = radius_;
     x = static_cast<float>(graphic_ % 8) * 0.125f;
     y = static_cast<float>(std::floor(graphic_ * 0.125f))*0.375f;
 
     glColor4f(1.f, 1.f, 1.f, alpha);
     glBegin(GL_QUADS);
-        glTexCoord2f(x, y+0.125f);          glVertex2f(-radius_, -radius_);
-        glTexCoord2f(x+0.125f, y+0.125f);   glVertex2f(-radius_,  radius_);
-        glTexCoord2f(x+0.125f, y);          glVertex2f( radius_,  radius_);
-        glTexCoord2f(x, y);                 glVertex2f( radius_, -radius_);
+        glTexCoord2f(x, y+0.125f);          glVertex2f(-r, -r);
+        glTexCoord2f(x+0.125f, y+0.125f);   glVertex2f(-r,  r);
+        glTexCoord2f(x+0.125f, y);          glVertex2f( r,  r);
+        glTexCoord2f(x, y);                 glVertex2f( r, -r);
     glEnd();
 
     y += 0.125f;
 
     color_.gl4f(alpha);  // team-
     glBegin(GL_QUADS);
-        glTexCoord2f(x, y+0.125f);          glVertex2f(-radius_, -radius_);
-        glTexCoord2f(x+0.125f, y+0.125f);   glVertex2f(-radius_,  radius_);
-        glTexCoord2f(x+0.125f, y);          glVertex2f( radius_,  radius_);
-        glTexCoord2f(x, y);                 glVertex2f( radius_, -radius_);
+        glTexCoord2f(x, y+0.125f);          glVertex2f(-r, -r);
+        glTexCoord2f(x+0.125f, y+0.125f);   glVertex2f(-r,  r);
+        glTexCoord2f(x+0.125f, y);          glVertex2f( r,  r);
+        glTexCoord2f(x, y);                 glVertex2f( r, -r);
     glEnd();
 
     y += 0.125f;
 
     color_.brightened().gl4f(alpha);
     glBegin(GL_QUADS);
-        glTexCoord2f(x, y+0.125f);          glVertex2f(-radius_, -radius_);
-        glTexCoord2f(x+0.125f, y+0.125f);   glVertex2f(-radius_,  radius_);
-        glTexCoord2f(x+0.125f, y);          glVertex2f( radius_,  radius_);
-        glTexCoord2f(x, y);                 glVertex2f( radius_, -radius_);
+        glTexCoord2f(x, y+0.125f);          glVertex2f(-r, -r);
+        glTexCoord2f(x+0.125f, y+0.125f);   glVertex2f(-r,  r);
+        glTexCoord2f(x+0.125f, y);          glVertex2f( r,  r);
+        glTexCoord2f(x, y);                 glVertex2f( r, -r);
     glEnd();
 
     glPopMatrix();
 
-    /*else if (respawnTimer_ > 6.f)
+    /*if (respawnTimer_ > 6.f)
     {
         glPushMatrix();
         glLoadIdentity();
@@ -234,6 +236,28 @@ void Turret::draw() const
 
         glPopMatrix();
     }*/
+}
+
+void Turret::drawBars() const
+{
+    // glPushMatrix();
+    // glLoadIdentity();
+
+    float r = radius_ * 0.1f, x1 = 0.f;  //-20.f
+    glBegin(GL_QUADS);
+        Color3f color(1.f, 0.f, 0.f);
+        color.h(color.h() + life_);
+        color.gl4f(0.6);
+        Vector2f pos(window::coordToPixel(location_));
+
+        const float y = -2.f, y2 = y + 8.f;
+        glVertex2f(pos.x_-x1, pos.y_ + r + y2);
+        glVertex2f(pos.x_-x1 + life_*0.4f, pos.y_ + r + y2);
+        glVertex2f(pos.x_-x1 + life_*0.4f, pos.y_ + r + y);
+        glVertex2f(pos.x_-x1, pos.y_ + r + y);
+    glEnd();
+
+    // glPopMatrix();
 }
 
 void Turret::drawWeapon() const

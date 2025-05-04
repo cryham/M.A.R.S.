@@ -55,6 +55,7 @@ namespace ships  // and turrets
         glBindTexture(GL_TEXTURE_2D, 0);
     }
 
+
     void drawTurrets()
     {
         glEnable(GL_TEXTURE_2D);
@@ -70,6 +71,9 @@ namespace ships  // and turrets
 
         glDisable(GL_TEXTURE_2D);
         glBindTexture(GL_TEXTURE_2D, 0);
+
+        for (const auto& it : turretList_)
+            it->drawBars();
     }
 
 

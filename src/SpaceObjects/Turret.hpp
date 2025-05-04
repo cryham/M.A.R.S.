@@ -12,6 +12,7 @@ class Turret : public SpaceObject, public Mount
 
         void update() override;
         void draw() const override;
+        void drawBars() const;
         void drawWeapon() const;
 
         void onCollision(SpaceObject* with, Vector2f const& location,
